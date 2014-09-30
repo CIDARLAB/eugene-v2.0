@@ -1,0 +1,56 @@
+/*
+ *   PART LIBRARY
+ */
+Property name(txt); 
+Property strength(num);
+Property numList(num[]);
+
+PartType Promoter(name, strength, numList);
+PartType RBS(name, strength);
+PartType Gene(name, strength);
+PartType Terminator(name, strength);
+
+
+Promoter p01(.name("p1"), .strength(1), .numList([1, 2, 3, 4]));
+Promoter p02(.name("p2"), .strength(2), .numList([1, 2, 3, 4, 5, 6]));
+
+RBS rbs01(.name("rbs1"), .strength(1));
+RBS rbs02(.name("rbs2"), .strength(2));
+
+Gene g01(.name("g1"), .strength(1));
+Gene g02(.name("g2"), .strength(2));
+
+Terminator t01(.name("t1"), .strength(1));
+Terminator t02(.name("t2"), .strength(2));
+
+
+/*
+ *
+ */ 
+Device D01(
+	[Promoter|RBS|Gene|Terminator], 
+	[Promoter|RBS|Gene|Terminator]
+);
+Rule r01(on D01:
+    contains Promoter /\ contains RBS /\
+    all_forward 
+    /\
+    not Promoter.strength + RBS.strength != 2 
+    );
+product(D01);   
+
+
+/*
+ *
+ */ 
+Device D02(
+	[Promoter|RBS|Gene|Terminator], 
+	[Promoter|RBS|Gene|Terminator]
+);
+Rule r02(on D02:
+    contains Promoter /\ contains RBS /\
+    all_forward 
+    /\
+    not Promoter.numList contains 5 
+    );
+product(D02);   

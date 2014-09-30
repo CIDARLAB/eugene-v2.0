@@ -1,0 +1,94 @@
+//Team 1: Edge Detection
+//Summary of problems:
+//We tried to update the Status and concentration properties but it generated errors
+//Save function did not produce output in the right-hand column. How should be call it?
+//Our goal was to model the behavior of the circuit. We wanted to model what the status of LacZ product while monitoring concentration of AHL
+//Properties
+Property Name(txt);
+Property Sequence(txt);
+Property RepressedBy(txt);
+Property Represses(txt);
+Property InducedBy(txt);
+Property Induces(txt);
+Property Status(boolean);
+Property Conc(num);
+
+//PartTypes
+PartType Light(Name,Status);
+PartType Promoter(Name, RepressedBy, InducedBy,Status);
+PartType RBS(Name);
+PartType Reporter(Name,Represses,Induces,Status);
+PartType Terminator(Name);
+PartType SmallMol(Name,Induces,InducedBy, Represses, Conc);
+Save();
+
+//Parts
+
+SmallMol AHL(.Name("AHL"),.Induces("LuxR"),.InducedBy("LuxI"), .Conc(0.1));
+
+Promoter pConst(.Name("pConst"), .Status(true));
+Promoter  pLux(.Name("pLux"),.RepressedBy("cI"),.InducedBy("ActiveAHL"),.Status(false));
+Promoter ompC(.Name("ompC"),.InducedBy("lightSource"),.Status(false));
+
+RBS B0034(.Name("B0034"));
+
+Reporter LuxI(.Name("LuxI"),.Induces("AHL"),.Status(false));
+Reporter LuxR(.Name("LuxR"),.Induces("pLux"),.Status(false));
+Reporter cI(.Name("cI"),.Represses("pLux"),.Status(false));
+Reporter LacZ(.Name("LacZ"),.Status(false));
+
+Terminator B0015(.Name("B0015"));
+
+Light lightSource(.Name("lightSource"),.Status(false));
+
+//Input
+lightSource.Status=false;
+
+//Devices,Rules
+Device LightSensor(lightSource, ompC, LuxI, cI, B0015);
+
+//Device BlackPigment(pLux, 
+ 
+ for(num i;i< 10 ;i++)
+ {
+    if(lightSource.Status == false) 
+    {
+        ompC.Status=true;
+    } 
+  
+    if (ompC.Status)
+    {
+        LuxI.Status=true;
+        LuxR.Status=true;
+        
+     }
+     
+     if (LuxI.Status)
+     {
+         AHL.Conc= AHL.Conc +1;
+     }
+     
+     if (AHL.Conc > 5)
+     {
+        cI.Status=true; 
+        pLux.Status =false;   
+     }
+     else
+     {
+        cI.Status =false;
+               
+     }
+     if(LuxR.Status AND AHL.Conc < 5 AND AHL.Conc >2)
+     {
+         pLux.Status=true;
+     }
+         
+     if (pLux.Status)
+     {
+         LacZ.Status=true;
+     }
+     
+     println(AHL.Conc, LacZ.Status);
+         
+}//end while  
+   

@@ -1,0 +1,991 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:RDF xmlns="http://sbols.org/v1#" xmlns:ns2="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <Collection ns2:about="http://www.eugenecad.org/TAKToggleSwitches">
+        <displayId>TAKToggleSwitches</displayId>
+        <description>TAKToggleSwitches</description>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1">
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1</displayId>
+                <description>TAKToggleSwitch_1</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1_Sequence">
+                        <nucleotides>ttttttttttttttatggtgaatgtgaaaccagtaacgttatacgatgtcgcagagtatgccggtgtctcttatcagaccgtttcccgcgtggtgaaccaggccagccacgtttctgcgaaaacgcgggaaaaagtggaagcggcgatggcggagctgaattacattcccaaccgcgtggcacaacaactggcgggcaaacagtcgttgctgattggcgttgccacctccagtctggccctgcacgcgccgtcgcaaattgtcgcggcgattaaatctcgcgccgatcaactgggtgccagcgtggtggtgtcgatggtagaacgaagcggcgtcgaagcctgtaaagcggcggtgcacaatcttctcgcgcaacgcgtcagtgggctgatcattaactatccgctggatgaccaggatgccattgctgtggaagctgcctgcactaatgttccggcgttatttcttgatgtctctgaccagacacccatcaacagtattattttctcccatgaagacggtacgcgactgggcgtggagcatctggtcgcattgggtcaccagcaaatcgcgctgttagcgggcccattaagttctgtctcggcgcgtctgcgtctggctggctggcataaatatctcactcgcaatcaaattcagccgatagcggaacgggaaggcgactggagtgccatgtccggttttcaacaaaccatgcaaatgctgaatgagggcatcgttcccactgcgatgctggttgccaacgatcagatggcgctgggcgcaatgcgcgccattaccgagtccgggctgcgcgttggtgcggatatctcggtagtgggatacgacgataccgaagacagctcatgttatatcccgccgttaaccaccatcaaacaggattttcgcctgctggggcaaaccagcgtggaccgcttgctgcaactctctcagggccaggcggtgaagggcaatcagctgttgcccgtctcactggtgaaaagaaaaaccaccctggcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcaggctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaagcatgcacagataaccatctgcggtgataaattatctctggcggtgttgacataaataccactggcggttataatgagcacatcagcaggcaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacacaaaaaaaaaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataatttttttttttttt</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/anno1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette">
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette</displayId>
+<description>pTAKLeftCassette</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette_Sequence">
+        <nucleotides>ttttttttttttttatggtgaatgtgaaaccagtaacgttatacgatgtcgcagagtatgccggtgtctcttatcagaccgtttcccgcgtggtgaaccaggccagccacgtttctgcgaaaacgcgggaaaaagtggaagcggcgatggcggagctgaattacattcccaaccgcgtggcacaacaactggcgggcaaacagtcgttgctgattggcgttgccacctccagtctggccctgcacgcgccgtcgcaaattgtcgcggcgattaaatctcgcgccgatcaactgggtgccagcgtggtggtgtcgatggtagaacgaagcggcgtcgaagcctgtaaagcggcggtgcacaatcttctcgcgcaacgcgtcagtgggctgatcattaactatccgctggatgaccaggatgccattgctgtggaagctgcctgcactaatgttccggcgttatttcttgatgtctctgaccagacacccatcaacagtattattttctcccatgaagacggtacgcgactgggcgtggagcatctggtcgcattgggtcaccagcaaatcgcgctgttagcgggcccattaagttctgtctcggcgcgtctgcgtctggctggctggcataaatatctcactcgcaatcaaattcagccgatagcggaacgggaaggcgactggagtgccatgtccggttttcaacaaaccatgcaaatgctgaatgagggcatcgttcccactgcgatgctggttgccaacgatcagatggcgctgggcgcaatgcgcgccattaccgagtccgggctgcgcgttggtgcggatatctcggtagtgggatacgacgataccgaagacagctcatgttatatcccgccgttaaccaccatcaaacaggattttcgcctgctggggcaaaccagcgtggaccgcttgctgcaactctctcagggccaggcggtgaagggcaatcagctgttgcccgtctcactggtgaaaagaaaaaccaccctggcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcaggctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaagcatgcacagataaccatctgcggtgataaattatctctggcggtgttgacataaataccactggcggttataatgagcacatcagcagg</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/anno1">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/rrnT1T2">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/Terminator"/>
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/rrnT1T2</displayId>
+                <description>rrnT1T2</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/rrnT1T2_Sequence">
+                        <nucleotides>tttttttttttttt</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/anno2">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/Repressor2">
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/Repressor2</displayId>
+                <description>Repressor2</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/Repressor2_Sequence">
+                        <nucleotides>atggtgaatgtgaaaccagtaacgttatacgatgtcgcagagtatgccggtgtctcttatcagaccgtttcccgcgtggtgaaccaggccagccacgtttctgcgaaaacgcgggaaaaagtggaagcggcgatggcggagctgaattacattcccaaccgcgtggcacaacaactggcgggcaaacagtcgttgctgattggcgttgccacctccagtctggccctgcacgcgccgtcgcaaattgtcgcggcgattaaatctcgcgccgatcaactgggtgccagcgtggtggtgtcgatggtagaacgaagcggcgtcgaagcctgtaaagcggcggtgcacaatcttctcgcgcaacgcgtcagtgggctgatcattaactatccgctggatgaccaggatgccattgctgtggaagctgcctgcactaatgttccggcgttatttcttgatgtctctgaccagacacccatcaacagtattattttctcccatgaagacggtacgcgactgggcgtggagcatctggtcgcattgggtcaccagcaaatcgcgctgttagcgggcccattaagttctgtctcggcgcgtctgcgtctggctggctggcataaatatctcactcgcaatcaaattcagccgatagcggaacgggaaggcgactggagtgccatgtccggttttcaacaaaccatgcaaatgctgaatgagggcatcgttcccactgcgatgctggttgccaacgatcagatggcgctgggcgcaatgcgcgccattaccgagtccgggctgcgcgttggtgcggatatctcggtagtgggatacgacgataccgaagacagctcatgttatatcccgccgttaaccaccatcaaacaggattttcgcctgctggggcaaaccagcgtggaccgcttgctgcaactctctcagggccaggcggtgaagggcaatcagctgttgcccgtctcactggtgaaaagaaaaaccaccctggcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcaggctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/Repressor2/anno1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/Repressor2/BBa_C0012">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/CDS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/Repressor2/BBa_C0012</displayId>
+<description>BBa_C0012</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/Repressor2/BBa_C0012_Sequence">
+        <nucleotides>atggtgaatgtgaaaccagtaacgttatacgatgtcgcagagtatgccggtgtctcttatcagaccgtttcccgcgtggtgaaccaggccagccacgtttctgcgaaaacgcgggaaaaagtggaagcggcgatggcggagctgaattacattcccaaccgcgtggcacaacaactggcgggcaaacagtcgttgctgattggcgttgccacctccagtctggccctgcacgcgccgtcgcaaattgtcgcggcgattaaatctcgcgccgatcaactgggtgccagcgtggtggtgtcgatggtagaacgaagcggcgtcgaagcctgtaaagcggcggtgcacaatcttctcgcgcaacgcgtcagtgggctgatcattaactatccgctggatgaccaggatgccattgctgtggaagctgcctgcactaatgttccggcgttatttcttgatgtctctgaccagacacccatcaacagtattattttctcccatgaagacggtacgcgactgggcgtggagcatctggtcgcattgggtcaccagcaaatcgcgctgttagcgggcccattaagttctgtctcggcgcgtctgcgtctggctggctggcataaatatctcactcgcaatcaaattcagccgatagcggaacgggaaggcgactggagtgccatgtccggttttcaacaaaccatgcaaatgctgaatgagggcatcgttcccactgcgatgctggttgccaacgatcagatggcgctgggcgcaatgcgcgccattaccgagtccgggctgcgcgttggtgcggatatctcggtagtgggatacgacgataccgaagacagctcatgttatatcccgccgttaaccaccatcaaacaggattttcgcctgctggggcaaaccagcgtggaccgcttgctgcaactctctcagggccaggcggtgaagggcaatcagctgttgcccgtctcactggtgaaaagaaaaaccaccctggcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcaggctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/Repressor2/anno2">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/Repressor2/rbsD">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/RBS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/Repressor2/rbsD</displayId>
+<description>rbsD</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/Repressor2/rbsD_Sequence">
+        <nucleotides>aaaaaaaa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/anno3">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/BBa_K121014">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/Promoter"/>
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/BBa_K121014</displayId>
+                <description>BBa_K121014</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKLeftCassette/BBa_K121014_Sequence">
+                        <nucleotides>gcatgcacagataaccatctgcggtgataaattatctctggcggtgttgacataaataccactggcggttataatgagcacatcagcagg</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/anno2">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette">
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette</displayId>
+<description>pTAKRightCassette</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette_Sequence">
+        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacacaaaaaaaaaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataatttttttttttttt</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/anno1">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/BBa_R0010">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/Promoter"/>
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/BBa_R0010</displayId>
+                <description>BBa_R0010</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/BBa_R0010_Sequence">
+                        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacaca</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/anno2">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Repressor1">
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Repressor1</displayId>
+                <description>Repressor1</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Repressor1_Sequence">
+                        <nucleotides>aaaaaaaaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Repressor1/anno1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Repressor1/rbsE">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/RBS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Repressor1/rbsE</displayId>
+<description>rbsE</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Repressor1/rbsE_Sequence">
+        <nucleotides>aaaaaaaa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Repressor1/anno2">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Repressor1/BBa_C0051">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/CDS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Repressor1/BBa_C0051</displayId>
+<description>BBa_C0051</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Repressor1/BBa_C0051_Sequence">
+        <nucleotides>atgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/anno3">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Reporter">
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Reporter</displayId>
+                <description>Reporter</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Reporter_Sequence">
+                        <nucleotides>aaaaaaaaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Reporter/anno1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Reporter/rbsB">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/RBS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Reporter/rbsB</displayId>
+<description>rbsB</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Reporter/rbsB_Sequence">
+        <nucleotides>aaaaaaaa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Reporter/anno2">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Reporter/BBa_E0040">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/CDS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Reporter/BBa_E0040</displayId>
+<description>BBa_E0040</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/Reporter/BBa_E0040_Sequence">
+        <nucleotides>atgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/anno4">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/rrnT1T2">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/Terminator"/>
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/rrnT1T2</displayId>
+                <description>rrnT1T2</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_1/pTAKRightCassette/rrnT1T2_Sequence">
+                        <nucleotides>tttttttttttttt</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2">
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2</displayId>
+                <description>TAKToggleSwitch_2</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2_Sequence">
+                        <nucleotides>ttttttttttttttatggtgaatgtgaaaccagtaacgttatacgatgtcgcagagtatgccggtgtctcttatcagaccgtttcccgcgtggtgaaccaggccagccacgtttctgcgaaaacgcgggaaaaagtggaagcggcgatggcggagctgaattacattcccaaccgcgtggcacaacaactggcgggcaaacagtcgttgctgattggcgttgccacctccagtctggccctgcacgcgccgtcgcaaattgtcgcggcgattaaatctcgcgccgatcaactgggtgccagcgtggtggtgtcgatggtagaacgaagcggcgtcgaagcctgtaaagcggcggtgcacaatcttctcgcgcaacgcgtcagtgggctgatcattaactatccgctggatgaccaggatgccattgctgtggaagctgcctgcactaatgttccggcgttatttcttgatgtctctgaccagacacccatcaacagtattattttctcccatgaagacggtacgcgactgggcgtggagcatctggtcgcattgggtcaccagcaaatcgcgctgttagcgggcccattaagttctgtctcggcgcgtctgcgtctggctggctggcataaatatctcactcgcaatcaaattcagccgatagcggaacgggaaggcgactggagtgccatgtccggttttcaacaaaccatgcaaatgctgaatgagggcatcgttcccactgcgatgctggttgccaacgatcagatggcgctgggcgcaatgcgcgccattaccgagtccgggctgcgcgttggtgcggatatctcggtagtgggatacgacgataccgaagacagctcatgttatatcccgccgttaaccaccatcaaacaggattttcgcctgctggggcaaaccagcgtggaccgcttgctgcaactctctcagggccaggcggtgaagggcaatcagctgttgcccgtctcactggtgaaaagaaaaaccaccctggcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcaggctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaagcatgcacagataaccatctgcggtgataaattatctctggcggtgttgacataaataccactggcggttataatgagcacatcagcaggcaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacacaaaaaaaaaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataatttttttttttttt</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/anno1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette">
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette</displayId>
+<description>pTAKLeftCassette</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette_Sequence">
+        <nucleotides>ttttttttttttttatggtgaatgtgaaaccagtaacgttatacgatgtcgcagagtatgccggtgtctcttatcagaccgtttcccgcgtggtgaaccaggccagccacgtttctgcgaaaacgcgggaaaaagtggaagcggcgatggcggagctgaattacattcccaaccgcgtggcacaacaactggcgggcaaacagtcgttgctgattggcgttgccacctccagtctggccctgcacgcgccgtcgcaaattgtcgcggcgattaaatctcgcgccgatcaactgggtgccagcgtggtggtgtcgatggtagaacgaagcggcgtcgaagcctgtaaagcggcggtgcacaatcttctcgcgcaacgcgtcagtgggctgatcattaactatccgctggatgaccaggatgccattgctgtggaagctgcctgcactaatgttccggcgttatttcttgatgtctctgaccagacacccatcaacagtattattttctcccatgaagacggtacgcgactgggcgtggagcatctggtcgcattgggtcaccagcaaatcgcgctgttagcgggcccattaagttctgtctcggcgcgtctgcgtctggctggctggcataaatatctcactcgcaatcaaattcagccgatagcggaacgggaaggcgactggagtgccatgtccggttttcaacaaaccatgcaaatgctgaatgagggcatcgttcccactgcgatgctggttgccaacgatcagatggcgctgggcgcaatgcgcgccattaccgagtccgggctgcgcgttggtgcggatatctcggtagtgggatacgacgataccgaagacagctcatgttatatcccgccgttaaccaccatcaaacaggattttcgcctgctggggcaaaccagcgtggaccgcttgctgcaactctctcagggccaggcggtgaagggcaatcagctgttgcccgtctcactggtgaaaagaaaaaccaccctggcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcaggctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaagcatgcacagataaccatctgcggtgataaattatctctggcggtgttgacataaataccactggcggttataatgagcacatcagcagg</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/anno1">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/rrnT1T2">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/Terminator"/>
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/rrnT1T2</displayId>
+                <description>rrnT1T2</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/rrnT1T2_Sequence">
+                        <nucleotides>tttttttttttttt</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/anno2">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/Repressor2">
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/Repressor2</displayId>
+                <description>Repressor2</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/Repressor2_Sequence">
+                        <nucleotides>atggtgaatgtgaaaccagtaacgttatacgatgtcgcagagtatgccggtgtctcttatcagaccgtttcccgcgtggtgaaccaggccagccacgtttctgcgaaaacgcgggaaaaagtggaagcggcgatggcggagctgaattacattcccaaccgcgtggcacaacaactggcgggcaaacagtcgttgctgattggcgttgccacctccagtctggccctgcacgcgccgtcgcaaattgtcgcggcgattaaatctcgcgccgatcaactgggtgccagcgtggtggtgtcgatggtagaacgaagcggcgtcgaagcctgtaaagcggcggtgcacaatcttctcgcgcaacgcgtcagtgggctgatcattaactatccgctggatgaccaggatgccattgctgtggaagctgcctgcactaatgttccggcgttatttcttgatgtctctgaccagacacccatcaacagtattattttctcccatgaagacggtacgcgactgggcgtggagcatctggtcgcattgggtcaccagcaaatcgcgctgttagcgggcccattaagttctgtctcggcgcgtctgcgtctggctggctggcataaatatctcactcgcaatcaaattcagccgatagcggaacgggaaggcgactggagtgccatgtccggttttcaacaaaccatgcaaatgctgaatgagggcatcgttcccactgcgatgctggttgccaacgatcagatggcgctgggcgcaatgcgcgccattaccgagtccgggctgcgcgttggtgcggatatctcggtagtgggatacgacgataccgaagacagctcatgttatatcccgccgttaaccaccatcaaacaggattttcgcctgctggggcaaaccagcgtggaccgcttgctgcaactctctcagggccaggcggtgaagggcaatcagctgttgcccgtctcactggtgaaaagaaaaaccaccctggcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcaggctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/Repressor2/anno1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/Repressor2/BBa_C0012">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/CDS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/Repressor2/BBa_C0012</displayId>
+<description>BBa_C0012</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/Repressor2/BBa_C0012_Sequence">
+        <nucleotides>atggtgaatgtgaaaccagtaacgttatacgatgtcgcagagtatgccggtgtctcttatcagaccgtttcccgcgtggtgaaccaggccagccacgtttctgcgaaaacgcgggaaaaagtggaagcggcgatggcggagctgaattacattcccaaccgcgtggcacaacaactggcgggcaaacagtcgttgctgattggcgttgccacctccagtctggccctgcacgcgccgtcgcaaattgtcgcggcgattaaatctcgcgccgatcaactgggtgccagcgtggtggtgtcgatggtagaacgaagcggcgtcgaagcctgtaaagcggcggtgcacaatcttctcgcgcaacgcgtcagtgggctgatcattaactatccgctggatgaccaggatgccattgctgtggaagctgcctgcactaatgttccggcgttatttcttgatgtctctgaccagacacccatcaacagtattattttctcccatgaagacggtacgcgactgggcgtggagcatctggtcgcattgggtcaccagcaaatcgcgctgttagcgggcccattaagttctgtctcggcgcgtctgcgtctggctggctggcataaatatctcactcgcaatcaaattcagccgatagcggaacgggaaggcgactggagtgccatgtccggttttcaacaaaccatgcaaatgctgaatgagggcatcgttcccactgcgatgctggttgccaacgatcagatggcgctgggcgcaatgcgcgccattaccgagtccgggctgcgcgttggtgcggatatctcggtagtgggatacgacgataccgaagacagctcatgttatatcccgccgttaaccaccatcaaacaggattttcgcctgctggggcaaaccagcgtggaccgcttgctgcaactctctcagggccaggcggtgaagggcaatcagctgttgcccgtctcactggtgaaaagaaaaaccaccctggcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcaggctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/Repressor2/anno2">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/Repressor2/rbsG">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/RBS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/Repressor2/rbsG</displayId>
+<description>rbsG</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/Repressor2/rbsG_Sequence">
+        <nucleotides>aaaaaaaa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/anno3">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/BBa_K121014">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/Promoter"/>
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/BBa_K121014</displayId>
+                <description>BBa_K121014</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKLeftCassette/BBa_K121014_Sequence">
+                        <nucleotides>gcatgcacagataaccatctgcggtgataaattatctctggcggtgttgacataaataccactggcggttataatgagcacatcagcagg</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/anno2">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette">
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette</displayId>
+<description>pTAKRightCassette</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette_Sequence">
+        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacacaaaaaaaaaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataatttttttttttttt</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/anno1">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/BBa_R0010">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/Promoter"/>
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/BBa_R0010</displayId>
+                <description>BBa_R0010</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/BBa_R0010_Sequence">
+                        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacaca</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/anno2">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Repressor1">
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Repressor1</displayId>
+                <description>Repressor1</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Repressor1_Sequence">
+                        <nucleotides>aaaaaaaaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Repressor1/anno1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Repressor1/rbsE">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/RBS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Repressor1/rbsE</displayId>
+<description>rbsE</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Repressor1/rbsE_Sequence">
+        <nucleotides>aaaaaaaa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Repressor1/anno2">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Repressor1/BBa_C0051">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/CDS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Repressor1/BBa_C0051</displayId>
+<description>BBa_C0051</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Repressor1/BBa_C0051_Sequence">
+        <nucleotides>atgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/anno3">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Reporter">
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Reporter</displayId>
+                <description>Reporter</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Reporter_Sequence">
+                        <nucleotides>aaaaaaaaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Reporter/anno1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Reporter/rbsB">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/RBS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Reporter/rbsB</displayId>
+<description>rbsB</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Reporter/rbsB_Sequence">
+        <nucleotides>aaaaaaaa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Reporter/anno2">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Reporter/BBa_E0040">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/CDS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Reporter/BBa_E0040</displayId>
+<description>BBa_E0040</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/Reporter/BBa_E0040_Sequence">
+        <nucleotides>atgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/anno4">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/rrnT1T2">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/Terminator"/>
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/rrnT1T2</displayId>
+                <description>rrnT1T2</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_2/pTAKRightCassette/rrnT1T2_Sequence">
+                        <nucleotides>tttttttttttttt</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3">
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3</displayId>
+                <description>TAKToggleSwitch_3</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3_Sequence">
+                        <nucleotides>ttttttttttttttatggtgaatgtgaaaccagtaacgttatacgatgtcgcagagtatgccggtgtctcttatcagaccgtttcccgcgtggtgaaccaggccagccacgtttctgcgaaaacgcgggaaaaagtggaagcggcgatggcggagctgaattacattcccaaccgcgtggcacaacaactggcgggcaaacagtcgttgctgattggcgttgccacctccagtctggccctgcacgcgccgtcgcaaattgtcgcggcgattaaatctcgcgccgatcaactgggtgccagcgtggtggtgtcgatggtagaacgaagcggcgtcgaagcctgtaaagcggcggtgcacaatcttctcgcgcaacgcgtcagtgggctgatcattaactatccgctggatgaccaggatgccattgctgtggaagctgcctgcactaatgttccggcgttatttcttgatgtctctgaccagacacccatcaacagtattattttctcccatgaagacggtacgcgactgggcgtggagcatctggtcgcattgggtcaccagcaaatcgcgctgttagcgggcccattaagttctgtctcggcgcgtctgcgtctggctggctggcataaatatctcactcgcaatcaaattcagccgatagcggaacgggaaggcgactggagtgccatgtccggttttcaacaaaccatgcaaatgctgaatgagggcatcgttcccactgcgatgctggttgccaacgatcagatggcgctgggcgcaatgcgcgccattaccgagtccgggctgcgcgttggtgcggatatctcggtagtgggatacgacgataccgaagacagctcatgttatatcccgccgttaaccaccatcaaacaggattttcgcctgctggggcaaaccagcgtggaccgcttgctgcaactctctcagggccaggcggtgaagggcaatcagctgttgcccgtctcactggtgaaaagaaaaaccaccctggcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcaggctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaagcatgcacagataaccatctgcggtgataaattatctctggcggtgttgacataaataccactggcggttataatgagcacatcagcaggcaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacacaaaaaaaaaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataatttttttttttttt</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/anno1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette">
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette</displayId>
+<description>pTAKLeftCassette</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette_Sequence">
+        <nucleotides>ttttttttttttttatggtgaatgtgaaaccagtaacgttatacgatgtcgcagagtatgccggtgtctcttatcagaccgtttcccgcgtggtgaaccaggccagccacgtttctgcgaaaacgcgggaaaaagtggaagcggcgatggcggagctgaattacattcccaaccgcgtggcacaacaactggcgggcaaacagtcgttgctgattggcgttgccacctccagtctggccctgcacgcgccgtcgcaaattgtcgcggcgattaaatctcgcgccgatcaactgggtgccagcgtggtggtgtcgatggtagaacgaagcggcgtcgaagcctgtaaagcggcggtgcacaatcttctcgcgcaacgcgtcagtgggctgatcattaactatccgctggatgaccaggatgccattgctgtggaagctgcctgcactaatgttccggcgttatttcttgatgtctctgaccagacacccatcaacagtattattttctcccatgaagacggtacgcgactgggcgtggagcatctggtcgcattgggtcaccagcaaatcgcgctgttagcgggcccattaagttctgtctcggcgcgtctgcgtctggctggctggcataaatatctcactcgcaatcaaattcagccgatagcggaacgggaaggcgactggagtgccatgtccggttttcaacaaaccatgcaaatgctgaatgagggcatcgttcccactgcgatgctggttgccaacgatcagatggcgctgggcgcaatgcgcgccattaccgagtccgggctgcgcgttggtgcggatatctcggtagtgggatacgacgataccgaagacagctcatgttatatcccgccgttaaccaccatcaaacaggattttcgcctgctggggcaaaccagcgtggaccgcttgctgcaactctctcagggccaggcggtgaagggcaatcagctgttgcccgtctcactggtgaaaagaaaaaccaccctggcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcaggctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaagcatgcacagataaccatctgcggtgataaattatctctggcggtgttgacataaataccactggcggttataatgagcacatcagcagg</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/anno1">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/rrnT1T2">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/Terminator"/>
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/rrnT1T2</displayId>
+                <description>rrnT1T2</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/rrnT1T2_Sequence">
+                        <nucleotides>tttttttttttttt</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/anno2">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/Repressor2">
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/Repressor2</displayId>
+                <description>Repressor2</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/Repressor2_Sequence">
+                        <nucleotides>atggtgaatgtgaaaccagtaacgttatacgatgtcgcagagtatgccggtgtctcttatcagaccgtttcccgcgtggtgaaccaggccagccacgtttctgcgaaaacgcgggaaaaagtggaagcggcgatggcggagctgaattacattcccaaccgcgtggcacaacaactggcgggcaaacagtcgttgctgattggcgttgccacctccagtctggccctgcacgcgccgtcgcaaattgtcgcggcgattaaatctcgcgccgatcaactgggtgccagcgtggtggtgtcgatggtagaacgaagcggcgtcgaagcctgtaaagcggcggtgcacaatcttctcgcgcaacgcgtcagtgggctgatcattaactatccgctggatgaccaggatgccattgctgtggaagctgcctgcactaatgttccggcgttatttcttgatgtctctgaccagacacccatcaacagtattattttctcccatgaagacggtacgcgactgggcgtggagcatctggtcgcattgggtcaccagcaaatcgcgctgttagcgggcccattaagttctgtctcggcgcgtctgcgtctggctggctggcataaatatctcactcgcaatcaaattcagccgatagcggaacgggaaggcgactggagtgccatgtccggttttcaacaaaccatgcaaatgctgaatgagggcatcgttcccactgcgatgctggttgccaacgatcagatggcgctgggcgcaatgcgcgccattaccgagtccgggctgcgcgttggtgcggatatctcggtagtgggatacgacgataccgaagacagctcatgttatatcccgccgttaaccaccatcaaacaggattttcgcctgctggggcaaaccagcgtggaccgcttgctgcaactctctcagggccaggcggtgaagggcaatcagctgttgcccgtctcactggtgaaaagaaaaaccaccctggcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcaggctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/Repressor2/anno1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/Repressor2/BBa_C0012">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/CDS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/Repressor2/BBa_C0012</displayId>
+<description>BBa_C0012</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/Repressor2/BBa_C0012_Sequence">
+        <nucleotides>atggtgaatgtgaaaccagtaacgttatacgatgtcgcagagtatgccggtgtctcttatcagaccgtttcccgcgtggtgaaccaggccagccacgtttctgcgaaaacgcgggaaaaagtggaagcggcgatggcggagctgaattacattcccaaccgcgtggcacaacaactggcgggcaaacagtcgttgctgattggcgttgccacctccagtctggccctgcacgcgccgtcgcaaattgtcgcggcgattaaatctcgcgccgatcaactgggtgccagcgtggtggtgtcgatggtagaacgaagcggcgtcgaagcctgtaaagcggcggtgcacaatcttctcgcgcaacgcgtcagtgggctgatcattaactatccgctggatgaccaggatgccattgctgtggaagctgcctgcactaatgttccggcgttatttcttgatgtctctgaccagacacccatcaacagtattattttctcccatgaagacggtacgcgactgggcgtggagcatctggtcgcattgggtcaccagcaaatcgcgctgttagcgggcccattaagttctgtctcggcgcgtctgcgtctggctggctggcataaatatctcactcgcaatcaaattcagccgatagcggaacgggaaggcgactggagtgccatgtccggttttcaacaaaccatgcaaatgctgaatgagggcatcgttcccactgcgatgctggttgccaacgatcagatggcgctgggcgcaatgcgcgccattaccgagtccgggctgcgcgttggtgcggatatctcggtagtgggatacgacgataccgaagacagctcatgttatatcccgccgttaaccaccatcaaacaggattttcgcctgctggggcaaaccagcgtggaccgcttgctgcaactctctcagggccaggcggtgaagggcaatcagctgttgcccgtctcactggtgaaaagaaaaaccaccctggcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcaggctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/Repressor2/anno2">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/Repressor2/rbsF">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/RBS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/Repressor2/rbsF</displayId>
+<description>rbsF</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/Repressor2/rbsF_Sequence">
+        <nucleotides>aaaaaaaa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/anno3">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/BBa_K121014">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/Promoter"/>
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/BBa_K121014</displayId>
+                <description>BBa_K121014</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKLeftCassette/BBa_K121014_Sequence">
+                        <nucleotides>gcatgcacagataaccatctgcggtgataaattatctctggcggtgttgacataaataccactggcggttataatgagcacatcagcagg</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/anno2">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette">
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette</displayId>
+<description>pTAKRightCassette</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette_Sequence">
+        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacacaaaaaaaaaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataatttttttttttttt</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/anno1">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/BBa_R0010">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/Promoter"/>
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/BBa_R0010</displayId>
+                <description>BBa_R0010</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/BBa_R0010_Sequence">
+                        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacaca</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/anno2">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Repressor1">
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Repressor1</displayId>
+                <description>Repressor1</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Repressor1_Sequence">
+                        <nucleotides>aaaaaaaaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Repressor1/anno1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Repressor1/rbsE">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/RBS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Repressor1/rbsE</displayId>
+<description>rbsE</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Repressor1/rbsE_Sequence">
+        <nucleotides>aaaaaaaa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Repressor1/anno2">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Repressor1/BBa_C0051">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/CDS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Repressor1/BBa_C0051</displayId>
+<description>BBa_C0051</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Repressor1/BBa_C0051_Sequence">
+        <nucleotides>atgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/anno3">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Reporter">
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Reporter</displayId>
+                <description>Reporter</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Reporter_Sequence">
+                        <nucleotides>aaaaaaaaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Reporter/anno1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Reporter/rbsB">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/RBS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Reporter/rbsB</displayId>
+<description>rbsB</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Reporter/rbsB_Sequence">
+        <nucleotides>aaaaaaaa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Reporter/anno2">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Reporter/BBa_E0040">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/CDS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Reporter/BBa_E0040</displayId>
+<description>BBa_E0040</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/Reporter/BBa_E0040_Sequence">
+        <nucleotides>atgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/anno4">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/rrnT1T2">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/Terminator"/>
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/rrnT1T2</displayId>
+                <description>rrnT1T2</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_3/pTAKRightCassette/rrnT1T2_Sequence">
+                        <nucleotides>tttttttttttttt</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4">
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4</displayId>
+                <description>TAKToggleSwitch_4</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4_Sequence">
+                        <nucleotides>ttttttttttttttatggtgaatgtgaaaccagtaacgttatacgatgtcgcagagtatgccggtgtctcttatcagaccgtttcccgcgtggtgaaccaggccagccacgtttctgcgaaaacgcgggaaaaagtggaagcggcgatggcggagctgaattacattcccaaccgcgtggcacaacaactggcgggcaaacagtcgttgctgattggcgttgccacctccagtctggccctgcacgcgccgtcgcaaattgtcgcggcgattaaatctcgcgccgatcaactgggtgccagcgtggtggtgtcgatggtagaacgaagcggcgtcgaagcctgtaaagcggcggtgcacaatcttctcgcgcaacgcgtcagtgggctgatcattaactatccgctggatgaccaggatgccattgctgtggaagctgcctgcactaatgttccggcgttatttcttgatgtctctgaccagacacccatcaacagtattattttctcccatgaagacggtacgcgactgggcgtggagcatctggtcgcattgggtcaccagcaaatcgcgctgttagcgggcccattaagttctgtctcggcgcgtctgcgtctggctggctggcataaatatctcactcgcaatcaaattcagccgatagcggaacgggaaggcgactggagtgccatgtccggttttcaacaaaccatgcaaatgctgaatgagggcatcgttcccactgcgatgctggttgccaacgatcagatggcgctgggcgcaatgcgcgccattaccgagtccgggctgcgcgttggtgcggatatctcggtagtgggatacgacgataccgaagacagctcatgttatatcccgccgttaaccaccatcaaacaggattttcgcctgctggggcaaaccagcgtggaccgcttgctgcaactctctcagggccaggcggtgaagggcaatcagctgttgcccgtctcactggtgaaaagaaaaaccaccctggcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcaggctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaagcatgcacagataaccatctgcggtgataaattatctctggcggtgttgacataaataccactggcggttataatgagcacatcagcaggcaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacacaaaaaaaaaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataatttttttttttttt</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/anno1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette">
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette</displayId>
+<description>pTAKLeftCassette</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette_Sequence">
+        <nucleotides>ttttttttttttttatggtgaatgtgaaaccagtaacgttatacgatgtcgcagagtatgccggtgtctcttatcagaccgtttcccgcgtggtgaaccaggccagccacgtttctgcgaaaacgcgggaaaaagtggaagcggcgatggcggagctgaattacattcccaaccgcgtggcacaacaactggcgggcaaacagtcgttgctgattggcgttgccacctccagtctggccctgcacgcgccgtcgcaaattgtcgcggcgattaaatctcgcgccgatcaactgggtgccagcgtggtggtgtcgatggtagaacgaagcggcgtcgaagcctgtaaagcggcggtgcacaatcttctcgcgcaacgcgtcagtgggctgatcattaactatccgctggatgaccaggatgccattgctgtggaagctgcctgcactaatgttccggcgttatttcttgatgtctctgaccagacacccatcaacagtattattttctcccatgaagacggtacgcgactgggcgtggagcatctggtcgcattgggtcaccagcaaatcgcgctgttagcgggcccattaagttctgtctcggcgcgtctgcgtctggctggctggcataaatatctcactcgcaatcaaattcagccgatagcggaacgggaaggcgactggagtgccatgtccggttttcaacaaaccatgcaaatgctgaatgagggcatcgttcccactgcgatgctggttgccaacgatcagatggcgctgggcgcaatgcgcgccattaccgagtccgggctgcgcgttggtgcggatatctcggtagtgggatacgacgataccgaagacagctcatgttatatcccgccgttaaccaccatcaaacaggattttcgcctgctggggcaaaccagcgtggaccgcttgctgcaactctctcagggccaggcggtgaagggcaatcagctgttgcccgtctcactggtgaaaagaaaaaccaccctggcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcaggctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaagcatgcacagataaccatctgcggtgataaattatctctggcggtgttgacataaataccactggcggttataatgagcacatcagcagg</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/anno1">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/rrnT1T2">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/Terminator"/>
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/rrnT1T2</displayId>
+                <description>rrnT1T2</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/rrnT1T2_Sequence">
+                        <nucleotides>tttttttttttttt</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/anno2">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/Repressor2">
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/Repressor2</displayId>
+                <description>Repressor2</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/Repressor2_Sequence">
+                        <nucleotides>atggtgaatgtgaaaccagtaacgttatacgatgtcgcagagtatgccggtgtctcttatcagaccgtttcccgcgtggtgaaccaggccagccacgtttctgcgaaaacgcgggaaaaagtggaagcggcgatggcggagctgaattacattcccaaccgcgtggcacaacaactggcgggcaaacagtcgttgctgattggcgttgccacctccagtctggccctgcacgcgccgtcgcaaattgtcgcggcgattaaatctcgcgccgatcaactgggtgccagcgtggtggtgtcgatggtagaacgaagcggcgtcgaagcctgtaaagcggcggtgcacaatcttctcgcgcaacgcgtcagtgggctgatcattaactatccgctggatgaccaggatgccattgctgtggaagctgcctgcactaatgttccggcgttatttcttgatgtctctgaccagacacccatcaacagtattattttctcccatgaagacggtacgcgactgggcgtggagcatctggtcgcattgggtcaccagcaaatcgcgctgttagcgggcccattaagttctgtctcggcgcgtctgcgtctggctggctggcataaatatctcactcgcaatcaaattcagccgatagcggaacgggaaggcgactggagtgccatgtccggttttcaacaaaccatgcaaatgctgaatgagggcatcgttcccactgcgatgctggttgccaacgatcagatggcgctgggcgcaatgcgcgccattaccgagtccgggctgcgcgttggtgcggatatctcggtagtgggatacgacgataccgaagacagctcatgttatatcccgccgttaaccaccatcaaacaggattttcgcctgctggggcaaaccagcgtggaccgcttgctgcaactctctcagggccaggcggtgaagggcaatcagctgttgcccgtctcactggtgaaaagaaaaaccaccctggcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcaggctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/Repressor2/anno1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/Repressor2/BBa_C0012">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/CDS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/Repressor2/BBa_C0012</displayId>
+<description>BBa_C0012</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/Repressor2/BBa_C0012_Sequence">
+        <nucleotides>atggtgaatgtgaaaccagtaacgttatacgatgtcgcagagtatgccggtgtctcttatcagaccgtttcccgcgtggtgaaccaggccagccacgtttctgcgaaaacgcgggaaaaagtggaagcggcgatggcggagctgaattacattcccaaccgcgtggcacaacaactggcgggcaaacagtcgttgctgattggcgttgccacctccagtctggccctgcacgcgccgtcgcaaattgtcgcggcgattaaatctcgcgccgatcaactgggtgccagcgtggtggtgtcgatggtagaacgaagcggcgtcgaagcctgtaaagcggcggtgcacaatcttctcgcgcaacgcgtcagtgggctgatcattaactatccgctggatgaccaggatgccattgctgtggaagctgcctgcactaatgttccggcgttatttcttgatgtctctgaccagacacccatcaacagtattattttctcccatgaagacggtacgcgactgggcgtggagcatctggtcgcattgggtcaccagcaaatcgcgctgttagcgggcccattaagttctgtctcggcgcgtctgcgtctggctggctggcataaatatctcactcgcaatcaaattcagccgatagcggaacgggaaggcgactggagtgccatgtccggttttcaacaaaccatgcaaatgctgaatgagggcatcgttcccactgcgatgctggttgccaacgatcagatggcgctgggcgcaatgcgcgccattaccgagtccgggctgcgcgttggtgcggatatctcggtagtgggatacgacgataccgaagacagctcatgttatatcccgccgttaaccaccatcaaacaggattttcgcctgctggggcaaaccagcgtggaccgcttgctgcaactctctcagggccaggcggtgaagggcaatcagctgttgcccgtctcactggtgaaaagaaaaaccaccctggcgcccaatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcaggctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/Repressor2/anno2">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/Repressor2/rbsH">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/RBS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/Repressor2/rbsH</displayId>
+<description>rbsH</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/Repressor2/rbsH_Sequence">
+        <nucleotides>aaaaaaaa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/anno3">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/BBa_K121014">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/Promoter"/>
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/BBa_K121014</displayId>
+                <description>BBa_K121014</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKLeftCassette/BBa_K121014_Sequence">
+                        <nucleotides>gcatgcacagataaccatctgcggtgataaattatctctggcggtgttgacataaataccactggcggttataatgagcacatcagcagg</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/anno2">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette">
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette</displayId>
+<description>pTAKRightCassette</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette_Sequence">
+        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacacaaaaaaaaaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataaaaaaaaaaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataatttttttttttttt</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/anno1">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/BBa_R0010">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/Promoter"/>
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/BBa_R0010</displayId>
+                <description>BBa_R0010</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/BBa_R0010_Sequence">
+                        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacaca</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/anno2">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Repressor1">
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Repressor1</displayId>
+                <description>Repressor1</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Repressor1_Sequence">
+                        <nucleotides>aaaaaaaaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Repressor1/anno1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Repressor1/rbsE">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/RBS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Repressor1/rbsE</displayId>
+<description>rbsE</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Repressor1/rbsE_Sequence">
+        <nucleotides>aaaaaaaa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Repressor1/anno2">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Repressor1/BBa_C0051">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/CDS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Repressor1/BBa_C0051</displayId>
+<description>BBa_C0051</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Repressor1/BBa_C0051_Sequence">
+        <nucleotides>atgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/anno3">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Reporter">
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Reporter</displayId>
+                <description>Reporter</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Reporter_Sequence">
+                        <nucleotides>aaaaaaaaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Reporter/anno1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Reporter/rbsB">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/RBS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Reporter/rbsB</displayId>
+<description>rbsB</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Reporter/rbsB_Sequence">
+        <nucleotides>aaaaaaaa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Reporter/anno2">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Reporter/BBa_E0040">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/CDS"/>
+<displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Reporter/BBa_E0040</displayId>
+<description>BBa_E0040</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/Reporter/BBa_E0040_Sequence">
+        <nucleotides>atgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/anno4">
+        <subComponent>
+            <DnaComponent ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/rrnT1T2">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/Terminator"/>
+                <displayId>http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/rrnT1T2</displayId>
+                <description>rrnT1T2</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/TAKToggleSwitches/TAKToggleSwitch_4/pTAKRightCassette/rrnT1T2_Sequence">
+                        <nucleotides>tttttttttttttt</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+    </Collection>
+</ns2:RDF>

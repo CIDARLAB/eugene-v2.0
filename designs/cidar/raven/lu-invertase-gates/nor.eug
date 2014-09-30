@@ -1,0 +1,28 @@
+include "./designs/cidar/raven/lu-invertase-gates/design-space.h"
+
+/* This is the published NOR gate...
+ * Device NOR_gate(proD, Bxb1_attB, -T1, -Bxb1_attP, phiC31_attP, -T1, -phiC31_attB, rbs, gfp, T1);
+ */
+// Q: can we define any rules that produce the published NOR gate?
+Device NorGate(
+	Promoter, InvertaseSite, -Terminator, -InvertaseSite, InvertaseSite, -Terminator, -InvertaseSite, RBS, Reporter, Terminator);
+
+Rule r1(
+	ON NorGate:
+		proD NEXTTO Bxb1_attB
+			AND
+		Bxb1_attB NOTMORETHAN 1
+			AND
+		Bxb1_attB BEFORE Bxb1_attP 
+			AND
+		Bxb1_attP BEFORE phiC31_attP 
+			AND 
+		Bxb1_attP NEXTTO phiC31_attP 
+			AND
+		phiC31_attB NEXTTO rbs
+);
+
+// finally, let's do some product
+Device[] lst = product(NorGate, strict);
+pigeon(lst);
+	

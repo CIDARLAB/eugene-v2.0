@@ -1,0 +1,94 @@
+/* 
+This Eugene file serves to demonstrate the features requested by Genomatica.
+Given a set of parts, and constraints for the composition of those parts, this script will generate all possible composite parts.
+The output of this Eugene script will be used to create a library csv file that can be used as Raven input.
+*/
+
+/* 
+PROPERTIES 
+*/
+Property name(txt);
+Property sequence(txt);
+
+/* 
+PART TYPES 
+*/
+Part Spacer(name,sequence);
+Part Ribozyme(name,sequence); //remember to have an "empty ribozyme" for URS1, URS2
+Part RBS(name,sequence); //remember to have an "empty rbs" for URS1, URS2
+Part Promoter(name,sequence);
+Part Leader(name,sequence); //remember to have an "empty leader" for URS2
+Part CodingSequence(name,sequence); 
+Part Terminator(name,sequence);
+
+/* 
+PARTS 
+*/
+Spacer spacer1("spacer1", "aaaa");
+Spacer spacer2("spacer2", "aaaa");
+
+Ribozyme ribozyme1("ribozyme1", "aaaa");
+Ribozyme emptyRibozyme(.sequence(""));
+
+Promoter promoter1("promoter1", "aaaa");
+Promoter promoter2("promoter2", "aaaa");
+
+Leader leader1("leader1", "aaaa");
+Leader emptyLeader(.sequence(""));
+
+RBS rbs1("rbs1", "aaaa");
+RBS rbs2("rbs2", "aaaa");
+RBS emptyRBS(.sequence("a"));  
+
+
+CodingSequence GFP("GFP", "aaaa");
+CodingSequence RFP("RFP", "aaaa");
+CodingSequence YFP("YFP", "aaaa");
+
+Terminator term1("term1", "aaaa");
+
+/*
+ * DEVICES 
+ */
+Device URS1(Spacer, Promoter, RBS);
+Device URS2(Ribozyme, RBS, Leader);
+Device Operon ( 
+	URS1,   
+	URS2,    // URS2
+	CodingSequence, Terminator, Spacer);
+
+lst = product(Operon);
+println(lst.size, " possible operons...");
+pigeon(lst);
+
+
+/*
+ * RULES
+ */
+
+num maxlength = 450;
+
+Rule rOperon (
+	ON Operon: 
+		/** URS1 rules **/
+		//Operon.URS1[0].sequence.size() + Operon.URS1[1].sequence.size() + Operon.URS1[2].sequence.size() <= maxlength 
+		//AND 
+		Operon.URS1[0] EQUALS spacer1 AND Operon.URS1[1] EQUALS promoter1
+		
+		AND 
+		
+		/** URS2 rules **/
+		//Operon[3].sequence.size() + Operon[4].sequence.size() + Operon[5].sequence.size() <= maxlength 
+		//AND 
+		Operon.URS2[0] EQUALS ribozyme1 AND Operon.URS2[2] EQUALS leader1 
+); 
+
+Device[] lstOperons = product(Operon, strict);
+println(lstOperons.size(), " operons generated...");
+println(lstOperons);
+
+pigeon(lstOperons);
+
+//for(num i=0; i<lstOperons.size(); i++) {
+//    println(lstOperons[i]);
+//}

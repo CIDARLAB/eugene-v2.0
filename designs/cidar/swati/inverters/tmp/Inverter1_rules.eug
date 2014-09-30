@@ -1,0 +1,41 @@
+//Intermediate Devices (Transcriptional Units)
+Device TU1 (ConstPr, RBS, Repressor, Terminator); 
+Device TU2 (RepPr, RBS, Repressor, Terminator);
+Device TU3 (RepPr, RBS, Repressor, Terminator);
+Device TU4 (RepPr, RBS, Repressor, Terminator);
+
+//Inverter
+Device Inverter1 = TU1 + TU2 + TU3 + TU4;
+println (Inverter1);
+
+//Rules
+
+Rule r1 (
+    ON Inverter1:
+        Inverter[5] EQUALS Inverter[9] AND
+        
+        Inverter1[3] EQUALS B0015_DE AND
+        Inverter1[7] EQUALS B0015_DF AND
+        Inverter1[11] EQUALS B0015_DG AND
+        Inverter[15] EQUALS B0015_DH);
+
+
+
+//Inverter1
+Device Inverter1 = TU1 + TU2 + TU3 + TU4;
+
+Rules for Inverter1:
+
+1. TU2.RBS == TU3.RBS
+2. TU1.Repressor represses TU2.RepPr AND TU3.RepPR
+3. TU3.Reporter != TU4.Reporter
+4. TU2.Repressor represses TU4.RepPr
+5. If TU[2] == Repressor then SmallMolecule is Rep_SmallMolecule AND Rep_SmallMolecule represses TU1.Repressor
+
+This can be chosen manually, but, 
+/** I don't know if this is important to Eugene designs at all, but this will reduce
+the number of options for each Eugene gives us**/
+for any TU1, fusion sites for TU1[0] == AB
+for any TU2, fusion sites for TU2[0] == EB
+for any TU3, fusion sites for TU3[0] == FB
+for any TU4, fusion sites for TU4[0] == GB

@@ -1,0 +1,101 @@
+//Quorum Sensing - Pooja Shah
+
+//Properties
+Property Name(txt);
+Property Sequence(txt);
+
+
+//Part Types
+PartType RPromoter(Name);
+PartType IPromoter(Name);
+PartType Promoter(Name);
+PartType RBS(Name);
+PartType Repressor(Name);  // gene repressing
+PartType Inducer(Name);    // gene inducing
+PartType Reporter(Name);   // gene
+PartType Terminator(Name);
+PartType SmallMolecule(Name);
+
+//Parts
+/** PROMOTERS **/
+RPromoter pRep(.Name("pRep"));
+IPromoter pInd(.Name("pInd"));
+Promoter pConst(.Name("pConst"));
+
+/** RBSs **/
+RBS rbs(.Name("rbs"));
+
+/** REPRESSORS **/
+Repressor Rep(.Name("Rep"));
+Repressor Ind(.Name("Ind"));
+Repressor operon(.Name("operon"));
+
+Rep REPRESSES pRep;
+Ind REPRESSES pConst;
+operon REPRESSES pInd;
+
+/** INDUCERS **/
+
+/* 
+ * an Inducer is a molecule that starts gene expression...
+ * it can either bind to repressors or activators 
+ */
+Inducer araC(.Name("Arabinose")); 
+araC INDUCES pInd;
+
+/** REPORTERS **/
+Reporter GFP(.Name("GFP"));
+Reporter RFP(.Name("RFP"));
+
+/** TERMINATORS **/
+Terminator term(.Name("term"));
+
+//SmallMolecule smallmolecule(.Name("smallmolecule"));
+//smallmolecule INDUCES pInd;
+
+
+
+//Structural Rules for Devices
+Device D1(RPromoter, RBS, Reporter, Terminator);
+Device D2(Promoter, RBS, Repressor, Terminator);
+Device D3(IPromoter, RBS, Repressor, Terminator);
+Device D4(IPromoter, RBS, Reporter, Terminator);
+Device D5(Promoter, RBS, Repressor, Terminator);
+
+Device QS(D1, D2, D3, D4, D5);
+ 
+/*** 
+//Content Rules
+Rule r1(
+
+	ON QS:
+
+//		operon WITH pInd AND pInd WITH pRep
+//	
+//			AND
+		 
+		// - different reporters
+		(QS.D1[2] NOTEQUALS QS.D4[2]) 
+			AND
+		// - different repressors	
+		(QS.D2[2] NOTEQUALS QS.D3[2]) AND (QS.D3[2] NOTEQUALS QS.D5[2]) 
+
+			AND
+		
+		// - we'd like to use all three repressors
+		operon WITH Ind AND Ind WITH Rep  
+			AND
+		// - order of the repressors
+		operon AFTER Ind AND Ind AFTER Rep
+	
+			AND
+		
+		// - reporters and their order
+		GFP WITH RFP AND GFP AFTER RFP 
+);
+***/
+
+//Algorithm Cartesian Product
+Device[] lst = product(QS, strict, 1);
+//println(lst.size);
+pigeon(lst);

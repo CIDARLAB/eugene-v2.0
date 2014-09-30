@@ -1,0 +1,41 @@
+/*
+ *  store the content of the SBOL file into a 
+ *  Eugene Collection
+ *  i.e. the imported data is only visible within and
+ *  accessible via the Eugene Collection
+ */
+//col = SBOL.import("./data/sbol/partregistry/partsLibrary.sbol");
+
+/*
+ *  store the content of the SBOL file into 
+ *  the global scope of the Eugene script
+ */
+SBOL.import("./data/sbol/partregistry/partsLibrary.sbol"); 
+
+// RBSs
+SBOL.import("./data/sbol/partregistry/rbs/K090505.rdf"); 
+SBOL.import("./data/sbol/partregistry/rbs/K090506.rdf"); 
+
+
+Device D([Promoter|RBS|Terminator|CDS], [Promoter|RBS|Terminator|CDS], [Promoter|RBS|Terminator|CDS], [Promoter|RBS|Terminator|CDS]);
+Rule R(
+	ON D:
+		Promoter WITH RBS
+		/\ 
+		RBS WITH CDS
+		/\
+		CDS WITH Terminator
+		/\
+		Promoter before RBS
+		/\
+		RBS before CDS
+		/\
+		CDS before Terminator
+		/\
+		all_forward
+);
+lod = product(D);
+println(lod);
+
+pigeon(lod);
+

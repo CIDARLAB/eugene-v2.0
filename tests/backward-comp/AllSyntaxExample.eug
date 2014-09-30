@@ -1,0 +1,176 @@
+/*
+	Property definitions can be in a header file
+	Program then needs include statement like
+	include PropertyDefinition.h;
+*/
+Property BioBrickID(txt);
+Property Sequence(txt);
+Property someprop2(txt);
+Property RelativeStrength(num);
+Property someList(txt[]);
+
+
+/*
+	Part definitions can also be in a header file
+	Program then needs include statement and Property definition need to be in a header file too 
+	include PropertyDefinition.h, PartDefinition.h;
+*/
+Part customP(Sequence, BioBrickID, someList);
+//.addProperties is another way to add further Property definitions to a Part
+//customP.addProperties(RelativeStrength);
+
+
+txt figure = "XATCG";
+println(figure);
+
+/*
+	Part declaration can also be in a header file
+	Program then needs include statement and Property definitions, Part definitions need to be in a header file too
+	include PropertyDefinition.h, PartDefinition.h, PartDeclaration.h;
+*/
+customP cp(figure, "1234", ["atcg", "atc", "tcg"], 560);
+customP cp2(.Sequence("GCCC"), .someList(["at", "atc", "atc"]));
+
+num x = 50.0, y = 1000;
+
+/*
+	Part definition
+*/
+Part Promoter(Sequence, BioBrickID, RelativeStrength);
+Part RBS();
+//RBS.addProperties(Sequence);
+
+/*
+	Part declaration
+	One can define an instance without values in the Property labels
+	and fill in them later
+*/
+RBS rs();
+RBS rs2();
+
+rs.Sequence = "GGGGGG";
+rs2.Sequence = rs.Sequence;
+
+print("rs2.Sequence: " , rs2.Sequence);
+
+Promoter p("GCTA", "BBa_435", 1000);
+Promoter p2(.BioBrickID("ABCD"));
+
+Rule r1(p BEFORE p2); 
+Rule r2(cp BEFORE p);
+Rule r3(p WITH p2);
+Rule r4(p NEXTTO p2);
+Rule r5(rs AFTER p);
+Rule r6(rs NOTWITH rs2);
+Rule r6a(rs WITH cp);
+Rule r7(cp.Sequence != cp2.Sequence);
+Rule r8(p.RelativeStrength > cp.RelativeStrength);
+Rule r9(p.RelativeStrength > x);
+Rule r10(y <= p.RelativeStrength);
+Rule r15(cp.Sequence < cp2.Sequence); // cp.Sequence should come alphabetically before cp2.Sequence
+Rule r15a(rs.Sequence < p.Sequence);
+Rule r15b(rs.Sequence <= rs2.Sequence); // rs.Sequence should come alphabetically before cp2.Sequence or be the same
+Rule r15c(cp.Sequence > cp2.Sequence);  // cp.Sequence should come alphabetically after cp2.Sequence
+Rule r12(p.BioBrickID > p.Sequence);
+
+/*
+	Assert statements will generate compile errors and terminate program
+	Need to be uncommented below to be tested
+*/
+/*
+Assert(NOT r7);
+Assert(r7);
+Assert((NOT r1) AND (NOT r4));
+Assert(r1 AND (r2 OR r3));
+Assert((r1 AND r2) OR r3);
+Assert(((r1 AND r2) AND r3) OR r4 OR r5);
+Assert((NOT(r1 AND r2)) OR (NOT(r2 AND r1)));
+*/
+
+Note(r7);
+Note((NOT r1) AND (NOT r4));
+Note(r1 AND (r2 OR r3));
+Note((r1 AND r2) OR r3);
+Note(((r1 AND r2) AND r3) OR r4 OR r5);
+Note((NOT(r1 AND r2)) OR (NOT(r2 AND r1)));
+Note(r8);
+Note(r9);
+Note(r12);
+Note(r15);
+Note(r15a);
+Note(r15b);
+Note(r15c);
+
+//prints new line
+print();
+
+Device d0(cp);
+Device d(p, cp, p2);
+Device d1(p, p2, p, p);
+Device d2(p2, p, p2, p, cp, p, cp, rs, p);
+Device d3(cp, p, rs, p2);
+Device d4(cp, cp, p, p, p2, p2, rs, p2);
+Device d5(d3, rs);
+Device d6(d3, d4);//device consisting of other devices
+Device d7(p2, p2, p2, rs);
+Device d8(cp, cp, p, p, p2, rs, rs, p2);
+
+print("d8.Sequence: " , d8.Sequence);
+
+if(on (d4) NOT r1) {//evaluates to false, because of negation
+
+	print("Rule r1 on d4 is not true");
+	txt[] a = ["a", "b", "c"], b = ["d", "d", "d"], c;
+	c = a + b;
+	print("a: " , a);
+	print("b: " , b);
+	print("concatenation of lists: c = a + b => ", c);
+	
+	boolean bcheck = true;
+	num n1 = 4, n5 = 5, n6 = 6, n7 = 7;
+	
+	if(((n1 < n5 OR n7 < n6) AND NOT bcheck) OR (n1 < n5) ) {
+		print("n1 is less n5");
+	} else {
+		print("n1 is greater n5");
+	}
+	
+	if(on (d2) r2) { //evaluates to false
+		print("Rule r2 on d2 is true");
+	} else {
+		print("Rule r2 on d2 is not met by d2");
+	}
+	
+} else {
+	print("Rule r1 on d4 is met");
+	txt[] a = ["a", "b", "c"], b = ["d", "d", "d"], c;
+	print("c = a + b => ", a + b);
+	boolean test = true;
+	if(test) {
+		print("test is true");
+		num[] arrayNum = [ 1, 2, 3], arrayNumSame = [1, 2, 3], arrayNumNotSame = [1, 2, 4];
+		if(arrayNum == arrayNumSame) {
+			print("arrayNum: ", arrayNum , " is the same as arrayNumSame: " , arrayNumSame, ".");
+		}
+		else {
+			print("arrayNum: " , arrayNum, " is not the same as arrayNumSame: ", arrayNumSame, ".");
+		}
+		if(arrayNum != arrayNumNotSame) {
+			print("arrayNum: " , arrayNum, " is not the same as arrayNumNotSame: " , arrayNumNotSame, ".");
+		}
+	}else {
+		Assert(r7);
+		print("test is false");
+	}
+}
+
+Device d9(
+	Promoter ptry(.Sequence("1"));
+	Promoter ptry2(.Sequence("2"));
+);
+
+print("ptry.Sequence: " , ptry.Sequence);
+
+txt newSequence = rs2.Sequence + "ATCGATCG";
+print("rs2.Sequence: ", rs2.Sequence);
+print("new Sequence: " , newSequence);

@@ -1,0 +1,97 @@
+//Tyler Wagner
+//Sindbis Replicons 2 SGPs
+
+
+//Properties
+Property name(txt);
+Property sequence(txt);
+Property represses(txt);
+Property repressedby(txt);
+Property color(txt);
+Property copynum(num);
+
+//Part Types
+PartType SGP(name, sequence);
+PartType IRES(name, sequence);
+PartType Aptamer(name, sequence, repressedby, copynum);
+PartType Repressor(name, sequence, represses);
+PartType Reporter(name, sequence, color);
+PartType 2A(name, sequence);
+
+//Parts
+
+//Subgenomic Promoters
+SGP sgp1(.name("sgp1"));
+SGP sgp2(.name("sgp2"));
+
+//Aptamers
+Aptamer aptamer1(.name("aptamer1"), .repressedby("repressor1"), .copynum(2));
+Aptamer aptamer2(.name("aptamer2"), .repressedby("repressor2"), .copynum(2));
+Aptamer noaptamer(.name("noaptamer"));  
+
+//Repressors
+Repressor repressor1(.name("repressor1"), .represses("aptamer1"));
+Repressor repressor2(.name("repressor2"), .represses("aptamer2"));
+
+//Reporters
+Reporter mVenus(.name("mVenus"), .color("yellow"));
+Reporter mKate(.name("mKate"), .color("red"));
+Reporter EBFP(.name("EBFP"), .color("blue"));
+
+//IRES
+IRES ires1(.name("ires1"));
+IRES ires2(.name("ires2"));
+
+//twoA Linkers
+2A p2A(.name("p2A"));
+2A t2A(.name("t2A"));
+2A e2A(.name("e2A"));
+2A f2A(.name("f2A"));
+2A no2A(.name("no2A"));
+
+//Devices
+
+Unit1 = SGP + IRES + Aptamer + Repressor + Reporter + 2A;
+Unit2 = SGP + IRES + Aptamer + Repressor + Reporter;
+
+Device Circuit = Unit1 + Unit2;
+
+println("Unit1: ", Unit1);
+println("Unit2: ", Unit2);
+println("Circuit: ", Circuit);
+
+//Rules
+
+
+//Unit 1
+Rule rUnit1(
+	ON Unit1:
+		(Unit1 STARTSWITH SGP OR Unit1 STARTSWITH IRES) AND 
+		Aptamer AFTER SGP AND Aptamer AFTER IRES AND
+		(Repressor BEFORE 2A OR Reporter BEFORE 2A) AND
+		Unit1 ENDSWITH 2A);
+
+// let's permute Unit1
+Device[] lstUnit1 = permute(Unit1, strict);
+Device[] lst;
+for(num i=0; i<lstUnit1.size(); i++) {
+
+    println(lstUnit1[i]);
+    	
+	/**
+	// for every permuation, we need to do a product	
+	lst = product(lstUnit1[i]);
+	save(lst);
+
+	if (lstUnit1[i][6] EQUALS "no2A")) {		
+		Unit2 STARTSWITH Repressor OR Reporter;
+	} else {
+		Unit2 STARTSWITH SGP or IRES;
+	}
+		Rule r7 (Unit2 ENDSWITH Repressor OR Reporter);
+	**/	
+}
+
+//Unit 2
+
+//lst = permute(Circuit, strict); 

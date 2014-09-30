@@ -1,0 +1,40 @@
+/*
+ * Here, we test rules that constrain specific indices of devices
+ * Examples:
+ * [0] equals pt0_1  ... the pt0_1 part must appear at the first position
+ */
+Property prop1(txt);
+Property prop2(num);
+Property prop3(txt[]);
+Property prop4(num[]);
+Property prop5(boolean);
+
+PartType PT0();
+PartType PT1(prop1);
+PartType PT2(prop1, prop2);
+PartType PT3(prop1, prop2, prop3);
+PartType PT4(prop1, prop2, prop3, prop4);
+PartType PT5(prop1, prop2, prop3, prop4, prop5);
+
+// parts with DOT notation
+PT0 pt0_1;
+PT0 pt0_2;
+PT0 pt0_3;
+PT0 pt0_4;
+PT0 pt0_5;
+PT0 pt0_6;
+PT0 pt0_7;
+PT0 pt0_8;
+PT0 pt0_9;
+
+
+Device d0(PT0);
+Rule r0(on d0: [0] equals pt0_1 \/ [0] equals pt0_2);
+product(d0);
+
+Device d1(PT0, PT0);
+Rule r1(on d1: [0] equals pt0_1 \/ [0] equals pt0_2 /\ [1] equals pt0_3 /\ all_forward);
+product(d1);
+
+
+

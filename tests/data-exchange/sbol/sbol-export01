@@ -1,0 +1,65 @@
+/*
+ *   Eugene Part --> SBOL DnaComponent
+ */
+Property prop1(txt);
+PartType type1(prop1);
+type1 inst1(.prop1("inst1.prop1"));
+
+SBOL.export(inst1, "./tests/data-exchange/sbol/exports/sbol-export01-part.sbol");
+
+
+/*
+ *   Eugene Device --> SBOL DnaComponent w/ SequenceAnnotations and subComponents
+ */
+type1 inst2(.prop1("inst2.prop1"));
+type1 inst3(.prop1("inst3.prop1"));
+type1 inst4(.prop1("inst4.prop1"));
+
+Device D(inst1, inst2, inst3, inst4);
+SBOL.export(D, "./tests/data-exchange/sbol/exports/sbol-export01-device.sbol");
+
+
+/*
+ *   Eugene Collection --> SBOL Collection
+ */
+lod = product(D); 
+Collection col1(
+	D,
+	lod
+);
+SBOL.export(lod, "./tests/data-exchange/sbol/exports/sbol-export01-collection.sbol");
+
+/*
+ *   Eugene Array --> SBOL Collection
+ */
+Array[] arr1 (
+    D,
+    col1,
+    lod,
+    inst1
+); 
+SBOL.export(lod, "./tests/data-exchange/sbol/exports/sbol-export01-array.sbol");
+
+/*
+ *  INVALID SBOL EXPORTS
+ *  just uncomment them
+ */
+// Variables are not allowed
+//num one = 1;
+//SBOL.export(one, "one.sbol");
+
+//---- invalid filenames
+
+// empty filename
+//SBOL.export(lod, "");
+ 
+// invalid path 
+//SBOL.export(lod, "/non/existing/director");
+
+// export01 directory does not exist
+//SBOL.export(lod, "./tests/data-exchange/sbol/export01/demo.sbol");
+
+
+
+
+ 

@@ -1,0 +1,64 @@
+/*
+ *  here, we test the Interaction specification facilities of Eugene
+ *  interactions can be named recursively build up.
+ *
+ *  currently, we only support two types of interactions:
+ *  - INDUCES
+ *  - REPRESSES
+ *
+ *  Grammar:
+ *  interaction-declaration ::= <interaction> ';'
+                             |  'Interaction' <id> '(' <interaction> ')' ';'
+ *  interaction ::= <id> (REPRESSES | INDUCES) <id>
+ *               |  <id> (REPRESSES | INDUCES) <interaction>
+ *
+ *  Future:
+ *  ( positive | negative ) ( activation | repression )
+ *  =>
+ *  positive activation, positive repression,
+ *  negative activiation, negative repression
+ */
+ 
+
+Type SmallMolecule();
+Type Gene();
+Type Promoter();
+
+SmallMolecule aTc;
+SmallMolecule IPTG;
+SmallMolecule arabinose;
+SmallMolecule AHL;
+SmallMolecule luxI;
+SmallMolecule rhlI;
+SmallMolecule cviI;
+
+Gene tetR;
+Gene lacI;
+Gene araC;
+Gene luxR;
+Gene rhlR;
+Gene cI;
+Gene cviR;
+
+Promoter pTetR;
+Promoter pLac;
+Promoter pBad;
+Promoter pLuxR;
+Promoter pRhlR;
+Promoter pCI;
+Promoter pCivR;
+
+/*
+ *  INTERACTIONS
+ */  
+aTc induces (tetR represses pTetR);
+IPTG induces (lacI represses pLac);
+arabinose induces (araC represses pBad);
+AHL induces (luxR represses pLuxR);
+luxI induces (luxR represses pLuxR);
+AHL induces (rhlR represses pRhlR);
+rhlI induces (rhlR represses pRhlR);
+cviI induces (cviR represses pCivR);
+
+cI represses pCI;
+ 

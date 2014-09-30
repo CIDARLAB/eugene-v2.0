@@ -1,0 +1,55 @@
+include "./designs/cidar/3-to-8-decoder/design-space.h"
+
+//Device
+
+Device RecombinasePlasmid(InduciblePromoter, RBS, Recombinase, Terminator, InduciblePromoter, RBS, Recombinase, Terminator, InduciblePromoter, RBS, Recombinase, Terminator);
+Device NORPlasmid(RecSite, RecSite, ConstitutivePromoter, RBS, RecSite, Reporter, RecSite, RecSite, Terminator, RecSite, Reporter, Terminator);
+Device ORPlasmid1(RecSite, ConstitutivePromoter, RBS, RecSite, RecSite, Terminator, RecSite, RecSite, Reporter, Terminator, RecSite, Reporter, Terminator);
+Device ORPlasmid2(RecSite, ConstitutivePromoter, RBS, RecSite, RecSite, Terminator, RecSite, RecSite, Reporter, Terminator, RecSite, Reporter, Terminator);
+Device ANDPlasmid(ConstitutivePromoter, RBS, RecSite, Terminator, RecSite, RecSite, Terminator, RecSite, RecSite, Reporter, Terminator, RecSite, Reporter, Terminator);
+
+Device _3to8Decoder(RecombinasePlasmid, NORPlasmid, ORPlasmid1, ORPlasmid2, ANDPlasmid);
+
+
+/*****
+//Rules
+//All devices should end with a terminator
+
+Rule r(abstractDevice ENDSWITH Terminator);
+
+//Recombinase plasmid should have contains recombinases
+
+//check for one reporter that is expressed in start state
+Rule er1(ConstitutivePromoter BEFORE Reporter);
+Rule er2(Terminator AFTER Reporter);
+Rule er3(Terminator NOT BEFORE Reporter);
+Rule expressesReporter(er1 AND er2 AND er3)//I want a rule that expresses that there is an expressing operon with promoter.rbs.reporter.terminator
+
+//Each plasmid should have an even number of recombinase sites
+Rule matchingSites(INSTANCESOF(RecSite)/2-ceil(INSTANCESOF(RecSite)/2) ==0); //is there a way to count the number of each Part in Eugene?
+****/
+
+
+
+//Functions
+
+//RunScript
+Devices[] decoders = product(_3to8Decoder, 20);
+println(decoders);
+/***
+for(int i=0; i<potentialDecoders.size(); i++) {
+assert(ON potentialDecoders[i][0] hasRecombinase);//potentialDecoders[i][0] is supposed to refer to RecombinasePlasmid, which is the first component of _3to8Decoder
+assert(on potentialDecoders[i] expressesReporter); //every device should express a reporter	
+for(int j=0; j<potentialDecoders[i].size(); j++) {//how do I tell how many parts a potential decoder has?
+		assert(ON potentialDecoders[i][j] matchingSites); //each recombinase should have a set of matching sites
+		assert(ON potentialDecoders[i][j] endsWithTerm); //every plasmid within my 3to8Decoder should end with a terminator
+	}
+}
+***/
+
+
+
+
+
+
+

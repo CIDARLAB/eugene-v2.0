@@ -1,0 +1,88 @@
+//Properties
+Property name(txt);
+Property sequence(txt);
+Property LeftFusionSite(txt);
+Property RightFusionSite(txt);
+
+//Part Types
+PartType Promoter (name, sequence, LeftFusionSite, RightFusionSite);
+PartType RBS (name, sequence, LeftFusionSite, RightFusionSite);
+PartType Gene (name, sequence, LeftFusionSite, RightFusionSite);
+PartType Terminator(name, sequence, LeftFusionSite, RightFusionSite);
+
+//Defining Design Space
+PartType FusionSite(name, sequence);
+
+// fusion sites
+FusionSite A(.name("A"), .sequence("GGAG"));
+FusionSite B(.name("B"), .sequence("TACT"));
+FusionSite C(.name("C"), .sequence("AATG"));
+FusionSite D(.name("D"), .sequence("AGGT"));
+FusionSite E(.name("E"), .sequence("GCTT"));
+FusionSite F(.name("F"), .sequence("CGCT"));
+FusionSite G(.name("G"), .sequence("TGCC"));
+FusionSite H(.name("H"), .sequence("GGAG"));
+
+Gene cre(.name("cre"));
+Gene regN(.name("reg-N"));
+Gene regC(.name("reg-C"));
+
+// define some promoters, rbs, and terminators
+Promoter p1(.name("p1"));
+Promoter p2(.name("p2"));
+Promoter p3(.name("p3"));
+Promoter p4(.name("p4"));
+Promoter p5(.name("p5"));
+
+RBS rbs1(.name("rbs1"));
+RBS rbs2(.name("rbs2"));
+RBS rbs3(.name("rbs3"));
+RBS rbs4(.name("rbs4"));
+RBS rbs5(.name("rbs5"));
+
+Terminator t1(.name("t1"));
+Terminator t2(.name("t2"));
+Terminator t3(.name("t3"));
+Terminator t4(.name("t4"));
+Terminator t5(.name("t5"));
+
+
+Device FusionProtein2(Gene, Gene);
+Device MoCloFP2 (Promoter, RBS, FusionProtein2, Terminator);
+Rule rFP2(
+	ON MoCloFP2:
+	    // different genes
+		MoCloFP2FusionProtein2[0] NOTEQUALS MoCloFP2.FusionProtein2[1] 
+		
+		AND
+		
+		( 
+			regN BEFORE cre 
+				AND 
+		  	cre BEFORE regC 
+		  		AND
+		  	NOT (regN WITH regC)
+		) 
+);
+Device[] lst = product(MoCloFP2, strict);
+println(lst.size(), " fusion proteins were generated!");
+
+//for(num i=0; i<lst.size(); i++) {
+//	println(lst[i]);
+//}
+
+/****
+Device FusionProtein3(Gene, Gene, Gene);
+Device MoCloFP3 = Promoter + RBS + FusionProtein3 + Terminator;
+Rule rFP3 (
+	ON MoCloFP3:
+		MoCloFP3[2] NOTEQUALS MoCloFP3[3] AND
+		MoCloFP3[3] NOTEQUALS MoCloFP3[4]
+);
+lst = product(MoCloFP3, strict);
+save(lst);
+println(lst.size(), " fusion proteins were generated!");
+for(num i=0; i<lst.size(); i++) {
+	println(lst[i]);
+}
+****/

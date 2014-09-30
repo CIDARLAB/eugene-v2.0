@@ -1,0 +1,86 @@
+LOCUS       pJGIL009\Dre\rox        2104 bp    DNA     circular      9-JUL-2008
+SOURCE      
+  ORGANISM  
+COMMENT     
+            ApEinfo:methylated:1
+COMMENT     This file is created by Vector NTI
+            http://www.invitrogen.com/
+COMMENT     ORIGDB|GenBank
+COMMENT     VNTDBDATE|487422840|
+COMMENT     LSOWNER|
+COMMENT     VNTNAME|pJGIL009 Dre rox in pBCA1144|
+COMMENT     VNTAUTHORNAME|Josh Gilmore|
+COMMENT     VNTOAUTHORNAME|UNKNOWN|
+FEATURES             Location/Qualifiers
+     rep_origin      complement(414..909)
+                     /ApEinfo_fwdcolor=gray50
+                     /ApEinfo_revcolor=gray50
+                     /vntifkey="33"
+                     /label=ColE1\origin
+     CDS             complement(1007..1666)
+                     /ApEinfo_fwdcolor=#f8c887
+                     /ApEinfo_revcolor=#f8c887
+                     /vntifkey="4"
+                     /label=AmpR
+     misc_feature    63..68
+                     /ApEinfo_fwdcolor=#0080ff
+                     /ApEinfo_revcolor=#0080ff
+                     /vntifkey="21"
+                     /label=PstI
+     misc_feature    1..6
+                     /ApEinfo_fwdcolor=#0080ff
+                     /ApEinfo_revcolor=#0080ff
+                     /vntifkey="21"
+                     /label=EcoRI
+     misc_feature    10..15
+                     /ApEinfo_fwdcolor=#00ff80
+                     /ApEinfo_revcolor=#00ff80
+                     /vntifkey="21"
+                     /label=BglII
+     misc_feature    57..62
+                     /ApEinfo_fwdcolor=#00ff00
+                     /ApEinfo_revcolor=#00ff00
+                     /vntifkey="21"
+                     /label=XhoI
+     misc_feature    16..47
+                     /vntifkey="21"
+                     /label=Rox\-->
+BASE COUNT      556 a       518 c       490 g       540 t 
+ORIGIN
+        1 gaattcatga gatcttaact ttaaataatg ccaattattt aaagttagga tccaaactcg 
+       61 agctgcaggc ttcctcgctc actgactcgc tgcgctcggt cgttcggctg cggcgagcgg 
+      121 tatcagctca ctcaaaggcg gtaatacggt tatccacaga atcaggggat aacgcaggaa 
+      181 agaacatgtg agcaaaaggc cagcaaaagg ccaggaaccg taaaaaggcc gcgttgctgg 
+      241 cgtttttcca caggctccgc ccccctgacg agcatcacaa aaatcgacgc tcaagtcaga 
+      301 ggtggcgaaa cccgacagga ctataaagat accaggcgtt tccccctgga agctccctcg 
+      361 tgcgctctcc tgttccgacc ctgccgctta ccggatacct gtccgccttt ctcccttcgg 
+      421 gaagcgtggc gctttctcat agctcacgct gtaggtatct cagttcggtg taggtcgttc 
+      481 gctccaagct gggctgtgtg cacgaacccc ccgttcagcc cgaccgctgc gccttatccg 
+      541 gtaactatcg tcttgagtcc aacccggtaa gacacgactt atcgccactg gcagcagcca 
+      601 ctggtaacag gattagcaga gcgaggtatg taggcggtgc tacagagttc ttgaagtggt 
+      661 ggcctaacta cggctacact agaaggacag tatttggtat ctgcgctctg ctgaagccag 
+      721 ttaccttcgg aaaaagagtt ggtagctctt gatccggcaa acaaaccacc gctggtagcg 
+      781 gtggtttttt tgtttgcaag cagcagatta cgcgcagaaa aaaaggatct caagaagatc 
+      841 ctttgatctt ttctacgggg tctgacgctc agtggaacga aaactcacgt taagggattt 
+      901 tggtcatgag attatcaaaa aggatcttca cctagatcct tttaaattaa aaatgaagtt 
+      961 ttaaatcaat ctaaagtata tatgagtaaa cttggtctga cagttaccaa tgcttaatca 
+     1021 gtgaggcacc tatctcagcg atctgtctat ttcgttcatc catagttgcc tgactccccg 
+     1081 tcgtgtagat aactacgata cgggagggct taccatctgg ccccagtgct gcaatgatac 
+     1141 cgcgagaccc acgctcaccg gctccagatt tatcagcaat aaaccagcca gccggaaggg 
+     1201 ccgagcgcag aagtggtcct gcaactttat ccgcctccat ccagtctatt aattgttgcc 
+     1261 gggaagctag agtaagtagt tcgccagtta atagtttgcg caacgttgtt gccattgcta 
+     1321 caggcatcgt ggtgtcacgc tcgtcgtttg gtatggcttc attcagctcc ggttcccaac 
+     1381 gatcaaggcg agttacatga tcccccatgt tgtgcaaaaa agcggttagc tccttcggtc 
+     1441 ctccgatcgt tgtcagaagt aagttggccg cagtgttatc actcatggtt atggcagcac 
+     1501 tgcataattc tcttactgtc atgccatccg taagatgctt ttctgtgact ggtgagtact 
+     1561 caaccaagtc attctgagaa tagtgtatgc ggcgaccgag ttgctcttgc ccggcgtcaa 
+     1621 tacgggataa taccgcgcca catagcagaa ctttaaaagt gctcatcatt ggaaaacgtt 
+     1681 cttcggggcg aaaactctca aggatcttac cgctgttgag atccagttcg atgtaaccca 
+     1741 ctcgtgcacc caactgatct tcagcatctt ttactttcac cagcgtttct gggtgagcaa 
+     1801 aaacaggaag gcaaaatgcc gcaaaaaagg gaataagggc gacacggaaa tgttgaatac 
+     1861 tcatactctt cctttttcaa tattattgaa gcatttatca gggttattgt ctcatgagcg 
+     1921 gatacatatt tgaatgtatt tagaaaaata aacaaatagg ggttccgcgc acatttcccc 
+     1981 gaaaagtgcc acctgacgtc taagaaacca ttattatcat gacattaacc tataaaaata 
+     2041 ggcgtatcac gaggcagaat ttcagataaa aaaaatcctt agctttcgct aaggatgatt 
+     2101 tctg 
+//

@@ -1,0 +1,32 @@
+Property type(txt);
+
+PartType PT(type);
+
+PT p1(.type("Promoter"));
+PT p2(.type("Promoter"));
+PT p3(.type("Promoter"));
+PT p4(.type("Promoter"));
+
+PT r1(.type("RBS"));
+PT r2(.type("RBS"));
+PT r3(.type("RBS"));
+PT r4(.type("RBS"));
+
+
+PT g1(.type("Gene"));
+PT g2(.type("Gene"));
+PT g3(.type("Gene"));
+PT g4(.type("Gene"));
+
+PT t1(.type("Terminator"));
+PT t2(.type("Terminator"));
+PT t3(.type("Terminator"));
+PT t4(.type("Terminator"));
+
+
+Device D(PT, PT, PT, PT);
+
+Rule r(ON D:
+    PT.type == "Promoter");
+
+product(D);

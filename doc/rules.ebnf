@@ -1,0 +1,19 @@
+// ONLINE EBNF VALIDATOR:
+// http://www.icosaedro.it/bnf_chk/bnf_chk-on-line.html
+
+rules = "IF" premises "THEN" conclusions ;
+
+premises = ["!"|"NOT"] (predicate | predicate logical_operator premises) ;
+predicate  = operand operator operand ;
+operand  = ({identifier "."} identifier) | real | integer  ;	  
+logical_operator = ("AND"|"OR") ;
+operator = ("=="|"!="|"<"|"<="|">="|">") ;
+identifier = letter {digit | letter | "_"};
+letter = "a".."z" | "A".."Z";
+digit = "0".."9";
+integer = digit {digit};
+real = integer (real_decimals | real_scale | real_decimals real_scale);
+real_decimals = "." integer;
+real_scale = ("E"|"e") ["+"|"-"] integer;
+
+conclusions = "T" ;

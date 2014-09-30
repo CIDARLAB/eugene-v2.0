@@ -1,0 +1,40 @@
+//Intermediate Devices (Transcriptional Units)
+Device TU1 (ConstPr, RBS, Inducer, Terminator); 
+Device TU2 (IndPr, RBS, Repressor, Terminator);
+Device TU3 (IndPr, RBS, Repressor, Terminator);
+Device TU4 (RepPr, RBS, Repressor, Terminator);
+
+//Inverter
+Device Inverter2 = TU1 + TU2 + TU3 + TU4;
+println (Inverter2);
+
+//Rules for TUs
+
+TU1[3] fusion sites == DE 
+/** OR we can just specify that TU[3] is B0015_DE etc. However, 
+if ever we get a different terminator, then this will be obsolete.
+But, doing this reduces the number of possibilities for each TU to 1/4
+of the original number **/
+TU2[3] fusion sites == DF
+TU3[3] fusion sites == DG
+TU4[3] fusion sites == DH
+
+Rules for Inverter1:
+
+1. TU2.RBS == TU3.RBS
+2. TU1.Inducer induces TU2.IndPr AND TU3.IndPr
+3. TU3.Reporter != TU4.Reporter
+4. TU2.Repressor represses TU4.RepPr
+5. If TU[2] is an Inducer then SmallMolecule is Ind_SmallMolecule AND Rep_SmallMolecule induces TU1.Inducer
+
+This can be chosen manually, but, 
+/** This is important IF we decide we wish to test an inverter 
+where the 4 TUs are shuffled (not concatenated in order)**/
+for any TU1, fusion sites for TU1[0] == AB
+for any TU2, fusion sites for TU2[0] == EB
+for any TU3, fusion sites for TU3[0] == FB
+for any TU4, fusion sites for TU4[0] == GB
+
+//Inverter2
+Device Inverter2 = TU1 + TU2 + TU3 + TU4;
+println (Inverter2);

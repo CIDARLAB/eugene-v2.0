@@ -1,0 +1,188 @@
+/*
+ *   PART LIBRARY
+ */
+Property prop1(txt);
+Property repress(txt); 
+Property name(txt); 
+Property strength(num);
+
+PartType Promoter(name, strength);
+PartType Repressor(name, strength, repress);
+
+
+Promoter p0(.name("p0"), .strength(0));
+Promoter p1(.name("p1"), .strength(1));
+Promoter p2(.name("p2"), .strength(2));
+Promoter p3(.name("p3"), .strength(3));
+Promoter p4(.name("p4"), .strength(4));
+Promoter p5(.name("p5"), .strength(5));
+Promoter p6(.name("p6"), .strength(6));
+Promoter p7(.name("p7"), .strength(7));
+Promoter p8(.name("p8"), .strength(8));
+Promoter p9(.name("p9"), .strength(9));
+
+Repressor r0(.repress("p0"), .strength(0));
+Repressor r1(.repress("p1"), .strength(1));
+Repressor r2(.repress("p2"), .strength(2));
+Repressor r3(.repress("p3"), .strength(3));
+Repressor r4(.repress("p4"), .strength(4));
+Repressor r5(.repress("p5"), .strength(5));
+Repressor r6(.repress("p6"), .strength(6));
+Repressor r7(.repress("p7"), .strength(7));
+Repressor r8(.repress("p8"), .strength(8));
+Repressor r9(.repress("p9"), .strength(9));
+
+/*
+ *   CONTAINS
+ */
+Device D01([Repressor|Promoter]);
+Rule r01(ON D01:
+    Repressor.strength >= 8 /\ Promoter.strength >= 8 
+    /\
+    all_forward
+    /\
+	contains Promoter \/ contains Repressor);
+product(D01);    
+
+
+/*
+ *   BEFORE
+ */
+Device D02([Repressor|Promoter], [Repressor|Promoter]);
+Rule r02(ON D02:
+    Repressor.strength >= 8 /\ Promoter.strength >= 8 
+    /\
+    all_forward
+    /\
+	Promoter before Repressor \/ Promoter after Repressor);
+product(D02);    
+
+
+/*
+ *   ORIENTATION
+ */
+Device D03([Repressor|Promoter], [Repressor|Promoter]);
+Rule r03(ON D03:
+    Repressor.strength >= 8 /\ Promoter.strength >= 8 
+    /\
+	not forward Promoter \/ forward Repressor);
+product(D03);    
+
+/*
+ *   MORETHAN
+ */
+Device D04([Repressor|Promoter], [Repressor|Promoter], [Repressor|Promoter]);
+Rule r04(ON D04:
+    Repressor.strength >= 9 /\ Promoter.strength >= 9 
+    /\
+    all_forward \/ all_reverse
+    /\
+	not Promoter MORETHAN 1 \/ Repressor MORETHAN 1);
+product(D04);    
+
+
+/*
+ *   EXACTLY
+ */
+Device D05([Repressor|Promoter], [Repressor|Promoter], [Repressor|Promoter]);
+Rule r05(ON D05:
+    Repressor.strength == 9 /\ Promoter.strength == 0 
+    /\
+    all_forward
+    /\
+	Promoter exactly 1 \/ Promoter exactly 2 \/ Promoter exactly 3);
+product(D05);    
+
+
+/*
+ *   EQUALS
+ */
+Device D06([Repressor|Promoter], [Repressor|Promoter], [Repressor|Promoter]);
+Rule r06(ON D06:
+    Repressor.strength == 9 /\ Promoter.strength == 0 
+    /\
+    all_forward
+    /\
+	[0] equals Promoter \/ [0] equals Repressor 
+	/\
+	[1] equals [0]);
+product(D06);    
+
+/*
+ *   EQUALS
+ */
+Device D07([Repressor|Promoter], [Repressor|Promoter], [Repressor|Promoter]);
+Rule r07(ON D07:
+    Repressor.strength == 9 /\ Promoter.strength == 0 
+    /\
+    all_forward
+    /\
+	[0] equals Promoter \/ [1] equals Promoter \/ [2] equals Promoter);
+product(D07);    
+
+/*
+ *   EQUALS
+ */
+Device D08([Repressor|Promoter], [Repressor|Promoter], [Repressor|Promoter]);
+Rule r08(ON D08:
+    Repressor.strength == 9 /\ Promoter.strength == 0 
+    /\
+    all_forward
+    /\
+	[0] equals [1] \/ [1] equals [2] \/ [2] equals [0]);
+product(D08);    
+
+
+/*
+ *   NOTEQUALS
+ */
+Device D09([Repressor|Promoter], [Repressor|Promoter], [Repressor|Promoter]);
+Rule r09(ON D09:
+    Repressor.strength == 9 /\ Promoter.strength == 0 
+    /\
+    all_forward
+    /\
+	[0] notequals [1] \/ [0] equals [2]);
+product(D09);    
+
+
+/*
+ *   some cool test
+ */
+Device D10([Repressor|Promoter], [Repressor|Promoter], [Repressor|Promoter], [Repressor|Promoter], [Repressor|Promoter], [Repressor|Promoter]);
+Rule r10(ON D10:
+    Repressor.strength == 9 /\ Promoter.strength == 0
+    /\
+    [0] notequals [1] /\ [1] notequals [2] /\ [2] notequals [3] /\ [3] notequals [4] /\ [4] notequals [5] 
+    /\
+    
+    not forward Promoter \/ reverse Repressor
+    /\
+    not reverse Promoter \/ forward Repressor
+    /\
+    not reverse Repressor \/ forward Promoter
+    /\
+    not forward Repressor \/ reverse Promoter
+    
+);
+product(D10);    
+
+
+/*
+ *   
+ */
+Device D11([Repressor|Promoter], [Repressor|Promoter]);
+Rule r11(ON D11:
+    Repressor.strength == 9 /\ Promoter.strength == 0
+    /\
+    contains Promoter /\ contains Repressor 
+    /\    
+    not forward Promoter \/ reverse Repressor
+    /\ 
+    not forward Promoter \/ Promoter after Repressor
+    /\
+    not reverse Promoter \/ forward Repressor
+    /\
+    not reverse Promoter \/ Promoter before Repressor
+);
+product(D11);    

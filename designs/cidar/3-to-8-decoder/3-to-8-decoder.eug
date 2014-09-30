@@ -1,0 +1,62 @@
+include "./designs/cidar/3-to-8-decoder/design-space.h"
+
+//Device
+
+Device RecombinasePlasmid(InduciblePromoter, RBS, Recombinase, Terminator, InduciblePromoter, RBS, Recombinase, Terminator, InduciblePromoter, RBS, Recombinase, Terminator);
+Device NORPlasmid(RecSite, RecSite, ConstitutivePromoter, RBS, RecSite, Reporter, -RecSite, -RecSite, Terminator, -RecSite, Reporter, Terminator);
+Device ORPlasmid1(RecSite, ConstitutivePromoter, RBS, RecSite, RecSite, Terminator, RecSite, RecSite, Reporter, Terminator, RecSite, Reporter, Terminator);
+Device ORPlasmid2(RecSite, ConstitutivePromoter, RBS, RecSite, RecSite, Terminator, RecSite, RecSite, Reporter, Terminator, RecSite, Reporter, Terminator);
+Device ANDPlasmid(ConstitutivePromoter, RBS, RecSite, Terminator, RecSite, RecSite, Terminator, RecSite, RecSite, Reporter, Terminator, RecSite, Reporter, Terminator);
+
+Device _3to8Decoder(RecombinasePlasmid, NORPlasmid, ORPlasmid1, ORPlasmid2, ANDPlasmid);
+
+/** NORPlasmid
+Rule r(
+	ON _3to8Decoder:
+
+		// matching recognition sites
+		NORPlasmid[0] MATCHES NORPlasmid[9]
+			AND
+		NORPlasmid[1] MATCHES NORPlasmid[7]
+			AND
+		NORPlasmid[4] MATCHES NORPlasmid[6]
+		
+			AND
+		
+		// different recognition sites
+		NORPlasmid[0] NOTEQUALS NORPlasmid[1]
+			AND
+		NORPlasmid[1] NOTEQUALS NORPlasmid[4]
+		
+			AND
+
+		// different reporters
+		NORPlasmid[5] NOTEQUALS NORPlasmid[10]	
+);
+ **/
+
+/** RULES **/
+// TODO...
+
+norPlasmids = product(_3to8Decoder);
+println(norPlasmids);
+/**
+pigeon(norPlasmids);
+for(num i=0; i<norPlasmids.size(); i++) {
+    println(norPlasmids[i]);
+}
+**/
+//RunScript
+/***
+Devices[] decoders = product(_3to8Decoder, 50);
+println(decoders);
+pigeon(decoders);
+ **/
+
+
+
+
+
+
+
+

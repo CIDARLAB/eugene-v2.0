@@ -1,0 +1,60 @@
+//Properties 
+Property Name(txt);
+Property Sequence(txt);
+Property InducedBy(txt); 
+Property Induces(txt); 
+Property Direction(txt);
+//Assume if no direction indicated then direction is forward 
+
+//Part Types 
+PartType Promoter(Name,Sequence,InducedBy,Direction); 
+PartType Inducer(Name,Sequence,Induces); 
+PartType Terminator(Name,Sequence); 
+PartType RBS(Name,Sequence,Direction);  
+PartType SmallMolecule(Name,Sequence,Induces,Direction);
+PartType Reporter(Name,Sequence,Induces,Direction); 
+
+//Parts 
+Promoter pConst("pConst","aaaa");
+Promoter pluxR("pluxR","eeee","luxR");
+Reporter luxI("luxI","bbbb","AHL");
+Reporter luxR("luxR","cccc","pluxR");
+SmallMolecule AHL("AHL","dddd","luxR"); 
+Reporter ccdB("ccdB","ffff"); 
+Terminator term("term","gggg"); 
+RBS rbs("rbs","hhhh");
+Reporter invasin("invasin","iiii");
+
+//Structural Rules 
+Device D(Promoter,RBS,Reporter,SmallMolecule,Reporter,Promoter,RBS,Reporter,Terminator); 
+
+//Content Rules 
+Rule r1(D[2].Name=="luxI" AND D[2].Induces == "AHL");  
+Rule r2(D[3].Name=="AHL" AND D[3].Induces == "luxR"); 
+Rule r3(D[4].Name=="luxR" AND D[4].Induces == "pluxR"); 
+Rule r4(D[5].Direction =="backwards"); 
+Rule r5(D[6].Direction =="backwards"); 
+
+
+//Structure Rules 
+Device F(Promoter,RBS,Reporter,SmallMolecule,Reporter,Promoter,RBS,Reporter,Terminator);
+
+//Content Rules 
+Rule r6(F[2].Name=="luxI" AND F[2].Induces == "AHL");  
+Rule r7(F[3].Name=="AHL" AND F[3].Induces == "luxR"); 
+Rule r8(F[4].Name=="luxR" AND F[4].Induces == "pluxR"); 
+Rule r9(F[0].Direction =="backwards");
+Rule r10(F[2].Direction =="backwards");
+Rule r11(F[3].Direction =="backwards");
+Rule r12(F[4].Direction =="backwards"); 
+
+
+//Cartesian product 
+Device[] lstProduct = product(D);  
+print(lstProduct[0]); 
+
+
+
+//Cartesian product 
+Device[] kstProduct = product(F);  
+print(kstProduct[0]); 

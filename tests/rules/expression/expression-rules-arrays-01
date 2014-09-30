@@ -1,0 +1,75 @@
+Property txtLst(txt[]);
+Property numLst(num[]);
+
+PartType PT1(txtLst);
+PartType PT2(numLst);
+PartType PT3(txtLst, numLst);
+
+PT1 pt1_0();
+PT1 pt1_1(.txtLst(["A"]));
+PT1 pt1_2(.txtLst(["A", "T"]));
+PT1 pt1_3(.txtLst(["A", "T", "C"]));
+PT1 pt1_4(.txtLst(["A", "T", "C", "G"]));
+
+PT2 pt2_0();
+PT2 pt2_1(.numLst([0]));
+PT2 pt2_2(.numLst([1, 2]));
+PT2 pt2_3(.numLst([1, 2, 3]));
+PT2 pt2_4(.numLst([1, 2, 3, 4]));
+
+PT3 pt3_0();
+PT3 pt3_1(.txtLst(["A"]), .numLst([1]));
+PT3 pt3_2(.txtLst(["T"]), .numLst([2]));
+PT3 pt3_3(.txtLst(["C"]), .numLst([3]));
+PT3 pt3_4(.txtLst(["G"]), .numLst([4]));
+
+
+/*-----------------------------------
+ * ARRAY ACCESS
+ *-----------------------------------*/
+Device D01(PT1);
+Rule r01(ON D01:
+	PT1.txtLst[0] == "A");
+product(D01);
+
+ 
+Device D02(PT2);
+Rule acc02(ON D02:
+	PT2.numLst[0] == 1);
+product(D02);
+ 
+ 
+Device D03(PT1);
+Rule acc03(ON D03:
+    txtLst contains "T" /\ txtLst notcontains "G"
+	/\
+	all_forward);
+product(D03);
+ 
+	
+/*-----------------------------------
+ * PRUNING
+ *-----------------------------------*/
+/*
+Device pruneD01(PT1, PT2, PT3);
+Rule pruneR01(ON pruneD01:
+	PT1.txtLst[0] == PT3.txtLst[0]  
+	/\
+	PT2.numLst[0] == PT3.numLst[0]
+	/\
+	all_forward);
+product(pruneD01);
+ */
+ 		
+/*
+ * invalid ones
+ */
+// index out of bounds
+//Rule inv_acc01(ON D01:
+//	txtLst[-1] > 0);
+//Rule inv_acc02(ON D01:
+//	txtLst[5] == "A");
+//Rule inv_acc03(ON D01:
+//	txtLst[1000] == "A");
+//product(D01);
+

@@ -1,0 +1,38 @@
+Property prop1(txt);
+Property repress(txt); 
+Property repressedBy(txt); 
+PartType Promoter(repressedBy);
+PartType Repressor(repress);
+
+
+Promoter p0(.repressedBy("r0"));
+Promoter p1(.repressedBy("r1"));
+Promoter p2(.repressedBy("r2"));
+Promoter p3(.repressedBy("r3"));
+Promoter p4(.repressedBy("r4"));
+Promoter p5(.repressedBy("r5"));
+Promoter p6(.repressedBy("r6"));
+Promoter p7(.repressedBy("r7"));
+Promoter p8(.repressedBy("r8"));
+Promoter p9(.repressedBy("r9"));
+
+Repressor r0(.repress("p0"));
+Repressor r1(.repress("p1"));
+Repressor r2(.repress("p2"));
+Repressor r3(.repress("p3"));
+Repressor r4(.repress("p4"));
+Repressor r5(.repress("p5"));
+Repressor r6(.repress("p6"));
+Repressor r7(.repress("p7"));
+Repressor r8(.repress("p8"));
+Repressor r9(.repress("p9"));
+
+
+Device D(Repressor, Promoter);
+
+Rule r(ON D:
+    Repressor.repress == Promoter.repressedBy
+    /\
+    all_forward);
+    
+product(D);    

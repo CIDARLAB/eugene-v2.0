@@ -1,0 +1,7 @@
+Collection col = SBOL.import("./demos/sbol-nbt/parts/partsLibrary.sbol");
+println(col);
+
+SBOL.import("./demos/sbol-nbt/parts/RBSs.sbol.xml");
+println(BO_27783);
+
+SBOL.import("./demos/sbol-nbt/parts/Terminators.sbol.xml");

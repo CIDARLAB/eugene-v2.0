@@ -1,0 +1,13 @@
+Device size		16
+Nr of Possible Devices		10368
+Nr of Rules		5
+Nr of Valid Devices		216
+Run Time [sec]		0.446112934
+		
+Design Space		1 Constituitive Promoter
+		2 Repressible Promoter
+		3 RBSs
+		2 Repressors
+		2 Reporters
+		1 Terminator
+	total:	11 Parts

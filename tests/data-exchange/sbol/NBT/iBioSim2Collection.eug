@@ -1,0 +1,3 @@
+col = SBOL.import("./demos/sbol-nbt/import/ToggleSwitchComponents.xml");
+
+SBOL.export(col, "./demos/sbol-nbt/export/ToggleSwitchCollection.xml");

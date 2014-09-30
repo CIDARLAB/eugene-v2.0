@@ -1,0 +1,10 @@
+Property seq(txt);
+PartType Promoter(seq);
+Promoter p1(.seq("ATCG"));
+Promoter p2(.seq("ATCG"));
+
+Device D(Promoter, Promoter);
+Rule R(ON D:
+    contains p1 and contains p2 and
+    p1 before p2 and all_forward);
+product(D);

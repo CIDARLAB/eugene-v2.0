@@ -1,0 +1,24 @@
+Design Decision 1: 
+we can either
+1. give the user full freedom ... i.e. just creating parts and setting their property values ... ``weakly typed''
+2. let the user specify the data model (i.e part types and properties)                       ... ``strongly typed''
+
+ad 1:   The user has to ensure the correctness (typos, 
+benefits: 
+- fast and flexible definition 
+drawbacks: 
+- we have to address various other design decisions, such as dealing with error-checking, ambiguities... 
+example: case-sensitive vs. case-insensitive naming of properties
+
+ad 2:
+benefits: 
+- ``rapid prototyping'' of data model; 
+- makes it easier to learn the domain's (i.e. Synthetic Biology) artifacts and their relations  
+- easy to share data models
+drawbacks: 
+- difficult to detect the semantics... e.g. naming of the artifacts A vs. Part
+
+What are our requirements?  [TODO]
+- leave it up to the users (since we want to create a software that learns)
+- rule-based
+ 

@@ -1,0 +1,42 @@
+Property prop1(txt);
+
+PartType PT1(prop1);
+
+// parts with DOT notation
+PT1 pt1_1(.prop1("A"));
+
+// part w/o DOT notation
+PT1 pt1_2("AT");
+PT1 pt1_3("ATC");
+PT1 pt1_4("ATCG");
+PT1 pt1_5("AAAATTTTCCCCGGGG");
+
+
+
+/*-----------------------------------
+ * MATCHES (regular expression)
+ *-----------------------------------*/
+Device D01(PT1);
+Rule regexp01(ON D01:
+	PT1.prop1 matches "ATCG");
+product(D01);	
+
+
+Device D02(PT1);
+Rule regexp02(ON D02:
+	PT1.prop1 matches "A{1,}T{2,}C{1,}G{1,}");
+product(D02);	
+
+Device D03(PT1);
+Rule regexpR03(ON D03:
+	PT1.prop1 matches "A?T+C*");
+product(D03);	
+
+
+// INVALID REGEXP
+/**
+Device invD01(PT1);
+Rule invR01(ON invD01:
+	PT1.prop1 matches "?+*");
+product(invD01);	
+ **/

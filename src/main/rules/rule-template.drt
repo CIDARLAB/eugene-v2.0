@@ -1,0 +1,19 @@
+template header
+name
+rule
+
+package org.cidarlab.sparrow.rules;
+
+global java.util.List results;
+import org.cidarlab.eugene.dom.*;
+
+template "Sparrow Pruning Rule"
+
+rule "@{name}"
+when
+    @{lhs}
+then
+    @{rhs}
+end
+
+end template

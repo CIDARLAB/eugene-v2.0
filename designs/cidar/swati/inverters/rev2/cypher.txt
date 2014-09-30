@@ -1,0 +1,4 @@
+// to create all TU1s...
+START constpr=node(*), rbs=node(*), repressor=node(*), terminator=node(*)
+WHERE HAS(constpr.parttype) AND constpr.parttype='ConstPr' AND HAS(rbs.parttype) AND rbs.parttype='RBS' AND HAS(repressor.parttype) AND repressor.parttype='Repressor' AND HAS(terminator.parttype) AND terminator.parttype='Terminator'
+RETURN constpr.name, rbs.name, repressor.name, terminator.name

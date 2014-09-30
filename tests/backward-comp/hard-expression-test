@@ -1,0 +1,120 @@
+Property txtProp1(txt);
+Property txtProp2(txt);
+Property txtLstProp1(txt[]);
+Property txtLstProp2(txt[]);
+Property numProp1(num);
+Property numProp2(num);
+Property numLstProp1(num[]);
+Property numLstProp2(num[]);
+
+Part Promoter(txtProp1, txtProp2, txtLstProp1, txtLstProp2, numProp1, numProp2, numLstProp1, numLstProp2);
+Part RBS(txtProp1, txtProp2, txtLstProp1, txtLstProp2, numProp1, numProp2, numLstProp1, numLstProp2);
+Part FwdORF(txtProp1, txtProp2, txtLstProp1, txtLstProp2, numProp1, numProp2, numLstProp1, numLstProp2);
+
+println("-------------------------------------------------------------------");
+println("Testing primitive declarations");
+println("-------------------------------------------------------------------");
+
+txt hello = "hello ";
+txt world = "wor" + "ld";
+txt helloWorld = hello + world + "!";
+
+num ten = ((1+1)*10) / (4.2-2.2);
+num two = ten - 8.0;
+num twenty = ((two-2+two)*ten)+(ten-ten);
+
+txt[] txtLst1 = [hello + world + "!", "hello " + world + "!", "hello " + "world!", helloWorld];
+txt[] txtLst2 = txtLst1 + [hello + world + "!"] + ["hello" + world + "!", hello + "world!"] + [helloWorld];
+
+println(txtLst1 + [hello + world + "!"] + ["hello" + world + "!", hello + "world!"] + [helloWorld]);
+println(txtLst2);
+num[] numLst1 = [two*ten, 2*ten, two*10, twenty];
+num[] numLst2 = numLst1 + [two*ten] + [2*ten, two*10] + [twenty];
+println(numLst1 + [two*ten] + [2*ten, two*10] + [twenty]);
+println("numLst2: ", numLst2);
+
+println("-------------------------------------------------------------------");
+println("Testing part declarations");
+println("-------------------------------------------------------------------");
+FwdORF forf1(.txtProp1("hello " + world + "!"), .txtLstProp1(txtLst1 + [hello + world + "!"] + ["hello " + world + "!", hello + "world!"] + [helloWorld]), .numProp1(((two-2+two)*ten)+(ten-ten)), .numLstProp1(numLst1 + [two*ten] + [2*ten, two*10] + [twenty]));
+println("forf1.txtProp1: ", forf1.txtProp1);
+println("forf1.txtProp2: ", forf1.txtProp2);
+println("forf1.txtLstProp1: ", forf1.txtLstProp1);
+println("forf1.txtLstProp2: ", forf1.txtLstProp2);
+println("forf1.numProp1: ", forf1.numProp1);
+println("forf1.numProp2: ", forf1.numProp2);
+println("forf1.numLstProp1: ", forf1.numLstProp1);
+println("forf1.numLstProp2: ", forf1.numLstProp2);
+
+RBS rbs1("hello " + world + "!", forf1.txtProp1 + "hello " + world + "!", txtLst1 + [hello + world + "!"] + ["hello " + world + "!", hello + "world!"] + [helloWorld], forf1.txtLstProp1 + txtLst1, ((two-2+two)*ten)+(ten-ten), (forf1.numProp1-10)*two, numLst1 + [two*ten] + [2*ten, two*10] + [twenty], forf1.numLstProp1 + [two*ten, 2*ten, two*10, twenty]);
+println("rbs1.txtProp1: ", rbs1.txtProp1);
+println("rbs1.txtProp2: ", rbs1.txtProp2);
+println("rbs1.txtLstProp1: ", rbs1.txtLstProp1);
+println("rbs1.txtLstProp2: ", rbs1.txtLstProp2);
+println("rbs1.numProp1: ", rbs1.numProp1);
+println("rbs1.numProp2: ", rbs1.numProp2);
+println("rbs1.numLstProp1: ", rbs1.numLstProp1);
+println("rbs1.numLstProp2: ", rbs1.numLstProp2);
+
+Promoter p1(.txtProp1(forf1.txtProp1 + hello + "world!"), .txtLstProp1(forf1.txtLstProp1 + txtLst1), .numProp1((forf1.numProp1-ten)*2), .numLstProp1(forf1.numLstProp1 + [two*ten, 2*ten, two*10, twenty]));
+p1.txtProp2 = forf1.txtProp1 + hello + "world!";
+p1.txtLstProp2 = forf1.txtLstProp1 + txtLst1;
+p1.numProp2 = (forf1.numProp1-ten)*2;
+p1.numLstProp2 = forf1.numLstProp1 + [two*ten, 2*ten, two*10, twenty];
+
+println("p1.txtProp1: ", p1.txtProp1);
+println("p1.txtProp2: ", p1.txtProp2);
+println("p1.txtLstProp1: ", p1.txtLstProp1);
+println("p1.txtLstProp2: ", p1.txtLstProp2);
+println("p1.numProp1: ", p1.numProp1);
+println("p1.numProp2: ", p1.numProp2);
+println("p1.numLstProp1: ", p1.numLstProp1);
+println("p1.numLstProp2: ", p1.numLstProp2);
+
+/**** TODO!
+println("-------------------------------------------------------------------");
+println("Testing list index assignments");
+println("-------------------------------------------------------------------");
+
+num one = (p1.numLstProp1[0] + 4) / (numLst2[7]+4);
+numLst2[0] = (p1.numLstProp1[0]+4)/(numLst2[7]+4);
+p1.numProp1 = (p1.numLstProp1[0]+4) / (numLst2[7]+4);
+p1.numLstProp2[0] = (p1.numLstProp1[0]+4)/(numLst2[7]+4);
+
+println("Expecting 1: ", one);
+println("Expecting 1: ", numLst2[0]);
+println("Expecting 1: ", p1.numProp1);
+println("Expecting 1: ", p1.numLstProp2[0]);
+println("p1.numLstProp1: ", p1.numLstProp1);
+println("p1.numLstProp2: ", p1.numLstProp2);
+println("numLst2: ",numLst2);
+
+txt threeHello = p1.txtLstProp1[5] + hello + "world!" + txtLst1[1];
+txtLst2[0] = p1.txtLstProp1[5] + hello + "world!" + txtLst1[1];
+p1.txtProp1 = p1.txtLstProp1[5] + hello + "world!" + txtLst1[1];
+p1.txtLstProp2[0] = p1.txtLstProp1[5] + hello + "world!" + txtLst1[1];
+
+println("Expecting hello world!hello world!hello world!: ", threeHello);
+println("Expecting hello world!hello world!hello world!: ", txtLst2[0]);
+println("Expecting hello world!hello world!hello world!: ", p1.txtProp1);
+println("Expecting hello world!hello world!hello world!: ", p1.txtLstProp2[0]);
+
+println("p1.txtLstProp1: ", p1.txtLstProp1);
+println("p1.txtLstProp2: ", p1.txtLstProp2);
+println("txtLst2: ",txtLst2);
+
+println("-------------------------------------------------------------------");
+println("Testing device declarations");
+println("-------------------------------------------------------------------");
+Device d1(p1, rbs1, forf1);
+Device d2(p1, d1);
+Device d3(p1, d2);
+
+d3[1][1][0].txtLstProp1[0] = hello + "world!" + txtLst1[1];
+txt[] txtLst3 = d3[1][1][0].txtLstProp1 + p1.txtLstProp1;
+one = d3[1][1][0].numLstProp2[0] + 1 - (2 / 2);
+
+println("Expecting hello world!hello world!: ", d3[1][1][0].txtLstProp1[0]);
+println("Expecting 1: ", one);
+println("txtLst3: ", txtLst3);
+***/

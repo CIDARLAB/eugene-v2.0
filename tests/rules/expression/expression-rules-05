@@ -1,0 +1,82 @@
+/*
+ *   PART LIBRARY
+ */
+Property name(txt); 
+Property strength(num);
+
+PartType Promoter(name, strength);
+PartType RBS(name, strength);
+PartType Gene(name, strength);
+PartType Terminator(name, strength);
+
+
+Promoter p01(.name("p1"), .strength(1));
+Promoter p02(.name("p2"), .strength(2));
+
+RBS rbs01(.name("rbs1"), .strength(1));
+RBS rbs02(.name("rbs2"), .strength(2));
+
+Gene g01(.name("g1"), .strength(1));
+Gene g02(.name("g2"), .strength(2));
+
+Terminator t01(.name("t1"), .strength(1));
+Terminator t02(.name("t2"), .strength(2));
+
+
+/*
+ *
+ */ 
+Device D01(
+	[Promoter|RBS|Gene|Terminator], 
+	[Promoter|RBS|Gene|Terminator]
+);
+Rule r01(on D01:
+    contains Promoter /\ contains RBS /\
+    all_forward /\
+    Promoter.strength + RBS.strength != 3);
+product(D01);   
+
+/*
+ *  Properties w/o Part type spec
+ */
+Device D02(
+	[Promoter|RBS|Gene|Terminator], 
+	[Promoter|RBS|Gene|Terminator]
+);
+Rule r02(on D02:
+    2 * strength != 3);
+product(D02);   
+
+
+/*
+ * Properties w/o Part type spec
+ */
+Device D03(
+	[Promoter|RBS|Gene|Terminator], 
+	[Promoter|RBS|Gene|Terminator]
+);
+Rule r03(on D03:
+    Promoter exactly 2 /\
+    2 * Promoter.strength != 4);
+    // CLARIFICATION on behavior needed!
+    // currently, if a Promoter occurs twice, then this 
+    // equation gets evaluated on both individual promoters
+    // i.e. the device D(p01, p01) is a valid device. 
+product(D03);   
+
+/*
+ *   IDEA: we keep the current behavior and introduce ``Aggregate Functions''
+ *         e.g. http://www.w3schools.com/sql/sql_functions.asp
+ *         avg, first, last, count, sum, min, max, ...
+ *         
+ * Example:
+		Device DExample(
+			[Promoter|RBS|Gene|Terminator], 
+			[Promoter|RBS|Gene|Terminator]
+		);
+		Rule rExample(on DExample:
+		    Promoter exactly 1 /\ 
+		    2 * sum ( Promoter.strength ) != 4);
+		product(DExample);   
+ */
+ 

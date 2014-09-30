@@ -1,0 +1,27 @@
+
+//Intermediate Devices (Transcriptional Units)
+Device Inv_TU1 (ConstPr, RBS, Repressor, Terminator); 
+Device Inv_TU2 (RepPr, RBS, Repressor, Terminator);
+Device Inv_TU3 (RepPr, RBS, Repressor, Terminator);
+Device Inv_TU4 (RepPr, RBS, Repressor, Terminator);
+
+//Inverter
+Device Inverter1 = Inv_TU1 + Inv_TU2 + Inv_TU3 + Inv_TU4;
+println (Inverter1);
+
+
+Rule r1 (
+    ON Inverter1:
+        Inverter1[2].represses EQUALS Inverter[4].Name AND
+        Inverter1[3] EQUALS B0015_DE AND
+        Inverter[5] EQUALS Inverter[9] AND        
+        Inverter1[7] EQUALS B0015_DF AND
+        Inverter1[11] EQUALS B0015_DG AND
+        Inverter[15] EQUALS B0015_DH);
+        
+Device[] lst = product(Inverter, strict);           
+println(lst); 
+
+Rule r2 (
+    ON Inverter1:
+);

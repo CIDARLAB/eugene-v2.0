@@ -1,0 +1,53 @@
+//Part Properties
+Property Name (txt);
+
+//Part Types
+Part Promoter(Name);
+Part RBS(Name);
+Part Gene(Name);
+Part Terminator(Name);
+
+//Parts
+Promoter promoter1(.Name("p1"));
+Promoter emptypromoter(.Name("emptypromoter"));
+Promoter promoter2(.Name("p2"));
+
+RBS rbs1(.Name("r1"));
+RBS emptyrbs(.Name("emptyr"));
+
+Gene c1(.Name("c1"));
+Gene c2(.Name("c2"));
+Gene c3(.Name("c3"));
+
+Terminator terminator1(.Name("t1"));
+Terminator terminator2(.Name("t2"));
+Terminator terminator3(.Name("t3"));
+
+Device part1(
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator);
+Device part2(
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator);
+Device part3(
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator);
+
+Device[] lst;
+for(num i=1; i<=100; i++) {
+    Device[] devices = product(part1, 10);
+
+    lst = lst + devices;   
+}
+
+for(num i=0; i<lst.size; i++) {
+    println(lst[i]);
+}
+
+

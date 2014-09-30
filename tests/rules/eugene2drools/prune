@@ -1,0 +1,11 @@
+include "./tests/rules/eugene2drools/library"
+
+Device D01(PT1);
+Rule r01(ON D01: prop1 == "A");
+product(D01);
+
+
+Device D02(PT1);
+Rule r02(ON D02: PT1.prop1 == "A");
+lod = product(D02);
+println(lod);

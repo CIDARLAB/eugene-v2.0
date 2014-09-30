@@ -1,0 +1,90 @@
+Here, we do NOT define the entire problem that Phoenix is trying to solve.
+We define a specific sub-problem, our proposed solution, and the feedback of our results into Phoenix.
+Furthermore, we also explain (1) why this problem is important and needs a solution, and (2) why our solutions have an impact (to synthetic biology).   
+
+1. What problem are we solving here?
+************************************
+
+The functioning and behavior of synthetic biological systems depends on not only on 
+the functional behavior on the composed parts, but also on 
+- the experimental setup, 
+- the realization of the experiment,
+- its within utilized biological components (e.g. strain, vector, organism etc), and
+- the configuration of the flow-cytometry for testing.
+
+Those parameters are mostly disregarded to describe the dynamic behavior of a biological system.
+Example parameters are: 
+[EO needs to list them here]
+
+
+In this Phoenix sub-problem, we try to 
+(1) predict certain characteristics of the systems dynamic behavior based on such parameters.
+[EO: can we come up with examples here]
+(2) infer rules (based on the predictions) that lead to novel discoveries of the functionality 
+of biological systems. 
+
+
+
+2. Why is this problem important?
+************************************
+
+* The closer we can computationally predict the systems behavior, the higher 
+the probability that the system will function/perform as designed or expected. 
+
+* We can also predict the functioning of a specific parts in given compositions.
+This information/knowledge can then be integrated in Part selections. I.e. 
+we will learn more how specific parts work in compositions under certain conditions.
+
+* The (inferred) rules can be integrated into combinatorial design space exploration 
+In general, combinatorial design problems lead to tons of combinations that  
+- are impossible to build by humans
+- will not function (with a high probability) 
+
+* We do not have to go the wet-bench and build tons of non-working systems
+- saves money and time.
+- The closer a predication the higher the quality of the system.  <-- vague
+
+
+3. How do we solve this problem? 
+************************************
+
+We want to divide the described problem into three sub-problems:  
+1. Finding a (numerical) model using Approximation, Interpolation, and/or Nonlinear systems.
+
+[EO: Difficult to say which method fits best here. we need to discuss more.
+Is this similar what is being done with the Belta group?
+anyway, we need data, data, data... do we have any data yet?] 
+
+2. Based on the model and our approximation, we want to infer Rules. 
+Rules need to be, however, afflicted with probabilities.
+
+In general, rules look like the following:
+IF <premise> THEN <conclusion>
+
+From the approximation model, we can derive premises and conclusion and 
+incorporate probabilities.
+Example: 
+IF ... THEN GFP will glow to 100% with a 95% probability
+
+[EO: my knowledge is lacking to come up with appropriate examples.]  
+
+3. Based on existing data and rules, we want to infer novel rules and models.
+ 
+Those three interrelated sub-problems need iterative redefinement, improvement, maturation... 
+
+[TODO:
+- define a nice flow. However, we MUST start with the Approximation step.
+- ``data-flow'' and interaction with our rule-based knowledge-base.] 
+ 
+ 
+4. What are the impacts? Why is our solution good?
+************************************
+
+Note: Some impacts are already highlighted in 2.
+
+There are, however, various aspects that we don't/can't incorporate here, e.g.
+- the expertise of the biologists who performs the experiment
+- the experiment has been performed correctly by the biologist
+
+
+

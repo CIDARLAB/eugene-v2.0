@@ -1,0 +1,16 @@
+/*
+ * LIBRARY
+ */
+Property prop1(txt);
+PartType type1(prop1);
+type1 inst1(.prop1("inst1.prop1"));
+
+
+type1 inst2(.prop1("inst2.prop1"));
+type1 inst3(.prop1("inst3.prop1"));
+type1 inst4(.prop1("inst4.prop1"));
+
+Device D(type1, type1, type1, type1);
+lod = product(D);
+
+SBOL.export(lod, "./tests/data-exchange/sbol/exports/sbol-export02-devices.sbol");

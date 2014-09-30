@@ -1,0 +1,4 @@
+include "./tests/include/properties"
+
+PartType PT01(prop01);
+PartType PT02(prop01, prop02);

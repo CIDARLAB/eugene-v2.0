@@ -1,0 +1,80 @@
+/*---------------------------
+ *   Variable vs Constant
+ *---------------------------*/
+num a = 5;
+if ( a < 5 ) {
+   println(" a < 5  -> IF ");
+} else {
+   println(" a < 5  -> ELSE ");
+}
+
+if ( a <= 5 ) {
+   println(" a <= 5 -> IF");
+} else {
+   println(" a <= 5 -> ELSE");
+}
+
+if ( a == 5 ) {
+   println(" a == 5 -> IF");
+} else {
+   println(" a == 5 -> ELSE");
+}
+
+if ( a != 5 ) {
+   println(" a != 5 -> IF");
+} else {
+   println(" a != 5 -> ELSE");
+}
+
+if ( a >= 5 ) {
+   println(" a >= 5 -> IF");
+} else {
+   println(" a >= 5 -> ELSE");
+}
+
+if ( a > 5 ) {
+   println(" a > 5  -> IF");
+} else {
+   println(" a > 5  -> ELSE");
+}
+
+/*---------------------------
+ *   Variable vs Variable
+ *---------------------------*/
+num b = 6;
+if ( a < b ) {
+   println(" a < b  -> IF");
+} else {
+   println(" a < b  -> ELSE");
+}
+
+if ( a <= b ) {
+   println(" a <= b -> IF");
+} else {
+   println(" a <= b -> ELSE");
+}
+
+if ( a == b ) {
+   println(" a == b -> IF");
+} else {
+   println(" a == b -> ELSE");
+}
+
+if ( a != b ) {
+   println(" a != b -> IF");
+} else {
+   println(" a != b -> ELSE");
+}
+
+if ( a >= b ) {
+   println(" a >= b -> IF");
+} else {
+   println(" a >= b -> ELSE");
+}
+
+if ( a > b ) {
+   println(" a > b  -> IF");
+} else {
+   println(" a > b  -> ELSE");
+}
+

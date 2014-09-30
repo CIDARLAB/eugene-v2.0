@@ -1,0 +1,87 @@
+//Quorum Sensing - Pooja Shah
+
+//Properties
+Property Name(txt);
+Property Sequence(txt);
+Property RepressedBy(txt);
+Property InducedBy(txt);
+Property Represses(txt);
+Property Induces(txt);
+
+//Part Types
+PartType RPromoter(Name, RepressedBy);
+PartType IPromoter(Name, InducedBy);
+PartType Promoter(Name);
+PartType RBS(Name);
+PartType Repressor(Name, Represses);  //gene repressing
+PartType Inducer(Name, Induces);  //gene inducing
+PartType Reporter(Name);  //gene
+PartType Terminator(Name);
+PartType SmallMolecule(Name, Induces);
+
+//Parts
+RPromoter pRep(.Name("pRep"), .RepressedBy("Rep"));
+
+IPromoter pInd(.Name("pInd"), .InducedBy("smallmolecule"));
+
+Promoter pConst(.Name("pConst"));
+
+RBS rbs(.Name("rbs"));
+
+Repressor Rep(.Name("Rep"), .Represses("pRep"));
+Repressor Ind(.Name("Ind"), .Represses("Rep"));
+Repressor operon(.Name("operon"), .Represses("pInd"));
+
+Reporter GFP(.Name("GFP"));
+Reporter RFP(.Name("RFP"));
+
+Terminator term(.Name("term"));
+
+SmallMolecule smallmolecule(.Name("smallmolecule"), .Induces("pInd"));
+
+//Structural Rules for Devices
+Device D1(RPromoter, RBS, Reporter, Terminator);
+Device D2(Promoter, RBS, Repressor, Terminator);
+Device D3(IPromoter, RBS, Repressor, Terminator);
+Device D4(IPromoter, RBS, Reporter, Terminator);
+Device D5(Promoter, RBS, Repressor, Terminator);
+
+//Content Rules
+Rule r1(araC WITH pInd);
+Rule r2(operon WITH pInd);
+Rule r3((D1[2] NOTEQUALS D4[2]) AND (D1[2] NOTEQUALS D4[2]));
+Rule r4((D2[2] NOTEQUALS D3[2]) AND (D2[2] NOTEQUALS D5[2]) AND (D3[2] NOTEQUALS D5[2]));
+
+//Algorithm Cartesian Product
+Device[] lstProduct1 = product(D1);
+Device[] lstProduct2 = product(D2);
+Device[] lstProduct3 = product(D3);
+Device[] lstProduct4 = product(D4);
+Device[] lstProduct5 = product(D5);
+
+
+//print output via FOR loop
+for(num i = 0; i < lstProduct1.size(); i++)
+{
+    println(lstProduct1[i]);
+}
+
+for(num i = 0; i < lstProduct2.size(); i++)
+{
+    println(lstProduct2[i]);
+}
+
+for(num i = 0; i < lstProduct3.size(); i++)
+{
+    println(lstProduct3[i]);
+}
+
+for(num i = 0; i < lstProduct4.size(); i++)
+{
+    println(lstProduct4[i]);
+}
+
+for(num i = 0; i < lstProduct5.size(); i++)
+{
+    println(lstProduct5[i]);
+}

@@ -1,0 +1,120 @@
+/*
+ *  read the SBOL files
+ */
+Device pTAKLeftCassette = SBOL.import("./demos/sbol-nbt/pTAKLeftCassette.rdf");
+Device pTAKRightCassette = SBOL.import("./demos/sbol-nbt/pTAKRightCasette.rdf");
+Device pIKELeftCassette = SBOL.import("./demos/sbol-nbt/pIKELeftCassette.rdf");
+Device pIKERightCassette = SBOL.import("./demos/sbol-nbt/pIKERightCasette.rdf");
+
+
+/*
+ * THIS IS A EUGENE FEATURE
+ * - specification of orthogonal repressor-promoter pairs
+ */
+// LacI-pLac pairing  
+BBa_C0012 REPRESSES BBa_R0010;
+// cI-pCI pairing
+BBa_C0051 REPRESSES BBa_K121014;
+// tetR-pTet pairing
+BBa_C0040 REPRESSES BBa_R0040;
+
+
+/*
+ * now, let's import some Bacillus Subtilis Parts
+ */
+
+/** RBSs **/
+RBS K090505 (.Sequence("aaaggaggtgt"));
+RBS K090506 (.Sequence("agaggtggtgt"));
+RBS K143010 (.Sequence("taaaggaggaa"));
+RBS K143021 (.Sequence("aaaggtggtgaa"));
+RBS K780001 (.Sequence("atattaagaggaggag"));
+RBS K780002 (.Sequence("agagaacaaggagggg"));
+ 
+
+/** Terminators **/
+
+// taken from the part registry
+Terminator K780000(.Sequence("aagaagaagtgtgaaaaagcgcagctgaaatagctgcgcttttttgtgtcataa"));
+
+// the following terminators are (randomly) taken from the BacilloBricks repository
+Terminator yocK(.Sequence("GCCAAGCAAGTACACCGATATTAGATGTACTTGCTTTTTTTTGAAAAAA"));
+Terminator yvjA_cccB(.Sequence("GTAAGATAAAAACATCCTTGCCGAGTGCTGGCAAGGATGTTTTTATGCCTTGAC"));
+
+/*** TAK Toggle Switches ***/
+/*
+ * let's put both cassettes together into a composite device
+ */ 
+Device TAKToggleSwitch(
+	-pTAKLeftCassette,    // the left cassette is on the NEGATIVE strand ('-')  
+	 pTAKRightCassette
+);
+
+/*
+ * EUGENE RULES
+ * - RBS positioning
+ */
+Rule rTAK(
+	ON TAKToggleSwitch:
+		K090505 NEXTTO BBa_E0040
+			AND
+		K090506 NEXTTO BBa_C0051
+			AND
+		K090505 NOTMORETHAN 1
+			AND
+		K090506 NOTMORETHAN 1
+);
+
+/*
+ * let Eugene generate all possible toggle switches
+ */
+Device[] TAKToggleSwitches = product(TAKToggleSwitch);
+println(TAKToggleSwitches);
+
+
+/*
+ * let's put both cassettes together into a composite device
+ */ 
+Device IKEToggleSwitch(
+	-pIKELeftCassette,    // the left cassette is on the NEGATIVE strand ('-')  
+	 pIKERightCassette
+);
+
+/*
+ * EUGENE RULES
+ * - RBS positioning
+ */
+Rule rIKE(
+	ON IKEToggleSwitch:
+		K090505 NEXTTO BBa_E0040
+			AND
+		K090506 NEXTTO BBa_C0040
+			AND
+		K090505 NOTMORETHAN 1
+			AND
+		K090506 NOTMORETHAN 1
+);
+
+
+/*
+ * let Eugene generate all possible toggle switches
+ */
+Device[] IKEToggleSwitches = product(IKEToggleSwitch);
+println(IKEToggleSwitches);
+
+
+/*
+ * and finally we export the generated Toggle Switches
+ * to SBOL (using an SBOL Collection)
+ */
+//SBOL.export(IKEToggleSwitches, "./demos/sbol-nbt/IKE-ToggleSwitches.rdf");
+ 
+
+/*
+ * and finally we export the generated Toggle Switches
+ * to SBOL (using an SBOL Collection)
+ */
+Device[] ToggleSwitches = TAKToggleSwitches + IKEToggleSwitches; 
+//SBOL.export(ToggleSwitches, "./demos/sbol-nbt/ToggleSwitches.rdf");
+
+ 

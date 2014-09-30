@@ -1,0 +1,49 @@
+include "./designs/cidar/raven/1000-devices/regulatory-design-space.h"
+
+/*
+ *   DEVICE SPECIFICATIONS
+ */
+//Device intermediate1(pLlacO1, tetR_lite, T1, lambdaPr, lacI_lite, T1);
+//Device repressilator(pLlacO1, tetR_lite, T1, lambdaPr, lacI_lite, T1, pLtetO1, lambdacI_lite, T1, pSC101, T1, ampR, T1);
+
+Device Repressilator(
+	Promoter, RBS, Gene, Terminator,
+	Promoter, RBS, Gene, Terminator,
+	Promoter, RBS, Gene, Terminator);
+	
+
+/*
+ *   RULES
+ */
+Rule r(
+	ON Repressilator:
+	
+		// REPRESSION relationships
+		Repressilator[2] REPRESSES Repressilator[4]
+			AND
+		Repressilator[6] REPRESSES Repressilator[8]
+			AND
+		Repressilator[10] REPRESSES Repressilator[0]
+		
+			AND
+		
+		pLux NOTMORETHAN 1 
+			AND
+		pLtetO1 NOTMORETHAN 1 
+			AND 
+		lambdaPr NOTMORETHAN 1  
+			AND
+		pLlacO1 NOTMORETHAN 1 
+		
+			AND
+		
+		rbs1 WITH rbs2 AND rbs2 WITH rbs3
+);
+			
+/*
+ *   DEVICE GENERATION
+ */ 
+Device[] lst = product(Repressilator, strict, 1000);
+println("*** REPRESSILATORS ***");
+println(lst);
+ 

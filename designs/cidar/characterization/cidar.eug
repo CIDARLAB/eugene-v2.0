@@ -1,0 +1,40 @@
+include ./case-study/characterization/design-space.h;
+
+/** INFORMATION FROM THE KEY-FILE: **/
+/**
+Sample Nickname: L2Ar
+PartID: pConst-AracC-pBad-pTet-RFPc-pConst-TetRc
+Induction Values: [0 .5 1 2.5 5 7.5 10 50] mM Ara
+ **/
+ 
+ 
+
+// the start at the pBad promoter indicates that the device 
+// is built to characterize the pBad promoter 
+Device L2Ar(
+	pConst, AraC, pBad*, pTet, RFPc, pConst, TetRc) {
+    0   : ./case-study/characterization/data/Specimen_001_L2AR_001.fcs ,
+    0.5 : ./case-study/characterization/data/Specimen_001_L2AR_002.fcs ,
+    1   : ./case-study/characterization/data/Specimen_001_L2AR_003.fcs ,
+    2.5 : ./case-study/characterization/data/Specimen_001_L2AR_004.fcs ,
+    5   : ./case-study/characterization/data/Specimen_001_L2AR_005.fcs ,
+    7.5 : ./case-study/characterization/data/Specimen_001_L2AR_006.fcs ,
+   10   : ./case-study/characterization/data/Specimen_001_L2AR_007.fcs ,
+   50   : ./case-study/characterization/data/Specimen_001_L2AR_008.fcs
+    };
+
+
+/** NEXT STEPS: 
+- specification of the chemical (e.g. ara, aTc, ...)
+- specification of the chemical's concentration unit ()
+- optional induction values
+- can we parse the key-file? or can Eugene offer a syntax for characterization data similar to the key file?
+
+e.g.
+Device L2Ar(
+    pConst, AracC, pBad, pTet, RFPc, pConst, TetRc)
+Induction Values: [0 100 250 500 750 1000] ng/mL aTc
+**/
+
+    
+print("Device L2Ar -> ", L2Ar);    

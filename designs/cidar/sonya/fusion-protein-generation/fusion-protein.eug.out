@@ -1,0 +1,42 @@
+Device MoCloFP2_1(
+p1, rbs1, cre, reg-C, t1
+);
+Device MoCloFP2_2(
+p1, rbs1, reg-N, cre, t1
+);
+Device MoCloFP3_12(
+p1, rbs1, reg-N, cre, reg-N, t1
+);
+Device MoCloFP3_11(
+p1, rbs1, reg-C, cre, reg-N, t1
+);
+Device MoCloFP3_10(
+p1, rbs1, reg-N, reg-C, reg-N, t1
+);
+Device MoCloFP3_1(
+p1, rbs1, reg-C, cre, reg-C, t1
+);
+Device MoCloFP3_2(
+p1, rbs1, reg-N, cre, reg-C, t1
+);
+Device MoCloFP3_3(
+p1, rbs1, reg-C, reg-N, reg-C, t1
+);
+Device MoCloFP3_4(
+p1, rbs1, cre, reg-N, reg-C, t1
+);
+Device MoCloFP3_5(
+p1, rbs1, cre, reg-C, cre, t1
+);
+Device MoCloFP3_6(
+p1, rbs1, reg-N, reg-C, cre, t1
+);
+Device MoCloFP3_7(
+p1, rbs1, reg-C, reg-N, cre, t1
+);
+Device MoCloFP3_8(
+p1, rbs1, cre, reg-N, cre, t1
+);
+Device MoCloFP3_9(
+p1, rbs1, cre, reg-C, reg-N, t1
+);

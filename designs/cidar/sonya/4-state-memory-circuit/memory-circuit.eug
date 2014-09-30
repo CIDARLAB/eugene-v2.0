@@ -1,0 +1,165 @@
+/* a function to convert a device to pigeon code */
+function toPigeon(Device d) {
+	for(num i=0; i<d.size(); i++) {
+		println(d[i].pigeon, " ", d[i].name, " ", d[i].color);
+	}
+	println("# Arcs");
+}
+
+/** PROPERTIES **/
+Property name(txt);
+Property direction(txt);
+Property type(txt);
+
+// for pigeon visualization
+Property pigeon(txt);
+Property color(num);
+
+/** PART TYPES **/
+PartType Terminator(name, direction, pigeon, color);
+PartType Reporter(name, direction, pigeon, color);
+PartType RBS(name, direction, pigeon, color);
+PartType Site(name, direction, type, pigeon, color);
+PartType Promoter(name, direction, pigeon, color);
+
+
+/*** PARTS ***/
+
+/** TERMINATORS **/
+Terminator B0015(.name("B0015"), .direction("forward"), .pigeon("t"), .color(14));
+Terminator revB0015(.name("revB0015"), .direction("reverse"), .pigeon("<t"), .color(14));
+
+
+/** REPORTERS **/
+Reporter E0040m(.name("E0040m"), .direction("forward"), .pigeon("c"), .color(4));
+Reporter revE0040m(.name("revE0040m"), .direction("reverse"), .pigeon("<c"), .color(4));
+
+Reporter E1010m(.name("E1010m"), .direction("forward"), .pigeon("c"), .color(6));
+Reporter revE1010m(.name("revE1010m"), .direction("reverse"), .pigeon("<c"), .color(6));
+
+/** RBSs **/
+RBS BCD2(.name("BCD2"), .direction("forward"), .pigeon("r"), .color(14));
+RBS revBCD2(.name("revBCD2"), .direction("reverse"), .pigeon("<r"), .color(14));
+
+/** SITES ***/
+Site rox(.name("rox"), .type("A"), .direction("forward"), .pigeon(">"), .color(2));
+Site revrox(.name("revrox"), .type("A"), .direction("reverse"), .pigeon("<"), .color(2));
+
+Site lox(.name("lox"), .type("B"), .direction("forward"), .pigeon(">"), .color(14));
+Site revlox(.name("revlox"), .type("B"), .direction("reverse"), .pigeon("<"), .color(14));
+
+/*
+ * currently, I'm keeping the RBS and the Sites separate... 
+ * we could 
+ * - combine them into one new part type, such as RBS_Site, or
+ * - specify rules (preferred)
+ */
+
+/** PROMOTERS **/
+Promoter J23106(.name("J23106"), .direction("forward"), .pigeon("p"), .color(14));
+Promoter revJ23106(.name("J23106"), .direction("reverse"), .pigeon("<p"), .color(14));
+
+ 
+Device PermuteCassette(
+	Site,
+	Promoter,
+	Site,         // reverse
+	RBS,          
+	Reporter
+);
+
+Rule rPermute(
+	ON PermuteCassette:
+		Promoter NEXTTO Site AND
+		Site NEXTTO Promoter 		 
+);
+		
+Device[] lstPermute = permute(PermuteCassette, strict);
+
+Device[] lstCassettes;
+Device Cassette;
+for(num i=0; i<lstPermute.size(); i++) {
+
+	Cassette = lstPermute[i];
+
+	// get the indices of the sites
+	num idxLeftSite = -1, idxRightSite = -1;
+	num idxReporter = -1;
+	for(num k=0; k<Cassette.size(); k++) {
+		if(Cassette[k] EQUALS Site) {
+			if(idxLeftSite == -1) {
+				idxLeftSite = k;
+			} else {
+				idxRightSite = k;
+			}
+		} else if(Cassette[k] EQUALS Reporter) {
+			idxReporter = k;
+		}
+	}
+	
+	Rule r(
+		ON Cassette:
+			Cassette[idxLeftSite].direction == "forward" AND
+			Cassette[idxRightSite].direction == "reverse" AND 
+			Cassette[idxLeftSite].type == "B" AND
+			Cassette[idxRightSite].type == "B" 
+			
+			AND
+			
+			(
+				Cassette[idxReporter] EQUALS E1010m 
+					OR 
+				Cassette[idxReporter] EQUALS revE1010m
+			)   			
+	);
+	
+	Device[] lstProduct = product(Cassette, strict);
+	lstCassettes = lstCassettes + lstProduct;    
+}
+
+println(lstCassettes.size(), " cassettes...");
+
+Device[] lstMemoryCircuits;
+for(num i=0; i<lstCassettes.size(); i++) {
+
+	num idxReporter = -1;
+	for(num k=0; k<lstCassettes[i].size(); k++) {
+		if(lstCassettes[i][k] INSTANCEOF Reporter) {
+			idxReporter = k;
+		}
+	}
+
+    MemoryCircuit = 
+    	Terminator + revE0040m + RBS + Site + lstCassettes[i] + Site + Terminator;
+
+    //       1     x     1     x  1  x  2   x    1            x  2   x      1
+    // -> 4 * 96    
+    // define some rules:
+	Rule r (
+		ON MemoryCircuit:
+			// Directionality rules
+			MemoryCircuit[0].direction EQUALS "reverse" AND
+			MemoryCircuit[1].direction EQUALS "reverse" AND
+			MemoryCircuit[2].direction EQUALS "reverse" AND
+			MemoryCircuit[3].direction EQUALS "forward" AND
+			MemoryCircuit[9].direction EQUALS "reverse" AND 
+			MemoryCircuit[10].direction EQUALS "forward"						
+		
+		 	AND
+		 
+			// lox/rox rules
+			MemoryCircuit[3].type EQUALS "A" AND
+			MemoryCircuit[9].type EQUALS "A" 
+			
+ 	);
+	
+	Device[] lst = product(MemoryCircuit, strict);	
+	lstMemoryCircuits = lstMemoryCircuits + lst;    
+}
+
+// now, generate the pigeon code of all MemoryCircuit devices
+//for(num j=0; j<lstMemoryCircuits.size(); j++) {
+//	toPigeon(lstMemoryCircuits[j]);
+//}
+
+println(lstMemoryCircuits.size(), " memory circuits created!");

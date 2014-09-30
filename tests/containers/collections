@@ -1,0 +1,111 @@
+/*
+ *  empty collections
+ */
+Collection empty1; 
+Collection empty2 ();
+
+//Collection empty1; // duplicate
+
+/*
+ * part declarations within 
+ * collections
+ */
+Collection col1 (
+    Property seq(txt),
+    PartType PT(seq),
+    PT p1(.seq("ATCG")),
+    PT p2(.seq("TCGA"))    
+);  
+
+//println(col1);
+
+
+Collection col2 (
+    Property seq(txt),
+    PartType PT(seq),
+    PT p2(.seq("TCGA")),
+    PT p3(.seq("CGAT"))    
+);  
+//println(col2);
+
+/* the following elements do not exist
+ * in the global scope
+ * uncomment them for demonstration
+ */
+//println(seq);  
+//println(PT);
+//println(p1);
+//println(p2);
+//println(p3);
+
+/*
+ * assignments
+ * => reference vs shallow copy vs deep copy
+ */
+/**
+refCol = ref(productCol); 
+shallowCol = shallow(productCol); 
+deepCol = deep(productCol);
+ **/
+ 
+/*------------------------------------
+ * nested collections
+ *------------------------------------*/
+Collection nc01 (
+	
+	Property prop1(txt),
+	
+	Collection nc02 (
+	
+		PartType PT (prop1),
+		
+		Collection nc03 (
+			//PartType PT;   // this PT should overwrite the PT of nc02
+			
+			PT p1("p1"),
+			PT p2("p2"),
+			PT p3("p3")
+		)
+	)
+);
+//println(nc01);
+
+// union two collections into one
+Collection nc02(
+    col1, 
+    col2
+);
+
+Collection nc03(
+    nc01,
+    nc02,
+    col1,
+    col2,
+    nc01.prop1
+);
+
+
+/*------------------------------------
+ * collection of variables
+ *------------------------------------*/
+num zero = 0;
+num one = 1;
+num two = 2;
+num pi = 3.1415926;
+num[] num_array = [0, 1, 2, 3];
+txt hello = "Hello";
+txt world = "world";
+txt[] txt_array = ["A", "T", "C", "G"];
+boolean t = true;
+boolean f = false;
+Collection vars01 (
+    zero, one, two, pi,
+    num_array, 
+    hello, world, 
+    txt_array,
+    t, f
+);
+println(vars01);
+
+
+ 

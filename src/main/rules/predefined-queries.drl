@@ -1,0 +1,72 @@
+package org.cidarlab.sparrow.rules;
+
+import org.cidarlab.eugene.dom.*;
+import org.cidarlab.eugene.dom.interaction.*;
+import java.util.List;
+import java.util.Set;
+
+query getParts(PartType pt)
+    $c : Part(typeAsString == pt.name);
+end
+
+query getAllParts()
+    $c : Part();
+end
+
+query getComponents(ComponentType ct)
+    $c : Component(typeAsString == ct.name);
+end
+
+query getAllComponents()
+    $c : Component();
+end
+
+query getInteractions(Interaction.InteractionType it) 
+	$i : Interaction(type == it);
+end
+
+query getAllInteractions() 
+	$i : Interaction();
+end
+
+
+/*
+ * find the set of promoters and RBSs whose sum of strength equals 5
+ */
+query union() 
+	$p : Component ( $promoter_strength : propertyValues["strength"] && $promoter_strength!=null && typeAsString=="Promoter" )
+	$r : Component ( $rbs_strength : propertyValues["strength"] && $rbs_strength!=null && typeAsString=="RBS" && 
+					$rbs_strength.num + $promoter_strength.num == 5)
+
+	$ret : Component ( name == $p.name || name == $r.name )	
+end
+
+query union2()
+	
+	$p : Component ( propertyValues["strength"] != null && type=="Promoter" && $promoter_strength : propertyValues["strength"].num )
+	$r : Component ( propertyValues["strength"] != null && type=="RBS" && $rbs_strength : propertyValues["strength"].num )
+	$g : Component ( propertyValues["strength"] != null && type=="Gene" && $gene_strength : propertyValues["strength"].num )
+	$t : Component ( propertyValues["strength"] != null && type=="Terminator" && $terminator_strength : propertyValues["strength"].num )
+
+	eval ( $promoter_strength + $rbs_strength + $gene_strength + $terminator_strength == 5 )
+	
+	$ret : Component ( name == $p.name || name == $r.name || name == $g.name || name == $t.name )	
+end
+
+query test() 
+	$Promoter: Component( typeAsString == "Promoter", propertyValues["strength"] != null, $Promoter_strength: propertyValues["strength"].num )
+	$RBS: Component( typeAsString == "RBS", propertyValues["strength"] != null, $RBS_strength: propertyValues["strength"].num )
+	$Gene: Component( typeAsString == "Gene", propertyValues["strength"] != null, $Gene_strength: propertyValues["strength"].num )
+	$Terminator: Component( typeAsString == "Terminator", propertyValues["strength"] != null, $Terminator_strength: propertyValues["strength"].num )
+	
+	
+	eval ( $Promoter_strength + $RBS_strength + $Gene_strength + $Terminator_strength == 0.0)
+	
+	$ret : Component (name == $Terminator.name || name == $Gene.name || name == $Promoter.name || name == $RBS.name)
+end
+
+query test01()
+	$Promoter: Component( typeAsString == "Promoter", propertyValues["strength"] != null, $Promoter_strength: propertyValues["strength"].num )
+	eval ( $Promoter_strength == 5.0 )
+	$ret : Component ( name == $Promoter.name )
+end

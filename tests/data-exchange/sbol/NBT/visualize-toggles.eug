@@ -1,0 +1,15 @@
+col = SBOL.import("./demos/sbol-nbt/import/iBioSim/ToggleSwitchComponents.xml");
+
+//println(col);
+
+/*
+ *  let's define the ``repressing'' relationships
+ */
+// LacI-pLac pairing  
+BBa_C0012 REPRESSES BBa_R0010;
+// cI-pCI pairing
+BBa_C0051 REPRESSES BBa_K121014;
+// tetR-pTet pairing
+BBa_C0040 REPRESSES BBa_R0040;
+
+pigeon(col);

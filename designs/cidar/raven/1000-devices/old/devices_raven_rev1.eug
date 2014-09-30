@@ -1,0 +1,124 @@
+//Part Properties
+Property Name(txt);
+Property Pigeon(txt);
+
+//Part Types
+Part Promoter(Name, Pigeon);
+Part RBS(Name, Pigeon);
+Part Gene(Name, Pigeon);
+Part Terminator(Name, Pigeon);
+
+//Parts
+Promoter p1(.Name("p1"), .Pigeon("p p1 5"));
+Promoter p2(.Name("p2"), .Pigeon("p p2 1"));
+Promoter p3(.Name("p3"), .Pigeon("p p3 2"));
+Promoter p4(.Name("p4"), .Pigeon("p p4 3"));
+Promoter p5(.Name("p5"), .Pigeon("p p5 4"));
+Promoter p6(.Name("p6"), .Pigeon("p p6 6"));
+Promoter p7(.Name("p7"), .Pigeon("p p7 7"));
+Promoter p8(.Name("p8"), .Pigeon("p p8 8"));
+Promoter p9(.Name("p9"), .Pigeon("p p9 9"));
+Promoter p10(.Name("p10"), .Pigeon("p p10 10"));
+ 
+RBS r1(.Name("r1"), .Pigeon("r r1 1"));
+RBS r2(.Name("r2"), .Pigeon("r r2 2"));
+RBS r3(.Name("r3"), .Pigeon("r r3 3"));
+RBS r4(.Name("r4"), .Pigeon("r r4 4"));
+RBS r5(.Name("r5"), .Pigeon("r r5 5"));
+RBS r6(.Name("r6"), .Pigeon("r r6 6"));
+RBS r7(.Name("r7"), .Pigeon("r r7 7"));
+RBS r8(.Name("r8"), .Pigeon("r r8 8"));
+RBS r9(.Name("r9"), .Pigeon("r r9 9"));
+RBS r10(.Name("r10"), .Pigeon("r r10 10"));
+
+Gene c1(.Name("c1"), .Pigeon("c c1 1"));
+Gene c2(.Name("c2"), .Pigeon("c c2 2"));
+Gene c3(.Name("c3"), .Pigeon("c c3 3"));
+Gene c4(.Name("c4"), .Pigeon("c c1 4"));
+Gene c5(.Name("c5"), .Pigeon("c c2 5"));
+Gene c6(.Name("c6"), .Pigeon("c c3 6"));
+Gene c7(.Name("c7"), .Pigeon("c c1 7"));
+Gene c8(.Name("c8"), .Pigeon("c c2 8"));
+Gene c9(.Name("c9"), .Pigeon("c c3 9"));
+Gene c10(.Name("c10"), .Pigeon("c c1 10"));
+
+c1 REPRESSES p1;
+c2 REPRESSES p3;
+c3 REPRESSES p4;
+c4 REPRESSES p5;
+c5 REPRESSES p1;
+
+Terminator t1(.Name("t1"), .Pigeon("t t1 1"));
+Terminator t2(.Name("t2"), .Pigeon("t t2 2"));
+Terminator t3(.Name("t3"), .Pigeon("t t3 3"));
+Terminator t4(.Name("t4"), .Pigeon("t t4 4"));
+Terminator t5(.Name("t5"), .Pigeon("t t5 5"));
+Terminator t6(.Name("t6"), .Pigeon("t t6 6"));
+Terminator t7(.Name("t7"), .Pigeon("t t7 7"));
+Terminator t8(.Name("t8"), .Pigeon("t t8 8"));
+Terminator t9(.Name("t9"), .Pigeon("t t9 9"));
+Terminator t10(.Name("t10"), .Pigeon("t t10 10"));
+
+Device part1(
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator);
+
+Rule rPart1(
+	ON part1:
+		STARTSWITH p1
+			AND
+		ENDSWITH t5
+			AND
+		//CONTAINS p1 AND CONTAINS p2 AND CONTAINS p3 AND CONTAINS p4 AND CONTAINS p5
+		//	AND
+		part1[2] REPRESSES part1[4]
+			AND 
+		part1[6] REPRESSES part1[8]
+			AND 
+		part1[10] REPRESSES part1[12]
+			AND 
+		part1[14] REPRESSES part1[16]
+);
+ 
+/** PART1 devices **/
+Device[] part1devices = product(part1);
+println(part1devices);
+//pigeon(part1devices);
+println("*** part1devices done ***");
+
+
+/*****
+Device part2(
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator);
+
+Device part3(
+	Promoter, RBS, Gene, Terminator, 
+	Promoter, RBS, Gene, Terminator);
+
+
+//for(num i=0; i<part1devices.size(); i++) {
+//   println(part1devices[i]);
+//}
+
+Device[] part2devices = product(part2, 1000);
+pigeon(part2devices);
+
+//for(num i=0; i<part2devices.size(); i++) {
+//   println(part2devices[i]);
+//}
+
+Device[] part3devices = product(part3, 10);
+pigeon(part3devices);
+
+//for(num i=0; i<part3devices.size(); i++) {
+//   println(part3devices[i]);
+//}
+****/
+

@@ -1,0 +1,131 @@
+//PartType promoter(Name, Sequence);
+
+//Properties
+Property Name(txt);
+Property ID(txt);
+Property Sequence(txt);
+Property Represses(txt);
+Property RepressedBy(txt);
+Property InducedBy(txt);
+Property Description (txt);
+Property Induces(txt);
+Property Strength(num); /** num ==1 for strongest RBS; num ==5 for weakest RBS **/
+
+Property Pigeon(txt);
+
+//Part Types
+PartType IndPr (Name, Sequence, InducedBy, Pigeon);
+PartType RepPr (Name, Sequence, RepressedBy, Pigeon);
+PartType ConstPr (Name, Sequence, Pigeon);
+PartType RBS (Name, Sequence, Strength, Pigeon);
+PartType Repressor (Name, Sequence, Represses, Pigeon);
+PartType Reporter (Name, Sequence, Description, Pigeon);
+PartType Inducer (Name, Sequence, Induces, Pigeon);
+PartType Terminator (Name, Sequence, Pigeon);
+PartType SmallMolecule (Name, Pigeon);
+
+//Constituitive Promoter 
+ConstPr J23100(
+	.Name("J23100"), 
+	.Sequence("TTGACGGCTAGCTCAGTCCTAGGTACAGTGCTAGC"), 
+	.Pigeon("p J23100"));
+
+//Repressible Promoters 	
+RepPr R0040(
+	.Name("R0040"), 
+	.Sequence("TCCCTA...ATCAGTGATAGAGATACTGAGCAC"),
+	.RepressedBy("C0040"),
+	.Pigeon("p R0040 5"));
+RepPr I13453 (
+	.Name("I13453"),
+	.Sequence("acattgatt...gtttttttgggctagc"),
+	.RepressedBy("C0080"),
+	.Pigeon("p I13453 7"));	
+
+//RBS
+RBS B0030m(
+  	.Name("B0030m"),
+  	.Sequence("AGAG...AATACTA"),
+  	.Strength(2),
+  	.Pigeon("r B0030m"));
+RBS B0032m(
+	.Name("B0032m"), 
+	.Sequence("AGAGTCA...GTACTA"), 
+	.Strength(3), 
+	.Pigeon("r B0032m"));
+RBS B0034m1(
+  	.Name("B0034m1"),
+  	.Sequence("AGAGA...TACTA"),
+  	.Strength(1),
+  	.Pigeon("r B0034m1"));
+
+//Repressors
+Repressor C0040(
+  	.Name("C0040"),
+  	.Sequence("ATGTCCA...GATCAC"),
+	.Represses("R0040"),
+	.Pigeon("c C0040 5"));
+Repressor C0080(
+  	.Name("C0080"), 
+	.Sequence("ATGGCTG...TAA"), 
+	.Represses("I13453"),
+	.Pigeon("c C0080 7"));
+  
+//Reporters
+Reporter E0040m(
+	.Name("E0040"), 
+	.Sequence("ATGCG...AATAA"),
+	.Description("GFP"),
+	.Pigeon("c E0040 4"));
+Reporter E1010m(
+  	.Name("E1010m"), 
+	.Sequence("AATGA...TTAATAA"),
+	.Description("RFP"),
+	.Pigeon("c E1010 6"));
+
+//Terminator
+Terminator B0015(
+	.Name("B0015"), 
+	.Sequence("CCAGGCATCA...TATA"),
+	.Pigeon("t B0015"));
+  
+//Transcriptional Units (TU)
+Device pJ002mC80 (J23100, B0032m, C0080, B0015);
+Device pI34m1C40 (I13453, B0034m1, C0040, B0015);
+Device pI34m1Gm (I13453, B0034m1, E0040m, B0015);
+Device pR400mRm (R0040, B0030m, E1010m, B0015);
+  
+//Flow of Repressors
+C0040 REPRESSES R0040;
+C0080 REPRESSES I13453;
+  
+//Inverter Permutations
+//NOTE*** This script does now have the permute function so all possibilities are listed and when 
+//run, all but one of the inverters should be commented out
+
+Device inverter (
+	pJ002mC80, 
+	pI34m1C40, 
+	pI34m1Gm, 
+	pR400mRm);
+ 
+/*
+ *    let's test some rules
+ */  
+
+Device[] lstInverters = permute(inverter, strict);
+
+println(lstInverters);
+
+/*
+ * for every permutation, we create the cartesian product
+ */
+//for(num i=0; i<lstInverters.size; i++) {
+//    dX = lstInverters[i];
+//    pigeon(dX);
+//    lst = product(dX);    
+//    save(lst);
+//    pigeon(lst);
+//}
+
+

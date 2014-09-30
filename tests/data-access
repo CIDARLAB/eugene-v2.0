@@ -1,0 +1,70 @@
+/*
+ * assignments of constants
+ */
+num i = 3;
+println (i);
+
+txt s = "Hello DNA!";
+println (s);
+
+txt[] sa = ["ATCG", "TCGA", "CGAT", "GATC"];
+println (sa);
+
+num[] ia = [1, 2, 3.1415962, -1];
+println (ia);
+
+boolean b = true;
+println (b);
+
+println(ia[0]); 
+println(ia[1]); 
+println(ia[2]); 
+println(ia[3]); 
+
+
+/*
+ *  assignments of function results
+ */
+/*** 
+PartType PT;
+PT p1;
+PT p2;
+Device D(PT);
+ds_ref = product(D);
+println(ds_ref);
+ds_val = product(D);
+println(ds_val);
+ ***/
+/*
+ *  assignments when accessing sub-elements
+ */
+ia[0] = 0;
+ia[1] = 0;
+ia[2] = 0;
+ia[3] = 0;
+println(ia);
+sa[0][0] = "X";   // does not work
+println(sa);
+
+
+/*
+ *   
+ */
+Property prop1(txt);
+Property prop2(num);
+PartType PT1(prop1, prop2);
+PT1 p11; 
+PT1 p12; 
+PT1 p13; 
+PartType PT2(prop1, prop2);
+PT2 p21; 
+PT2 p22; 
+PT2 p23; 
+Device D1(PT1, PT2); 
+Device D2(PT2, PT1);
+Device D3(D1, D2);
+
+ds = product(D3);
+// D1 does not exist
+//println(ds.D1_1.D1);
+ 

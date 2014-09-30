@@ -1,0 +1,162 @@
+/*
+ *  import the partially with DNA sequences annotated cassettes
+ */
+Device pTAKLeftCassette = SBOL.import("./demos/sbol-nbt/import/SBOLDesigner/pTAKLeftCassette.rdf");
+Device pTAKRightCassette = SBOL.import("./demos/sbol-nbt/import/SBOLDesigner/pTAKRightCasette.rdf");
+Device pIKELeftCassette = SBOL.import("./demos/sbol-nbt/import/SBOLDesigner/pIKELeftCassette.rdf");
+Device pIKERightCassette = SBOL.import("./demos/sbol-nbt/import/SBOLDesigner/pIKERightCasette.rdf");
+
+
+/** RBSs **/
+/*
+ * In Clotho, we imported the publicly available RBS sequences from the Registry of Standard Biological Parts
+ * and exported them to SBOL files.
+ * In Eugene, we can now import the RBS data by reading the corresponding SBOL files 
+ */
+SBOL.import("./demos/sbol-nbt/import/rbs/BBa_J61101.sbol");
+SBOL.import("./demos/sbol-nbt/import/rbs/BBa_J61104.sbol");
+SBOL.import("./demos/sbol-nbt/import/rbs/BBa_J61107.sbol");
+SBOL.import("./demos/sbol-nbt/import/rbs/BBa_J61115.sbol");
+SBOL.import("./demos/sbol-nbt/import/rbs/BBa_J61120.sbol");
+SBOL.import("./demos/sbol-nbt/import/rbs/BBa_J61130.sbol");
+
+
+/** Terminators **/
+
+/*
+ * we imported the BBa_J61053 terminator from the Registry of Standard Biological Parts 
+ * by using Clotho 
+ */
+SBOL.import("./demos/sbol-nbt/import/terminators/BBa_J61053.sbol");
+
+
+/*
+ * we also specified manually various Terminator sequences
+ */
+Terminator ECK120029600(
+	.Name("ECK120029600"),
+	.Description("Terminator"),
+	.displayId("ECK120029600"),
+	.Sequence("TTCAGCCAAAAAACTTAAGACCGCCGGTCTTGTCCACTACCTTGCAGTAATGCGGTGGACAGGATCGGCGGTTTTCTTTTCTCTTCTCAA"),
+	.URI("http://www.eugenecad.org/parts/ECK120029600"));
+
+Terminator ECK120033737(
+	.Name("ECK120033737"),
+	.Description("Terminator"),
+	.displayId("ECK120033737"),
+	.Sequence("ggaaacacagAAAAAAGCCCGCACCTGACAGTGCGGGCTTTTTTTTTcgaccaaagg"),
+	.URI("http://www.eugenecad.org/parts/ECK120033737"));
+
+Terminator pheA1(
+	.Name("pheA-1"),
+	.Description("Terminator"),
+	.displayId("pheA1"),
+	.Sequence("gacgaacaaTAAGGCCTCCCAAATCGGGGGGCCTTTTTTATTgaTaacaaaa"),
+	.URI("http://www.eugenecad.org/parts/pheA-1"));
+
+Terminator ECK120034435(
+	.Name("ECK120034435"),
+	.Description("Terminator"),
+	.displayId("ECK120034435"),
+	.Sequence("CTCGGTACCAAATTCCAGAAAAGAGACGCTGAAAAGCGTCTTTTTTCGTTTTGGTCC"),
+	.URI("http://www.eugenecad.org/parts/ECK120034435"));
+		
+Terminator ECK120033736(
+	.Name("ECK120033736"),
+	.Description("Terminator"),
+	.displayId("ECK120033736"),
+	.Sequence("aacgcatgagAAAGCCCCCGGAAGATCACCTTCCGGGGGCTTTtttattgcgc"),
+	.URI("http://www.eugenecad.org/parts/ECK120033736"));
+
+
+/*
+ *   automated creation of the left TAK cassettes
+ *   using Eugene rules and Eugene's product() function
+ */
+Rule rTAKLeft(
+	ON pTAKLeftCassette:
+		BBa_J61101 WITH ECK120029600
+			OR
+		BBa_J61104 WITH ECK120033737
+			OR 
+		BBa_J61107 WITH pheA1
+			OR
+		BBa_J61115 WITH ECK120034435);
+TAKLeftCassettes = product(pTAKLeftCassette, strict);
+
+/*
+ *   automated creation of the right TAK cassettes
+ *   using Eugene rules and Eugene's product() function
+ */
+Rule rTAKRight(
+	ON pTAKRightCassette:
+		NOTCONTAINS BBa_J61101
+			AND
+		NOTCONTAINS ECK120029600
+			AND
+		NOTCONTAINS BBa_J61104
+			AND
+		NOTCONTAINS ECK120033737
+			AND 
+		NOTCONTAINS BBa_J61107
+			AND
+		NOTCONTAINS pheA1
+			AND
+		NOTCONTAINS BBa_J61115
+			AND
+		NOTCONTAINS ECK120034435
+			AND
+		BBa_J61120 NOTMORETHAN 1
+			AND
+		BBa_J61130 NOTMORETHAN 1);
+TAKRightCassettes = product(pTAKRightCassette, strict);
+
+
+/*
+ *   automated creation of the left IKE cassettes
+ *   using Eugene rules and Eugene's product() function
+ */
+Rule rIKELeft(
+	ON pIKELeftCassette:
+		BBa_J61101 WITH ECK120029600
+			OR
+		BBa_J61104 WITH ECK120033737
+			OR 
+		BBa_J61107 WITH pheA1
+			OR
+		BBa_J61115 WITH ECK120034435);
+IKELeftCassettes = product(pIKELeftCassette);
+
+/*
+ *   automated creation of the right IKE cassettes
+ *   using Eugene rules and Eugene's product() function
+ */
+Rule rIKERight(
+	ON pIKERightCassette:
+		NOTCONTAINS BBa_J61101
+			AND
+		NOTCONTAINS ECK120029600
+			AND
+		NOTCONTAINS BBa_J61104
+			AND
+		NOTCONTAINS ECK120033737
+			AND 
+		NOTCONTAINS BBa_J61107
+			AND
+		NOTCONTAINS pheA1
+			AND
+		NOTCONTAINS BBa_J61115
+			AND
+		NOTCONTAINS ECK120034435
+			AND
+		BBa_J61120 NOTMORETHAN 1
+			AND
+		BBa_J61130 NOTMORETHAN 1);
+IKERightCassettes = product(pIKERightCassette);
+
+/*
+ * and finally we export the generated Toggle Switches
+ * to SBOL (using an SBOL Collection)
+ */
+Device[] ToggleSwitchCassettes = TAKLeftCassettes + TAKRightCassettes + IKELeftCassettes + IKERightCassettes;
+SBOL.export(ToggleSwitchCassettes, "./demos/sbol-nbt/export/ToggleSwitchCassettes.sbol");

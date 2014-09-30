@@ -1,0 +1,68 @@
+TODO:
+- the differences between DBMS, Data Repository, Knowledge-base
+
+ 
+1. What problem are we solving here?
+************************************
+
+current SOTA:
+- various repositories containing ONLY part sequence and some meta-information (e.g. type, properties, ...)
+
+
+- can be accessed in a programmatic way and 
+support data exchange standards (SBOL, Genbank, ...)
+
+2. Why is this problem important?
+************************************
+
+-- ``Curation'' of data
+ 
+3. How do we solve this problem? 
+************************************
+
+We're building a (rule-based) knowledge-based system...
+
+Knowledge about:
+- biological ``building blocks'' (parts)
+- their composition
+
+everything's formulated in rules...
+Rule: IF <premise> THEN <conclusion> 
+
+- What do we offer?
+- flexible specification of data (and its underlying data model)... 
+e.g. 
+- 
+- query data (based on rules)...
+
+
+What were our (functional) requirements?
+R1: human and computationally accessible
+R2: rapid prototyping (freely-available)
+R3:  ...
+
+
+The Knowledge-base is:
+- computationally accessible                                 <-- justifying R1
+- utilizing an (easy-to-use) rule-engine (i.e. Java Drools)  <-- justifying R2
+
+
+- How can we justify our decision favoring a Rule-based System (RBS) over a Database Management System (DBMS)...
+http://www.jessrules.com/jess/guidelines.shtml
+
+
+=>  
+- the algorithm involves significant conditional branching or decision-making
+- N conditions in conditions in our rules
+- rules are likely to change (flexible) over time due to the nature of the application
+- code is going to be maintained over time -> Return-of-Invest
+- Need to optimize for speed and memory?  
+
+Related Work:
+- http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0017005
+
+
+
+4. What are the impacts? Why is our solution good?
+************************************
+

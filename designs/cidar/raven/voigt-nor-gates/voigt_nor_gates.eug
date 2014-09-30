@@ -1,0 +1,49 @@
+include "./designs/cidar/raven/voigt-nor-gates/design-space.h"
+
+/*
+ * QUESTIONS:
+ * - are there no RBSs specified? should we add them? do we need them?
+ */
+
+	
+/*
+ * promoter, reporter, terminator, promoter, gene
+ */
+ 
+Device pOR(promoter, reporter, terminator, promoter, gene);
+//Rule r(
+//	ON pOR:
+//		);
+Device[] lstOR = product(pOR);
+println(lstOR.size(), " OR gates...");
+
+Device pOR20(pTet2, eyfp, T1TE, J23117, tetR);
+Device pOR10(pBAD, eyfp, T1TE, J23117, araC);
+Device pOR30(pLas, eyfp, T1TE, J23117, lasR);
+
+/*
+ * promoter, promoter, reporter, terminator, promoter, gene, gene 
+ */
+Device pOR1020(pBAD, pTet2, eyfp, T1TE, J23117, araC, tetR);
+Device pOR2010(pTet2, pBAD, eyfp, T1TE, J23117, araC, tetR);
+Device pOR2030(pTet2, pLas, eyfp, T1TE, J23117, lasR, tetR);
+Device pOR1030(pBAD, pLas, eyfp, T1TE, J23117, araC, lasR);
+
+/*
+ * promoter, gene, terminator
+ */
+Device pcI-rhlI(pcI, rhlI, T1TE);
+Device pcI-eyfp(pcI, eyfp, T1TE);
+Device pcI-lasI(pcI, lasI, T1TE);
+
+/*
+ *   promoter, promoter, gene, terminator, promoter, gene, gene
+ */
+Device pNOR1030(pBAD, pLas, cI, T1TE, J23117, araC, lasR);
+Device pNOR1020(pBAD, pTet2, cI, T1TE, J23117, araC, tetR);
+Device pNOR2030(pTet2, pLas, cI, T1TE, J23117, lasR, tetR);
+
+/*
+ * promoter, gene, terminator, promoter, promoter
+ */
+Device pNOR40(pRhl, cI, T1TE, J23117, rhlR);

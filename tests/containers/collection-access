@@ -1,0 +1,46 @@
+include "./tests/containers/collections"
+
+
+// print the entire collection
+println(empty1);
+
+println(col1);
+
+//println(seq);       // ERROR: seq is not declared!
+                    // seq is only visible in the scope 
+                    // of col1
+println(col1.seq);  // Property
+
+//println(PT);        // ERROR: PT is not declared.
+
+println(col1.PT);   // Part Type
+println(col1.p1);   // Part
+println(col1.p2);   // Part
+println(col1.p2);   // Part
+//println(col1.p3);   // ERROR: col1 does not contain p3!
+
+println(col2);
+
+//println(col2.p1);   // ERROR: col2 does not contain p1!
+println(col2.p2);
+println(col2.p3);
+
+println(nc01);
+println(nc02);
+
+println(vars01);
+println(vars01.zero);
+println(vars01.one);
+println(vars01.two);
+println(vars01.pi);
+println(vars01.num_array);
+println(vars01.num_array[0]);
+println(vars01.num_array[1]);
+println(vars01.txt_array[0]);
+println(vars01.txt_array[1]);
+println(vars01.txt_array[2]);
+println(vars01.txt_array[3]);
+println(vars01.t);
+println(vars01.f);
+
+ 

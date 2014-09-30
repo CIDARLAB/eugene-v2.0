@@ -1,0 +1,9 @@
+num n = 5;
+num[] nl = [1, 2, 3.1415, 4.0, 5.5];
+txt t = "ATCG";
+txt[] tl = ["A", "T", "C", "G"];
+
+println(n);
+println(nl);
+println(t);
+println(tl);

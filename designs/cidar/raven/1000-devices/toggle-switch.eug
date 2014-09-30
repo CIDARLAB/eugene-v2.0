@@ -1,0 +1,60 @@
+include "./designs/cidar/raven/1000-devices/regulatory-design-space.h"
+
+
+/*
+ * Supplementary Material:
+ * we're having three plasmids (Type I, II, and III)
+ * Device Plasmid1(P1, RBS1, GFPmut3/GFPuv, T1T2);
+ * Device Plasmid2(T1T2, -lacI, RBS1, -P1, Ptrc-2, rbsE, GFPmut3, T1T2);
+ * Device Plasmid3(T1T2, GFPmut3, RBS1, -P1, Ptrc-2, rbsE, R1, T1T2);
+ */
+
+// assemble the part types into a toggle-switch device
+
+
+/*
+ * Published Toggle Switch Device:
+ * T1T2, -LacI, RBS1, -P1, Ptrc-2, rbs E, R1, rbsB, GFPmut3, T1T2
+ *
+ * Mentioned Rules:
+ * Different P1 promoters, RBS1 ribosome binding sites, and/or R1 repressors, 
+ * are used for the various toggle switches.
+ */
+
+Device ToggleSwitch(
+	-Terminator, -Gene, -RBS, -Promoter, 
+	Promoter, RBS, Gene, RBS, Reporter, Terminator);
+
+//lst1 = product(ToggleSwitch);
+//println(lst1.size);
+
+// define some rules
+Rule r(
+	ON ToggleSwitch :
+	
+	// Rule 1 and 2: Repression Interactions
+	ToggleSwitch[1] REPRESSES ToggleSwitch[4] 
+		AND
+	ToggleSwitch[6] REPRESSES ToggleSwitch[3] 
+
+		AND
+
+	// Rule 3: Different Promoters 
+	ToggleSwitch[3] NOTEQUALS ToggleSwitch[4]
+			
+		AND
+			
+	// Rule 4: We prefer GFP as reporter (optional rule)
+	CONTAINS GFP
+
+);
+
+ 
+// produce all possible toggle-switches
+Device [] lst = product(ToggleSwitch, 1000);
+println("*** TOGGLE SWITCHES ***");
+println(lst);
+
+
+
+

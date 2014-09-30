@@ -1,0 +1,36 @@
+Name: SPARROW
+
+1. Definition of our data model ... 
+
+2. ``Wrapping'' Drools offering interfaces to
+- specify data and data model (Factory) ... ``Facts''
+- insert and query data (DroolsManager) ... ``Rules''
+
+3. Test and Benchmarking
+
+4. We needs to be improved and/or integrated? 
+- Conjunction of rules ...
+- Data types (depending on our design decision => utilization of Java types (Objects))
+- negative hard and soft constraints, positive constraints
+negative hard ... MUST be fulfilled
+negative soft ... SHOULD be fulfilled
+positive      ... CAN be fulfulled 
+- SBOL integration ... MUST be done before we publish/release the prototype
+can we formulate the SBOL data model?
+
+6. ``real world'' Case Studies
+
+
+6.1. Specification and Acquisition (using SBOL) of ``real'' data ... 
+- iGEM partsregisty
+- JBEI ICE 
+- SBPkb
+- Clotho
+- ...
+
+6.2. Data Acquisition of
+- BROAD (Eric Y.) -> potential first human user...
+- Phoenix (Evan)  -> first software that will connect to 
+
+
+6. Web-Interface ... 

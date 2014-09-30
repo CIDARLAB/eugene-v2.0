@@ -1,0 +1,25 @@
+template header
+name
+query
+
+package org.cidarlab.sparrow.rules;
+
+import org.cidarlab.eugene.dom.*;
+
+template "Eugene rule"
+
+rule "dont_know_why_we_need_this"
+when
+    /*
+     * @{query}
+     */
+then
+end
+
+query @{name}
+    @{query}
+end
+
+
+
+end template

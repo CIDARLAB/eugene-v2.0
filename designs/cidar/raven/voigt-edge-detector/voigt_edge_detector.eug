@@ -1,0 +1,9 @@
+include "./designs/cidar/raven/voigt-edge-detector/design-space.h"
+
+//DEVICES
+Device pJT103(B0015, PompC, B0034, lacZ, B0015);
+Device pJT105(B0015, Plux-R, B0034, lacZ, B0015, PompC, B0034, luxI, B0015, PLtetO, B0034, luxR, B0015);
+Device pJT106(B0015, Plux-R, B0034, lacZ, B0015, PompC, B0032, cI, B0015);
+Device pJT108(B0015, PompC1157, lacZ, B0015);
+Device pJT104(B0015, Plux-R, B0034, lacZ, B0015, PompC, B0032, cI, B0015, PLtetO, B0034, luxR, B0015);
+Device pEDL3(B0015, Plux-R, B0034, lacZ, B0015, PompC, B0032, cI, B0034, luxI, B0015, PLtetO, B0034, luxR, B0015);

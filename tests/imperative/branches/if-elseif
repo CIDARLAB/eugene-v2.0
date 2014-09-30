@@ -1,0 +1,36 @@
+/*---------------------------
+ *   Variable vs Constant
+ *---------------------------*/
+num a = 5;
+if ( a < 5 ) {
+   println(" a < 5 ");
+} elseif ( a <= 5 ) {
+   println(" a <= 5 -> THIS SHOULD HAPPEN");
+} elseif ( a == 5 ) {
+   println(" a == 5 ");
+} elseif ( a != 5 ) {
+   println(" a != 5 ");
+} elseif ( a >= 5 ) {
+   println(" a >= 5 ");
+} elseif ( a > 5 ) {
+   println(" a > 5 ");
+}
+
+/*---------------------------
+ *   Variable vs Variable
+ *---------------------------*/
+num b = 6;
+if ( a < b ) {
+   println(" a < b -> THIS SHOULD HAPPEN");
+} elseif ( a <= b ) {
+   println(" a <= b ");
+} elseif ( a == b ) {
+   println(" a == b ");
+} elseif ( a != b ) {
+   println(" a != b ");
+} elseif ( a >= b ) {
+   println(" a >= b ");
+} elseif ( a > b ) {
+   println(" a > b ");
+}
+

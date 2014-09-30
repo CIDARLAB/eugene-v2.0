@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:RDF xmlns="http://sbols.org/v1#" xmlns:ns2="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <Collection ns2:about="http://www.eugenecad.org/lod">
+        <displayId>lod</displayId>
+        <description>lod</description>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/D_11">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>D_11</displayId>
+                <description>D_11</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/D_11/inst1_annotation_1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/D_11/pos_0/inst1">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+<displayId>D_11_pos_0_inst1</displayId>
+<name>inst1</name>
+<description>type1</description>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/D_10">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>D_10</displayId>
+                <description>D_10</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/D_10/inst1_annotation_1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/D_10/pos_0/inst1">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+<displayId>D_10_pos_0_inst1</displayId>
+<name>inst1</name>
+<description>type1</description>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/D_15">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>D_15</displayId>
+                <description>D_15</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/D_15/inst1_annotation_1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/D_15/pos_0/inst1">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+<displayId>D_15_pos_0_inst1</displayId>
+<name>inst1</name>
+<description>type1</description>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/D_14">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>D_14</displayId>
+                <description>D_14</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/D_14/inst1_annotation_1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/D_14/pos_0/inst1">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+<displayId>D_14_pos_0_inst1</displayId>
+<name>inst1</name>
+<description>type1</description>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/D_13">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>D_13</displayId>
+                <description>D_13</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/D_13/inst1_annotation_1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/D_13/pos_0/inst1">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+<displayId>D_13_pos_0_inst1</displayId>
+<name>inst1</name>
+<description>type1</description>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/D_12">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>D_12</displayId>
+                <description>D_12</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/D_12/inst1_annotation_1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/D_12/pos_0/inst1">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+<displayId>D_12_pos_0_inst1</displayId>
+<name>inst1</name>
+<description>type1</description>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/D_16">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>D_16</displayId>
+                <description>D_16</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/D_16/inst1_annotation_1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/D_16/pos_0/inst1">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+<displayId>D_16_pos_0_inst1</displayId>
+<name>inst1</name>
+<description>type1</description>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/D_6">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>D_6</displayId>
+                <description>D_6</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/D_6/inst1_annotation_1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/D_6/pos_0/inst1">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+<displayId>D_6_pos_0_inst1</displayId>
+<name>inst1</name>
+<description>type1</description>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/D_5">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>D_5</displayId>
+                <description>D_5</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/D_5/inst1_annotation_1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/D_5/pos_0/inst1">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+<displayId>D_5_pos_0_inst1</displayId>
+<name>inst1</name>
+<description>type1</description>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/D_4">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>D_4</displayId>
+                <description>D_4</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/D_4/inst1_annotation_1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/D_4/pos_0/inst1">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+<displayId>D_4_pos_0_inst1</displayId>
+<name>inst1</name>
+<description>type1</description>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/D_3">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>D_3</displayId>
+                <description>D_3</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/D_3/inst1_annotation_1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/D_3/pos_0/inst1">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+<displayId>D_3_pos_0_inst1</displayId>
+<name>inst1</name>
+<description>type1</description>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/D_9">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>D_9</displayId>
+                <description>D_9</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/D_9/inst1_annotation_1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/D_9/pos_0/inst1">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+<displayId>D_9_pos_0_inst1</displayId>
+<name>inst1</name>
+<description>type1</description>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/D_8">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>D_8</displayId>
+                <description>D_8</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/D_8/inst1_annotation_1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/D_8/pos_0/inst1">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+<displayId>D_8_pos_0_inst1</displayId>
+<name>inst1</name>
+<description>type1</description>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/D_7">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>D_7</displayId>
+                <description>D_7</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/D_7/inst1_annotation_1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/D_7/pos_0/inst1">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+<displayId>D_7_pos_0_inst1</displayId>
+<name>inst1</name>
+<description>type1</description>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/D_2">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>D_2</displayId>
+                <description>D_2</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/D_2/inst1_annotation_1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/D_2/pos_0/inst1">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+<displayId>D_2_pos_0_inst1</displayId>
+<name>inst1</name>
+<description>type1</description>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/D_1">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>D_1</displayId>
+                <description>D_1</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/D_1/inst1_annotation_1">
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/D_1/pos_0/inst1">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+<displayId>D_1_pos_0_inst1</displayId>
+<name>inst1</name>
+<description>type1</description>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+    </Collection>
+</ns2:RDF>

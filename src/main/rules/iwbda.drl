@@ -1,0 +1,52 @@
+//created on: May 7, 2014
+package org.cidarlab.sparrow.iwbda
+
+//list any import classes here.
+import org.cidarlab.eugene.dom.*;
+import org.cidarlab.eugene.dom.interaction.*;
+
+import org.cidarlab.sparrow.rule.*;
+
+
+/** CONVERSION OF SPARROW RELATIONS TO EUGENE INTERACTIONS **/
+
+//IF
+//   two parts a, b have an ORTHOGONAL relationship
+//   and
+//   one of them is of type REPRESSOR
+//   and
+//   one of them is of type REPRESSIBLE PROMOTER
+//THEN
+//   the REPRESSOR represses the REPRESSIBLE PROMOTER
+rule "Repressor-Promoter"
+    when
+    
+    	$repressor : Part ( type == "REPRESSOR" )
+    	$promoter : Part ( type == "REPRESSIBLE PROMOTER" )
+
+    	$rel : Relation(
+    		type == Relation.RelationType.ORTHOGONAL.toString(),
+    		$lhs : LHS,
+    		$lhs instanceof Part,
+    		$lhs == $repressor,
+    		$rhs : RHS,
+    		$rhs instanceof Part,
+    		$rhs == $promoter)
+    	    
+    then
+    	// we create an Interaction object
+    	Interaction ia = new Interaction($lhs.getName()+"_REPRESSES_"+$rhs.getName(), Interaction.InteractionType.REPRESSES);
+    	ia.addParticipation(Participation.Role.REPRESSOR, $repressor);
+    	ia.addParticipation(Participation.Role.REPRESSEE, $promoter);
+
+    	insert(ia);
+end
+
+// a Drools query to retrieve all Interactions of the WM
+query "getInteractions"
+	$ret : Interaction()
+end
+
+query validDevices
+    $p : Component ($valid:propertyValues["valid"], $valid!=null, $valid.bool==true)
+end

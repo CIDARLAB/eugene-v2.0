@@ -1,0 +1,18 @@
+// valid ones
+Property prop1(txt);
+Property prop2(num);
+Property prop3(txt[]);
+Property prop4(num[]);
+Property prop5(boolean);
+
+
+// invalid ones => uncomment them
+//Property inv_prop1;
+//Property inv_prop2();
+//Property inv_prop3(inv_type);
+
+// duplicate ones
+//Property prop1(num);
+
+
+

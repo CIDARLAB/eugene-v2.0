@@ -1,0 +1,54 @@
+Property prop1(txt);
+Property prop2(num);
+
+PartType PT1(prop1, prop2);
+PartType PT2(prop1, prop2);
+
+// parts with DOT notation
+PT1 pt1_0(.prop1("0"), .prop2(0));
+PT1 pt1_1(.prop1("1"), .prop2(1));
+PT1 pt1_2(.prop1("2"), .prop2(2));
+PT1 pt1_3(.prop1("3"), .prop2(3));
+PT1 pt1_4(.prop1("4"), .prop2(4));
+PT1 pt1_5(.prop1("5"), .prop2(5));
+PT1 pt1_6(.prop1("6"), .prop2(6));
+PT1 pt1_7(.prop1("7"), .prop2(7));
+PT1 pt1_8(.prop1("8"), .prop2(8));
+PT1 pt1_9(.prop1("9"), .prop2(9));
+
+// parts w/o DOT notation
+PT2 pt2_0("0", 0);
+PT2 pt2_1("1", 1);
+PT2 pt2_2("2", 2);
+PT2 pt2_3("3", 3);
+PT2 pt2_4("4", 4);
+PT2 pt2_5("5", 5);
+PT2 pt2_6("6", 6);
+PT2 pt2_7("7", 7);
+PT2 pt2_8("8", 8);
+PT2 pt2_9("9", 9);
+
+Device D01(PT1);
+Rule rc1(ON D01: 
+	PT1.prop1 == "0" \/ PT1.prop1 == "1" \/ PT1.prop1 == "2" \/
+	PT1.prop2 == 7 \/ PT1.prop2 == 8 \/ PT1.prop2 == 9
+	
+	/\
+	
+	all_forward);  
+product(D01);
+
+Device D02(PT1, PT2);
+Rule rc2(ON D02: 
+	PT1.prop1 == "0" \/ PT1.prop1 == "1" \/ PT1.prop1 == "2" \/
+	PT1.prop2 == 7 \/ PT1.prop2 == 8 \/ PT1.prop2 == 9 
+
+	/\
+	
+	PT2.prop1 == "0" \/ PT2.prop1 == "1" \/ PT2.prop1 == "2" \/
+	PT2.prop2 == 7 \/ PT2.prop2 == 8 \/ PT2.prop2 == 9
+	
+	/\
+	
+	all_forward);	  
+product(D02);

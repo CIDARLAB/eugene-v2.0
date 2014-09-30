@@ -1,0 +1,41 @@
+include "./designs/cidar/raven/1000-devices/regulatory-design-space.h"
+
+
+Device RepressingDevice(Promoter, Promoter, RBS, Gene, Terminator);
+Device ReportingDevice(Promoter, RBS, Reporter, Terminator);
+Device NorGate(RepressingDevice, ReportingDevice);
+
+Rule r(
+    ON NorGate:
+    	// REPRESSES relationship
+    	RepressingDevice.Gene REPRESSES ReportingDevice.Promoter
+		
+			AND
+
+    	// different RBSs
+    	RepressingDevice.RBS NOTEQUALS ReportingDevice.RBS 
+
+			AND
+			
+		CONTAINS GFP
+		
+		// different promoters
+			AND		
+		RepressingDevice[0] NOTEQUALS RepressingDevice[1]
+			AND
+		RepressingDevice[1] NOTEQUALS ReportingDevice.Promoter
+//			AND
+//		RepressingDevice[0] NOTEQUALS ReportingDevice.Promoter
+
+			AND
+		
+		// different Terminators
+		CONTAINS T1 /**AND CONTAINS T7**/
+		
+);
+
+/*** PRODUCE ALL VALID NOR-GATE DEVICES ***/
+Device[] lst = product(NorGate, strict, 1000);
+
+println("*** TRANSCRIPTIONAL NOR GATES ***");
+println(lst);

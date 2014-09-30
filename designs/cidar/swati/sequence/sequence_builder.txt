@@ -1,0 +1,172 @@
+//Properties
+Property Name(txt);
+Property ID(txt);
+Property Sequence(txt);
+Property Strength(num); /** num ==1 for strongest RBS; num ==5 for weakest RBS **/
+Property LeftFusionSite(txt);
+Property RightFusionSite(txt);
+
+Property Pigeon(txt);
+
+//Part Types
+
+PartType constpr (Name, Sequence, LeftFusionSite, RightFusionSite);
+PartType reprpr (Name, Sequence, LeftFusionSite, RightFusionSite);
+PartType RBS (Name, Sequence, Strength, LeftFusionSite, RightFusionSite);
+PartType gene (Name, Sequence, LeftFusionSite, RightFusionSite);
+PartType Terminator (Name, Sequence, LeftFusionSite, RightFusionSite);
+
+
+
+
+//Defining Design Space
+PartType FusionSite(Name, Sequence);
+
+
+
+constpr J23100_AB(
+	.Name("J23100"), 
+	.LeftFusionSite("A"), 
+	.Sequence("GGAGTTGACGGCTAGCTCAGTCCTAGGTACAGTGCTAGCTACT"), 
+	.RightFusionSite("B"));
+
+reprpr R0010_EB(
+	.Name("R0010"),
+	.LeftFusionSite("A"),
+	.Sequence("GCTTcaatacgcaaaccgcctctccccgcgcgttggccgattcattaatg
+cagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagtt
+agctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaatt
+gtgagcggataacaatttcacacaTACT"),
+	.RightFusionSite("B"));
+
+
+RBS B0030m_BC(.Name("B0030m"), 
+	.LeftFusionSite("B"), 
+	.Sequence("TACTAGAGATTAAAGAGGAGAAATACTAAATG"), 
+	.Strength(2), 
+	.RightFusionSite("C"));
+
+
+RBS B0031m_BC(
+	.Name("B0031m"), 
+	.LeftFusionSite("B"), 
+	.Sequence("TACTAGAGTCACACAGGAAACCTACTAAATG"), 
+	.Strength(4), 
+	.RightFusionSite("C"));
+
+
+RBS B0032m_BC(
+	.Name("B0032m"), 
+	.LeftFusionSite("B"), 
+	.Sequence("TACTAGAGTCACACAGGAAAGTACTAAATG"), 
+	.Strength(3), 
+	.RightFusionSite("C"));
+
+
+RBS B0033m_BC(
+	.Name("B0033m"), 
+	.LeftFusionSite("B"), 
+	.Sequence("TACTAGAGTCACACAGGACTACTAAATG"), 
+	.Strength(5), 
+	.RightFusionSite("C"));
+
+
+RBS B0034m1_BC(
+	.Name("B0034m1"), 
+	.LeftFusionSite("B"), 
+	.Sequence("TACTAGAGAAAGAGGAGAAATACTAAATG"), 
+	.Strength(1), 
+	.RightFusionSite("C"));
+
+ 
+	
+
+gene C0012_CD(
+	.Name("C0012"), 
+	.LeftFusionSite("C"), 
+	.Sequence("AATGATGGTGAATGTGAAACCAGTAACGTTATACGATGTCGCAGAGTAT
+GCCGGTGTCTCTTATCAGACCGTTTCCCGCGTGGTGAACCAGGCCAGCCACGTTTCTGCGAAAACGCGGGAAAAAGTGGAA
+GCGGCGATGGCGGAGCTGAATTACATTCCCAACCGCGTGGCACAACAACTGGCGGGCAAACAGTCGTTGCTGATTGGCGTT
+GCCACCTCCAGTCTGGCCCTGCACGCGCCGTCGCAAATTGTCGCGGCGATTAAATCTCGCGCCGATCAACTGGGTGCCAGC
+GTGGTGGTGTCGATGGTAGAACGAAGCGGCGTCGAAGCCTGTAAAGCGGCGGTGCACAATCTTCTCGCGCAACGCGTCAGT
+GGGCTGATCATTAACTATCCGCTGGATGACCAGGATGCCATTGCTGTGGAAGCTGCCTGCACTAATGTTCCGGCGTTATTT
+CTTGATGTCTCTGACCAGACACCCATCAACAGTATTATTTTCTCCCATGAAGACGGTACGCGACTGGGCGTGGAGCATCTG
+GTCGCATTGGGTCACCAGCAAATCGCGCTGTTAGCGGGCCCATTAAGTTCTGTCTCGGCGCGTCTGCGTCTGGCTGGCTGG
+CATAAATATCTCACTCGCAATCAAATTCAGCCGATAGCGGAACGGGAAGGCGACTGGAGTGCCATGTCCGGTTTTCAACAA
+ACCATGCAAATGCTGAATGAGGGCATCGTTCCCACTGCGATGCTGGTTGCCAACGATCAGATGGCGCTGGGCGCAATGCGC
+GCCATTACCGAGTCCGGGCTGCGCGTTGGTGCGGATATCTCGGTAGTGGGATACGACGATACCGAAGACAGCTCATGTTAT
+ATCCCGCCGTTAACCACCATCAAACAGGATTTTCGCCTGCTGGGGCAAACCAGCGTGGACCGCTTGCTGCAACTCTCTCAG
+GGCCAGGCGGTGAAGGGCAATCAGCTGTTGCCCGTCTCACTGGTGAAAAGAAAAACCACCCTGGCGCCCAATACGCAAACC
+GCCTCTCCCCGCGCGTTGGCCGATTCATTAATGCAGCTGGCACGACAGGTTTCCCGACTGGAAAGCGGGCAGGCTGCAAAC
+GACGAAAACTACGCTTTAGTAGCTTAATAACTCTGATAGTGCTAGTGTAGATCTCAGGT"), 
+	.RightFusionSite("D"));
+
+
+gene C0051_CD(
+	.Name("C0051"),
+	.LeftFusionSite("C"),
+	.Sequence("AATGatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaa
+gaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaat
+gcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggtta
+gtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtga
+tgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagcca
+agctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttca
+agaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagt
+tatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataaAGGT"),
+	.RightFusionSite("D"));
+	
+
+
+/** TERMINATORS **/
+
+Terminator B0015_DE(
+	.Name("B0015"), 
+	.LeftFusionSite("D"),
+	.Sequence("AGGTCCAGGCATCAAATAAAACGAAAGGCTCAGTCGAAAGACTG
+GGCCTTTCGTTTTATCTGTTGTTTGTCGGTGAACGCTCTCTACTAGAGTCACACTGGCTCACCTTCGGGTGGGCCTT
+TCTGCGTTTATAGCTT"),
+	.RightFusionSite("E"));
+
+
+Terminator B0015_DF(
+	.Name("B0015"), 
+	.LeftFusionSite("D"),
+	.Sequence("AGGTCCAGGCATCAAATAAAACGAAAGGCTCAGTCGAAAGACTG
+GGCCTTTCGTTTTATCTGTTGTTTGTCGGTGAACGCTCTCTACTAGAGTCACACTGGCTCACCTTCGGGTGGGCCTT
+TCTGCGTTTATAACTA"),
+	.RightFusionSite("F"));
+
+
+
+
+
+//Devices (Transcriptional Units)
+Device pJ003XC12AE (constpr, RBS, gene, Terminator);
+Device pR103XC51AE (reprpr, RBS, gene, Terminator);
+
+
+//println(pJ003XC12AE);
+//println(pR103XC51AE);
+
+Rule r1 (
+	ON pJ003XC12AE:
+		CONTAINS C0012_CD);
+
+Rule r2 (
+	ON pR103XC51AE:
+		CONTAINS C0051_CD);
+
+lst1 = product(pJ003XC12AE);		
+println(lst1);	
+
+lst2 = product(pR103XC51AE);
+println(lst2);
+
+for(num i=0; i<lst1.size(); i++) {
+    println("**** lst1[", i, "]: ");
+    println(lst1[i].toSequence());
+}	
+for(num i=0; i<lst2.size(); i++) {
+    println("**** lst2[", i, "]: ");
+    println(lst2[i].toSequence());
+}	

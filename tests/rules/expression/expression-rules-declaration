@@ -1,0 +1,95 @@
+Property prop1(txt);
+Property prop2(num);
+Property prop3(txt[]);
+Property prop4(num[]);
+Property prop5(boolean);
+
+PartType PT0();
+PartType PT1(prop1);
+PartType PT2(prop1, prop2);
+PartType PT3(prop1, prop2, prop3);
+PartType PT4(prop1, prop2, prop3, prop4);
+PartType PT5(prop1, prop2, prop3, prop4, prop5);
+
+// parts with DOT notation
+PT0 pt0_1;
+PT1 pt1_1(.prop1("A"));
+PT2 pt2_1(.prop1("T"), .prop2(3.1));
+PT3 pt3_1(.prop1("C"), .prop2(3.14), .prop3(["C"]));
+PT4 pt4_1(.prop1("G"), .prop2(3.141), .prop3(["A", "T", "C", "G"]), .prop4([0, 1.1, 2.2, 3.3, 4.4, 5.5]));
+PT5 pt5_1(.prop1("ATCG"), .prop2(3.1415), .prop3(["A", "T", "C", "G"]), .prop4([1.0, 2.0, 3.0, 4, 5]), .prop5(true));
+
+// part w/o DOT notation
+PT0 pt0_2;
+PT1 pt1_2("A");
+PT2 pt2_2("T", 3.1);
+PT3 pt3_2("C", 3.14, ["C"]);
+PT4 pt4_2("G", 3.141, ["A", "T", "C", "G"], [0, 1.1, 2.2, 3.3, 4.4, 5.5]);
+PT5 pt5_2("ATCG", 3.14151, ["A", "T", "C", "G"], [0, 1.1, 2.2, 3.3, 4.4, 5.5], true);
+
+
+/*
+ * RULE SPECIFICATIONS
+ */
+ 
+
+/*
+ * INVALID RULES
+ * uncomment them
+ */
+// non-existing properties
+//Rule r1(PT0.prop1 == "A");
+//Rule r2(PT1.prop0 == "X");
+//Rule r3(pt1_1.prop1 == "A");
+// Q: Do expressional rules on property values of parts make sense?
+
+// incompatible types
+//Rule r4(PT1.prop1 > 5);  // DOES NOT WORK YET!
+
+/*
+ *  VALID RULES
+ */
+ 
+// give me all parts of part type PT1 whose property value for the property prop1
+// equals to "A"
+Rule r1(PT1.prop1 == "A"); 
+
+// the property value of the property prop1 of the part pt1_1
+// must equals to "A"
+Rule r2(pt1_1.prop1 == "A"); 
+
+/*** THE FOLLOWING SCENARIO NEEDS DISCUSSION ***/
+// give me all parts whose prop2 value is greater than 3.141
+//Rule r3(prop2 >= 3.1);
+//Rule r3(prop2 >= 3.14);
+//Rule r3(prop2 >= 3.141);
+Rule r3(prop2 >= 3.1415);
+// Q: 
+// - what should happen with Parts w/o a prop2 property value? 
+// - what should happen if the prop2 value is not set? 
+
+
+
+/*
+ *  NEGATION OF EXPRESSIONAL PREDICATES
+ */
+/** 
+Rule nr1(NOT PT1.prop1 == "A");
+Rule nr2(NOT PT1.prop1 != "A");
+Rule nr3(NOT PT2.prop2 < 5);
+Rule nr4(NOT PT2.prop2 <= 5);
+Rule nr5(NOT PT2.prop2 >= 5);
+Rule nr6(NOT PT2.prop2 > 5);
+**/
+
+ 
+Rule rc1(PT2.prop1 == "T" /\ PT2.prop2 >= 3.1);
+
+/*
+ *   comparison of constants
+ */
+Rule rc2("T" == "T" /\ 1 == 1);
+
+
+
+

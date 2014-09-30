@@ -1,0 +1,134 @@
+//Tyler Wagner
+//Sindbis Replicons 2 SGPs
+
+
+//Properties
+Property name(txt);
+Property sequence(txt);
+Property repress(txt);
+Property repressedby(txt);
+Property color(txt);
+Property copynum(num);
+Property type(txt);
+
+Property strength(txt);  // future
+
+/** Part Types **/
+PartType Aptamer(name, sequence, repressedby, copynum);
+PartType 2A(name, sequence);
+
+/*
+ * PartType X = {Promoter | IRES}
+ * PartType Y = {Repressor | Reporter} 
+ */
+PartType X(type, name);
+PartType Y(type, name, repress);
+
+/** Parts **/
+
+// Subgenonmic Promoters
+X sgp1(.type("PROMOTER"), .name("sgp1"));
+X sgp2(.type("PROMOTER"), .name("sgp2"));
+
+// IRESs
+X ires1(.type("IRES"), .name("ires1"));
+X ires2(.type("IRES"), .name("ires2"));
+
+//Aptamers
+Aptamer aptamer1(.name("aptamer1"), .repressedby("repressor1"), .copynum(2));
+Aptamer aptamer2(.name("aptamer2"), .repressedby("repressor2"), .copynum(2));
+Aptamer noaptamer(.name("noaptamer"));  
+
+//2A Linkers
+2A p2A(.name("p2A"));
+2A t2A(.name("t2A"));
+2A e2A(.name("e2A"));
+2A f2A(.name("f2A"));
+2A no2A(.name("no2A"));
+
+// Reporters
+Y mVenus(.type("REPORTER"), .name("mVenus"));
+Y mKate(.type("REPORTER"), .name("mKate"));
+Y EBFP(.type("REPORTER"), .name("EBFP"));
+
+// Repressors
+Y repressor1(.type("REPRESSOR"), .name("repressor1"), .repress("aptamer1"));
+Y repressor2(.type("REPRESSOR"), .name("repressor2"), .repress("aptamer2"));
+
+
+/** UNIT1 **/
+
+Device Unit1 (X, Aptamer, Y, X, Aptamer, Y);
+
+Rule rUnit1 (
+	ON Unit1:
+		(
+			(
+				/* if the first Y is a repressor, then it should not repress the first Aptamer */
+				(Unit1[2].type EQUALS "REPRESSOR") AND (Unit1[2].repress NOTEQUALS Unit1[1].name) 
+					OR
+				/* OR if the second Y is repressor then it should not repress the second Aptamer */
+		 		(Unit1[5].type EQUALS "REPRESSOR" AND Unit1[5].repress NOTEQUALS Unit1[4].name))
+		 	
+		 	XOR 
+		
+				/* if both Ys are reporters, then they should be different */
+				(Unit1[2].type == "REPORTER" AND Unit1[5].type == "REPORTER" AND Unit1[2] NOTEQUALS Unit1[5])
+		)  
+	
+		AND
+		
+		Unit1[2] NOTEQUALS Unit1[5]     // different Repressors/Reporters
+);
+
+
+Device[] lstUnit1 = product(Unit1, strict);
+println(lstUnit1.size(), " Unit1s created!");
+//for(num i=0; i<lstUnit1.size(); i++) {
+//    println(lstUnit1[i]);    	
+//}
+//save(lstUnit1);   // save the list of devices
+
+/** UNIT 2 **/
+//println("*** UNIT2 ***");
+Device Unit2 (X, Aptamer, Y, 2A, Y, 2A, Y);
+
+Rule rUnit2 (
+	ON Unit2:
+		/* Unit2 should start with a Promoter or IRES */ 
+		(Unit2[0].type == "PROMOTER" OR Unit2[0].type == "IRES") 
+		
+		AND        
+
+		(
+		/* if the first Y is a repressor, then it must repress the Aptamer */
+		((Unit2[2].type == "REPRESSOR") AND (Unit2[2].repress == Unit2[1].name) 
+			OR
+		/* OR if the second Y is repressor then it must repress the Aptamer */
+		 (Unit2[4].type == "REPRESSOR" AND Unit2[4].repress == Unit2[1].name))  
+		
+		XOR 
+		
+		/* if both Ys are reporters, then they should be different */
+		(Unit2[2].type == "REPORTER" AND Unit2[4].type == "REPORTER" AND Unit2[2] NOTEQUALS Unit2[4])
+		)
+		
+		AND
+		
+		/* the last Y in Unit2 should be a reporter */		
+		((Unit2[6].type == "REPORTER") AND (Unit2[6] NOTEQUALS Unit2[2] AND Unit2[6] NOTEQUALS Unit2[4]))
+											/* Q: must this reporter be different from the eventual other reporters? */
+		AND
+		
+		/* the two 2As must be different */
+		(Unit2[3] NOTEQUALS Unit2[5])          				
+);
+
+Device[] lstUnit2 = product(Unit2, strict);
+println(lstUnit2.size(), " Unit2s created!");
+//for(num i=0; i<lstUnit2.size(); i++) {
+//    println(lstUnit2[i]);    	
+//}
+//save(lstUnit2);   // save the list of devices
+
+//println("*** DONE ***");

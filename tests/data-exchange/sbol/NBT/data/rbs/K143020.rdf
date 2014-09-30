@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:s="http://sbols.org/v1#" xmlns:so="http://purl.obolibrary.org/obo/" xmlns:map="http://convert.sbols.org/xml/" xmlns:pr="http://partsregistry.org/" xmlns:prt="http://partsregistry.org/type/" xmlns:prp="http://partsregistry.org/part/" xmlns:pra="http://partsregistry.org/anot/" xmlns:prs="http://partsregistry.org/seq/" xmlns:prf="http://partsregistry.org/feat/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <s:DnaComponent rdf:about="http://partsregistry.org/part/BBa_K143020">
+  <rdf:type rdf:resource="http://purl.obolibrary.org/obo/SO_0000552"/>
+  <s:displayId>BBa_K143020</s:displayId>
+  <s:name>RBS-GsiB</s:name>
+  <s:description>GsiB ribosome binding site (RBS) for B. subtilis</s:description>
+  <s:dnaSequence>
+   <s:DnaSequence rdf:about="http://partsregistry.org/seq/partseq_11803">
+    <s:nucleotides>taaaggaggaa</s:nucleotides>
+   </s:DnaSequence>
+  </s:dnaSequence>
+  <s:annotation>
+   <s:SequenceAnnotation rdf:about="http://partsregistry.org/anot/f_1975872">
+    <s:bioStart>2</s:bioStart>
+    <s:bioEnd>8</s:bioEnd>
+    <s:strand>+</s:strand>
+    <s:subComponent>
+     <s:DnaComponent rdf:about="http://partsregistry.org/feat/f_1975872">
+      <rdf:type rdf:resource="http://purl.obolibrary.org/obo/SO_0000552"/>
+      <s:displayId>f_1975872</s:displayId>
+      <s:name>rbs</s:name>
+      <rdf:type rdf:resource="http://partsregistry.org/type/rbs"/>
+     </s:DnaComponent>
+    </s:subComponent>
+   </s:SequenceAnnotation>
+  </s:annotation>
+  <rdf:type rdf:resource="http://partsregistry.org/type/rbs"/>
+ </s:DnaComponent>
+</rdf:RDF>

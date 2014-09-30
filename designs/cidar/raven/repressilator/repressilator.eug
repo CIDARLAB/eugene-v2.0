@@ -1,0 +1,7 @@
+/** Let's use this example to test Eugene's MoClo format library **/
+ 
+include "./designs/cidar/raven/repressilator/design-space.h"
+
+//DEVICES
+Device intermediate1(pLlacO1, tetR_lite, T1, lambdaPr, lacI_lite, T1);
+Device repressilator(pLlacO1, tetR_lite, T1, lambdaPr, lacI_lite, T1, pLtetO1, lambdacI_lite, T1, pSC101, T1, ampR, T1);

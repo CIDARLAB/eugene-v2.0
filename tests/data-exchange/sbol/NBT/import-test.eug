@@ -1,0 +1,8 @@
+Collection colTAK = SBOL.import("./demos/sbol-nbt/TAK-ToggleSwitches.rdf");
+println(colTAK);
+
+Collection colIKE = SBOL.import("./demos/sbol-nbt/IKE-ToggleSwitches.rdf");
+println(colIKE);
+
+Collection colCassettes = SBOL.import("./demos/sbol-nbt/export/ToggleSwitchCassettes.sbol");
+println(colCassettes);

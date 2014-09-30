@@ -1,0 +1,69 @@
+Device pIKELeftCassette = SBOL.import("./demos/sbol-nbt/pIKELeftCassette.rdf");
+println(pIKELeftCassette);
+
+Device pIKERightCassette = SBOL.import("./demos/sbol-nbt/pIKERightCasette.rdf");
+println(pIKERightCassette);
+
+/*
+ * THIS IS A EUGENE FEATURE
+ * - specification of orthogonal repressor-promoter pairs
+ */
+// LacI-pLac pairing  
+BBa_C0012 REPRESSES BBa_R0010;
+// cI-pL pairing
+BBa_C0040 REPRESSES BBa_R0040;
+
+/*
+ * now, let define some Parts
+ */
+
+/** RBSs **/
+RBS rbsD(.Sequence("aaaaaaaa")); 
+RBS rbsG(.Sequence("aaaaaaaa")); 
+RBS rbsF(.Sequence("aaaaaaaa")); 
+RBS rbsH(.Sequence("aaaaaaaa"));
+ 
+RBS rbsE(.Sequence("aaaaaaaa")); 
+RBS rbsB(.Sequence("aaaaaaaa")); 
+
+/** Terminators **/
+Terminator rrnT1T2(.Sequence("tttttttttttttt"));
+
+/*
+ * let's put both cassettes together into a composite device
+ */ 
+Device IKEToggleSwitch(
+	-pIKELeftCassette,    // the left cassette is on the NEGATIVE strand ('-')  
+	 pIKERightCassette
+);
+
+/*
+ * EUGENE RULES
+ * - we specify where regulatory interactions take place
+ */
+Rule rIKE(
+	ON IKEToggleSwitch:
+		rbsB NEXTTO BBa_E0040
+			AND
+		rbsE NEXTTO BBa_C0040
+			AND
+		rbsE NOTMORETHAN 1
+			AND
+		rbsB NOTMORETHAN 1
+);
+
+/*
+ * let Eugene generate all possible toggle switches
+ */
+Device[] IKEToggleSwitches = product(IKEToggleSwitch);
+println(IKEToggleSwitches);
+
+
+/*
+ * and finally we export the generated Toggle Switches
+ * to SBOL (using an SBOL Collection)
+ */
+// TODO:  
+SBOL.export(IKEToggleSwitches, "./demos/sbol-nbt/IKE-ToggleSwitches.rdf");
+  
+ 

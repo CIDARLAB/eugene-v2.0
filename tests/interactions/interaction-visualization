@@ -1,0 +1,61 @@
+/*
+ *  here, we test Eugene's facilities for the visualization of Interactions,
+ *  using Pigeon 
+ *
+ */
+ 
+
+Type Inducer();
+
+PartType Promoter();
+PartType Gene();
+
+Inducer ind01;
+Inducer ind02;
+Inducer ind03;
+Inducer ind04;
+Inducer ind05;
+ 
+Promoter prom01; 
+Promoter prom02; 
+Promoter prom03; 
+Promoter prom04; 
+Promoter prom05; 
+
+Gene gene01; 
+Gene gene02; 
+Gene gene03; 
+Gene gene04; 
+Gene gene05;
+
+
+
+// ``two-way'' interactions
+ind01 induces (gene01 represses prom01);
+ind02 induces (gene02 represses prom02);
+ind03 induces (gene03 represses prom03);
+ind04 induces (gene04 represses prom04);
+ind05 induces (gene05 represses prom05);
+
+
+/*
+ *   CURRENTLY
+ */
+Device D_current(Gene, Promoter);
+Rule R_current(ON D_current:
+	gene01 with prom01 \/ 
+	gene02 with prom02 \/ 
+	gene03 with prom03 \/ 
+	gene04 with prom04 \/ 
+	gene05 with prom05);
+lod_current = product(D_current);
+//pigeon(lod_current);
+
+/*
+ *    IDEAL
+ */
+Device D_ideal(Gene, Promoter);
+Rule R_ideal(ON D_ideal:
+	[0] represses [1]);
+lod_ideal = product(D_ideal);
+pigeon(lod_ideal);

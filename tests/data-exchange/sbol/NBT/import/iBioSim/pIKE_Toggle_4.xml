@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1" xmlns:comp="http://www.sbml.org/sbml/level3/version1/comp/version1" level="3" version="1" layout:required="false" comp:required="true">
+  <model metaid="iBioSim1" id="pIKE_Toggle_4">
+    <annotation>
+      <ModelToSBOL xmlns="http://sbolstandard.org/modeltosbol/1.0#">
+        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:mts="http://sbolstandard.org/modeltosbol/1.0#">
+          <rdf:Description rdf:about="#iBioSim1">
+            <mts:DNAComponents>
+              <rdf:Seq>
+                <rdf:li rdf:resource="http://www.async.ece.utah.edu#comp_9_30_2013_12_51_6_12_iBioSim"/>
+              </rdf:Seq>
+            </mts:DNAComponents>
+          </rdf:Description>
+        </rdf:RDF>
+      </ModelToSBOL>
+    </annotation>
+    <listOfCompartments>
+      <compartment id="Cell" spatialDimensions="3" size="1" constant="true">
+        <comp:listOfReplacedElements>
+          <comp:replacedElement comp:portRef="compartment__Cell" comp:submodelRef="C1"/>
+          <comp:replacedElement comp:portRef="compartment__Cell" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+      </compartment>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species metaid="iBioSim4" id="LacI" compartment="Cell" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <comp:listOfReplacedElements>
+          <comp:replacedElement comp:portRef="input__LacI" comp:submodelRef="C2"/>
+        </comp:listOfReplacedElements>
+        <comp:replacedBy comp:portRef="output__LacI" comp:submodelRef="C1"/>
+      </species>
+      <species metaid="iBioSim5" id="TetR" compartment="Cell" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <comp:listOfReplacedElements>
+          <comp:replacedElement comp:portRef="input__TetR" comp:submodelRef="C1"/>
+        </comp:listOfReplacedElements>
+        <comp:replacedBy comp:portRef="output__TetR" comp:submodelRef="C2"/>
+      </species>
+      <species metaid="iBioSim6" id="GFP" compartment="Cell" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+        <comp:replacedBy comp:portRef="output__GFP" comp:submodelRef="C2"/>
+      </species>
+    </listOfSpecies>
+    <layout:listOfLayouts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
+      <layout:layout layout:id="iBioSim">
+        <layout:dimensions layout:width="0" layout:height="0"/>
+        <layout:listOfCompartmentGlyphs>
+          <layout:compartmentGlyph layout:id="Glyph__Cell" layout:compartment="Cell">
+            <layout:boundingBox>
+              <layout:position layout:x="0" layout:y="0"/>
+              <layout:dimensions layout:width="1070" layout:height="425"/>
+            </layout:boundingBox>
+          </layout:compartmentGlyph>
+        </layout:listOfCompartmentGlyphs>
+        <layout:listOfSpeciesGlyphs>
+          <layout:speciesGlyph layout:id="Glyph__LacI" layout:species="LacI">
+            <layout:boundingBox>
+              <layout:position layout:x="230" layout:y="60"/>
+              <layout:dimensions layout:width="100" layout:height="30"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="Glyph__TetR" layout:species="TetR">
+            <layout:boundingBox>
+              <layout:position layout:x="170" layout:y="220"/>
+              <layout:dimensions layout:width="100" layout:height="30"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+          <layout:speciesGlyph layout:id="Glyph__GFP" layout:species="GFP">
+            <layout:boundingBox>
+              <layout:position layout:x="370" layout:y="240"/>
+              <layout:dimensions layout:width="100" layout:height="30"/>
+            </layout:boundingBox>
+          </layout:speciesGlyph>
+        </layout:listOfSpeciesGlyphs>
+        <layout:listOfTextGlyphs>
+          <layout:textGlyph layout:id="TextGlyph__Cell" layout:text="Cell" layout:graphicalObject="Glyph__Cell">
+            <layout:boundingBox>
+              <layout:position layout:x="0" layout:y="0"/>
+              <layout:dimensions layout:width="1070" layout:height="425"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:id="TextGlyph__LacI" layout:text="LacI" layout:graphicalObject="Glyph__LacI">
+            <layout:boundingBox>
+              <layout:position layout:x="230" layout:y="60"/>
+              <layout:dimensions layout:width="100" layout:height="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:id="TextGlyph__TetR" layout:text="TetR" layout:graphicalObject="Glyph__TetR">
+            <layout:boundingBox>
+              <layout:position layout:x="170" layout:y="220"/>
+              <layout:dimensions layout:width="100" layout:height="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:id="TextGlyph__GFP" layout:text="GFP" layout:graphicalObject="Glyph__GFP">
+            <layout:boundingBox>
+              <layout:position layout:x="370" layout:y="240"/>
+              <layout:dimensions layout:width="100" layout:height="30"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:id="TextGlyph__C1" layout:text="C1" layout:graphicalObject="Glyph__C1">
+            <layout:boundingBox>
+              <layout:position layout:x="150" layout:y="136"/>
+              <layout:dimensions layout:width="80" layout:height="40"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+          <layout:textGlyph layout:id="TextGlyph__C2" layout:text="C2" layout:graphicalObject="Glyph__C2">
+            <layout:boundingBox>
+              <layout:position layout:x="370" layout:y="150"/>
+              <layout:dimensions layout:width="80" layout:height="40"/>
+            </layout:boundingBox>
+          </layout:textGlyph>
+        </layout:listOfTextGlyphs>
+        <layout:listOfAdditionalGraphicalObjects>
+          <layout:generalGlyph layout:id="Glyph__C1" layout:reference="C1">
+            <layout:boundingBox>
+              <layout:position layout:x="150" layout:y="136"/>
+              <layout:dimensions layout:width="80" layout:height="40"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+          <layout:generalGlyph layout:id="Glyph__C2" layout:reference="C2">
+            <layout:boundingBox>
+              <layout:position layout:x="370" layout:y="150"/>
+              <layout:dimensions layout:width="80" layout:height="40"/>
+            </layout:boundingBox>
+          </layout:generalGlyph>
+        </layout:listOfAdditionalGraphicalObjects>
+      </layout:layout>
+    </layout:listOfLayouts>
+    <comp:listOfSubmodels>
+      <comp:submodel metaid="iBioSim2" comp:id="C1" comp:modelRef="pIKE_Left_Inverter_1"/>
+      <comp:submodel metaid="iBioSim3" comp:id="C2" comp:modelRef="pIKE_Right_Inverter_4"/>
+    </comp:listOfSubmodels>
+    <comp:listOfPorts>
+      <comp:port sboTerm="SBO:0000601" comp:idRef="Cell" comp:id="compartment__Cell"/>
+    </comp:listOfPorts>
+  </model>
+  <comp:listOfModelDefinitions>
+    <comp:modelDefinition metaid="pIKE_Left_Inverter_1__iBioSim1" id="pIKE_Left_Inverter_1">
+      <annotation>
+        <ModelToSBOL xmlns="http://sbolstandard.org/modeltosbol/1.0#">
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:mts="http://sbolstandard.org/modeltosbol/1.0#">
+            <rdf:Description rdf:about="#iBioSim1">
+              <mts:DNAComponents>
+                <rdf:Seq>
+                  <rdf:li rdf:resource="http://www.eugenecad.org/pIKELeftCassette_1"/>
+                </rdf:Seq>
+              </mts:DNAComponents>
+            </rdf:Description>
+          </rdf:RDF>
+        </ModelToSBOL>
+      </annotation>
+      <listOfCompartments>
+        <compartment id="Cell" spatialDimensions="3" size="1" constant="true"/>
+      </listOfCompartments>
+      <listOfSpecies>
+        <species metaid="pIKE_Left_Inverter_1__iBioSim2" id="TetR" compartment="Cell" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+        <species metaid="pIKE_Left_Inverter_1__iBioSim3" id="LacI" compartment="Cell" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+        <species metaid="pIKE_Left_Inverter_1__iBioSim4" sboTerm="SBO:0000590" id="pTet" compartment="Cell" initialAmount="2" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      </listOfSpecies>
+      <listOfParameters>
+        <parameter metaid="pIKE_Left_Inverter_1__iBioSim6" id="kr_f" name="Forward repression binding rate" value="0.5" constant="true"/>
+        <parameter metaid="pIKE_Left_Inverter_1__iBioSim7" id="kr_r" name="Reverse repression binding rate" value="1" constant="true"/>
+        <parameter metaid="pIKE_Left_Inverter_1__iBioSim8" id="ka_f" name="Forward activation binding rate" value="0.0033" constant="true"/>
+        <parameter metaid="pIKE_Left_Inverter_1__iBioSim9" id="ka_r" name="Reverse activation binding rate" value="1" constant="true"/>
+        <parameter metaid="pIKE_Left_Inverter_1__iBioSim10" id="ko_f" name="Forward RNAP binding rate" value="0.033" constant="true"/>
+        <parameter metaid="pIKE_Left_Inverter_1__iBioSim11" id="ko_r" name="Reverse RNAP binding rate" value="1" constant="true"/>
+        <parameter metaid="pIKE_Left_Inverter_1__iBioSim12" id="kao_f" name="Forward activated RNAP binding rate" value="1" constant="true"/>
+        <parameter metaid="pIKE_Left_Inverter_1__iBioSim13" id="kao_r" name="Reverse activated RNAP binding rate" value="1" constant="true"/>
+        <parameter metaid="pIKE_Left_Inverter_1__iBioSim14" id="nc" name="Stoichiometry of binding" value="2" constant="true"/>
+        <parameter metaid="pIKE_Left_Inverter_1__iBioSim15" id="nr" name="Initial RNAP count" value="30" constant="true"/>
+        <parameter metaid="pIKE_Left_Inverter_1__iBioSim16" id="ko" name="Open complex production rate" value="0.05" constant="true"/>
+        <parameter metaid="pIKE_Left_Inverter_1__iBioSim17" id="kb" name="Basal production rate" value="0.0001" constant="true"/>
+        <parameter metaid="pIKE_Left_Inverter_1__iBioSim18" id="ng" name="Initial promoter count" value="2" constant="true"/>
+        <parameter metaid="pIKE_Left_Inverter_1__iBioSim19" id="np" name="Stoichiometry of production" value="10" constant="true"/>
+        <parameter metaid="pIKE_Left_Inverter_1__iBioSim20" id="ka" name="Activated production rate" value="0.25" constant="true"/>
+      </listOfParameters>
+      <listOfReactions>
+        <reaction metaid="pIKE_Left_Inverter_1__iBioSim5" sboTerm="SBO:0000589" id="Production_pTet" reversible="false" fast="false" compartment="Cell">
+          <listOfProducts>
+            <speciesReference species="LacI" stoichiometry="10" constant="true"/>
+          </listOfProducts>
+          <listOfModifiers>
+            <modifierSpeciesReference sboTerm="SBO:0000598" species="pTet"/>
+            <modifierSpeciesReference sboTerm="SBO:0000020" species="TetR"/>
+          </listOfModifiers>
+          <kineticLaw>
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> pTet </ci>
+                  <ci> ko </ci>
+                  <apply>
+                    <divide/>
+                    <ci> ko_f </ci>
+                    <ci> ko_r </ci>
+                  </apply>
+                  <ci> nr </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <divide/>
+                      <ci> ko_f </ci>
+                      <ci> ko_r </ci>
+                    </apply>
+                    <ci> nr </ci>
+                  </apply>
+                  <apply>
+                    <power/>
+                    <apply>
+                      <times/>
+                      <apply>
+                        <divide/>
+                        <ci> kr_f </ci>
+                        <ci> kr_r </ci>
+                      </apply>
+                      <ci> TetR </ci>
+                    </apply>
+                    <ci> nc </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </math>
+          </kineticLaw>
+        </reaction>
+      </listOfReactions>
+      <layout:listOfLayouts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
+        <layout:layout layout:id="iBioSim">
+          <layout:dimensions layout:width="0" layout:height="0"/>
+          <layout:listOfCompartmentGlyphs>
+            <layout:compartmentGlyph layout:id="Glyph__Cell" layout:compartment="Cell">
+              <layout:boundingBox>
+                <layout:position layout:x="0" layout:y="0"/>
+                <layout:dimensions layout:width="1070" layout:height="425"/>
+              </layout:boundingBox>
+            </layout:compartmentGlyph>
+          </layout:listOfCompartmentGlyphs>
+          <layout:listOfSpeciesGlyphs>
+            <layout:speciesGlyph layout:id="Glyph__TetR" layout:species="TetR">
+              <layout:boundingBox>
+                <layout:position layout:x="145" layout:y="112"/>
+                <layout:dimensions layout:width="100" layout:height="30"/>
+              </layout:boundingBox>
+            </layout:speciesGlyph>
+            <layout:speciesGlyph layout:id="Glyph__LacI" layout:species="LacI">
+              <layout:boundingBox>
+                <layout:position layout:x="474" layout:y="121"/>
+                <layout:dimensions layout:width="100" layout:height="30"/>
+              </layout:boundingBox>
+            </layout:speciesGlyph>
+            <layout:speciesGlyph layout:id="Glyph__pTet" layout:species="pTet">
+              <layout:boundingBox>
+                <layout:position layout:x="300" layout:y="110"/>
+                <layout:dimensions layout:width="100" layout:height="30"/>
+              </layout:boundingBox>
+            </layout:speciesGlyph>
+          </layout:listOfSpeciesGlyphs>
+          <layout:listOfReactionGlyphs>
+            <layout:reactionGlyph layout:id="Glyph__pTet__Production__LacI">
+              <layout:boundingBox>
+                <layout:position layout:x="0" layout:y="0"/>
+                <layout:dimensions layout:width="0" layout:height="0"/>
+              </layout:boundingBox>
+              <layout:listOfSpeciesReferenceGlyphs>
+                <layout:speciesReferenceGlyph layout:id="Glyph__pTet__product__LacI" layout:speciesGlyph="Glyph__LacI" layout:role="product">
+                  <layout:curve>
+                    <layout:listOfCurveSegments>
+                      <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
+                        <layout:start layout:x="350" layout:y="125"/>
+                        <layout:end layout:x="524" layout:y="136"/>
+                      </layout:curveSegment>
+                    </layout:listOfCurveSegments>
+                  </layout:curve>
+                </layout:speciesReferenceGlyph>
+              </layout:listOfSpeciesReferenceGlyphs>
+            </layout:reactionGlyph>
+            <layout:reactionGlyph layout:id="Glyph__TetR__repression__pTet">
+              <layout:boundingBox>
+                <layout:position layout:x="0" layout:y="0"/>
+                <layout:dimensions layout:width="0" layout:height="0"/>
+              </layout:boundingBox>
+              <layout:listOfSpeciesReferenceGlyphs>
+                <layout:speciesReferenceGlyph layout:id="Glyph__TetR__product__pTet" layout:speciesGlyph="Glyph__pTet" layout:role="product">
+                  <layout:curve>
+                    <layout:listOfCurveSegments>
+                      <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
+                        <layout:start layout:x="195" layout:y="127"/>
+                        <layout:end layout:x="350" layout:y="125"/>
+                      </layout:curveSegment>
+                    </layout:listOfCurveSegments>
+                  </layout:curve>
+                </layout:speciesReferenceGlyph>
+              </layout:listOfSpeciesReferenceGlyphs>
+            </layout:reactionGlyph>
+          </layout:listOfReactionGlyphs>
+          <layout:listOfTextGlyphs>
+            <layout:textGlyph layout:id="TextGlyph__Cell" layout:text="Cell" layout:graphicalObject="Glyph__Cell">
+              <layout:boundingBox>
+                <layout:position layout:x="0" layout:y="0"/>
+                <layout:dimensions layout:width="1070" layout:height="425"/>
+              </layout:boundingBox>
+            </layout:textGlyph>
+            <layout:textGlyph layout:id="TextGlyph__TetR" layout:text="TetR" layout:graphicalObject="Glyph__TetR">
+              <layout:boundingBox>
+                <layout:position layout:x="145" layout:y="112"/>
+                <layout:dimensions layout:width="100" layout:height="30"/>
+              </layout:boundingBox>
+            </layout:textGlyph>
+            <layout:textGlyph layout:id="TextGlyph__LacI" layout:text="LacI" layout:graphicalObject="Glyph__LacI">
+              <layout:boundingBox>
+                <layout:position layout:x="474" layout:y="121"/>
+                <layout:dimensions layout:width="100" layout:height="30"/>
+              </layout:boundingBox>
+            </layout:textGlyph>
+            <layout:textGlyph layout:id="TextGlyph__pTet" layout:text="pTet" layout:graphicalObject="Glyph__pTet">
+              <layout:boundingBox>
+                <layout:position layout:x="300" layout:y="110"/>
+                <layout:dimensions layout:width="100" layout:height="30"/>
+              </layout:boundingBox>
+            </layout:textGlyph>
+          </layout:listOfTextGlyphs>
+        </layout:layout>
+      </layout:listOfLayouts>
+      <comp:listOfPorts>
+        <comp:port sboTerm="SBO:0000601" comp:idRef="Cell" comp:id="compartment__Cell"/>
+        <comp:port sboTerm="SBO:0000601" comp:idRef="LacI" comp:id="output__LacI"/>
+        <comp:port sboTerm="SBO:0000600" comp:idRef="TetR" comp:id="input__TetR"/>
+      </comp:listOfPorts>
+    </comp:modelDefinition>
+    <comp:modelDefinition metaid="pIKE_Right_Inverter_4__iBioSim1" id="pIKE_Right_Inverter_4">
+      <annotation>
+        <ModelToSBOL xmlns="http://sbolstandard.org/modeltosbol/1.0#">
+          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:mts="http://sbolstandard.org/modeltosbol/1.0#">
+            <rdf:Description rdf:about="#iBioSim1">
+              <mts:DNAComponents>
+                <rdf:Seq>
+                  <rdf:li rdf:resource="http://www.eugenecad.org/pIKERightCassette_4"/>
+                </rdf:Seq>
+              </mts:DNAComponents>
+            </rdf:Description>
+          </rdf:RDF>
+        </ModelToSBOL>
+      </annotation>
+      <listOfCompartments>
+        <compartment id="Cell" spatialDimensions="3" size="1" constant="true"/>
+      </listOfCompartments>
+      <listOfSpecies>
+        <species metaid="pIKE_Right_Inverter_4__iBioSim2" id="LacI" compartment="Cell" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+        <species metaid="pIKE_Right_Inverter_4__iBioSim3" sboTerm="SBO:0000590" id="pLac" compartment="Cell" initialAmount="2" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+        <species metaid="pIKE_Right_Inverter_4__iBioSim5" id="TetR" compartment="Cell" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+        <species metaid="pIKE_Right_Inverter_4__iBioSim6" id="GFP" compartment="Cell" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      </listOfSpecies>
+      <listOfParameters>
+        <parameter metaid="pIKE_Right_Inverter_4__iBioSim7" id="kr_f" name="Forward repression binding rate" value="0.5" constant="true"/>
+        <parameter metaid="pIKE_Right_Inverter_4__iBioSim8" id="kr_r" name="Reverse repression binding rate" value="1" constant="true"/>
+        <parameter metaid="pIKE_Right_Inverter_4__iBioSim9" id="ka_f" name="Forward activation binding rate" value="0.0033" constant="true"/>
+        <parameter metaid="pIKE_Right_Inverter_4__iBioSim10" id="ka_r" name="Reverse activation binding rate" value="1" constant="true"/>
+        <parameter metaid="pIKE_Right_Inverter_4__iBioSim11" id="ko_f" name="Forward RNAP binding rate" value="0.033" constant="true"/>
+        <parameter metaid="pIKE_Right_Inverter_4__iBioSim12" id="ko_r" name="Reverse RNAP binding rate" value="1" constant="true"/>
+        <parameter metaid="pIKE_Right_Inverter_4__iBioSim13" id="kao_f" name="Forward activated RNAP binding rate" value="1" constant="true"/>
+        <parameter metaid="pIKE_Right_Inverter_4__iBioSim14" id="kao_r" name="Reverse activated RNAP binding rate" value="1" constant="true"/>
+        <parameter metaid="pIKE_Right_Inverter_4__iBioSim15" id="nc" name="Stoichiometry of binding" value="2" constant="true"/>
+        <parameter metaid="pIKE_Right_Inverter_4__iBioSim16" id="nr" name="Initial RNAP count" value="30" constant="true"/>
+        <parameter metaid="pIKE_Right_Inverter_4__iBioSim17" id="ko" name="Open complex production rate" value="0.05" constant="true"/>
+        <parameter metaid="pIKE_Right_Inverter_4__iBioSim18" id="kb" name="Basal production rate" value="0.0001" constant="true"/>
+        <parameter metaid="pIKE_Right_Inverter_4__iBioSim19" id="ng" name="Initial promoter count" value="2" constant="true"/>
+        <parameter metaid="pIKE_Right_Inverter_4__iBioSim20" id="np" name="Stoichiometry of production" value="10" constant="true"/>
+        <parameter metaid="pIKE_Right_Inverter_4__iBioSim21" id="ka" name="Activated production rate" value="0.25" constant="true"/>
+      </listOfParameters>
+      <listOfReactions>
+        <reaction metaid="pIKE_Right_Inverter_4__iBioSim4" sboTerm="SBO:0000589" id="Production_pLac" reversible="false" fast="false" compartment="Cell">
+          <listOfProducts>
+            <speciesReference species="TetR" stoichiometry="10" constant="true"/>
+            <speciesReference species="GFP" stoichiometry="10" constant="true"/>
+          </listOfProducts>
+          <listOfModifiers>
+            <modifierSpeciesReference sboTerm="SBO:0000598" species="pLac"/>
+            <modifierSpeciesReference sboTerm="SBO:0000020" species="LacI"/>
+          </listOfModifiers>
+          <kineticLaw>
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> pLac </ci>
+                  <ci> ko </ci>
+                  <apply>
+                    <divide/>
+                    <ci> ko_f </ci>
+                    <ci> ko_r </ci>
+                  </apply>
+                  <ci> nr </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <divide/>
+                      <ci> ko_f </ci>
+                      <ci> ko_r </ci>
+                    </apply>
+                    <ci> nr </ci>
+                  </apply>
+                  <apply>
+                    <power/>
+                    <apply>
+                      <times/>
+                      <apply>
+                        <divide/>
+                        <ci> kr_f </ci>
+                        <ci> kr_r </ci>
+                      </apply>
+                      <ci> LacI </ci>
+                    </apply>
+                    <ci> nc </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </math>
+          </kineticLaw>
+        </reaction>
+      </listOfReactions>
+      <layout:listOfLayouts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:layout="http://www.sbml.org/sbml/level3/version1/layout/version1">
+        <layout:layout layout:id="iBioSim">
+          <layout:dimensions layout:width="0" layout:height="0"/>
+          <layout:listOfCompartmentGlyphs>
+            <layout:compartmentGlyph layout:id="Glyph__Cell" layout:compartment="Cell">
+              <layout:boundingBox>
+                <layout:position layout:x="0" layout:y="0"/>
+                <layout:dimensions layout:width="1070" layout:height="425"/>
+              </layout:boundingBox>
+            </layout:compartmentGlyph>
+          </layout:listOfCompartmentGlyphs>
+          <layout:listOfSpeciesGlyphs>
+            <layout:speciesGlyph layout:id="Glyph__LacI" layout:species="LacI">
+              <layout:boundingBox>
+                <layout:position layout:x="85" layout:y="124"/>
+                <layout:dimensions layout:width="100" layout:height="30"/>
+              </layout:boundingBox>
+            </layout:speciesGlyph>
+            <layout:speciesGlyph layout:id="Glyph__pLac" layout:species="pLac">
+              <layout:boundingBox>
+                <layout:position layout:x="293" layout:y="136"/>
+                <layout:dimensions layout:width="100" layout:height="30"/>
+              </layout:boundingBox>
+            </layout:speciesGlyph>
+            <layout:speciesGlyph layout:id="Glyph__TetR" layout:species="TetR">
+              <layout:boundingBox>
+                <layout:position layout:x="466" layout:y="88"/>
+                <layout:dimensions layout:width="100" layout:height="30"/>
+              </layout:boundingBox>
+            </layout:speciesGlyph>
+            <layout:speciesGlyph layout:id="Glyph__GFP" layout:species="GFP">
+              <layout:boundingBox>
+                <layout:position layout:x="467" layout:y="171"/>
+                <layout:dimensions layout:width="100" layout:height="30"/>
+              </layout:boundingBox>
+            </layout:speciesGlyph>
+          </layout:listOfSpeciesGlyphs>
+          <layout:listOfReactionGlyphs>
+            <layout:reactionGlyph layout:id="Glyph__pLac__Production__TetR">
+              <layout:boundingBox>
+                <layout:position layout:x="0" layout:y="0"/>
+                <layout:dimensions layout:width="0" layout:height="0"/>
+              </layout:boundingBox>
+              <layout:listOfSpeciesReferenceGlyphs>
+                <layout:speciesReferenceGlyph layout:id="Glyph__pLac__product__TetR" layout:speciesGlyph="Glyph__TetR" layout:role="product">
+                  <layout:curve>
+                    <layout:listOfCurveSegments>
+                      <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
+                        <layout:start layout:x="343" layout:y="151"/>
+                        <layout:end layout:x="516" layout:y="103"/>
+                      </layout:curveSegment>
+                    </layout:listOfCurveSegments>
+                  </layout:curve>
+                </layout:speciesReferenceGlyph>
+              </layout:listOfSpeciesReferenceGlyphs>
+            </layout:reactionGlyph>
+            <layout:reactionGlyph layout:id="Glyph__pLac__Production__GFP">
+              <layout:boundingBox>
+                <layout:position layout:x="0" layout:y="0"/>
+                <layout:dimensions layout:width="0" layout:height="0"/>
+              </layout:boundingBox>
+              <layout:listOfSpeciesReferenceGlyphs>
+                <layout:speciesReferenceGlyph layout:id="Glyph__pLac__product__GFP" layout:speciesGlyph="Glyph__GFP" layout:role="product">
+                  <layout:curve>
+                    <layout:listOfCurveSegments>
+                      <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
+                        <layout:start layout:x="343" layout:y="151"/>
+                        <layout:end layout:x="517" layout:y="186"/>
+                      </layout:curveSegment>
+                    </layout:listOfCurveSegments>
+                  </layout:curve>
+                </layout:speciesReferenceGlyph>
+              </layout:listOfSpeciesReferenceGlyphs>
+            </layout:reactionGlyph>
+            <layout:reactionGlyph layout:id="Glyph__LacI__repression__pLac">
+              <layout:boundingBox>
+                <layout:position layout:x="0" layout:y="0"/>
+                <layout:dimensions layout:width="0" layout:height="0"/>
+              </layout:boundingBox>
+              <layout:listOfSpeciesReferenceGlyphs>
+                <layout:speciesReferenceGlyph layout:id="Glyph__LacI__product__pLac" layout:speciesGlyph="Glyph__pLac" layout:role="product">
+                  <layout:curve>
+                    <layout:listOfCurveSegments>
+                      <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
+                        <layout:start layout:x="135" layout:y="139"/>
+                        <layout:end layout:x="343" layout:y="151"/>
+                      </layout:curveSegment>
+                    </layout:listOfCurveSegments>
+                  </layout:curve>
+                </layout:speciesReferenceGlyph>
+              </layout:listOfSpeciesReferenceGlyphs>
+            </layout:reactionGlyph>
+          </layout:listOfReactionGlyphs>
+          <layout:listOfTextGlyphs>
+            <layout:textGlyph layout:id="TextGlyph__Cell" layout:text="Cell" layout:graphicalObject="Glyph__Cell">
+              <layout:boundingBox>
+                <layout:position layout:x="0" layout:y="0"/>
+                <layout:dimensions layout:width="1070" layout:height="425"/>
+              </layout:boundingBox>
+            </layout:textGlyph>
+            <layout:textGlyph layout:id="TextGlyph__LacI" layout:text="LacI" layout:graphicalObject="Glyph__LacI">
+              <layout:boundingBox>
+                <layout:position layout:x="85" layout:y="124"/>
+                <layout:dimensions layout:width="100" layout:height="30"/>
+              </layout:boundingBox>
+            </layout:textGlyph>
+            <layout:textGlyph layout:id="TextGlyph__pLac" layout:text="pLac" layout:graphicalObject="Glyph__pLac">
+              <layout:boundingBox>
+                <layout:position layout:x="293" layout:y="136"/>
+                <layout:dimensions layout:width="100" layout:height="30"/>
+              </layout:boundingBox>
+            </layout:textGlyph>
+            <layout:textGlyph layout:id="TextGlyph__TetR" layout:text="TetR" layout:graphicalObject="Glyph__TetR">
+              <layout:boundingBox>
+                <layout:position layout:x="466" layout:y="88"/>
+                <layout:dimensions layout:width="100" layout:height="30"/>
+              </layout:boundingBox>
+            </layout:textGlyph>
+            <layout:textGlyph layout:id="TextGlyph__GFP" layout:text="GFP" layout:graphicalObject="Glyph__GFP">
+              <layout:boundingBox>
+                <layout:position layout:x="467" layout:y="171"/>
+                <layout:dimensions layout:width="100" layout:height="30"/>
+              </layout:boundingBox>
+            </layout:textGlyph>
+          </layout:listOfTextGlyphs>
+        </layout:layout>
+      </layout:listOfLayouts>
+      <comp:listOfPorts>
+        <comp:port sboTerm="SBO:0000601" comp:idRef="Cell" comp:id="compartment__Cell"/>
+        <comp:port sboTerm="SBO:0000601" comp:idRef="GFP" comp:id="output__GFP"/>
+        <comp:port sboTerm="SBO:0000600" comp:idRef="LacI" comp:id="input__LacI"/>
+        <comp:port sboTerm="SBO:0000601" comp:idRef="TetR" comp:id="output__TetR"/>
+      </comp:listOfPorts>
+    </comp:modelDefinition>
+  </comp:listOfModelDefinitions>
+</sbml>

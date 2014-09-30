@@ -1,0 +1,17 @@
+// valid ones
+Property prop1(txt);
+Property prop2(num);
+Property prop3(txt[]);
+Property prop4(num[]);
+Property prop5(boolean);
+
+PartType pt0();
+PartType pt1(prop1);
+PartType pt2(prop1, prop2);
+
+PartType pt5(prop1, prop2, prop3, prop4, prop5);
+
+// invalid ones
+//PartType pt1();  // exists already
+
+

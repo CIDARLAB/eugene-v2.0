@@ -1,0 +1,72 @@
+//created on: May 8, 2014
+package org.cidarlab.sparrow.iwbda
+
+import org.cidarlab.eugene.constants.*;
+import org.cidarlab.eugene.dom.*;
+import org.cidarlab.eugene.dom.interaction.*;
+import org.cidarlab.sparrow.constants.SparrowConstants;
+import org.cidarlab.sparrow.rule.*;
+
+/*
+when is an AND gate faulty?
+- invalid ``repression'' arcs, i.e. the arcs are at the wrong ``positions''
+
+the element at index [2] must repress the element at index [9]
+the element at index [6] must repress the element at index [8]
+the element at index [11] must repress the element at index [13]
+
+all three of the should be different
+
+*/
+
+/*
+ *   A faulty AND gate is defined as:
+ *   - non-orthogonal repressor-promoter pairs (``Orthogonality'')
+ *   - the same regulatory parts appear more than once (``Homologous Recombination'')
+ *
+ *   NOTE:
+ *   we need to get the first element from the components list at 
+ *   the appropriate positions (e.g. components[2][0])
+ */
+
+rule "detect_faulty_devices"
+when
+	$d : Device(
+		// ``Orthogonality''
+		$repressor1 : components[2][0],
+		$repressee1 : components[9][0],
+		$repressor2 : components[6][0],
+		$repressee2 : components[8][0], 
+		$repressor3 : components[11][0],
+		$repressee3 : components[13][0],
+		
+		// ``Recombination''
+		components[2][0] != components[6][0],
+		components[11][0] != components[6][0],
+		components[11][0] != components[2][0]
+	)	
+			
+	// ``Orthogonality''
+	Relation(
+			LHS == $repressor1,
+			RHS == $repressee1
+	)
+
+	Relation(
+			LHS == $repressor2,
+			RHS == $repressee2
+	)
+	
+	Relation(
+			LHS == $repressor3,
+			RHS == $repressee3
+	)
+	
+then   // CONCLUSION
+	Property prop = new Property("valid", EugeneConstants.BOOLEAN);
+	PropertyValue pv = new PropertyValue(prop);
+	pv.setBool(true);
+
+    	
+	$d.setPropertyValue(pv);
+end

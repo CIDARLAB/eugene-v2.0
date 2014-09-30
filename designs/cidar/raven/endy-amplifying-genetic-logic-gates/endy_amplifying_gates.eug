@@ -1,0 +1,15 @@
+include "./designs/cidar/raven/endy-amplifying-genetic-logic-gates/design-space.h"
+
+//DEVICES
+Device PBAD-TP901_Set_Generator(i0500, B0031, TP901_Integrase);
+Device Bxb1-BP-GFP_pSB4A5(attB_Bxb1, J61048_rev, J23119, attP_Bxb1_rev, JBEI_RBS, Superfolder_gfp, B0015);
+Device XOR-gate-JBEI_GFP(P7_Promoter, attB_TP901, attB_Bxb1, B0015, attP_Bxb1_rev, attP_TP901_rev, JBEI_RBS, Superfolder_gfp, B0015);
+Device NAND-gate-JBEI_GFP(P7_Promoter, attB_TP901, B0015_rev, attP_TP901_rev, attB_Bxb1, P7_Promoter, attP_Bxb1_rev, JBEI_RBS, Superfolder_gfp, B0015);
+Device Dual-Controller_pBAD-GFP(pTet, Bxb1_Integrase, B0014, araC_rev, pBAD, JBEI_RBS, Superfolder_gfp);
+Device AND-gate-JBEI_GFP(P7_Promoter, attB_TP901, B0015, attP_TP901_rev, attB_Bxb1, J61048, attP_Bxb1_rev, JBEI_RBS, Superfolder_gfp, B0015);
+Device NOR-gate-JBEI_GFP(P7_Promoter, attB_TP901, B0015_rev, attP_TP901_rev, attB_Bxb1, J61048_rev, attP_Bxb1_rev, JBEI_RBS, Superfolder_gfp, B0015);
+Device OR-gate-JBEI_GFP(P7_Promoter, attB_TP901, attB_Bxb1, B0015, attP_Bxb1, attP_TP901, JBEI_RBS, Superfolder_gfp, B0015);
+Device XNOR-gate-JBEI_GFP(P7_Promoter, attB_TP901, attB_Bxb1, B0015_rev, attP_Bxb1_rev, attP_TP901_rev, JBEI_RBS, Superfolder_gfp, B0015);
+Device Dual-Controller_ptet-GFP(pTet, JBEI_RBS, Superfolder_gfp, B0014, araC_rev, pBAD, TP901_Integrase);
+Device TP901-BP-GFP_pSB4A5(attB_TP901, J23119_rev, attP_TP901_rev, JBEI_RBS, Superfolder_gfp, B0015);
+Device TP901-BP-register_pSB4A5(mKate2_rev, invitrogen_RBS_rev, attB_TP901, J23119_rev, attP_TP901_rev, JBEI_RBS_rev, Superfolder_gfp, B0015);

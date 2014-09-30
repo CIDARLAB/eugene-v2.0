@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:s="http://sbols.org/v1#" xmlns:so="http://purl.obolibrary.org/obo/" xmlns:map="http://convert.sbols.org/xml/" xmlns:pr="http://partsregistry.org/" xmlns:prt="http://partsregistry.org/type/" xmlns:prp="http://partsregistry.org/part/" xmlns:pra="http://partsregistry.org/anot/" xmlns:prs="http://partsregistry.org/seq/" xmlns:prf="http://partsregistry.org/feat/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <s:DnaComponent rdf:about="http://partsregistry.org/part/BBa_B0021">
+  <rdf:type rdf:resource="http://purl.obolibrary.org/obo/SO_0000141"/>
+  <s:displayId>BBa_B0021</s:displayId>
+  <s:name>B0021</s:name>
+  <s:description>LuxICDABEG (+/-), reversed</s:description>
+  <s:dnaSequence>
+   <s:DnaSequence rdf:about="http://partsregistry.org/seq/partseq_585">
+    <s:nucleotides>aaataataaaaaagccggattaataatctggctttttatattctct</s:nucleotides>
+   </s:DnaSequence>
+  </s:dnaSequence>
+  <s:annotation>
+   <s:SequenceAnnotation rdf:about="http://partsregistry.org/anot/f_7024">
+    <s:bioStart>1</s:bioStart>
+    <s:bioEnd>46</s:bioEnd>
+    <s:strand>+</s:strand>
+    <s:subComponent>
+     <s:DnaComponent rdf:about="http://partsregistry.org/part/BBa_B0021">
+      <s:displayId>BBa_B0021</s:displayId>
+      <rdf:type rdf:resource="http://partsregistry.org/type/biobrick"/>
+     </s:DnaComponent>
+    </s:subComponent>
+   </s:SequenceAnnotation>
+  </s:annotation>
+  <rdf:type rdf:resource="http://partsregistry.org/type/terminator"/>
+ </s:DnaComponent>
+</rdf:RDF>

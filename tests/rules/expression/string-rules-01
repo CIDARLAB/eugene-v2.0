@@ -1,0 +1,93 @@
+Property prop1(txt);
+Property prop2(num);
+Property prop3(txt[]);
+Property prop4(num[]);
+Property prop5(boolean);
+
+PartType PT0();
+PartType PT1(prop1);
+PartType PT2(prop1, prop2);
+PartType PT3(prop1, prop2, prop3);
+PartType PT4(prop1, prop2, prop3, prop4);
+PartType PT5(prop1, prop2, prop3, prop4, prop5);
+
+// parts with DOT notation
+PT0 pt0_1;
+PT1 pt1_1(.prop1("A"));
+PT2 pt2_1(.prop1("T"), .prop2(3.1));
+PT3 pt3_1(.prop1("C"), .prop2(3.14), .prop3(["C"]));
+PT4 pt4_1(.prop1("G"), .prop2(3.141), .prop3(["A", "T", "C", "G"]), .prop4([0, 1.1, 2.2, 3.3, 4.4, 5.5]));
+PT5 pt5_1(.prop1("ATCG"), .prop2(3.1415), .prop3(["A", "T", "C", "G"]), .prop4([1.0, 2.0, 3.0, 4, 5]), .prop5(true));
+
+// part w/o DOT notation
+PT0 pt0_2;
+PT1 pt1_2("A");
+PT2 pt2_2("T", 3.1);
+PT3 pt3_2("C", 3.14, ["C"]);
+PT4 pt4_2("G", 3.141, ["A", "T", "C", "G"], [0, 1.1, 2.2, 3.3, 4.4, 5.5]);
+PT5 pt5_2("ATCG", 3.14151, ["A", "T", "C", "G"], [0, 1.1, 2.2, 3.3, 4.4, 5.5], true);
+PT5 pt5_3("", 3.14151, ["A", "T", "C", "G"], [0, 1.1, 2.2, 3.3, 4.4, 5.5], true);
+
+
+
+/*-----------------------------------
+ * EQUALS
+ *-----------------------------------*/
+Device D01(PT5);
+Rule con01(ON D01:
+	PT5.prop1 == "ATCG");
+product(D01);	
+
+/*-----------------------------------
+ * CONTAINS
+ * searches for substrings
+ *-----------------------------------*/
+Device D02(PT5);
+Rule con02(ON D02:
+	PT5.prop1 CONTAINS "A");
+product(D02);		
+
+/*-----------------------------------
+ * NOTCONTAINS
+ * searches for substrings
+ *-----------------------------------*/
+Device D02_1(PT5);
+Rule con02_1(ON D02_1:
+	PT5.prop1 NOTCONTAINS "A");
+product(D02_1);		
+
+
+/*-----------------------------------
+ * MATCHES
+ * searches for regular expression
+ *-----------------------------------*/
+Device D03(PT5);
+Rule con03(ON D03:
+	PT5.prop1 MATCHES "[ATCG]+"); // one or more characters from the alphabet 
+	                              // A, T, C, G
+product(D03);	
+ 
+/*-----------------------------------
+ * STARTSWITH
+ *-----------------------------------*/
+Device D04(PT5);
+Rule con04(ON D04:
+	PT5.prop1 STARTSWITH "A");
+product(D04);	
+ 
+/*-----------------------------------
+ * ENDSWITH
+ *-----------------------------------*/
+Device D05(PT5);
+Rule con05(ON D05:
+	PT5.prop1 ENDSWITH "G");
+product(D05);
+
+/*-----------------------------------
+ * SOUNDSLIKE
+ *-----------------------------------*/
+PT5 pt5_4("fubar");
+Device D06(PT5);
+Rule con06(ON D06:
+	PT5.prop1 SOUNDSLIKE "foobar");
+product(D06);

@@ -1,0 +1,56 @@
+/*---------------------------
+ *   Variable vs Constant
+ *---------------------------*/
+num a = 5;
+if ( a < 5 ) {
+   println(" a < 5  -> FALSE ");
+}
+
+if ( a <= 5 ) {
+   println(" a <= 5 -> TRUE");
+}
+
+if ( a == 5 ) {
+   println(" a == 5 -> TRUE");
+}
+
+if ( a != 5 ) {
+   println(" a != 5 -> FALSE");
+}
+
+if ( a >= 5 ) {
+   println(" a >= 5 -> TRUE");
+}
+
+if ( a > 5 ) {
+   println(" a > 5  -> FALSE");
+}
+
+/*---------------------------
+ *   Variable vs Variable
+ *---------------------------*/
+num b = 6;
+if ( a < b ) {
+   println(" a < b  -> TRUE");
+}
+
+if ( a <= b ) {
+   println(" a <= b -> TRUE");
+}
+
+if ( a == b ) {
+   println(" a == b -> FALSE");
+}
+
+if ( a != b ) {
+   println(" a != b -> TRUE");
+}
+
+if ( a >= b ) {
+   println(" a >= b -> FALSE");
+}
+
+if ( a > b ) {
+   println(" a > b  -> FALSE");
+}
+

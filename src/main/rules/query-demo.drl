@@ -1,0 +1,27 @@
+package org.cidarlab.sparrow.rules;
+
+global java.util.List list;
+
+import org.cidarlab.eugene.dom.*;
+
+rule "demo"
+when
+	$p : Part (type=="Promoter", 
+		$sequence:propertyValues["sequence"], 
+		$sequence!=null, 
+		$sequence.txt=="ATCG", 
+		$strength:propertyValues["strength"], 
+		$strength!=null, 
+		$strength.num>5,
+		$numList:propertyValues["numList"],
+		$numList!=null,
+		$numList.getNumList().get(0) > 1)
+then
+    list.add( $p );
+    System.out.println( $p );
+end
+
+query validDevices
+    $p : Component ($valid:propertyValues["valid"], $valid!=null, $valid.bool==true)
+end
+

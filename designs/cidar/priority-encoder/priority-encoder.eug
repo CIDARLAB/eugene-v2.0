@@ -1,0 +1,87 @@
+include "./designs/cidar/priority-encoder/design-space.h";
+
+/** ABSTRACT DEVICES **/
+/* An InducibleCassette receives the input signals and starts with two inducible promoters */
+Device InducibleCassette (InduciblePromoter, InduciblePromoter, RBS, Repressor, Terminator);
+
+/* A MixedCassette starts with a repressible and an inducible promoter */
+Device MixedCassette(InduciblePromoter, RepressiblePromoter, RBS, Repressor, Terminator);
+
+/* A RepressibleCassette starts with two repressible promoters */
+Device RepressibleCassette (RepressiblePromoter, RepressiblePromoter, RBS, Repressor, Terminator);
+
+/* A Repressible TU */
+Device RepressibleTU(RepressiblePromoter, RBS, Repressor, Terminator);
+
+/* A ReportingCassette starts with a repressible promoter and reports the output signal */
+Device ReportingCassette (RepressiblePromoter, RBS, Reporter, Terminator);
+
+
+/* now, lets compose the appropriate cassettes for the out1 device */
+Device Out1 (InducibleCassette, RepressibleTU, ReportingCassette);
+
+/* now, lets compose the appropriate cassettes for the out0 device */
+Device Out0 (MixedCassette, InducibleCassette, RepressibleCassette, ReportingCassette);
+
+Device PriorityEncoder(Out1, Out0);
+
+//lstAll = product(PriorityEncoder);
+//println(lstAll.size);
+
+// let's define some rules
+Rule r(
+	ON PriorityEncoder:
+		// in2
+		PriorityEncoder.Out1.InducibleCassette[0] EQUALS PriorityEncoder.Out0.MixedCassette[0] 
+			AND
+		PriorityEncoder.Out1.InducibleCassette[0] EQUALS PriorityEncoder.Out0.InducibleCassette[0] 
+
+			AND
+			
+		// in1
+		PriorityEncoder.Out1.InducibleCassette[0] NOTEQUALS PriorityEncoder.Out1.InducibleCassette[1] 
+			AND
+		PriorityEncoder.Out1.InducibleCassette[0] NOTEQUALS PriorityEncoder.Out0.InducibleCassette[1]
+			AND
+		PriorityEncoder.Out1.InducibleCassette[1] NOTEQUALS PriorityEncoder.Out0.InducibleCassette[1] 
+
+			AND
+						
+		// different reporters
+		PriorityEncoder.Out1.ReportingCassette.Reporter NOTEQUALS PriorityEncoder.Out0.ReportingCassette.Reporter
+
+			AND
+			
+ 		// different repressors in Out1
+		PriorityEncoder.Out1.InducibleCassette.Repressor NOTEQUALS PriorityEncoder.Out1.RepressibleTU.Repressor
+			
+			AND
+			
+		// repressing relationships
+		PriorityEncoder.Out1.InducibleCassette.Repressor REPRESSES PriorityEncoder.Out1.RepressibleTU.RepressiblePromoter
+			AND
+		PriorityEncoder.Out1.RepressibleTU.Repressor REPRESSES PriorityEncoder.Out1.ReportingCassette.RepressiblePromoter
+			AND
+		PriorityEncoder.Out1.InducibleCassette.Repressor REPRESSES PriorityEncoder.Out0.MixedCassette.RepressiblePromoter
+			AND
+		PriorityEncoder.Out0.MixedCassette.Repressor REPRESSES PriorityEncoder.Out0.RepressibleCassette[0]
+   			AND
+		PriorityEncoder.Out0.InducibleCassette.Repressor REPRESSES PriorityEncoder.Out0.RepressibleCassette[1]
+			AND
+		PriorityEncoder.Out0.RepressibleCassette.Repressor REPRESSES PriorityEncoder.Out0.ReportingCassette[0]
+
+			AND
+		// different repressible promoters in Out0	
+		PriorityEncoder.Out0.RepressibleCassette[0] NOTEQUALS PriorityEncoder.Out0.RepressibleCassette[1]
+			AND
+		PriorityEncoder.Out0.RepressibleCassette[1] NOTEQUALS PriorityEncoder.Out0.ReportingCassette[0]
+			AND			
+		PriorityEncoder.Out0.RepressibleCassette[0] NOTEQUALS PriorityEncoder.Out0.ReportingCassette[0]
+);
+
+Device[] lstPriorityEncoders = product(PriorityEncoder, 1);
+//println(lstPriorityEncoders);
+//println(lstPriorityEncoders.size);
+pigeon(lstPriorityEncoders);
+
+

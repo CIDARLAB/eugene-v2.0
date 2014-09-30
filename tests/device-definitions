@@ -1,0 +1,82 @@
+Property prop1(txt);
+Property prop2(num);
+Property prop3(txt[]);
+Property prop4(num[]);
+Property prop5(boolean);
+
+PartType PT0();
+PartType PT1(prop1);
+PartType PT2(prop1, prop2);
+PartType PT3(prop1, prop2, prop3);
+PartType PT4(prop1, prop2, prop3, prop4);
+PartType PT5(prop1, prop2, prop3, prop4, prop5);
+
+// parts with DOT notation
+PT0 pt0_1;
+PT1 pt1_1(.prop1("A"));
+PT2 pt2_1(.prop1("T"), .prop2(3.1));
+PT3 pt3_1(.prop1("C"), .prop2(3.14), .prop3(["C"]));
+PT4 pt4_1(.prop1("G"), .prop2(3.141), .prop3(["A", "T", "C", "G"]), .prop4([0, 1.1, 2.2, 3.3, 4.4, 5.5]));
+PT5 pt5_1(.prop1("ATCG"), .prop2(3.1415962), .prop3(["A", "T", "C", "G"]), .prop4([1.0, 2.0, 3.0, 4, 5]), .prop5(true));
+
+// part w/o DOT notation
+PT0 pt0_2;
+PT1 pt1_2("A");
+PT2 pt2_2("T", 3.1);
+PT3 pt3_2("C", 3.14, ["C"]);
+PT4 pt4_2("G", 3.141, ["A", "T", "C", "G"], [0, 1.1, 2.2, 3.3, 4.4, 5.5]);
+PT5 pt5_2("ATCG", 3.1415962, ["A", "T", "C", "G"], [0, 1.1, 2.2, 3.3, 4.4, 5.5], true);
+
+// empty device
+Device empty1;
+Device empty2();
+
+// Devices made up of parts
+Device dparts0(pt0_1);
+Device dparts1(pt0_1, pt1_1);
+Device dparts2(pt0_1, pt1_1, pt2_1);
+
+// invalid devices (uncomment them)
+//Device dpartsXY(ptX_Y); // invalid part
+//Device dparts1(pt0_1);  // exists already
+
+// Devices made up of part types
+Device d0_1(PT0);
+Device d0_2(PT0, PT0);
+Device d0_3(PT0, PT0, PT0);
+Device d0_4(PT0, PT0, PT0, PT0);
+Device d0_5(PT0, PT0, PT0, PT0, PT0);
+
+Device d1_2(PT1, PT1);
+Device d2_2(PT2, PT2);
+Device d3_2(PT3, PT3);
+Device d4_2(PT4, PT4);
+Device d5_2(PT5, PT5);
+
+// Devices made up of part types and parts
+Device dmix1(pt0_1, PT1, pt2_1);
+Device dmix2(PT0, pt1_1, PT2);
+Device dmix3(pt0_1, pt1_1, PT2);
+
+// Devices with orientation information
+Device dorient1(+pt0_1, -pt1_1, +pt2_1);
+Device dorient2(-pt0_1, +pt1_1, -pt2_1);
+Device dorient3(+pt0_1, +pt1_1, +pt2_1);
+Device dorient4(-pt0_1, -pt1_1, -pt2_1);
+Device dorient5(-pt0_1, pt1_1, +pt2_1);
+
+// synatx errors: please uncomment
+//Device dorient6(-);
+//Device dorient7(+);
+//Device dorient8(+, -);
+//Device dorient9(-, +);
+
+// SELECTION OPERATOR
+Device d1([PT0|PT1|PT2|PT3|PT4|PT5]);
+Device d2([PT0|PT1|PT2|PT3|PT4|PT5], [PT0|PT1|PT2|PT3|PT4|PT5]);
+
+Device dMix1([PT0|PT1|PT2|PT3|PT4|PT5], PT0, [PT0|PT1|PT2|PT3|PT4|PT5]);
+Device dMix2(pt0_1, [PT0|PT1|PT2|PT3|PT4|PT5], PT0, [PT0|PT1|PT2|PT3|PT4|PT5]);
+Device dMix3(pt0_1, [pt1_1|pt1_2], pt2_1, [pt3_1|pt3_2]);
+
+

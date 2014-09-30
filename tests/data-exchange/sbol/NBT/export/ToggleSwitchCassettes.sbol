@@ -1,0 +1,1367 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:RDF xmlns="http://sbols.org/v1#" xmlns:ns2="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <Collection ns2:about="http://www.eugenecad.org/ToggleSwitchCassettes">
+        <displayId>ToggleSwitchCassettes</displayId>
+        <description>ToggleSwitchCassettes</description>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/pIKERightCassette_1">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>pIKERightCassette_1</displayId>
+                <description>pIKERightCassette_1</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/pIKERightCassette_1_sequence">
+                        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacacaaaagacgcgagaatgtccagattagataaaagtaaagtgattaacagcgcattagagctgcttaatgaggtcggaatcgaaggtttaacaacccgtaaactcgcccagaagctaggtgtagagcagcctacattgtattggcatgtaaaaaataagcgggctttgctcgacgccttagccattgagatgttagataggcaccatactcacttttgccctttagaaggggaaagctggcaagattttttacgtaataacgctaaaagttttagatgtgctttactaagtcatcgcgatggagcaaaagtacatttaggtacacggcctacagaaaaacagtatgaaactctcgaaaatcaattagcctttttatgccaacaaggtttttcactagagaatgcattatatgcactcagcgctgtggggcattttactttaggttgcgtattggaagatcaagagcatcaagtcgctaaagaagaaagggaaacacctactactgatagtatgccgccattattacgacaagctatcgaattatttgatcaccaaggtgcagagccagccttcttattcggccttgaattgatcatatgcggattagaaaaacaacttaaatgtgaaagtgggtccgctgcaaacgacgaaaactacgctttagtagcttaataaaaagaaacgacaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataaaacgcatgagaaagcccccggaagatcaccttccgggggcttttttattgcgc</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_1/BBa_R0010_annotation_1">
+                        <bioStart>1</bioStart>
+                        <bioEnd>200</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_R0010">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+<displayId>BBa_R0010</displayId>
+<name>BBa_R0010</name>
+<description>promoter (lacI regulated)</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_R0010_sequence">
+        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacaca</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_1/Repressor1_annotation_2">
+                        <bioStart>201</bioStart>
+                        <bioEnd>872</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/BBa_J61120_BBa_C0040">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>BBa_J61120_BBa_C0040</displayId>
+<description>Repressor1</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/BBa_J61120_BBa_C0040_sequence">
+        <nucleotides>aaagacgcgagaatgtccagattagataaaagtaaagtgattaacagcgcattagagctgcttaatgaggtcggaatcgaaggtttaacaacccgtaaactcgcccagaagctaggtgtagagcagcctacattgtattggcatgtaaaaaataagcgggctttgctcgacgccttagccattgagatgttagataggcaccatactcacttttgccctttagaaggggaaagctggcaagattttttacgtaataacgctaaaagttttagatgtgctttactaagtcatcgcgatggagcaaaagtacatttaggtacacggcctacagaaaaacagtatgaaactctcgaaaatcaattagcctttttatgccaacaaggtttttcactagagaatgcattatatgcactcagcgctgtggggcattttactttaggttgcgtattggaagatcaagagcatcaagtcgctaaagaagaaagggaaacacctactactgatagtatgccgccattattacgacaagctatcgaattatttgatcaccaaggtgcagagccagccttcttattcggccttgaattgatcatatgcggattagaaaaacaacttaaatgtgaaagtgggtccgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_1/Repressor1/BBa_J61120_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>12</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61120">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                <displayId>BBa_J61120</displayId>
+                <name>BBa_J61120</name>
+                <description>Ribosome Binding Site Family Member</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61120_sequence">
+                        <nucleotides>aaagacgcgaga</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_1/Repressor1/BBa_C0040_annotation_2">
+        <bioStart>13</bioStart>
+        <bioEnd>672</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_C0040">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>BBa_C0040</displayId>
+                <name>BBa_C0040</name>
+                <description>tetracycline repressor from transposon Tn10 (+LVA)</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_C0040_sequence">
+                        <nucleotides>atgtccagattagataaaagtaaagtgattaacagcgcattagagctgcttaatgaggtcggaatcgaaggtttaacaacccgtaaactcgcccagaagctaggtgtagagcagcctacattgtattggcatgtaaaaaataagcgggctttgctcgacgccttagccattgagatgttagataggcaccatactcacttttgccctttagaaggggaaagctggcaagattttttacgtaataacgctaaaagttttagatgtgctttactaagtcatcgcgatggagcaaaagtacatttaggtacacggcctacagaaaaacagtatgaaactctcgaaaatcaattagcctttttatgccaacaaggtttttcactagagaatgcattatatgcactcagcgctgtggggcattttactttaggttgcgtattggaagatcaagagcatcaagtcgctaaagaagaaagggaaacacctactactgatagtatgccgccattattacgacaagctatcgaattatttgatcaccaaggtgcagagccagccttcttattcggccttgaattgatcatatgcggattagaaaaacaacttaaatgtgaaagtgggtccgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_1/Reporter_annotation_3">
+                        <bioStart>873</bioStart>
+                        <bioEnd>1604</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/BBa_J61130_BBa_E0040">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>BBa_J61130_BBa_E0040</displayId>
+<description>Reporter</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/BBa_J61130_BBa_E0040_sequence">
+        <nucleotides>aaagaaacgacaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_1/Reporter/BBa_J61130_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>12</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61130">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                <displayId>BBa_J61130</displayId>
+                <name>BBa_J61130</name>
+                <description>Ribosome Binding Site Family Member</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61130_sequence">
+                        <nucleotides>aaagaaacgaca</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_1/Reporter/BBa_E0040_annotation_2">
+        <bioStart>13</bioStart>
+        <bioEnd>732</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="urn:0fb4a103-86c4-4d90-8e73-d35ca45b4cf7">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>BBa_E0040</displayId>
+                <name>BBa_E0040</name>
+                <description>green fluorescent protein derived from jellyfish Aequeora victoria wild-type GFP (SwissProt: P42212</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="urn:0fb4a103-86c4-4d90-8e73-d35ca45b4cf7_sequence">
+                        <nucleotides>atgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_1/ECK120033736_annotation_4">
+                        <bioStart>1605</bioStart>
+                        <bioEnd>1657</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/parts/ECK120033736">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000141"/>
+<displayId>ECK120033736</displayId>
+<name>ECK120033736</name>
+<description>Terminator</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/parts/ECK120033736_sequence">
+        <nucleotides>aacgcatgagaaagcccccggaagatcaccttccgggggcttttttattgcgc</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/pIKERightCassette_2">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>pIKERightCassette_2</displayId>
+                <description>pIKERightCassette_2</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/pIKERightCassette_2_sequence">
+                        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacacaaaagacgcgagaatgtccagattagataaaagtaaagtgattaacagcgcattagagctgcttaatgaggtcggaatcgaaggtttaacaacccgtaaactcgcccagaagctaggtgtagagcagcctacattgtattggcatgtaaaaaataagcgggctttgctcgacgccttagccattgagatgttagataggcaccatactcacttttgccctttagaaggggaaagctggcaagattttttacgtaataacgctaaaagttttagatgtgctttactaagtcatcgcgatggagcaaaagtacatttaggtacacggcctacagaaaaacagtatgaaactctcgaaaatcaattagcctttttatgccaacaaggtttttcactagagaatgcattatatgcactcagcgctgtggggcattttactttaggttgcgtattggaagatcaagagcatcaagtcgctaaagaagaaagggaaacacctactactgatagtatgccgccattattacgacaagctatcgaattatttgatcaccaaggtgcagagccagccttcttattcggccttgaattgatcatatgcggattagaaaaacaacttaaatgtgaaagtgggtccgctgcaaacgacgaaaactacgctttagtagcttaataaaaagaaacgacaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataagcttgctgaggatcctaaagccccgaattttttataaattcggggctttttt</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_2/BBa_R0010_annotation_1">
+                        <bioStart>1</bioStart>
+                        <bioEnd>200</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_R0010">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+<displayId>BBa_R0010</displayId>
+<name>BBa_R0010</name>
+<description>promoter (lacI regulated)</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_R0010_sequence">
+        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacaca</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_2/Repressor1_annotation_2">
+                        <bioStart>201</bioStart>
+                        <bioEnd>872</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/BBa_J61120_BBa_C0040">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>BBa_J61120_BBa_C0040</displayId>
+<description>Repressor1</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/BBa_J61120_BBa_C0040_sequence">
+        <nucleotides>aaagacgcgagaatgtccagattagataaaagtaaagtgattaacagcgcattagagctgcttaatgaggtcggaatcgaaggtttaacaacccgtaaactcgcccagaagctaggtgtagagcagcctacattgtattggcatgtaaaaaataagcgggctttgctcgacgccttagccattgagatgttagataggcaccatactcacttttgccctttagaaggggaaagctggcaagattttttacgtaataacgctaaaagttttagatgtgctttactaagtcatcgcgatggagcaaaagtacatttaggtacacggcctacagaaaaacagtatgaaactctcgaaaatcaattagcctttttatgccaacaaggtttttcactagagaatgcattatatgcactcagcgctgtggggcattttactttaggttgcgtattggaagatcaagagcatcaagtcgctaaagaagaaagggaaacacctactactgatagtatgccgccattattacgacaagctatcgaattatttgatcaccaaggtgcagagccagccttcttattcggccttgaattgatcatatgcggattagaaaaacaacttaaatgtgaaagtgggtccgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_2/Repressor1/BBa_J61120_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>12</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61120">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                <displayId>BBa_J61120</displayId>
+                <name>BBa_J61120</name>
+                <description>Ribosome Binding Site Family Member</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61120_sequence">
+                        <nucleotides>aaagacgcgaga</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_2/Repressor1/BBa_C0040_annotation_2">
+        <bioStart>13</bioStart>
+        <bioEnd>672</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_C0040">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>BBa_C0040</displayId>
+                <name>BBa_C0040</name>
+                <description>tetracycline repressor from transposon Tn10 (+LVA)</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_C0040_sequence">
+                        <nucleotides>atgtccagattagataaaagtaaagtgattaacagcgcattagagctgcttaatgaggtcggaatcgaaggtttaacaacccgtaaactcgcccagaagctaggtgtagagcagcctacattgtattggcatgtaaaaaataagcgggctttgctcgacgccttagccattgagatgttagataggcaccatactcacttttgccctttagaaggggaaagctggcaagattttttacgtaataacgctaaaagttttagatgtgctttactaagtcatcgcgatggagcaaaagtacatttaggtacacggcctacagaaaaacagtatgaaactctcgaaaatcaattagcctttttatgccaacaaggtttttcactagagaatgcattatatgcactcagcgctgtggggcattttactttaggttgcgtattggaagatcaagagcatcaagtcgctaaagaagaaagggaaacacctactactgatagtatgccgccattattacgacaagctatcgaattatttgatcaccaaggtgcagagccagccttcttattcggccttgaattgatcatatgcggattagaaaaacaacttaaatgtgaaagtgggtccgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_2/Reporter_annotation_3">
+                        <bioStart>873</bioStart>
+                        <bioEnd>1604</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/BBa_J61130_BBa_E0040">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>BBa_J61130_BBa_E0040</displayId>
+<description>Reporter</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/BBa_J61130_BBa_E0040_sequence">
+        <nucleotides>aaagaaacgacaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_2/Reporter/BBa_J61130_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>12</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61130">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                <displayId>BBa_J61130</displayId>
+                <name>BBa_J61130</name>
+                <description>Ribosome Binding Site Family Member</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61130_sequence">
+                        <nucleotides>aaagaaacgaca</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_2/Reporter/BBa_E0040_annotation_2">
+        <bioStart>13</bioStart>
+        <bioEnd>732</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="urn:0fb4a103-86c4-4d90-8e73-d35ca45b4cf7">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>BBa_E0040</displayId>
+                <name>BBa_E0040</name>
+                <description>green fluorescent protein derived from jellyfish Aequeora victoria wild-type GFP (SwissProt: P42212</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="urn:0fb4a103-86c4-4d90-8e73-d35ca45b4cf7_sequence">
+                        <nucleotides>atgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_2/BBa_J61053_annotation_4">
+                        <bioStart>1605</bioStart>
+                        <bioEnd>1656</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61053">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000141"/>
+<displayId>BBa_J61053</displayId>
+<name>BBa_J61053</name>
+<description>FMN-T1 Terminator</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61053_sequence">
+        <nucleotides>gcttgctgaggatcctaaagccccgaattttttataaattcggggctttttt</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/pIKERightCassette_3">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>pIKERightCassette_3</displayId>
+                <description>pIKERightCassette_3</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/pIKERightCassette_3_sequence">
+                        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacacaaaagaaacgacaatgtccagattagataaaagtaaagtgattaacagcgcattagagctgcttaatgaggtcggaatcgaaggtttaacaacccgtaaactcgcccagaagctaggtgtagagcagcctacattgtattggcatgtaaaaaataagcgggctttgctcgacgccttagccattgagatgttagataggcaccatactcacttttgccctttagaaggggaaagctggcaagattttttacgtaataacgctaaaagttttagatgtgctttactaagtcatcgcgatggagcaaaagtacatttaggtacacggcctacagaaaaacagtatgaaactctcgaaaatcaattagcctttttatgccaacaaggtttttcactagagaatgcattatatgcactcagcgctgtggggcattttactttaggttgcgtattggaagatcaagagcatcaagtcgctaaagaagaaagggaaacacctactactgatagtatgccgccattattacgacaagctatcgaattatttgatcaccaaggtgcagagccagccttcttattcggccttgaattgatcatatgcggattagaaaaacaacttaaatgtgaaagtgggtccgctgcaaacgacgaaaactacgctttagtagcttaataaaaagacgcgagaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataagcttgctgaggatcctaaagccccgaattttttataaattcggggctttttt</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_3/BBa_R0010_annotation_1">
+                        <bioStart>1</bioStart>
+                        <bioEnd>200</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_R0010">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+<displayId>BBa_R0010</displayId>
+<name>BBa_R0010</name>
+<description>promoter (lacI regulated)</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_R0010_sequence">
+        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacaca</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_3/Repressor1_annotation_2">
+                        <bioStart>201</bioStart>
+                        <bioEnd>872</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/BBa_J61130_BBa_C0040">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>BBa_J61130_BBa_C0040</displayId>
+<description>Repressor1</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/BBa_J61130_BBa_C0040_sequence">
+        <nucleotides>aaagaaacgacaatgtccagattagataaaagtaaagtgattaacagcgcattagagctgcttaatgaggtcggaatcgaaggtttaacaacccgtaaactcgcccagaagctaggtgtagagcagcctacattgtattggcatgtaaaaaataagcgggctttgctcgacgccttagccattgagatgttagataggcaccatactcacttttgccctttagaaggggaaagctggcaagattttttacgtaataacgctaaaagttttagatgtgctttactaagtcatcgcgatggagcaaaagtacatttaggtacacggcctacagaaaaacagtatgaaactctcgaaaatcaattagcctttttatgccaacaaggtttttcactagagaatgcattatatgcactcagcgctgtggggcattttactttaggttgcgtattggaagatcaagagcatcaagtcgctaaagaagaaagggaaacacctactactgatagtatgccgccattattacgacaagctatcgaattatttgatcaccaaggtgcagagccagccttcttattcggccttgaattgatcatatgcggattagaaaaacaacttaaatgtgaaagtgggtccgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_3/Repressor1/BBa_J61130_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>12</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61130">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                <displayId>BBa_J61130</displayId>
+                <name>BBa_J61130</name>
+                <description>Ribosome Binding Site Family Member</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61130_sequence">
+                        <nucleotides>aaagaaacgaca</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_3/Repressor1/BBa_C0040_annotation_2">
+        <bioStart>13</bioStart>
+        <bioEnd>672</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_C0040">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>BBa_C0040</displayId>
+                <name>BBa_C0040</name>
+                <description>tetracycline repressor from transposon Tn10 (+LVA)</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_C0040_sequence">
+                        <nucleotides>atgtccagattagataaaagtaaagtgattaacagcgcattagagctgcttaatgaggtcggaatcgaaggtttaacaacccgtaaactcgcccagaagctaggtgtagagcagcctacattgtattggcatgtaaaaaataagcgggctttgctcgacgccttagccattgagatgttagataggcaccatactcacttttgccctttagaaggggaaagctggcaagattttttacgtaataacgctaaaagttttagatgtgctttactaagtcatcgcgatggagcaaaagtacatttaggtacacggcctacagaaaaacagtatgaaactctcgaaaatcaattagcctttttatgccaacaaggtttttcactagagaatgcattatatgcactcagcgctgtggggcattttactttaggttgcgtattggaagatcaagagcatcaagtcgctaaagaagaaagggaaacacctactactgatagtatgccgccattattacgacaagctatcgaattatttgatcaccaaggtgcagagccagccttcttattcggccttgaattgatcatatgcggattagaaaaacaacttaaatgtgaaagtgggtccgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_3/Reporter_annotation_3">
+                        <bioStart>873</bioStart>
+                        <bioEnd>1604</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/BBa_J61120_BBa_E0040">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>BBa_J61120_BBa_E0040</displayId>
+<description>Reporter</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/BBa_J61120_BBa_E0040_sequence">
+        <nucleotides>aaagacgcgagaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_3/Reporter/BBa_J61120_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>12</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61120">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                <displayId>BBa_J61120</displayId>
+                <name>BBa_J61120</name>
+                <description>Ribosome Binding Site Family Member</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61120_sequence">
+                        <nucleotides>aaagacgcgaga</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_3/Reporter/BBa_E0040_annotation_2">
+        <bioStart>13</bioStart>
+        <bioEnd>732</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="urn:0fb4a103-86c4-4d90-8e73-d35ca45b4cf7">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>BBa_E0040</displayId>
+                <name>BBa_E0040</name>
+                <description>green fluorescent protein derived from jellyfish Aequeora victoria wild-type GFP (SwissProt: P42212</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="urn:0fb4a103-86c4-4d90-8e73-d35ca45b4cf7_sequence">
+                        <nucleotides>atgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_3/BBa_J61053_annotation_4">
+                        <bioStart>1605</bioStart>
+                        <bioEnd>1656</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61053">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000141"/>
+<displayId>BBa_J61053</displayId>
+<name>BBa_J61053</name>
+<description>FMN-T1 Terminator</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61053_sequence">
+        <nucleotides>gcttgctgaggatcctaaagccccgaattttttataaattcggggctttttt</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/pIKERightCassette_4">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>pIKERightCassette_4</displayId>
+                <description>pIKERightCassette_4</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/pIKERightCassette_4_sequence">
+                        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacacaaaagaaacgacaatgtccagattagataaaagtaaagtgattaacagcgcattagagctgcttaatgaggtcggaatcgaaggtttaacaacccgtaaactcgcccagaagctaggtgtagagcagcctacattgtattggcatgtaaaaaataagcgggctttgctcgacgccttagccattgagatgttagataggcaccatactcacttttgccctttagaaggggaaagctggcaagattttttacgtaataacgctaaaagttttagatgtgctttactaagtcatcgcgatggagcaaaagtacatttaggtacacggcctacagaaaaacagtatgaaactctcgaaaatcaattagcctttttatgccaacaaggtttttcactagagaatgcattatatgcactcagcgctgtggggcattttactttaggttgcgtattggaagatcaagagcatcaagtcgctaaagaagaaagggaaacacctactactgatagtatgccgccattattacgacaagctatcgaattatttgatcaccaaggtgcagagccagccttcttattcggccttgaattgatcatatgcggattagaaaaacaacttaaatgtgaaagtgggtccgctgcaaacgacgaaaactacgctttagtagcttaataaaaagacgcgagaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataaaacgcatgagaaagcccccggaagatcaccttccgggggcttttttattgcgc</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_4/BBa_R0010_annotation_1">
+                        <bioStart>1</bioStart>
+                        <bioEnd>200</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_R0010">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+<displayId>BBa_R0010</displayId>
+<name>BBa_R0010</name>
+<description>promoter (lacI regulated)</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_R0010_sequence">
+        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacaca</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_4/Repressor1_annotation_2">
+                        <bioStart>201</bioStart>
+                        <bioEnd>872</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/BBa_J61130_BBa_C0040">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>BBa_J61130_BBa_C0040</displayId>
+<description>Repressor1</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/BBa_J61130_BBa_C0040_sequence">
+        <nucleotides>aaagaaacgacaatgtccagattagataaaagtaaagtgattaacagcgcattagagctgcttaatgaggtcggaatcgaaggtttaacaacccgtaaactcgcccagaagctaggtgtagagcagcctacattgtattggcatgtaaaaaataagcgggctttgctcgacgccttagccattgagatgttagataggcaccatactcacttttgccctttagaaggggaaagctggcaagattttttacgtaataacgctaaaagttttagatgtgctttactaagtcatcgcgatggagcaaaagtacatttaggtacacggcctacagaaaaacagtatgaaactctcgaaaatcaattagcctttttatgccaacaaggtttttcactagagaatgcattatatgcactcagcgctgtggggcattttactttaggttgcgtattggaagatcaagagcatcaagtcgctaaagaagaaagggaaacacctactactgatagtatgccgccattattacgacaagctatcgaattatttgatcaccaaggtgcagagccagccttcttattcggccttgaattgatcatatgcggattagaaaaacaacttaaatgtgaaagtgggtccgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_4/Repressor1/BBa_J61130_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>12</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61130">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                <displayId>BBa_J61130</displayId>
+                <name>BBa_J61130</name>
+                <description>Ribosome Binding Site Family Member</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61130_sequence">
+                        <nucleotides>aaagaaacgaca</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_4/Repressor1/BBa_C0040_annotation_2">
+        <bioStart>13</bioStart>
+        <bioEnd>672</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_C0040">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>BBa_C0040</displayId>
+                <name>BBa_C0040</name>
+                <description>tetracycline repressor from transposon Tn10 (+LVA)</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_C0040_sequence">
+                        <nucleotides>atgtccagattagataaaagtaaagtgattaacagcgcattagagctgcttaatgaggtcggaatcgaaggtttaacaacccgtaaactcgcccagaagctaggtgtagagcagcctacattgtattggcatgtaaaaaataagcgggctttgctcgacgccttagccattgagatgttagataggcaccatactcacttttgccctttagaaggggaaagctggcaagattttttacgtaataacgctaaaagttttagatgtgctttactaagtcatcgcgatggagcaaaagtacatttaggtacacggcctacagaaaaacagtatgaaactctcgaaaatcaattagcctttttatgccaacaaggtttttcactagagaatgcattatatgcactcagcgctgtggggcattttactttaggttgcgtattggaagatcaagagcatcaagtcgctaaagaagaaagggaaacacctactactgatagtatgccgccattattacgacaagctatcgaattatttgatcaccaaggtgcagagccagccttcttattcggccttgaattgatcatatgcggattagaaaaacaacttaaatgtgaaagtgggtccgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_4/Reporter_annotation_3">
+                        <bioStart>873</bioStart>
+                        <bioEnd>1604</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/BBa_J61120_BBa_E0040">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>BBa_J61120_BBa_E0040</displayId>
+<description>Reporter</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/BBa_J61120_BBa_E0040_sequence">
+        <nucleotides>aaagacgcgagaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_4/Reporter/BBa_J61120_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>12</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61120">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                <displayId>BBa_J61120</displayId>
+                <name>BBa_J61120</name>
+                <description>Ribosome Binding Site Family Member</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61120_sequence">
+                        <nucleotides>aaagacgcgaga</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_4/Reporter/BBa_E0040_annotation_2">
+        <bioStart>13</bioStart>
+        <bioEnd>732</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="urn:0fb4a103-86c4-4d90-8e73-d35ca45b4cf7">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>BBa_E0040</displayId>
+                <name>BBa_E0040</name>
+                <description>green fluorescent protein derived from jellyfish Aequeora victoria wild-type GFP (SwissProt: P42212</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="urn:0fb4a103-86c4-4d90-8e73-d35ca45b4cf7_sequence">
+                        <nucleotides>atgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pIKERightCassette_4/ECK120033736_annotation_4">
+                        <bioStart>1605</bioStart>
+                        <bioEnd>1657</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/parts/ECK120033736">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000141"/>
+<displayId>ECK120033736</displayId>
+<name>ECK120033736</name>
+<description>Terminator</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/parts/ECK120033736_sequence">
+        <nucleotides>aacgcatgagaaagcccccggaagatcaccttccgggggcttttttattgcgc</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/pTAKRightCassette_1">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>pTAKRightCassette_1</displayId>
+                <description>pTAKRightCassette_1</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/pTAKRightCassette_1_sequence">
+                        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacacaaaagacgcgagaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataaaaagaaacgacaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataaaacgcatgagaaagcccccggaagatcaccttccgggggcttttttattgcgc</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_1/BBa_R0010_annotation_1">
+                        <bioStart>1</bioStart>
+                        <bioEnd>200</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_R0010">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+<displayId>BBa_R0010</displayId>
+<name>BBa_R0010</name>
+<description>promoter (lacI regulated)</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_R0010_sequence">
+        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacaca</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_1/Repressor1_annotation_2">
+                        <bioStart>201</bioStart>
+                        <bioEnd>962</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/BBa_J61120_BBa_C0051">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>BBa_J61120_BBa_C0051</displayId>
+<description>Repressor1</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/BBa_J61120_BBa_C0051_sequence">
+        <nucleotides>aaagacgcgagaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_1/Repressor1/BBa_J61120_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>12</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61120">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                <displayId>BBa_J61120</displayId>
+                <name>BBa_J61120</name>
+                <description>Ribosome Binding Site Family Member</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61120_sequence">
+                        <nucleotides>aaagacgcgaga</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_1/Repressor1/BBa_C0051_annotation_2">
+        <bioStart>13</bioStart>
+        <bioEnd>762</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_C0051">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>BBa_C0051</displayId>
+                <name>BBa_C0051</name>
+                <description>cI repressor from E. coli phage lambda (+LVA)</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_C0051_sequence">
+                        <nucleotides>atgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_1/Reporter_annotation_3">
+                        <bioStart>963</bioStart>
+                        <bioEnd>1694</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/BBa_J61130_BBa_E0040">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>BBa_J61130_BBa_E0040</displayId>
+<description>Reporter</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/BBa_J61130_BBa_E0040_sequence">
+        <nucleotides>aaagaaacgacaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_1/Reporter/BBa_J61130_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>12</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61130">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                <displayId>BBa_J61130</displayId>
+                <name>BBa_J61130</name>
+                <description>Ribosome Binding Site Family Member</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61130_sequence">
+                        <nucleotides>aaagaaacgaca</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_1/Reporter/BBa_E0040_annotation_2">
+        <bioStart>13</bioStart>
+        <bioEnd>732</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="urn:0fb4a103-86c4-4d90-8e73-d35ca45b4cf7">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>BBa_E0040</displayId>
+                <name>BBa_E0040</name>
+                <description>green fluorescent protein derived from jellyfish Aequeora victoria wild-type GFP (SwissProt: P42212</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="urn:0fb4a103-86c4-4d90-8e73-d35ca45b4cf7_sequence">
+                        <nucleotides>atgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_1/ECK120033736_annotation_4">
+                        <bioStart>1695</bioStart>
+                        <bioEnd>1747</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/parts/ECK120033736">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000141"/>
+<displayId>ECK120033736</displayId>
+<name>ECK120033736</name>
+<description>Terminator</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/parts/ECK120033736_sequence">
+        <nucleotides>aacgcatgagaaagcccccggaagatcaccttccgggggcttttttattgcgc</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/pTAKRightCassette_2">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>pTAKRightCassette_2</displayId>
+                <description>pTAKRightCassette_2</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/pTAKRightCassette_2_sequence">
+                        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacacaaaagacgcgagaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataaaaagaaacgacaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataagcttgctgaggatcctaaagccccgaattttttataaattcggggctttttt</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_2/BBa_R0010_annotation_1">
+                        <bioStart>1</bioStart>
+                        <bioEnd>200</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_R0010">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+<displayId>BBa_R0010</displayId>
+<name>BBa_R0010</name>
+<description>promoter (lacI regulated)</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_R0010_sequence">
+        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacaca</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_2/Repressor1_annotation_2">
+                        <bioStart>201</bioStart>
+                        <bioEnd>962</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/BBa_J61120_BBa_C0051">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>BBa_J61120_BBa_C0051</displayId>
+<description>Repressor1</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/BBa_J61120_BBa_C0051_sequence">
+        <nucleotides>aaagacgcgagaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_2/Repressor1/BBa_J61120_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>12</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61120">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                <displayId>BBa_J61120</displayId>
+                <name>BBa_J61120</name>
+                <description>Ribosome Binding Site Family Member</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61120_sequence">
+                        <nucleotides>aaagacgcgaga</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_2/Repressor1/BBa_C0051_annotation_2">
+        <bioStart>13</bioStart>
+        <bioEnd>762</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_C0051">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>BBa_C0051</displayId>
+                <name>BBa_C0051</name>
+                <description>cI repressor from E. coli phage lambda (+LVA)</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_C0051_sequence">
+                        <nucleotides>atgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_2/Reporter_annotation_3">
+                        <bioStart>963</bioStart>
+                        <bioEnd>1694</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/BBa_J61130_BBa_E0040">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>BBa_J61130_BBa_E0040</displayId>
+<description>Reporter</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/BBa_J61130_BBa_E0040_sequence">
+        <nucleotides>aaagaaacgacaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_2/Reporter/BBa_J61130_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>12</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61130">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                <displayId>BBa_J61130</displayId>
+                <name>BBa_J61130</name>
+                <description>Ribosome Binding Site Family Member</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61130_sequence">
+                        <nucleotides>aaagaaacgaca</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_2/Reporter/BBa_E0040_annotation_2">
+        <bioStart>13</bioStart>
+        <bioEnd>732</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="urn:0fb4a103-86c4-4d90-8e73-d35ca45b4cf7">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>BBa_E0040</displayId>
+                <name>BBa_E0040</name>
+                <description>green fluorescent protein derived from jellyfish Aequeora victoria wild-type GFP (SwissProt: P42212</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="urn:0fb4a103-86c4-4d90-8e73-d35ca45b4cf7_sequence">
+                        <nucleotides>atgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_2/BBa_J61053_annotation_4">
+                        <bioStart>1695</bioStart>
+                        <bioEnd>1746</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61053">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000141"/>
+<displayId>BBa_J61053</displayId>
+<name>BBa_J61053</name>
+<description>FMN-T1 Terminator</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61053_sequence">
+        <nucleotides>gcttgctgaggatcctaaagccccgaattttttataaattcggggctttttt</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/pTAKRightCassette_3">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>pTAKRightCassette_3</displayId>
+                <description>pTAKRightCassette_3</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/pTAKRightCassette_3_sequence">
+                        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacacaaaagaaacgacaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataaaaagacgcgagaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataaaacgcatgagaaagcccccggaagatcaccttccgggggcttttttattgcgc</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_3/BBa_R0010_annotation_1">
+                        <bioStart>1</bioStart>
+                        <bioEnd>200</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_R0010">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+<displayId>BBa_R0010</displayId>
+<name>BBa_R0010</name>
+<description>promoter (lacI regulated)</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_R0010_sequence">
+        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacaca</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_3/Repressor1_annotation_2">
+                        <bioStart>201</bioStart>
+                        <bioEnd>962</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/BBa_J61130_BBa_C0051">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>BBa_J61130_BBa_C0051</displayId>
+<description>Repressor1</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/BBa_J61130_BBa_C0051_sequence">
+        <nucleotides>aaagaaacgacaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_3/Repressor1/BBa_J61130_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>12</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61130">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                <displayId>BBa_J61130</displayId>
+                <name>BBa_J61130</name>
+                <description>Ribosome Binding Site Family Member</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61130_sequence">
+                        <nucleotides>aaagaaacgaca</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_3/Repressor1/BBa_C0051_annotation_2">
+        <bioStart>13</bioStart>
+        <bioEnd>762</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_C0051">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>BBa_C0051</displayId>
+                <name>BBa_C0051</name>
+                <description>cI repressor from E. coli phage lambda (+LVA)</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_C0051_sequence">
+                        <nucleotides>atgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_3/Reporter_annotation_3">
+                        <bioStart>963</bioStart>
+                        <bioEnd>1694</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/BBa_J61120_BBa_E0040">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>BBa_J61120_BBa_E0040</displayId>
+<description>Reporter</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/BBa_J61120_BBa_E0040_sequence">
+        <nucleotides>aaagacgcgagaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_3/Reporter/BBa_J61120_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>12</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61120">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                <displayId>BBa_J61120</displayId>
+                <name>BBa_J61120</name>
+                <description>Ribosome Binding Site Family Member</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61120_sequence">
+                        <nucleotides>aaagacgcgaga</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_3/Reporter/BBa_E0040_annotation_2">
+        <bioStart>13</bioStart>
+        <bioEnd>732</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="urn:0fb4a103-86c4-4d90-8e73-d35ca45b4cf7">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>BBa_E0040</displayId>
+                <name>BBa_E0040</name>
+                <description>green fluorescent protein derived from jellyfish Aequeora victoria wild-type GFP (SwissProt: P42212</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="urn:0fb4a103-86c4-4d90-8e73-d35ca45b4cf7_sequence">
+                        <nucleotides>atgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_3/ECK120033736_annotation_4">
+                        <bioStart>1695</bioStart>
+                        <bioEnd>1747</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/parts/ECK120033736">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000141"/>
+<displayId>ECK120033736</displayId>
+<name>ECK120033736</name>
+<description>Terminator</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/parts/ECK120033736_sequence">
+        <nucleotides>aacgcatgagaaagcccccggaagatcaccttccgggggcttttttattgcgc</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/pTAKRightCassette_4">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>pTAKRightCassette_4</displayId>
+                <description>pTAKRightCassette_4</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://www.eugenecad.org/pTAKRightCassette_4_sequence">
+                        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacacaaaagaaacgacaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataaaaagacgcgagaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataagcttgctgaggatcctaaagccccgaattttttataaattcggggctttttt</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_4/BBa_R0010_annotation_1">
+                        <bioStart>1</bioStart>
+                        <bioEnd>200</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_R0010">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+<displayId>BBa_R0010</displayId>
+<name>BBa_R0010</name>
+<description>promoter (lacI regulated)</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_R0010_sequence">
+        <nucleotides>caatacgcaaaccgcctctccccgcgcgttggccgattcattaatgcagctggcacgacaggtttcccgactggaaagcgggcagtgagcgcaacgcaattaatgtgagttagctcactcattaggcaccccaggctttacactttatgcttccggctcgtatgttgtgtggaattgtgagcggataacaatttcacaca</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_4/Repressor1_annotation_2">
+                        <bioStart>201</bioStart>
+                        <bioEnd>962</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/BBa_J61130_BBa_C0051">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>BBa_J61130_BBa_C0051</displayId>
+<description>Repressor1</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/BBa_J61130_BBa_C0051_sequence">
+        <nucleotides>aaagaaacgacaatgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_4/Repressor1/BBa_J61130_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>12</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61130">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                <displayId>BBa_J61130</displayId>
+                <name>BBa_J61130</name>
+                <description>Ribosome Binding Site Family Member</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61130_sequence">
+                        <nucleotides>aaagaaacgaca</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_4/Repressor1/BBa_C0051_annotation_2">
+        <bioStart>13</bioStart>
+        <bioEnd>762</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_C0051">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>BBa_C0051</displayId>
+                <name>BBa_C0051</name>
+                <description>cI repressor from E. coli phage lambda (+LVA)</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_C0051_sequence">
+                        <nucleotides>atgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatcccaggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgcaaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagtgagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaaccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaattctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggtcaggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaagagacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_4/Reporter_annotation_3">
+                        <bioStart>963</bioStart>
+                        <bioEnd>1694</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/BBa_J61120_BBa_E0040">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>BBa_J61120_BBa_E0040</displayId>
+<description>Reporter</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/BBa_J61120_BBa_E0040_sequence">
+        <nucleotides>aaagacgcgagaatgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_4/Reporter/BBa_J61120_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>12</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61120">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                <displayId>BBa_J61120</displayId>
+                <name>BBa_J61120</name>
+                <description>Ribosome Binding Site Family Member</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61120_sequence">
+                        <nucleotides>aaagacgcgaga</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_4/Reporter/BBa_E0040_annotation_2">
+        <bioStart>13</bioStart>
+        <bioEnd>732</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="urn:0fb4a103-86c4-4d90-8e73-d35ca45b4cf7">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>BBa_E0040</displayId>
+                <name>BBa_E0040</name>
+                <description>green fluorescent protein derived from jellyfish Aequeora victoria wild-type GFP (SwissProt: P42212</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="urn:0fb4a103-86c4-4d90-8e73-d35ca45b4cf7_sequence">
+                        <nucleotides>atgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/pTAKRightCassette_4/BBa_J61053_annotation_4">
+                        <bioStart>1695</bioStart>
+                        <bioEnd>1746</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://partsregistry.org/part/BBa_J61053">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000141"/>
+<displayId>BBa_J61053</displayId>
+<name>BBa_J61053</name>
+<description>FMN-T1 Terminator</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://partsregistry.org/part/BBa_J61053_sequence">
+        <nucleotides>gcttgctgaggatcctaaagccccgaattttttataaattcggggctttttt</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+    </Collection>
+</ns2:RDF>

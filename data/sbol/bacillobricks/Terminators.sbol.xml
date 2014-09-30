@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:RDF xmlns="http://sbols.org/v1#" xmlns:ns2="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4257">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4257</displayId>
+        <name>yvjA-cccB_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4257/NA">
+                <nucleotides>gtaagataaaaacatccttgccgagtgctggcaaggatgtttttatgccttgac</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4259">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4259</displayId>
+        <name>spoIIIE_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4259/NA">
+                <nucleotides>gaaatatgatgagctctcttcttaatgaagggagttccgctttctatagttgtca</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4261">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4261</displayId>
+        <name>yhfL_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4261/NA">
+                <nucleotides>aataaaatgaaaaagcgaagcggttagcttcgctttttcattttcaat</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4263">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4263</displayId>
+        <name>ykuFG_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4263/NA">
+                <nucleotides>gaataaactgcaaaacaagcgaacgttaaaactggtcgttcgcttgttttattttctattt</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4265">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4265</displayId>
+        <name>fabHB_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4265/NA">
+                <nucleotides>gggggatgtaacaaaaaaagaacttgtttccaaggaaacaagttctttttctttatgaag</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4267">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4267</displayId>
+        <name>fabI_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4267/NA">
+                <nucleotides>atctatatcaagcaatcccgaatagggattgcttttttatttcttct</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4269">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4269</displayId>
+        <name>fapR-plsX-fabDG_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4269/NA">
+                <nucleotides>ggcggaatggtgatgtaagttttttctcgaaaatttcatcgtagtttctctagtttttt</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4271">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4271</displayId>
+        <name>fabHAF_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4271/NA">
+                <nucleotides>atcaatcataatcaagccaaaccggctgcccttaaagggtagccggttttttttgtgtgca</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4273">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4273</displayId>
+        <name>purT_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4273/NA">
+                <nucleotides>aatagagtttgaacaggtcttgtcatgggacaaggcctgtttttttctttctcc</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4275">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4275</displayId>
+        <name>dnaAN_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4275/NA">
+                <nucleotides>acactgctgccgacccgtcggcagcttttctattcggtat</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4277">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4277</displayId>
+        <name>yaaA-recF-yaaB-gyrB_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4277/NA">
+                <nucleotides>aaaaagccttatttccaataagaaataaggcttttttctgaacaag</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4279">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4279</displayId>
+        <name>gyrA_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4279/NA">
+                <nucleotides>aaaaagcgcagctgaaatagctgcgcttttttgtgtcataa</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4281">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4281</displayId>
+        <name>rrnO-16S-trnO-Ile-trnO-Ala-rrnO-23S-rrnO-5S_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4281/NA">
+                <nucleotides>ttaaacccagctcaatgagctgggttttttgtttgttaa</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4283">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4283</displayId>
+        <name>guaB_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4283/NA">
+                <nucleotides>catttgacagggtctctgactctgtctattttttttatactga</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4285">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4285</displayId>
+        <name>yaaDE_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4285/NA">
+                <nucleotides>cgcgagagctctcgtccctttatggggatgagggctctttttattttcgata</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4287">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4287</displayId>
+        <name>dgk-dck_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4287/NA">
+                <nucleotides>aaaaagtgaatctcagtcgagattcactttttctttaaaata</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4289">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4289</displayId>
+        <name>yaaH_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4289/NA">
+                <nucleotides>aaaaagacgtttcgataatttggaaacgtctttttttcatggggg</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4291">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4291</displayId>
+        <name>yaaJ-scr_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4291/NA">
+                <nucleotides>tcagactcacctaatattaggtgagttttttgttatgtaa</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4294">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4294</displayId>
+        <name>rrnA-16S-trnA-Ile-trnA-Ala-rrnA-23S-rrnA-5S_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4294/NA">
+                <nucleotides>ttaaacccagcttaatgagctgggttttttgtttactca</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4296">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4296</displayId>
+        <name>csfB_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4296/NA">
+                <nucleotides>tcatagacctgaaaaggtctttttttgtactctt</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4299">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4299</displayId>
+        <name>abrB_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4299/NA">
+                <nucleotides>aaaaacgttcttgttatgacacaagaacgtttttttattgctta</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4301">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4301</displayId>
+        <name>metS_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4301/NA">
+                <nucleotides>caaaaggtgtttcacgtgtaacaattcgtcgaacaccttttgtgtttcgaca</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4303">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4303</displayId>
+        <name>yabE_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4303/NA">
+                <nucleotides>gtattcagagggttttgcgccctctgtttttttcgttataa</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4305">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4305</displayId>
+        <name>rnmV-ksgA_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4305/NA">
+                <nucleotides>ataaagcccttttctaaaagggctttttgttttgcgca</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4307">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4307</displayId>
+        <name>yabG_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4307/NA">
+                <nucleotides>gaaaacctgcataggagagctatgcgggttttttattttacat</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4309">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4309</displayId>
+        <name>veg_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4309/NA">
+                <nucleotides>aacgggcagtgaaccttttgtttactgctttttgttttgccct</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4311">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4311</displayId>
+        <name>sspF_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4311/NA">
+                <nucleotides>gtgacccgggggacgtgctgttccctggtttttttattttgga</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4313">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4313</displayId>
+        <name>purR-yabJ_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4313/NA">
+                <nucleotides>gaaaagtgattctgggagagccgggatcacttttttatttacctt</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4315">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4315</displayId>
+        <name>spoVG_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4315/NA">
+                <nucleotides>agcaaggactgctgaaagggctgacataagccttttgccggcggtccttttttaattctgat</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4317">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4317</displayId>
+        <name>gcaD-prs-ctc_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4317/NA">
+                <nucleotides>cttaaggcgtaaccctcccgcggttacgtcttttgtgctagaatg</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4319">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4319</displayId>
+        <name>spoVT_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4319/NA">
+                <nucleotides>gtaaagaacagctctccttgggacgctgttctttttcatgcgtgcc</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4321">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4321</displayId>
+        <name>yabMNOPQ-divIC-yabR_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4321/NA">
+                <nucleotides>atgaagcatccgttcatcccgacggatgcttttttattatcctc</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4323">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4323</displayId>
+        <name>trnSL-Glu1_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4323/NA">
+                <nucleotides>acaaatcggtttctcttgcagaagccgatttttttcattttta</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4326">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4326</displayId>
+        <name>ftsH_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4326/NA">
+                <nucleotides>aaaaactgccggctgacgctggcagtttttttatgtaaat</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4328">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4328</displayId>
+        <name>cysK_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4328/NA">
+                <nucleotides>caaaactcccggttcgccgggagtttttttatatttcg</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4330">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4330</displayId>
+        <name>pabBAC-sul-folBK-yazB-yacF-lysS_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4330/NA">
+                <nucleotides>aaaaagagcggtatcctccatagggaaaggatgccgctctttttaaatccctta</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4331">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4331</displayId>
+        <name>pabBAC-sul-folBK-yazB-yacF-lysS_terminator2</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4331/NA">
+                <nucleotides>gctcactgctagttttacgctggcagtttttctgctttttt</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4333">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4333</displayId>
+        <name>ctsR-mcsAB-clpC-radA-yacK_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4333/NA">
+                <nucleotides>taaaaccttatgaatacgggtatattaatgttggtttttgtttattctg</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4336">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4336</displayId>
+        <name>gltX-cysES-yazC-yacOP_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4336/NA">
+                <nucleotides>ttaaagcgtctctgtcatgtttacatgcagagacgctttttttattgggta</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4340">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4340</displayId>
+        <name>ybaK-cwlD_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4340/NA">
+                <nucleotides>ggagaccctccggagtaatggagggttttcttgtggttct</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4342">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4342</displayId>
+        <name>gerD_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4342/NA">
+                <nucleotides>ataaagggaaagccgggatctggaatcccggttcaccttttatacctgcact</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4344">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4344</displayId>
+        <name>ybaN_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4344/NA">
+                <nucleotides>caaatgttttcttagaggactgcttttgctttatataa</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4346">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4346</displayId>
+        <name>feuABC-ybbA_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4346/NA">
+                <nucleotides>aaaaaccgctcaaccctatgagcggtttttttatgccttc</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4349">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4349</displayId>
+        <name>trnSL-Glu2-trnSL-Val1-trnSL-Thr1-trnSL-Tyr1-trnSL-Gln2_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4349/NA">
+                <nucleotides>tcacagacacctttgatcaaaaggtgtcttttttcttttcgga</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4351">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4351</displayId>
+        <name>sigW-ybbM_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4351/NA">
+                <nucleotides>gagaagagtaaagcgcgttagccgctttgctctttttttgcgggctg</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4354">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4354</displayId>
+        <name>adaAB_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4354/NA">
+                <nucleotides>gtgaagccgacaattttcaggattcaatgatctaacataatcattgaaattttgaagttgtcggcttttttgttggaaaa</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4356">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4356</displayId>
+        <name>ybcL_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4356/NA">
+                <nucleotides>tctaacatccgctcgttatacaagcgggtgttttttttagcgtag</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4358">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4358</displayId>
+        <name>skf_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4358/NA">
+                <nucleotides>taacatttgagaatagggagttgagcgtatttgcttatactccttattttctcttaag</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4359">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4359</displayId>
+        <name>skf_terminator2</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4359/NA">
+                <nucleotides>atgaaacggtccttcctataagcaggaaggttttttaatgaaata</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_4362">
+        <ns2:type ns2:resource="http://purl.org/obo/owl/SO#SO_0000614"/>
+        <displayId>BO_4362</displayId>
+        <name>ybdO_terminator</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_4362/NA">
+                <nucleotides>ttaggtaagctgttcatgtaggacagcttattttttatgagaatc</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+</ns2:RDF>

@@ -1,0 +1,24 @@
+/*
+ * assignments of constants
+ */
+num i = 3;
+println (i);
+
+txt s = "Hello DNA!";
+println (s);
+
+txt[] sa = ["A", "T", "C", "G"];
+println (sa);
+
+num[] ia = [1, 2, 3.1415962, -1];
+println (ia);
+
+boolean b = true;
+println (b);
+
+
+println(ia[0], ia[1], ia[2], ia[3]); 
+println(ia[0], "; ", ia[1], "; ", ia[2], "; ", ia[3]); 
+
+
+

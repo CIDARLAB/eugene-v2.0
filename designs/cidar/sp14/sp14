@@ -1,0 +1,63 @@
+//PSDD Senior Project
+//pConstitutive Coexpression Devices
+
+Property name(txt);
+Property description(txt);
+Property direction(txt);
+Property antibiotic(txt);	
+Property Pigeon(txt);
+//Antibiotic resistance, CAM = chloramphenicol, KAN = kanamycin, AMP = ampicillin
+
+//Basic Level 0 Parts
+PartType promoter(name, description);
+promoter J23104_AB("J23104_AB", "Constitutive Anderson promoter with AB fusion sites");
+promoter J23104_EB("J23104_EB", "Constitutive Anderson promoter with EB fusion sites");
+
+PartType RBS(name, description);
+RBS BCD2_BC("BCD2_BC", "Bicistronic design 5' untranslated region");
+
+PartType CDS(name, description);
+CDS E1010m_CD("E1010m_CD", "Red fluorescent protein modified for restriction sites");
+CDS E0040m_CD("E0040m_CD", "Green fluorescent protein modified for restriction sites");
+
+PartType terminator(name, description);
+terminator B0015_DE("B0015_DE", "Double terminator with DE fusion sites");
+terminator B0015_DF("B0015_DF", "Double terminator with DF fusion sites");
+
+PartType destinationVector(name, antibiotic, description, Pigeon);
+destinationVector  DVL0("DVL0", "CAM", "Level 0 destination vector restriction digested to remove fusion sites", "v DVL0 14");
+destinationVector  DVL1_AE("DVL1_AE", "KAN", "Level 1 destination vector with AE fusion sites", "v DVL1_AE 14");
+destinationVector  DVL1_EF("DVL1_EF", "KAN", "Level 1 destination vector with EF fusion sites", "v DVL1_EF 14");
+destinationVector  DVL2_AF("DVL2_AF", "AMP", "Level 2 destination vector with AF fusion sites", "v DVL2_AF 14");
+destinationVector  DVL2("DVL2", "AMP", "Level 2 destination vector restriction digested to remove fusion sites", "v DVL2 14");
+
+//All Level 1 Devices
+Device Level1s_EB (promoter, RBS, CDS, terminator, destinationVector);
+Rule r1_EB(
+	ON Level1s_EB:
+		J23104_EB WITH B0015_DF
+		);
+		
+Level1LibList_EB=product(Level1s_EB); 
+//pigeon(Level1LibList);
+
+Device Level1s_AB (promoter, RBS, CDS, terminator, destinationVector);
+Rule r1_AB(
+	ON Level1s_AB:
+		J23104_AB WITH B0015_DE
+		);
+		
+Level1LibList_AB=product(Level1s_AB); 
+
+
+lst = Level1LibList_EB + Level1LibList_AB;
+println(lst);
+
+
+
+/**
+//Devices
+//Level 1 Transcriptional Units
+pJ04B2Rm_AE(promoter, RBS, CDS, terminator, destinationVector);
+
+**/

@@ -1,0 +1,35 @@
+package org.cidarlab.eugene.dom
+
+//global java.util.List results;
+import org.cidarlab.eugene.dom.*;
+
+	//eval ( $Promoter_strength == 5.0)
+
+	//$ret : Component (name == $Promoter.name)
+
+rule "r04"
+when
+then
+    System.out.println("component");
+end
+
+query r01
+
+	$Promoter_1406929119107556000: Component( type == "Promoter", propertyValues["numList"] != null, $Promoter_numList: propertyValues["numList"].numList,
+		$Promoter_numList not contains 5.0  )
+
+	$ret : Component (name == $Promoter_1406929119107556000.name)
+end
+
+
+query r02 
+	$1407091561428544000: Component( propertyValues["txtLst"] != null, propertyValues["txtLst"].txtList != null, propertyValues["txtLst"].txtList.length >= 0, $txtLst_0: propertyValues["txtLst"].txtList[0] )
+
+	eval ( $txtLst_0 == "A" )
+
+	$ret : Component (name == $1407091561428544000.name)
+end
+
+query r03
+	$1408117656192042000: Component( propertyValues["prop1"] != null, propertyValues["prop1"].txt != null, $prop1 : propertyValues["prop1"].txt, propertyValues["prop2"] != null, propertyValues["prop2"].num != null, $prop2 : propertyValues["prop2"].num, ($prop1 == "0" || $prop2 == 9.0) )
+end

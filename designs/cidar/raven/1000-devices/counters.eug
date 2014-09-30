@@ -1,0 +1,113 @@
+//PART PROPERTIES
+Property Name(txt);
+Property Sequence(txt);
+Property Left_Overhang(txt);
+Property Right_Overhang(txt);
+Property Type(txt);
+Property Resistance(txt);
+Property Level(txt);
+Property Pigeon(txt);
+
+//PART TYPES
+Part Terminator(Name, Sequence, Pigeon);
+Part Reporter(Name, Sequence, Pigeon);
+Part Promoter(Name, Sequence, Pigeon);
+Part Gene(Name, Sequence, Pigeon);
+Part InvertaseSite(Name, Sequence, Pigeon);
+Part RBS(Name, Sequence, Pigeon);
+
+//PARTS
+/**
+Promoter pT3(.Name("T3"), 
+	.Sequence("TCTCCCTTTAGTGAGGGTTAAT"), 
+	.Pigeon("p T3 1"));
+Promoter pT7(.Name("T7"), 
+	.Sequence("TAATACGACTCACTATAGGGAGA"), 
+	.Pigeon("p T7 2"));
+ **/
+ 	
+Promoter pBAD(.Name("pBAD"), 
+	.Sequence("acattgattatttgcacggcgtcacactttgctatgccatagcatttttatccataagattagcggatcctacctgacgctttttatcgcaactctctactgtttctccatacccgtttttttgggctagc"), 
+	.Pigeon("p pBAD 3"));
+Promoter pTet(.Name("pTet"), 
+	.Sequence("tccctatcagtgatagagattgacatccctatcagtgatagagatactgagcac"), 
+	.Pigeon("p pTet 5"));
+Promoter pA1lacO(.Name("pA1lacO"), 
+	.Sequence("tgtgtgaaattgttatccgctcacaattgaatctaagtatcattgttatccgctcacaagtcaacactctttttgataaatttt"), 
+	.Pigeon("p pA1lacO 7"));
+
+InvertaseSite FRT(.Name("FRT"), 
+	.Sequence("atata"), 
+	.Pigeon("> FRT 8"));	
+
+InvertaseSite loxP(.Name("loxPf"), 
+	.Sequence("ataacttcgtataatgtatgctatacgaagttat"), 
+	.Pigeon("> loxP 9"));
+
+// matching Invertase sites
+FRT MATCHES FRT;
+loxP MATCHES loxP;
+
+RBS rbs1(.Pigeon("r rbs1 10"));
+RBS rbs2(.Pigeon("r rbs2 10"));
+RBS rbs3(.Pigeon("r rbs3 10"));
+
+Gene flpe(.Name("flpe"), 
+	.Sequence("GATATATTATGTAAAACACCACCTAAGGTCCTGGTTCGTCAGTTTGTGGAAAGGTTTGAAAGACCTTCAGGGGAAAAAATAGCATCATGTGCTGCTGAACTAACCTATTTATGTTGGATGATTACTCATAACGGAACAGCAATCAAGAGAGCCACATTCATGAGCTATAATACTATCATAAGCAATTCGCTGAGTTTCGATATTGTCAACAAATCACTCCAGTTTAAATACAAGACGCAAAAAGCAACAATTCTGGAAGCCTCATTAAAGAAATTAATTCCTGCTTGGGAATTTACAATTATTCCTTACAATGGACAAAAACATCAATCTGATATCACTGATATTGTAAGTAGTTTGCAATTACAGTTCGAATCATCGGAAGAAGCAGATAAGGGAAATAGCCACAGTAAAAAAATGCTTAAAGCACTTCTAAGTGAGGGTGAAAGCATCTGGGAGATCACTGAGAAAATACTAAATTCGTTTGAGTATACCTCGAGATTTACAAAAACAAAAACTTTATACCAATTCCTCTTCCTAGCTACTTTCATCAATTGTGGAAGATTCAGCGATATTAAGAACGTTGATCCGAAATCATTTAAATTAGTCCAAAATAAGTATCTGGGAGTAATAATCCAGTGTTTAGTGACAGAGACAAAGACAAGCGTTAGTAGGCACATATACTTCTTTAGCGCAAGGGGTAGGATCGATCCACTTGTATATTTGGATGAATTTTTGAGGAACTCTGAACCAGTCCTAAAACGAGTAAATAGGACCGGCAATTCTTCAAGCAACAAACAGGAATACCAATTATTAAAAGATAACTTAGTCAGATCGTACAACAAGGCTTTGAAGAAAAATGCGCCTTATCCAATCTTTGCTATAAAGAATGGCCCAAAATCTCACATTGGAAGACATTTGATGACCTCATTTCTGTCAATGAAGGGCCTAACGGAGTTGACTAATGTTGTGGGAAATTGGAGCGATAAGCGTGCTTCTGCCGTGGCCAGGACAACGTATACTCATCAGATAACAGCAATACCTGATCACTACTTCGCACTAGTTTCTCGGTACTATGCATATGATCCAATATCAAAGGAAATGATAGCATTGAAGGATGAGACTAATCCAATTGAGGAGTGGCAGCATATAGAACAGCTAAAGGGTAGTGCTGAAGGAAGCATACGATACCCCGCATGGAATGGGATAATATCACAGGAGGTACTAGACTACCTTTCATCCTACATAAAT"),
+	.Pigeon("c flpe 5"));
+Gene cre(.Name("cre"), 
+	.Sequence("ctgaccgtacaccaaaatttgcctgcattaccggtcgatgcaacgagtgatgaggttcgcaagaacctgatggacatgttcagggatcgccaggcgttttctgagcatacctggaaaatgcttctgtccgtttgccggtcgtgggcggcatggtgcaagttgaataaccggaaatggtttcccgcagaacctgaagatgttcgcgattatcttctatatcttcaggcgcgcggtctggcagtaaaaactatccagcaacatttgggccagctaaacatgcttcatcgtcggtccgggctgccacgaccaagtgacagcaatgctgtttcactggttatgcggcggatccgaaaagaaaacgttgatgccggtgaacgtgcaaaacaggctctagcgttcgaacgcactgatttcgaccaggttcgttcactcatggaaaatagcgatcgctgccaggatatacgtaatctggcatttctggggattgcttataacaccctgttacgtatagccgaaattgccaggatcagggttaaagatatctcacgtactgacggtgggagaatgttaatccatattggcagaacgaaaacgctggttagcaccgcaggtgtagagaaggcacttagcctgggggtaactaaactggtcgagcgatggatttccgtctctggtgtagctgatgatccgaataactacctgttttgccgggtcagaaaaaatggtgttgccgcgccatctgccaccagccagctatcaactcgcgccctggaagggatttttgaagcaactcatcgattgatttacggcgctaaggatgactctggtcagagatacctggcctggtctggacacagtgcccgtgtcggagccgcgcgagatatggcccgcgctggagtttcaataccggagatcatgcaagctggtggctggaccaatgtaaatattgtcatgaactatatccgtaacctggatagtgaaacaggggcaatggtgcgcctgctggaagatggcgattag"),
+	.Pigeon("c cre 5"));
+
+Reporter gfp(.Name("gfp"), 
+	.Sequence("ATGCGTAAAGGAGAAGAACTTTTCACTGGAGTTGTCCCAATTCTTGTTGAATTAGATGGTGATGTTAATGGGCACAAATTTTCTGTCAGTGGAGAGGGTGAAGGTGATGCAACATACGGAAAACTTACCCTTAAATTTATTTGCACTACTGGAAAACTACCTGTTCCATGGCCAACACTTGTCACTACTTTCGGTTATGGTGTTCAATGCTTTGCGAGATACCCAGATCATATGAAACAGCATGACTTTTTCAAGAGTGCCATGCCCGAAGGTTATGTACAGGAAAGAACTATATTTTTCAAAGATGACGGGAACTACAAGACACGTGCTGAAGTCAAGTTTGAAGGTGATACCCTTGTTAATAGAATCGAGTTAAAAGGTATTGATTTTAAAGAAGATGGAAACATTCTTGGACACAAATTGGAATACAACTATAACTCACACAATGTATACATCATGGCAGACAAACAAAAGAATGGAATCAAAGTTAACTTCAAAATTAGACACAACATTGAAGATGGAAGCGTTCAACTAGCAGACCATTATCAACAAAATACTCCAATTGGCGATGGCCCTGTCCTTTTACCAGACAACCATTACCTGTCCACACAATCTGCCCTTTCGAAAGATCCCAACGAAAAGAGAGACCACATGGTCCTTCTTGAGTTTGTAACAGCTGCTGGGATTACACATGGCATGGATGAACTATACAAATAA"),
+	.Pigeon("c gfp 4"));
+
+Terminator T1(.Name("T1"), 
+	.Sequence("GGCATCAAATAAAACGAAAGGCTCAGTCGAAAGACTGGGCCTTTCGTTTTATCTGTTGTTTGTCGGTGAACGCTCTCCTGAGTAGGACAAATCCGCCGCCCTAGA"),
+	.Pigeon("t T1 13"));
+/**	
+Terminator IR1_IR2_TermT2(.Name("IR1_IR2_TermT2"), 
+	.Sequence("catcaaattaagcagaaggccatcctgacggatggcctttttgcgttctacaaactcttcctgtcg"),
+	.Pigeon("t T2 13"));
+Terminator Tphi(.Name("Tphi"), 
+	.Sequence("tcacactggctcaccttcgggtgggcctttctgcgtttata"),
+	.Pigeon("t Tphi 13"));
+ **/
+/**	
+Terminator rrnB(.Name("rrnB"), 
+	.Sequence("ccaggcatcaaataaaacgaaaggctcagtcgaaagactgggcctttcgttttatctgttgtttgtcggtgaacgctct"),
+	.Pigeon("t rrnB 13"));
+ **/	
+
+
+Device DIC2(Promoter, 
+	InvertaseSite, -Promoter, RBS, Gene, Terminator, -InvertaseSite, 
+	InvertaseSite, -Promoter, RBS, Gene, Terminator, -InvertaseSite, RBS, Reporter, Terminator);
+
+/*
+ *   
+ */
+Rule r(
+	ON DIC2:
+		// - matching Invertase sites
+		DIC2[1] MATCHES DIC2[6]
+			AND
+		DIC2[7] MATCHES DIC2[12]
+			
+			AND
+			
+ 		// - different Invertase sites
+		FRT WITH loxP
+		
+			AND
+			
+		CONTAINS rbs1 AND CONTAINS rbs2 AND CONTAINS rbs3
+);
+
+Device[] lst = product(DIC2, strict, 1000);
+println("*** COUNTERS ***");
+println(lst);
+
+
+

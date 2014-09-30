@@ -1,0 +1,12 @@
+//include "" // invalid!
+//include "/path/to/non-existing/file"
+
+include "./tests/include/variables"
+println(n);
+println(t);
+
+include "./tests/include/parts"
+println(prop01);
+println(PT01);
+println(p0101);
+

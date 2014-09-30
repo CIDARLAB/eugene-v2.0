@@ -1,0 +1,32 @@
+package org.cidarlab.eugene.dom
+
+
+import org.cidarlab.eugene.dom.Part;
+import org.cidarlab.eugene.dom.Device;
+import org.cidarlab.eugene.dom.Component;
+import org.cidarlab.eugene.dom.PropertyValue;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+rule "repressor.repress_equals_promoter.repressedBy"
+when 
+    $d : Device (name str[startsWith] "pruneD01", $loc : components)
+	$c1 : List() from $loc
+	$c2 : List() from $loc
+	$rhs : Component( type == "PT3"  ) from $c1 
+	$rep : Component( type == "PT1", propertyValues["txtLst"] != null, propertyValues["txtLst"].txtList[0] == $rhs.propertyValues["txtLst"].txtList[0] ) from $c2
+then   // CONCLUSION
+    System.out.println($d);
+end
+
+
+/* TMP:
+	$d : Device ($loc : components)
+	$c1 : List() from $loc
+	$c2 : List() from $loc
+
+	$rhs : Component( type == "Promoter"  ) from $c1 
+	$rep : Component( type == "Repressor", propertyValues["repress"].txt == $rhs.propertyValues["name"].txt ) from $c2
+
+*/

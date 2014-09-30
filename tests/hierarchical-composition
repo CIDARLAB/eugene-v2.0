@@ -1,0 +1,25 @@
+Property prop1(txt);
+Property prop2(num);
+PartType PT1(prop1, prop2);
+PT1 p11; 
+PT1 p12; 
+PT1 p13; 
+PartType PT2(prop1, prop2);
+PT2 p21; 
+PT2 p22; 
+PT2 p23; 
+Device D01(PT1, PT2); 
+Device D02(PT2, PT1);
+Device D03(D01, D02);
+
+ds = product(D03);
+
+
+Device D04([D01 | D02 | D03], [D01 | D02 | D03], [D01 | D02 | D03]);
+lod = product(D04);
+println(lod);
+
+//             D01    |              D02    |                     D03
+//                                                          D01    |    D02
+// TEMPLATE [PT1|PT2] \/ TEMPLATE [PT2|PT1] \/ TEMPLATE [PT1 | PT2 | PT2 | PT1]
+//             

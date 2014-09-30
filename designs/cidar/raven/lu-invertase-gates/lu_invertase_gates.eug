@@ -1,0 +1,35 @@
+include "./designs/cidar/raven/lu-invertase-gates/design-space.h"
+
+/** AND GATE **/
+// page 9 -- supplementary material
+Promoter proD(.Name("proD"), .Sequence("CACAGCTAACACCACGTCGTCCCTATCTGCTGCCCTAGGTCTATGAGTGGTTGCTGGATAACTTTACGGGCATGCATAAGGCTCGTATAATATATTCAGGGAGACCACAACGGTTTCCCTCTACAAATAATTTTGTTTAACTTT"), .Left_Overhang(""), .Right_Overhang(""), .Type("promoter"), .Resistance(""), .Level(""));
+InvertaseSite Bxb1_attB(.Name("Bxb1_attB"), .Sequence("TCGGCCGGCTTGTCGACGACGGCGGTCTCCGTCGTCAGGATCATCCGGGC"), .Left_Overhang(""), .Right_Overhang(""), .Type("invertase_site"), .Resistance(""), .Level(""));
+Terminator T1(.Name("T1"), .Sequence("GGCATCAAATAAAACGAAAGGCTCAGTCGAAAGACTGGGCCTTTCGTTTTATCTGTTGTTTGTCGGTGAACGCTCTCCTGAGTAGGACAAATCCGCCGCCCTAGA"), .Left_Overhang(""), .Right_Overhang(""), .Type("terminator"), .Resistance(""), .Level(""));
+InvertaseSite Bxb1_attP(.Name("Bxb1_attP"), .Sequence("GTCGTGGTTTGTCTGGTCAACCACCGCGGTCTCAGTGGTGTACGGTACAAACCCCGAC"), .Left_Overhang(""), .Right_Overhang(""), .Type("invertase_site"), .Resistance(""), .Level(""));
+InvertaseSite phiC31_attB(.Name("phiC31_attB"), .Sequence("TGCGGGTGCCAGGGCGTGCCCTTGGGCTCCCCGGGCGCGTACTCC"), .Left_Overhang(""), .Right_Overhang(""), .Type("invertase_site"), .Resistance(""), .Level(""));
+InvertaseSite phiC31_attP(.Name("phiC31_attP"), .Sequence("GTGCCCCAACTGGGGTAACCTTTGAGTTCTCTCAGTTGGGGG"), .Left_Overhang(""), .Right_Overhang(""), .Type("invertase_site"), .Resistance(""), .Level(""));
+RBS rbs(.Name("RBS"), .Sequence("GTGTGGCCGTCG"), .Left_Overhang(""), .Right_Overhang(""), .Type("RBS"), .Resistance(""), .Level(""));
+Reporter gfp(.Name("gfp"), .Sequence("ATGCGTAAAGGAGAAGAACTTTTCACTGGAGTTGTCCCAATTCTTGTTGAATTAGATGGTGATGTTAATGGGCACAAATTTTCTGTCAGTGGAGAGGGTGAAGGTGATGCAACATACGGAAAACTTACCCTTAAATTTATTTGCACTACTGGAAAACTACCTGTTCCATGGCCAACACTTGTCACTACTTTCGGTTATGGTGTTCAATGCTTTGCGAGATACCCAGATCATATGAAACAGCATGACTTTTTCAAGAGTGCCATGCCCGAAGGTTATGTACAGGAAAGAACTATATTTTTCAAAGATGACGGGAACTACAAGACACGTGCTGAAGTCAAGTTTGAAGGTGATACCCTTGTTAATAGAATCGAGTTAAAAGGTATTGATTTTAAAGAAGATGGAAACATTCTTGGACACAAATTGGAATACAACTATAACTCACACAATGTATACATCATGGCAGACAAACAAAAGAATGGAATCAAAGTTAACTTCAAAATTAGACACAACATTGAAGATGGAAGCGTTCAACTAGCAGACCATTATCAACAAAATACTCCAATTGGCGATGGCCCTGTCCTTTTACCAGACAACCATTACCTGTCCACACAATCTGCCCTTTCGAAAGATCCCAACGAAAAGAGAGACCACATGGTCCTTCTTGAGTTTGTAACAGCTGCTGGGATTACACATGGCATGGATGAACTATACAAATAA"), .Left_Overhang(""), .Right_Overhang(""), .Type("reporter"), .Resistance(""), .Level(""));
+
+Device AND_gate1(proD, Bxb1_attB, T1, -Bxb1_attP, phiC31_attP, T1, -phiC31_attB, rbs, gfp, T1);
+Device genericAnd(Promoter, InvertaseSite, Terminator, -InvertaseSite, InvertaseSite, Terminator, -InvertaseSite, RBS, Gene, Terminator)
+
+// let's do some product
+product(genericAnd);
+
+
+
+/****
+// page 10 -- supplementary material
+
+//DEVICES
+Device TRUE_1(proD, rbs, gfp, T1);
+Device NOT_A(proD, Bxb1_attP, rbs, gfp, T1, Bxb1_attB_rev);
+Device FALSE_1(proD_rev, rbs, gfp, T1);
+Device B(phiC31_attB, proD_rev, phiC31_attP_rev, rbs, gfp, T1);
+Device A(proD, Bxb1_attB, T1_rev, gfp_rev, RBS_rev, Bxb1_attP_rev);
+Device NOT_B(phiC31_attB, proD, phiC31_attP_rev, rbs, gfp, T1);
+Device B_NIMPLY_A(phiC31_attP, proD_rev, phiC31_attB_rev, Bxb1_attP, T1_rev, Bxb1_attB_rev, rbs, gfp, T1);
+Device A_NIMPLY_B(phiC31_attB, proD, phiC31_attP_rev, Bxb1_attB, T1_rev, gfp_rev, RBS_rev, Bxb1_attP_rev);
+Device XNOR_gate1(proD, phiC31_attB, Bxb1_attP, rbs, gfp, T1, Bxb1_attB_rev, phiC31_attP_rev);
+ **/

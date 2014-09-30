@@ -1,0 +1,212 @@
+/** PROPERTIES ***/
+Property Name(txt);
+Property Sequence(txt);
+Property PartsRegistryName(txt);
+
+Property Pigeon(txt);
+
+/** PART TYPES ***/
+Part InduciblePromoter(Name, Sequence, PartsRegistryName, Pigeon);
+Part RepressiblePromoter(Name, Sequence, PartsRegistryName, Pigeon);
+Part RBS (Name, Sequence, PartsRegistryName, Pigeon);
+Part Repressor(Name, Sequence, PartsRegistryName, Pigeon);
+Part Terminator(Name, Sequence, PartsRegistryName, Pigeon);
+Part Reporter(Name, Sequence, PartsRegistryName, Pigeon);
+
+
+//***************************
+// Define the Design Space
+//***************************
+
+/*** Inducible Promoters ***/
+InduciblePromoter pBad(
+    .Name("pBad"),
+    .PartsRegistryName("BBa_K206000"),
+    .Sequence("acattgattatttgcacggcgtcacactttgctatgccatagcaagatagtccataagattagcggatcctacctgacgctttttatcgcaactctctactgtttctccataccgtttttttgggctagc"),
+    .Pigeon("p pBad 4"));
+
+InduciblePromoter pDntR(
+    .Name("pDntR"),
+    .PartsRegistryName("BBa_I723011"),
+    .Sequence("cgaatggctgcgattctagcgcgtcg"),
+    .Pigeon("p pDntR 6"));
+
+/** Fe Promoter **/
+InduciblePromoter I765000(
+	.Name("BBa_I765000"),
+	.PartsRegistryName("BBa_I765000"),
+	.Sequence("atgacgcttgtcgacagattgcgcggcgccgtggcggggatgccgcgccggctcgtggtgggggccgctggtgcggcgctgctctcgggcctgattggcg
+ccgtcgggggctcggcgaccgccggggccttctcgcgccccggtctgccggtggagtacctgcaggttccctccgccgccatgggacgggacatcaaggt
+ccagttccaaagcggtggggccaactcgcccgcgttgtacctgctcgacgggatgcgcgcgcaagacgacttcaacggctgggacatcaacaccccggcg
+ttcgagtggtacaaccagtcgggcatctcggtcgccatgccggtcggcggccagtccagcttctactccgactggtacaagcccgcctgcggcaaggccg
+gctgcaccacctacaagtgggagaccttcctgaccagcgagctgccgcagtacctgtcggcgcagaagcaggtcaagccgaccggcagcggtgtcgtcgg
+cctgtcgatggccggctcctcggcgctgatcctggccgcctaccaccccgaccagttcgtctacgccggctcgctgtcggcgctgctggactcgtcgcag
+ggcatgggcccgtcgctgatcgggctggccatgggtgacgccggtggctacaaggccgccgacatgtggggtccgaaggaggacccggcctgggcccgca
+acgacccgtcgctgcaggtcggcaagctggtcgcgaacaacacccggatctgggtgtactgcggcaacggcaagccgtccgacctcggtggcgacaacct
+gcccgccaagttcctcgagggcttcgtgcggacgtccaacctgaagttccaggacgcctacaacggcgccggcggccacaacgcggtgtggaacttcgac
+gccaacggcacccacgactggccctactggggcgcgcagctgcaggcgatgaagcctgacctgcagtcggtgctgggcgccaccccgggcgccggtccgg
+ccacggccgcggccaccaatgctgggaacggccagggcacctaa"),
+	.Pigeon("p BBa_I765000 8"));
+	
+/*** Repressible Promoter ***/
+RepressiblePromoter pLux(
+    .Name("pLux"),
+    .PartsRegistryName("BBa_I1051"),
+    .Sequence("acctgtaggatcgtacaggtttacgcaagaaaatggtttgttatagtcgaatacctctggcggtgata"),
+    .Pigeon("p pLux 1"));
+    
+RepressiblePromoter pTetR(
+    .Name("pTetR"),
+    .PartsRegistryName("BBa_R0040"),
+    .Sequence("tccctatcagtgatagagattgacatccctatcagtgatagagatactgagcac"),
+    .Pigeon("p pTetR 3"));    
+
+RepressiblePromoter pCI(
+    .Name("pCI"),
+    .PartsRegistryName("BBa_R0051"),
+    .Sequence("taacaccgtgcgtgttgactattttacctctggcggtgataatggttgc"),
+    .Pigeon("p pCI 5"));
+
+/*** Repressors ***/
+Repressor LuxR(
+	.Name("LuxR"),
+	.PartsRegistryName("BBa_C0062"),
+	.Sequence("atgaaaaacataaatgccgacgacacatacagaataattaataaaattaaagcttgtagaagcaataatgatattaatcaatgcttatctgatatgacta
+aaatggtacattgtgaatattatttactcgcgatcatttatcctcattctatggttaaatctgatatttcaatcctagataattaccctaaaaaatggag
+gcaatattatgatgacgctaatttaataaaatatgatcctatagtagattattctaactccaatcattcaccaattaattggaatatatttgaaaacaat
+gctgtaaataaaaaatctccaaatgtaattaaagaagcgaaaacatcaggtcttatcactgggtttagtttccctattcatacggctaacaatggcttcg
+gaatgcttagttttgcacattcagaaaaagacaactatatagatagtttatttttacatgcgtgtatgaacataccattaattgttccttctctagttga
+taattatcgaaaaataaatatagcaaataataaatcaaacaacgatttaaccaaaagagaaaaagaatgtttagcgtgggcatgcgaaggaaaaagctct
+tgggatatttcaaaaatattaggttgcagtgagcgtactgtcactttccatttaaccaatgcgcaaatgaaactcaatacaacaaaccgctgccaaagta
+tttctaaagcaattttaacaggagcaattgattgcccatactttaaaaattaataa"),
+    .Pigeon("c LuxR 1")); 
+
+Repressor TetR(
+	.Name("TetR"),
+	.PartsRegistryName("BBa_C0040"),
+	.Sequence("atgtccagattagataaaagtaaagtgattaacagcgcattagagctgcttaatgaggtcggaatcgaaggtttaacaacccgtaaactcgcccagaagc
+taggtgtagagcagcctacattgtattggcatgtaaaaaataagcgggctttgctcgacgccttagccattgagatgttagataggcaccatactcactt
+ttgccctttagaaggggaaagctggcaagattttttacgtaataacgctaaaagttttagatgtgctttactaagtcatcgcgatggagcaaaagtacat
+ttaggtacacggcctacagaaaaacagtatgaaactctcgaaaatcaattagcctttttatgccaacaaggtttttcactagagaatgcattatatgcac
+tcagcgctgtggggcattttactttaggttgcgtattggaagatcaagagcatcaagtcgctaaagaagaaagggaaacacctactactgatagtatgcc
+gccattattacgacaagctatcgaattatttgatcaccaaggtgcagagccagccttcttattcggccttgaattgatcatatgcggattagaaaaacaa
+cttaaatgtgaaagtgggtccgctgcaaacgacgaaaactacgctttagtagcttaataacactgatagtgctagtgtagatcac"),
+    .Pigeon("c TetR 3"));
+
+Repressor cI(
+    .Name("BBa_C0051"),
+    .PartsRegistryName(""),
+    .Sequence("atgagcacaaaaaagaaaccattaacacaagagcagcttgaggacgcacgtcgccttaaagcaatttatgaaaaaaagaaaaatgaacttggcttatccc
+aggaatctgtcgcagacaagatggggatggggcagtcaggcgttggtgctttatttaatggcatcaatgcattaaatgcttataacgccgcattgcttgc
+aaaaattctcaaagttagcgttgaagaatttagcccttcaatcgccagagaaatctacgagatgtatgaagcggttagtatgcagccgtcacttagaagt
+gagtatgagtaccctgttttttctcatgttcaggcagggatgttctcacctgagcttagaacctttaccaaaggtgatgcggagagatgggtaagcacaa
+ccaaaaaagccagtgattctgcattctggcttgaggttgaaggtaattccatgaccgcaccaacaggctccaagccaagctttcctgacggaatgttaat
+tctcgttgaccctgagcaggctgttgagccaggtgatttctgcatagccagacttgggggtgatgagtttaccttcaagaaactgatcagggatagcggt
+caggtgtttttacaaccactaaacccacagtacccaatgatcccatgcaatgagagttgttccgttgtggggaaagttatcgctagtcagtggcctgaag
+agacgtttggcgctgcaaacgacgaaaactacgctttagtagcttaataa"),
+    .Pigeon("c cI 5")); 
+
+cI REPRESSES pCI;
+LuxR REPRESSES pLux;
+TetR REPRESSES pTetR;
+
+
+// RBSs
+RBS rbs61100("J61100","tctagaGAAAGAGGGGACAAactagt", "J61100", "r RBS61100 13");
+RBS rbs61101("J61101","tctagaGAAAGACAGGACCCactagt", "J61101", "r RBS61101 13");
+RBS rbs61102("J61102","tctagaGAAAGATCCGATGTactagt", "J61102", "r RBS61102 13");
+RBS rbs61103("J61103","tctagaGAAAGATTAGACAAactagt", "J61103", "r RBS61103 13");
+RBS rbs61104("J61104","tctagaGAAAGAAGGGACAGactagt", "J61104", "r RBS61104 13");
+RBS rbs61105("J61105","tctagaGAAAGACATGACGTactagt", "J61105", "r RBS61105 13");
+RBS rbs61106("J61106","tctagaGAAAGATAGGAGACactagt", "J61106", "r RBS61106 13");
+RBS rbs61107("J61107","tctagaGAAAGAAGAGACTCactagt", "J61107", "r RBS61107 13");
+
+// Reporters
+Reporter GFP("GFP",
+"tccctatcagtgatagagattgacatccctatcagtgatagagatactgagcactactagagaaagaggagaaatactagatgcgtaaaggagaagaact
+tttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacgga
+aaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagat
+acccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaa
+gacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaa
+ttggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatg
+gaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccct
+ttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa
+tactagagccaggcatcaaataaaacgaaaggctcagtcgaaagactgggcctttcgttttatctgttgtttgtcggtgaacgctctctactagagtcac
+actggctcaccttcgggtgggcctttctgcgtttata",
+"BBa_I13522",
+"c GFP 4");
+
+Reporter YFP("YFP",
+"aaagaggagaaatactagatggtgagcaagggcgaggagctgttcaccggggtggtgcccatcctggtcgagctggacggcgacgtaaacggccacaagt
+tcagcgtgtccggcgagggcgagggcgatgccacctacggcaagctgaccctgaagttcatctgcaccaccggcaagctgcccgtgccctggcccaccct
+cgtgaccaccttcggctacggcctgcaatgcttcgcccgctaccccgaccacatgaagctgcacgacttcttcaagtccgccatgcccgaaggctacgtc
+caggagcgcaccatcttcttcaaggacgacggcaactacaagacccgcgccgaggtgaagttcgagggcgacaccctggtgaaccgcatcgagctgaagg
+gcatcgacttcaaggaggacggcaacatcctggggcacaagctggagtacaactacaacagccacaacgtctatatcatggccgacaagcagaagaacgg
+catcaaggtgaacttcaagatccgccacaacatcgaggacggcagcgtgcagctcgccgaccactaccagcagaacacccccatcggcgacggccccgtg
+ctgctgcccgacaaccactacctgagctaccagtccgccctgagcaaagaccccaacgagaagcgcgatcacatggtcctgctggagttcgtgaccgccg
+ccgggatcactctcggcatggacgagctgtacaagtaataatactagagccaggcatcaaataaaacgaaaggctcagtcgaaagactgggcctttcgtt
+ttatctgttgtttgtcggtgaacgctctctactagagtcacactggctcaccttcgggtgggcctttctgcgtttata",
+"BBa_E0430",
+"c YFP 12");
+
+Reporter RFP(
+	.Name("RFP"), 
+	.Sequence("AATGATGGCTTCCTCCGAGGATGTTATCAAAGAGTTCATG
+CGTTTCAAAGTTCGTATGGAAGGTTCCGTTAACGGTCACGAGTTCGAAATCGAAGGTGAAGGTGAAGGTCGTCCGTA
+CGAAGGTACCCAGACCGCTAAACTGAAAGTTACCAAAGGTGGTCCGCTGCCGTTCGCTTGGGACATCCTGTCCCCGC
+AGTTCCAGTACGGTTCCAAAGCTTACGTTAAACACCCGGCTGACATCCCGGACTACCTGAAACTGTCCTTCCCGGAA
+GGTTTCAAATGGGAACGTGTTATGAACTTCGAAGATGGTGGTGTTGTTACCGTTACCCAGGACTCCTCCCTGCAAGA
+CGGTGAGTTCATCTACAAAGTTAAACTGCGTGGTACCAACTTCCCGTCCGACGGTCCGGTTATGCAGAAAAAAACCA
+TGGGTTGGGAAGCTTCCACCGAACGTATGTACCCGGAGGATGGTGCTCTGAAAGGTGAAATCAAAATGCGTCTGAAA
+CTGAAAGACGGTGGTCACTACGACGCTGAAGTTAAAACCACCTACATGGCTAAAAAACCGGTTCAGCTGCCGGGTGC
+TTACAAAACCGACATCAAACTGGACATCACCTCCCACAACGAGGACTACACCATCGTTGAACAGTACGAACGTGCTG
+AAGGTCGTCACTCCACCGGTGCTTAATAA"),
+	.PartsRegistryName("BBa_E1010"),
+	.Pigeon("c RFP 6"));
+
+// Terminators
+Terminator T1("T1",
+"nagattactataaataggcgtatcacgaggcagaatttcagataaaaaaaatccttagctttcgctaaggatgatttctg
+gaattcgcggccgcttctagagccggcttatcggtcagtttcacctgatttacgtaaaaacccgcttcggcgggtttttg
+cttttggaggggcagaaagatgaatgactgtccacgacgctatacccaaaagaaatactagtctgcaggcttcctcgctc
+actgactcgctgcgctcggtcgttcggctgcggcgagcggtatcagctcactcaaaggcggtaatacggttatccacaga
+atcaggggataacgcaggaaagaacatgtgagcaaaaggccagcaaaaggccaggaaccgtaaaaaggccgcgttgctgg
+cgtttttccacaggctccgcccccctgacgagcatcacaaaaatcgacgctcaagtcagaggtggcgaaacccgacagga
+ctataaagataccaggcgtttccccctggaagctccctcgtgcgctctcctgttccgaccctgccgcttaccggatacct
+gtccgcctttctcccttcgggaagcgtggcgctttctcatagctcacgctgtaggtatctcagttcggtgtaggtcgttc
+gctccaagctgggctgtgtgcacgaaccccccgttcagcccgaccgctgcgccttatccggtaactatcgtcttgagtcc
+aacccggtaagacacgacttatcgccactggcagcagccactggtaacaggattagcagagcgaggtatgtaggcggtgc
+tacagagttcttgaagtggtggcctaactacggctacactagaagaacagtatttggtatctgcgctctgctgaagccag
+ttaccttcggaaaaagagttggtagctcttgatccggcaaacaaaccaccgctggtagcggtggttttttngtttgcang
+cagcaaattacgcgcanaaaaaaagcnaanaaaaaantntttntttttttttnggggnttnnnnccnnggggnaaaaaan
+ncccnnnnannnnttttnnnnnnggnantttnnaaangganttccccnnannnctttnnntnaaannnttttttnaannn
+nnnnnnttttnnnnnannnannnnnnnnnaannnnncnnnnttnaannngnnnncnttnnnnnngggggnnntttttnnn
+nnnnnntttnnnnnccccccnnnnnaannnnncann",
+"BBa_J61048",
+"t T1 14");
+
+Terminator BBa_B0010("BBa_B0010",
+"nnnncccnnanacnntttttatcccaaannnntaanngaaccctccncgncncccttttnnccannnntttnnccggttn
+ttctnnnncngttttttggcgggnaaaaaaagnntattnnnnnnnnntntggggnnnnnnntttttngntnccncccccc
+cccgcgcgnntcntntgttatgntgtnctctactntctctcgagagattagtacctttggagatctactagagaaagagg
+agaaatactagatggcttcctncgaagacgttatcaaagagttcatgcgtttcaaagttcgtatggaaggttccgttaac
+ggtcacgagttcgaaatcgaaggtgaaggtgaaggtcgtccgtacgaaggtacccagaccgctaaactgaaagttaccaa
+aggtggtccgctgccgttcgcttgggacatcctgtccccgcagttccagtacggttccaaagcttacgttaaacacccgg
+ctgacatcccggactacctgaaactgtccttcccggaaggtttcaaatgggaacgtgttatgaacttcgaagacggtggt
+gttgttaccgttacccaggactcctccctgcaagacggtgagttcatctacaaagttaaactgcgtggtaccaacttccc
+gtccgacggtccggttatgcagaaaaaaaccatgggttgggaagcttccaccgaacgtatgtacccggaagacggtgctc
+tgaaaggtgaaatcaaaatgcgtctgaaactgaaagacggtggtcactacgacgctgaagttaaaaccacctacatggct
+aaaaaaccggttcagctgccgggtgcttacaaaaccgacatcaaactggacatcacctcccacaacgaagactacaccat
+cgttgaacagtacgaacgtgctgaaggtcgtcactccaccggtgcttaataacgctgatagtgctagtgtagatcgctac
+tagagccaggcatcaaataaaacgaaaggctcagtcgaaagactgggcctttcgttttatctgttgtttgtcggtgaacg
+ctctctactagagtcacactggctcaccttcgggtgggcctttctgcgtttatatactagtagcggccgctgcagtccgg
+caaaaaagggcaaggtgtcaccaccctgccctttttctttaaaaccgaaaagattacttcgcgttatgcaggcttcctcg
+ctcactgactcgctgcgctcggtcgtnngnnngcnnnnnnnnn",
+"BBa_B0010",
+"t B0010 14");
+
+Terminator BBa_B0015("BBa_B0015",
+"ccaggcatcaaataaaacgaaaggctcagtcgaaagactgggcctttcgttttatctgttgtttgtcggtgaacgctctctactagagtcacactggctc
+accttcgggtgggcctttctgcgtttata",
+"BBa_B0015",
+"t B0015 14");

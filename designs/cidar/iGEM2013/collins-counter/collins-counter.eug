@@ -1,0 +1,32 @@
+//Properties
+Property Name(txt);
+Property InducedBy(txt);
+Property Induces(txt);
+Property direction(txt);
+Property RecognizedBy(txt);
+Property Recognizes(txt);
+
+//PartTypes
+PartType IPromoter(Name,InducedBy,direction);
+PartType RBS(Name);
+PartType Recogsite(Name,direction, RecognizedBy);
+PartType Recomb(Name, direction, Recognizes);
+PartType Terminator(Name, direction);
+PartType DProtein(Name);
+PartType Inducer(Name, Induces);
+PartType Reporter(Name);
+
+//Parts
+Inducer Arabinose(.Name("Arabinose"),.Induces("PBAD1")); 
+IPromoter PBAD1(.Name("PBAD1"), .InducedBy("Arabinose"), .direction("forward"));
+IPromoter PBAD2(.Name("PBAD2"), .direction("backward"));
+IPromoter PBAD3(.Name("PBAD3"), .direction("backward"));
+Terminator Term1(.Name("Term1"), .direction("forward"));
+Terminator Term2(.Name("Term2"), .direction("forward"));
+Recomb flpe(.Name("flpe"), .direction("forward"), .Recognizes("FRTf""FRTr"));
+DProtein ssrA(.Name("ssrA"));
+Recogsite FRTf(.Name("FRTf"), .direction("forward"), .RecognizedBy("flpe"));
+Recogsite FRTr(.Name("FRTr"), .direction("backward"), .RecognizedBy("flpe"));
+
+
+

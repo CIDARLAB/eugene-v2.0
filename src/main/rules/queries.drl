@@ -1,0 +1,18 @@
+package org.cidarlab.sparrow
+
+//list any import classes here.
+import org.cidarlab.eugene.dom.NamedElement;
+import org.cidarlab.eugene.dom.*;
+import java.util.List;
+
+query get(String elname)
+	element : NamedElement(name == elname);
+end
+
+query getComponents()
+    $c : Component();
+end
+
+query union() 
+	$c1 : List() from collect ( Component ($Promoter_strength:propertyValues["strength"] && $Promoter_strength!=null &&  (type=="Promoter") && $Promoter_strength.num == 5.0) )
+end

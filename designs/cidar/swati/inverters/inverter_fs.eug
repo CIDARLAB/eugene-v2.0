@@ -1,0 +1,73 @@
+include "./designs/cidar/swati/inverters/inverters.ds"
+
+//Intermediate Devices (Transcriptional Units)
+Device TU1 (FusionSite, ConstPr, FusionSite, RBS, FusionSite, Repressor, FusionSite, Terminator, FusionSite);
+Device TU2 (FusionSite, RepPr, FusionSite, RBS, FusionSite, Repressor, FusionSite, Terminator, FusionSite);
+Device TU3 (FusionSite, RepPr, FusionSite, RBS, FusionSite, Reporter, FusionSite, Terminator, FusionSite);
+Device TU4 (FusionSite, RepPr, FusionSite, RBS, FusionSite, Reporter, FusionSite, Terminator, FusionSite);
+
+Device Inverter (TU1, TU2, TU3, TU4);
+
+// now, let's define some rules
+
+Rule validInverter(
+	ON Inverter:
+// RULE 1: equal RBSs in TU2 and TU3			
+		Inverter[1][1] EQUALS Inverter[2][1]
+		// ALTERNATIVES:
+		// - Inverter.TU2.RBS EQUALS Inverter.TU3.RBS
+		// - Inverter.TU2[1] EQUALS Inverter.TU3[1]
+		// - Inverter[2].RBS EQUALS Inverter[1].RBS
+
+			AND
+			
+// RULE 2: the RBSs in TU2 and TU3 can either be B0030m or B0034m1			
+		( Inverter.TU2.RBS EQUALS B0030m OR Inverter.TU2.RBS EQUALS B0034m1 )
+		
+			AND
+
+// RULE 3: different Repressors
+		
+		Inverter.TU1.Repressor NOTEQUALS Inverter.TU2.Repressor
+			
+			AND
+			
+// RULE 4: different Reporters		
+		E0040 WITH E1010m 
+
+
+			AND
+			
+// RULE 5: GFP before RFP
+		E0040 BEFORE E1010m
+
+			AND			
+			
+// RULE 6: REPRESSION relationships
+		Inverter.TU1.Repressor REPRESSES Inverter.TU2.RepPr
+			AND
+		Inverter.TU1.Repressor REPRESSES Inverter.TU3.RepPr
+			AND
+		Inverter.TU2.Repressor REPRESSES Inverter.TU4.RepPr
+		
+			AND
+			
+// Rule 7: order of the repressors
+		CONTAINS C0040 AND CONTAINS C0012 AND C0040 BEFORE C0012
+		
+			AND
+
+// Rule 8: matching fusion sites between TUs
+		// HERE, we could also try to use the MATCHES rule?!
+		Inverter.TU1[8] EQUALS Inverter.TU2[0]
+			AND
+		Inverter.TU2[8] EQUALS Inverter.TU3[0]  	
+			AND
+		Inverter.TU3[8] EQUALS Inverter.TU4[0]  	
+);
+
+Device[] lstInverters = product(Inverter, strict, 20);
+println("lstInverters.size -> ", lstInverters.size());
+println("*** DONE ***");
+println(lstInverters);
+pigeon(lstInverters);

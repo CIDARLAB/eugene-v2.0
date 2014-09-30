@@ -1,0 +1,34 @@
+/*
+ *   SBOL IMPORT
+ */
+SBOL.import("./data/sbol/partregistry/partsLibrary.sbol");
+
+/*
+ *   EUGENE DEVICE ENUMERATION
+ */
+//Device D(Promoter, CDS);
+//Rule R(ON D: all_forward);
+
+Device D([Promoter|Terminator|CDS], [Promoter|Terminator|CDS], [Promoter|Terminator|CDS]);
+lod_out = product(D);
+
+/*
+ *   SBOL EXPORT
+ */
+SBOL.export(lod_out, "./tests/data-exchange/sbol/exports/round-trip.sbol");
+
+
+/*
+ *   SBOL IMPORT
+ */ 
+lod_in = SBOL.import("./tests/data-exchange/sbol/exports/round-trip.sbol");
+
+/**
+if(lod_in == lod_out) {
+    println("TEST PASSED!");
+} else {
+    println("TEST FAILED!");
+}
+**/
+
+

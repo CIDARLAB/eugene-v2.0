@@ -1,0 +1,24 @@
+/*
+ *   FOR LOOP
+ */
+ 
+ 
+/*
+ *   FOR ALL ITERATOR
+ */ 
+
+PartType Promoter();
+Promoter p1;
+Promoter p2;
+Promoter p3;
+Promoter p4;
+
+// w/o naming
+forall Promoter {
+    println("A");
+} 
+
+// w/ naming
+forall p : Promoter {
+    println(p);
+}

@@ -1,0 +1,20 @@
+template header
+name
+lhs
+rhs
+
+package org.cidarlab.sparrow.rules;
+
+global java.util.Set results;
+import org.cidarlab.eugene.dom.*;
+
+template "Sparrow Rule"
+
+rule "@{name}"
+when
+    @{lhs}
+then
+    @{rhs}
+end
+
+end template

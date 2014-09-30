@@ -1,0 +1,98 @@
+/*---------------------------------------
+ *   NESTED LOOPS
+ *---------------------------------------*/
+
+/****
+// outer loop
+for(num i=0; i<10; i = i + 1) {
+
+    // inner loop
+    for(num j=0; j<10; j = j + 1) {
+    
+        println(i, ", ", j);
+        
+    }
+}
+ ****/
+
+/****
+// outer loop
+for(num i=0; i<10; i = i + 1) {
+
+    // inner loop - 1
+    for(num j=0; j<10; j = j + 1) {
+    
+        println(i, ", ", j);
+        
+    }
+
+    // inner loop - 2
+    for(num j=0; j<10; j = j + 1) {
+    
+        println(i, ", ", j);
+        
+    }
+
+}
+ ****/
+ 
+/**** 
+// outer loop
+for(num i=0; i<10; i = i + 1) {
+
+    // inner loop - 1
+    for(num j=0; j<10; j = j + 1) {
+
+
+	    for(num k=0; k<10; k = k + 1) {
+		    
+            println(i, ", ", j, ", ", k);
+        }
+        
+    }
+
+
+    // inner loop - 1
+    for(num j=10; j>0; j = j - 1) {
+
+
+	    for(num k=0; k<10; k = k + 1) {
+		    
+            println(i, ", ", j, ", ", k);
+        }
+        
+    }
+}
+ ****/
+ 
+/*** DEFECTIVE LOOP
+for(num i=0; i<1; i = i + 1) {
+    for(num j=0; j<1; j = j + 1) {
+        for(num i=0; i<1; i = i + 1) {   // i exists already!
+            println("you shall not do this!");
+		}
+	}
+} 
+ ***/
+println("if the defective nested loop is not commented out, then you shall not see this!"); 
+
+
+/***
+for(num i=0; i<=10; i = i + 1) {
+    for(num j=0; j<=10; j = j + 1) {
+        for(num k=0; k<=10; k = k + 1) {
+	        for(num l=0; l<=10; l = l + 1) {
+    		    for(num m=0; m<=10; m = m + 1) {
+			        for(num n=0; n<=10; n = n + 1) {
+				        for(num o=0; o<=10; o = o + 1) {
+    					    for(num p=0; p<=10; p = p + 1) {    					    
+    					        println(i, j, k, l, m, n, o, p);
+    					    }
+    					}
+    				}
+    			}
+    		}
+    	}
+    }
+}
+ ***/

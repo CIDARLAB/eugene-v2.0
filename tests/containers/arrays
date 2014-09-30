@@ -1,0 +1,65 @@
+/*----------------------------------
+ * empty arrays
+ *----------------------------------*/
+Array[] empty01();
+Array[] empty02;
+
+/*---------------------------------
+ * arrays with elements
+ *---------------------------------*/ 
+Array[] arr01 (
+	Property seq(txt), 
+	PartType PT(seq)
+);
+
+Array[] arr02 (
+	Property seq(txt), 
+	PartType PT(seq),
+	PT p1(.seq("ATCG")),
+	PT p2(.seq("GATC")),
+	PT p3(.seq("CGAT")),
+	PT p4(.seq("TCGA"))
+);
+
+println(arr02.p1);
+println(arr02[0]);
+println(arr02[1]);
+//println(arr02[10]);  // index out of bounds
+
+/*---------------------------------
+ * nested arrays
+ *---------------------------------*/ 
+
+Array[] sup_a (
+	Array[] sub_a (
+		Property prop(txt)	
+	)
+);
+  
+Array[] na01 (
+	Property seq(txt), 
+	PartType PT(seq),
+	Array[] na01_1(
+		PT p_na01_1(.seq("ATCG"))
+	),
+	Array[] na01_2(
+		PT p_na01_3(.seq("ATCG"))
+	),
+	Array[] na01_3(
+		PT p_na01_2(.seq("ATCG"))
+	)	
+);
+
+println(na01[0]);
+println(na01[1]);
+println(na01[2]);
+println(na01[2][0]);
+println(na01[3]);
+println(na01[3][0]);
+println(na01[4]);
+println(na01[4][0]);
+
+
+
+
+ 

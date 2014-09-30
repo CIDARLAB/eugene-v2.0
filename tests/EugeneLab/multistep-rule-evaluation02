@@ -1,0 +1,58 @@
+/*
+ *   PART LIBRARY
+ */
+Property prop1(txt);
+Property repress(txt); 
+Property name(txt); 
+Property strength(num);
+
+PartType Promoter(name, strength);
+PartType Repressor(name, strength, repress);
+
+
+Promoter p0(.name("p0"), .strength(0));
+Promoter p1(.name("p1"), .strength(1));
+Promoter p2(.name("p2"), .strength(2));
+Promoter p3(.name("p3"), .strength(3));
+Promoter p4(.name("p4"), .strength(4));
+Promoter p5(.name("p5"), .strength(5));
+Promoter p6(.name("p6"), .strength(6));
+Promoter p7(.name("p7"), .strength(7));
+Promoter p8(.name("p8"), .strength(8));
+Promoter p9(.name("p9"), .strength(9));
+
+Repressor r0(.repress("p0"), .strength(0));
+Repressor r1(.repress("p1"), .strength(1));
+Repressor r2(.repress("p2"), .strength(2));
+Repressor r3(.repress("p3"), .strength(3));
+Repressor r4(.repress("p4"), .strength(4));
+Repressor r5(.repress("p5"), .strength(5));
+Repressor r6(.repress("p6"), .strength(6));
+Repressor r7(.repress("p7"), .strength(7));
+Repressor r8(.repress("p8"), .strength(8));
+Repressor r9(.repress("p9"), .strength(9));
+
+
+Device D([Repressor|Promoter], [Promoter|Repressor]);
+
+Rule r(ON D:
+    // STEP 1: ``Query/Selection''
+    Promoter.strength >= 8 /\ Repressor.strength >= 8
+    /\
+    // STEP 2: ``Arrangement''
+    Promoter EXACTLY 1  /\  Repressor EXACTLY 1 
+    /\
+    all_forward
+    /\
+    Repressor before Promoter
+    /\
+    [0] equals Repressor /\ [1] equals Promoter
+    /\
+    [0] notequals [1]
+    /\
+    Promoter with Repressor
+    /\ 
+    // STEP 3: ``Pruning/Alignment''
+    Repressor.repress == Promoter.name);
+    
+product(D);    

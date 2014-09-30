@@ -1,0 +1,211 @@
+include "./designs/cidar/raven/lu-invertase-gates/design-space.h"
+
+/*** AND GATEs ***/
+/* 
+ * Device AND_gate1(proD, Bxb1_attB, T1, -Bxb1_attP, phiC31_attP, T1, -phiC31_attB, rbs, gfp, T1);
+ */
+
+Device AndGate1(
+	Promoter, InvertaseSite, Terminator, -InvertaseSite, InvertaseSite, Terminator, -InvertaseSite, RBS, Reporter, Terminator);
+
+Rule rAndGate1(
+	ON AndGate1:
+		AndGate1[1] MATCHES AndGate1[3]
+			AND
+		AndGate1[4] MATCHES AndGate1[6]
+			AND
+		CONTAINS Bxb1_attB AND CONTAINS phiC31_attB
+			AND
+		Bxb1_attB BEFORE phiC31_attB
+);
+ 
+// finally, let's do some product
+lstAndGates1 = product(AndGate1);
+println(lstAndGates1);
+pigeon(lstAndGates1);
+
+/*
+ * Device AND_gate2(phiC31_attP, proD_rev, phiC31_attB_rev, Bxb1_attB, T1_rev, gfp_rev, RBS_rev, Bxb1_attP_rev);
+ */
+Device AndGate2(
+	InvertaseSite, -Promoter, -InvertaseSite, InvertaseSite, -Terminator, -Reporter, -RBS, -InvertaseSite);
+Rule rAndGate2(
+	ON AndGate2:
+		AndGate2[0] MATCHES AndGate2[2]
+			AND
+		AndGate2[3] MATCHES AndGate2[7]
+			AND
+		AndGate2[0] NOTEQUALS AndGate2[3]
+);	
+lstAndGates2 = product(AndGate2);
+//println(lstAndGates2);
+//pigeon(lstAndGates2);
+
+/*
+ * Device AND_gate3(Bxb1_attP, proD_rev, Bxb1_attB_rev, phiC31_attB, T1, phiC31_attP_rev, rbs, gfp, T1); 
+ */
+Device AndGate3(InvertaseSite, -Promoter, -InvertaseSite, InvertaseSite, Terminator, -InvertaseSite, RBS, Reporter, Terminator); 
+Rule rAndGate3(
+	ON AndGate3:
+		AndGate3[0] MATCHES AndGate3[2]
+			AND
+		AndGate3[3] MATCHES AndGate3[5]
+			AND
+		AndGate3[0] NOTEQUALS AndGate3[3]
+);	
+lstAndGates3 = product(AndGate3);
+//println(lstAndGates2);
+//pigeon(lstAndGates3);
+
+/*** NOR GATE ***/
+
+/* 
+ * Device NOR_gate(proD, Bxb1_attB, -T1, -Bxb1_attP, phiC31_attP, -T1, -phiC31_attB, rbs, gfp, T1);
+ */
+
+Device NorGate(
+	Promoter, InvertaseSite, -Terminator, -InvertaseSite, InvertaseSite, -Terminator, -InvertaseSite, RBS, Reporter, Terminator);
+Rule rNor(
+	ON NorGate:
+		NorGate[1] MATCHES NorGate[3]
+		AND
+		NorGate[4] MATCHES NorGate[6]
+		AND
+		NorGate[1] NOTEQUALS NorGate[4]
+);
+// finally, let's do some product
+Device[] lstNorGates = product(NorGate, strict);
+//pigeon(lstNorGates);
+
+/*
+ * Device NOR_gate2(phiC31_attB, proD, phiC31_attP_rev, Bxb1_attP, T1_rev, Bxb1_attB_rev, rbs, gfp, T1); 
+ */
+Device NorGate2(
+	InvertaseSite, Promoter, -InvertaseSite, InvertaseSite, -Terminator, -InvertaseSite, RBS, Reporter, T1);
+Rule rNorGate2(
+	ON NorGate2:
+		NorGate2[0] MATCHES NorGate2[2]
+		AND
+		NorGate2[3] MATCHES NorGate2[5]
+		AND
+		NorGate2[0] NOTEQUALS NorGate2[1]
+);
+// finally, let's do some product
+lstNorGates2 = product(NorGate2, strict);
+//pigeon(lstNorGates2);
+	 
+/*** XOR GATE ***/
+/* 
+ * Device XOR(phiC31_attP, Bxb1_attB, -proD, -Bxb1_attP, -phiC31_attB, rbs, gfp, T1);
+ */
+
+Device XorGate(
+	InvertaseSite, InvertaseSite, -Promoter, -InvertaseSite, -InvertaseSite, RBS, Reporter, Terminator);
+Rule rXorGate(
+	ON XorGate:
+		XorGate[0] MATCHES XorGate[4] 
+			AND 
+		XorGate[1] MATCHES XorGate[3]
+			AND
+		XorGate[0] NOTEQUALS XorGate[1]
+);
+Device[] lstXorGates = product(XorGate, strict);
+//pigeon(lstXorGates);
+
+/*
+ * Device XOR_gate2(proD, phiC31_attP, Bxb1_attB, T1_rev, gfp, rbs, Bxb1_attP_rev, phiC31_attB_rev);
+ */
+Device XorGate2(
+	Promoter, InvertaseSite, InvertaseSite, -Terminator, Reporter, RBS, -InvertaseSite, -InvertaseSite);
+Rule rXorGate2(
+	ON XorGate2:
+		XorGate2[1] MATCHES XorGate2[7]
+			AND
+		XorGate2[2] MATCHES XorGate2[6]
+			AND
+		XorGate2[1] NOTEQUALS XorGate2[2]
+			AND
+		CONTAINS proD
+);		
+lstXorGates2 = product(XorGate2);
+//pigeon(lstXorGates2);
+			
+ 
+/*** OR GATE ***/
+/*
+ * Device OR(Bxb1_attP, -proD, -Bxb1_attB, phiC31_attB, -proD, -phiC31_attP, rbs, gfp, T1)
+ */
+Device OrGate(InvertaseSite, -Promoter, -InvertaseSite, InvertaseSite, -Promoter, -InvertaseSite, RBS, Reporter, Terminator);
+
+Rule rOrGate(
+	ON OrGate:
+		OrGate[0] MATCHES OrGate[2]
+			AND
+		OrGate[3] MATCHES OrGate[5]
+			AND
+		OrGate[0] NOTEQUALS OrGate[3]
+);	
+
+Device[] lstOrGates = product(OrGate, strict);
+//pigeon(lstOrGates);
+
+/*** NAND GATE ***/
+
+/*
+ * Device NAND_gate1(phiC31_attB, proD, phiC31_attP_rev, Bxb1_attP, proD, Bxb1_attB_rev, rbs, gfp, T1); 
+ */
+Device NandGate(InvertaseSite, Promoter, -InvertaseSite, InvertaseSite, Promoter, -InvertaseSite, RBS, Reporter, Terminator);
+Rule rNandGate(
+	ON NandGate:
+		NandGate[0] MATCHES NandGate[2]
+			AND
+		NandGate[3] MATCHES NandGate[5]
+			AND
+		NandGate[0] NOTEQUALS NandGate[3]
+); 
+Device[] lstNandGates = product(NandGate, strict);
+//pigeon(lstNandGates);
+
+/*** CONSTRUCTs ***/
+/*
+ * Device Construct1(phiC31_attP, rbs, gfp, T1, phiC31_attB_rev, proC_rev, proA, Bxb1_attB, T1_rev, gfp_rev, RBS_rev, Bxb1_attP_rev); 
+ * Device Construct2(phiC31_attP, rbs, gfp, T1, phiC31_attB_rev, proD_rev, proA, Bxb1_attB, T1_rev, gfp_rev, RBS_rev, Bxb1_attP_rev);
+ * Device Construct3(phiC31_attP, rbs, gfp, T1, phiC31_attB_rev, proC_rev, proC, Bxb1_attB, T1_rev, gfp_rev, RBS_rev, Bxb1_attP_rev);
+ */
+Device Construct(
+	InvertaseSite, RBS, Reporter, T1, -InvertaseSite, -Promoter, Promoter, InvertaseSite, -Terminator, -Reporter, -RBS, -InvertaseSite);
+Rule rConstruct(
+	ON Construct:
+		// different Invertase Sites 
+		Construct[0] NOTEQUALS Construct[7]				
+		AND
+		Construct[0] MATCHES Construct[4]
+		AND
+		Construct[7] MATCHES Construct[11]		
+);
+lstConstruct = product(Construct, strict);
+//pigeon(lstConstruct);
+	 
+
+/*
+ * Device A_IMPLY_B(Bxb1_attP, proD, Bxb1_attB_rev, phiC31_attP, proD_rev, phiC31_attB_rev, rbs, gfp, T1); 
+ */
+// TODO
+ 
+/*
+ * Device B_IMPLY_A(Bxb1_attB, proD, Bxb1_attP_rev, phiC31_attB, proD, phiC31_attP_rev, rbs, gfp, T1);
+ */
+
+Device BimplyA(InvertaseSite, Promoter, -InvertaseSite, InvertaseSite, Promoter, -InvertaseSite, RBS, Reporter, Terminator);
+Rule rBimplyA(
+	ON BimplyA:
+		// matching invertase sites
+		BimplyA[0] MATCHES BimplyA[2]
+			AND
+		BimplyA[3] MATCHES BimplyA[5]
+			AND
+		// different invertase sites	
+		BimplyA[0] NOTEQUALS BimplyA[3]
+);
+lstBimplyA = product(BimplyA, strict);
+//pigeon(lstBimplyA);  

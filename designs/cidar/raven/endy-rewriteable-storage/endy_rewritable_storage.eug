@@ -1,0 +1,9 @@
+include "./designs/cidar/raven/endy-rewriteable-storage/design-space.h"
+
+//DEVICES
+Device BP-Flippee-Target(mKate2_rev, attB_Bxb1, J61048_rev, J23119, attP_Bxb1_rev, Superfolder_gfp);
+Device RAD-Module-G8-C1(pTet, 6N_RBS, SET_Integrase, B0014, araC_rev, pBAD, RBS_50000, Bxb1_Excisionase, B0031, RESET_Integrase);
+Device pBad-Int-Set-Flipper(araC_rev, pBAD, B0031, Bxb1_Integrase);
+Device pBad-Xis-Int-Reset-Flipper(araC_rev, pBAD, RBS_50000, Bxb1_Excisionase, B0031, Bxb1_Integrase);
+Device LR-Flippee-Target(mKate2_rev, attL_Bxb1, J23119_rev, J61048, attR_Bxb1_rev, Superfolder_gfp);
+Device RAD-Screening-vector(pTet, B0014, araC_rev, pBAD, RBS_50000, Bxb1_Excisionase);

@@ -1,0 +1,18 @@
+include "./designs/cidar/raven/voigt-layered-gates/design-space.h"
+
+//DEVICES
+Device pLux_star-rfp(B0015_rev, luxR_rev, J23119_rev, pLux_star, rfp, B0015);
+Device pAPCc-invF(B0015_rev, exsC_rev, pLux_star_rev, J23119, luxR, B0015, B0015_rev, invF_rev, pexsC_rev, B0015_rev, tetR_rev, J23119_rev, pTet_star, exsD, exsA, B0015);
+Device pTet_star-exsDA(B0015_rev, tetR_rev, J23119_rev, pTet_star, exsD, exsA, B0015);
+Device pTac-rfp(B0015_rev, lacI_rev, J23119_rev, pTac, rfp, B0015);
+Device pBAD-rfp(B0015_rev, araC_rev, J23119_rev, pBAD, rfp, B0015);
+Device pTet_star-rfp(B0015_rev, tetR_rev, J23119_rev, pTet_star, rfp, B0015);
+Device psicA-rfp(psicA, rfp, B0015);
+Device pBAD-ipgC(B0015_rev, araC_rev, J23119_rev, pBAD, ipgC, B0015);
+Device pXCPi-sicA_star(pipaH_star, sicA_star, B0015, B0015_rev, lacI_rev, J23119_rev, pTac, mxiE, B0015, B0015_rev, ipgC_rev, pBAD_rev, J23119, araC, B0015);
+Device pBAD-sicA_star(B0015_rev, araC_rev, J23119_rev, pBAD, sicA_star, B0015);
+Device pLux_star-exsC(B0015_rev, luxR_rev, J23119_rev, pLux_star, exsC, B0015);
+Device pexsC-rfp(pexsC, rfp, B0015);
+Device pipaH_star-rfp(pipaH_star, rfp, B0015);
+Device pTet-mxiE(B0015_rev, tetR_rev, J23119_rev, pTet, mxiE, B0015);
+Device pTet-invF(B0015_rev, tetR_rev, J23119_rev, pTet, invF, B0015);

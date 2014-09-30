@@ -1,0 +1,101 @@
+/*
+ * include "./tests/backward-compatibility/PropertyDefinition.h";
+ */
+
+Property ID(txt);
+Property Sequence(txt);
+Property Orientation(txt);
+
+
+/*
+ * include "./tests/backward-compatibility/PartDefinition.h";
+ */
+
+Part Promoter(ID, Sequence, Orientation);
+Part ORF(ID, Sequence, Orientation);
+Part RBS(ID, Sequence, Orientation);
+Part Terminator(ID, Sequence, Orientation);
+Part RestrictionSite(ID, Sequence, Orientation);
+Part PrimerSite(ID, Sequence, Orientation);
+
+/*
+ * include "./tests/backward-compatibility/PartDeclaration.h";
+ */
+ 
+Promoter BBa_I0500(
+	.ID("BBa_I0500"), 
+	.Sequence("GATCTttatgacaacttgacggctacatcattcactttttcttcacaaccggcacggaactcgctcgggctggccccggtgcattttttaaatacccgcgagaaatagagttgatcgtcaaaaccaacattgcgaccgacggtggcgataggcatccgggtggtgctcaaaagcagcttcgcctggctgatacgttggtcctcgcgccagcttaagacgctaatccctaactgctggcggaaaagatgtgacagacgcgacggcgacaagcaaacatgctgtgcgacgctggcgatatcaaaattgctgtctgccaggtgatcgctgatgtactgacaagcctcgcgtacccgattatccatcggtggatggagcgactcgttaatcgcttccatgcgccgcagtaacaattgctcaagcagatttatcgccagcagctccgaatagcgcccttccccttgcccggcgttaatgatttgcccaaacaggtcgctgaaatgcggctggtgcgcttcatccgggcgaaagaaccccgtattggcaaatattgacggccagttaagccattcatgccagtaggcgcgcggacgaaagtaaacccactggtgataccattcgcgagcctccggatgacgaccgtagtgatgaatctctcctggcgggaacagcaaaatatcacccggtcggcaaacaaattctcgtccctgatttttcaccaccccctgaccgcgaatggtgagattgagaatataacctttcattcccagcggtcggtcgataaaaaaatcgagataaccgttggcctcaatcggcgttaaacccgccaccagatgggcattaaacgagtatcccggcagcaggggatcattttgcgcttcagccatacttttcatactcccgccattcagagaagaaaccaattgtccatattgcatcagacattgccgtcactgcgtcttttactggctcttctcgctaaccaaaccggtaaccccgcttattaaaagcattctgtaacaaagcgggaccaaagccatgacaaaaacgcgtaacaaaagtgtctataatcacggcagaaaagtccacattgattatttgcacggcgtcacactttgctatgccatagcatttttatccataagattagcggatcctacctgacgctttttatcgcaactctctactgtttctccatacccgtttttttgggctagcG"), 
+	.Orientation("Forward"));
+ORF BBa_K112805(
+	.ID("BBa_K112805"), 
+	.Sequence("GATCTcttaaaaggagggtctatggcagcacctagaatatcattttcgccctctgatattctatttggtgttctcgatcgcttgttcaaagataacgctaccgggaaggttcttgcttcccgggtagctgtcgtaattcttttgtttataatggcgattgtttggtataggggagatagtttctttgagtactataagcaatcaaagtatgaaacatacagtgaaattattgaaaaggaaagaactgcacgctttgaatctgtcgccctggaacaactccagatagttcatatatcatctgaggcagactttagtgcggtgtattctttccgccctaaaaacttaaactattttgttgatattatagcatacgaaggaaaattaccttcaacaataagtgaaaaatcacttggaggatatcctgttgataaaactatggatgaatatacagttcatttaaatggacgtcattattattccaactcaaaatttgcttttttaccaactaaaaagcctactcccgaaataaactacatgtacagttgtccatattttaatttggataatatctatgctggaacgataaccatgtactggtatagaaatgatcatataagtaatgaccgccttgaatcaatatgtgctcaggcggccagaatattaggaagggctaaataattaG"), 
+	.Orientation("Forward"));
+ORF BBa_K112806(
+	.ID("BBa_K112806"), 
+	.Sequence("GATCTatacttaggaggtattatgaatatatttgaaatgttacgtatagatgaaggtcttagacttaaaatctataaagacacagaaggctattacactattggcatcggtcatttgcttacaaaaagtccatcacttaatgctgctaaatctgaattagataaagctattgggcgtaattgcaatggtgtaattacaaaagatgaggctgaaaaactctttaatcaggatgttgatgctgctgttcgcggaatcctgagaaatgctaaattaaaaccggtttatgattctcttgatgcggttcgtcgctgtgcattgattaatatggttttccaaatgggagaaaccggtgtggcaggatttactaactctttacgtatgcttcaacaaaaacgctgggatgaagcagcagttaacttagctaaaagtagatggtataatcaaacacctaatcgcgcaaaacgagtcattacaacgtttagaactggcacttgggacgcgtataaaaatctataaagcG"), 
+	.Orientation("Forward"));
+Terminator BBa_B0010(
+	.ID("BBa_B0010"), 
+	.Sequence("GATCTccaggcatcaaataaaacgaaaggctcagtcgaaagactgggcctttcgttttatctgttgtttgtcggtgaacgctctcG"), 
+	.Orientation("Forward"));
+Terminator BBa_B0012(
+	.ID("BBa_B0012"), 
+	.Sequence("GATCTtcacactggctcaccttcgggtgggcctttctgcgtttataG"), 
+	.Orientation("Forward"));
+Promoter BBa_J23116(
+	.ID("BBa_J23116"), 
+	.Sequence("GATCTttgacagctagctcagtcctagggactatgctagcG"), 
+	.Orientation("Forward"));
+ORF BBa_K112807(
+	.ID("BBa_K112807"), 
+	.Sequence("GATCTgataggaggcctttatggccttaaaagcaacagcactttttgccatgctaggattgtcatttgttttatctccatcgattgaagcgaatgtcgatcctcattttgataaatttatggaatctggtattaggcacgtttatatgctttttgaaaataaaagcgtagaatcgtctgaacaattctatagttttatgagaacgacctataaaaatgacccgtgctcttctgattttgaatgtatagagcgaggcgcggagatggcacaatcatacgctagaattatgaacattaaattggagactgaatgaaatG"), 
+	.Orientation("Forward"));
+
+
+/*BEFORE
+AFTER
+WITH
+NOTWITH
+
+Parts in a device
+
+*/
+
+/*
+<
+>
+etc have to have the same types of operands
+*/
+
+/*
+OR
+AND
+NOT
+*/
+
+num[] test = [1,2,3];
+num[] test2= [1,2,5];
+
+Rule r1(BBa_I0500 BEFORE BBa_K112805);
+Rule r2(BBa_I0500.Sequence == BBa_K112805.Sequence);
+Rule r3(Promoter.Orientation == "Forward");
+
+
+/***
+//Rule r3(test < test2);
+
+if(test == test2) {
+    println("Test = test2");
+}else{
+    println("Not equal");
+}
+
+//Triggers on false
+//Note(r1);
+//Note(r1 OR r2);
+//Note(r2);
+
+//Assert(r2);
+
+Device BBa_K112809(BBa_I0500, BBa_K112805, BBa_K112806, BBa_B0010, BBa_B0012, BBa_J23116, BBa_K112807, BBa_B0010);
+***/

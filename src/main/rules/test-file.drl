@@ -1,0 +1,54 @@
+package org.cidarlab.sparrow.rules;
+global java.util.List results;
+import org.cidarlab.eugene.dom.*;
+
+rule "r_1"
+when
+	$d : Device (name str[startsWith] "pruneD01", $loc : components)
+	$c1 : List() from $loc
+	$c2 : List() from $loc
+	$rhs : Component( type == "PT3"  ) from $c1 
+    $rep : Component( type == "PT1", $rhs != null, $rhs.propertyValues != null, $rhs.propertyValues["txtLst"]!=null, propertyValues["txtLst"].txtList == ((PropertyValue)$rhs.propertyValues["txtLst"]).txtList ) from $c2
+then
+	
+end
+
+query r
+    $p : Component (type=="Promoter", $strength:propertyValues["strength"], $strength!=null, $strength.num>=8.0)
+    
+	$p1 : Component ($PT1_prop2:propertyValues["prop2"] && $PT1_prop2!=null && $PT2_prop2:propertyValues["prop2"] && $PT2_prop2!=null && $PT1_prop1:propertyValues["prop1"] && $PT1_prop1!=null && $PT2_prop1:propertyValues["prop1"] && $PT2_prop1!=null &&  (type=="PT1" || type=="PT2") && ($PT1_prop1.txt == "0" || $PT1_prop1.txt == "1" || $PT1_prop1.txt == "2" || $PT1_prop2.num == 7.0 || $PT1_prop2.num == 8.0 || $PT1_prop2.num == 9.0) && ($PT2_prop1.txt == "0" || $PT2_prop1.txt == "1" || $PT2_prop1.txt == "2" || $PT2_prop2.num == 7.0 || $PT2_prop2.num == 8.0 || $PT2_prop2.num == 9.0) )
+end
+
+rule "name_581e98a5_1280_4802_99f4_3cc155b1a176"
+when
+    $d : Device (name str[startsWith] "pruneD01", $loc : components)
+	$c1 : List() from $loc
+	$c2 : List() from $loc
+	$rhs : Component( type == "PT3", propertyValues["txtLst"] != null, propertyValues["txtLst"] not matches "A" ) from $c1 
+	$rep : Component( type == "PT1", $rhs != null, $rhs.propertyValues != null, $rhs.propertyValues["txtLst"] != null, propertyValues["txtLst"].txtList[0] == $rhs.propertyValues["txtLst"].txtList[0] ) from $c2
+	
+then
+    results.add($d);
+end
+
+query getComponents()
+    $c : Component();
+end
+
+rule "demo"
+when
+	$d : Device ( name str[startsWith] "D01", $loc : components)
+	$promoterList: List() from $loc
+	$rbsList: List() from $loc
+
+	$RBS: Component( type == "RBS", propertyValues["strength"] != null, $RBS_strength: propertyValues["strength"].num ) from $RBSList 
+	$Promoter: Component( type == "Promoter", propertyValues["strength"] != null, $Promoter_strength: propertyValues["strength"].num ) from $PromoterList 
+
+	eval ( $Promoter_strength + $RBS_strength == 3.0)
+
+	$ret : Component (name == $RBS.name || name == $Promoter.name) 
+then
+	results.add($d);
+end
+
+

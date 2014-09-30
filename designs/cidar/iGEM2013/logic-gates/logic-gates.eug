@@ -1,0 +1,93 @@
+//Tutorial: Logic Gate
+
+//Properties
+Property Name(txt);
+Property Sequence(txt);
+Property RepressedBy(txt);
+Property InducedBy(txt);
+Property Represses(txt);
+Property Induces(txt);
+
+//Part Types
+PartType RPromoter(Name, RepressedBy);
+PartType IPromoter(Name, InducedBy);
+PartType Promoter(Name);
+PartType Repressor(Name, Represses);  //gene repressing
+PartType Inducer(Name, Induces);  //gene inducing
+PartType RBS(Name);
+PartType Reporter(Name);  //gene
+PartType Terminator(Name);
+
+//Parts
+Inducer Ara(.Name("Ara"), .Induces("pBAD"));
+Inducer IPTG(.Name("IPTG"), .Induces("pTac"));
+Inducer aTc(.Name("aTc"), .Induces("pTet"));
+Inducer protein1(.Name("protein1"), .Induces("pipaH"));
+Inducer protein2(.Name("protein2"), .Induces("psicA"));
+
+Promoter pConst(.Name("pConst"));
+
+IPromoter pBAD(.Name("pBAD"), .InducedBy("Ara"));
+IPromoter pTac(.Name("pTac"), .InducedBy("IPTG"));
+IPromoter pTet(.Name("pTet"), .InducedBy("aTc"));
+IPromoter pipaH(.Name("pipaH"), .InducedBy("protein1"));
+IPromoter psicA(.Name("psicA"), .InducedBy("protein2"));
+
+RBS rbs1(.Name("RBS1"));
+RBS rbs2(.Name("RBS2"));
+
+Reporter araC(.Name ("araC"));
+Reporter ipgC(.Name("ipgC"));
+Reporter lacI(.Name ("lacI"));
+Reporter mxiE(.Name("mxiE"));
+Reporter tetR(.Name("tetR"));
+Reporter invF(.Name("invF"));
+Reporter sicA(.Name("sicA"));
+Reporter RFP(.Name("RFP"));
+
+Terminator term(.Name("terminator"));
+
+//Structural Rules
+Device Sensor1(Promoter, RBS, Reporter, Terminator, Inducer, IPromoter, RBS, Reporter, Terminator);
+Device Sensor2(Promoter, RBS, Reporter, Terminator, Inducer, IPromoter, RBS, Reporter, Terminator);
+Device Sensor3(Promoter, RBS, Reporter, Terminator, Inducer, IPromoter, RBS, Reporter, Terminator);
+Device Circuit1(Inducer, IPromoter, RBS, Reporter, Terminator);
+Device Circuit2(Inducer, IPromoter, RBS, Reporter, Terminator);
+
+//Content-related Rules
+Rule r1(
+	ON Sensor1:
+		Sensor1[2].Name == "araC" AND
+        Sensor1[4].Name == "Ara" AND Sensor1[4].Induces == "pBAD" AND
+        Sensor1[3].Name != Sensor1[7].Name AND Sensor1[7].Name == "ipgC" AND 
+        pConst NEXTTO RBS AND Terminator AFTER Reporter AND Sensor1 STARTSWITH pConst AND 
+        NOT ((araC MORETHAN 1) AND (ipgC MORETHAN 1)));
+
+Rule r2(
+	ON Sensor2:
+        Sensor2[4].Name == "IPTG" AND Sensor2[4].Induces == "pTac" AND pConst NEXTTO RBS AND Terminator AFTER Reporter AND
+        Sensor2 STARTSWITH pConst AND Sensor2[2] NOTEQUALS Sensor2[7] AND Sensor2 CONTAINS lacI AND Sensor2 CONTAINS mxiE);
+                
+Rule r3(
+	ON Sensor3:
+        Sensor3[4].Name == "aTc" AND Sensor3[4].Induces == "pTet" AND pConst NEXTTO RBS AND Terminator AFTER Reporter AND
+        Sensor3 STARTSWITH pConst AND Sensor3[2] NOTEQUALS Sensor3[7]);
+         
+Rule r4(
+	ON Circuit1:
+        ipgC WITH mxiE AND Circuit1 STARTSWITH protein1 AND Circuit1[0].Name == "protein1" AND Circuit1[0].Induces == "pipaH" 
+        AND Terminator AFTER Reporter);
+        
+Rule r5(
+	ON Circuit2:
+        sicA WITH invF AND Circuit2 STARTSWITH protein2 AND Circuit2[0].Name == "protein2" AND Circuit2[0].Induces == "psicA"
+        AND Terminator AFTER Reporter);
+
+//Algorithm
+Device[] lstProduct = product(Sensor1, strict);   //cartesian product
+/*Device[] lstPermute = permute(Sensor1);   //permutations*/
+
+//print output via FOR loop
+for(num i = 0; i < lstProduct.size(); i++) {
+    println(lstProduct[i]);
+}

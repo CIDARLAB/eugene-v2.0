@@ -1,0 +1,78 @@
+/*
+ *  here, we test Eugene's facilities for the specification of Interactions, 
+ *  which can be named and recursively build up.
+ *
+ *  currently, we only support three types of interactions:
+ *  - INDUCES
+ *  - REPRESSES
+ *  - MATCHES
+ *
+ *  Grammar:
+ *  interaction-declaration ::= <interaction> ';'
+                             |  'Interaction' <id> '(' <interaction> ')' ';'
+ *  interaction ::= <id> (REPRESSES | INDUCES | MATCHES) <id>
+ *               |  <id> (REPRESSES | INDUCES | MATCHES) <interaction>
+ *
+ *  Future Work:
+ *  ============
+ *
+ *  - ( positive | negative ) ( activation | repression )
+ *    =>
+ *    positive activation, positive repression,
+ *    negative activiation, negative repression
+ *  - user-specified name of interaction
+ *    Example: x my-interaction y
+ *
+ */
+ 
+
+Type Inducer();
+Type Protein();
+
+PartType Promoter();
+PartType Gene();
+
+Inducer ind01;
+Inducer ind02;
+Inducer ind03;
+Inducer ind04;
+Inducer ind05;
+ 
+Gene gene01; 
+Gene gene02; 
+Gene gene03; 
+Gene gene04; 
+Gene gene05;
+
+Protein prot01;
+Protein prot02;
+Protein prot03;
+Protein prot04;
+Protein prot05;
+
+Promoter prom01; 
+Promoter prom02; 
+Promoter prom03; 
+Promoter prom04; 
+Promoter prom05; 
+
+
+// ``two-way'' interactions
+gene01 represses prom01;
+ind02 induces gene02;
+
+// ``three-way'' interactions
+ind03 induces (gene03 represses prom03);
+
+Interaction inter04(gene04 represses prom04);
+ind04 induces inter04;
+
+/*
+ * TODO:
+// ``n-way'' interactions
+a inter1 (
+	b inter2 (
+		c inter3 (
+			...
+				x inter24 (y inter25 z));
+ */			

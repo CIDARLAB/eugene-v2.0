@@ -1,0 +1,49 @@
+package org.cidarlab.eugene.dom
+
+
+import org.cidarlab.eugene.dom.Part;
+import org.cidarlab.eugene.dom.Device;
+import org.cidarlab.eugene.dom.Component;
+import org.cidarlab.eugene.dom.PropertyValue;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+rule "repressor.repress_equals_promoter.repressedBy"
+when 
+	$d : Device ()
+	
+	$pList : List() from $d.components
+	$rList : List() from $d.components
+//	$gList : List() from $d.components
+//	$tList : List() from $d.components
+	
+	$p : Component ( propertyValues["strength"] != null && type=="Promoter" && $promoter_strength : propertyValues["strength"].num ) from $pList
+	$r : Component ( propertyValues["strength"] != null && type=="RBS" && $rbs_strength : propertyValues["strength"].num ) from $rList
+//	$g : Component ( propertyValues["strength"] != null && type=="Gene" && $gene_strength : propertyValues["strength"].num ) from $gList
+//	$t : Component ( propertyValues["strength"] != null && type=="Terminator" && $terminator_strength : propertyValues["strength"].num ) from $tList
+
+	eval ( $promoter_strength + $rbs_strength == 3 )
+	eval ( $promoter_strength + $rbs_strength == 4 )
+	
+//	$ret : Component ( name == $p.name || name == $r.name || name == $g.name || name == $t.name )	
+	
+then   // CONCLUSION
+//    System.out.println("Promoter -> " + $promoter + " -> " + $promoter_strength);
+//    System.out.println("RBS -> " + $rbs + " -> " + $rbs_strength);
+//   	System.out.println("Gene -> " + $gene + " -> " + $gene_strength);
+//    System.out.println("Terminator -> " + $terminator + " -> " + $terminator_strength);
+    System.out.println("valid device -> " + $d);
+end
+
+/* TMP:
+
+
+	$d : Device ($loc : components)
+	$c1 : List() from $loc
+	$c2 : List() from $loc
+
+	$rhs : Component( type == "Promoter"  ) from $c1 
+	$rep : Component( type == "Repressor", propertyValues["repress"].txt == $rhs.propertyValues["name"].txt ) from $c2
+
+*/

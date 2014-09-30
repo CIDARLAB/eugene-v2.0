@@ -1,0 +1,87 @@
+/*
+ *   PART LIBRARY
+ */
+Property name(txt); 
+Property strength(num);
+
+PartType Promoter(name, strength);
+PartType RBS(name, strength);
+PartType Gene(name, strength);
+PartType Terminator(name, strength);
+
+
+Promoter p0(.name("p0"), .strength(0));
+Promoter p1(.name("p1"), .strength(1));
+Promoter p2(.name("p2"), .strength(2));
+Promoter p3(.name("p3"), .strength(3));
+Promoter p4(.name("p4"), .strength(4));
+Promoter p5(.name("p5"), .strength(5));
+Promoter p6(.name("p6"), .strength(6));
+Promoter p7(.name("p7"), .strength(7));
+Promoter p8(.name("p8"), .strength(8));
+Promoter p9(.name("p9"), .strength(9));
+
+RBS rbs0(.name("rbs0"), .strength(0));
+RBS rbs1(.name("rbs1"), .strength(1));
+RBS rbs2(.name("rbs2"), .strength(2));
+RBS rbs3(.name("rbs3"), .strength(3));
+RBS rbs4(.name("rbs4"), .strength(4));
+RBS rbs5(.name("rbs5"), .strength(5));
+RBS rbs6(.name("rbs6"), .strength(6));
+RBS rbs7(.name("rbs7"), .strength(7));
+RBS rbs8(.name("rbs8"), .strength(8));
+RBS rbs9(.name("rbs9"), .strength(9));
+
+Gene g0(.name("g0"), .strength(0));
+Gene g1(.name("g1"), .strength(1));
+Gene g2(.name("g2"), .strength(2));
+Gene g3(.name("g3"), .strength(3));
+Gene g4(.name("g4"), .strength(4));
+Gene g5(.name("g5"), .strength(5));
+Gene g6(.name("g6"), .strength(6));
+Gene g7(.name("g7"), .strength(7));
+Gene g8(.name("g8"), .strength(8));
+Gene g9(.name("g9"), .strength(9));
+
+Terminator t0(.name("t0"), .strength(0));
+Terminator t1(.name("t1"), .strength(1));
+Terminator t2(.name("t2"), .strength(2));
+Terminator t3(.name("t3"), .strength(3));
+Terminator t4(.name("t4"), .strength(4));
+Terminator t5(.name("t5"), .strength(5));
+Terminator t6(.name("t6"), .strength(6));
+Terminator t7(.name("t7"), .strength(7));
+Terminator t8(.name("t8"), .strength(8));
+Terminator t9(.name("t9"), .strength(9));
+
+
+Device D(
+	[Promoter|RBS|Gene|Terminator]
+);
+
+Rule rP(ON D:
+	Promoter.strength >= 8 /\
+	contains Promoter);
+
+Rule rR(ON D:
+	RBS.strength >= 8 /\
+	contains RBS);
+
+Rule rG(ON D:
+	Gene.strength >= 8 /\
+	contains Gene);
+
+Rule rT(ON D:
+	Terminator.strength >= 8 /\
+	contains Terminator);
+
+Rule rFwd(ON D:
+	all_forward);
+	
+Rule rRev(ON D:
+	all_reverse);	
+
+//
+// contains Promoter \/ contains RBS \/ contains Gene \/ contains Terminator
+//
+product(D);		
