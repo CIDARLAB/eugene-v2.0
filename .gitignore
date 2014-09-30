@@ -1,0 +1,10 @@
+/target
+/exports
+/imports
+/lib
+/sessions
+/synbio
+/backup
+/bin
+/.classpath
+/.project
