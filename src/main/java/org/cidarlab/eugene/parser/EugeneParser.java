@@ -312,17 +312,13 @@ public TreeAdaptor getTreeAdaptor() {
     // the name of the file to be parsed
     String filename = null;
 
-    public void init(Interp interp) {
-        this.interp = interp;
+    public void init(Interp interp, BufferedWriter writer) {
         
-        try {
-            // init the writer too
-            this.writer = new BufferedWriter(
-                              new OutputStreamWriter(
-                                  new FileOutputStream(java.io.FileDescriptor.out), "ASCII"), 512);
-        } catch(Exception e) {
-            printError(e.toString());
-        }
+    	// interpreter
+    	this.interp = interp;
+        
+    	// writer
+    	this.writer = writer;
     }
 
     public EugeneCollection getAllElements() 

@@ -22,8 +22,11 @@ ENHANCEMENTS, OR MODIFICATIONS.
 
 package org.cidarlab.eugene;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.logging.LogManager;
 import java.util.Collection;
 import java.util.Set;
@@ -51,14 +54,22 @@ public class Eugene {
 	 */
 	private Sparrow sparrow;
 	
+	/*
+	 * a writer for writing any output
+	 */
+	private BufferedWriter writer = null;
+
 	public Eugene() {
 		LogManager.getLogManager().reset();
 	}
 	
-	public Eugene(String sessionId) 
+	public Eugene(String sessionId)
 			throws EugeneException {
+
 		LogManager.getLogManager().reset();
-		
+
+		// initialize the rule-engine with 
+		// a session id
 		try {
 			this.sparrow = new Sparrow(sessionId);
 		} catch(SparrowException spe) {
@@ -66,6 +77,38 @@ public class Eugene {
 		}
 		
 		this.sparrow.printFacts();
+		
+		/*
+		 * here, we also a create a writer for 
+		 * writing any outputs
+		 */
+        try {        	
+            // init the writer too
+            writer = new BufferedWriter(
+                              new OutputStreamWriter(
+                                  new FileOutputStream(java.io.FileDescriptor.out), "ASCII"), 512);
+        } catch(Exception e) {
+        	throw new EugeneException(e.getLocalizedMessage());
+        }
+
+	}
+	
+	public Eugene(String sessionId, BufferedWriter writer) 
+			throws EugeneException {
+
+		LogManager.getLogManager().reset();
+
+		// initialize the rule-engine with 
+		// a session id
+		try {
+			this.sparrow = new Sparrow(sessionId);
+		} catch(SparrowException spe) {
+			throw new EugeneException(spe.toString());
+		}
+		
+		this.sparrow.printFacts();
+
+		this.writer = writer;
 	}
 	
 	/**
@@ -142,8 +185,11 @@ public class Eugene {
 		/*
 		 * initialize the parser, with the connection 
 		 * to the library (i.e. Java Drools in our case)
+		 * and the writer for writing the outputs
 		 */		
-		parser.init(new Interp(this.sparrow));
+		parser.init(
+				new Interp(this.sparrow, this.writer), 
+				this.writer);
 		
 		/*
 		 * do the lexing, parsing, interpreting

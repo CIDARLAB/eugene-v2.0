@@ -23,6 +23,7 @@ ENHANCEMENTS, OR MODIFICATIONS.
 package org.cidarlab.eugene.interp;
 
 import java.awt.image.RenderedImage;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -94,8 +95,14 @@ public class Interp {
 	 * STACK for scoping
 	 */
 	private Stack<StackElement> stack;
+
+	/*
+	 * the writer for writing outputs
+	 */
+    private BufferedWriter writer = null;
+
 	
-	public Interp(Sparrow sparrow) {
+	public Interp(Sparrow sparrow, BufferedWriter writer) {
 
 		/*
 		 * FACTS/RULES
@@ -120,6 +127,11 @@ public class Interp {
 		 * especially for assignmnents
 		 */
 		this.cloner = new Cloner();
+		
+		/*
+		 * the writer
+		 */
+		this.writer = writer;
 	}
 
 	public void includeFile(String file) 
@@ -150,7 +162,7 @@ public class Interp {
 		/*
 		 * initialize the with this interpreter
 		 */
-		parser.init(this);	
+		parser.init(this, this.getWriter());	
 		parser.setFilename(file);
 		
 		try {
@@ -159,6 +171,10 @@ public class Interp {
 			e.printStackTrace();
 			throw new EugeneException(e.getMessage());
 		}
+	}
+	
+	private BufferedWriter getWriter() {
+		return this.writer;
 	}
 	
 	public NamedElement importFile(String file) 
@@ -190,7 +206,9 @@ public class Interp {
 		 * initialize the with this interpreter
 		 */
 		try {
-			parser.init(new Interp(new Sparrow()));
+			parser.init(
+					new Interp(new Sparrow(), this.getWriter()), 
+					this.getWriter());
 		} catch(SparrowException spe) {
 			throw new EugeneException(spe.toString());
 		}

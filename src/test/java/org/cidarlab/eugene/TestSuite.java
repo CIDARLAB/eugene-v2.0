@@ -22,12 +22,12 @@ public class TestSuite {
 		/*---------------------------------------------
 		 * EUGENE BASICS
 		 *---------------------------------------------*/
-//		new TestSuite().test("./tests/property-definitions");
-//		new TestSuite().test("./tests/part-type-definitions");
-//		new TestSuite().test("./tests/part-definitions");
-//		new TestSuite().test("./tests/device-definitions");
-//
-//		new TestSuite().test("./tests/data-access");
+		new TestSuite().test("./tests/property-definitions");
+		new TestSuite().test("./tests/part-type-definitions");
+		new TestSuite().test("./tests/part-definitions");
+		new TestSuite().test("./tests/device-definitions");
+
+		new TestSuite().test("./tests/data-access");
 
 		
 		/*---------------------------------------------
