@@ -126,13 +126,6 @@ ENHANCEMENTS, OR MODIFICATIONS.
 
 package org.cidarlab.eugene.parser;
 
-import org.cidarlab.eugene.constants.EugeneConstants;
-import org.cidarlab.eugene.dom.*;
-import org.cidarlab.eugene.constants.Orientation;
-import org.cidarlab.eugene.data.genbank.*;
-import org.cidarlab.eugene.data.registry.*;
-import org.cidarlab.eugene.data.sbol.*;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Stack;
@@ -148,6 +141,12 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.cidarlab.eugene.constants.EugeneConstants;
+import org.cidarlab.eugene.dom.*;
+import org.cidarlab.eugene.constants.Orientation;
+//import org.cidarlab.eugene.data.genbank.*;
+//import org.cidarlab.eugene.data.registry.*;
+import org.cidarlab.eugene.data.sbol.*;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.eugene.exception.EugeneReturnException;
 import org.cidarlab.eugene.interp.Interp;
@@ -258,7 +257,7 @@ public void includeFile(String name) {
 private Interp interp;
 
 // IMPORTERS
-private SBOLRegistryImporter registryImporter;
+//private SBOLRegistryImporter registryImporter;
 
 // the logger
 private final static Logger LOGGER = Logger.getLogger(EugeneParser.class.getName()); 
@@ -275,16 +274,20 @@ ArrayList<String> propertyListHolder = new ArrayList<String>();
 // the name of the file to be parsed
 String filename = null;
 
-public void init(Interp interp) {
+public void init(Interp interp, BufferedWriter writer) {
     this.interp = interp;
     
-    try {
-        // init the writer too
-        this.writer = new BufferedWriter(
-                          new OutputStreamWriter(
-                              new FileOutputStream(java.io.FileDescriptor.out), "ASCII"), 512);
-    } catch(Exception e) {
-        printError(e.toString());
+    if(null != writer) {
+    	this.writer = writer;
+    } else {
+        try {
+            // init the writer too
+            this.writer = new BufferedWriter(
+                              new OutputStreamWriter(
+                                  new FileOutputStream(java.io.FileDescriptor.out), "ASCII"), 512);
+        } catch(Exception e) {
+            printError(e.toString());
+        }
     }
 }
 
@@ -1968,7 +1971,7 @@ if(!defer) {
     if(null != $tp.sb) {
         try {
             this.writer.write($tp.sb.toString());
-            this.writer.write(LINE_FEED);
+            this.writer.newLine();
             this.writer.flush();
         } catch(IOException ioe) {
             printError(ioe.getMessage());
@@ -2456,14 +2459,15 @@ if(!defer) {
     $e = $s.e;
 }	
 	}
-	|	g=genbankStatement[defer]
 	|	p=pigeonStatement[defer]
-	|	r=registryStatement[defer]
 	|	i=importStatement[defer] {
 if(!defer) {
     $e = $i.e;
 }	
 	}
+// TODO:
+//	|	g=genbankStatement[defer]
+//	|	r=registryStatement[defer]
 	;
 	
 /*** include STATEMENT ***/
@@ -2529,7 +2533,11 @@ if(!defer) {
 }	
 	}
 	;	
-	
+
+/*---------------------
+ * GenBank
+ *--------------------*/	
+/************** 
 genbankStatement[boolean defer] returns [NamedElement objElement]
 	:	GENBANK DOT (importToken=genbankImportStatement[defer] | genbankExportStatement[defer]) {
 if(!defer && importToken!=null) {
@@ -2555,7 +2563,11 @@ if(!defer) {
 }	
 	} 
 	;	
+****************/
 
+/*----------------------
+ * Pigeon / SBOL Visual
+ *----------------------*/
 pigeonStatement[boolean defer]
 	:	(PIGEON|LC_PIGEON) LEFTP idToken=ID RIGHTP {
 if(!defer) {
@@ -2565,12 +2577,13 @@ if(!defer) {
         printError(ee.getMessage());
     }
 }		
-}
+	}
 	;	
 
-/*
- * PARTSREGISTRY
- */
+/*---------------------
+ * iGEM partsregistry
+ *---------------------*/
+/***** 
 registryStatement[boolean defer]
 	:	REGISTRY DOT (LC_IMPORT|UC_IMPORT) LEFTP nameToken=STRING RIGHTP {
 if(!defer) {
@@ -2601,7 +2614,7 @@ if(!defer) {
 }		
 	}	
 	;
-
+****/
 
 
 testStatements[boolean defer]
