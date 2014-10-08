@@ -1,0 +1,7 @@
+PartType PT;
+PT p1;
+PT p2;
+PT p3;
+
+Device D(PT, PT, PT);
+product(D);

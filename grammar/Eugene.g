@@ -79,6 +79,8 @@ tokens {
 	PIGEON = 'Pigeon';
 	LC_PIGEON = 'pigeon';
 	REGISTRY = 'Registry';
+	EXIT_UC = 'EXIT';
+	EXIT_LC = 'exit';
 
 	INTERACTION = 'Interaction';
 	UC_REPRESSES = 'REPRESSES';
@@ -475,45 +477,6 @@ public boolean checkIfAlreadyDeclared(String name, boolean all) {
 		return destination;
 	}
 	
-	//does multiplication or division on a primitive, used by grammar rule multExpr
-	public void doMultDivOp(Variable source, Variable destination, String op) {
-		if (source.type.equals(EugeneConstants.NUM)) {
-			if (op.equals("*")) {
-				destination.num *= source.num;
-			} else {
-				if (source.num != 0) {
-					destination.num /= source.num;
-				} else {
-					printError("Division by zero.");
-				}
-			}
-		}
-	}
-
-	//does addition or subtraction on a primitive, used by grammar rule expr
-	public void doMinPlusOp(Variable source, Variable destination, String op) {
-	
-		if (op.equals("+")) {
-			if (source.type.equals(EugeneConstants.NUM)) {
-				destination.num += source.num;
-				destination.type = EugeneConstants.NUM;
-			} else if (source.type.equals(EugeneConstants.NUMLIST)) {
-				destination.numList.addAll(source.numList);
-				destination.type = EugeneConstants.NUMLIST;
-			} else if (source.type.equals(EugeneConstants.TXTLIST)) {
-				destination.txtList.addAll(source.txtList);
-				destination.type = EugeneConstants.TXTLIST;
-			} else if (source.type.equals(EugeneConstants.TXT)) {
-				destination.txt += source.txt;
-				destination.type = EugeneConstants.TXT;
-			}
-		} else if (op.equals("-")) {
-			if (source.type.equals(EugeneConstants.NUM)) {
-				destination.num -= source.num;
-				destination.type = EugeneConstants.NUM;
-			}
-		}
-	}
 	
     public void addToPropertyListHolder(String prop) 
             throws EugeneException {
@@ -763,8 +726,17 @@ if(!defer) {
     }
 }	
 	}
-	|	testStatements[defer] SEMIC
 	|	imperativeStatements[defer]
+	|	predefined_statements[defer] SEMIC
+	;
+
+predefined_statements[boolean defer] 
+	:	testStatements[defer]
+	|	(EXIT_LC | EXIT_UC) {
+if(!defer) {
+    printError("exiting...");
+}
+	}
 	;
 
 
@@ -2161,60 +2133,69 @@ listOfStatements[boolean defer]
 
 expr[boolean defer] 
 	returns [Variable p,  String instance, int index, String listAddress, Variable primVariable, NamedElement element]
-	:	e=multExpr[defer]
-		{
-		if(!defer) {
-			$p = copyVariable($e.p);
-			$instance = $e.instance;
-			$index = $e.index;
-			if ($e.listAddress != null) {
-				$listAddress = $e.listAddress;
-			}
-			$primVariable = $e.primVariable;
+	:	e=multExpr[defer] {
+if(!defer) {
+    $p = copyVariable($e.p);
+    $instance = $e.instance;
+    $index = $e.index;
+    if ($e.listAddress != null) {
+        $listAddress = $e.listAddress;
+    }
+    $primVariable = $e.primVariable;
 
-                        $element = $e.element;
-		}
-			
-		} (PLUS e=multExpr[defer] {
-		if(!defer) {
-			doMinPlusOp($e.p, $p, "+");
-			$element = null;
-		}
-		} | MINUS e=multExpr[defer] {
-		if(!defer) {
-			doMinPlusOp($e.p, $p, "-");
-			$element = null;
-		}
-		} )*
+    $element = $e.element;
+}
+	} 	(pl=PLUS e=multExpr[defer] {
+if(!defer) {
+    try {
+        this.interp.doMinPlusOp($e.p, $p, $pl.text);
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+    $element = null;
+}
+	} 	| mi=MINUS e=multExpr[defer] {
+if(!defer) {
+    try {
+        this.interp.doMinPlusOp($e.p, $p, $mi.text);
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+    $element = null;
+}
+	} )*
 	;
 
 multExpr[boolean defer] 
 	returns [Variable p, String instance, int index, String listAddress, Variable primVariable, NamedElement element]
-	:	e=atom[defer]
-		{
-		if(!defer) {
-			$p = $e.p;
-			if ($e.instance != null) {
-				$instance = $e.instance;
-			}
-			$index = $e.index;
-			if ($e.listAddress != null) {
-				$listAddress = $e.listAddress;
-			}
-			$primVariable = $e.primVariable;
+	:	e=atom[defer] {
+if(!defer) {
+    $p = copyVariable($e.p);
+    if ($e.instance != null) {
+        $instance = $e.instance;
+    }
+    $index = $e.index;
+    if ($e.listAddress != null) {
+        $listAddress = $e.listAddress;
+    }
+    $primVariable = $e.primVariable;
 			
-			$element = $e.element;
-		}	
-		} ( (mul=MULT|div=DIV) e=atom[defer]
-			{
-			if(!defer) {
-				if ($mul.text != null) {
-					doMultDivOp($e.p, $p, $mul.text);
-				} else {
-					doMultDivOp($e.p, $p, $div.text);
-				}
-			}
-			} )*
+    $element = $e.element;
+}	
+	} 	( (mul=MULT|div=DIV) e=atom[defer] {
+if(!defer) {
+    try {
+        if ($mul.text != null) {
+            this.interp.doMultDivOp($e.p, $p, $mul.text);
+        } else {
+            this.interp.doMultDivOp($e.p, $p, $div.text);
+        }
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+    $element = null;
+}
+	} )*
 	;
 
 atom [boolean defer]

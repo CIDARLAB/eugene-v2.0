@@ -1,0 +1,82 @@
+/*------------
+ * ADD
+ *------------*/
+
+num one = 1;
+if(one != 1){exit;}
+num two_const = 1 + 1;
+if(two_const != 2) {exit;}
+
+num two_var = one + one;
+if(two_var != 2) {exit;}
+
+num two_mix = 1 + one;
+if(two_mix != 2) {exit;}
+
+two_mix = one + 1;
+if(two_mix != 2) {exit;}
+
+num three_const = 1 + 1 + 1;
+if(three_const != 3) {exit;}
+
+num three_var = one + one + one;
+if(three_var != 3) {exit;}
+
+num three_mix = 1 + 1 + one;
+if(three_mix != 3) {exit;}
+three_mix = 1 + one + 1;
+if(three_mix != 3) {exit;}
+three_mix = one + 1 + 1;
+if(three_mix != 3) {exit;}
+three_mix = 1 + one + one;
+if(three_mix != 3) {exit;}
+three_mix = one + 1 + one;
+if(three_mix != 3) {exit;}
+three_mix = one + one + 1;
+if(three_mix != 3) {exit;}
+
+
+/*------------
+ * SUB
+ *------------*/
+num zero = 0;
+zero = 1 - 1;
+if(zero != 0) {exit;}
+zero = 1 - one;
+if(zero != 0) {exit;}
+zero = one - 1;
+if(zero != 0) {exit;}
+zero = one - one;
+if(zero != 0) {exit;}
+
+num two = 2;
+zero = two - one - one;
+if(zero != 0) {exit;}
+zero = two - one - 1;
+if(zero != 0) {exit;}
+zero = two - 1 - one;
+if(zero != 0) {exit;}
+zero = two - 1 - 1;
+if(zero != 0) {exit;}
+
+
+/*------------
+ * MULT
+ *------------*/
+num three = 3;
+if(three != 3) {exit;}
+num four = two * two;
+
+if(two != 2) {exit;}
+if(four != 4) {exit;}
+
+num eight = two * two * two;
+if(eight != 8) {exit;}
+
+num six = three * two;
+if(three != 3) {exit;}
+if(six != 6) {exit;}
+six = two * three;
+if(two != 2) {exit;}
+if(six != 6) {exit;}
+

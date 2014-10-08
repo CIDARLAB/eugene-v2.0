@@ -1522,6 +1522,58 @@ public class Interp {
 		
 	}
 	
+	
+	/**********************************************************************
+	 * EXPRESSIONS 
+	 **********************************************************************/
+    //does multiplication or division on a primitive, used by grammar rule multExpr
+    public void doMultDivOp(Variable source, Variable destination, String op) 
+    		throws EugeneException {
+    	
+        if (source.type.equals(EugeneConstants.NUM)) {
+            if ("*".equals(op)) {
+                destination.num *= source.num;
+            } else {
+                if (source.num != 0) {
+                    destination.num /= source.num;
+                } else {
+                    throw new EugeneException("Division by zero.");
+                }
+            }
+        } else {
+        	throw new EugeneException("Cannot perform * operation on non-numerical values!");
+        }
+    }
+
+	//does addition or subtraction on a primitive, used by grammar rule expr
+	public void doMinPlusOp(Variable source, Variable destination, String op) 
+			throws EugeneException {
+
+		if ("+".equals(op)) {
+			if (source.type.equals(EugeneConstants.NUM)) {
+				destination.num += source.num;
+				destination.type = EugeneConstants.NUM;
+			} else if (source.type.equals(EugeneConstants.NUMLIST)) {
+				destination.numList.addAll(source.numList);
+				destination.type = EugeneConstants.NUMLIST;
+			} else if (source.type.equals(EugeneConstants.TXTLIST)) {
+				destination.txtList.addAll(source.txtList);
+				destination.type = EugeneConstants.TXTLIST;
+			} else if (source.type.equals(EugeneConstants.TXT)) {
+				destination.txt += source.txt;
+				destination.type = EugeneConstants.TXT;
+			}
+		} else if ("-".equals(op)) {
+			if (source.type.equals(EugeneConstants.NUM)) {
+				destination.num -= source.num;
+				destination.type = EugeneConstants.NUM;
+			} else {
+				throw new EugeneException("Cannot perform the - operation on non-numerical types!");
+			}
+		}
+	}
+
+	
 	/**********************************************************************
 	 * IMPERATIVE LANGUAGE FEATURES
 	 **********************************************************************/

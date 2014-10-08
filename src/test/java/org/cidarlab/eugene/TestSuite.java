@@ -18,6 +18,9 @@ public class TestSuite {
 //		new TestSuite().test("./tests/backward-comp/hard-expression-test");
 //		new TestSuite().test("./tests/backward-comp/complex");    
 		
+		// EXPRESSIONS
+		new TestSuite().test("./tests/expressions");    
+		
 		
 		/*---------------------------------------------
 		 * EUGENE BASICS
@@ -130,6 +133,11 @@ public class TestSuite {
 		 * DISJUNCTIVE NORMAL FORM
 		 */
 
+		/*---------------------------------------------
+		 * PRODUCT
+		 *---------------------------------------------*/
+//		new TestSuite().test("./tests/product02");
+		
 		/*---------------------------------------------
 		 * MEETING 08/01
 		 *---------------------------------------------*/
