@@ -19,7 +19,8 @@ public class TestSuite {
 //		new TestSuite().test("./tests/backward-comp/complex");    
 		
 		// EXPRESSIONS
-		new TestSuite().test("./tests/expressions");    
+		new TestSuite().test("./tests/expressions/plus-sub-mult-div");    
+		new TestSuite().test("./tests/expressions/loops-and-calculations");    
 		
 		
 		/*---------------------------------------------

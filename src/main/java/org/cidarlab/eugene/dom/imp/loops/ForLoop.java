@@ -24,6 +24,7 @@ package org.cidarlab.eugene.dom.imp.loops;
 
 import org.antlr.runtime.Token;
 import org.cidarlab.eugene.dom.imp.ImperativeFeature;
+import org.cidarlab.eugene.exception.EugeneException;
 
 
 /**
@@ -93,5 +94,6 @@ public class ForLoop
 		sb.append(")");
 		return sb.toString();
 	}
+
 
 }

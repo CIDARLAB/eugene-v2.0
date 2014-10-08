@@ -197,7 +197,7 @@ public class Eugene {
 		try {
 			parser.prog();
 		} catch(Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			throw new EugeneException(e.toString());
 		}
 		

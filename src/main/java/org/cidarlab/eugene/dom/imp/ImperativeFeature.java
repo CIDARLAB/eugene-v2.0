@@ -36,7 +36,7 @@ public abstract class ImperativeFeature
 
 	@Override
 	public NamedElement get(String name) {
-		return this.getSymbols().get(name);
+		return this.getSymbols().get(name);		
 	}
 
 	@Override
@@ -51,8 +51,15 @@ public abstract class ImperativeFeature
 		this.getSymbols().clear();
 	}
 	
-	public void removeVariable(String varname) {
-		this.getSymbols().removeVariable(varname);
+	/**
+	 * The remove/1 method removes the NamedElement object with 
+	 * the given name from the symbol tables.
+	 * 
+	 * @param name  ... the name of the NamedElement object that should be removed
+	 * @throws EugeneException
+	 */
+	public void remove(String name) {
+		this.getSymbols().removeVariable(name);
 	}
 	
 	@Override

@@ -86,6 +86,7 @@ public abstract class StackElement
 	public abstract void put(NamedElement ne)
 			throws EugeneException;
 	
+	
 	/**
 	 * The clear/0 method cleans the local symbol tables
 	 */

@@ -80,3 +80,28 @@ six = two * three;
 if(two != 2) {exit;}
 if(six != 6) {exit;}
 
+
+/*------------
+ * DIV
+ *------------*/
+num nine = 9;
+num twelve = 12;
+num fifteen = 15;
+
+six = twelve / two;
+if(six != 6) {exit;}
+
+six = 12 / 2;
+if(six != 6) {exit;}
+
+num five = 5;
+three = fifteen / five;
+if(three != 3) {exit;}
+
+num twenty_seven = 27;
+one = twenty_seven / three / nine;
+if(one != 1) {exit;}
+
+num hundred = 100;
+one = ((hundred / two / two) - 1 ) / two / twelve;
+if(one != 1) {exit;}

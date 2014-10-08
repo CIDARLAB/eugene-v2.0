@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -864,67 +865,64 @@ public class Interp {
 		return new EugeneCollection(null);
 	}
 
-	public void assignTo(String name, NamedElement ne, String id, Variable idx, NamedElement rhs, boolean bRef) 
+	public void assignTo(String name, NamedElement lhs, String id, Variable idx, NamedElement rhs, boolean bRef) 
 			throws EugeneException {
 		
 		if(null == rhs) {
 			throw new EugeneException("Invalid assignment to " + name+"!");
 		}
 		
-//		System.out.println("[Interp.assignTo] -> "+ name +", " + ne+", " + id+", "+idx+" =  " +rhs+", "+ bRef);
+//		System.out.println("[Interp.assignTo] -> "+ name +", " + lhs+", " + id+", "+idx+" =  " +rhs+", "+ bRef);
 		
-		if(null != name && null == ne) {
+		if(null != name && null == lhs) {
 			// create a new NamedElement named after name
 			if(bRef) {
-//				System.out.println(name + " by-reference ");
-				
 				// by-reference
 				rhs.setName(name);
 				this.put(rhs);
 			} else {
-//				System.out.println(name + " by-value ");
 				// deep-clone
-				NamedElement lhs = this.cloner.deepClone(rhs);
-				lhs.setName(name);
-				this.put(lhs);
+				NamedElement lhs1 = this.cloner.deepClone(rhs);
+				lhs1.setName(name);
+				this.put(lhs1);
 			}
-		} else if(ne != null) {
+		} else if(lhs != null) {
 			
-			if(!(ne instanceof Variable) && !(ne instanceof Part) && 
-					!(ne instanceof PropertyValue) && !(ne instanceof EugeneContainer)) {
+			if(!(lhs instanceof Variable) && !(lhs instanceof Part) && 
+					!(lhs instanceof PropertyValue) && !(lhs instanceof EugeneContainer)) {
 				throw new EugeneException("Invalid assignment!");
 			}
 			
 			// the 2nd condition is a bit of a hack.
-			if(null != id && !ne.getName().equals(id)) {
+			if(null != id && !lhs.getName().equals(id)) {
 				
 				// ne must be a component
-				if(ne instanceof Component) {
+				if(lhs instanceof Component) {
 					
-					Property prop = ((Component)ne).getProperty(id);
+					Property prop = ((Component)lhs).getProperty(id);
 					if(null != prop) {
 
 						try {
 							// the type checking is done in the setPropertyValue method
 							if(rhs instanceof Variable) {
-								((Component)ne).setPropertyValue(prop, (Variable)rhs);
+								((Component)lhs).setPropertyValue(prop, (Variable)rhs);
 							} else if(rhs instanceof PropertyValue) {
-								((Component)ne).setPropertyValue(prop, (PropertyValue)rhs);
+								((Component)lhs).setPropertyValue(prop, (PropertyValue)rhs);
 							} else {
-								throw new EugeneException("I cannot assign " + rhs + " to " + ne.getName()+"."+id);
+								throw new EugeneException("I cannot assign " + rhs + " to " + lhs.getName()+"."+id);
 							}
 						} catch(Exception e) {
 							throw new EugeneException(e.getMessage());
 						}
 						
 					} else {
-						throw new EugeneException(ne.getName() + " does not contain a property named " + id);
+						throw new EugeneException(lhs.getName() + " does not contain a property named " + id);
 						
 					}
 					
 				} else {
 					
-					throw new EugeneException("Invalid assignment!" + ne.getName()+"."+id);
+					throw new EugeneException("Invalid assignment!" + lhs.getName()+"."+id);
 					
 				}
 			} else if(null != idx) {
@@ -932,22 +930,32 @@ public class Interp {
 				/*
 				 * this is only possible if the named element is a part, property value, or variable
 				 */
-				if(ne instanceof Variable && rhs instanceof Variable) {
+				if(lhs instanceof Variable && rhs instanceof Variable) {
 					
-					((Variable)ne).setElement((int)idx.getNum(), (Variable)rhs);
+					((Variable)lhs).setElement((int)idx.getNum(), (Variable)rhs);
 				}
 //				ne.setElement(idx.getNum(), rhs);
 
 			} else {
+				
+				String lhs_scope = this.getScope(lhs);
+//				System.out.println("The scope of " + lhs.getName() + " is " + lhs_scope);
+				
 				if(bRef) {
 					// by-reference
 					rhs.setName(name);
-					this.put(rhs);
+//					this.put(rhs);
 				} else {
 					// deep-clone
-					ne = this.cloner.deepClone(rhs);
-					ne.setName(name);
-					this.put(ne);
+//					System.out.println(lhs+" vs " +rhs);
+					//lhs = this.cloner.deepClone(rhs);
+					//lhs.setName(name);
+					
+					//System.out.println(lhs+" vs " +rhs);
+					
+					this.updateElement(lhs.getName(), lhs_scope, rhs);
+//					
+//					this.put(lhs);
 				}
 			}
 			
@@ -1579,8 +1587,44 @@ public class Interp {
 	 **********************************************************************/
 	public void push(StackElement se) {
 		this.stack.push(se);
-//		System.out.println("[PUSHED] -> " + se);
 	}
+	
+	/**
+	 * The getScope/1 method returns the name of the scope 
+	 * in that the given NamedElement object has been declared.
+	 * i.e. we iterate through the Stack and return the 
+	 * NamedElement's first occurrence
+	 * 
+	 * @param ne
+	 * @return
+	 */
+	private String getScope(NamedElement ne) {
+		
+		String scope = null;
+		if(this.stack.isEmpty()) {
+			// stash the current stack
+			Stack<StackElement> tmp = new Stack<StackElement>();
+			while(!this.stack.isEmpty() && scope==null) {
+				
+				// if we've found the corresponding scope, 
+				// then we store its name
+				if(this.stack.peek().contains(ne.getName())) {
+					scope = this.stack.peek().getName();
+				}
+				tmp.push(this.stack.pop());
+			}
+			
+			// we also need to restore the original stack
+			while(!tmp.isEmpty()) {
+				this.stack.push(tmp.pop());
+			}
+		}
+		
+		if(scope == null) {
+			return "MAIN";
+		}
+		return scope;
+ 	}
 	
 	/*
 	 * the clear/0 method clears the symbol tables of the top stack element
@@ -1632,7 +1676,41 @@ public class Interp {
 			this.symbols.removeVariable(varname);
 		} else {
 			if(this.stack.peek() instanceof ImperativeFeature) {
-				((ImperativeFeature)this.stack.peek()).removeVariable(varname);
+				((ImperativeFeature)this.stack.peek()).remove(varname);
+			}
+		}
+	}
+	
+	/**
+	 * The updateElement/3 method updates a NamedElement object with a given 
+	 * name in a given scope with a new NamedElement object.
+	 * 
+	 * @param old_el ... the old NamedElement
+	 * @param scope  ... the scope of the old NamedElement
+	 * @param new_el ... the new NamedElement
+	 */
+	public void updateElement(String old_el_name, String scope, NamedElement new_el) 
+			throws EugeneException {
+		
+		if("MAIN".equals(scope)) {
+//			System.out.println("replacing " + old_el_name +" with " + new_el);
+			this.symbols.removeVariable(old_el_name);
+			new_el.setName(old_el_name);
+			this.symbols.put(new_el);
+			
+//			System.out.println("replaced! " + this.symbols.get(old_el_name));
+		} else {
+		
+			// first, iterate over the stack
+			Enumeration<StackElement> e = this.stack.elements();
+			while(e.hasMoreElements()) {
+				StackElement se = e.nextElement(); 
+				if(se.equals(scope) && se.contains(old_el_name)) {
+					if(se instanceof ImperativeFeature) {
+						((ImperativeFeature)se).remove(old_el_name);
+					}
+					se.put(new_el);
+				}
 			}
 		}
 	}
