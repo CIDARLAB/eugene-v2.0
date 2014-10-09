@@ -1,0 +1,22 @@
+PartType Gene;
+PartType Promoter;
+PartType Inducer;
+
+Inducer ind1;
+Promoter p1;
+Promoter p2;
+Gene g1;
+Gene g2;
+
+Device D(Promoter, Gene);
+Rule R(
+	ON D:
+	contains p1 and contains g1);
+product(D);
+
+/**
+Grammar ind_rep(
+	rep --> g1 represses p1;
+	ind --> ind1 induces rep;
+);
+**/

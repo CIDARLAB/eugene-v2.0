@@ -519,6 +519,7 @@ public class Sparrow
 		 * defined in predefined-queries.drl and loaded at 
 		 * the instantiation of Sparrow (see Sparrow constructor)
 		 */
+		
 		Set<Component> soc = null;
 		QueryResults results = ksession.getQueryResults( q, aoo );
 		

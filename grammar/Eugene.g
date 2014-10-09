@@ -100,6 +100,9 @@ tokens {
 	UC_FORALL = 'FORALL';
 	LC_FOR = 'for';
 	UC_FOR = 'FOR';
+
+	ARROW = '-->';
+	GRAMMAR = 'Grammar';
 }
 
 
@@ -753,6 +756,7 @@ if(!defer) {
 	|	instantiation[defer]
 	|	interactionDeclaration[defer]
 	|	ruleDeclaration[defer]
+	|	grammarDeclaration[defer]
 	|	deviceDeclaration[defer]
 	;
 
@@ -1844,6 +1848,37 @@ exp_op[boolean defer]
 	:	relationalOperators
 	;		
 
+
+/*------------------------------------------------------------------
+ * SPECIFICATION OF GRAMMARS
+ * i.e. PRODUCTION RULES
+ *------------------------------------------------------------------*/
+grammarDeclaration[boolean defer]
+	:
+		GRAMMAR n=ID LEFTP list_of_production_rules[defer] RIGHTP
+	;
+
+list_of_production_rules[boolean defer]
+	:	production_rule[defer] SEMIC (list_of_production_rules[defer])?	
+	;	
+
+production_rule[boolean defer]	
+	:	lhs=ID {
+if(!defer) {
+    // ID denotes a non-terminal of the grammar
+}	
+	}	ARROW right_hand_side[defer] 
+	;
+
+right_hand_side[boolean defer]
+	:	i=ID {
+if(!defer) {
+    // ID must be either a terminal (i.e. a part)
+    // or a non-terminal defined within the grammar
+}	
+	}	(COMMA right_hand_side[defer])?
+	|	interaction[defer, "some_string"]
+	;	
 		
 /*------------------------------------------------------------------
  * FACTS ON RELATIONS

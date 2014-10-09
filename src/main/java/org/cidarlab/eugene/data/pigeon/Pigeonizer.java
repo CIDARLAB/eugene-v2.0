@@ -220,7 +220,7 @@ public class Pigeonizer {
 			return combined;
 			
 		} catch(Exception e) {
-			throw new EugeneException(e.getMessage());
+			throw new EugeneException(e.getLocalizedMessage());
 		}
 	}
 
