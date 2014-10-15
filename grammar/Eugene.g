@@ -25,6 +25,7 @@ tokens {
 	PIPE = '|';
 	NUM = 'num';
 	INT = 'int';
+	BOOL = 'bool';
 	BOOLEAN = 'boolean';
 	IMAGE = 'Image';
 	PROPERTY = 'Property';
@@ -338,6 +339,12 @@ private void addToken(String token) {
     }
 }
 
+/*
+ *   ASSIGNMENTS AND EXPRESSIONS
+ */
+NamedElement root = null;
+NamedElement parent = null;
+NamedElement child = null;  
 
 /*
  *    VARIBABLE DECLARATIONS
@@ -782,7 +789,7 @@ if(!defer) {
     $varname = $nl.varname;
 }	
 	}
-	|	BOOLEAN b=booldecl[defer]  /* declaration of boolean instances*/ {
+	|	(BOOLEAN|BOOL) b=booldecl[defer]  /* declaration of boolean instances*/ {
 if(!defer) {
     $varname = $b.varname;
 }	
@@ -1274,10 +1281,46 @@ if(!defer) {
   *
   */
 assignment[boolean defer]
-	:	lhs=lhs_assignment[defer, null, null, null] EQUALS (a=AMP)? rhs=rhs_assignment[defer] {
+	:	{
+if(!defer) {
+    // we first initialize the root, parent, and child
+    // NamedElements for the lhs assignments
+    this.root = null;
+    this.parent = null;
+    this.child = null;
+}	
+	}	lhs=lhs_assignment[defer, null, null] EQUALS (a=AMP)? rhs=rhs_assignment[defer] {
 if(!defer) {
     try {
-        this.interp.assignTo($lhs.name, $lhs.child, $lhs.id_out, $lhs.idx_out, $rhs.e, a!=null);
+
+        /* --- NEW VERSION: Updated Oct 15th, 2014 
+               by Ernst Oberortner
+               
+           in the new version, we do the parsing of the 
+           LHS in the interpreter.
+           this influences the efficiency though (2x parsing and non-recursive interpretation).
+           however, it works better, more stable, and is easier to understand and improve.
+           
+           To my offspring: Please improve!
+
+           In general, the Eugene interpreter needs an Abstract Syntax Tree (AST)
+           Example: 
+           this.interp.assignment($lhs.tree, $rhs.e);
+         */
+        this.interp.assignment(
+                        $lhs.text, 
+                        $rhs.e);
+        
+        /* --- OLD VERSION         
+        this.interp.assignTo(
+                    $lhs.name, 
+                    this.child,
+                    $lhs.id_out, 
+                    $lhs.idx_out, 
+                    $rhs.e, 
+                    a!=null);
+        this.interp.updateElement(this.root);
+           --- */
     } catch(EugeneException ee) {
         printError(ee.toString());    
     }
@@ -1285,21 +1328,26 @@ if(!defer) {
 	}
 	;
 
-lhs_assignment[boolean defer, NamedElement parent, String id_in, Variable idx_in]
-	returns [String name, NamedElement child, String id_out = null, Variable idx_out = null]
+lhs_assignment[boolean defer, String id_in, Variable idx_in]
+	returns [String name, String id_out = null, Variable idx_out = null]
 	:	idToken=ID {
 if(!defer) {
     try {
+    
         $name = $idToken.text;
         $id_out = $idToken.text;
         $idx_out = idx_in;
         
-        if(null == parent) {
-            parent = this.interp.get($idToken.text);
-            $child = null;
+    	if(this.root == null) {
+    	    this.root = this.interp.get($idToken.text);
+    	}
+
+        if(null == this.parent) {
+            this.parent = this.interp.get($idToken.text);
+            this.child = null;
         } else {
-            $child = parent.getElement($idToken.text);
-            if(null == $child) {
+            this.child = this.parent.getElement($idToken.text);
+            if(null == this.child) {
                 throw new EugeneException("The " + parent.getName() + " element does not contain "+
                     "an element named " + $idToken.text + "!");
             }
@@ -1309,51 +1357,82 @@ if(!defer) {
         printError(ee.getMessage());
     }
 }	
-	}	ac=lhs_access[defer, parent, $id_out, $idx_out] {
+	}	ac=lhs_access[defer, id_in, idx_in] {
 if(!defer) {
-    $child = $ac.child;
     $id_out = $ac.id_out;
     $idx_out = $ac.idx_out;
 }	
 	}
 	;	
 	
-lhs_access[boolean defer, NamedElement parent, String id_in, Variable idx_in]
-	returns [NamedElement child, String id_out, Variable idx_out]
-@before{
-if(!defer) {
-    if(null == parent) {
-        printError("Invalid data access statement!");
-    }
-}
-}	
+lhs_access[boolean defer, String id_in, Variable idx_in]
+	returns [String id_out, Variable idx_out]
 	:	{
 if(!defer) {
-    $child = parent;
     $id_out = id_in;
     $idx_out = idx_in;
 }	
 	}
-	|	DOT lhs=lhs_assignment[defer, parent, id_in, idx_in] {
+	|	(DOT i=ID {
+//	}	lhs=lhs_assignment[defer, id_in, idx_in] {
 if(!defer) {
-    $child = $lhs.child;
-    $id_out = $lhs.id_out;
-    $idx_out = $lhs.idx_out;
+
+    try {
+    
+        if(null != this.child) {
+            this.parent = this.child;
+        }
+        if(this.parent instanceof Component) {
+            this.child = ((Component)this.parent).getElement($i.text);
+        } else {
+            throw new EugeneException("Cannot access " + $i.text + " of " + this.parent);
+        }
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+    
+    $id_out = $i.text;
+    $idx_out = null;
 }	
 	}
 	|	LEFTSBR (exp=expr[defer]) RIGHTSBR {
 if(!defer) {
     try {
+    
+    	if(null != $exp.p) {
+    	    if(EugeneConstants.NUM.equals(($exp.p).getType())) {
+    	        // constant index
+    	        $idx_out = $exp.p;
+    	    } else if (EugeneConstants.TXT.equals(($exp.p).getType())) {
+               // variable index
+               NamedElement idx_var = this.interp.get($exp.p.getName());
+               if(null == $idx_out) {
+                   throw new EugeneException("Cannot find " + $exp.p.getName());
+               }
+               if(!($idx_out instanceof Variable)) {
+                   throw new EugeneException($exp.p.getName() + " is not a variable!");
+               }
+               if(!EugeneConstants.NUM.equals(((Variable)$idx_out).getType())) {
+                   throw new EugeneException($exp.p.getName() + " is not a variable of type num!");
+               }
+               
+               $idx_out = (Variable)idx_var;
+    	    } else {
+                throw new EugeneException("Invalid array index!");
+    	    }
+    	}
+    	
         if(idx_in != null) {
-            $child = parent.getElement((int)$idx_in.getNum());
-            if(null == $child) {
+            this.child = this.parent.getElement((int)$idx_in.getNum());
+
+            if(null == this.child) {
                 throw new EugeneException("The " + parent.getName() + " element does not contain "+
                     "an element at " + idx_in.getNum() + "!");
             }
         } else {
-            $child = parent;
+            this.child = this.parent;
         }
-        
+         
         $id_out = null;
     } catch(EugeneException ee) {
         printError(ee.toString());
@@ -1361,9 +1440,8 @@ if(!defer) {
 
     $idx_out = $exp.p;
 }	
-	}	ac=lhs_access[defer, $child, $id_out, $idx_out] {
+	})	ac=lhs_access[defer, $id_out, $idx_out] {
 if(!defer) {
-    $child = $ac.child;
     $id_out = $ac.id_out;
     $idx_out = $ac.idx_out;
 }	

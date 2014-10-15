@@ -1,0 +1,52 @@
+/*--------------
+ * DECLARATIONS
+ *--------------*/
+num i = 0;
+num j = 1;
+num e = 2.718;
+num pi = 3.1415;
+
+num[] na1 = [1];
+num[] na2 = [1, 2];
+num[] na3 = [1, 2, 3];
+
+txt s = "ATCG";
+
+txt[] sa = ["A", "T", "C", "G"];
+
+boolean b = true;
+
+/*-------------
+ * ASSIGNMENTS
+ *-------------*/
+// num = num
+i = j;
+if(i != 1) {exit;}
+i = j + 1;
+if(i != 2) {exit;}
+pi = e;
+if(pi != 2.718) {exit;}
+
+
+// num[] = num[]
+num[] na_tmp = na1;
+if(na_tmp != na1) {exit;}
+na1 = na2;
+if(na1 != na2) {exit;}
+na2 = na_tmp;
+if(na2 != na_tmp) {exit;}
+
+na_tmp = na2;
+if(na_tmp != na2) {exit;}
+na2 = na3;
+if(na2 != na3) {exit;}
+na3 = na_tmp;
+if(na3 != na_tmp) {exit;}
+
+println(na1);
+println(na2);
+println(na3);
+
+
+
+ 

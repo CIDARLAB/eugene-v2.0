@@ -18,9 +18,16 @@ public class TestSuite {
 //		new TestSuite().test("./tests/backward-comp/hard-expression-test");
 //		new TestSuite().test("./tests/backward-comp/complex");    
 		
+		/*---------------------------------------------
+		 * PRIMITIVE DATA TYPES AND MODIFICATIONS
+		 *---------------------------------------------*/
+		new TestSuite().test("./tests/primitives/primitives-assign");    
+//		new TestSuite().test("./tests/primitives/part-property-assign");    
+//		new TestSuite().test("./tests/primitives/array-manip");    
+		
 		// EXPRESSIONS
-		new TestSuite().test("./tests/expressions/plus-sub-mult-div");    
-		new TestSuite().test("./tests/expressions/loops-and-calculations");    
+//		new TestSuite().test("./tests/expressions/plus-sub-mult-div");    
+//		new TestSuite().test("./tests/expressions/loops-and-calculations");    
 		
 		
 		/*---------------------------------------------
@@ -254,7 +261,7 @@ public class TestSuite {
 		/*---------------------------------------------
 		 * EUGENE GRAMMARS
 		 *---------------------------------------------*/
-		new TestSuite().test("./tests/grammars/ind_rep");
+//		new TestSuite().test("./tests/grammars/ind_rep");
 		
 		
 		/*---------------------------------------------------------

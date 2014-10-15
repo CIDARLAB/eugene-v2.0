@@ -102,6 +102,10 @@ public class Interp {
 	 */
     private BufferedWriter writer = null;
 
+    /*
+     * the Comparator object
+     */
+    private Comparator comparator;
 	
 	public Interp(Sparrow sparrow, BufferedWriter writer) {
 
@@ -133,6 +137,11 @@ public class Interp {
 		 * the writer
 		 */
 		this.writer = writer;
+		
+		/*
+		 * the comparator
+		 */
+		this.comparator = null;
 	}
 
 	public void includeFile(String file) 
@@ -865,14 +874,97 @@ public class Interp {
 		return new EugeneCollection(null);
 	}
 
-	public void assignTo(String name, NamedElement lhs, String id, Variable idx, NamedElement rhs, boolean bRef) 
+	/**
+	 * The assignment/2 method performs a Eugene assignment statement, such as
+	 * p1.prop1[i] = p2.prop2[i]. 
+	 * It gets as input the LHS (e.g. p1.prop1[i]) as a string, and the NamedElement 
+	 * object of the RHS (p2.prop2[i]) which has been interpreted already in the 
+	 * parser.The parsing of the LHS happens by calling
+	 * the parseAndGetElement/1 method. 
+	 *  
+	 * @param lhs ... the left-hand-side (LHS) of the assignment
+	 * @param rhs ... the right-hand-side (RHS) of the assignment
+	 * 
+	 * @throws EugeneException
+	 */
+	public void assignment(String lhs, NamedElement el_rhs)
+			throws EugeneException {
+		
+		System.out.println("[Interp.assignment] -> " + lhs + " = " + el_rhs);
+		
+		NamedElement el_lhs = this.parseAndGetElement(lhs);
+		if(null != el_lhs) {
+			
+			/*
+			 * we need to compare the types of 
+			 * the LHS and the RHS elements
+			 */
+			if(el_lhs instanceof Variable && el_rhs instanceof Variable) {
+				this.variableAssignment((Variable)el_lhs, (Variable)el_rhs);
+			}
+		}
+	}
+	
+	private void variableAssignment(Variable lhs, Variable rhs) 
+			throws EugeneException {
+		/*
+		 * compare both types
+		 */
+		if(!lhs.getType().equals(rhs.getType())) {
+			throw new EugeneException("Invalid types! " + lhs.getType() +" != " + rhs.getType());
+		}
+		
+		/*
+		 * both types match, i.e. do the assignment
+		 */
+		if(EugeneConstants.NUM.equals(rhs.getType())) {
+			lhs.num = rhs.num;
+		} else if(EugeneConstants.NUMLIST.equals(rhs.getType())) {
+			lhs.numList = this.cloner.deepClone(rhs.numList);
+		} else if(EugeneConstants.TXT.equals(rhs.getType())) {
+			lhs.txt = new String(rhs.txt);
+		} else if(EugeneConstants.TXTLIST.equals(rhs.getType())) {
+			lhs.txtList = this.cloner.deepClone(rhs.txtList);
+		} else if(EugeneConstants.BOOLEAN.equals(rhs.getType())) {
+			lhs.bool = rhs.bool;
+		}
+		
+	}
+	
+	/**
+	 * The parseAndGetElement/1 method parses the input string (e.g. p1.prop1[0]) 
+	 * and returns the corresponding NamedElement object (e.g. the Variable 
+	 * representing the first element of the prop1 array of part p1.
+	 *  
+	 * @param s ... the input string
+	 * @return  ... the corresponding NamedElement object
+	 * @throws EugeneException
+	 */
+	private NamedElement parseAndGetElement(String s) 
+			throws EugeneException {
+		
+		String[] aos = s.split(".");
+		
+		if(aos.length == 0) {
+			// just an ID
+			System.out.println(s +" -> " + this.get(s));
+			return this.get(s);
+		}
+		System.out.println(aos.length);
+		for(int i=0; i<aos.length; i++) {
+			System.out.println(aos[i]);
+		}
+		return null;
+	}
+	
+	private void assignTo(String name, NamedElement lhs, String id, Variable idx, NamedElement rhs, boolean bRef) 
 			throws EugeneException {
 		
 		if(null == rhs) {
 			throw new EugeneException("Invalid assignment to " + name+"!");
 		}
 		
-//		System.out.println("[Interp.assignTo] -> "+ name +", " + lhs+", " + id+", "+idx+" =  " +rhs+", "+ bRef);
+		System.out.println("[Interp.assignTo] -> "+ name +", " + lhs+", " + id+", "+idx+" =  " +rhs.getClass()+", "+ bRef);
 		
 		if(null != name && null == lhs) {
 			// create a new NamedElement named after name
@@ -951,7 +1043,7 @@ public class Interp {
 					//lhs = this.cloner.deepClone(rhs);
 					//lhs.setName(name);
 					
-					//System.out.println(lhs+" vs " +rhs);
+//					System.out.println(lhs+" vs " +rhs);
 					
 					this.updateElement(lhs.getName(), lhs_scope, rhs);
 //					
@@ -960,6 +1052,13 @@ public class Interp {
 			}
 			
 		}
+	}
+	
+	public void updateElement(NamedElement ne) 
+			throws EugeneException {
+		
+		System.out.println("[Interp.updateElement] -> "  + ne);
+		
 	}
 	
 	/**
@@ -1746,50 +1845,13 @@ public class Interp {
 					lhs.getType() +" != "+ rhs.getType());
 		}
 		
-		if(!EugeneConstants.NUM.equals(lhs.getType())) {
-			throw new EugeneException("The types of the LHS and RHS are not numeric!");
+		// lazy evaluation
+		// since not all scripts will use Eugene's imperative features. 		
+		if(null == this.comparator) {
+			this.comparator = new Comparator();
 		}
 		
-		if(EugeneConstants.LT.equals(op)) {
-			return this.lt(lhs.getNum(), rhs.getNum());
-		} else if(EugeneConstants.LEQ.equals(op)) {
-			return this.leq(lhs.getNum(), rhs.getNum());
-		} else if(EugeneConstants.EQUALS.equals(op) ||
-				"==".equals(op)) {
-			return this.eq(lhs.getNum(), rhs.getNum());
-		} else if(EugeneConstants.NOTEQUALS.equals(op) ||
-				"!=".equals(op)) {
-			return this.neq(lhs.getNum(), rhs.getNum());
-		} else if(EugeneConstants.GEQ.equals(op)) {
-			return this.geq(lhs.getNum(), rhs.getNum());
-		} else if(EugeneConstants.GT.equals(op)) {
-			return this.gt(lhs.getNum(), rhs.getNum());
-		}
-		
-		return true;
+		return this.comparator.evaluateCondition(lhs, op, rhs);
 	}
 	
-	private boolean lt(double a, double b) {
-		return a < b;
-	}
-
-	private boolean leq(double a, double b) {
-		return a <= b;
-	}
-
-	private boolean eq(double a, double b) {
-		return a == b;
-	}
-
-	private boolean neq(double a, double b) {
-		return a != b;
-	}
-
-	private boolean geq(double a, double b) {
-		return a >= b;
-	}
-
-	private boolean gt(double a, double b) {
-		return a > b;
-	}
 }

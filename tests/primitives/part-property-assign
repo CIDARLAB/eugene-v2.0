@@ -1,0 +1,20 @@
+// parts
+Property pn(num);
+Property pna(num[]);
+
+PartType P(pn, pna);
+
+P p1(1, [1]);
+P p2(2, [1, 2]);
+
+
+println(p1.pn);
+println(p2.pn);
+
+// assignment of num
+p1.pn = p2.pn;
+if(p1.pn != 2) {println("TEST FAILED"); exit;}
+
+// assignment of num arrays
+p1.pna = p2.pna;
+if(p1.pna != [1, 2]) {println("TEST FAILED"); exit;}
