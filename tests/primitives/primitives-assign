@@ -1,25 +1,11 @@
-/*--------------
- * DECLARATIONS
- *--------------*/
+/*
+ * num = num
+ */
 num i = 0;
 num j = 1;
 num e = 2.718;
 num pi = 3.1415;
 
-num[] na1 = [1];
-num[] na2 = [1, 2];
-num[] na3 = [1, 2, 3];
-
-txt s = "ATCG";
-
-txt[] sa = ["A", "T", "C", "G"];
-
-boolean b = true;
-
-/*-------------
- * ASSIGNMENTS
- *-------------*/
-// num = num
 i = j;
 if(i != 1) {exit;}
 i = j + 1;
@@ -28,7 +14,13 @@ pi = e;
 if(pi != 2.718) {exit;}
 
 
-// num[] = num[]
+/*
+ * num[] = num[]
+ */
+num[] na1 = [1];
+num[] na2 = [1, 2];
+num[] na3 = [1, 2, 3];
+
 num[] na_tmp = na1;
 if(na_tmp != na1) {exit;}
 na1 = na2;
@@ -43,10 +35,52 @@ if(na2 != na3) {exit;}
 na3 = na_tmp;
 if(na3 != na_tmp) {exit;}
 
-println(na1);
-println(na2);
-println(na3);
+
+/*
+ *  txt = txt
+ */
+txt s1 = "Hello World!";
+txt s2 = "Hello!";
+txt s3;
+
+s3 = s1;
+s1 = s2;
+s2 = s3;
+
+if(s1 != "Hello!") {exit;}
+if(s2 != "Hello World!") {exit;}
+if(s3 != s2) {exit;}
+ 
+
+/*
+ *  txt[] = txt[]
+ */
+txt[] sa = ["A"]; 
+txt[] st = ["T"]; 
+txt[] sc = ["C"]; 
+txt[] sg = ["G"];
+
+txt[] tmp = sa;
+sa = st;
+st = sc;
+sc = sg;
+sg = tmp; 
+if(sa != ["T"]) {exit;}
+if(st != ["C"]) {exit;}
+if(sc != ["G"]) {exit;}
+if(sg != tmp)   {exit;}
 
 
-
+/*
+ *  bool = bool
+ */
+boolean b1 = true;
+bool b2 = false;
+if(b1 == b2) {exit;}
+bool bTmp = b1;
+b1 = b2;
+b2 = bTmp;
+if(bTmp != true) {exit;} 
+if(b1 != false) {exit;} 
+if(b2 != true) {exit;} 
  

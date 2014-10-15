@@ -66,8 +66,10 @@ tokens {
 	UC_ELSE = 'ELSE';
 	UC_ON = 'ON';
 	LC_ON = 'on';
-	TRUE = 'true';
-	FALSE = 'false';
+	TRUE_LC = 'true';
+	TRUE_UC = 'TRUE';
+	FALSE_LC = 'false';
+	FALSE_UC = 'FALSE';
 	PERMUTE = 'permute';
 	PRODUCT = 'product';
 	STRICT = 'strict';
@@ -915,7 +917,7 @@ $type = EugeneConstants.NUM;
 	|	NUM LEFTSBR RIGHTSBR {
 $type = EugeneConstants.NUMLIST;	
 	}
-	|	BOOLEAN {
+	|	(BOOLEAN|BOOL) {
 $type = EugeneConstants.BOOLEAN;	
 	}
 	;
@@ -2193,10 +2195,47 @@ imp_condition[boolean defer]
 	:	lhs=atom[defer] ro=relationalOperators rhs=atom[defer] {
 if(!defer) {
     try {
-        $bTrue = this.interp.evaluateCondition(
-                         $lhs.p, 
-                         $ro.text, 
-                         $rhs.p);
+
+
+        if(null != $lhs.element) {
+            if(null != $rhs.element) {
+                // comparing two NamedElements against each other
+                // e.g. p.prop = q.prop
+                $bTrue = this.interp.evaluateCondition(
+                             $lhs.element, 
+                             $ro.text, 
+                             $rhs.element);
+            } else if(null != $rhs.p) {
+                // comparing a LHS NamedElement against a Variable
+                // that could be either a variable or constant
+                // e.g. p.prop = i
+                $bTrue = this.interp.evaluateCondition(
+                             $lhs.element, 
+                             $ro.text, 
+                             $rhs.p);
+            }
+        } else {
+        
+            if(null != $rhs.element) {
+                // comparing a LHS variable against a RHS 
+                // NamedElement
+                // e.g. i == q.prop
+                $bTrue = this.interp.evaluateCondition(
+                             $lhs.p, 
+                             $ro.text, 
+                             $rhs.element);
+            } else if(null != $rhs.p) {
+                // comparing a LHS Variable against a Variable
+                // that could be either a variable or constant
+                // e.g. i == j
+                $bTrue = this.interp.evaluateCondition(
+                             $lhs.element, 
+                             $ro.text, 
+                             $rhs.p);
+            } else {
+                throw new EugeneException("Invalid condition!");
+            }
+        }
     } catch(EugeneException ee) {
         printError(ee.toString());
     }
@@ -2327,7 +2366,7 @@ atom [boolean defer]
 			$p.type = EugeneConstants.NUM;
 		}
 		}
-	|	(t=TRUE | f=FALSE)
+	|	(t=(TRUE_LC|TRUE_UC) | f=(FALSE_LC|FALSE_UC))
 		{
 		if(!defer) {
 			$p.type = EugeneConstants.BOOLEAN;
@@ -2383,6 +2422,7 @@ if(!defer) {
 		if(!defer) {
 			$p = $list.listPrim;
 			$primVariable = $list.listPrim;
+			typeList="";
 		}
 		}
 
@@ -2468,13 +2508,30 @@ list [boolean defer]
 	returns [Variable listPrim]
 	:	str1=expr[defer] {
 if(!defer){
-    $listPrim = new Variable();
-    $listPrim.type = typeList + "List";
-    addToListPrim($str1.p, $listPrim);
+    if (null != $str1.p) {
+        $listPrim = new Variable();
+        if(EugeneConstants.NUM.equals(($str1.p).getType())) {
+            $listPrim.type =  EugeneConstants.NUMLIST;
+            typeList = EugeneConstants.NUM;
+        } else if(EugeneConstants.TXT.equals(($str1.p).getType())) {
+            $listPrim.type =  EugeneConstants.TXTLIST;
+            typeList = EugeneConstants.TXT;
+        } else {
+            printError("Only arrays of num and txt primitives are supported!");
+        }
+        
+        addToListPrim($str1.p, $listPrim);
+    } else {
+        printError("Only arrays of num and txt primitives are supported!");
+    }
 }
 	} 	(COMMA str2=expr[defer] {
 if(!defer) {
-    addToListPrim($str2.p, $listPrim);
+    if(null != $str2.p) {
+        addToListPrim($str2.p, $listPrim);
+    } else {
+        printError("Only arrays of num and txt primitives are supported!");
+    }
 }				
 	} 	)*
 	;
@@ -2516,6 +2573,7 @@ if(!defer) {
         if(null == $child) {
             throw new EugeneException(parent.getName() + " does not contain " + $id.text);
         }
+
     } catch(EugeneException ee) {
         printError(ee.toString());
     }

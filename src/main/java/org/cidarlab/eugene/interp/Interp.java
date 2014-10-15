@@ -890,45 +890,42 @@ public class Interp {
 	public void assignment(String lhs, NamedElement el_rhs)
 			throws EugeneException {
 		
-		System.out.println("[Interp.assignment] -> " + lhs + " = " + el_rhs);
+//		System.out.println("[Interp.assignment] -> " + lhs + " = " + el_rhs);
 		
 		NamedElement el_lhs = this.parseAndGetElement(lhs);
 		if(null != el_lhs) {
-			
 			/*
 			 * we need to compare the types of 
 			 * the LHS and the RHS elements
 			 */
-			if(el_lhs instanceof Variable && el_rhs instanceof Variable) {
-				this.variableAssignment((Variable)el_lhs, (Variable)el_rhs);
+			// lazy evaluation of the Comparator
+			if(null == this.comparator) {
+				this.comparator = new Comparator();
+			}
+			
+			if(this.comparator.compareTypes(el_lhs, el_rhs)) {
+				
+				if(el_rhs instanceof PropertyValue) {
+					
+					if(el_lhs instanceof Variable) { 
+						this.assignment((Variable)el_lhs, (PropertyValue)el_rhs);
+					} else if(el_lhs instanceof PropertyValue) {
+						// assigning a variable to a property value 
+						this.assignment((PropertyValue)el_lhs, (PropertyValue)el_rhs);
+					}
+				} else if(el_rhs instanceof Variable) {
+					if(el_lhs instanceof Variable) { 
+						this.assignment((Variable)el_lhs, (Variable)el_rhs);
+					} else if(el_lhs instanceof PropertyValue) {
+						// assigning a variable to a property value 
+						this.assignment((PropertyValue)el_lhs, (Variable)el_rhs);
+					}
+				}
+				
+			} else {
+				throw new EugeneException("Invalid types!");
 			}
 		}
-	}
-	
-	private void variableAssignment(Variable lhs, Variable rhs) 
-			throws EugeneException {
-		/*
-		 * compare both types
-		 */
-		if(!lhs.getType().equals(rhs.getType())) {
-			throw new EugeneException("Invalid types! " + lhs.getType() +" != " + rhs.getType());
-		}
-		
-		/*
-		 * both types match, i.e. do the assignment
-		 */
-		if(EugeneConstants.NUM.equals(rhs.getType())) {
-			lhs.num = rhs.num;
-		} else if(EugeneConstants.NUMLIST.equals(rhs.getType())) {
-			lhs.numList = this.cloner.deepClone(rhs.numList);
-		} else if(EugeneConstants.TXT.equals(rhs.getType())) {
-			lhs.txt = new String(rhs.txt);
-		} else if(EugeneConstants.TXTLIST.equals(rhs.getType())) {
-			lhs.txtList = this.cloner.deepClone(rhs.txtList);
-		} else if(EugeneConstants.BOOLEAN.equals(rhs.getType())) {
-			lhs.bool = rhs.bool;
-		}
-		
 	}
 	
 	/**
@@ -942,117 +939,196 @@ public class Interp {
 	 */
 	private NamedElement parseAndGetElement(String s) 
 			throws EugeneException {
+		String[] aos = s.split("\\.");
 		
-		String[] aos = s.split(".");
+		NamedElement root = this.get(aos[0]);
+		NamedElement parent = root;
+		NamedElement child = null;
 		
-		if(aos.length == 0) {
+		if(aos.length == 1) {
 			// just an ID
-			System.out.println(s +" -> " + this.get(s));
-			return this.get(s);
+			return root;
 		}
-		System.out.println(aos.length);
-		for(int i=0; i<aos.length; i++) {
-			System.out.println(aos[i]);
+		
+		for(int i=1; i<aos.length; i++) {
+			
+			if(!aos[i].contains("[")) {
+				if(child == null) {
+					child = parent.getElement(aos[i]);
+				} else {
+					parent = child;
+					child = parent.getElement(aos[i]);
+				}
+			}
+			
 		}
-		return null;
+		
+		return child;
 	}
 	
-	private void assignTo(String name, NamedElement lhs, String id, Variable idx, NamedElement rhs, boolean bRef) 
-			throws EugeneException {
-		
-		if(null == rhs) {
-			throw new EugeneException("Invalid assignment to " + name+"!");
-		}
-		
-		System.out.println("[Interp.assignTo] -> "+ name +", " + lhs+", " + id+", "+idx+" =  " +rhs.getClass()+", "+ bRef);
-		
-		if(null != name && null == lhs) {
-			// create a new NamedElement named after name
-			if(bRef) {
-				// by-reference
-				rhs.setName(name);
-				this.put(rhs);
-			} else {
-				// deep-clone
-				NamedElement lhs1 = this.cloner.deepClone(rhs);
-				lhs1.setName(name);
-				this.put(lhs1);
-			}
-		} else if(lhs != null) {
-			
-			if(!(lhs instanceof Variable) && !(lhs instanceof Part) && 
-					!(lhs instanceof PropertyValue) && !(lhs instanceof EugeneContainer)) {
-				throw new EugeneException("Invalid assignment!");
-			}
-			
-			// the 2nd condition is a bit of a hack.
-			if(null != id && !lhs.getName().equals(id)) {
-				
-				// ne must be a component
-				if(lhs instanceof Component) {
-					
-					Property prop = ((Component)lhs).getProperty(id);
-					if(null != prop) {
-
-						try {
-							// the type checking is done in the setPropertyValue method
-							if(rhs instanceof Variable) {
-								((Component)lhs).setPropertyValue(prop, (Variable)rhs);
-							} else if(rhs instanceof PropertyValue) {
-								((Component)lhs).setPropertyValue(prop, (PropertyValue)rhs);
-							} else {
-								throw new EugeneException("I cannot assign " + rhs + " to " + lhs.getName()+"."+id);
-							}
-						} catch(Exception e) {
-							throw new EugeneException(e.getMessage());
-						}
-						
-					} else {
-						throw new EugeneException(lhs.getName() + " does not contain a property named " + id);
-						
-					}
-					
-				} else {
-					
-					throw new EugeneException("Invalid assignment!" + lhs.getName()+"."+id);
-					
-				}
-			} else if(null != idx) {
-				
-				/*
-				 * this is only possible if the named element is a part, property value, or variable
-				 */
-				if(lhs instanceof Variable && rhs instanceof Variable) {
-					
-					((Variable)lhs).setElement((int)idx.getNum(), (Variable)rhs);
-				}
-//				ne.setElement(idx.getNum(), rhs);
-
-			} else {
-				
-				String lhs_scope = this.getScope(lhs);
-//				System.out.println("The scope of " + lhs.getName() + " is " + lhs_scope);
-				
-				if(bRef) {
-					// by-reference
-					rhs.setName(name);
-//					this.put(rhs);
-				} else {
-					// deep-clone
-//					System.out.println(lhs+" vs " +rhs);
-					//lhs = this.cloner.deepClone(rhs);
-					//lhs.setName(name);
-					
-//					System.out.println(lhs+" vs " +rhs);
-					
-					this.updateElement(lhs.getName(), lhs_scope, rhs);
-//					
-//					this.put(lhs);
-				}
-			}
-			
+	/**
+	 * The variableAssignment/2 method assigns the value of the 
+	 * RHS variable to the value of the LHS variable. 
+	 * In this method, we do not perform any type checks. Those 
+	 * happen in the assignment/3 method.
+	 *  
+	 * @param lhs  ... the LHS variable of the assignment 
+	 * @param rhs  ... the RHS variable of the assignment
+	 * 
+	 * @throws EugeneException
+	 */
+	private void assignment(Variable lhs, Variable rhs) {
+		if(EugeneConstants.NUM.equals(rhs.getType())) {
+			lhs.num = rhs.num;
+		} else if(EugeneConstants.NUMLIST.equals(rhs.getType())) {
+			lhs.numList = this.cloner.deepClone(rhs.numList);
+		} else if(EugeneConstants.TXT.equals(rhs.getType())) {
+			lhs.txt = new String(rhs.txt);
+		} else if(EugeneConstants.TXTLIST.equals(rhs.getType())) {
+			lhs.txtList = this.cloner.deepClone(rhs.txtList);
+		} else if(EugeneConstants.BOOLEAN.equals(rhs.getType())) {
+			lhs.bool = rhs.bool;
 		}
 	}
+	
+	private void assignment(Variable lhs, PropertyValue rhs) {
+		if(EugeneConstants.NUM.equals(rhs.getType())) {
+			lhs.num = rhs.getNum();
+		} else if(EugeneConstants.NUMLIST.equals(rhs.getType())) {
+			lhs.numList = (ArrayList<Double>)this.cloner.deepClone(rhs.getNumList());
+		} else if(EugeneConstants.TXT.equals(rhs.getType())) {
+			lhs.txt = new String(rhs.getTxt());
+		} else if(EugeneConstants.TXTLIST.equals(rhs.getType())) {
+			lhs.txtList = (ArrayList<String>)this.cloner.deepClone(rhs.getTxtList());
+		} else if(EugeneConstants.BOOLEAN.equals(rhs.getType())) {
+			lhs.bool = rhs.getBool();
+		}
+	}
+
+	private void assignment(PropertyValue lhs, Variable rhs) {
+		if(EugeneConstants.NUM.equals(rhs.getType())) {
+			lhs.setNum(rhs.num);
+		} else if(EugeneConstants.NUMLIST.equals(rhs.getType())) {
+			lhs.setNumList(this.cloner.deepClone(rhs.numList));
+		} else if(EugeneConstants.TXT.equals(rhs.getType())) {
+			lhs.setTxt(new String(rhs.txt));
+		} else if(EugeneConstants.TXTLIST.equals(rhs.getType())) {
+			lhs.setTxtList(this.cloner.deepClone(rhs.txtList));
+		} else if(EugeneConstants.BOOLEAN.equals(rhs.getType())) {
+			lhs.setBool(rhs.bool);
+		}
+	}
+
+	private void assignment(PropertyValue lhs, PropertyValue rhs) {
+		if(EugeneConstants.NUM.equals(rhs.getType())) {
+			lhs.setNum(rhs.getNum());
+		} else if(EugeneConstants.NUMLIST.equals(rhs.getType())) {
+			lhs.setNumList(this.cloner.deepClone(rhs.getNumList()));
+		} else if(EugeneConstants.TXT.equals(rhs.getType())) {
+			lhs.setTxt(new String(rhs.getTxt()));
+		} else if(EugeneConstants.TXTLIST.equals(rhs.getType())) {
+			lhs.setTxtList(this.cloner.deepClone(rhs.getTxtList()));
+		} else if(EugeneConstants.BOOLEAN.equals(rhs.getType())) {
+			lhs.setBool(rhs.getBool());
+		}
+	}
+	
+//	private void assignTo(String name, NamedElement lhs, String id, Variable idx, NamedElement rhs, boolean bRef) 
+//			throws EugeneException {
+//		
+//		if(null == rhs) {
+//			throw new EugeneException("Invalid assignment to " + name+"!");
+//		}
+//		
+//		System.out.println("[Interp.assignTo] -> "+ name +", " + lhs+", " + id+", "+idx+" =  " +rhs.getClass()+", "+ bRef);
+//		
+//		if(null != name && null == lhs) {
+//			// create a new NamedElement named after name
+//			if(bRef) {
+//				// by-reference
+//				rhs.setName(name);
+//				this.put(rhs);
+//			} else {
+//				// deep-clone
+//				NamedElement lhs1 = this.cloner.deepClone(rhs);
+//				lhs1.setName(name);
+//				this.put(lhs1);
+//			}
+//		} else if(lhs != null) {
+//			
+//			if(!(lhs instanceof Variable) && !(lhs instanceof Part) && 
+//					!(lhs instanceof PropertyValue) && !(lhs instanceof EugeneContainer)) {
+//				throw new EugeneException("Invalid assignment!");
+//			}
+//			
+//			// the 2nd condition is a bit of a hack.
+//			if(null != id && !lhs.getName().equals(id)) {
+//				
+//				// ne must be a component
+//				if(lhs instanceof Component) {
+//					
+//					Property prop = ((Component)lhs).getProperty(id);
+//					if(null != prop) {
+//
+//						try {
+//							// the type checking is done in the setPropertyValue method
+//							if(rhs instanceof Variable) {
+//								((Component)lhs).setPropertyValue(prop, (Variable)rhs);
+//							} else if(rhs instanceof PropertyValue) {
+//								((Component)lhs).setPropertyValue(prop, (PropertyValue)rhs);
+//							} else {
+//								throw new EugeneException("I cannot assign " + rhs + " to " + lhs.getName()+"."+id);
+//							}
+//						} catch(Exception e) {
+//							throw new EugeneException(e.getMessage());
+//						}
+//						
+//					} else {
+//						throw new EugeneException(lhs.getName() + " does not contain a property named " + id);
+//						
+//					}
+//					
+//				} else {
+//					
+//					throw new EugeneException("Invalid assignment!" + lhs.getName()+"."+id);
+//					
+//				}
+//			} else if(null != idx) {
+//				
+//				/*
+//				 * this is only possible if the named element is a part, property value, or variable
+//				 */
+//				if(lhs instanceof Variable && rhs instanceof Variable) {
+//					
+//					((Variable)lhs).setElement((int)idx.getNum(), (Variable)rhs);
+//				}
+////				ne.setElement(idx.getNum(), rhs);
+//
+//			} else {
+//				
+//				String lhs_scope = this.getScope(lhs);
+////				System.out.println("The scope of " + lhs.getName() + " is " + lhs_scope);
+//				
+//				if(bRef) {
+//					// by-reference
+//					rhs.setName(name);
+////					this.put(rhs);
+//				} else {
+//					// deep-clone
+////					System.out.println(lhs+" vs " +rhs);
+//					//lhs = this.cloner.deepClone(rhs);
+//					//lhs.setName(name);
+//					
+////					System.out.println(lhs+" vs " +rhs);
+//					
+//					this.updateElement(lhs.getName(), lhs_scope, rhs);
+////					
+////					this.put(lhs);
+//				}
+//			}
+//			
+//		}
+//	}
 	
 	public void updateElement(NamedElement ne) 
 			throws EugeneException {
@@ -1398,29 +1474,6 @@ public class Interp {
 		}
 		this.push(new EugeneArray(name));
 	}
-	
-	public void assign(String to, NamedElement element) 
-			throws EugeneException {
-		NamedElement ne = null;
-		
-		if(this.contains(to)) {
-			try {
-				ne = this.get(to);
-			} catch(EugeneException e) {
-				throw new EugeneException(e.getMessage());
-			}
-		}
-
-		/*
-		 * TODO!!!
-		 */
-		
-		if(!this.contains(to)) {
-			this.put(ne);
-		}
-
-	}
-	
 	
 	/**********************************************************************
 	 * DATA EXCHANGE METHODS
@@ -1816,33 +1869,28 @@ public class Interp {
 	
 	
 	/**
-	 * The evaluateCondition/3 compares the lhs variable with the 
-	 * rhs variable according to the given operator op.
+	 * The evaluateCondition/3 compares the LHS with the RHS 
+	 * according to the given operator op.
 	 * The evaluateCondition/3 returns true if the condition is 
 	 * satisfied, false otherwise.
 	 * 
-	 * @param lhs  ... the lhs variable
+	 * @param lhs  ... the LHS NamedElement
 	 * @param op   ... the comparison operator
-	 * @param rhs  ... the rhs variable
+	 * @param rhs  ... the RHS NamedElement
 	 * 
 	 * @return true ... iff the condition is satisfied
 	 *         false .. otherwise
 	 *         
 	 * @throws EugeneException
 	 */
-	public boolean evaluateCondition(Variable lhs, String op, Variable rhs) 
+	public boolean evaluateCondition(NamedElement lhs, String op, NamedElement rhs) 
 			throws EugeneException {
+	
 		if(null==lhs) {
 			throw new EugeneException("The LHS of a condition cannot be NULL!");
 		}
 		if(null==rhs) {
 			throw new EugeneException("The RHS of a condition cannot be NULL!");
-		}
-		
-		// type comparison
-		if(!lhs.getType().equals(rhs.getType())) {
-			throw new EugeneException("The types of the LHS and RHS do not match! " + 
-					lhs.getType() +" != "+ rhs.getType());
 		}
 		
 		// lazy evaluation
@@ -1851,7 +1899,29 @@ public class Interp {
 			this.comparator = new Comparator();
 		}
 		
-		return this.comparator.evaluateCondition(lhs, op, rhs);
+		/*
+		 * compare the types
+		 */
+		if(this.comparator.compareTypes(lhs, rhs)) {
+			
+			/*
+			 * comparing variables
+			 */
+			if(lhs instanceof Variable && rhs instanceof Variable) {
+				return this.comparator.evaluateCondition((Variable)lhs, op, (Variable)rhs);
+			
+			/*
+			 * comparing component types and components
+			 */
+			} else if(lhs instanceof ComponentType ||
+					lhs instanceof Component) {
+				return lhs.equals(rhs);
+			}
+
+		}
+		
+		return false;
 	}
+	
 	
 }
