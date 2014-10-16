@@ -216,6 +216,7 @@ public class Variable
 	
 	public void setElement(int idx, Variable v) 
 			throws EugeneException {
+		
 		if(EugeneConstants.TXTLIST.equals(this.getType()) && EugeneConstants.TXT.equals(v.getType())) {
 			if(idx < 0 || idx > this.getTxtList().size() - 1) {
 				throw new EugeneException("The index " + idx +" is out of bounds!");
@@ -236,6 +237,7 @@ public class Variable
 			sb.append(v.getTxt());
 			sb.append(this.getTxt().substring(idx + 1));
 			this.txt = sb.toString();
+			
 		} else {
 			throw new EugeneException("Variables of type "+this.getType()+" do not support array access!");
 		}

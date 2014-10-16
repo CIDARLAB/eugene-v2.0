@@ -60,5 +60,3 @@ if(sp1.seq != "ATCGATCGATCG") {exit;}
 sp1.seq[4] = "ATCG";
 if(sp1.seq == "ATCGATCGATCG") {exit;}
 
-
-

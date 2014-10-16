@@ -890,7 +890,6 @@ public class Interp {
 	public void assignment(String lhs, NamedElement el_rhs)
 			throws EugeneException {
 		
-//		System.out.println("[Interp.assignment] -> " + lhs + " = " + el_rhs);
 		this.idx = -1;
 		NamedElement el_lhs = this.parseAndGetElement(lhs);
 		if(null != el_lhs) {
@@ -908,7 +907,6 @@ public class Interp {
 			 *-------------------*/
 			boolean bValid = false;
 			if((-1) != this.idx) {
-//				System.out.println(el_lhs+"["+this.idx+"]" + " = "+el_rhs);
 				bValid = this.comparator.compareTypes(el_lhs, idx, el_rhs);
 			} else {
 				bValid = this.comparator.compareTypes(el_lhs, el_rhs);
@@ -923,19 +921,31 @@ public class Interp {
 			 *------------*/
 			if(el_rhs instanceof PropertyValue) {
 				
-				// TODO: indexed assignments!
-				
 				if(el_lhs instanceof Variable) {
-					
-					this.assignment((Variable)el_lhs, (PropertyValue)el_rhs);
+					if(idx != -1) {
+						((Variable)el_lhs).setElement(idx, 
+								this.comparator.convertPropertyValueToVariable((PropertyValue)el_rhs));						
+					} else {					
+						this.assignment((Variable)el_lhs, (PropertyValue)el_rhs);
+					}
 					
 				} else if(el_lhs instanceof PropertyValue) {
-					// assigning a variable to a property value 
-					this.assignment((PropertyValue)el_lhs, (PropertyValue)el_rhs);
+					if(idx != -1) {
+						((PropertyValue)el_lhs).set(idx, el_rhs);						
+					} else {					
+						// assigning a variable to a property value 
+						this.assignment((PropertyValue)el_lhs, (PropertyValue)el_rhs);
+					}
 				}
+				
 			} else if(el_rhs instanceof Variable) {
-				if(el_lhs instanceof Variable) { 
-					this.assignment((Variable)el_lhs, (Variable)el_rhs);
+				
+				if(el_lhs instanceof Variable) {
+					if(idx != -1) {
+						((Variable)el_lhs).setElement(idx, (Variable)el_rhs);
+					} else {
+						this.assignment((Variable)el_lhs, (Variable)el_rhs);
+					}
 				} else if(el_lhs instanceof PropertyValue) {
 					// assigning a variable to a property value
 					if(idx != -1) {
@@ -963,15 +973,39 @@ public class Interp {
 			throws EugeneException {
 		String[] aos = s.split("\\.");
 		
-		NamedElement root = this.get(aos[0]);
-		NamedElement parent = root;
-		NamedElement child = null;
 		
+		NamedElement root = null;
+
 		if(aos.length == 1) {
-			// just an ID
-			return root;
+			String root_name = aos[0];
+			// check if there's an index provided
+			if(aos[0].contains("[")) {
+				try {
+					// parse the index
+					this.idx = this.getIndex(
+							aos[0].substring(
+									aos[0].indexOf('[')+1, 
+									aos[0].indexOf(']')));
+				} catch(EugeneException ee) {
+					throw new EugeneException(ee.getLocalizedMessage());
+				}
+				
+				root_name = s.substring(0, aos[0].indexOf('['));
+				root = this.get(root_name);
+			} else {
+				// just an ID
+				root = this.get(s);
+			}
+
+			if(null != root) {
+				return root;
+			} 
+			throw new EugeneException("Cannot find " + root_name+"!");
 		}
 		
+		NamedElement parent = root;
+		NamedElement child = null;
+
 		for(int i=1; i<aos.length; i++) {
 			
 			String prop_name = aos[i];
@@ -1024,7 +1058,7 @@ public class Interp {
 			
 			// in this case, it's highly possible 
 			// that the index is a variable
-			NamedElement ne = this.symbols.get(s);
+			NamedElement ne = this.get(s);
 			
 			// first, we check if s exists
 			if(ne == null) {
@@ -2010,7 +2044,6 @@ public class Interp {
 		 * compare the types
 		 */
 		if(this.comparator.compareTypes(lhs, rhs)) {
-			
 			/*
 			 * comparing variables
 			 */

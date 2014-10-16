@@ -24,7 +24,7 @@ public class Comparator {
 	 * @param pv  ... the PropertyValue that should be converted
 	 * @return    ... the resulting Variable object
 	 */
-	private Variable convertPropertyValueToVariable(PropertyValue pv) {
+	public Variable convertPropertyValueToVariable(PropertyValue pv) {
 		
 		// instantiate a Variable object using the name and type 
 		// of the PropertyValue object
@@ -87,8 +87,6 @@ public class Comparator {
 	 */
 	public boolean evaluateCondition(NamedElement lhs, String op, NamedElement rhs)
 			throws EugeneException {
-		
-//		System.out.println("[Comparator.evaluateCondition] -> " + lhs +" "+op+" "+rhs);
 		
 		Variable v_lhs = this.toVariable(lhs);
 		Variable v_rhs = this.toVariable(rhs);
@@ -229,7 +227,6 @@ public class Comparator {
 		// if both objects are either variables or property values, 
 		// then we need to compare their primitive types
 		if(lhs instanceof Variable) {
-			
 			if(rhs instanceof Variable) {
 				return ((Variable)lhs).getType().equals(
 						((Variable)rhs).getType());
@@ -291,8 +288,8 @@ public class Comparator {
 			String type = null;
 			if(EugeneConstants.NUMLIST.equals(((Variable)lhs).getType())) {
 				type = EugeneConstants.NUM;
-			} else if (EugeneConstants.TXTLIST.equals(((PropertyValue)lhs).getType()) ||
-					EugeneConstants.TXT.equals(((PropertyValue)lhs).getType())) {
+			} else if (EugeneConstants.TXTLIST.equals(((Variable)lhs).getType()) ||
+					EugeneConstants.TXT.equals(((Variable)lhs).getType())) {
 				type = EugeneConstants.TXT;
 			} else {
 				return false;

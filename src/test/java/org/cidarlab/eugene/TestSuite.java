@@ -21,14 +21,19 @@ public class TestSuite {
 		/*---------------------------------------------
 		 * PRIMITIVE DATA TYPES AND MODIFICATIONS
 		 *---------------------------------------------*/
-		new TestSuite().test("./tests/primitives/primitives-assign");    
-		new TestSuite().test("./tests/primitives/part-property-assign");    
-		new TestSuite().test("./tests/primitives/array-manip");    
+//		new TestSuite().test("./tests/primitives/primitives-assign");    
+//		new TestSuite().test("./tests/primitives/part-property-assign");    
+//		new TestSuite().test("./tests/primitives/array-manip");    
 		
 		// EXPRESSIONS
 //		new TestSuite().test("./tests/expressions/plus-sub-mult-div");    
 //		new TestSuite().test("./tests/expressions/loops-and-calculations");    
 		
+		
+		/*---------------------------------------------
+		 * SEQUENCE SHENANIGANS
+		 *---------------------------------------------*/
+		new TestSuite().test("./tests/sequence/reverse-complement");    
 		
 		/*---------------------------------------------
 		 * EUGENE BASICS
@@ -41,6 +46,7 @@ public class TestSuite {
 //		new TestSuite().test("./tests/data-access");
 
 		
+
 		/*---------------------------------------------
 		 * EUGENE CONTAINERS
 		 *---------------------------------------------*/

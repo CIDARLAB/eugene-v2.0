@@ -11541,7 +11541,7 @@ public TreeAdaptor getTreeAdaptor() {
                 } catch(EugeneReturnException ere) {
                     // TODO!
                 } catch(Exception ee) {
-                    printError(ee.toString());
+                    printError(ee.getLocalizedMessage());
                 }
             }			
             		

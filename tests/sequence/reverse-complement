@@ -1,0 +1,41 @@
+// the sequence
+txt seq = "ATCG";
+
+// the length of the sequence
+num N = 4;  
+
+// temporary string for swapping
+// the nucleotides
+txt tmp;
+for(num i = 3; i > 1; i = i - 1) {
+
+    tmp = seq[i];
+    num x = (N-i)-1;
+    
+	if(seq[x] == "A") {    
+		seq[i] = "T";
+	} elseif(seq[x] == "T") {
+		seq[i] = "A";
+	} elseif(seq[x] == "C") {
+		seq[i] = "G";
+	} elseif(seq[x] == "G") {
+		seq[i] = "C";
+	}
+ 
+    if(tmp == "A") {
+        seq[x] = "T";
+    } elseif(tmp == "T") {
+        seq[x] = "A";
+    } elseif(tmp == "C") {
+        seq[x] = "G";
+    } elseif(tmp == "G") {
+        seq[x] = "C";
+    }     
+
+}
+
+// TEST
+if(seq != "CGAT") {exit;}
+    
+
+
