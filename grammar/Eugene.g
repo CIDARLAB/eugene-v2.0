@@ -106,6 +106,12 @@ tokens {
 
 	ARROW = '-->';
 	GRAMMAR = 'Grammar';
+	
+	/*  
+	 * RESERVED WORDS FOR BUILT-IN FUNCTIONS
+	 */
+	SIZEOF_LC = 'sizeof';
+	SIZEOF_UC = 'SIZEOF';
 }
 
 
@@ -294,7 +300,7 @@ public void init(Interp interp, BufferedWriter writer) {
                               new OutputStreamWriter(
                                   new FileOutputStream(java.io.FileDescriptor.out), "ASCII"), 512);
         } catch(Exception e) {
-            printError(e.toString());
+            printError(e.getLocalizedMessage());
         }
     }
 }
@@ -314,7 +320,7 @@ public void setFilename(String filename) {
 
 @Override
 public void reportError(RecognitionException re) {
-    printError(re.toString());
+    printError(re.getLocalizedMessage());
 }
 
 //method used to collect individual members in declaration, used by grammar rule list
@@ -368,7 +374,7 @@ public boolean checkIfAlreadyDeclared(String name, boolean all) {
 			try {
    			    this.interp.put(name, p);
 			} catch(EugeneException ee) {
-			    printError(ee.toString());
+			    printError(ee.getLocalizedMessage());
 			}
 		}
 	}
@@ -382,7 +388,7 @@ public boolean checkIfAlreadyDeclared(String name, boolean all) {
 				try {
 				    this.interp.put(name, p);
 			        } catch(EugeneException ee) {
-			            printError(ee.toString());
+			            printError(ee.getLocalizedMessage());
 			        }
 			} else if (prim.type.equals(EugeneConstants.NUMLIST) && prim.index != -1) {
 				Variable p = new Variable(name, EugeneConstants.NUM);
@@ -402,7 +408,7 @@ public boolean checkIfAlreadyDeclared(String name, boolean all) {
 				try {
 				    this.interp.put(name, p);
 			        } catch(EugeneException ee) {
-			            printError(ee.toString());
+			            printError(ee.getLocalizedMessage());
 			        }
 			} else if (prim.type.equals(EugeneConstants.TXTLIST) && index != -1) {
 				Variable p = new Variable(name, EugeneConstants.TXT);
@@ -422,7 +428,7 @@ public boolean checkIfAlreadyDeclared(String name, boolean all) {
 				try {
 				    this.interp.put(name, p);
 			        } catch(EugeneException ee) {
-			            printError(ee.toString());
+			            printError(ee.getLocalizedMessage());
 			        }
 			} else {
 				printError("Type mismatch. Type is " + prim.type + " but must be txtList.");
@@ -439,7 +445,7 @@ public boolean checkIfAlreadyDeclared(String name, boolean all) {
 				try {
 				    this.interp.put(name, p);
 			        } catch(EugeneException ee) {
-			            printError(ee.toString());
+			            printError(ee.getLocalizedMessage());
 			        }
 			} else {
 				printError("Type mismatch. Type is " + prim.type + " but must be numList.");
@@ -456,7 +462,7 @@ public boolean checkIfAlreadyDeclared(String name, boolean all) {
 				try {
 				    this.interp.put(name, p);
 			        } catch(EugeneException ee) {
-			            printError(ee.toString());
+			            printError(ee.getLocalizedMessage());
 			        }
 			} else {
 				printError("Type mismatch. Type is " + prim.type + " but must be numList.");
@@ -602,9 +608,9 @@ public Object exec(String rule, int tokenIndex)
         throw new EugeneReturnException(e.getReturnValue());
  ****/        
 //    } catch (EugeneReturnException ere) {
-//       throw new EugeneReturnException(ere.toString());
+//       throw new EugeneReturnException(ere.getLocalizedMessage());
     } catch (Exception e) {
-        throw new EugeneException(e.toString());
+        throw new EugeneException(e.getLocalizedMessage());
     }
     finally { 
         // restore location
@@ -734,7 +740,7 @@ if(!defer) {
         System.out.println("[Parser.dataExchange] -> " + $de.e);
         this.interp.put($de.e);
     } catch(EugeneException ee) {
-        printError(ee.toString());
+        printError(ee.getLocalizedMessage());
     }
 }	
 	}
@@ -800,20 +806,18 @@ if(!defer) {
 
 numdecl[boolean defer]
 	returns [String varname]
-	:	ID
-		{
-		if(!defer) {
-			declareVariableNoValue($ID.text, EugeneConstants.NUM);
-			$varname = $ID.text;
-		}
-		} (COMMA numdecl[defer])?
-	|	ID EQUALS (ex=expr[defer])
-		{
-		if(!defer) {
-			declareVariableWithValueNum($ID.text, $ex.p, $ex.index);
-			$varname = $ID.text;
-		}
-		}  (COMMA numdecl[defer])?
+	:	ID {
+if(!defer) {
+    declareVariableNoValue($ID.text, EugeneConstants.NUM);
+    $varname = $ID.text;
+}
+	} 	(COMMA numdecl[defer])?
+	|	ID EQUALS (ex=expr[defer]) {
+if(!defer) {
+    declareVariableWithValueNum($ID.text, $ex.p, $ex.index);
+    $varname = $ID.text;
+}
+	}  (COMMA numdecl[defer])?
 	;
 
 txtdecl[boolean defer]
@@ -983,7 +987,7 @@ if(!defer) {
          */
         this.interp.pop();
     } catch(EugeneException ee) {
-        printError(ee.toString());
+        printError(ee.getLocalizedMessage());
     }
 }	
 	}
@@ -1000,7 +1004,7 @@ if(!defer) {
             throw new EugeneException("Cannot add " + $at.text + " to a Eugene container!");
         }
     } catch(EugeneException ee) {
-        printError(ee.toString());
+        printError(ee.getLocalizedMessage());
     }
 }	
 	})	( COMMA lod=list_of_declarations[defer] )?
@@ -1306,7 +1310,7 @@ if(!defer) {
                         $rhs.e);
         
     } catch(EugeneException ee) {
-        printError(ee.toString());    
+        printError(ee.getLocalizedMessage());    
     }
 }	
 	}
@@ -1620,7 +1624,7 @@ if(!defer) {
     try {
         $p = new ExpressionConstraint($lhs.exp, $op.text, $rhs.exp);
     } catch(EugeneException ee) {
-        printError(ee.toString());
+        printError(ee.getLocalizedMessage());
     }
 }
 	}
@@ -1856,7 +1860,7 @@ if(!defer) {
     try {
         $ia = this.interp.createInteraction(name, $lhs1.text, $t1.type, $rhs1.text);
     } catch(EugeneException ee) {
-        printError(ee.toString());
+        printError(ee.getLocalizedMessage());
     }
 }	
 	}
@@ -1865,7 +1869,7 @@ if(!defer) {
     try {
         $ia = this.interp.createInteraction(name, $lhs2.text, $t2.type, $rhs2.ia);
     } catch(EugeneException ee) {
-        printError(ee.toString());
+        printError(ee.getLocalizedMessage());
     }
 }	
 	}
@@ -2012,7 +2016,7 @@ if(!defer) {
         } catch(EugeneReturnException ere) {
             // TODO!
         } catch(EugeneException ee) {
-            printError(ee.toString());
+            printError(ee.getLocalizedMessage());
         }
         bExecuted = true;
     }
@@ -2034,7 +2038,7 @@ if(!defer && !bExecuted) {
         } catch(EugeneReturnException ere) {
             // TODO!
         } catch(EugeneException ee) {
-            printError(ee.toString());
+            printError(ee.getLocalizedMessage());
         }
         
         bExecuted = true;
@@ -2053,7 +2057,7 @@ if(!defer && !bExecuted) {
     } catch(EugeneReturnException ere) {
         // TODO!
     } catch(EugeneException ee) {
-        printError(ee.toString());
+        printError(ee.getLocalizedMessage());
     }
     
     bExecuted = true;
@@ -2108,7 +2112,7 @@ if(!defer) {
             }
         }
     } catch(EugeneException ee) {
-        printError(ee.toString());
+        printError(ee.getLocalizedMessage());
     }
 }	
 	}
@@ -2137,7 +2141,7 @@ if(!defer) {
     } catch(EugeneReturnException ere) {
         // TODO!
     } catch(Exception ee) {
-        printError(ee.toString());
+        printError(ee.getLocalizedMessage());
     }
 }			
 		}
@@ -2263,118 +2267,47 @@ atom [boolean defer]
 				throw new EugeneException($ID.text + " is not declared.");
 			}
 		} catch(EugeneException ee) {
-			printError(ee.toString());
+			printError(ee.getLocalizedMessage());
 		}
 	}
-		}	oc=object_access[defer, $element] {
+	}	oc=object_access[defer, $element] {
 if(!defer) {
     $element = $oc.child;
     if($element instanceof Variable) {
         $p = (Variable)$element;
     }
 }		
-		} 
+	} 
 	|	STRING
-		{
+	{
 		if(!defer) {
 			$p.type = EugeneConstants.TXT;
 			$p.txt = $STRING.text.substring(1, $STRING.text.length()-1);
 		}
-		}
+	}
 	|	'(' expr[defer] ')'
-		{
+	{
 		if(!defer) {
 			$p = $expr.p;
 			$primVariable = $expr.primVariable;
 		}
-		}
+	}
 		|	LEFTSBR list[defer] RIGHTSBR
-		{
+	{
 		if(!defer) {
 			$p = $list.listPrim;
 			$primVariable = $list.listPrim;
 			typeList="";
 		}
-		}
-
+	}
+		|	bif=built_in_function[defer] {
+if(!defer) {
+    $p = $bif.p;
+    $element = null;
+}		
+	}
 	;
-/**** 
- BACKUP	:	
-	|	ID LEFTSBR (n=NUMBER|r=REAL) RIGHTSBR
-		{
-		try {
-			if (!ifValueStack.empty()) {
-				if (ifValueStack.peek() == "1") {
-					if ($r != null) {
-						printError("Invalid index.");
-					} else {
-						if (null != this.interp.getVariable($ID.text)) {
-							$listAddress = $ID.text;
-							Variable prim = this.interp.getVariable($ID.text);
-							if (prim.type.equals(EugeneConstants.NUMLIST)) {
-								int s = Integer.parseInt($n.text);
-								if (s > prim.numList.size()) {
-									printError("Index out of bounds, index: " + $n.text + " and list size: " + s + ".");
-								} else {
-									$p.num = prim.numList.get(s);
-									$p.type = EugeneConstants.NUM;
-									$index = s;
-									$primVariable = prim;
-								}
-							} else if (prim.type.equals(EugeneConstants.TXTLIST)) {
-								int s = Integer.parseInt($n.text);
-								if (s > prim.txtList.size()) {
-									printError("Index out of bounds, index: " + $n.text + " and list size: " + s + ".");
-								} else {
-									$p.txt = prim.txtList.get(s);
-									$p.type = EugeneConstants.TXT;
-									$index = s;
-									$primVariable = prim;
-								}
-							}
-						} else {
-							printError("List " + $ID.text + " does not exist or is not a Variable list.");
-						}
-					}
-				}
-			} else {
-				if ($r != null) {
-					printError("Invalid index.");
-				} else {
-					if (null != this.interp.getVariable($ID.text)) {
-						$listAddress = $ID.text;
-						Variable prim = this.interp.getVariable($ID.text);
-						if (prim.type.equals(EugeneConstants.NUMLIST)) {
-							int s = Integer.parseInt($n.text);
-							if (s > prim.numList.size()) {
-								printError("Index out of bounds, index: " + $n.text + " and list size: " + s + ".");
-							} else {
-								$p.num = prim.numList.get(s);
-								$p.type = EugeneConstants.NUM;
-								$index = s;
-								$primVariable = prim;
-							}
-						} else if (prim.type.equals(EugeneConstants.TXTLIST)) {
-							int s = Integer.parseInt($n.text);
-							if (s > prim.txtList.size()) {
-								printError("Index out of bounds, index: " + $n.text + " and list size: " + s + ".");
-							} else {
-								$p.txt = prim.txtList.get(s);
-								$p.type = EugeneConstants.TXT;
-								$index = s;
-								$primVariable = prim;
-							}
-						}
-					} else {
-						printError("List " + $ID.text + " does not exist or is not a Variable list.");
-					}
-				}
-			} //end else
-		} catch(EugeneException ee) {
-			printError(ee.toString());
-		} 
-		}
- ****/
+
 list [boolean defer]
 	returns [Variable listPrim]
 	:	str1=expr[defer] {
@@ -2408,6 +2341,27 @@ if(!defer) {
 	;
   
 /*------------------------------------------------------------------
+ * BUILT-IN FUNCTIONS
+ * E.g. sizeof()
+ *------------------------------------------------------------------*/
+built_in_function[boolean defer]
+	returns [Variable p]
+	:	(SIZEOF_LC|SIZEOF_UC) LEFTP e=expr[defer] RIGHTP {
+if(!defer) {
+    try {
+        if(null != $e.element) {
+            $p = this.interp.getSizeOf($e.element);
+        } else if(null != $e.p) {
+            $p = this.interp.getSizeOf($e.p);
+        }
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}	
+	}
+	;
+	
+/*------------------------------------------------------------------
  * DATA ACCESS
  * E.g. D1.D2.D3[0].p1.prop1
  *------------------------------------------------------------------*/
@@ -2437,7 +2391,7 @@ if(!defer) {
     $child = parent;
 }	
 	}
-		|(DOT id=ID {
+		|(DOT (id=ID {
 if(!defer) {
     try {
         $child = parent.getElement($id.text);
@@ -2446,10 +2400,18 @@ if(!defer) {
         }
 
     } catch(EugeneException ee) {
-        printError(ee.toString());
+        printError(ee.getLocalizedMessage());
     }
 }	
-	} 
+	} |	SIZE (LEFTP RIGHTP)? {
+if(!defer) {
+    try {
+        $child = this.interp.getSizeOf(parent);
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}	
+	})
 	|	LEFTSBR (exp=expr[defer]) RIGHTSBR {
 if(!defer) {
     try {
@@ -2462,7 +2424,7 @@ if(!defer) {
             throw new EugeneException("Invalid index " + $exp.p + "!");
         }
     } catch(EugeneException ee) {
-        printError(ee.toString());
+        printError(ee.getLocalizedMessage());
     }
 }	
 	})	o=object_access[defer, $child] {
@@ -2500,7 +2462,7 @@ if(!defer) {
     try {
         this.interp.includeFile($file.text);
     } catch(EugeneException ee) {
-        printError(ee.toString());
+        printError(ee.getLocalizedMessage());
     }
 }
 	}
@@ -2514,7 +2476,7 @@ if(!defer) {
     try {
         $e = this.interp.importFile($file.text);
     } catch(EugeneException ee) {
-        printError(ee.toString());
+        printError(ee.getLocalizedMessage());
     }
 }
 	}	RIGHTP

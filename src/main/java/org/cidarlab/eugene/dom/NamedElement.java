@@ -1,7 +1,6 @@
 package org.cidarlab.eugene.dom;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 import org.cidarlab.eugene.exception.EugeneException;
 

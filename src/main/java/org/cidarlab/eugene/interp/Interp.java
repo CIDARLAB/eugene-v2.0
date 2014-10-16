@@ -863,6 +863,81 @@ public class Interp {
 		}
 	}
 	
+	/**
+	 * The method getSizeOf/1 returns the size of a given NamedElement object.
+	 * Example: sizeof("ATCG") -> 4
+	 * 
+	 * @param el  ... the NamedElement object
+	 * @return    ... the size of the NamedElement object
+	 * 
+	 * @throws EugeneException
+	 */
+	public Variable getSizeOf(NamedElement el) 
+			throws EugeneException {
+		
+		if(null == el) {
+			throw new EugeneException("Undeterministic size!");
+		}
+		
+    	Variable v = new Variable(EugeneConstants.ANONYMOUS_VARIABLE, EugeneConstants.NUM);
+		
+    	if(el instanceof Variable) {
+    		if(EugeneConstants.NUM.equals(((Variable)el).getType()) ||
+    				EugeneConstants.BOOLEAN.equals(((Variable)el).getType())) {
+    			v.num = 0;
+    		} else if(EugeneConstants.NUMLIST.equals(((Variable)el).getType())) {
+    			if(null != ((Variable)el).getNumList()) {
+    				v.num = ((Variable)el).getNumList().size();
+    			} else {
+    				v.num = 0;
+    			}
+    		} else if(EugeneConstants.TXTLIST.equals(((Variable)el).getType())) {
+    			if(null != ((Variable)el).getTxtList()) {
+    				v.num = ((Variable)el).getTxtList().size();
+    			} else {
+    				v.num = 0;
+    			}
+    		} else if(EugeneConstants.TXT.equals(((Variable)el).getType())) {
+    			if(null != ((Variable)el).getTxt()) {
+    				v.num = ((Variable)el).getTxt().length();
+    			} else {
+    				v.num = 0;
+    			}
+    		}
+    	} else if(el instanceof PropertyValue) {
+    		if(EugeneConstants.NUM.equals(((PropertyValue)el).getType()) ||
+    				EugeneConstants.BOOLEAN.equals(((PropertyValue)el).getType())) {
+    			v.num = 0;
+    		} else if(EugeneConstants.NUMLIST.equals(((PropertyValue)el).getType())) {
+    			if(null != ((PropertyValue)el).getNumList()) {
+    				v.num = ((PropertyValue)el).getNumList().size();
+    			} else {
+    				v.num = 0;
+    			}
+    		} else if(EugeneConstants.TXTLIST.equals(((PropertyValue)el).getType())) {
+    			if(null != ((PropertyValue)el).getTxtList()) {
+    				v.num = ((PropertyValue)el).getTxtList().size();
+    			} else {
+    				v.num = 0;
+    			}
+    		} else if(EugeneConstants.TXT.equals(((PropertyValue)el).getType())) {
+    			if(null != ((PropertyValue)el).getTxt()) {
+    				v.num = ((PropertyValue)el).getTxt().length();
+    			} else {
+    				v.num = 0;
+    			}
+    		}
+    		
+    	// EugeneContainers (i.e. EugeneArray and EugeneCollection)	
+    	} else if(el instanceof EugeneContainer) {
+    		if(null != ((EugeneContainer)el).getElements()) {
+        		v.num = ((EugeneContainer)el).getElements().size();
+    		}
+    	}
+    	
+    	return v;
+	}
+	
 
 	/**
 	 * The permute/1 method permutes the elements of the given device.
@@ -971,12 +1046,13 @@ public class Interp {
 	 */
 	private NamedElement parseAndGetElement(String s) 
 			throws EugeneException {
-		String[] aos = s.split("\\.");
 		
+		String[] aos = s.split("\\.");
 		
 		NamedElement root = null;
 
-		if(aos.length == 1) {
+		if(aos.length >= 1) {
+			
 			String root_name = aos[0];
 			// check if there's an index provided
 			if(aos[0].contains("[")) {
@@ -994,13 +1070,15 @@ public class Interp {
 				root = this.get(root_name);
 			} else {
 				// just an ID
-				root = this.get(s);
+				root = this.get(root_name);
 			}
 
-			if(null != root) {
-				return root;
-			} 
-			throw new EugeneException("Cannot find " + root_name+"!");
+			if(aos.length == 1) {
+				if(null != root) {
+					return root;
+				} 
+				throw new EugeneException("Cannot find " + root_name+"!");
+			}
 		}
 		
 		NamedElement parent = root;
@@ -1014,7 +1092,7 @@ public class Interp {
 				 prop_name = aos[i].substring(0, aos[i].indexOf('['));
 				 hasIndex=true;
 			}
-			
+
 			if(child == null) {
 				child = parent.getElement(prop_name);
 			} else {

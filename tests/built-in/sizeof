@@ -1,0 +1,51 @@
+// sizeof Strings
+txt seq = "ATCG";
+num seq_size1 = seq.size;
+if(seq_size1 != 4) {exit;}
+
+num seq_size2 = sizeof(seq);
+if(seq_size2 != 4) {exit;}
+
+// sizeof Num Arrays
+num[] nl = [1, 2, 3];
+num nl_size = sizeof(nl);
+if(3 != nl_size) {exit;}
+
+// sizeof bool
+bool b = true;
+num b_size = sizeof(b);
+if(0 != b_size) {exit;}
+
+// sizeof num
+num n = 1;
+num n_size = sizeof(n);
+if(0 != n_size) {exit;}
+
+
+//sizeof txt array
+txt[] ta = ["A", "T", "C", "G"];
+num ta_size = sizeof(ta);
+if(ta_size != 4) {exit;}
+
+
+Collection col (
+    PartType Promoter(),
+    Promoter p1,
+    Promoter p2,
+    txt t = "ATCG"
+);
+num col_size = sizeof(col);
+if(col_size != 4) {exit;}
+
+
+Collection sup_col(
+	Collection sub_col(
+		txt t = "ATCG",
+		num pi = 3.1415926
+	)
+);
+num sup_col_size = sizeof(sup_col);
+num sub_col_size = sizeof(sup_col.sub_col);
+if(sup_col_size != 1) {exit;}
+if(sub_col_size != 2) {exit;}
+

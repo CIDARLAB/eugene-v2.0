@@ -125,4 +125,6 @@ public class EugeneConstants {
 	public static final String NODE_NAME = "COMPONENT_NAME";
 	public static final String NODE_TYPE = "COMPONENT_TYPE";
 	
+	public static final String ANONYMOUS_VARIABLE = "ANONYMOUS_VARIABLE";
+	
 }
