@@ -40,7 +40,8 @@ public class TestSuite {
 		 * SEQUENCE SHENANIGANS
 		 *---------------------------------------------*/
 //		new TestSuite().test("./tests/sequence/reverse-complement");    
-		new TestSuite().test("./tests/sequence/random-sequence");    
+//		new TestSuite().test("./tests/sequence/random-sequence");    
+		new TestSuite().test("./tests/sequence/sequence-homology");    
 		
 		/*---------------------------------------------
 		 * EUGENE BASICS
