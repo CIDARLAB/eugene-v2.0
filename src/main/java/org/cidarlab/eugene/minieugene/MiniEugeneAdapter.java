@@ -7,13 +7,11 @@ import java.util.Set;
 
 import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.dom.Device;
-import org.cidarlab.eugene.dom.Part;
 import org.cidarlab.eugene.dom.interaction.Interaction;
 import org.cidarlab.eugene.dom.rules.Rule;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.eugene.interp.SymbolTable;
 import org.cidarlab.minieugene.MiniEugene;
-import org.cidarlab.minieugene.dom.Component;
 
 public class MiniEugeneAdapter {
 

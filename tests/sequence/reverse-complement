@@ -1,10 +1,17 @@
 // the sequence
-//txt seq = "ATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCG";
+// uncomment your favorite sequence or 
+// specify or own one
 txt seq = "A";
-//txt seq = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+//txt seq = "ATCGATC";
+//txt seq = "ATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCG";
+//txt seq = "<your sequence>";
 
 // the length of the sequence
-num N = seq.size;  
+// Option 1: OOP
+//num N = seq.size;
+
+// Option 2: FP
+num N = SIZEOF(seq);
 
 // temporary string for swapping
 // the nucleotides
@@ -40,8 +47,6 @@ for(num i = start_index; i > end_index; i = i - 1) {
 }
 
 println("reverse complement: ", seq);
-// TEST
-//if(seq != "CGAT") {exit;}
     
 
 

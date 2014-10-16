@@ -21,19 +21,19 @@ public class TestSuite {
 		/*---------------------------------------------
 		 * PRIMITIVE DATA TYPES AND MODIFICATIONS
 		 *---------------------------------------------*/
-		new TestSuite().test("./tests/primitives/primitives-assign");    
-		new TestSuite().test("./tests/primitives/part-property-assign");    
+//		new TestSuite().test("./tests/primitives/primitives-assign");    
+//		new TestSuite().test("./tests/primitives/part-property-assign");    
 //		new TestSuite().test("./tests/primitives/array-manip");    
 		
 		// EXPRESSIONS
-		new TestSuite().test("./tests/expressions/plus-sub-mult-div");    
-		new TestSuite().test("./tests/expressions/loops-and-calculations");    
+//		new TestSuite().test("./tests/expressions/plus-sub-mult-div");    
+//		new TestSuite().test("./tests/expressions/loops-and-calculations");    
 		
 		
 		/*---------------------------------------------
 		 * BUILT-IN FUNCTIONS AND FEATURES
 		 *---------------------------------------------*/
-		new TestSuite().test("./tests/built-in/sizeof");    
+//		new TestSuite().test("./tests/built-in/sizeof");    
 		
 		/*---------------------------------------------
 		 * SEQUENCE SHENANIGANS

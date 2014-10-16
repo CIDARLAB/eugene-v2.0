@@ -27,23 +27,23 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.util.logging.LogManager;
 import java.util.Collection;
-import java.util.Set;
+import java.util.logging.LogManager;
 
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
+import org.cidarlab.eugene.dom.Component;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.eugene.interp.Interp;
 import org.cidarlab.eugene.parser.EugeneLexer;
 import org.cidarlab.eugene.parser.EugeneParser;
 import org.cidarlab.eugene.util.EugeneUtil;
-import org.cidarlab.eugene.dom.Component;
-import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.sparrow.Sparrow;
 import org.cidarlab.sparrow.exception.SparrowException;
 
 /**
+ * Welcome to the origin of live!
+ * 
  * @author Ernst Oberortner
  */
 public class Eugene {
