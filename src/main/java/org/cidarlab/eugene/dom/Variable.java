@@ -218,24 +218,49 @@ public class Variable
 			throws EugeneException {
 		
 		if(EugeneConstants.TXTLIST.equals(this.getType()) && EugeneConstants.TXT.equals(v.getType())) {
-			if(idx < 0 || idx > this.getTxtList().size() - 1) {
+			if(idx < 0 || idx > this.getTxtList().size()) {
 				throw new EugeneException("The index " + idx +" is out of bounds!");
 			}
-			this.getTxtList().set(idx, v.getTxt());
+			// iff the index is equal to the current size, then
+			// we add the new variable to the current txtlist
+			if(idx == this.getTxtList().size()) {
+				this.getTxtList().add(v.getTxt());
+			} else {
+				this.getTxtList().set(idx, v.getTxt());
+			}
 		} else if(EugeneConstants.NUMLIST.equals(this.getType()) && EugeneConstants.NUM.equals(v.getType())) {
-			if(idx < 0 || idx > this.getNumList().size() - 1) {
-				throw new EugeneException("The index " + idx +" is out of bounds!");
-			}
-			this.getNumList().set(idx, v.getNum());
-		} else if(EugeneConstants.TXT.equals(this.getType()) && EugeneConstants.TXT.equals(v.getType())) {
-			if(idx < 0 || idx > this.getTxt().length() - 1) {
+			
+			if(idx < 0 || idx > this.getNumList().size()) {
 				throw new EugeneException("The index " + idx +" is out of bounds!");
 			}
 			
+			// iff the index is equal to the current size, then
+			// we add the new variable to the current numlist
+			if(idx == this.getNumList().size()) {
+				this.getNumList().add(v.getNum());
+			} else {
+				this.getNumList().set(idx, v.getNum());
+			}
+			
+		} else if(EugeneConstants.TXT.equals(this.getType()) && EugeneConstants.TXT.equals(v.getType())) {
+			
+			if(idx < 0 || idx > this.getTxt().length()) {
+				throw new EugeneException("The index " + idx +" is out of bounds!");
+			}
+			
+			
 			StringBuilder sb = new StringBuilder();
-			sb.append(this.getTxt().substring(0, idx));
-			sb.append(v.getTxt());
-			sb.append(this.getTxt().substring(idx + 1));
+			
+			// iff the index is equals the current size, 
+			// then we place the new string to the end of the current string
+			if(idx == this.getTxt().length()) {
+				sb.append(this.getTxt());
+				sb.append(v.getTxt());
+			} else {
+				sb.append(this.getTxt().substring(0, idx));
+				sb.append(v.getTxt());
+				sb.append(this.getTxt().substring(idx + 1));
+			}
 			this.txt = sb.toString();
 			
 		} else {

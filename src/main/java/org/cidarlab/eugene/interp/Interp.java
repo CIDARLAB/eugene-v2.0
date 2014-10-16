@@ -32,6 +32,7 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.Stack;
 import java.util.UUID;
@@ -936,6 +937,25 @@ public class Interp {
     	}
     	
     	return v;
+	}
+	
+	/**
+	 * The getRandom/2 method returns a random number (encapsulated in a 
+	 * num Eugene variable) between the given range [sor, eor].
+	 * sor ... start of range
+	 * eor ... end of range
+	 * 
+	 * @param sor  ... the start of the range
+	 * @param eor  ... the end of the range
+	 * @return   ... a num variable containing a random number
+	 * @throws EugeneException
+	 */
+	public Variable getRandom(Variable sor, Variable eor) 
+			throws EugeneException {
+
+		Variable v = new Variable(EugeneConstants.ANONYMOUS_VARIABLE, EugeneConstants.NUM);
+		v.num = new Random().nextInt(((int)eor.getNum() - (int)sor.getNum()) + 1) + (int)sor.getNum();
+		return v;
 	}
 	
 

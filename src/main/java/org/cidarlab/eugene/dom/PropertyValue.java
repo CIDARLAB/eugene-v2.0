@@ -361,7 +361,7 @@ public class PropertyValue
 			// num[] <- num
 			if (EugeneConstants.NUMLIST.equals(this.getType())
 					&& EugeneConstants.NUM.equals(objVariable.getType())) {
-				if (idx >= 0 && idx < this.numList.size()) {
+				if (idx >= 0 && idx <= this.numList.size()) {
 					this.numList.set(idx, new Double(objVariable.getNum()));
 				} else {
 					throw new EugeneException(
@@ -371,7 +371,7 @@ public class PropertyValue
 			// txt[] <- txt
 			} else if (EugeneConstants.TXTLIST.equals(this.getType())
 					&& EugeneConstants.TXT.equals(objVariable.getType())) {
-				if (idx >= 0 && idx < this.txtList.size()) {
+				if (idx >= 0 && idx <= this.txtList.size()) {
 					this.txtList.set(idx, new String(objVariable.getTxt()));
 				} else {
 					throw new EugeneException(
@@ -384,7 +384,7 @@ public class PropertyValue
 				
 				String tmp = this.txt;
 				StringBuilder sb = new StringBuilder();
-				if (idx >= 0 && idx < this.txt.length()) {
+				if (idx >= 0 && idx <= this.txt.length()) {
 					sb.append(tmp.substring(0, idx)).append(objVariable.getTxt()).append(tmp.substring(idx+1, tmp.length()));
 					this.txt = sb.toString();
 				} else {
@@ -402,7 +402,7 @@ public class PropertyValue
 
 			if (EugeneConstants.NUMLIST.equals(this.getType())
 					&& EugeneConstants.NUM.equals(objVariable.getType())) {
-				if (idx >= 0 && idx < this.numList.size()) {
+				if (idx >= 0 && idx <= this.numList.size()) {
 					this.numList.set(idx, new Double(objVariable.getNum()));
 				} else {
 					throw new EugeneException(
@@ -411,7 +411,7 @@ public class PropertyValue
 				}
 			} else if (EugeneConstants.TXTLIST.equals(this.getType())
 					&& EugeneConstants.TXT.equals(objVariable.getType())) {
-				if (idx >= 0 && idx < this.txtList.size()) {
+				if (idx >= 0 && idx <= this.txtList.size()) {
 					this.txtList.set(idx, new String(objVariable.getTxt()));
 				} else {
 					throw new EugeneException(
@@ -424,7 +424,7 @@ public class PropertyValue
 					
 				String tmp = this.txt;
 				StringBuilder sb = new StringBuilder();
-				if (idx >= 0 && idx < this.txt.length()) {
+				if (idx >= 0 && idx <= this.txt.length()) {
 					sb.append(tmp.substring(0, idx)).append(objVariable.getTxt()).append(tmp.substring(idx+1, tmp.length()));
 					this.txt = sb.toString();
 				} else {

@@ -34,11 +34,13 @@ public class TestSuite {
 		 * BUILT-IN FUNCTIONS AND FEATURES
 		 *---------------------------------------------*/
 //		new TestSuite().test("./tests/built-in/sizeof");    
+		new TestSuite().test("./tests/built-in/random");    
 		
 		/*---------------------------------------------
 		 * SEQUENCE SHENANIGANS
 		 *---------------------------------------------*/
 //		new TestSuite().test("./tests/sequence/reverse-complement");    
+		new TestSuite().test("./tests/sequence/random-sequence");    
 		
 		/*---------------------------------------------
 		 * EUGENE BASICS

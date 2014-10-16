@@ -22,6 +22,7 @@ tokens {
 	COLON = ':';
 	COMMA = ',';
 	DOT = '.';
+	DOTDOT = '..';
 	PIPE = '|';
 	NUM = 'num';
 	INT = 'int';
@@ -112,6 +113,9 @@ tokens {
 	 */
 	SIZEOF_LC = 'sizeof';
 	SIZEOF_UC = 'SIZEOF';
+	
+	RANDOM_LC = 'random';
+	RANDOM_UC = 'RANDOM';
 }
 
 
@@ -2359,7 +2363,49 @@ if(!defer) {
     }
 }	
 	}
+	|	(RANDOM_LC|RANDOM_UC) LEFTP rg=range[defer] RIGHTP {
+if(!defer) {
+    try {
+        $p = this.interp.getRandom(rg.sor, rg.eor);
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}	
+	}
 	;
+
+range[boolean defer] 
+	returns [Variable sor, Variable eor]
+	:	s=expr[defer] COMMA e=expr[defer] {
+if(!defer) {
+
+    if(null != $s.p) {
+        if(!EugeneConstants.NUM.equals($s.p.getType())) {
+            printError("Invalid start of range!");
+        }
+        if($s.p.getNum() \% 1 != 0) {
+            printError("The start of the range is not an integer!");
+        }    
+        $sor = $s.p;
+    }  
+   
+    if(null != $e.p) {
+        if(!EugeneConstants.NUM.equals($e.p.getType())) {
+            printError("Invalid end of range!");
+        }
+        if($e.p.getNum() \% 1 != 0) {
+            printError("The end of the range is not an integer!");
+        }    
+        
+        $eor = $e.p;
+    }
+    
+    if($sor.num > $eor.num) {
+        printError("Invalid range!");
+    }
+}	
+	}
+	;	
 	
 /*------------------------------------------------------------------
  * DATA ACCESS
