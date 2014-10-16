@@ -1283,15 +1283,7 @@ if(!defer) {
   *
   */
 assignment[boolean defer]
-	:	{
-if(!defer) {
-    // we first initialize the root, parent, and child
-    // NamedElements for the lhs assignments
-    this.root = null;
-    this.parent = null;
-    this.child = null;
-}	
-	}	lhs=lhs_assignment[defer, null, null] EQUALS (a=AMP)? rhs=rhs_assignment[defer] {
+	:	lhs=lhs_assignment[defer] EQUALS (a=AMP)? rhs=rhs_assignment[defer] {
 if(!defer) {
     try {
 
@@ -1313,16 +1305,6 @@ if(!defer) {
                         $lhs.text, 
                         $rhs.e);
         
-        /* --- OLD VERSION         
-        this.interp.assignTo(
-                    $lhs.name, 
-                    this.child,
-                    $lhs.id_out, 
-                    $lhs.idx_out, 
-                    $rhs.e, 
-                    a!=null);
-        this.interp.updateElement(this.root);
-           --- */
     } catch(EugeneException ee) {
         printError(ee.toString());    
     }
@@ -1330,124 +1312,13 @@ if(!defer) {
 	}
 	;
 
-lhs_assignment[boolean defer, String id_in, Variable idx_in]
-	returns [String name, String id_out = null, Variable idx_out = null]
-	:	idToken=ID {
-if(!defer) {
-    try {
-    
-        $name = $idToken.text;
-        $id_out = $idToken.text;
-        $idx_out = idx_in;
-        
-    	if(this.root == null) {
-    	    this.root = this.interp.get($idToken.text);
-    	}
-
-        if(null == this.parent) {
-            this.parent = this.interp.get($idToken.text);
-            this.child = null;
-        } else {
-            this.child = this.parent.getElement($idToken.text);
-            if(null == this.child) {
-                throw new EugeneException("The " + parent.getName() + " element does not contain "+
-                    "an element named " + $idToken.text + "!");
-            }
-        }
-        
-    } catch(EugeneException ee) {
-        printError(ee.getMessage());
-    }
-}	
-	}	ac=lhs_access[defer, id_in, idx_in] {
-if(!defer) {
-    $id_out = $ac.id_out;
-    $idx_out = $ac.idx_out;
-}	
-	}
+lhs_assignment[boolean defer]
+	:	ID lhs_access[defer]
 	;	
 	
-lhs_access[boolean defer, String id_in, Variable idx_in]
-	returns [String id_out, Variable idx_out]
-	:	{
-if(!defer) {
-    $id_out = id_in;
-    $idx_out = idx_in;
-}	
-	}
-	|	(DOT i=ID {
-//	}	lhs=lhs_assignment[defer, id_in, idx_in] {
-if(!defer) {
-
-    try {
-    
-        if(null != this.child) {
-            this.parent = this.child;
-        }
-        if(this.parent instanceof Component) {
-            this.child = ((Component)this.parent).getElement($i.text);
-        } else {
-            throw new EugeneException("Cannot access " + $i.text + " of " + this.parent);
-        }
-    } catch(EugeneException ee) {
-        printError(ee.getLocalizedMessage());
-    }
-    
-    $id_out = $i.text;
-    $idx_out = null;
-}	
-	}
-	|	LEFTSBR (exp=expr[defer]) RIGHTSBR {
-if(!defer) {
-    try {
-    
-    	if(null != $exp.p) {
-    	    if(EugeneConstants.NUM.equals(($exp.p).getType())) {
-    	        // constant index
-    	        $idx_out = $exp.p;
-    	    } else if (EugeneConstants.TXT.equals(($exp.p).getType())) {
-               // variable index
-               NamedElement idx_var = this.interp.get($exp.p.getName());
-               if(null == $idx_out) {
-                   throw new EugeneException("Cannot find " + $exp.p.getName());
-               }
-               if(!($idx_out instanceof Variable)) {
-                   throw new EugeneException($exp.p.getName() + " is not a variable!");
-               }
-               if(!EugeneConstants.NUM.equals(((Variable)$idx_out).getType())) {
-                   throw new EugeneException($exp.p.getName() + " is not a variable of type num!");
-               }
-               
-               $idx_out = (Variable)idx_var;
-    	    } else {
-                throw new EugeneException("Invalid array index!");
-    	    }
-    	}
-    	
-        if(idx_in != null) {
-            this.child = this.parent.getElement((int)$idx_in.getNum());
-
-            if(null == this.child) {
-                throw new EugeneException("The " + parent.getName() + " element does not contain "+
-                    "an element at " + idx_in.getNum() + "!");
-            }
-        } else {
-            this.child = this.parent;
-        }
-         
-        $id_out = null;
-    } catch(EugeneException ee) {
-        printError(ee.toString());
-    }
-
-    $idx_out = $exp.p;
-}	
-	})	ac=lhs_access[defer, $id_out, $idx_out] {
-if(!defer) {
-    $id_out = $ac.id_out;
-    $idx_out = $ac.idx_out;
-}	
-	}
+lhs_access[boolean defer]
+	:	
+	|	(DOT i=ID | LEFTSBR (ID|NUMBER) RIGHTSBR) lhs_access[defer]
 	;	
 	
 rhs_assignment[boolean defer]	

@@ -10,6 +10,9 @@ PartType P(pn, pna, ps, psa, pb);
 P p1(1, [1], "1", ["1"], true);
 P p2(2, [1, 2], "2", ["1", "2"], false);
 
+/*--------------------------------
+ * ASSIGNMENTS TO PROPERTY VALUES
+ *--------------------------------*/
 // assignment of num
 p1.pn = p2.pn;
 if(p1.pn != 2) {exit;}
@@ -31,7 +34,31 @@ p1.pb = p2.pb;
 if(p1.pb != false) {exit;}
 
 // compare p1 with p2
-if(p1 != p2) {exit;}
+//if(p1 != p2) {exit;}
+
+/*
+ * ASSIGNMENTS TO ARRAYS INDICES
+ */
+p1.pna[0] = 100;
+if(p1.pna != [100, 2]) {exit;}
+
+
+/*
+ * SOME SEQUENCE SHENANIGANS
+ */ 
+Property seq(txt);
+PartType SeqPart(seq);
+SeqPart sp1(.seq("ATCG"));
+SeqPart sp2(.seq("GCTA"));
+
+sp1.seq[0] = "ATCGA";
+if(sp1.seq != "ATCGATCG") {exit;}
+
+sp1.seq[7] = "GATCG";
+if(sp1.seq != "ATCGATCGATCG") {exit;}
+
+sp1.seq[4] = "ATCG";
+if(sp1.seq == "ATCGATCGATCG") {exit;}
 
 
 

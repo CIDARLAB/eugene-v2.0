@@ -1,9 +1,11 @@
 package org.cidarlab.eugene.interp;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.dom.NamedElement;
+import org.cidarlab.eugene.dom.PropertyValue;
 import org.cidarlab.eugene.dom.Variable;
 import org.cidarlab.eugene.exception.EugeneException;
 
@@ -16,8 +18,62 @@ import org.cidarlab.eugene.exception.EugeneException;
 public class Comparator {
 
 	/**
+	 * The convertPropertyValueToVariable/1 converts a PropertyValue object 
+	 * into a Variable object.
+	 * 
+	 * @param pv  ... the PropertyValue that should be converted
+	 * @return    ... the resulting Variable object
+	 */
+	private Variable convertPropertyValueToVariable(PropertyValue pv) {
+		
+		// instantiate a Variable object using the name and type 
+		// of the PropertyValue object
+		Variable v = new Variable(pv.getName(), pv.getType());
+		
+		// assign the value of the PropertyValue object to the
+		// Variable object depending on the type
+		if(EugeneConstants.NUM.equals(pv.getType())) {
+			v.num = pv.getNum();
+		} else if(EugeneConstants.NUMLIST.equals(pv.getType())) {
+			v.numList = (ArrayList<Double>)pv.getNumList();
+		}else if(EugeneConstants.TXT.equals(pv.getType())) {
+			v.txt = pv.getTxt();
+		} else if(EugeneConstants.TXTLIST.equals(pv.getType())) {
+			v.txtList = (ArrayList<String>)pv.getTxtList();
+		} else if(EugeneConstants.BOOLEAN.equals(pv.getType())) {
+			v.bool = pv.getBool();
+		}
+		
+		// return the Variable object
+		return v;
+	}
+	
+	/**
+	 * The toVariable/1 method converts a NamedElement object into 
+	 * a Variable object (if possible). otherwise an exception will be thrown.
+	 * 
+	 * @param el  ... the NamedElement to be converted
+	 * @return    ... the resulting Variable object
+	 * 
+	 * @throws EugeneException  ... if a conversion is not possible
+	 */
+	private Variable toVariable(NamedElement el) 
+			throws EugeneException {
+		
+		if(!(el instanceof Variable)) {
+			if(el instanceof PropertyValue) {
+				// convert property value to variable
+				return this.convertPropertyValueToVariable((PropertyValue)el);
+			}
+			throw new EugeneException("Not supported yet!");
+		}
+		
+		return (Variable)el;
+	}
+	
+	/**
 	 * The evaluateCondition/2 method evaluates a condition. Therefore, we 
-	 * compare the LHS variable against the RHS variable regarding a given 
+	 * compare the LHS element against the RHS element regarding a given 
 	 * comparison operator.
 	 * 
 	 * @param lhs  ... the LHS of the condition
@@ -29,7 +85,18 @@ public class Comparator {
 	 *         
 	 * @throws EugeneException
 	 */
-	public boolean evaluateCondition(Variable lhs, String op, Variable rhs) 
+	public boolean evaluateCondition(NamedElement lhs, String op, NamedElement rhs)
+			throws EugeneException {
+		
+//		System.out.println("[Comparator.evaluateCondition] -> " + lhs +" "+op+" "+rhs);
+		
+		Variable v_lhs = this.toVariable(lhs);
+		Variable v_rhs = this.toVariable(rhs);
+		
+		return this.evaluateVariableCondition(v_lhs, op, v_rhs);
+	}
+	
+	private boolean evaluateVariableCondition(Variable lhs, String op, Variable rhs) 
 			throws EugeneException {
 		
 		if(EugeneConstants.LT.equals(op)) {
@@ -159,11 +226,27 @@ public class Comparator {
 	 */
 	public boolean compareTypes(NamedElement lhs, NamedElement rhs) {
 		
-		// if both objects are variables, 
-		// then we need to compare the variable types
-		if(lhs instanceof Variable && rhs instanceof Variable) {
-			return ((Variable)lhs).getType().equals(
-					((Variable)rhs).getType());
+		// if both objects are either variables or property values, 
+		// then we need to compare their primitive types
+		if(lhs instanceof Variable) {
+			
+			if(rhs instanceof Variable) {
+				return ((Variable)lhs).getType().equals(
+						((Variable)rhs).getType());
+			} else if(rhs instanceof PropertyValue) {
+				return ((Variable)lhs).getType().equals(
+						((PropertyValue)rhs).getType());
+			}
+			
+		} else if(lhs instanceof PropertyValue) {
+			
+			if(rhs instanceof PropertyValue) {
+				return ((PropertyValue)lhs).getType().equals(
+						((PropertyValue)rhs).getType());
+			} else if(rhs instanceof Variable) {
+				return ((PropertyValue)lhs).getType().equals(
+						((Variable)rhs).getType());
+			}
 		}
 		
 		// otherwise, we just compare it both objects
@@ -171,4 +254,55 @@ public class Comparator {
 		return lhs.getClass().getName().equals(
 				rhs.getClass().getName());
 	}
+	
+	/**
+	 * The compareTypes/3 method gets as input two NamedElement objects and
+	 * an index that denotes the requested element on the LHS. 
+	 * e.g. p1.numList[0] = my_num
+	 * then lhs is numList, idx is 0, and rhs is my_num 
+	 * 
+	 * @param lhs  ... the element on the LHS
+	 * @param idx  ... the requested index of the LHS' sub-element
+	 * @param rhs  ... the element on the RHS
+	 * @return
+	 */
+	public boolean compareTypes(NamedElement lhs, int idx, NamedElement rhs) {
+		
+		if(lhs instanceof PropertyValue) {
+			
+			// first, we get the type of the LHS and 
+			// derive the type of the indexed element
+			String type = null;
+			if(EugeneConstants.NUMLIST.equals(((PropertyValue)lhs).getType())) {
+				type = EugeneConstants.NUM;
+			} else if (EugeneConstants.TXTLIST.equals(((PropertyValue)lhs).getType()) ||
+					EugeneConstants.TXT.equals(((PropertyValue)lhs).getType())) {
+				type = EugeneConstants.TXT;
+			} else {
+				return false;
+			}
+			
+			Variable v_lhs = new Variable("anonymous", type);
+			return this.compareTypes(v_lhs, rhs);
+			
+		} else if(lhs instanceof Variable) {
+			// first, we get the type of the LHS and 
+			// derive the type of the indexed element
+			String type = null;
+			if(EugeneConstants.NUMLIST.equals(((Variable)lhs).getType())) {
+				type = EugeneConstants.NUM;
+			} else if (EugeneConstants.TXTLIST.equals(((PropertyValue)lhs).getType()) ||
+					EugeneConstants.TXT.equals(((PropertyValue)lhs).getType())) {
+				type = EugeneConstants.TXT;
+			} else {
+				return false;
+			}
+			
+			Variable v_lhs = new Variable("anonymous", type);
+			return this.compareTypes(v_lhs, rhs);
+		}			
+		
+		return false;
+	}
+		
 }

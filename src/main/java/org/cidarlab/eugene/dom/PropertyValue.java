@@ -27,7 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.cidarlab.eugene.constants.EugeneConstants;
-import org.cidarlab.sparrow.exception.SparrowException;
+import org.cidarlab.eugene.exception.*;
 
 
 /**
@@ -328,81 +328,145 @@ public class PropertyValue
 	}
 
 	public void assign(NamedElement objElement)
-			throws SparrowException {
+			throws EugeneException {
 
 		if (objElement instanceof PropertyValue) {
 			PropertyValue objVariable = (PropertyValue) objElement;
 			if (this.getType().equals(objVariable.getType())) {
 				this.setValue((PropertyValue) objElement);
 			} else {
-				throw new SparrowException("Cannot assign a "
+				throw new EugeneException("Cannot assign a "
 						+ objVariable.getType() + " value to a "
 						+ this.getType() + " value!");
 			}
 		}
 	}
 
+	/**
+	 * The set/2 method assigns a given NamedElement to the PropertyValue 
+	 * at a given index.
+	 * It throws a EugeneException if the array index is out of bounds 
+	 * and the types do not match.
+	 * 
+	 * @param idx
+	 * @param objElement
+	 * @throws EugeneException
+	 */
 	public void set(int idx, NamedElement objElement)
-			throws SparrowException {
+			throws EugeneException {
 		
 		if (objElement instanceof PropertyValue) {
 			PropertyValue objVariable = (PropertyValue) objElement;
+
+			// num[] <- num
+			if (EugeneConstants.NUMLIST.equals(this.getType())
+					&& EugeneConstants.NUM.equals(objVariable.getType())) {
+				if (idx >= 0 && idx < this.numList.size()) {
+					this.numList.set(idx, new Double(objVariable.getNum()));
+				} else {
+					throw new EugeneException(
+							"The array index (" + idx
+									+ ") is out of bounds!");
+				}
+			// txt[] <- txt
+			} else if (EugeneConstants.TXTLIST.equals(this.getType())
+					&& EugeneConstants.TXT.equals(objVariable.getType())) {
+				if (idx >= 0 && idx < this.txtList.size()) {
+					this.txtList.set(idx, new String(objVariable.getTxt()));
+				} else {
+					throw new EugeneException(
+							"The array index (" + idx
+									+ ") is out of bounds!");
+				}
+			// txt <- txt
+			} else if (EugeneConstants.TXT.equals(this.getType())
+					&& EugeneConstants.TXT.equals(objVariable.getType())) {
+				
+				String tmp = this.txt;
+				StringBuilder sb = new StringBuilder();
+				if (idx >= 0 && idx < this.txt.length()) {
+					sb.append(tmp.substring(0, idx)).append(objVariable.getTxt()).append(tmp.substring(idx+1, tmp.length()));
+					this.txt = sb.toString();
+				} else {
+					throw new EugeneException(
+							"The array index (" + idx
+									+ ") is out of bounds!");
+				}
+			} else {
+				throw new EugeneException("Cannot assign a "
+						+ objVariable.getType() + " value to an element of a "
+						+ this.getType() + " list!");
+			}
+		} else if (objElement instanceof Variable) {
+			Variable objVariable = (Variable) objElement;
 
 			if (EugeneConstants.NUMLIST.equals(this.getType())
 					&& EugeneConstants.NUM.equals(objVariable.getType())) {
 				if (idx >= 0 && idx < this.numList.size()) {
 					this.numList.set(idx, new Double(objVariable.getNum()));
 				} else {
-					throw new SparrowException(
+					throw new EugeneException(
 							"The array index (" + idx
-									+ ") is out of bounds for the "
-									+ this.getName() + " variable!");
+									+ ") is out of bounds!");
 				}
 			} else if (EugeneConstants.TXTLIST.equals(this.getType())
 					&& EugeneConstants.TXT.equals(objVariable.getType())) {
 				if (idx >= 0 && idx < this.txtList.size()) {
 					this.txtList.set(idx, new String(objVariable.getTxt()));
 				} else {
-					throw new SparrowException(
+					throw new EugeneException(
 							"The array index (" + idx
-									+ ") is out of bounds for the "
-									+ this.getName() + " variable!");
+									+ ") is out of bounds!");
+				}
+			// txt <- txt
+			} else if (EugeneConstants.TXT.equals(this.getType())
+						&& EugeneConstants.TXT.equals(objVariable.getType())) {
+					
+				String tmp = this.txt;
+				StringBuilder sb = new StringBuilder();
+				if (idx >= 0 && idx < this.txt.length()) {
+					sb.append(tmp.substring(0, idx)).append(objVariable.getTxt()).append(tmp.substring(idx+1, tmp.length()));
+					this.txt = sb.toString();
+				} else {
+					throw new EugeneException(
+							"The array index (" + idx
+									+ ") is out of bounds!");
 				}
 			} else {
-				throw new SparrowException("Cannot assign a "
+				throw new EugeneException("Cannot assign a "
 						+ objVariable.getType() + " value to an element of a "
 						+ this.getType() + " list!");
 			}
 		} else {
-			throw new SparrowException("Cannot assign the "
+			throw new EugeneException("Cannot assign the "
 					+ objElement + " element to the " + (idx + 1)
-					+ " element of the " + this.getName() + " Variable");
+					+ " element!");
 		}
 	}
 
 	public void set(String sElementName, NamedElement objElement)
-			throws SparrowException {
-		throw new SparrowException("This is not possible!");
+			throws EugeneException {
+		throw new EugeneException("This is not possible!");
 	}
 
-	public void increase() throws SparrowException {
+	public void increase() throws EugeneException {
 		if (!EugeneConstants.NUM.equals(this.getType())) {
-			throw new SparrowException(
+			throw new EugeneException(
 					"Cannot increase the value of a " + this.getType() + "!");
 		}
 		this.setNum(this.getNum() + 1);
 	}
 
-	public void decrease() throws SparrowException {
+	public void decrease() throws EugeneException {
 		if (!EugeneConstants.NUM.equals(this.getType())) {
-			throw new SparrowException(
+			throw new EugeneException(
 					"Cannot increase the value of a " + this.getType() + "!");
 		}
 		this.setNum(this.getNum() - 1);
 	}
 
 	public PropertyValue add(PropertyValue objVariable) 
-			throws SparrowException {
+			throws EugeneException {
 		PropertyValue retVal = (PropertyValue) null;
 		if (null != objVariable) {
 			if (EugeneConstants.TXT.equals(this.getType())) {
@@ -494,7 +558,7 @@ public class PropertyValue
 						retVal.setTxt((long)this.getNum() + 
 								objVariable.getTxt());
 					} catch(Exception e) {
-						throw new SparrowException(
+						throw new EugeneException(
 								"I cannot concatenate "+this.getNum()+" and "+objVariable.getValue()+"!");
 					}
 				}

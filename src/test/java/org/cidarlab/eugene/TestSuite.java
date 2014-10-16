@@ -21,9 +21,9 @@ public class TestSuite {
 		/*---------------------------------------------
 		 * PRIMITIVE DATA TYPES AND MODIFICATIONS
 		 *---------------------------------------------*/
-//		new TestSuite().test("./tests/primitives/primitives-assign");    
+		new TestSuite().test("./tests/primitives/primitives-assign");    
 		new TestSuite().test("./tests/primitives/part-property-assign");    
-//		new TestSuite().test("./tests/primitives/array-manip");    
+		new TestSuite().test("./tests/primitives/array-manip");    
 		
 		// EXPRESSIONS
 //		new TestSuite().test("./tests/expressions/plus-sub-mult-div");    

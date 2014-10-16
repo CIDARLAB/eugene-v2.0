@@ -1,15 +1,9 @@
-/*** WORKS!
 // primitives
 num[] na = [1, 2, 3];
-println(na);
 
 na[0] = 3;
 na[1] = 2;
 na[2] = 1;
-
-println(na);
- ***/
- 
 
 // parts
 Property pna(num[]);
@@ -18,12 +12,44 @@ PartType P(pna);
 P p1([1, 2, 3]);
 P p2([3, 2, 1]);
 
-p1 = p2;
-println(p1);
-println(p2);
-
-/**
-println(p1.pna);
 p1.pna[0] = 10;
-println(p1.pna);
- **/
+if(p1.pna != [10, 2, 3]) {println(p1.pna);exit;}
+
+// ArrayIndexOutOfBounds
+//p1.pna[3] = 10;
+
+
+/*----------------------------
+ * VARIABLES AS ARRAY INDICES
+ *----------------------------*/
+num i = 0;
+p1.pna[i] = i;
+i = i + 1; 
+p1.pna[i] = i; 
+i = i + 1; 
+p1.pna[i] = i; 
+i = i + 1; 
+
+if(p1.pna != [0, 1, 2]) {exit;}
+
+
+/*-----------------
+ * INVALID INDICES 
+ *-----------------*/
+// JUST UNCOMMENT
+
+// negative indices
+// are syntax errors!
+//p1.pna[-1] = 0;
+/*
+num neg = -1;
+p1.pna[neg] = 0;
+ */ 
+ 
+// floating-point numbers as indices
+//num pi = 3.1415692;
+//p1.pna[pi] = 0;
+
+
+
+ 

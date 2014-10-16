@@ -891,7 +891,7 @@ public class Interp {
 			throws EugeneException {
 		
 //		System.out.println("[Interp.assignment] -> " + lhs + " = " + el_rhs);
-		
+		this.idx = -1;
 		NamedElement el_lhs = this.parseAndGetElement(lhs);
 		if(null != el_lhs) {
 			/*
@@ -903,30 +903,52 @@ public class Interp {
 				this.comparator = new Comparator();
 			}
 			
-			if(this.comparator.compareTypes(el_lhs, el_rhs)) {
+			/*-------------------
+			 * TYPE COMPARISIONS
+			 *-------------------*/
+			boolean bValid = false;
+			if((-1) != this.idx) {
+//				System.out.println(el_lhs+"["+this.idx+"]" + " = "+el_rhs);
+				bValid = this.comparator.compareTypes(el_lhs, idx, el_rhs);
+			} else {
+				bValid = this.comparator.compareTypes(el_lhs, el_rhs);
+			}
+			
+			if(!bValid) {
+				throw new EugeneException("Invalid types!");
+			}
+
+			/*------------
+			 * ASSIGNMENT
+			 *------------*/
+			if(el_rhs instanceof PropertyValue) {
 				
-				if(el_rhs instanceof PropertyValue) {
+				// TODO: indexed assignments!
+				
+				if(el_lhs instanceof Variable) {
 					
-					if(el_lhs instanceof Variable) { 
-						this.assignment((Variable)el_lhs, (PropertyValue)el_rhs);
-					} else if(el_lhs instanceof PropertyValue) {
-						// assigning a variable to a property value 
-						this.assignment((PropertyValue)el_lhs, (PropertyValue)el_rhs);
-					}
-				} else if(el_rhs instanceof Variable) {
-					if(el_lhs instanceof Variable) { 
-						this.assignment((Variable)el_lhs, (Variable)el_rhs);
-					} else if(el_lhs instanceof PropertyValue) {
-						// assigning a variable to a property value 
+					this.assignment((Variable)el_lhs, (PropertyValue)el_rhs);
+					
+				} else if(el_lhs instanceof PropertyValue) {
+					// assigning a variable to a property value 
+					this.assignment((PropertyValue)el_lhs, (PropertyValue)el_rhs);
+				}
+			} else if(el_rhs instanceof Variable) {
+				if(el_lhs instanceof Variable) { 
+					this.assignment((Variable)el_lhs, (Variable)el_rhs);
+				} else if(el_lhs instanceof PropertyValue) {
+					// assigning a variable to a property value
+					if(idx != -1) {
+						((PropertyValue)el_lhs).set(idx, el_rhs);
+					} else {				
 						this.assignment((PropertyValue)el_lhs, (Variable)el_rhs);
 					}
 				}
-				
-			} else {
-				throw new EugeneException("Invalid types!");
 			}
 		}
 	}
+	
+	private int idx = -1;
 	
 	/**
 	 * The parseAndGetElement/1 method parses the input string (e.g. p1.prop1[0]) 
@@ -952,18 +974,103 @@ public class Interp {
 		
 		for(int i=1; i<aos.length; i++) {
 			
-			if(!aos[i].contains("[")) {
-				if(child == null) {
-					child = parent.getElement(aos[i]);
-				} else {
-					parent = child;
-					child = parent.getElement(aos[i]);
+			String prop_name = aos[i];
+			boolean hasIndex = false;
+			if(aos[i].contains("[")) {
+				 prop_name = aos[i].substring(0, aos[i].indexOf('['));
+				 hasIndex=true;
+			}
+			
+			if(child == null) {
+				child = parent.getElement(prop_name);
+			} else {
+				parent = child;
+				child = parent.getElement(prop_name);
+			}
+			
+			if(hasIndex) {
+				try {
+					// parse the index
+					this.idx = this.getIndex(
+							aos[i].substring(
+									aos[i].indexOf('[')+1, 
+									aos[i].indexOf(']')));
+				} catch(EugeneException ee) {
+					throw new EugeneException(ee.getLocalizedMessage());
 				}
 			}
 			
 		}
 		
 		return child;
+	}
+	
+	/**
+	 * The getIndex/1 method converts a given string into 
+	 * an integer that denotes an array index.
+	 * The string can either represent a number (i.e. we use Integer.parseInt) or
+	 * an ID (i.e. we retrieve the ID from the symbol tables).
+	 * 
+	 * @param s  ... a string that represents the index
+	 * @return   ... the index as integer
+	 */
+	private int getIndex(String s) 
+			throws EugeneException {
+		
+		int idx = -1;
+		try {
+			idx = Integer.parseInt(s);
+		} catch(Exception e) {
+			
+			// in this case, it's highly possible 
+			// that the index is a variable
+			NamedElement ne = this.symbols.get(s);
+			
+			// first, we check if s exists
+			if(ne == null) {
+				throw new EugeneException(s + " is an invalid index!");
+			}
+			// second, we check if s refers to a variable or property value
+			if(!(ne instanceof Variable) && !(ne instanceof PropertyValue)) {
+				throw new EugeneException(s + " is not a variable nor a property value!");
+			}
+			
+			// the type of the variable/property value must be numeric
+			// hence, we retrieve the type of the variable/property value
+			String type = null;
+			if(ne instanceof Variable) {
+				type = ((Variable)ne).getType();
+			} else {
+				type = ((PropertyValue)ne).getType();
+			}
+			if(!EugeneConstants.NUM.equals(type)) {
+				throw new EugeneException(s +" is not a numeric value!");
+			}
+			
+			// finally, we retrieve the numeric index
+			double d_idx = -1;
+			if(ne instanceof Variable) {
+				d_idx = ((Variable)ne).getNum();
+			} else {
+				d_idx = ((PropertyValue)ne).getNum();
+			}
+			
+			// we use the modulo operation in order to check 
+			// if the index is an integer (i.e. a whole number) 
+			if((d_idx % 1) != 0) {
+				throw new EugeneException("Floating-point number as index!");
+			}
+			
+			idx = (int)d_idx;
+		} 
+		
+		if(idx < 0) {
+			throw new EugeneException(s +" is a negative index!");
+		}
+
+
+		// finally, we return the index
+		return idx;
 	}
 	
 	/**
@@ -1907,16 +2014,7 @@ public class Interp {
 			/*
 			 * comparing variables
 			 */
-			if(lhs instanceof Variable && rhs instanceof Variable) {
-				return this.comparator.evaluateCondition((Variable)lhs, op, (Variable)rhs);
-			
-			/*
-			 * comparing component types and components
-			 */
-			} else if(lhs instanceof ComponentType ||
-					lhs instanceof Component) {
-				return lhs.equals(rhs);
-			}
+			return this.comparator.evaluateCondition(lhs, op, rhs);
 
 		}
 		
