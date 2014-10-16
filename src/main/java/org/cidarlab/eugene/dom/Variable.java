@@ -133,7 +133,7 @@ public class Variable
     @Override
     public String toString() {
     	StringBuilder sb = new StringBuilder();
-    	sb.append(this.getType()).append(" ").append(this.getName()).append(" := ");
+    	//sb.append(this.getType()).append(" ").append(this.getName()).append(" := ");
         if (EugeneConstants.TXT.equals(type)) {
         	if(!txt.startsWith("\"") && !txt.endsWith("\"")) {
         		sb.append("\"").append(this.getTxt()).append("\"");

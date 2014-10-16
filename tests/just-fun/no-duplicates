@@ -1,0 +1,26 @@
+// we fill an array of size N 
+// with random numbers ranging over 0 to N and
+// any number can appear only once
+
+// run the second test 100 times
+num N;
+for(num t = 1; t <= 100; t = t+1) {
+
+	num[] array = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	N = sizeof(array);
+	for(num i = 0; i < N; i = i + 1) {
+	    num r = RANDOM(1, N);
+	    
+	    // let's check if r appears already
+	    for(num j=0; j<i; j=j+1) {
+	        if(array[j] == r) {
+	            r = RANDOM(1, N);
+	            j = 0;
+	        }
+	    }
+	    
+	    array[i] = r;
+	} 
+	
+	println(array);
+}

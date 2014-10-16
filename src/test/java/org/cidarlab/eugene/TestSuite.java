@@ -34,14 +34,14 @@ public class TestSuite {
 		 * BUILT-IN FUNCTIONS AND FEATURES
 		 *---------------------------------------------*/
 //		new TestSuite().test("./tests/built-in/sizeof");    
-		new TestSuite().test("./tests/built-in/random");    
+//		new TestSuite().test("./tests/built-in/random");    
 		
 		/*---------------------------------------------
 		 * SEQUENCE SHENANIGANS
 		 *---------------------------------------------*/
 //		new TestSuite().test("./tests/sequence/reverse-complement");    
 //		new TestSuite().test("./tests/sequence/random-sequence");    
-		new TestSuite().test("./tests/sequence/sequence-homology");    
+//		new TestSuite().test("./tests/sequence/sequence-homology");    
 		
 		/*---------------------------------------------
 		 * EUGENE BASICS
@@ -53,7 +53,12 @@ public class TestSuite {
 
 //		new TestSuite().test("./tests/data-access");
 
-		
+		/*---------------------------------------------
+		 * EUGENE FUN - INSPIRED BY EC327 :)
+		 *---------------------------------------------*/
+//		new TestSuite().test("./tests/just-fun/diagonals");
+//		new TestSuite().test("./tests/just-fun/no-duplicates");
+
 
 		/*---------------------------------------------
 		 * EUGENE CONTAINERS

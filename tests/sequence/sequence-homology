@@ -1,8 +1,8 @@
 // first, we create N random sequences of length M
 // of the alphabet NUCLEOTIDES
 
-num N = 100;
-num M = 200;
+num N = 10;
+num M = 20;
 txt[] NUCLEOTIDES = ["A", "T", "C", "G"];
 num alphabet_size = SIZEOF(NUCLEOTIDES);
 
