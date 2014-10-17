@@ -16,6 +16,7 @@ tokens {
 	RIGHTSBR = ']';
 	LEFTCUR = '{';
 	RIGHTCUR = '}';
+	DOLLAR = '$';
 	EQUALS = '=';
 	UNDERS = '_';
 	SEMIC = ';';
@@ -25,7 +26,6 @@ tokens {
 	DOTDOT = '..';
 	PIPE = '|';
 	NUM = 'num';
-	INT = 'int';
 	BOOL = 'bool';
 	BOOLEAN = 'boolean';
 	IMAGE = 'Image';
@@ -116,6 +116,11 @@ tokens {
 	
 	RANDOM_LC = 'random';
 	RANDOM_UC = 'RANDOM';
+
+	SAVE_LC = 'save';
+	SAVE_UC = 'SAVE';
+	STORE_LC = 'store';
+	STORE_UC = 'STORE';
 }
 
 
@@ -759,6 +764,7 @@ if(!defer) {
     printError("exiting...");
 }
 	}
+	|	built_in_function[defer]
 	;
 
 
@@ -1020,6 +1026,7 @@ if(!defer) {
 instantiation[boolean defer] 
 @init {
 NamedElement type = null;
+String instance_name = null;
 }
 	:	t=ID {
 if(!defer) {
@@ -1037,23 +1044,26 @@ if(!defer) {
         printError($t.text+" is not a type!");
     }                  
 }	
-	}	nameToken=ID ( LEFTP (dotToken=listOfDotValues[defer]|valueToken=listOfValues[defer, (ComponentType)type])? RIGHTP )? {
+	}	n=dynamic_naming[defer] {
+if(!defer) {
+    instance_name = $n.name;	
+}
+	}	( LEFTP (dotToken=listOfDotValues[defer]|valueToken=listOfValues[defer, (ComponentType)type])? RIGHTP )? {
 if(!defer) {
     try {
-
         if(null != dotToken) {
             this.interp.instantiate(
-                (ComponentType)type, $nameToken.text,
+                (ComponentType)type, instance_name,
                 this.propertyListHolder,
                 this.propertyValuesHolder);    	
         } else if (null != valueToken) {
             this.interp.instantiate(
-                (ComponentType)type, $nameToken.text,
+                (ComponentType)type, instance_name,
                 this.propertyListHolder,
                 this.propertyValuesHolder);    	
         } else {
             this.interp.instantiate(
-                (ComponentType)type, $nameToken.text,
+                (ComponentType)type, instance_name,
                 new ArrayList<String>(),
                 new ArrayList<Variable>());    	
         }
@@ -2256,24 +2266,23 @@ atom [boolean defer]
 			}
 		}
 		}
-	|	ID
-		{
-	if(!defer) {
-		try {
-			$element = this.interp.get($ID.text);
+	|	dn=dynamic_naming[defer] {
+if(!defer) {
+    try {
+        $element = this.interp.get($dn.name);
 					
-			if(null != $element) {
-				if($element instanceof Variable) {
-					$p = copyVariable((Variable)$element);
-					$primVariable = (Variable)$element;
-				}
-			} else {
-				throw new EugeneException($ID.text + " is not declared.");
-			}
-		} catch(EugeneException ee) {
-			printError(ee.getLocalizedMessage());
-		}
-	}
+        if(null != $element) {
+            if($element instanceof Variable) {
+                $p = copyVariable((Variable)$element);
+                $primVariable = (Variable)$element;
+            }
+        } else {
+            throw new EugeneException($dn.name + " is not declared.");
+        }
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}
 	}	oc=object_access[defer, $element] {
 if(!defer) {
     $element = $oc.child;
@@ -2367,6 +2376,19 @@ if(!defer) {
 if(!defer) {
     try {
         $p = this.interp.getRandom(rg.sor, rg.eor);
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}	
+	}
+	|	(SAVE_LC|SAVE_UC|STORE_LC|STORE_UC) LEFTP e=expr[defer] RIGHTP {
+if(!defer) {
+    try  {
+        if(null != $e.element) {
+            this.interp.storeIntoLibrary($e.element);
+        } else {
+            throw new EugeneException("Cannot store " + $e.text + " into the library!");
+        }
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
     }
@@ -2479,6 +2501,30 @@ if(!defer) {
 }	
 	}
 	;	
+
+/*------------------------------------------------------------------
+ * DYNAMIC NAMING FEATURES
+ *------------------------------------------------------------------*/
+dynamic_naming[boolean defer]
+	returns [String name]
+	:	i=ID {
+if(!defer) {
+    $name = $i.text;
+}	
+	}
+	|	DOLLAR LEFTCUR e=expr[defer] RIGHTCUR {
+if(!defer) {
+    if($e.p == null) {
+        printError("Invalid name!");
+    } else if(!EugeneConstants.TXT.equals(($e.p).getType())) {
+        printError("The name must be of type txt!");
+    }
+    
+    $name = ($e.p).getTxt();
+}	
+	}
+	;
+
 
 /*------------------------------------------------------------------
  * DATA EXCHANGE STATEMENTS
@@ -2665,6 +2711,10 @@ if(!defer) {
     }
 }	
 	}
+	|		NOTE LEFTP id=ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n=NUMBER RIGHTP {
+if(!defer) {
+}
+}
 	;
 
 /*------------------------------------------------------------------

@@ -1,0 +1,48 @@
+/*
+ *  The store/1 method stores a component into the 
+ *  library.
+ *
+ *  If the specified element exists already in the 
+ *  library, then it will get overwritten.
+ *
+ *  Eugene's storing facility can be utilized in 
+ *  four different ways:
+ *  save, SAVE, store, STORE
+ */
+ 
+Property prop(txt);
+PartType P(prop);
+P p1("p1");
+P p2("p2");
+P p3("p3");
+P p4("p4");
+
+// Eugene's save functions
+save(p1);
+SAVE(p2);
+store(p3);
+STORE(p4);
+ 
+/* ------------------
+ * IDEA:
+ * instead of only offering save functions,
+ * we could also offer get functions.
+ * this idea goes towards "query languages" 
+ * ------------------
+ * Examples: 
+ * get("SELECT * FROM P WHERE prop=='p1'")
+ * ------------------
+ */
+ 
+ 
+ 
+ /*------------------
+  * USING SAVE WITHIN SCOPES
+  *------------------*/
+
+for(num i=1; i<=1; i=i+1) {
+    txt part_name = "p" + i;
+    P ${part_name} (part_name);
+    SAVE(${part_name});
+    
+}  

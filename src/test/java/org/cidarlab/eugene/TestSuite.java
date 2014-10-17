@@ -35,6 +35,7 @@ public class TestSuite {
 		 *---------------------------------------------*/
 //		new TestSuite().test("./tests/built-in/sizeof");    
 //		new TestSuite().test("./tests/built-in/random");    
+//		new TestSuite().test("./tests/built-in/store");    
 		
 		/*---------------------------------------------
 		 * SEQUENCE SHENANIGANS
@@ -276,6 +277,8 @@ public class TestSuite {
 //		new TestSuite().test("./tests/EugeneLab/product-and-rules");
 //		new TestSuite().test("./tests/EugeneLab/sb2");
 		
+		new TestSuite().test("./tests/EugeneLab/library-generators/parts-with-random-sequences");
+		new TestSuite().test("./tests/EugeneLab/library-generators/dynamic-naming");
 		
 		/*---------------------------------------------
 		 * EUGENE GRAMMARS
@@ -297,8 +300,10 @@ public class TestSuite {
 		try {
 			long t1 = System.nanoTime();
 			
-			new Eugene().executeFile(new File(file));
-
+			Eugene e = new Eugene();
+			e.executeFile(new File(file));
+//			System.out.println(e.getLibrary());
+			
 			long tProcessing = System.nanoTime() - t1;
 			
 			System.out.println("[TestSuite.test] full processing time: "+tProcessing*Math.pow(10, -9)+"sec");

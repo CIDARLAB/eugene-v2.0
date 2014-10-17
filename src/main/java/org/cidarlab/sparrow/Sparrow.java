@@ -56,7 +56,6 @@ public class Sparrow
 		
 		this.startUp();
 		this.sessionId = java.util.UUID.randomUUID().toString();
-		
 	}
 	
 	public Sparrow(String sessionId) 
@@ -74,7 +73,6 @@ public class Sparrow
 			// if the session does not exist already,
 			// then we just proceed as normal
 		}
-		
 	}
 	
 	private void startUp() 
@@ -352,6 +350,7 @@ public class Sparrow
 	 */
 	public void insertFact(NamedElement element) 
 			throws SparrowException {
+
 		if(null == element) {
 			throw new SparrowException(element + " is an invalid working memory element!");
 		}
@@ -359,35 +358,13 @@ public class Sparrow
 		this.ksession.insert(element);
 	}
 
-//	/**
-//	 * 
-//	 * The insert method inserts a Component object into 
-//	 * the working memory.
-//	 * 
-//	 * @param component ... the Component object that should be inserted
-//	 */
-//	public void insertFact(Component component) 
-//			throws SparrowException {
-//		if(null != component) {
-//			ksession.insert(component);
-//		}
-//	}
-
-	
-//	public void exportTo(List<Component> lst, final Standard standard, String filename)
-//			throws SparrowException {
-//		if(null != standard) {
-//			standard.exportData(lst, filename);
-//		}
-//	}
-
 	public NamedElement getFact(String name) 
-				throws SparrowException {
+			throws SparrowException {
 		
 		// first, we query the WM for the fact
 		QueryResults qr = 
 				this.ksession.getQueryResults("get", name);
-		
+
 		if(null != qr && qr.size() == 1) {		
 			// if the fact exists, then we return it
 			return (NamedElement)

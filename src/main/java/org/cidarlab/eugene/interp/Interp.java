@@ -114,7 +114,11 @@ public class Interp {
 		 * FACTS/RULES
 		 */
 		try {
-			this.sparrow = sparrow;
+			if(null != sparrow) {
+				this.sparrow = sparrow;
+			} else {
+				this.sparrow = new Sparrow();
+			}
 		} catch(Exception e) {}
 		
 		
@@ -476,7 +480,7 @@ public class Interp {
 		
 		// we store the resulting Part object
 		// into the symbol tables
-		this.put(p);
+		this.put(p);		
 
 		// return the part object
 		return p;
@@ -958,6 +962,28 @@ public class Interp {
 		return v;
 	}
 	
+	/**
+	 * The storeIntoLibrary/1 method gets as input a NamedElement 
+	 * and stores it into the Library (ie Sparrow).
+	 * 
+	 * @param e  ... the NamedElement object that should be store in the library
+	 * 
+	 * @throws EugeneException
+	 */
+	public void storeIntoLibrary(NamedElement e) 
+			throws EugeneException {
+
+		this.symbols.put(e);
+		
+		try {
+			// WHERE IS THE PROBLEM HERE??
+			this.sparrow.insertFact(e);
+			// WHY CAN'T I RETRIEVE THE INSERTED FACT AFTERWARDS
+		} catch(SparrowException spe) {
+			throw new EugeneException(spe.getLocalizedMessage());
+		}
+	}
+	
 
 	/**
 	 * The permute/1 method permutes the elements of the given device.
@@ -1387,7 +1413,10 @@ public class Interp {
 
 		NamedElement ne = null;
 
-		if(this.stack.size() > 0) {
+		// if we're not in the GLOBAL scope,
+		if(!this.stack.isEmpty()) {
+			// then we look into all higher scopes 
+			// if the requested element exists
 			Stack<StackElement> tmp = new Stack<StackElement>();
 			while(this.stack.size() > 0 && ne == null) {
 				StackElement se = this.stack.pop();
@@ -1407,21 +1436,28 @@ public class Interp {
 
 		}
 		
-		if(null != ne) {
-			return ne;
-		} else {
+		// if the requested element does not exist in any 
+		// scope above, then we check the global symbol 
+		// tables and our Library Management System (LMS) Sparrow
+		if(null == ne) {
+			// first, we query the request element from 
+			// the symbol tables
 			ne = this.symbols.get(name);
-			if(null != ne) {
-				return ne;
-			}
 	
-			try {
-				ne = this.sparrow.getFact(name);
-			} catch(SparrowException spe) {
-				throw new EugeneException(spe.getMessage());
-			}
+				if(null == ne) {
+				// if the request element does not exist in 
+				// the LMS, then we retrieve it from the symbol tables
+				try {
+					ne = this.sparrow.getFact(name);
+				} catch(SparrowException spe) {
+					throw new EugeneException(spe.getMessage());
+				}
+	
+			}	
 		}
 		
+		// finally, we return the requested element
+		// (could be NULL though)
 		return ne;
 	}
 	
@@ -1437,6 +1473,14 @@ public class Interp {
 		return (Variable)ne;
 	}
 		
+	/**
+	 * The contains/1 method checks if a given name has been declared.
+	 * 
+	 * @param name ... the name of the desired variable/component
+	 * 
+	 * @return true  ... if a NamedElement object of name name has been declard
+	 *         false ... otherwise
+	 */
 	public boolean contains(String name) {
 
 		boolean bContains = false;
@@ -1513,17 +1557,33 @@ public class Interp {
 		}
 		
 	}
-	
+
+	/**
+	 * The put/2 method stores a NamedElement object in the symbol tables.
+	 * The NamedElement object will be stored under a specified name 
+	 * that is usually equal to the name of the NamedElement object.
+	 * 
+	 * In the put/2 method, we also incorporate Scoping. That is, variables 
+	 * and components defined within loops, branches, or functions are not 
+	 * visible and accessible outside.
+	 * 
+	 * @param name  ... the name under that the NamedElement object should be stored
+	 * @param ne    ... the NamedElement object
+	 * 
+	 * @throws EugeneException
+	 */
 	public void put(String name, NamedElement ne) 
 			throws EugeneException {
-
 		
-		if(0 == this.stack.size()) {
+		if(this.stack.isEmpty()) {
 			/*
-			 * MAIN function
+			 * MAIN scope
 			 */
 			this.symbols.put(name, ne);
 
+			// in the MAIN scope, we also put
+			// biological components and interactions 
+			// into the the library (i.e. Sparrow)
 			if(ne instanceof Part) {
 				try {
 					this.sparrow.insertFact((Part)ne);
@@ -1545,13 +1605,12 @@ public class Interp {
 					((ForLoop)this.stack.peek()).getVarname().equals(name)) {
 					
 				StackElement se = this.stack.pop();
-				this.put(name, ne);
+				se.put(ne);
+//				this.put(name, ne);
 				this.stack.push(se);
 
 			} else {
-
 				this.stack.peek().put(ne);
-				
 			}
 		}
 		
@@ -1949,9 +2008,22 @@ public class Interp {
 			throws EugeneException {
 
 		if ("+".equals(op)) {
-			if (source.type.equals(EugeneConstants.NUM)) {
+			// NUM + NUM -> NUM
+			if (EugeneConstants.NUM.equals(source.getType()) && 
+					EugeneConstants.NUM.equals(destination.getType())) {
 				destination.num += source.num;
 				destination.type = EugeneConstants.NUM;
+				
+			// NUM + TXT -> TXT
+			} else if (EugeneConstants.NUM.equals(source.getType()) && 
+					EugeneConstants.TXT.equals(destination.getType())) {
+
+				if(source.num % 1 == 0) {
+					destination.txt += (int)source.num;
+				} else {
+					destination.txt += source.num;
+				}
+				
 			} else if (source.type.equals(EugeneConstants.NUMLIST)) {
 				destination.numList.addAll(source.numList);
 				destination.type = EugeneConstants.NUMLIST;
@@ -1980,45 +2052,47 @@ public class Interp {
 		this.stack.push(se);
 	}
 	
-	/**
-	 * The getScope/1 method returns the name of the scope 
-	 * in that the given NamedElement object has been declared.
-	 * i.e. we iterate through the Stack and return the 
-	 * NamedElement's first occurrence
-	 * 
-	 * @param ne
-	 * @return
-	 */
-	private String getScope(NamedElement ne) {
-		
-		String scope = null;
-		if(this.stack.isEmpty()) {
-			// stash the current stack
-			Stack<StackElement> tmp = new Stack<StackElement>();
-			while(!this.stack.isEmpty() && scope==null) {
-				
-				// if we've found the corresponding scope, 
-				// then we store its name
-				if(this.stack.peek().contains(ne.getName())) {
-					scope = this.stack.peek().getName();
-				}
-				tmp.push(this.stack.pop());
-			}
-			
-			// we also need to restore the original stack
-			while(!tmp.isEmpty()) {
-				this.stack.push(tmp.pop());
-			}
-		}
-		
-		if(scope == null) {
-			return "MAIN";
-		}
-		return scope;
- 	}
+//	/**
+//	 * The getScope/1 method returns the name of the scope 
+//	 * in that the given NamedElement object has been declared.
+//	 * i.e. we iterate through the Stack and return the 
+//	 * NamedElement's first occurrence
+//	 * 
+//	 * @param ne
+//	 * @return
+//	 */
+//	private String getScope(NamedElement ne) {
+//		
+//		String scope = null;
+//		if(this.stack.isEmpty()) {
+//			// stash the current stack
+//			Stack<StackElement> tmp = new Stack<StackElement>();
+//			while(!this.stack.isEmpty() && scope==null) {
+//				
+//				// if we've found the corresponding scope, 
+//				// then we store its name
+//				if(this.stack.peek().contains(ne.getName())) {
+//					scope = this.stack.peek().getName();
+//				}
+//				tmp.push(this.stack.pop());
+//			}
+//			
+//			// we also need to restore the original stack
+//			while(!tmp.isEmpty()) {
+//				this.stack.push(tmp.pop());
+//			}
+//		}
+//		
+//		if(scope == null) {
+//			return "MAIN";
+//		}
+//		return scope;
+// 	}
 	
-	/*
-	 * the clear/0 method clears the symbol tables of the top stack element
+	/**
+	 * The clear/0 method clears the symbol tables of the top stack element.
+	 * 
+	 * @throws EugeneException
 	 */
 	public void clear() 
 			throws EugeneException {

@@ -1,0 +1,55 @@
+// number of desired parts
+num N = 20;
+
+// part specification
+
+// each part should only have a sequence property
+Property seq(txt);
+PartType Promoter(seq);
+
+
+// generate random sequences
+txt[] nucleotides = ["A", "T", "C", "G"];
+txt left_op_side = "AAAAAA"; 
+txt right_op_side = "AAAAAA";
+
+for(num i = 1; i <= N; i = i + 1) {
+
+    // the length of the desired sequence
+    // should be 25 //between 10 and 20 nucleotides
+    num length = 25; //RANDOM(10, 20);
+
+    // generated a random sequence of 
+    // the random length
+    txt random_sequence = "";
+    for(num l = 1; l<=length; l = l + 1) {
+
+        // get a random number
+        num r = RANDOM(0, 3);
+        
+        // append the r-th nucleotide to 
+        // the sequence
+        random_sequence = random_sequence + nucleotides[r];
+    }
+
+    txt part_seq = left_op_side + random_sequence + right_op_side;
+    
+    txt part_name = "T" + i;
+    Promoter ${part_name} (.seq(part_seq));
+    
+    // we also store the part in the library
+    SAVE(${part_name});
+} 
+
+/*
+ *  let's print the individual parts
+ */
+println(T1);
+println(T2);
+println(T5);
+println(T10);
+println(T15);
+println(T20);
+
+
+
