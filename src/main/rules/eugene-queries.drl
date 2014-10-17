@@ -1,0 +1,37 @@
+//created on: Oct 17, 2014
+package org.cidarlab.sparrow.eugene
+
+//list any import classes here.
+import org.cidarlab.eugene.dom.*;
+import org.cidarlab.eugene.dom.interaction.*;
+import java.util.List;
+import java.util.Set;
+
+query getParts(PartType pt)
+    $c : Part(typeAsString == pt.name);
+end
+
+query getAllParts()
+    $c : Part();
+end
+
+query getComponentsOf(ComponentType ct)
+    $c : Component(typeAsString == ct.name);
+end
+
+query getAllComponents()
+    $c : Component();
+end
+
+query getInteractions(Interaction.InteractionType it) 
+	$i : Interaction(type == it);
+end
+
+query getAllInteractions() 
+	$i : Interaction();
+end
+
+query getElement(String elname)
+	element : NamedElement(name == elname);
+end
+

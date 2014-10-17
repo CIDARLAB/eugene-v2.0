@@ -1,6 +1,7 @@
 template header
 name
-rule
+lhs
+rhs
 
 package org.cidarlab.sparrow.rules;
 

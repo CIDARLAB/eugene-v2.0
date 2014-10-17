@@ -35,6 +35,8 @@ import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
 import org.drools.conf.AssertBehaviorOption;
+import org.drools.event.rule.DebugAgendaEventListener;
+import org.drools.event.rule.DebugWorkingMemoryEventListener;
 import org.drools.io.ResourceFactory;
 import org.drools.marshalling.Marshaller;
 import org.drools.marshalling.MarshallerFactory;
@@ -90,8 +92,14 @@ public class Sparrow
 		 */
 		this.kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 		// parse and compile the predefined queries
+//		this.kbuilder.add( 
+//				ResourceFactory.newClassPathResource( "predefined-queries.drl", getClass() ), 
+//				ResourceType.DRL );
+//		this.kbuilder.add( 
+//				ResourceFactory.newClassPathResource( "queries.drl", getClass() ), 
+//				ResourceType.DRL );
 		this.kbuilder.add( 
-				ResourceFactory.newClassPathResource( "predefined-queries.drl", getClass() ), 
+				ResourceFactory.newClassPathResource( "eugene-queries.drl", getClass() ), 
 				ResourceType.DRL );
 
 		/*
@@ -104,6 +112,8 @@ public class Sparrow
 		 * create a new Session
 		 */
 		this.ksession = this.kbase.newStatefulKnowledgeSession();
+//		this.ksession.addEventListener( new DebugAgendaEventListener() );
+//		this.ksession.addEventListener( new DebugWorkingMemoryEventListener() );
 
 	}
 	
@@ -266,6 +276,7 @@ public class Sparrow
 		Reader rdr = new StringReader( drl );
 		kbuilder.add( ResourceFactory.newReaderResource( rdr ), ResourceType.DRL );
 		if( kbuilder.hasErrors() ){
+			System.out.println(kbuilder.getErrors());
 		    throw new IllegalStateException( "DRL errors" );
 		}
 		this.ksession.getKnowledgeBase().addKnowledgePackages( kbuilder.getKnowledgePackages() );			
@@ -362,14 +373,17 @@ public class Sparrow
 			throws SparrowException {
 		
 		// first, we query the WM for the fact
-		QueryResults qr = 
-				this.ksession.getQueryResults("get", name);
-
-		if(null != qr && qr.size() == 1) {		
-			// if the fact exists, then we return it
-			return (NamedElement)
-					qr.iterator().next().get("element");
-		}
+		try {
+			QueryResults qr = 
+					this.ksession.getQueryResults("getElement", name);
+			if(null != qr && qr.size() == 1) {		
+				// if the fact exists, then we return it
+				return (NamedElement)
+						qr.iterator().next().get("element");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} 
 		
 		// if the fact does not exist, then we return NULL
 		return null;
@@ -478,9 +492,9 @@ public class Sparrow
 		return this.executePredefinedQuery("getAllParts", new Object[] {});
 	}
 
-	public Set<Component> getComponents(ComponentType ct)
+	public Set<Component> getComponentsOf(ComponentType ct)
 			throws SparrowException {
-		return this.executePredefinedQuery("getComponents", new Object[] {ct});
+		return this.executePredefinedQuery("getComponentsOf", new Object[] {ct});
 	}
 
 	public Set<Component> getParts(PartType pt) 

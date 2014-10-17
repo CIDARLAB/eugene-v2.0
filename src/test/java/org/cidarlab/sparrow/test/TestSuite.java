@@ -30,20 +30,20 @@ public class TestSuite {
 		}
 
 //		// Test3: Resuming the paused session of Test2		
-//		try {
-//			SessionLoaderTest slt = new SessionLoaderTest(sessionId, factCount);
-//			slt.test();
-//		} catch(SparrowException spe) {
-//			spe.printStackTrace();
-//			throw new Exception(spe.toString());
-//		}
+		try {
+			SessionLoaderTest slt = new SessionLoaderTest(sessionId, factCount);
+			slt.test();
+		} catch(SparrowException spe) {
+			spe.printStackTrace();
+			throw new Exception(spe.toString());
+		}
 //		
 //
 //		// Test4: insert facts and avoid duplicates
 //		// a duplicate is given, if there is already a fact in the knowledge base
 //		// that has exactly the same property values
 //		// duplicates do not focus on Object IDs...
-//		//new DuplicateTest().test();
+		new DuplicateTest().test();
 //		
 //		
 //		/*
@@ -57,7 +57,7 @@ public class TestSuite {
 //		new ScalabilityTest(1000, 1000, 1000, 1000).test();
 //		
 //		// TEST: QUERYING
-////		new QueryTester().test();
+		new QueryTester().test();
 //		
 //		
 //		

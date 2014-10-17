@@ -1,7 +1,6 @@
 package org.cidarlab.sparrow
 
 //list any import classes here.
-import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.*;
 import java.util.List;
 

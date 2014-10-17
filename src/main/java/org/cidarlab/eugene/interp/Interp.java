@@ -972,13 +972,11 @@ public class Interp {
 	 */
 	public void storeIntoLibrary(NamedElement e) 
 			throws EugeneException {
-
-		this.symbols.put(e);
 		
 		try {
-			// WHERE IS THE PROBLEM HERE??
+			// we insert the NamedElement into the 
+			// WM of our Sparrow LMS
 			this.sparrow.insertFact(e);
-			// WHY CAN'T I RETRIEVE THE INSERTED FACT AFTERWARDS
 		} catch(SparrowException spe) {
 			throw new EugeneException(spe.getLocalizedMessage());
 		}

@@ -195,7 +195,7 @@ public interface ISparrow {
 	 * @return  a collection of components of the given type
 	 * @throws SparrowException
 	 */
-	public Set<Component> getComponents(ComponentType ct)
+	public Set<Component> getComponentsOf(ComponentType ct)
 			throws SparrowException;
 
 	/**
