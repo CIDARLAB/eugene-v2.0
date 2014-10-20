@@ -2189,7 +2189,38 @@ if(!defer) {
 	} 	(pl=PLUS e=multExpr[defer] {
 if(!defer) {
     try {
-        this.interp.doMinPlusOp($e.p, $p, $pl.text);
+        // PropertyValue + PropertyValue
+        if(null != $element) {
+            
+            if(!($element instanceof PropertyValue)) {
+                throw new EugeneException("Unsupported + operation for " + $element.getClass() + "!");
+            }
+            
+            if(null != $e.element) {
+
+                if($e.element instanceof PropertyValue) {
+                    this.interp.doMinPlusOp((PropertyValue)$e.element, (PropertyValue)$element, $pl.text);
+                } else {
+                    throw new EugeneException("Unsupported + operationYYY!");
+                }
+                
+            } else if(null != $e.p) {
+                this.interp.doMinPlusOp($e.p, (PropertyValue)$element, $pl.text);
+            }
+            
+        } else {
+        
+            if(null != $e.element) {
+            
+                if(!($e.element instanceof PropertyValue)) {
+                    throw new EugeneException("Unsupported + operationZZZ!");
+                }
+                
+                this.interp.doMinPlusOp((PropertyValue)$e.element, $p, $pl.text);
+            } else {
+                this.interp.doMinPlusOp($e.p, $p, $pl.text); 
+            }
+        }
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
     }

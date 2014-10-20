@@ -175,7 +175,7 @@ public class Variable
                 sb.append("false");
             }
 		}
-        sb.append(";");
+        //sb.append(";");
         return sb.toString();
     }
 

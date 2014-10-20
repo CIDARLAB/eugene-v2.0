@@ -46,7 +46,14 @@ println("forf1.numProp2: ", forf1.numProp2);
 println("forf1.numLstProp1: ", forf1.numLstProp1);
 println("forf1.numLstProp2: ", forf1.numLstProp2);
 
-RBS rbs1("hello " + world + "!", forf1.txtProp1 + "hello " + world + "!", txtLst1 + [hello + world + "!"] + ["hello " + world + "!", hello + "world!"] + [helloWorld], forf1.txtLstProp1 + txtLst1, ((two-2+two)*ten)+(ten-ten), (forf1.numProp1-10)*two, numLst1 + [two*ten] + [2*ten, two*10] + [twenty], forf1.numLstProp1 + [two*ten, 2*ten, two*10, twenty]);
+RBS rbs1("hello " + world + "!", 
+	forf1.txtProp1 + "hello " + world + "!", 
+	txtLst1 + [hello + world + "!"] + ["hello " + world + "!", hello + "world!"] + [helloWorld], 
+	forf1.txtLstProp1 + txtLst1, 
+	((two-2+two)*ten)+(ten-ten), 
+	(forf1.numProp1-10)*two, 
+	numLst1 + [two*ten] + [2*ten, two*10] + [twenty], 
+	forf1.numLstProp1 + [two*ten, 2*ten, two*10, twenty]);
 println("rbs1.txtProp1: ", rbs1.txtProp1);
 println("rbs1.txtProp2: ", rbs1.txtProp2);
 println("rbs1.txtLstProp1: ", rbs1.txtLstProp1);

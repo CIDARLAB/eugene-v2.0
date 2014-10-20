@@ -1,0 +1,43 @@
+// num + num -> num
+num one = 1;
+num two = 2;
+num three = one + two;
+if(three != 3) {exit;}
+
+// num + txt -> txt
+txt hello = "Hello";
+txt blank = " ";
+txt hello_one = "Hello" + one;
+if(hello_one != "Hello1") {exit;}
+
+txt hello_blank_two = hello + blank + two;
+if(hello_blank_two != "Hello 2") {exit;}
+
+txt three_blank_hello = three + blank + hello;
+if(three_blank_hello != "3 Hello") {exit;}
+
+// num + num[] -> num[]
+num[] nl = [1, 2, 3];
+num four = 4;
+nl = nl + four;
+if(nl != [1, 2, 3, 4]) {exit;}
+
+num five = 5;
+nl = five + nl;
+if(nl != [5, 1, 2, 3, 4]) {exit;}
+
+// num + txt[] -> txt[]
+txt[] tl = ["A", "T", "C", "G"];
+num six = 6;
+tl = six + tl;
+if(tl != ["6", "A", "T", "C", "G"]) {exit;}
+
+num seven = 7;
+tl = tl + seven;
+if(tl != ["6", "A", "T", "C", "G", "7"]) {exit;}
+
+// num + bool
+bool bt = true;
+num eight = 8;
+//num inv = eight + bt;
+

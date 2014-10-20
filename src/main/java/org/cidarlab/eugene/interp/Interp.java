@@ -39,6 +39,7 @@ import java.util.UUID;
 
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
+import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.data.pigeon.Pigeonizer;
@@ -151,20 +152,9 @@ public class Interp {
 
 	public void includeFile(String file) 
 			throws EugeneException {
-		/*
-		 * first, we remove the double-quotas
-		 */
-		if(null == file || file.length() <= 2) {
-			throw new EugeneException("Invalid file name!");
-		}
-		file = file.substring(1, file.length() - 1);
-		
-		String script = null; 
-		try {
-			script = EugeneUtil.readFile(new File(file));
-		} catch(IOException ioe) {
-			throw new EugeneException("I cannot read the file " + file);
-		}
+
+		// first, we read the file's content
+		String script = this.readFileContent(file);
 		
 		/*
 		 * lexical analysis and parsing
@@ -194,20 +184,8 @@ public class Interp {
 	
 	public NamedElement importFile(String file) 
 			throws EugeneException {
-		/*
-		 * first, we remove the double-quotas
-		 */
-		if(null == file || file.length() <= 2) {
-			throw new EugeneException("Invalid file name!");
-		}
-		file = file.substring(1, file.length() - 1);
-		
-		String script = null; 
-		try {
-			script = EugeneUtil.readFile(new File(file));
-		} catch(IOException ioe) {
-			throw new EugeneException("I cannot read the file " + file);
-		}
+
+		String script = this.readFileContent(file);
 		
 		/*
 		 * lexical analysis and parsing
@@ -243,6 +221,32 @@ public class Interp {
 		EugeneCollection ec = parser.getAllElements();
 		this.put(ec);
 		return ec;
+	}
+	
+	private String readFileContent(String file) 
+			throws EugeneException {
+		/*
+		 * first, we remove the double-quotas
+		 */
+		if(null == file || file.length() <= 2) {
+			throw new EugeneException("Invalid file name!");
+		}
+		file = file.substring(1, file.length() - 1);
+		
+		// put Eugene's ROOT directory in front of 
+		// the specified INCLUDE file
+		if(!(".".equals(Eugene.getRootDirectory()))) {
+			file = Eugene.getRootDirectory()+"/"+file;
+		}
+
+		String script = null; 
+		try {
+			script = EugeneUtil.readFile(new File(file));
+		} catch(IOException ioe) {
+			throw new EugeneException("I cannot read the file " + file);
+		}
+		
+		return script;
 	}
 	
 	/*----------------------------------------------------
@@ -2001,39 +2005,171 @@ public class Interp {
         }
     }
 
+    // PropertyValue + PropertyValue -> PropertyValue
+	public void doMinPlusOp(PropertyValue source, PropertyValue destination, String op) 
+			throws EugeneException {
+		
+		if(null == this.comparator) {
+			this.comparator = new Comparator();
+		}
+		
+		this.doMinPlusOp(
+				this.comparator.convertPropertyValueToVariable(source), 
+				this.comparator.convertPropertyValueToVariable(destination), 
+				op);
+		
+	}
+	
+	// PropertyValue + Variable -> Variable
+	public void doMinPlusOp(PropertyValue source, Variable destination, String op) 
+			throws EugeneException {
+		
+		if(null == this.comparator) {
+			this.comparator = new Comparator();
+		}
+		
+		this.doMinPlusOp(
+				this.comparator.convertPropertyValueToVariable(source), 
+				destination, 
+				op);
+	}
+	
+	// PropertyValue + Variable -> Variable
+	public void doMinPlusOp(Variable source, PropertyValue destination, String op) 
+			throws EugeneException {
+		
+		if(null == this.comparator) {
+			this.comparator = new Comparator();
+		}
+		
+		this.doMinPlusOp(
+				source, 
+				this.comparator.convertPropertyValueToVariable(destination), 
+				op);
+	}
+
 	//does addition or subtraction on a primitive, used by grammar rule expr
 	public void doMinPlusOp(Variable source, Variable destination, String op) 
 			throws EugeneException {
 
 		if ("+".equals(op)) {
-			// NUM + NUM -> NUM
-			if (EugeneConstants.NUM.equals(source.getType()) && 
-					EugeneConstants.NUM.equals(destination.getType())) {
-				destination.num += source.num;
-				destination.type = EugeneConstants.NUM;
+			if (EugeneConstants.NUM.equals(source.getType())) {
 				
-			// NUM + TXT -> TXT
-			} else if (EugeneConstants.NUM.equals(source.getType()) && 
-					EugeneConstants.TXT.equals(destination.getType())) {
+				// NUM + NUM -> NUM
+				if(EugeneConstants.NUM.equals(destination.getType())) {
+					destination.num += source.num;
+					destination.type = EugeneConstants.NUM;
+					
+				// NUM + TXT -> TXT
+				} else if(EugeneConstants.TXT.equals(destination.getType())) {
 
-				if(source.num % 1 == 0) {
-					destination.txt += (int)source.num;
+					if(source.num % 1 == 0) {
+						destination.txt += (int)source.num;
+					} else {
+						destination.txt += source.num;
+					}
+					destination.type = EugeneConstants.TXT;
+					
+				// NUM + NUM[] -> NUM[]
+				} else if(EugeneConstants.NUMLIST.equals(destination.getType())) {
+
+					if(null == destination.getNumList()) {
+						destination.numList =  new ArrayList<Double>();
+					}
+					destination.numList.add(source.getNum());
+					destination.type = EugeneConstants.NUMLIST;
+					
+				// NUM + TXT[] -> TXT[]	
+				} else if(EugeneConstants.TXTLIST.equals(destination.getType())) {
+					
+					if(source.num % 1 == 0) {
+						destination.txtList.add(String.valueOf((int)source.num));
+					} else {
+						destination.txtList.add(String.valueOf(source.num));
+					}
+					
+					destination.type = EugeneConstants.TXTLIST;
+					
 				} else {
-					destination.txt += source.num;
+					throw new EugeneException("Cannot perform the + operationAAA! " + source.getType()+" + "+destination.getType());
 				}
 				
-			} else if (source.type.equals(EugeneConstants.NUMLIST)) {
-				destination.numList.addAll(source.numList);
-				destination.type = EugeneConstants.NUMLIST;
-			} else if (source.type.equals(EugeneConstants.TXTLIST)) {
-				destination.txtList.addAll(source.txtList);
-				destination.type = EugeneConstants.TXTLIST;
-			} else if (source.type.equals(EugeneConstants.TXT)) {
-				destination.txt += source.txt;
-				destination.type = EugeneConstants.TXT;
+			} else if (EugeneConstants.NUMLIST.equals(source.getType())) {
+				
+				if(EugeneConstants.NUM.equals(destination.getType())) {
+					destination.numList.add(destination.num);
+					destination.numList.addAll(source.numList);
+					destination.type = EugeneConstants.NUMLIST;
+				} else if (EugeneConstants.NUMLIST.equals(destination.getType())) {
+					destination.numList.addAll(source.numList);
+					destination.type = EugeneConstants.NUMLIST;
+				} else {
+					throw new EugeneException("Cannot perform the + operationBBB! " + source.getType()+" + "+destination.getType());
+				}
+			} else if (EugeneConstants.TXTLIST.equals(source.getType())) {
+				
+				// TXT[] + TXT[] -> TXT[]
+				if(EugeneConstants.TXTLIST.equals(destination.getType())) {
+					destination.txtList.addAll(source.txtList);
+					destination.type = EugeneConstants.TXTLIST;
+					
+				// TXT[] + TXT -> TXT[]	
+				} else if(EugeneConstants.TXT.equals(destination.getType())) {
+					destination.txtList = new ArrayList<String>();
+					destination.txtList.add(destination.txt);
+					destination.txtList.addAll(source.txtList);
+					destination.type = EugeneConstants.TXTLIST;
+					
+				// TXT[] + NUM -> TXT[]	
+				} else if(EugeneConstants.NUM.equals(destination.getType())) {
+					destination.txtList = new ArrayList<String>();
+					if(destination.num % 1 == 0) {
+						destination.txtList.add(String.valueOf((int)destination.num));
+					} else {
+						destination.txtList.add(String.valueOf(destination.num));
+					}
+					destination.txtList.addAll(source.txtList);
+					destination.type = EugeneConstants.TXTLIST;
+				} else {
+					throw new EugeneException("Cannot perform the + operationCCC! " + source.getType()+" + "+destination.getType());
+				}
+			} else if (EugeneConstants.TXT.equals(source.getType())) {
+				
+				// TXT + NUM -> TXT
+				if(EugeneConstants.NUM.equals(destination.getType())) {
+					if(destination.num % 1 == 0) {
+						destination.txt = String.valueOf((int)destination.num);
+					} else {
+						destination.txt = String.valueOf(destination.num);
+					}
+					destination.txt += source.txt;
+					destination.type = EugeneConstants.TXT;
+					
+				// TXT + TXT -> TXT
+				} else if(EugeneConstants.TXT.equals(destination.getType())) {
+					destination.txt += source.txt;
+					destination.type = EugeneConstants.TXT;
+					
+				// TXT + TXT[] -> TXT[]
+				} else if(EugeneConstants.TXTLIST.equals(destination.getType())) {
+					if(null == destination.txtList) {
+						destination.txtList = new ArrayList<String>();
+					} 
+					destination.txtList.add(source.txt);
+					destination.type = EugeneConstants.TXTLIST;
+				} else {
+					throw new EugeneException("Cannot perform the + operation! " + source+" + "+destination.getType());
+				}
+			} else if(EugeneConstants.BOOLEAN.equals(source.getType())) {
+				if(!EugeneConstants.BOOLEAN.equals(destination.getType())) {
+					throw new EugeneException("Cannot perform the + operation!");
+				}
+				
+				destination.bool = source.bool && destination.bool;
 			}
+			
 		} else if ("-".equals(op)) {
-			if (source.type.equals(EugeneConstants.NUM)) {
+			if (EugeneConstants.NUM.equals(source.getType())) {
 				destination.num -= source.num;
 				destination.type = EugeneConstants.NUM;
 			} else {

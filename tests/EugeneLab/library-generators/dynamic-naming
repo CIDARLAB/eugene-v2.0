@@ -1,3 +1,4 @@
+
 // number of desired parts
 num N = 20;
 
@@ -35,6 +36,8 @@ for(num i = 1; i <= N; i = i + 1) {
     txt part_seq = left_op_side + random_sequence + right_op_side;
     
     txt part_name = "T" + i;
+    
+    // DYNAMIC NAMING OF PART
     Promoter ${part_name} (.seq(part_seq));
     
     // we also store the part in the library

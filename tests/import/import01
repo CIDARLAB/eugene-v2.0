@@ -1,7 +1,7 @@
-variables = import("./tests/include/variables");
-println(variables);
+import("./tests/include/variables");
+//println(variables);
 
-properties = import("./tests/include/properties");
-println(properties);
+import("./tests/include/properties");
+//println(properties);
 
 //parts = import("./tests/include/parts");

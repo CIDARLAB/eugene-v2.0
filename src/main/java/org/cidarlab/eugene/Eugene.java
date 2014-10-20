@@ -59,10 +59,18 @@ public class Eugene {
 	 */
 	private BufferedWriter writer = null;
 
+	private static String ROOT_DIRECTORY = ".";
+	
+	/*--------------------------------------
+	 * EUGENE CONSTRUCTORS
+	 *--------------------------------------*/
+	
+	// default no-args constructor
 	public Eugene() {
 		LogManager.getLogManager().reset();
 	}
 	
+	// constructor with SessionID
 	public Eugene(String sessionId)
 			throws EugeneException {
 
@@ -76,8 +84,6 @@ public class Eugene {
 			throw new EugeneException(spe.toString());
 		}
 		
-		this.sparrow.printFacts();
-		
 		/*
 		 * here, we also a create a writer for 
 		 * writing any outputs
@@ -90,9 +96,10 @@ public class Eugene {
         } catch(Exception e) {
         	throw new EugeneException(e.getLocalizedMessage());
         }
-
 	}
 	
+	// constructor with sessionID and a writer to 
+	// that the Eugene output is being written
 	public Eugene(String sessionId, BufferedWriter writer) 
 			throws EugeneException {
 
@@ -106,10 +113,29 @@ public class Eugene {
 			throw new EugeneException(spe.toString());
 		}
 		
-		this.sparrow.printFacts();
-
 		this.writer = writer;
 	}
+	
+	/**
+	 * The setRootDirectory/1 method sets Eugene's root directory 
+	 * to a given directory.
+	 *  
+	 * @param dir ... the desired root directory of Eugene
+	 */
+	public static void setRootDirectory(String dir) {
+		ROOT_DIRECTORY = dir;
+	}
+	
+	
+	/**
+	 * The getRootDirectory method returns Eugene's root directory.
+	 * 
+	 * @return ... Eugene's current root directory
+	 */
+	public static String getRootDirectory() {
+		return ROOT_DIRECTORY;
+	}
+	
 	
 	/**
 	 * The executeFile/1 method gets as input a File object, 
