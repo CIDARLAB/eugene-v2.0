@@ -5,6 +5,10 @@
 
 // UNCOMMENT THE FOR LOOP YOU'D LIKE TO EXECUTE
 
+for(num i=1; i<=10; i = i + 0.1) {
+    println(i);
+}
+
 for(num i=1; i<=1000; i = i + 1) {
     println(i);
 }

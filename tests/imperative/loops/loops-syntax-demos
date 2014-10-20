@@ -1,12 +1,15 @@
 /*
  *   FOR LOOP
  */
- 
+num N = 10; 
+for(num i = 0; i < N; i = i + 1) {
+    println(i);
+} 
  
 /*
  *   FOR ALL ITERATOR
  */ 
-
+/*** TODO!
 PartType Promoter();
 Promoter p1;
 Promoter p2;
@@ -22,3 +25,4 @@ forall Promoter {
 forall p : Promoter {
     println(p);
 }
+***/

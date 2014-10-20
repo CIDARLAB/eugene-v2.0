@@ -6,10 +6,9 @@ import org.cidarlab.eugene.exception.EugeneException;
 
 public class TestSuite {
 
-	public static void main(String[] args) 
+	private static void testBasics() 
 			throws EugeneException {
-		
-		/*** TESTS ***/
+
 		/*---------------------------------------------
 		 * BACKWARD COMPATIBILITY
 		 *---------------------------------------------*/
@@ -68,25 +67,57 @@ public class TestSuite {
 		new TestSuite().test("./tests/just-fun/diagonals");
 		new TestSuite().test("./tests/just-fun/no-duplicates");
 
-
 		/*---------------------------------------------
 		 * EUGENE CONTAINERS
 		 *---------------------------------------------*/
-//		new TestSuite().test("./tests/containers/collections");
-//		new TestSuite().test("./tests/containers/arrays");
+		new TestSuite().test("./tests/containers/collections");
+		new TestSuite().test("./tests/containers/collection-access");
+		new TestSuite().test("./tests/containers/arrays");
 
+	}
+	
+	/*---------------------------------------------
+	 * DATA EXCHANGE
+	 *---------------------------------------------*/
+	private static void testDataExchange() 
+			throws EugeneException {
+		
+		// INCLUDE
+		new TestSuite().test("./tests/include/include01");
 
+		// IMPORT
+		new TestSuite().test("./tests/import/import01");
+		
+		
+		// SBOL -- IMPORT
+		new TestSuite().test("./tests/data-exchange/sbol/sbol-import01");
+		
+		// SBOL -- EXPORT
+		new TestSuite().test("./tests/data-exchange/sbol/sbol-export01");
+		new TestSuite().test("./tests/data-exchange/sbol/sbol-export02");
+		
+		new TestSuite().test("./tests/data-exchange/sbol/round-trip");
+
+		// PIGEON
+		new TestSuite().test("./tests/pigeon");
+	}
+	
+	/*---------------------------------------------
+	 * RULES
+	 *---------------------------------------------*/
+	private static void testRules() 
+			throws EugeneException {
 		// HIERARCHICAL COMPOSITION
-//		new TestSuite().test("./tests/hierarchical-composition");
+		new TestSuite().test("./tests/hierarchical-composition");
 
 		// RULES
-//		new TestSuite().test("./tests/rules/faulty-rules");
+		new TestSuite().test("./tests/rules/faulty-rules");
 //		new TestSuite().test("./tests/rules/valid-rules");
 //		new TestSuite().test("./tests/rules/product-and-rules");
 //		new TestSuite().test("./tests/rules/conjunction");
-//		new TestSuite().test("./tests/rules/logical-or");
-//		new TestSuite().test("./tests/rules/logical-or-02");
-//		new TestSuite().test("./tests/rules/indexed-rules");
+		new TestSuite().test("./tests/rules/logical-or");
+		new TestSuite().test("./tests/rules/logical-or-02");
+		new TestSuite().test("./tests/rules/indexed-rules");
 //		new TestSuite().test("./tests/rules/expression-rules");
 //		new TestSuite().test("./tests/rules/expression-rules-02");
 //		new TestSuite().test("./tests/rules/expression-rules-arrays-01");
@@ -123,26 +154,24 @@ public class TestSuite {
 		/*----------------------------------------------------------
 		 * Eugene 2 Drools Compiler
 		 *----------------------------------------------------------*/
-		new TestSuite().test("./tests/rules/arrangement/counting");
-		new TestSuite().test("./tests/rules/arrangement/positioning");
-		new TestSuite().test("./tests/rules/arrangement/orientation");
+//		new TestSuite().test("./tests/rules/arrangement/counting");
+//		new TestSuite().test("./tests/rules/arrangement/positioning");
+//		new TestSuite().test("./tests/rules/arrangement/orientation");
 
 		// logical NOT
-		new TestSuite().test("./tests/rules/arrangement/counting-not");
-		new TestSuite().test("./tests/rules/arrangement/positioning-not");
-		new TestSuite().test("./tests/rules/arrangement/orientation-not");
+//		new TestSuite().test("./tests/rules/arrangement/counting-not");
+//		new TestSuite().test("./tests/rules/arrangement/positioning-not");
+//		new TestSuite().test("./tests/rules/arrangement/orientation-not");
 
 		// logical OR		
-		new TestSuite().test("./tests/rules/arrangement/distributive");
-		new TestSuite().test("./tests/rules/arrangement/counting-or");
-//		new TestSuite().test("./tests/rules/arrangement/positioning-or");
-//		new TestSuite().test("./tests/rules/arrangement/orientation-or");
+//		new TestSuite().test("./tests/rules/arrangement/distributive");
+//		new TestSuite().test("./tests/rules/arrangement/counting-or");
 		
-		new TestSuite().test("./tests/rules/multistep-rule-evaluation");
-		new TestSuite().test("./tests/rules/multistep-rule-evaluation02");
-		new TestSuite().test("./tests/rules/oriented-tus");
-		new TestSuite().test("./tests/rules/dnf/dnf-oriented-tus");
-		new TestSuite().test("./tests/rules/dnf/dnf-contains");
+//		new TestSuite().test("./tests/rules/multistep-rule-evaluation");
+//		new TestSuite().test("./tests/rules/multistep-rule-evaluation02");
+//		new TestSuite().test("./tests/rules/oriented-tus");
+//		new TestSuite().test("./tests/rules/dnf/dnf-oriented-tus");
+//		new TestSuite().test("./tests/rules/dnf/dnf-contains");
 		
 //		new TestSuite().test("./tests/rules/type-as-txt");
 		
@@ -190,61 +219,19 @@ public class TestSuite {
 //		new TestSuite().test("./tests/interactions/cidar");
 //		new TestSuite().test("./tests/interactions/interaction-visualization");
 		
-		// Operator example of Ellis' paper
-//		new TestSuite().test("./designs/literature/ellis-et-al");  		
 		
 		// 2. Disjunctive Normal Form (DNF)   --- DONE
 //		new TestSuite().test("./tests/rules/oriented-tus");
 //		new TestSuite().test("./tests/rules/dnf/dnf-oriented-tus");
 //		new TestSuite().test("./tests/rules/dnf/dnf-contains");
-		
-		// 3. Loops
-//		new TestSuite().test("./tests/imperative/loops/loops-syntax-demos");   // TH, 07/31
-		
-		// 4. Demonstrate EugeneLab (localhost)
-		
-		
-		/*---------------------------------------------
-		 * DATA CONTAINERS
-		 *---------------------------------------------*/
-
-		// COLLECTIONS
-//		new TestSuite().test("./tests/containers/collections");
-//		new TestSuite().test("./tests/containers/collection-access");
-		
-		// ARRAYS
-//		new TestSuite().test("./tests/containers/arrays");
-		
-		/*---------------------------------------------
-		 * DATA EXCHANGE
-		 *---------------------------------------------*/
-		// INCLUDE
-//		new TestSuite().test("./tests/include/include01");
-
-		// IMPORT
-//		new TestSuite().test("./tests/import/import01");
-		
-		
-		// SBOL -- IMPORT
-//		new TestSuite().test("./tests/data-exchange/sbol/sbol-import01");
-		
-		// SBOL -- EXPORT
-//		new TestSuite().test("./tests/data-exchange/sbol/sbol-export01");
-//		new TestSuite().test("./tests/data-exchange/sbol/sbol-export02");
-		
-//		new TestSuite().test("./tests/data-exchange/sbol/round-trip");
-
-		// PIGEON
-//		new TestSuite().test("./tests/pigeon");
-//		new TestSuite().test("./tests/EugeneLab/multistep-rule-evaluation");
-//		new TestSuite().test("./tests/EugeneLab/multistep-rule-evaluation02");
-//		new TestSuite().test("./tests/EugeneLab/sb2");
-		
-		
-		/*---------------------------------------------
-		 * IMPERATIVE LANGUAGE FEATURES
-		 *---------------------------------------------*/
-		
+	}
+	
+	
+	/*---------------------------------------------
+	 * IMPERATIVE LANGUAGE FEATURES
+	 *---------------------------------------------*/	
+	private static void testImperativeFeatures() 
+			throws EugeneException {
 		// CONDITIONAL BRANCHES
 		new TestSuite().test("./tests/imperative/branches/if");
 		new TestSuite().test("./tests/imperative/branches/if-else");
@@ -255,47 +242,58 @@ public class TestSuite {
 		new TestSuite().test("./tests/imperative/loops/for-loop-01");   // correctness tests
 		new TestSuite().test("./tests/imperative/loops/for-loop-02");   // efficiency tests
 		new TestSuite().test("./tests/imperative/loops/nested-for-loop-01");
-
-		// ITERATORS (FORALL)
-		// TODO
-		
-		/*
-		 * REAL ``PART LIBRARY''
-		 */
-//		new TestSuite().test("./designs/cidar/inverter/inverters");
-//		new TestSuite().test("./designs/cidar/ernst/sb2/demo");
-//		new TestSuite().test("./designs/cidar/genomatica/genomatica");
-		
-		
-		/*---------------------------------------------------------
-		 * EugeneLab examples
-		 *---------------------------------------------------------*/
-//		new TestSuite().test("./tests/EugeneLab/logical-or-02");
-//		new TestSuite().test("./tests/EugeneLab/multistep-rule-evaluation");
-//		new TestSuite().test("./tests/EugeneLab/multistep-rule-evaluation02");
-//		new TestSuite().test("./tests/EugeneLab/product-and-rules");
-//		new TestSuite().test("./tests/EugeneLab/sb2");
-		
+		new TestSuite().test("./tests/imperative/loops/loops-syntax-demos");  
+	}
+	
+	/*---------------------------------------------
+	 * REAL WORLD EXAMPLES
+	 *---------------------------------------------*/	
+	private static void testRealWorldExamples() 
+			throws EugeneException {
+		new TestSuite().test("./designs/cidar/inverter/inverters");
+		new TestSuite().test("./designs/cidar/ernst/sb2/demo");
+		new TestSuite().test("./designs/cidar/genomatica/genomatica");
+	}
+	
+	/*---------------------------------------------
+	 * EUGENELAB TUTORIALS
+	 *---------------------------------------------*/	
+	private static void testEugeneLabTutorials()
+			throws EugeneException {
+		new TestSuite().test("./tests/EugeneLab/logical-or-02");
+		new TestSuite().test("./tests/EugeneLab/multistep-rule-evaluation");
+		new TestSuite().test("./tests/EugeneLab/multistep-rule-evaluation02");
+		new TestSuite().test("./tests/EugeneLab/sb2");
 		new TestSuite().test("./tests/EugeneLab/library-generators/parts-with-random-sequences");
 		new TestSuite().test("./tests/EugeneLab/library-generators/dynamic-naming");
 		
-		/*---------------------------------------------
-		 * EUGENE GRAMMARS
-		 *---------------------------------------------*/
-//		new TestSuite().test("./tests/grammars/ind_rep");
-		
-		
-		/*---------------------------------------------------------
-		 * DEMOS
-		 *---------------------------------------------------------*/
-//		new TestSuite().test("./demos/expression-rule");
-		
-	
-		
+		// Operator example of Ellis' paper
+//		new TestSuite().test("./tests/EugeneLab/literature/ellis-et-al");  		
 	}
+	
+	/**
+	 * main()
+	 * 
+	 * @param args
+	 * @throws EugeneException
+	 */
+	public static void main(String[] args) 
+			throws EugeneException {
 
+		testBasics();
+//		testDataExchange();
+		testRules();
+		testImperativeFeatures();
+//		testRealWorldExamples();
+		testEugeneLabTutorials();
+	
+	}
+	
+
+	
 	public void test(String file) 
 			throws EugeneException {
+		System.out.println("**** TESTING: " + file +" ****");
 		try {
 			long t1 = System.nanoTime();
 			

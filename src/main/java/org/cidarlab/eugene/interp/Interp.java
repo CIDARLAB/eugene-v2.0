@@ -1428,7 +1428,7 @@ public class Interp {
 			// the symbol tables
 			ne = this.symbols.get(name);
 	
-				if(null == ne) {
+			if(null == ne) {
 				// if the request element does not exist in 
 				// the LMS, then we retrieve it from the symbol tables
 				try {
@@ -1951,6 +1951,7 @@ public class Interp {
 	public void addToContainer(NamedElement ne) 
 			throws EugeneException {
 		
+//		System.out.println("[Interp.addToContainer] -> " + ne.getClass() +" -> "+ne.getName());
 		if(null != this.stack && null != this.stack.peek() && null != ne) {
 			if(this.stack.peek() instanceof EugeneContainer) {
 				// if everything's OK, then add a deep-clone of 

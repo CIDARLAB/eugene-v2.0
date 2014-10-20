@@ -481,23 +481,23 @@ public boolean checkIfAlreadyDeclared(String name, boolean all) {
 	
 	//copies the values of a primitive to a newly created Primitive
 	public Variable copyVariable(Variable source) {
-		Variable destination = new Variable();
+		Variable destination = new Variable(source.getName(), source.getType());
 		destination.index = source.index;
-		if (source.type.equals(EugeneConstants.NUM)) {
+		if (EugeneConstants.NUM.equals(source.getType())) {
 			destination.type = EugeneConstants.NUM;
 			destination.num = source.num;
-		} else if (source.type.equals(EugeneConstants.TXT)) {
+		} else if (EugeneConstants.TXT.equals(source.getType())) {
 			destination.type = EugeneConstants.TXT;
 			destination.txt = source.txt;
-		} else if (source.type.equals(EugeneConstants.NUMLIST)) {
+		} else if (EugeneConstants.NUMLIST.equals(source.getType())) {
 			destination.type = EugeneConstants.NUMLIST;
 			destination.numList.clear();
 			destination.numList.addAll(source.numList);
-		} else if (source.type.equals(EugeneConstants.TXTLIST)) {
+		} else if (EugeneConstants.TXTLIST.equals(source.getType())) {
 			destination.type = EugeneConstants.TXTLIST;
 			destination.txtList.clear();
 			destination.txtList.addAll(source.txtList);
-		} else if (source.type.equals(EugeneConstants.BOOLEAN)) {
+		} else if (EugeneConstants.BOOLEAN.equals(source.getType())) {
 			destination.type = EugeneConstants.BOOLEAN;
 			destination.bool = source.bool;
 		}
@@ -1004,13 +1004,15 @@ if(!defer) {
 
 list_of_declarations[boolean defer]	
         returns [List<NamedElement> elements]
-	:	( ds=declarationStatement[defer] | at=atom[defer] {
+	:	( ds=declarationStatement[defer] | exp=expr[defer] {
 if(!defer) {
     try {
-        if(null != $at.element) {
-            this.interp.addToContainer($at.element);
+        if(null != $exp.element) {
+            this.interp.addToContainer($exp.element);
+        } else if(null != $exp.p) {
+            this.interp.addToContainer($exp.p);
         } else {
-            throw new EugeneException("Cannot add " + $at.text + " to a Eugene container!");
+            throw new EugeneException("Cannot add " + $exp.text + " to a Eugene container!");
         }
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
@@ -1976,7 +1978,7 @@ if(!defer) {
     if(null != $exp.element) {
         $sb.append($exp.element);
     } else {
-        $sb.append($exp.p.getValue());
+        $sb.append($exp.p);
     }
     $sb.append($tpp.sb);
 }	

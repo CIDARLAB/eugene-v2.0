@@ -214,22 +214,22 @@ public class PropertyValue
 		StringBuilder sb = new StringBuilder();
 		if(EugeneConstants.NUM.equals(this.type)) {
 			
-			String numberD = String.valueOf(this.num);
-	        numberD = numberD.substring( numberD.indexOf ( "." )+1);
+    		if(this.getNum() % 1 == 0) {
+    			sb.append((int)this.getNum());
+    		} else {
+    			sb.append(this.getNum());
+    		}
 
-	        try {
-	        	// if the number is an integer, then
-	        	// we don't print the floating points
-	        	if(Integer.parseInt(numberD) == 0) {
-	        		sb.append((int)this.num);
-	        	}
-	        } catch(Exception e) {
-	        	sb.append(this.num);
-	        } 
 		} else if(EugeneConstants.NUMLIST.equals(this.type)) {
 			sb.append("[");
+			
 			for(int i=0; i<this.getNumList().size(); i++) {
-				sb.append(this.getNumList().get(i));
+        		if((this.getNumList().get(i)).doubleValue() % 1 == 0) {
+        			sb.append((this.getNumList().get(i)).intValue());
+        		} else {
+        			sb.append(this.getNumList().get(i));
+        		}
+        		
 				if(i < this.getNumList().size() - 1) {
 					sb.append(",");
 				}

@@ -16,7 +16,6 @@ public class Variable
 
 	private static final long serialVersionUID = 7419972196934330805L;
 	
-	public String name;
 	public String type;
 	public boolean bool;
     public String txt;
@@ -27,7 +26,7 @@ public class Variable
 
 	public Variable() {
 		super("");
-		this.name = "";
+//		this.internal_name = "";
         type = "";
 		txt = "";
 		num = 0.0;
@@ -38,7 +37,8 @@ public class Variable
 
 	public Variable(String n, String t) {
 		super(n);
-		this.name = n;
+		
+//		this.internal_name = n;
 		type = t;
 		txt = "";
 		num = 0.0;
@@ -118,31 +118,25 @@ public class Variable
     	return this.bool;
     }
     
-    // Variables are exceptions here...
-    // since anonymous variables need to get a name
-    // when assigning them as property values to parts
-    public void setName(String name) {
-    	this.name = name;
-    }
-    
-    @Override
-    public String getName() {
-    	return this.name;
-    }
-    
     @Override
     public String toString() {
     	StringBuilder sb = new StringBuilder();
-    	//sb.append(this.getType()).append(" ").append(this.getName()).append(" := ");
-        if (EugeneConstants.TXT.equals(type)) {
-        	if(!txt.startsWith("\"") && !txt.endsWith("\"")) {
-        		sb.append("\"").append(this.getTxt()).append("\"");
-        	} else {
+//    	sb.append(this.getType()).append(" ").append(this.getName()).append(" := ");
+        if (EugeneConstants.TXT.equals(this.getType())) {
+//        	if(!txt.startsWith("\"") && !txt.endsWith("\"")) {
+//        		sb.append("\"").append(this.getTxt()).append("\"");
+//        	} else {
         		sb.append(this.getTxt());
-        	}
-		} else if (EugeneConstants.NUM.equals(type)) {
-			sb.append(Double.toString(num));
-		} else if (EugeneConstants.TXTLIST.equals(type)) {
+//        	}
+		} else if (EugeneConstants.NUM.equals(this.getType())) {
+			
+    		if(this.getNum() % 1 == 0) {
+    			sb.append((int)this.getNum());
+    		} else {
+    			sb.append(this.getNum());
+    		}
+
+		} else if (EugeneConstants.TXTLIST.equals(this.getType())) {
 			sb.append("[");
             for (int i = 0; i < this.getTxtList().size(); i++) {
             	if(null != this.getTxtList().get(i)) {
@@ -157,18 +151,22 @@ public class Variable
             	}
             }
             sb.append("]");
-		} else if (EugeneConstants.NUMLIST.equals(type)) {
+		} else if (EugeneConstants.NUMLIST.equals(this.getType())) {
 			sb.append("[");
             for (int i = 0; i < this.getNumList().size(); i++) {
             	if(null != this.getNumList().get(i)) {
-            		sb.append(this.getNumList().get(i));
+            		if((this.getNumList().get(i)).doubleValue() % 1 == 0) {
+            			sb.append((this.getNumList().get(i)).intValue());
+            		} else {
+            			sb.append(this.getNumList().get(i));
+            		}
             	}
             	if(i < this.getNumList().size() - 1) {
             		sb.append(", "); 
             	}
             }
             sb.append("]");
-		} else if (EugeneConstants.BOOLEAN.equals(type)) {
+		} else if (EugeneConstants.BOOLEAN.equals(this.getType())) {
 			if (this.getBool()) {
                 sb.append("true");
             } else {
