@@ -150,6 +150,19 @@ public class Interp {
 		this.comparator = null;
 	}
 
+	private BufferedWriter getWriter() {
+		return this.writer;
+	}
+	
+
+	/**
+	 * The include/1 method includes an external Eugene script 
+	 * and interprets it on-the-fly.
+	 * 
+	 * @param file  ... The file to be included
+	 * 
+	 * @throws EugeneException
+	 */
 	public void includeFile(String file) 
 			throws EugeneException {
 
@@ -178,10 +191,16 @@ public class Interp {
 		}
 	}
 	
-	private BufferedWriter getWriter() {
-		return this.writer;
-	}
-	
+	/**
+	 * The importFile/1 method imports all biological data 
+	 * specified in an external Eugene script. 
+	 * 
+	 * @param file  ... The file to import
+	 * @return      ... a NamedElement object (usually a 
+	 *                  EugeneContainer that contains all data
+	 *                  specified in the external Eugene script)
+	 * @throws EugeneException
+	 */
 	public NamedElement importFile(String file) 
 			throws EugeneException {
 
@@ -1231,6 +1250,14 @@ public class Interp {
 
 		// finally, we return the index
 		return idx;
+	}
+	
+	public Variable convertPropertyValueToVariable(PropertyValue pv) {
+		if(null == this.comparator) {
+			this.comparator = new Comparator();
+		}
+		
+		return this.comparator.convertPropertyValueToVariable(pv);
 	}
 	
 	/**

@@ -9,7 +9,8 @@ num alphabet_size = SIZEOF(NUCLEOTIDES);
 txt[] sequences;
 for(num i=0; i<N; i=i+1) {
     txt sequence;
-    for(num j=0; j<M; j=j+1) {
+    
+    for(num j=0; j<M; j=j+1 ) {
     	num r = RANDOM(0, alphabet_size-1);
     	sequence[j] = NUCLEOTIDES[r];        
     }
@@ -20,7 +21,8 @@ for(num i=0; i<N; i=i+1) {
 // second, we compare each sequence with all other sequences
 // and calculate their homology based on the Hamming Distance.
 //---------------------
-// Definition: The Hamming Distance DIST is the number of positions 
+// Definition: 
+// The Hamming Distance DIST is the number of positions 
 // on that two sequences (of equivalent size) differ.
 //---------------------
 // Formulae for Homology: ( 1 / M ) * DIST

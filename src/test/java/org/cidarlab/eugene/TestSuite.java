@@ -25,7 +25,7 @@ public class TestSuite {
 //		new TestSuite().test("./tests/primitives/part-property-assign");    
 //		new TestSuite().test("./tests/primitives/array-manip");    
 //		new TestSuite().test("./tests/primitives/plus-operator");    
-//		
+
 		// EXPRESSIONS
 //		new TestSuite().test("./tests/expressions/plus-sub-mult-div");
 //		new TestSuite().test("./tests/expressions/loops-and-calculations");    
@@ -48,10 +48,10 @@ public class TestSuite {
 		/*---------------------------------------------
 		 * EUGENE BASICS
 		 *---------------------------------------------*/
-//		new TestSuite().test("./tests/property-definitions");
-//		new TestSuite().test("./tests/part-type-definitions");
-//		new TestSuite().test("./tests/part-definitions");
-//		new TestSuite().test("./tests/device-definitions");
+		new TestSuite().test("./tests/property-definitions");
+		new TestSuite().test("./tests/part-type-definitions");
+		new TestSuite().test("./tests/part-definitions");
+		new TestSuite().test("./tests/device-definitions");
 
 //		new TestSuite().test("./tests/data-access");
 

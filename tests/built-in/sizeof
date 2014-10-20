@@ -27,7 +27,6 @@ txt[] ta = ["A", "T", "C", "G"];
 num ta_size = sizeof(ta);
 if(ta_size != 4) {exit;}
 
-
 Collection col (
     PartType Promoter(),
     Promoter p1,
@@ -36,7 +35,6 @@ Collection col (
 );
 num col_size = sizeof(col);
 if(col_size != 4) {exit;}
-
 
 Collection sup_col(
 	Collection sub_col(

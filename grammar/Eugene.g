@@ -552,7 +552,7 @@ public boolean checkIfAlreadyDeclared(String name, boolean all) {
 public void printDebug(Object message) {
     if (debug) {
         int line = input.LT(-1).getLine();
-        System.out.println("@Debug Line " + line + ": " + message);
+        System.err.println("@Debug Line " + line + ": " + message);
     }
 }
 
@@ -746,7 +746,6 @@ statement[boolean defer]
 	|	de=dataExchange[defer] SEMIC {
 if(!defer) {
     try {
-        System.out.println("[Parser.dataExchange] -> " + $de.e);
         this.interp.put($de.e);
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
@@ -2118,7 +2117,7 @@ if(!defer) {
                 // that could be either a variable or constant
                 // e.g. i == j
                 $bTrue = this.interp.evaluateCondition(
-                             $lhs.element, 
+                             $lhs.p, 
                              $ro.text, 
                              $rhs.p);
             } else {
@@ -2176,15 +2175,21 @@ expr[boolean defer]
 	returns [Variable p,  String instance, int index, String listAddress, Variable primVariable, NamedElement element]
 	:	e=multExpr[defer] {
 if(!defer) {
-    $p = copyVariable($e.p);
-    $instance = $e.instance;
-    $index = $e.index;
-    if ($e.listAddress != null) {
-        $listAddress = $e.listAddress;
-    }
-    $primVariable = $e.primVariable;
+    if(null != $e.p) {
+        $p = copyVariable($e.p);
+    
+        $instance = $e.instance;
+        $index = $e.index;
+        if ($e.listAddress != null) {
+            $listAddress = $e.listAddress;
+        }
+        $primVariable = $e.primVariable;
 
-    $element = $e.element;
+    } else if($e.element != null && !($e.element instanceof Variable) && !($e.element instanceof PropertyValue)) { 			
+        $element = $e.element;
+    } else {
+        $element = null;
+    }
 }
 	} 	(pl=PLUS e=multExpr[defer] {
 if(!defer) {
@@ -2192,31 +2197,48 @@ if(!defer) {
         // PropertyValue + PropertyValue
         if(null != $element) {
             
-            if(!($element instanceof PropertyValue)) {
+            if(!($element instanceof PropertyValue) && 
+               !($element instanceof Variable)) {
                 throw new EugeneException("Unsupported + operation for " + $element.getClass() + "!");
             }
             
             if(null != $e.element) {
 
-                if($e.element instanceof PropertyValue) {
+                if($e.element instanceof PropertyValue && $element instanceof PropertyValue) {
                     this.interp.doMinPlusOp((PropertyValue)$e.element, (PropertyValue)$element, $pl.text);
+                } else if($e.element instanceof PropertyValue && $element instanceof Variable) {
+                    this.interp.doMinPlusOp((PropertyValue)$e.element, (Variable)$element, $pl.text);
+                } else if($e.element instanceof Variable && $element instanceof PropertyValue) {
+                    this.interp.doMinPlusOp((Variable)$e.element, (PropertyValue)$element, $pl.text);
+                } else if($e.element instanceof Variable && $element instanceof Variable) {
+                    this.interp.doMinPlusOp((Variable)$e.element, (Variable)$element, $pl.text);
                 } else {
-                    throw new EugeneException("Unsupported + operationYYY!");
+                    throw new EugeneException("Unsupported + operation!");
                 }
                 
             } else if(null != $e.p) {
-                this.interp.doMinPlusOp($e.p, (PropertyValue)$element, $pl.text);
+                if($element instanceof PropertyValue) {
+                    this.interp.doMinPlusOp($e.p, (PropertyValue)$element, $pl.text);
+                } else {
+                    this.interp.doMinPlusOp($e.p, (Variable)$element, $pl.text);
+                }
             }
             
         } else {
         
             if(null != $e.element) {
             
-                if(!($e.element instanceof PropertyValue)) {
-                    throw new EugeneException("Unsupported + operationZZZ!");
+                if(!($e.element instanceof PropertyValue) && 
+                   !($e.element instanceof Variable)) {
+                    throw new EugeneException("Unsupported + operation!");
                 }
                 
-                this.interp.doMinPlusOp((PropertyValue)$e.element, $p, $pl.text);
+                if($e.element instanceof PropertyValue) {
+                    this.interp.doMinPlusOp((PropertyValue)$e.element, $p, $pl.text);
+                } else {
+                    this.interp.doMinPlusOp((Variable)$e.element, $p, $pl.text);
+                }
+                
             } else {
                 this.interp.doMinPlusOp($e.p, $p, $pl.text); 
             }
@@ -2224,6 +2246,7 @@ if(!defer) {
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
     }
+    
     $element = null;
 }
 	} 	| mi=MINUS e=multExpr[defer] {
@@ -2233,6 +2256,7 @@ if(!defer) {
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
     }
+    
     $element = null;
 }
 	} )*
@@ -2242,17 +2266,23 @@ multExpr[boolean defer]
 	returns [Variable p, String instance, int index, String listAddress, Variable primVariable, NamedElement element]
 	:	e=atom[defer] {
 if(!defer) {
-    $p = copyVariable($e.p);
-    if ($e.instance != null) {
-        $instance = $e.instance;
+    if( null != $e.p) {
+        $p = copyVariable($e.p);
+        if ($e.instance != null) {
+            $instance = $e.instance;
+        }
+    
+        $index = $e.index;
+        if ($e.listAddress != null) {
+            $listAddress = $e.listAddress;
+        }
+        $primVariable = $e.primVariable;
+
+    } else if($e.element != null && !($e.element instanceof Variable) && !($e.element instanceof PropertyValue)) { 			
+        $element = $e.element;
+    } else {
+        $element = null;
     }
-    $index = $e.index;
-    if ($e.listAddress != null) {
-        $listAddress = $e.listAddress;
-    }
-    $primVariable = $e.primVariable;
-			
-    $element = $e.element;
 }	
 	} 	( (mul=MULT|div=DIV) e=atom[defer] {
 if(!defer) {
@@ -2265,6 +2295,7 @@ if(!defer) {
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
     }
+    
     $element = null;
 }
 	} )*
@@ -2277,6 +2308,8 @@ atom [boolean defer]
 		if(!defer) {
 			$p.num = Double.parseDouble($n.text);
 			$p.type = EugeneConstants.NUM;
+			
+			$element = null;
 		}
 		}
 	|	MINUS (n=NUMBER | n=REAL)
@@ -2284,6 +2317,8 @@ atom [boolean defer]
 		if(!defer) {
 			$p.num = Double.parseDouble($n.text) * -1.0;
 			$p.type = EugeneConstants.NUM;
+
+			$element = null;
 		}
 		}
 	|	(t=(TRUE_LC|TRUE_UC) | f=(FALSE_LC|FALSE_UC))
@@ -2295,6 +2330,8 @@ atom [boolean defer]
 			} else {
 				$p.bool = false;
 			}
+
+			$element = null;
 		}
 		}
 	|	dn=dynamic_naming[defer] {
@@ -2317,8 +2354,15 @@ if(!defer) {
 	}	oc=object_access[defer, $element] {
 if(!defer) {
     $element = $oc.child;
+    
     if($element instanceof Variable) {
         $p = (Variable)$element;
+        $element = null;
+    } else if($element instanceof PropertyValue) {
+        $p = this.interp.convertPropertyValueToVariable((PropertyValue)$element);
+        $element = null;
+    } else {
+        $p = null;
     }
 }		
 	} 
@@ -2327,6 +2371,8 @@ if(!defer) {
 		if(!defer) {
 			$p.type = EugeneConstants.TXT;
 			$p.txt = $STRING.text.substring(1, $STRING.text.length()-1);
+
+			$element = null;
 		}
 	}
 	|	'(' expr[defer] ')'
@@ -2334,6 +2380,7 @@ if(!defer) {
 		if(!defer) {
 			$p = $expr.p;
 			$primVariable = $expr.primVariable;
+			$element = $expr.element;
 		}
 	}
 		|	LEFTSBR list[defer] RIGHTSBR
@@ -2493,7 +2540,9 @@ if(!defer) {
 		|(DOT (id=ID {
 if(!defer) {
     try {
+    
         $child = parent.getElement($id.text);
+
         if(null == $child) {
             throw new EugeneException(parent.getName() + " does not contain " + $id.text);
         }

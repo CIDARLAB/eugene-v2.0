@@ -122,7 +122,7 @@ public class Eugene {
 	 *  
 	 * @param dir ... the desired root directory of Eugene
 	 */
-	public static void setRootDirectory(String dir) {
+	public void setRootDirectory(String dir) {
 		ROOT_DIRECTORY = dir;
 	}
 	
