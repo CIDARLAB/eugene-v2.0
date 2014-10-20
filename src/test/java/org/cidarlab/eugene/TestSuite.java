@@ -15,35 +15,44 @@ public class TestSuite {
 		 *---------------------------------------------*/
 //		new TestSuite().test("./tests/backward-comp/AllSyntaxExample.eug");
 //		new TestSuite().test("./tests/backward-comp/variable-declarations");
-//		new TestSuite().test("./tests/backward-comp/hard-expression-test");
+		new TestSuite().test("./tests/backward-comp/hard-expression-test");
 //		new TestSuite().test("./tests/backward-comp/complex");    
 		
 		/*---------------------------------------------
 		 * PRIMITIVE DATA TYPES AND MODIFICATIONS
 		 *---------------------------------------------*/
-//		new TestSuite().test("./tests/primitives/primitives-assign");    
-//		new TestSuite().test("./tests/primitives/part-property-assign");    
-//		new TestSuite().test("./tests/primitives/array-manip");    
-//		new TestSuite().test("./tests/primitives/plus-operator");    
+		new TestSuite().test("./tests/primitives/primitives-assign");    
+		new TestSuite().test("./tests/primitives/part-property-assign");    
+		new TestSuite().test("./tests/primitives/array-manip");    
+		new TestSuite().test("./tests/primitives/plus-operator");    
 
 		// EXPRESSIONS
-//		new TestSuite().test("./tests/expressions/plus-sub-mult-div");
-//		new TestSuite().test("./tests/expressions/loops-and-calculations");    
+		new TestSuite().test("./tests/expressions/plus-sub-mult-div");
+		new TestSuite().test("./tests/expressions/loops-and-calculations");    
 		
+		// ASSIGNMENTS
+		new TestSuite().test("./tests/assignments");
+
+		// ACCESS statements
+		new TestSuite().test("./tests/data-access");
+
+		// PRINT
+		new TestSuite().test("./tests/print-statements");
 		
+
 		/*---------------------------------------------
 		 * BUILT-IN FUNCTIONS AND FEATURES
 		 *---------------------------------------------*/
-//		new TestSuite().test("./tests/built-in/sizeof");    
-//		new TestSuite().test("./tests/built-in/random");    
-//		new TestSuite().test("./tests/built-in/store");    
+		new TestSuite().test("./tests/built-in/sizeof");    
+		new TestSuite().test("./tests/built-in/random");    
+		new TestSuite().test("./tests/built-in/store");    
 		
 		/*---------------------------------------------
 		 * SEQUENCE SHENANIGANS
 		 *---------------------------------------------*/
-//		new TestSuite().test("./tests/sequence/reverse-complement");    
-//		new TestSuite().test("./tests/sequence/random-sequence");    
-//		new TestSuite().test("./tests/sequence/sequence-homology");    
+		new TestSuite().test("./tests/sequence/reverse-complement");    
+		new TestSuite().test("./tests/sequence/random-sequence");    
+		new TestSuite().test("./tests/sequence/sequence-homology");    
 		
 		/*---------------------------------------------
 		 * EUGENE BASICS
@@ -53,13 +62,11 @@ public class TestSuite {
 		new TestSuite().test("./tests/part-definitions");
 		new TestSuite().test("./tests/device-definitions");
 
-//		new TestSuite().test("./tests/data-access");
-
 		/*---------------------------------------------
 		 * EUGENE FUN - INSPIRED BY EC327 :)
 		 *---------------------------------------------*/
-//		new TestSuite().test("./tests/just-fun/diagonals");
-//		new TestSuite().test("./tests/just-fun/no-duplicates");
+		new TestSuite().test("./tests/just-fun/diagonals");
+		new TestSuite().test("./tests/just-fun/no-duplicates");
 
 
 		/*---------------------------------------------
@@ -72,15 +79,6 @@ public class TestSuite {
 		// HIERARCHICAL COMPOSITION
 //		new TestSuite().test("./tests/hierarchical-composition");
 
-		// ASSIGNMENTS
-//		new TestSuite().test("./tests/assignments");
-
-		// ACCESS statements
-//		new TestSuite().test("./tests/data-access");
-
-		// PRINT
-//		new TestSuite().test("./tests/print-statements");
-		
 		// RULES
 //		new TestSuite().test("./tests/rules/faulty-rules");
 //		new TestSuite().test("./tests/rules/valid-rules");
@@ -125,26 +123,26 @@ public class TestSuite {
 		/*----------------------------------------------------------
 		 * Eugene 2 Drools Compiler
 		 *----------------------------------------------------------*/
-//		new TestSuite().test("./tests/rules/arrangement/counting");
-//		new TestSuite().test("./tests/rules/arrangement/positioning");
-//		new TestSuite().test("./tests/rules/arrangement/orientation");
+		new TestSuite().test("./tests/rules/arrangement/counting");
+		new TestSuite().test("./tests/rules/arrangement/positioning");
+		new TestSuite().test("./tests/rules/arrangement/orientation");
 
 		// logical NOT
-//		new TestSuite().test("./tests/rules/arrangement/counting-not");
-//		new TestSuite().test("./tests/rules/arrangement/positioning-not");
-//		new TestSuite().test("./tests/rules/arrangement/orientation-not");
+		new TestSuite().test("./tests/rules/arrangement/counting-not");
+		new TestSuite().test("./tests/rules/arrangement/positioning-not");
+		new TestSuite().test("./tests/rules/arrangement/orientation-not");
 
 		// logical OR		
-//		new TestSuite().test("./tests/rules/arrangement/distributive");
-//		new TestSuite().test("./tests/rules/arrangement/counting-or");
+		new TestSuite().test("./tests/rules/arrangement/distributive");
+		new TestSuite().test("./tests/rules/arrangement/counting-or");
 //		new TestSuite().test("./tests/rules/arrangement/positioning-or");
 //		new TestSuite().test("./tests/rules/arrangement/orientation-or");
 		
-//		new TestSuite().test("./tests/rules/multistep-rule-evaluation");
-//		new TestSuite().test("./tests/rules/multistep-rule-evaluation02");
-//		new TestSuite().test("./tests/rules/oriented-tus");
-//		new TestSuite().test("./tests/rules/dnf/dnf-oriented-tus");
-//		new TestSuite().test("./tests/rules/dnf/dnf-contains");
+		new TestSuite().test("./tests/rules/multistep-rule-evaluation");
+		new TestSuite().test("./tests/rules/multistep-rule-evaluation02");
+		new TestSuite().test("./tests/rules/oriented-tus");
+		new TestSuite().test("./tests/rules/dnf/dnf-oriented-tus");
+		new TestSuite().test("./tests/rules/dnf/dnf-contains");
 		
 //		new TestSuite().test("./tests/rules/type-as-txt");
 		
@@ -248,15 +246,15 @@ public class TestSuite {
 		 *---------------------------------------------*/
 		
 		// CONDITIONAL BRANCHES
-//		new TestSuite().test("./tests/imperative/branches/if");
-//		new TestSuite().test("./tests/imperative/branches/if-else");
-//		new TestSuite().test("./tests/imperative/branches/if-elseif");
-//		new TestSuite().test("./tests/imperative/branches/if-elseif-else");
+		new TestSuite().test("./tests/imperative/branches/if");
+		new TestSuite().test("./tests/imperative/branches/if-else");
+		new TestSuite().test("./tests/imperative/branches/if-elseif");
+		new TestSuite().test("./tests/imperative/branches/if-elseif-else");
 		
 		// LOOPS
-//		new TestSuite().test("./tests/imperative/loops/for-loop-01");   // correctness tests
-//		new TestSuite().test("./tests/imperative/loops/for-loop-02");   // efficiency tests
-//		new TestSuite().test("./tests/imperative/loops/nested-for-loop-01");
+		new TestSuite().test("./tests/imperative/loops/for-loop-01");   // correctness tests
+		new TestSuite().test("./tests/imperative/loops/for-loop-02");   // efficiency tests
+		new TestSuite().test("./tests/imperative/loops/nested-for-loop-01");
 
 		// ITERATORS (FORALL)
 		// TODO
@@ -278,8 +276,8 @@ public class TestSuite {
 //		new TestSuite().test("./tests/EugeneLab/product-and-rules");
 //		new TestSuite().test("./tests/EugeneLab/sb2");
 		
-//		new TestSuite().test("./tests/EugeneLab/library-generators/parts-with-random-sequences");
-//		new TestSuite().test("./tests/EugeneLab/library-generators/dynamic-naming");
+		new TestSuite().test("./tests/EugeneLab/library-generators/parts-with-random-sequences");
+		new TestSuite().test("./tests/EugeneLab/library-generators/dynamic-naming");
 		
 		/*---------------------------------------------
 		 * EUGENE GRAMMARS

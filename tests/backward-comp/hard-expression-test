@@ -65,6 +65,7 @@ println("rbs1.numLstProp2: ", rbs1.numLstProp2);
 
 Promoter p1(.txtProp1(forf1.txtProp1 + hello + "world!"), .txtLstProp1(forf1.txtLstProp1 + txtLst1), .numProp1((forf1.numProp1-ten)*2), .numLstProp1(forf1.numLstProp1 + [two*ten, 2*ten, two*10, twenty]));
 p1.txtProp2 = forf1.txtProp1 + hello + "world!";
+txt[] tmp = forf1.txtLstProp1 + txtLst1;
 p1.txtLstProp2 = forf1.txtLstProp1 + txtLst1;
 p1.numProp2 = (forf1.numProp1-ten)*2;
 p1.numLstProp2 = forf1.numLstProp1 + [two*ten, 2*ten, two*10, twenty];
@@ -78,7 +79,6 @@ println("p1.numProp2: ", p1.numProp2);
 println("p1.numLstProp1: ", p1.numLstProp1);
 println("p1.numLstProp2: ", p1.numLstProp2);
 
-/**** TODO!
 println("-------------------------------------------------------------------");
 println("Testing list index assignments");
 println("-------------------------------------------------------------------");
@@ -110,6 +110,7 @@ println("p1.txtLstProp1: ", p1.txtLstProp1);
 println("p1.txtLstProp2: ", p1.txtLstProp2);
 println("txtLst2: ",txtLst2);
 
+/****
 println("-------------------------------------------------------------------");
 println("Testing device declarations");
 println("-------------------------------------------------------------------");

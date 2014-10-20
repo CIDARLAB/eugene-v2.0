@@ -106,6 +106,7 @@ public class Part
 					" does not contain a property named " + name);
 		}
 		
+		
 		PropertyValue pv = this.getPropertyValue(name);
 		
 		if(null == pv) {
@@ -126,6 +127,9 @@ public class Part
 		if(idx < 0 || idx > this.getProperties().size() - 1) {
 			throw new EugeneException("The array index " + idx + " is out of bounds on the Part "+this.getName()+"!");
 		}
+
+		System.out.println("[Part.getElement] -> " + idx);
+
 		// get the idx-th property
 		Property p = this.getProperties().get(idx);		
 		return this.getPropertyValue(p.getName());

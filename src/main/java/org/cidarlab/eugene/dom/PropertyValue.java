@@ -361,8 +361,10 @@ public class PropertyValue
 			// num[] <- num
 			if (EugeneConstants.NUMLIST.equals(this.getType())
 					&& EugeneConstants.NUM.equals(objVariable.getType())) {
-				if (idx >= 0 && idx <= this.numList.size()) {
+				if (idx >= 0 && idx < this.numList.size()) {
 					this.numList.set(idx, new Double(objVariable.getNum()));
+				} else if(idx == this.numList.size()) {
+					this.numList.add(new Double(objVariable.getNum()));
 				} else {
 					throw new EugeneException(
 							"The array index (" + idx
@@ -371,8 +373,10 @@ public class PropertyValue
 			// txt[] <- txt
 			} else if (EugeneConstants.TXTLIST.equals(this.getType())
 					&& EugeneConstants.TXT.equals(objVariable.getType())) {
-				if (idx >= 0 && idx <= this.txtList.size()) {
+				if (idx >= 0 && idx < this.txtList.size()) {
 					this.txtList.set(idx, new String(objVariable.getTxt()));
+				} else if(this.txtList.size() == idx) {
+					this.txtList.add(objVariable.getTxt());
 				} else {
 					throw new EugeneException(
 							"The array index (" + idx
@@ -402,8 +406,10 @@ public class PropertyValue
 
 			if (EugeneConstants.NUMLIST.equals(this.getType())
 					&& EugeneConstants.NUM.equals(objVariable.getType())) {
-				if (idx >= 0 && idx <= this.numList.size()) {
+				if (idx >= 0 && idx < this.numList.size()) {
 					this.numList.set(idx, new Double(objVariable.getNum()));
+				} else if(idx == this.numList.size()) {
+					this.numList.add(new Double(objVariable.getNum()));
 				} else {
 					throw new EugeneException(
 							"The array index (" + idx
@@ -411,8 +417,10 @@ public class PropertyValue
 				}
 			} else if (EugeneConstants.TXTLIST.equals(this.getType())
 					&& EugeneConstants.TXT.equals(objVariable.getType())) {
-				if (idx >= 0 && idx <= this.txtList.size()) {
+				if (idx >= 0 && idx < this.txtList.size()) {
 					this.txtList.set(idx, new String(objVariable.getTxt()));
+				} else if(idx == this.txtList.size()) {
+					this.txtList.add(objVariable.getTxt());
 				} else {
 					throw new EugeneException(
 							"The array index (" + idx
@@ -596,6 +604,18 @@ public class PropertyValue
 		return retVal;
 	}
 	
+	@Override
+	public NamedElement getElement(String name) 
+			throws EugeneException {
+		throw new EugeneException("Property values do not support the DOT ('.') notation! (."+name+")");
+	}
+
+	@Override
+	public NamedElement getElement(int idx) 
+			throws EugeneException {
+		return this.get(idx);
+	}
+
 	@Override
 	public int hashCode() {
 		int hash = this.getName().hashCode();

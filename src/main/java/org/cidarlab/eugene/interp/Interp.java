@@ -1032,8 +1032,14 @@ public class Interp {
 	public void assignment(String lhs, NamedElement el_rhs)
 			throws EugeneException {
 		
+		this.parent = null;
 		this.idx = -1;
+		
 		NamedElement el_lhs = this.parseAndGetElement(lhs);
+		
+//		System.out.println("[Interp.assignment] " + lhs +" <- "+el_rhs);
+//		System.out.println("[Interp.assignment] " + el_lhs.getClass() +" <- "+el_rhs.getClass());
+		
 		if(null != el_lhs) {
 			/*
 			 * we need to compare the types of 
@@ -1071,6 +1077,14 @@ public class Interp {
 						this.assignment((Variable)el_lhs, (PropertyValue)el_rhs);
 					}
 					
+					if(null != parent && parent instanceof Component) {
+						try {
+							((Component)parent).setPropertyValue(((Variable)el_lhs));
+						} catch(DOMException de) {
+							throw new EugeneException(de.getLocalizedMessage());
+						}
+					}
+
 				} else if(el_lhs instanceof PropertyValue) {
 					if(idx != -1) {
 						((PropertyValue)el_lhs).set(idx, el_rhs);						
@@ -1078,6 +1092,15 @@ public class Interp {
 						// assigning a variable to a property value 
 						this.assignment((PropertyValue)el_lhs, (PropertyValue)el_rhs);
 					}
+					
+					if(null != parent && parent instanceof Component) {
+						try {
+							((Component)parent).setPropertyValue(((PropertyValue)el_lhs));
+						} catch(DOMException de) {
+							throw new EugeneException(de.getLocalizedMessage());
+						}
+					}
+
 				}
 				
 			} else if(el_rhs instanceof Variable) {
@@ -1088,18 +1111,46 @@ public class Interp {
 					} else {
 						this.assignment((Variable)el_lhs, (Variable)el_rhs);
 					}
+
+					if(null != parent && parent instanceof Component) {
+						try {
+							((Component)parent).setPropertyValue(((Variable)el_lhs));
+						} catch(DOMException de) {
+							throw new EugeneException(de.getLocalizedMessage());
+						}
+					}
+
 				} else if(el_lhs instanceof PropertyValue) {
+					
 					// assigning a variable to a property value
 					if(idx != -1) {
 						((PropertyValue)el_lhs).set(idx, el_rhs);
-					} else {				
+					} else {
 						this.assignment((PropertyValue)el_lhs, (Variable)el_rhs);
+					}
+					
+					if(null != parent && parent instanceof Component) {
+						try {
+							((Component)parent).setPropertyValue(((PropertyValue)el_lhs));
+						} catch(DOMException de) {
+							throw new EugeneException(de.getLocalizedMessage());
+						}
 					}
 				}
 			}
+		
+		// in this case, the LHS of the assignment does not exist.
+		// hence, we duplicate the RHS, assign it the LHS name and 
+		// store it in the symbol tables
+		} else {
+			
+			el_lhs = this.cloner.deepClone(el_rhs);
+			el_lhs.setName(lhs);
+			this.put(el_lhs);
 		}
 	}
 	
+	private NamedElement parent = null;
 	private int idx = -1;
 	
 	/**
@@ -1141,14 +1192,15 @@ public class Interp {
 			}
 
 			if(aos.length == 1) {
-				if(null != root) {
-					return root;
-				} 
-				throw new EugeneException("Cannot find " + root_name+"!");
+				// regardless if root is NULL or not, 
+				// we return it.
+				return root;
+			} else if(root == null) {
+				throw new EugeneException("Cannot find " + root_name + "!");
 			}
 		}
 		
-		NamedElement parent = root;
+		this.parent = root;
 		NamedElement child = null;
 
 		for(int i=1; i<aos.length; i++) {
@@ -1161,10 +1213,10 @@ public class Interp {
 			}
 
 			if(child == null) {
-				child = parent.getElement(prop_name);
+				child = this.parent.getElement(prop_name);
 			} else {
-				parent = child;
-				child = parent.getElement(prop_name);
+				this.parent = child;
+				child = this.parent.getElement(prop_name);
 			}
 			
 			if(hasIndex) {
@@ -1326,103 +1378,6 @@ public class Interp {
 			lhs.setBool(rhs.getBool());
 		}
 	}
-	
-//	private void assignTo(String name, NamedElement lhs, String id, Variable idx, NamedElement rhs, boolean bRef) 
-//			throws EugeneException {
-//		
-//		if(null == rhs) {
-//			throw new EugeneException("Invalid assignment to " + name+"!");
-//		}
-//		
-//		System.out.println("[Interp.assignTo] -> "+ name +", " + lhs+", " + id+", "+idx+" =  " +rhs.getClass()+", "+ bRef);
-//		
-//		if(null != name && null == lhs) {
-//			// create a new NamedElement named after name
-//			if(bRef) {
-//				// by-reference
-//				rhs.setName(name);
-//				this.put(rhs);
-//			} else {
-//				// deep-clone
-//				NamedElement lhs1 = this.cloner.deepClone(rhs);
-//				lhs1.setName(name);
-//				this.put(lhs1);
-//			}
-//		} else if(lhs != null) {
-//			
-//			if(!(lhs instanceof Variable) && !(lhs instanceof Part) && 
-//					!(lhs instanceof PropertyValue) && !(lhs instanceof EugeneContainer)) {
-//				throw new EugeneException("Invalid assignment!");
-//			}
-//			
-//			// the 2nd condition is a bit of a hack.
-//			if(null != id && !lhs.getName().equals(id)) {
-//				
-//				// ne must be a component
-//				if(lhs instanceof Component) {
-//					
-//					Property prop = ((Component)lhs).getProperty(id);
-//					if(null != prop) {
-//
-//						try {
-//							// the type checking is done in the setPropertyValue method
-//							if(rhs instanceof Variable) {
-//								((Component)lhs).setPropertyValue(prop, (Variable)rhs);
-//							} else if(rhs instanceof PropertyValue) {
-//								((Component)lhs).setPropertyValue(prop, (PropertyValue)rhs);
-//							} else {
-//								throw new EugeneException("I cannot assign " + rhs + " to " + lhs.getName()+"."+id);
-//							}
-//						} catch(Exception e) {
-//							throw new EugeneException(e.getMessage());
-//						}
-//						
-//					} else {
-//						throw new EugeneException(lhs.getName() + " does not contain a property named " + id);
-//						
-//					}
-//					
-//				} else {
-//					
-//					throw new EugeneException("Invalid assignment!" + lhs.getName()+"."+id);
-//					
-//				}
-//			} else if(null != idx) {
-//				
-//				/*
-//				 * this is only possible if the named element is a part, property value, or variable
-//				 */
-//				if(lhs instanceof Variable && rhs instanceof Variable) {
-//					
-//					((Variable)lhs).setElement((int)idx.getNum(), (Variable)rhs);
-//				}
-////				ne.setElement(idx.getNum(), rhs);
-//
-//			} else {
-//				
-//				String lhs_scope = this.getScope(lhs);
-////				System.out.println("The scope of " + lhs.getName() + " is " + lhs_scope);
-//				
-//				if(bRef) {
-//					// by-reference
-//					rhs.setName(name);
-////					this.put(rhs);
-//				} else {
-//					// deep-clone
-////					System.out.println(lhs+" vs " +rhs);
-//					//lhs = this.cloner.deepClone(rhs);
-//					//lhs.setName(name);
-//					
-////					System.out.println(lhs+" vs " +rhs);
-//					
-//					this.updateElement(lhs.getName(), lhs_scope, rhs);
-////					
-////					this.put(lhs);
-//				}
-//			}
-//			
-//		}
-//	}
 	
 	public void updateElement(NamedElement ne) 
 			throws EugeneException {

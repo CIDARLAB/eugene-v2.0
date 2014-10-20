@@ -2564,10 +2564,17 @@ if(!defer) {
 if(!defer) {
     try {
         if(null != $exp.p && EugeneConstants.NUM.equals($exp.p.getType())) {
+        
+            if($exp.p.getNum() \% 1 != 0 && $exp.p.getNum() < 0) {
+                throw new EugeneException("Invalid index " + $exp.p + "!");
+            }
+            
             $child = parent.getElement((int)($exp.p.getNum()));
+            
             if(null == $child) {
                 throw new EugeneException(parent.getName() + " does not contain " + $id.text);
             }
+            
         } else {
             throw new EugeneException("Invalid index " + $exp.p + "!");
         }

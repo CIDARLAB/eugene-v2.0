@@ -16,11 +16,6 @@ println (ia);
 boolean b = true;
 println (b);
 
-println(ia[0]); 
-println(ia[1]); 
-println(ia[2]); 
-println(ia[3]); 
-
 
 /*
  *  assignments of function results
@@ -39,6 +34,5 @@ ia[0] = 0;
 ia[1] = 0;
 ia[2] = 0;
 ia[3] = 0;
-println(ia);
-
+if(ia != [0.0, 0.0, 0.0, 0.0]) {exit;}
 
