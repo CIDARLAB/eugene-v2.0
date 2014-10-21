@@ -260,15 +260,20 @@ public class TestSuite {
 	 *---------------------------------------------*/	
 	private static void testEugeneLabTutorials()
 			throws EugeneException {
-		new TestSuite().test("./tests/EugeneLab/logical-or-02");
-		new TestSuite().test("./tests/EugeneLab/multistep-rule-evaluation");
-		new TestSuite().test("./tests/EugeneLab/multistep-rule-evaluation02");
-		new TestSuite().test("./tests/EugeneLab/sb2");
-		new TestSuite().test("./tests/EugeneLab/library-generators/parts-with-random-sequences");
-		new TestSuite().test("./tests/EugeneLab/library-generators/dynamic-naming");
+		ROOT_DIRECTORY = "./tests/EugeneLab/";
+		new TestSuite().testAll("./tests/EugeneLab");
+	}
+	
+	private static void testAll() {
 		
-		// Operator example of Ellis' paper
-//		new TestSuite().test("./tests/EugeneLab/literature/ellis-et-al");  		
+		ROOT_DIRECTORY = "./tests/";
+		
+		try {
+			new TestSuite().testAll("./tests/");
+		} catch(EugeneException ee) {
+			ee.printStackTrace();
+		}
+		
 	}
 	
 	/**
@@ -281,23 +286,28 @@ public class TestSuite {
 			throws EugeneException {
 
 //		testBasics();
-		testDataExchange();
+//		testDataExchange();
 //		testRules();
 //		testImperativeFeatures();
 //		testRealWorldExamples();
-//		testEugeneLabTutorials();
+		testEugeneLabTutorials();
+		
+//		testAll();
 	
 	}
 	
 
+	public static String ROOT_DIRECTORY = ".";
 	
-	public void test(String file) 
+	public void test(String file)
 			throws EugeneException {
 		System.out.println("**** TESTING: " + file +" ****");
 		try {
 			long t1 = System.nanoTime();
 			
-			new Eugene().executeFile(
+			Eugene e= new Eugene();
+			e.setRootDirectory(ROOT_DIRECTORY);
+			e.executeFile(
 					new File(file));
 			
 			long tProcessing = System.nanoTime() - t1;
@@ -309,30 +319,27 @@ public class TestSuite {
 		}
 	}
 	
-	/**	
-	public void testAll( String path ) {
+	/**
+	 * The testAll/1 method takes as input a directory,  
+	 * recursively traverses it, and executes every Eugene script.
+	 * 
+	 * @param path ... the PATH of the test directory
+	 */
+	public void testAll( String path ) 
+			throws EugeneException {
 		File root = new File( path );
-		FilenameFilter filter = new FilenameFilter() {
-                @Override 
-	        public boolean accept(File directory, String fileName) {
-	            return fileName.endsWith(".eug");
-	        }
-	    };
-	    File[] list = root.listFiles(filter);
+	    File[] list = root.listFiles();
 
 		for ( File f : list ) {
 			if ( f.isDirectory() ) {
 				testAll( f.getAbsolutePath() );
 			} else {
-				System.out.println("**** "+f.getAbsoluteFile()+" ****");
 				try {
-					EugeneExecutor.execute(
-							f.getAbsoluteFile(), 0);
-				} catch (Exception e) {
-					e.printStackTrace();
+					this.test(f.getAbsoluteFile().toString());
+				} catch (EugeneException ee) {
+					throw new EugeneException(ee.getLocalizedMessage());
 				}
 			}
 		}
 	}
-	**/
 }

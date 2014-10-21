@@ -1,17 +1,14 @@
 txt[] nucleotides = ["A", "T", "C", "G"];
 
-txt left_op_side = "AAAAAA"; 
-txt right_op_side = "AAAAAA"; 
-
 // the number of desired sequences
-num N = 10;
+num N = 100;
 
 txt[] sequences;
 for(num k=0; k<N; k=k+1) {
 
     // the length of the desired sequence
-    // should be 25 //between 10 and 20 nucleotides
-    num length = 25; //RANDOM(10, 20);
+    // should be between 10 and 20 nucleotides
+    num length = RANDOM(10, 20);
 
     // generated a random sequence of 
     // the random length
@@ -34,11 +31,18 @@ for(num k=0; k<N; k=k+1) {
     
     // TEST PASSED!
     // i.e. store the generated sequence
-    sequences[k] = left_op_side + sequence + right_op_side;
-    
-    println(sequences[k]);
+    sequences[k] = sequence;
 }
 
+// TESTING:
+// does the number of generated sequences match
+// the desired number of sequences?
+num nos = SIZEOF(sequences);
+if(nos != N) {exit;}
 
-
-println("-- Library generated!");
+// TEST PASSED!
+// i.e. let's print each sequence individually
+ 
+for(num k=0; k<N; k=k+1) {
+    println(sequences[k]);
+}  

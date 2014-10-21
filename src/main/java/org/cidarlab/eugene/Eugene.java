@@ -159,7 +159,7 @@ public class Eugene {
 		}
 		
 		if(null == script || script.isEmpty()) {
-			throw new EugeneException("Something went wrong!");
+			throw new EugeneException("Empty file! Nothing to interprete!");
 		}
 		
 		/*

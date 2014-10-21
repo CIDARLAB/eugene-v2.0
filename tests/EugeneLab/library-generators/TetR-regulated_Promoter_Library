@@ -1,4 +1,15 @@
-
+/*
+ *  In this example, we define N promoters with random sequences.
+ *
+ *  This example was inspired by the following publication:
+ *  Ellis, Wang, Collins. 
+ *  DIVERSITY-BASED, MODEL-GUIDED CONSTRUCTION OF SYNTHETIC GENE NETWORKS WITH PREDICTED FUNCTIONS
+ *  Nature Biotechnology. May 2009; 27(5): 465–471.
+ *  DOI: 10.1038/nbt.1536
+ *
+ *  see Supplementary Figure 1
+ */
+ 
 // number of desired parts
 num N = 20;
 

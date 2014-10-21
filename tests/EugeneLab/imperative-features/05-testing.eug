@@ -1,0 +1,19 @@
+/* 
+ * we'd like to calculate x to the n 
+ * and store the result in x_to_the_n
+ */
+num x = 2;
+num n = 8;
+num x_to_the_n = 1;
+for(num i = 1; i <= n; i = i + 1)
+{
+	x_to_the_n = x_to_the_n * x;
+} 
+
+if(x_to_the_n != 256) {
+	println(x_to_the_n); 
+  	println("TEST FAILED!");
+} else {
+	println("x_to_the_n: ", x_to_the_n);
+  	println("TEST PASSED!");
+}

@@ -1,0 +1,52 @@
+// the sequence
+// uncomment your favorite sequence or 
+// specify or own one
+txt seq = "A";
+//txt seq = "ATCGATC";
+//txt seq = "ATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCG";
+//txt seq = "<your sequence>";
+
+// the length of the sequence
+// Option 1: OOP
+//num N = seq.size;
+
+// Option 2: FP
+num N = SIZEOF(seq);
+
+// temporary string for swapping
+// the nucleotides
+txt tmp;
+
+num start_index = N-1;
+num end_index = (N/2)-1;
+for(num i = start_index; i > end_index; i = i - 1) {
+
+    tmp = seq[i];
+    num x = (N-i)-1;
+    
+	if(seq[x] == "A") {    
+		seq[i] = "T";
+	} elseif(seq[x] == "T") {
+		seq[i] = "A";
+	} elseif(seq[x] == "C") {
+		seq[i] = "G";
+	} elseif(seq[x] == "G") {
+		seq[i] = "C";
+	}
+ 
+    if(tmp == "A") {
+        seq[x] = "T";
+    } elseif(tmp == "T") {
+        seq[x] = "A";
+    } elseif(tmp == "C") {
+        seq[x] = "G";
+    } elseif(tmp == "G") {
+        seq[x] = "C";
+    }     
+
+}
+
+println("reverse complement: ", seq);
+    
+
+
