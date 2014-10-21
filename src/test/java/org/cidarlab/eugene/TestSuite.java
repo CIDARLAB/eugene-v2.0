@@ -280,12 +280,12 @@ public class TestSuite {
 	public static void main(String[] args) 
 			throws EugeneException {
 
-		testBasics();
-//		testDataExchange();
-		testRules();
-		testImperativeFeatures();
+//		testBasics();
+		testDataExchange();
+//		testRules();
+//		testImperativeFeatures();
 //		testRealWorldExamples();
-		testEugeneLabTutorials();
+//		testEugeneLabTutorials();
 	
 	}
 	
@@ -297,9 +297,8 @@ public class TestSuite {
 		try {
 			long t1 = System.nanoTime();
 			
-			Eugene e = new Eugene();
-			e.executeFile(new File(file));
-//			System.out.println(e.getLibrary());
+			new Eugene().executeFile(
+					new File(file));
 			
 			long tProcessing = System.nanoTime() - t1;
 			

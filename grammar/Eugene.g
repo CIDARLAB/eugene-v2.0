@@ -746,7 +746,12 @@ statement[boolean defer]
 	|	de=dataExchange[defer] SEMIC {
 if(!defer) {
     try {
-        this.interp.put($de.e);
+        // iff there's no assignment to a LHS element,
+        // then we store the imported data into the 
+        // current scope's symbol tables
+        if(null != $de.e) {
+            this.interp.dataExchange($de.e);
+        }
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
     }
@@ -2677,7 +2682,7 @@ sbolExportStatement[boolean defer]
 	:	EXPORT LEFTP idToken=ID COMMA filenameToken=STRING RIGHTP {
 if(!defer) {
     try {
-        interp.exportToSBOL(
+        this.interp.exportToSBOL(
             $idToken.text, 
             $filenameToken.text.substring(1, $filenameToken.text.length()-1));
     } catch(EugeneException ee) {
@@ -2692,7 +2697,7 @@ sbolImportStatement[boolean defer]
 	:	(LC_IMPORT|UC_IMPORT) LEFTP fileToken=STRING RIGHTP {
 if(!defer) {
     try {
-        $e = interp.importSBOL($fileToken.text);
+        $e = this.interp.importSBOL($fileToken.text);
     } catch(EugeneException ee) {
         printError(ee.getMessage());
     }

@@ -4,13 +4,14 @@
  *  i.e. the imported data is only visible within and
  *  accessible via the Eugene Collection
  */
-//col = SBOL.import("./data/sbol/partregistry/partsLibrary.sbol");
+col = SBOL.import("./data/sbol/partregistry/partsLibrary.sbol");
 
 /*
  *  store the content of the SBOL file into 
  *  the global scope of the Eugene script
  */
 SBOL.import("./data/sbol/partregistry/partsLibrary.sbol"); 
+
 
 // RBSs
 SBOL.import("./data/sbol/partregistry/rbs/K090505.rdf"); 
@@ -38,4 +39,3 @@ lod = product(D);
 println(lod);
 
 pigeon(lod);
-

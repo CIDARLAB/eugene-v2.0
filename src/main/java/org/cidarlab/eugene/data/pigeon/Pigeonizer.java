@@ -244,7 +244,7 @@ public class Pigeonizer {
 		 * COMPILATION into a Pigeon script
 		 */
 		StringBuilder sb = new StringBuilder();
-		sb.append("fontsize 3.0\r\n");
+		sb.append("fontsize 1.0\r\n");
 		int i = 0;
 		for(List<NamedElement> loe : device.getComponents()) {
 			List<Orientation> loo = device.getOrientations(i++);

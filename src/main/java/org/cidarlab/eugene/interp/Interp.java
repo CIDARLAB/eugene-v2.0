@@ -39,7 +39,6 @@ import java.util.UUID;
 
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
-import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.data.pigeon.Pigeonizer;
@@ -109,7 +108,10 @@ public class Interp {
      */
     private Comparator comparator;
 	
-	public Interp(Sparrow sparrow, BufferedWriter writer) {
+    
+    private String ROOT_DIRECTORY;
+    
+	public Interp(Sparrow sparrow, BufferedWriter writer, String ROOT_DIRECTORY) {
 
 		/*
 		 * FACTS/RULES
@@ -148,125 +150,17 @@ public class Interp {
 		 * the comparator
 		 */
 		this.comparator = null;
+		
+		/*
+		 * ROOT DIRECTORY
+		 */
+		this.ROOT_DIRECTORY = ROOT_DIRECTORY;
 	}
 
 	private BufferedWriter getWriter() {
 		return this.writer;
 	}
 	
-
-	/**
-	 * The include/1 method includes an external Eugene script 
-	 * and interprets it on-the-fly.
-	 * 
-	 * @param file  ... The file to be included
-	 * 
-	 * @throws EugeneException
-	 */
-	public void includeFile(String file) 
-			throws EugeneException {
-
-		// first, we read the file's content
-		String script = this.readFileContent(file);
-		
-		/*
-		 * lexical analysis and parsing
-		 */
-		EugeneLexer lexer = new EugeneLexer(new ANTLRStringStream(script));
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-
-		EugeneParser parser = new EugeneParser(tokens);
-
-		/*
-		 * initialize the with this interpreter
-		 */
-		parser.init(this, this.getWriter());	
-		parser.setFilename(file);
-		
-		try {
-			parser.prog();
-		} catch(Exception e) {
-			e.printStackTrace();
-			throw new EugeneException(e.getMessage());
-		}
-	}
-	
-	/**
-	 * The importFile/1 method imports all biological data 
-	 * specified in an external Eugene script. 
-	 * 
-	 * @param file  ... The file to import
-	 * @return      ... a NamedElement object (usually a 
-	 *                  EugeneContainer that contains all data
-	 *                  specified in the external Eugene script)
-	 * @throws EugeneException
-	 */
-	public NamedElement importFile(String file) 
-			throws EugeneException {
-
-		String script = this.readFileContent(file);
-		
-		/*
-		 * lexical analysis and parsing
-		 */
-		EugeneLexer lexer = new EugeneLexer(new ANTLRStringStream(script));
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-
-		EugeneParser parser = new EugeneParser(tokens);
-
-		/*
-		 * initialize the with this interpreter
-		 */
-		try {
-			parser.init(
-					new Interp(new Sparrow(), this.getWriter()), 
-					this.getWriter());
-		} catch(SparrowException spe) {
-			throw new EugeneException(spe.toString());
-		}
-		parser.setFilename(file);
-		
-		try {
-			parser.prog();
-		} catch(Exception e) {
-			e.printStackTrace();
-			throw new EugeneException(e.getMessage());
-		}
-		
-		/*
-		 * lastly, we create a new EugeneCollection
-		 */
-		
-		EugeneCollection ec = parser.getAllElements();
-		this.put(ec);
-		return ec;
-	}
-	
-	private String readFileContent(String file) 
-			throws EugeneException {
-		/*
-		 * first, we remove the double-quotas
-		 */
-		if(null == file || file.length() <= 2) {
-			throw new EugeneException("Invalid file name!");
-		}
-		file = file.substring(1, file.length() - 1);
-		
-		// put Eugene's ROOT directory in front of 
-		// the specified INCLUDE file
-		if(!(".".equals(Eugene.getRootDirectory()))) {
-			file = Eugene.getRootDirectory()+"/"+file;
-		}
-
-		String script = null; 
-		try {
-			script = EugeneUtil.readFile(new File(file));
-		} catch(IOException ioe) {
-			throw new EugeneException("I cannot read the file " + file);
-		}
-		
-		return script;
-	}
 	
 	/*----------------------------------------------------
 	 * IMPERATIVE LANGUAGE FEATURES
@@ -1757,179 +1651,6 @@ public class Interp {
 		this.push(new EugeneArray(name));
 	}
 	
-	/**********************************************************************
-	 * DATA EXCHANGE METHODS
-	 **********************************************************************/
-	/*
-	 * SBOL Import
-	 */ 
-	public NamedElement importSBOL(String sFile) 
-			throws EugeneException {
-		if (null == sFile || sFile.isEmpty()) {
-			throw new EugeneException("SBOL.import: Invalid filename!");
-		}
-
-		if (sFile.startsWith("\"") && sFile.endsWith("\"")) {
-			sFile = sFile.substring(1, sFile.length() - 1);
-		}
-
-		Set<NamedElement> elements = SBOLImporter.importSBOL(sFile);
-		if (null != elements && !elements.isEmpty()) {
-			
-			if(elements.size() > 0) {
-				// then, we return a Eugene collection
-				EugeneCollection ec = new EugeneCollection(null);
-				for(NamedElement element : elements) {
-					ec.getElements().add(element);
-				}
-				
-//				this.put(ec);
-				return ec;
-			} else {
-				// otherwise, we return the only element
-				for(NamedElement element : elements) {
-//					this.put(element);
-					return element;
-				}
-			}
-		}
-		return null;
-	}
-
-	/*
-	 * SBOL EXPORT
-	 */ 
-	public void exportToSBOL(String sName, String sFileName)
-			throws EugeneException {
-		
-		NamedElement objElement = this.get(sName);
-		if (objElement == null) {
-			throw new EugeneException("I don't know anything about " + sName
-					+ "!");
-		} else if (objElement instanceof EugeneContainer) {
-			SBOLExporter.serialize((EugeneContainer) objElement, sFileName);
-		} else if (objElement instanceof Component) {
-			SBOLExporter.serialize((Component) objElement, sFileName);
-		} else {
-			throw new EugeneException(
-					"I cannot export the "
-							+ sName
-							+ " element to SBOL! "
-							+ "Only collections, arrays, devices, and parts are allowed!");
-		}
-	}
-	
-	/*
-	 * PIGEON
-	 */ 
-	public Collection<URI> pigeon(String name) 
-			throws EugeneException {
-		
-		if(null == name || name.isEmpty()) {
-			throw new EugeneException("Invalid name!");
-		}
-		
-		Collection<URI> ret_uris = new HashSet<URI>();
-		
-		/*
-		 * retrieve the object from the this.symbols
-		 */
-		NamedElement element = this.get(name);
-		if(null == element) {
-			throw new EugeneException("I cannot find an element named "+name+"!");
-		}
-		
-		if(!(element instanceof Component) && !(element instanceof EugeneContainer)) {
-			throw new EugeneException("I cannot visualize "+name+"!");
-		}
-
-		if(null == this.pigeon) {
-			this.pigeon = new Pigeonizer();
-		}
-		
-		URI uri = null;
-		if(element instanceof Device) {
-			uri = this.pigeon.pigeonizeSingle((Device)element, null);
-			
-			/*
-			 * for testing, open the URI
-			 */
-			if(null != uri) {
-				WeyekinPoster.launchPage(uri);
-				
-				ret_uris.add(uri);
-			}
-
-		} else if(element instanceof EugeneContainer) {
-			
-			List<URI> uris = new ArrayList<URI>(50);
-			int i = 0; 
-			for(NamedElement e : ((EugeneContainer)element).getElements()) {
-				
-				if(e instanceof Device) {
-					i++;
-					
-					if(i % 50 == 0) {
-						
-						ret_uris.add(
-								this.toSerializedImage(
-										uris, 
-										"./exports/pigeon/"+UUID.randomUUID()+".png"));
-						uris.clear();
-
-					} else {
-						uris.add(
-							this.pigeon.pigeonizeSingle(
-									(Device)e, 
-									null));
-					}
-				}
-			}
-			
-			/*
-			 * lastly, visualize the remaining devices
-			 * (if there are any)
-			 */
-			if(!uris.isEmpty()) {
-				ret_uris.add(
-						this.toSerializedImage(
-								uris, 
-								"./exports/pigeon/"+UUID.randomUUID()+".png"));
-			}
-			
-		}
-		
-		return ret_uris;
-	}
-	
-	/**
-	 * The toSerializeImage/2 merges all images given by the URIs into 
-	 * one big image (using the org.cidarlab.eugene.data.Pigeonizer) and
-	 * stores the resulting image into the given filename.
-	 * 
-	 * @param uris  ... a list of URIs pointing to images (such as 
-	 *                  SBOL Visual compliant representations) 
-	 * @param filename ... the filename of the resulting image
-	 * 
-	 * @return the URI of the resulting image
-	 * 
-	 * @throws EugeneException
-	 */
-	private URI toSerializedImage(List<URI> uris, String filename)
-		throws EugeneException {
-		try {
-			// merge all images into one image
-			RenderedImage img = this.pigeon.toMergedImage(uris);
-			// serialize the image to a file
-			this.pigeon.serializeImage(img, filename);
-		} catch(Exception e) {
-			throw new EugeneException(e.getMessage());
-		}
-		
-		// if everything went fine, then 
-		// we return the generated image as an URI
-		return URI.create(filename);
-	}
 	/*
 	 * EUGENE DOM OBJECTS
 	 */
@@ -2343,5 +2064,358 @@ public class Interp {
 		return false;
 	}
 	
+	/*-------------------------------------------------
+	 * METHODS REGARDING DATE EXCHANGE FEATURES
+	 *-------------------------------------------------*/
+	
+	private String getRootDirectory() {
+		return this.ROOT_DIRECTORY;
+	}
+	
+	
+	/**
+	 * The dataExchange/1 method is being invoked iff the Eugene 
+	 * user imports data from a data standard file and does not 
+	 * assign the imported data to a variable.
+	 * 
+	 * @param e ... the imported data
+	 * 
+	 * @throws EugeneException
+	 */
+	public void dataExchange(NamedElement e) 
+			throws EugeneException {
+		
+		// in case it's a EugeneCollection, then we store every single
+		// element of the collection in the symbol tables
+		if(e instanceof EugeneCollection) {
+			for(NamedElement el : ((EugeneCollection)e).getElements()) {
+				this.put(el);
+			}
+
+		// in case it's a EugeneArray, then we store every single
+		// element of the collection in the symbol tables
+		} else if(e instanceof EugeneArray) {
+			for(NamedElement el : ((EugeneArray)e).getElements()) {
+				this.put(el);
+			}
+		
+		// otherwise, we just put the NamedElement object 
+		// into the symbol tables
+		} else {
+			this.put(e);
+		} 
+		
+		
+	}
+ 
+	/**
+	 * The include/1 method includes an external Eugene script 
+	 * and interprets it on-the-fly.
+	 * 
+	 * @param file  ... The file to be included
+	 * 
+	 * @throws EugeneException
+	 */
+	public void includeFile(String file) 
+			throws EugeneException {
+
+		// first, we read the file's content
+		String script = this.readFileContent(file);
+		
+		/*
+		 * lexical analysis and parsing
+		 */
+		EugeneLexer lexer = new EugeneLexer(new ANTLRStringStream(script));
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+		EugeneParser parser = new EugeneParser(tokens);
+
+		/*
+		 * initialize the with this interpreter
+		 */
+		parser.init(this, this.getWriter());	
+		parser.setFilename(file);
+		
+		try {
+			parser.prog();
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new EugeneException(e.getMessage());
+		}
+	}
+	
+	/**
+	 * The importFile/1 method imports all biological data 
+	 * specified in an external Eugene script. 
+	 * 
+	 * @param file  ... The file to import
+	 * @return      ... a NamedElement object (usually a 
+	 *                  EugeneContainer that contains all data
+	 *                  specified in the external Eugene script)
+	 * @throws EugeneException
+	 */
+	public NamedElement importFile(String file) 
+			throws EugeneException {
+
+		String script = this.readFileContent(file);
+		
+		/*
+		 * lexical analysis and parsing
+		 */
+		EugeneLexer lexer = new EugeneLexer(new ANTLRStringStream(script));
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+		EugeneParser parser = new EugeneParser(tokens);
+
+		/*
+		 * initialize the with this interpreter
+		 */
+		try {
+			parser.init(
+					new Interp(new Sparrow(), this.getWriter(), this.getRootDirectory()), 
+					this.getWriter());
+		} catch(SparrowException spe) {
+			throw new EugeneException(spe.toString());
+		}
+		parser.setFilename(file);
+		
+		try {
+			parser.prog();
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new EugeneException(e.getMessage());
+		}
+		
+		/*
+		 * lastly, we create a new EugeneCollection
+		 */
+		
+		EugeneCollection ec = parser.getAllElements();
+		this.put(ec);
+		return ec;
+	}
+	
+	/*
+	 * SBOL Import
+	 */ 
+	public NamedElement importSBOL(String file) 
+			throws EugeneException {
+		
+		file = this.getFileWithPathInformation(file);
+		
+		Set<NamedElement> elements = SBOLImporter.importSBOL(file);
+		if (null != elements && !elements.isEmpty()) {
+			
+			if(elements.size() > 0) {
+			
+				// then, we return a Eugene collection
+				EugeneCollection ec = new EugeneCollection(null);
+				for(NamedElement element : elements) {
+					ec.getElements().add(element);
+				}
+				
+				return ec;
+			} else {
+				// otherwise, we return the only element
+				for(NamedElement element : elements) {
+					return element;
+				}
+			}
+		}
+		
+		return null;
+	}
+
+	/*
+	 * SBOL EXPORT
+	 */ 
+	public void exportToSBOL(String sName, String sFileName)
+			throws EugeneException {
+		
+		NamedElement objElement = this.get(sName);
+		if (objElement == null) {
+			throw new EugeneException("I don't know anything about " + sName
+					+ "!");
+		} else if (objElement instanceof EugeneContainer) {
+			SBOLExporter.serialize((EugeneContainer) objElement, sFileName);
+		} else if (objElement instanceof Component) {
+			SBOLExporter.serialize((Component) objElement, sFileName);
+		} else {
+			throw new EugeneException(
+					"I cannot export the "
+							+ sName
+							+ " element to SBOL! "
+							+ "Only collections, arrays, devices, and parts are allowed!");
+		}
+	}
+	
+	/*
+	 * PIGEON
+	 */ 
+	public Collection<URI> pigeon(String name) 
+			throws EugeneException {
+		
+		if(null == name || name.isEmpty()) {
+			throw new EugeneException("Invalid name!");
+		}
+		
+		Collection<URI> ret_uris = new HashSet<URI>();
+		
+		/*
+		 * retrieve the object from the this.symbols
+		 */
+		NamedElement element = this.get(name);
+		if(null == element) {
+			throw new EugeneException("I cannot find an element named "+name+"!");
+		}
+		
+		if(!(element instanceof Component) && !(element instanceof EugeneContainer)) {
+			throw new EugeneException("I cannot visualize "+name+"!");
+		}
+
+		if(null == this.pigeon) {
+			this.pigeon = new Pigeonizer();
+		}
+		
+		URI uri = null;
+		if(element instanceof Device) {
+			uri = this.pigeon.pigeonizeSingle((Device)element, null);
+			
+			/*
+			 * for testing, open the URI
+			 */
+			if(null != uri) {
+				WeyekinPoster.launchPage(uri);
+				
+				ret_uris.add(uri);
+			}
+
+		} else if(element instanceof EugeneContainer) {
+			
+			List<URI> uris = new ArrayList<URI>(50);
+			int i = 0; 
+			for(NamedElement e : ((EugeneContainer)element).getElements()) {
+				
+				if(e instanceof Device) {
+					i++;
+					
+					if(i % 50 == 0) {
+						
+						ret_uris.add(
+								this.toSerializedImage(
+										uris, 
+										"./exports/pigeon/"+UUID.randomUUID()+".png"));
+						uris.clear();
+
+					} else {
+						uris.add(
+							this.pigeon.pigeonizeSingle(
+									(Device)e, 
+									null));
+					}
+				}
+			}
+			
+			/*
+			 * lastly, visualize the remaining devices
+			 * (if there are any)
+			 */
+			if(!uris.isEmpty()) {
+				ret_uris.add(
+						this.toSerializedImage(
+								uris, 
+								"./exports/pigeon/"+UUID.randomUUID()+".png"));
+			}
+			
+		}
+		
+		return ret_uris;
+	}
+	
+	/**
+	 * The toSerializeImage/2 merges all images given by the URIs into 
+	 * one big image (using the org.cidarlab.eugene.data.Pigeonizer) and
+	 * stores the resulting image into the given filename.
+	 * 
+	 * @param uris  ... a list of URIs pointing to images (such as 
+	 *                  SBOL Visual compliant representations) 
+	 * @param filename ... the filename of the resulting image
+	 * 
+	 * @return the URI of the resulting image
+	 * 
+	 * @throws EugeneException
+	 */
+	private URI toSerializedImage(List<URI> uris, String filename)
+		throws EugeneException {
+		try {
+			// merge all images into one image
+			RenderedImage img = this.pigeon.toMergedImage(uris);
+			// serialize the image to a file
+			this.pigeon.serializeImage(img, filename);
+		} catch(Exception e) {
+			throw new EugeneException(e.getMessage());
+		}
+		
+		// if everything went fine, then 
+		// we return the generated image as an URI
+		return URI.create(filename);
+	}
+
+	
+	/**
+	 * The readFileContent/1 method gets as input a filename
+	 * and returns the file's content represented in a String object
+	 * 
+	 * @param file  ... the file to be read
+	 * @return ... the file content
+	 * 
+	 * @throws EugeneException
+	 */
+	private String readFileContent(String file) 
+			throws EugeneException {
+		
+		file = getFileWithPathInformation(file);
+		
+		String script = null; 
+		try {
+			script = EugeneUtil.readFile(new File(file));
+		} catch(IOException ioe) {
+			throw new EugeneException("I cannot read the file " + file);
+		}
+		
+		return script;
+	}
+	
+	/**
+	 * The getFileWithPathInformation/1 method gets as input 
+	 * a filename and augments it with the path information store
+	 * in the ROOT_DIRECTORY member variable.
+	 * 
+	 * @param file ... the file name (as String)
+	 * @return  ... a string containing file information 
+	 *              including PATH and filename
+	 *              
+	 * @throws EugeneException
+	 */
+	private String getFileWithPathInformation(String file) 
+			throws EugeneException {
+		
+		/*
+		 * first, we remove the double-quotas
+		 */
+		if(null == file || file.length() <= 2) {
+			throw new EugeneException("Invalid file name!");
+		}
+		file = file.substring(1, file.length() - 1);
+		
+		// put Eugene's ROOT directory in front of 
+		// the specified INCLUDE file
+		if(!(".".equals(this.getRootDirectory()))) {
+			file = this.getRootDirectory()+"/"+file;
+		}
+
+		return file;
+	}
+
 	
 }

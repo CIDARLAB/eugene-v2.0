@@ -59,7 +59,7 @@ public class Eugene {
 	 */
 	private BufferedWriter writer = null;
 
-	private static String ROOT_DIRECTORY = ".";
+	private String ROOT_DIRECTORY = ".";
 	
 	/*--------------------------------------
 	 * EUGENE CONSTRUCTORS
@@ -123,7 +123,7 @@ public class Eugene {
 	 * @param dir ... the desired root directory of Eugene
 	 */
 	public void setRootDirectory(String dir) {
-		ROOT_DIRECTORY = dir;
+		this.ROOT_DIRECTORY = dir;
 	}
 	
 	
@@ -132,8 +132,8 @@ public class Eugene {
 	 * 
 	 * @return ... Eugene's current root directory
 	 */
-	public static String getRootDirectory() {
-		return ROOT_DIRECTORY;
+	public String getRootDirectory() {
+		return this.ROOT_DIRECTORY;
 	}
 	
 	
@@ -214,7 +214,7 @@ public class Eugene {
 		 * and the writer for writing the outputs
 		 */		
 		parser.init(
-				new Interp(this.sparrow, this.writer), 
+				new Interp(this.sparrow, this.writer, this.getRootDirectory()), 
 				this.writer);
 		
 		/*
