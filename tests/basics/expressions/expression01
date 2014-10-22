@@ -2,4 +2,10 @@ num one = 1;
 num two = 2;
 num three = one + two;
 num zero = (one - one) + (two - two);
+
+if(one != 1) {exit;}
+if(two != 2) {exit;}
+if(three != 3) {exit;}
 if(zero != 0) {exit;}
+
+

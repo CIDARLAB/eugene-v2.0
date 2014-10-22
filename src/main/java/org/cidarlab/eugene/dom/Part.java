@@ -134,5 +134,30 @@ public class Part
 		Property p = this.getProperties().get(idx);		
 		return this.getPropertyValue(p.getName());
 	}
+	
+	@Override
+	public int hashCode() {
+		int hash = this.getName().hashCode();
+		hash += ((PartType)this.getType()).hashCode();
+		
+		if(null != this.getPropertyValues() && !(this.getPropertyValues().isEmpty())) {
+			for(String s : this.getPropertyValues().keySet()) {
+				hash += this.getPropertyValues().get(s).hashCode();
+			}
+		}
+		
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(o == null) {
+			return false;
+		} else if(!(o instanceof Part)) {
+			return false;
+		}
+		
+		return this.hashCode() == ((Part)o).hashCode();
+	}
 
 }

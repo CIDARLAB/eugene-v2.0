@@ -74,7 +74,7 @@ public class TestSuite {
 		 *---------------------------------------------*/
 		new TestSuite().test("./tests/basics/containers/collections");
 		new TestSuite().test("./tests/basics/containers/collection-access");
-//		new TestSuite().test("./tests/basics/containers/collection-operations");
+		new TestSuite().test("./tests/basics/containers/collection-operations");
 		
 		new TestSuite().test("./tests/basics/containers/arrays");
 

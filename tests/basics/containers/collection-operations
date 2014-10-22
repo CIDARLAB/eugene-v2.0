@@ -1,0 +1,29 @@
+/*
+ *   first, we define some collections manually
+ */
+
+Collection properties (
+    Property tp(txt),
+    Property np(num),
+    Property tlp(txt[]),
+    Property nlp(num[]),
+    Property bp(bool)
+);
+
+Collection parttypes (
+    Property p1(txt),
+    PartType PT1(p1),
+    PartType PT2,
+    PartType PT3
+); 
+
+// UNION of all three collections
+library = properties + parttypes;
+
+// the PT1 part type of the library must (for the 
+// time being) assigned to a new part type.
+// reason: various changes in the Eugene grammar needed.
+libPT1 = library.PT1;
+libPT1 p111(.p1("123"));
+
+println(p111);

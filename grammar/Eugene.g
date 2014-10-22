@@ -507,43 +507,13 @@ public boolean checkIfAlreadyDeclared(String name, boolean all) {
 	
     public void addToPropertyListHolder(String prop) 
             throws EugeneException {
-        if(!this.interp.contains(prop)) {
-            printError("Property " + prop + " does not exist.");
-        } else {
-            NamedElement ne = this.interp.get(prop);
-            if(!(ne instanceof Property)) {
-                printError(prop+" is not a property.");
-            }
-    			
-            if(((Property)ne).getType().equals(EugeneConstants.TXTLIST)) {
-                typeList = EugeneConstants.TXT;
-            } else if(((Property)ne).getType().equals(EugeneConstants.NUMLIST)) {
-                typeList = EugeneConstants.NUM;
-            }
-     			
-            propertyListHolder.add(prop);
-        }
+        propertyListHolder.add(prop);
     }
 	
     //adds values to the corresponding property
     public void addToPropertyValuesHolder(String prop, Variable p, int index) 
             throws EugeneException {
-        NamedElement ne = this.interp.get(prop);
-        if(ne instanceof Property) {
-            if (((Property)ne).getType().equals(p.type)) {
-                propertyValuesHolder.add(p);
-            } else if(p.type.equals(EugeneConstants.TXTLIST) && index != -1 && p.type.equals(EugeneConstants.TXT)) {
-                p.index = index;
-                propertyValuesHolder.add(p);
-            } else if(p.type.equals(EugeneConstants.NUMLIST) && index != -1 && p.type.equals(EugeneConstants.NUM)) {
-                p.index = index;
-                propertyValuesHolder.add(p);
-            } else {
-                printError("Expected a value of type " + ((Property)ne).getType() + " for property " + prop + ".");
-            }
-        } else {
-            printError("The named element " + prop + " is not a property.");
-        }
+        propertyValuesHolder.add(p);
     }
     	
 /*---------------------------------------------------------------------
@@ -1081,7 +1051,7 @@ if(!defer) {
         printError(ee.getMessage());
     }
 }                
-        }	
+        }
 	;
 
 // e.g. 
@@ -2203,9 +2173,9 @@ if(!defer) {
     try {
         if(null != $element) {
             if(null != $e.element) {
-                this.interp.doMinPlusOp($e.element, $element, $op.text);                
+                $element = this.interp.doMinPlusOp($e.element, $element, $op.text);                
             } else if(null != $e.p) {
-                this.interp.doMinPlusOp($e.p, $element, $op.text);
+                $element = this.interp.doMinPlusOp($e.p, $element, $op.text);
             }
             $p = null;            
         } else {        

@@ -29,5 +29,28 @@ public class PartType
 		}
 		sb.append(");");
 		return sb.toString();
-	}	
+	}
+	
+	@Override
+	public int hashCode() {
+		int hash = this.getName().hashCode();
+		if(null!=this.getProperties() && !this.getProperties().isEmpty()) {
+			for(Property p : this.getProperties()) {
+				hash += p.getName().hashCode();
+			}
+		}
+		return hash;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o == null) {
+			return false;
+		} else if(!(o instanceof PartType)) {
+			return false;
+		}
+		
+		return this.hashCode() == ((PartType)o).hashCode();
+	}
+
 }

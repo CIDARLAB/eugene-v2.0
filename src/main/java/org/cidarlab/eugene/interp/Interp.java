@@ -1718,7 +1718,7 @@ public class Interp {
     
     // LHS + RHS  
     // the result is stored in the lhs
-    public void doMinPlusOp(NamedElement RHS, NamedElement LHS, String op) 
+    public NamedElement doMinPlusOp(NamedElement RHS, NamedElement LHS, String op) 
     		throws EugeneException {
         
     	if(null == this.executor) {
@@ -1726,7 +1726,7 @@ public class Interp {
     	}
     	
     	try {
-    		this.executor.doMinPlusOp(RHS, LHS, op);
+    		return this.executor.doMinPlusOp(RHS, LHS, op);
     	} catch(EugeneException ee) {
     		throw new EugeneException(ee.getLocalizedMessage());
     	}
