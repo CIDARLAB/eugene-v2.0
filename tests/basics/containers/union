@@ -1,0 +1,73 @@
+/*
+ *   first, let's define some 
+ *   collections and arrays
+ */
+
+Collection numCol (
+    num i = 1,
+    num j = 2
+);
+
+Collection txtCol (
+    txt s = "SSSS",
+    txt p = "PPPP"
+); 
+
+
+Array numListArray (
+    num[] nl1 = [1, 2, 3, 4, 5],
+    num[] nl2 = [6, 7, 8, 9, 10]
+);
+
+Array txtListArray (
+    txt[] tl1 = ["A", "B", "C"],
+    txt[] tl2 = ["D", "E", "F"]
+);
+
+/*
+ * union of collections
+ */
+U_col = numCol + txtCol;
+println(U_col);
+
+U_col2 = U_col + numCol + txtCol;
+println(U_col2);
+
+
+/*
+ * union of arrays
+ */
+U_arr = numListArray + txtListArray;
+println(U_arr);
+
+/*
+ * union of array and collection
+ */
+U_num_arr = numListArray + numCol;  // should result in an array
+U_txt_arr = txtListArray + txtCol;  // should result in an array
+
+U_num_col = numCol + numListArray;  // should result in a collection
+U_txt_col = txtCol + txtListArray;  // should result in a collection
+
+println(U_num_arr);
+println(U_txt_arr);
+println(U_num_col);
+println(U_txt_col);
+
+
+/*
+ *   UNION of enumerated designs
+ */
+PartType P();
+P p1;
+P p2;
+Device forwardD(P, P, P); 
+Rule forwardR(ON forwardD: all_forward);
+lofd = product(forwardD);
+Device reverseD(P, P, P);
+Rule reverseR(ON reverseD: all_reverse); 
+lord = product(reverseD);
+
+devs = lofd + lord;
+num s = SIZEOF(devs);
+if(s != 16) {exit;}

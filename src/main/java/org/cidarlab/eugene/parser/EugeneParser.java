@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g 2014-10-22 10:57:54
+// $ANTLR 3.4 /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g 2014-10-22 12:28:54
 
 /*
 Copyright (c) 2012 Boston University.
@@ -3650,7 +3650,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "containerDeclaration"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:949:1: containerDeclaration[boolean defer] returns [NamedElement ne] : (c= COLLECTION | (a= ARRAY LEFTSBR RIGHTSBR ) ) name= ID ( LEFTP ( list_of_declarations[defer] )? RIGHTP )? ;
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:949:1: containerDeclaration[boolean defer] returns [NamedElement ne] : (c= COLLECTION | (a= ARRAY ( LEFTSBR RIGHTSBR )? ) ) name= ID ( LEFTP ( list_of_declarations[defer] )? RIGHTP )? ;
     public final EugeneParser.containerDeclaration_return containerDeclaration(boolean defer) throws RecognitionException {
         EugeneParser.containerDeclaration_return retval = new EugeneParser.containerDeclaration_return();
         retval.start = input.LT(1);
@@ -3677,30 +3677,30 @@ public TreeAdaptor getTreeAdaptor() {
         Object RIGHTP89_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:951:2: ( (c= COLLECTION | (a= ARRAY LEFTSBR RIGHTSBR ) ) name= ID ( LEFTP ( list_of_declarations[defer] )? RIGHTP )? )
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:951:4: (c= COLLECTION | (a= ARRAY LEFTSBR RIGHTSBR ) ) name= ID ( LEFTP ( list_of_declarations[defer] )? RIGHTP )?
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:951:2: ( (c= COLLECTION | (a= ARRAY ( LEFTSBR RIGHTSBR )? ) ) name= ID ( LEFTP ( list_of_declarations[defer] )? RIGHTP )? )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:951:4: (c= COLLECTION | (a= ARRAY ( LEFTSBR RIGHTSBR )? ) ) name= ID ( LEFTP ( list_of_declarations[defer] )? RIGHTP )?
             {
             root_0 = (Object)adaptor.nil();
 
 
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:951:4: (c= COLLECTION | (a= ARRAY LEFTSBR RIGHTSBR ) )
-            int alt27=2;
-            int LA27_0 = input.LA(1);
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:951:4: (c= COLLECTION | (a= ARRAY ( LEFTSBR RIGHTSBR )? ) )
+            int alt28=2;
+            int LA28_0 = input.LA(1);
 
-            if ( (LA27_0==COLLECTION) ) {
-                alt27=1;
+            if ( (LA28_0==COLLECTION) ) {
+                alt28=1;
             }
-            else if ( (LA27_0==ARRAY) ) {
-                alt27=2;
+            else if ( (LA28_0==ARRAY) ) {
+                alt28=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 27, 0, input);
+                    new NoViableAltException("", 28, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt27) {
+            switch (alt28) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:951:5: c= COLLECTION
                     {
@@ -3714,10 +3714,10 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:951:20: (a= ARRAY LEFTSBR RIGHTSBR )
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:951:20: (a= ARRAY ( LEFTSBR RIGHTSBR )? )
                     {
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:951:20: (a= ARRAY LEFTSBR RIGHTSBR )
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:951:21: a= ARRAY LEFTSBR RIGHTSBR
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:951:20: (a= ARRAY ( LEFTSBR RIGHTSBR )? )
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:951:21: a= ARRAY ( LEFTSBR RIGHTSBR )?
                     {
                     a=(Token)match(input,ARRAY,FOLLOW_ARRAY_in_containerDeclaration1691); 
                     a_tree = 
@@ -3726,18 +3726,35 @@ public TreeAdaptor getTreeAdaptor() {
                     adaptor.addChild(root_0, a_tree);
 
 
-                    LEFTSBR85=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_containerDeclaration1693); 
-                    LEFTSBR85_tree = 
-                    (Object)adaptor.create(LEFTSBR85)
-                    ;
-                    adaptor.addChild(root_0, LEFTSBR85_tree);
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:951:29: ( LEFTSBR RIGHTSBR )?
+                    int alt27=2;
+                    int LA27_0 = input.LA(1);
+
+                    if ( (LA27_0==LEFTSBR) ) {
+                        alt27=1;
+                    }
+                    switch (alt27) {
+                        case 1 :
+                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:951:30: LEFTSBR RIGHTSBR
+                            {
+                            LEFTSBR85=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_containerDeclaration1694); 
+                            LEFTSBR85_tree = 
+                            (Object)adaptor.create(LEFTSBR85)
+                            ;
+                            adaptor.addChild(root_0, LEFTSBR85_tree);
 
 
-                    RIGHTSBR86=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_containerDeclaration1695); 
-                    RIGHTSBR86_tree = 
-                    (Object)adaptor.create(RIGHTSBR86)
-                    ;
-                    adaptor.addChild(root_0, RIGHTSBR86_tree);
+                            RIGHTSBR86=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_containerDeclaration1696); 
+                            RIGHTSBR86_tree = 
+                            (Object)adaptor.create(RIGHTSBR86)
+                            ;
+                            adaptor.addChild(root_0, RIGHTSBR86_tree);
+
+
+                            }
+                            break;
+
+                    }
 
 
                     }
@@ -3749,7 +3766,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            name=(Token)match(input,ID,FOLLOW_ID_in_containerDeclaration1701); 
+            name=(Token)match(input,ID,FOLLOW_ID_in_containerDeclaration1704); 
             name_tree = 
             (Object)adaptor.create(name)
             ;
@@ -3773,17 +3790,17 @@ public TreeAdaptor getTreeAdaptor() {
             	
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:965:4: ( LEFTP ( list_of_declarations[defer] )? RIGHTP )?
-            int alt29=2;
-            int LA29_0 = input.LA(1);
+            int alt30=2;
+            int LA30_0 = input.LA(1);
 
-            if ( (LA29_0==LEFTP) ) {
-                alt29=1;
+            if ( (LA30_0==LEFTP) ) {
+                alt30=1;
             }
-            switch (alt29) {
+            switch (alt30) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:965:5: LEFTP ( list_of_declarations[defer] )? RIGHTP
                     {
-                    LEFTP87=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_containerDeclaration1706); 
+                    LEFTP87=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_containerDeclaration1709); 
                     LEFTP87_tree = 
                     (Object)adaptor.create(LEFTP87)
                     ;
@@ -3791,17 +3808,17 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:965:11: ( list_of_declarations[defer] )?
-                    int alt28=2;
-                    int LA28_0 = input.LA(1);
+                    int alt29=2;
+                    int LA29_0 = input.LA(1);
 
-                    if ( (LA28_0==ARRAY||(LA28_0 >= BOOL && LA28_0 <= COLLECTION)||LA28_0==DEVICE||LA28_0==DOLLAR||(LA28_0 >= FALSE_LC && LA28_0 <= FALSE_UC)||LA28_0==GRAMMAR||LA28_0==ID||LA28_0==INTERACTION||(LA28_0 >= LEFTP && LA28_0 <= LEFTSBR)||LA28_0==MINUS||(LA28_0 >= NUM && LA28_0 <= PART_TYPE)||(LA28_0 >= PROPERTY && LA28_0 <= REAL)||(LA28_0 >= RULE && LA28_0 <= SAVE_UC)||(LA28_0 >= SIZEOF_LC && LA28_0 <= STORE_UC)||(LA28_0 >= STRING && LA28_0 <= TYPE)) ) {
-                        alt28=1;
+                    if ( (LA29_0==ARRAY||(LA29_0 >= BOOL && LA29_0 <= COLLECTION)||LA29_0==DEVICE||LA29_0==DOLLAR||(LA29_0 >= FALSE_LC && LA29_0 <= FALSE_UC)||LA29_0==GRAMMAR||LA29_0==ID||LA29_0==INTERACTION||(LA29_0 >= LEFTP && LA29_0 <= LEFTSBR)||LA29_0==MINUS||(LA29_0 >= NUM && LA29_0 <= PART_TYPE)||(LA29_0 >= PROPERTY && LA29_0 <= REAL)||(LA29_0 >= RULE && LA29_0 <= SAVE_UC)||(LA29_0 >= SIZEOF_LC && LA29_0 <= STORE_UC)||(LA29_0 >= STRING && LA29_0 <= TYPE)) ) {
+                        alt29=1;
                     }
-                    switch (alt28) {
+                    switch (alt29) {
                         case 1 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:965:12: list_of_declarations[defer]
                             {
-                            pushFollow(FOLLOW_list_of_declarations_in_containerDeclaration1709);
+                            pushFollow(FOLLOW_list_of_declarations_in_containerDeclaration1712);
                             list_of_declarations88=list_of_declarations(defer);
 
                             state._fsp--;
@@ -3814,7 +3831,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    RIGHTP89=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_containerDeclaration1714); 
+                    RIGHTP89=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_containerDeclaration1717); 
                     RIGHTP89_tree = 
                     (Object)adaptor.create(RIGHTP89)
                     ;
@@ -3899,7 +3916,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:982:4: (ds= declarationStatement[defer] |exp= expr[defer] )
-            int alt30=2;
+            int alt31=2;
             switch ( input.LA(1) ) {
             case ARRAY:
             case BOOL:
@@ -3916,22 +3933,22 @@ public TreeAdaptor getTreeAdaptor() {
             case TXT:
             case TYPE:
                 {
-                alt30=1;
+                alt31=1;
                 }
                 break;
             case ID:
                 {
-                int LA30_2 = input.LA(2);
+                int LA31_2 = input.LA(2);
 
-                if ( (LA30_2==DOLLAR||LA30_2==ID||LA30_2==LC_INDUCES||LA30_2==LC_REPRESSES||LA30_2==UC_INDUCES||LA30_2==UC_REPRESSES) ) {
-                    alt30=1;
+                if ( (LA31_2==DOLLAR||LA31_2==ID||LA31_2==LC_INDUCES||LA31_2==LC_REPRESSES||LA31_2==UC_INDUCES||LA31_2==UC_REPRESSES) ) {
+                    alt31=1;
                 }
-                else if ( (LA30_2==COMMA||LA30_2==DIV||LA30_2==DOT||LA30_2==LEFTSBR||LA30_2==MINUS||LA30_2==MULT||LA30_2==PLUS||LA30_2==RIGHTP) ) {
-                    alt30=2;
+                else if ( (LA31_2==COMMA||LA31_2==DIV||LA31_2==DOT||LA31_2==LEFTSBR||LA31_2==MINUS||LA31_2==MULT||LA31_2==PLUS||LA31_2==RIGHTP) ) {
+                    alt31=2;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 30, 2, input);
+                        new NoViableAltException("", 31, 2, input);
 
                     throw nvae;
 
@@ -3958,22 +3975,22 @@ public TreeAdaptor getTreeAdaptor() {
             case TRUE_LC:
             case TRUE_UC:
                 {
-                alt30=2;
+                alt31=2;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 30, 0, input);
+                    new NoViableAltException("", 31, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt30) {
+            switch (alt31) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:982:6: ds= declarationStatement[defer]
                     {
-                    pushFollow(FOLLOW_declarationStatement_in_list_of_declarations1747);
+                    pushFollow(FOLLOW_declarationStatement_in_list_of_declarations1750);
                     ds=declarationStatement(defer);
 
                     state._fsp--;
@@ -3985,7 +4002,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:982:39: exp= expr[defer]
                     {
-                    pushFollow(FOLLOW_expr_in_list_of_declarations1754);
+                    pushFollow(FOLLOW_expr_in_list_of_declarations1757);
                     exp=expr(defer);
 
                     state._fsp--;
@@ -4015,24 +4032,24 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:996:5: ( COMMA lod= list_of_declarations[defer] )?
-            int alt31=2;
-            int LA31_0 = input.LA(1);
+            int alt32=2;
+            int LA32_0 = input.LA(1);
 
-            if ( (LA31_0==COMMA) ) {
-                alt31=1;
+            if ( (LA32_0==COMMA) ) {
+                alt32=1;
             }
-            switch (alt31) {
+            switch (alt32) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:996:7: COMMA lod= list_of_declarations[defer]
                     {
-                    COMMA90=(Token)match(input,COMMA,FOLLOW_COMMA_in_list_of_declarations1762); 
+                    COMMA90=(Token)match(input,COMMA,FOLLOW_COMMA_in_list_of_declarations1765); 
                     COMMA90_tree = 
                     (Object)adaptor.create(COMMA90)
                     ;
                     adaptor.addChild(root_0, COMMA90_tree);
 
 
-                    pushFollow(FOLLOW_list_of_declarations_in_list_of_declarations1766);
+                    pushFollow(FOLLOW_list_of_declarations_in_list_of_declarations1769);
                     lod=list_of_declarations(defer);
 
                     state._fsp--;
@@ -4109,7 +4126,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            t=(Token)match(input,ID,FOLLOW_ID_in_instantiation1794); 
+            t=(Token)match(input,ID,FOLLOW_ID_in_instantiation1797); 
             t_tree = 
             (Object)adaptor.create(t)
             ;
@@ -4134,7 +4151,7 @@ public TreeAdaptor getTreeAdaptor() {
             }	
             	
 
-            pushFollow(FOLLOW_dynamic_naming_in_instantiation1800);
+            pushFollow(FOLLOW_dynamic_naming_in_instantiation1803);
             n=dynamic_naming(defer);
 
             state._fsp--;
@@ -4148,17 +4165,17 @@ public TreeAdaptor getTreeAdaptor() {
             	
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1027:4: ( LEFTP (dotToken= listOfDotValues[defer] |valueToken= listOfValues[defer, (ComponentType)type] )? RIGHTP )?
-            int alt33=2;
-            int LA33_0 = input.LA(1);
+            int alt34=2;
+            int LA34_0 = input.LA(1);
 
-            if ( (LA33_0==LEFTP) ) {
-                alt33=1;
+            if ( (LA34_0==LEFTP) ) {
+                alt34=1;
             }
-            switch (alt33) {
+            switch (alt34) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1027:6: LEFTP (dotToken= listOfDotValues[defer] |valueToken= listOfValues[defer, (ComponentType)type] )? RIGHTP
                     {
-                    LEFTP91=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_instantiation1807); 
+                    LEFTP91=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_instantiation1810); 
                     LEFTP91_tree = 
                     (Object)adaptor.create(LEFTP91)
                     ;
@@ -4166,20 +4183,20 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1027:12: (dotToken= listOfDotValues[defer] |valueToken= listOfValues[defer, (ComponentType)type] )?
-                    int alt32=3;
-                    int LA32_0 = input.LA(1);
+                    int alt33=3;
+                    int LA33_0 = input.LA(1);
 
-                    if ( (LA32_0==DOT) ) {
-                        alt32=1;
+                    if ( (LA33_0==DOT) ) {
+                        alt33=1;
                     }
-                    else if ( (LA32_0==DOLLAR||(LA32_0 >= FALSE_LC && LA32_0 <= FALSE_UC)||LA32_0==ID||(LA32_0 >= LEFTP && LA32_0 <= LEFTSBR)||LA32_0==MINUS||LA32_0==NUMBER||(LA32_0 >= RANDOM_LC && LA32_0 <= REAL)||(LA32_0 >= SAVE_LC && LA32_0 <= SAVE_UC)||(LA32_0 >= SIZEOF_LC && LA32_0 <= STORE_UC)||(LA32_0 >= STRING && LA32_0 <= TRUE_UC)) ) {
-                        alt32=2;
+                    else if ( (LA33_0==DOLLAR||(LA33_0 >= FALSE_LC && LA33_0 <= FALSE_UC)||LA33_0==ID||(LA33_0 >= LEFTP && LA33_0 <= LEFTSBR)||LA33_0==MINUS||LA33_0==NUMBER||(LA33_0 >= RANDOM_LC && LA33_0 <= REAL)||(LA33_0 >= SAVE_LC && LA33_0 <= SAVE_UC)||(LA33_0 >= SIZEOF_LC && LA33_0 <= STORE_UC)||(LA33_0 >= STRING && LA33_0 <= TRUE_UC)) ) {
+                        alt33=2;
                     }
-                    switch (alt32) {
+                    switch (alt33) {
                         case 1 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1027:13: dotToken= listOfDotValues[defer]
                             {
-                            pushFollow(FOLLOW_listOfDotValues_in_instantiation1812);
+                            pushFollow(FOLLOW_listOfDotValues_in_instantiation1815);
                             dotToken=listOfDotValues(defer);
 
                             state._fsp--;
@@ -4191,7 +4208,7 @@ public TreeAdaptor getTreeAdaptor() {
                         case 2 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1027:45: valueToken= listOfValues[defer, (ComponentType)type]
                             {
-                            pushFollow(FOLLOW_listOfValues_in_instantiation1817);
+                            pushFollow(FOLLOW_listOfValues_in_instantiation1820);
                             valueToken=listOfValues(defer, (ComponentType)type);
 
                             state._fsp--;
@@ -4204,7 +4221,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    RIGHTP92=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_instantiation1822); 
+                    RIGHTP92=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_instantiation1825); 
                     RIGHTP92_tree = 
                     (Object)adaptor.create(RIGHTP92)
                     ;
@@ -4316,14 +4333,14 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            DOT93=(Token)match(input,DOT,FOLLOW_DOT_in_listOfDotValues1845); 
+            DOT93=(Token)match(input,DOT,FOLLOW_DOT_in_listOfDotValues1848); 
             DOT93_tree = 
             (Object)adaptor.create(DOT93)
             ;
             adaptor.addChild(root_0, DOT93_tree);
 
 
-            prop=(Token)match(input,ID,FOLLOW_ID_in_listOfDotValues1849); 
+            prop=(Token)match(input,ID,FOLLOW_ID_in_listOfDotValues1852); 
             prop_tree = 
             (Object)adaptor.create(prop)
             ;
@@ -4340,14 +4357,14 @@ public TreeAdaptor getTreeAdaptor() {
             }			
             		
 
-            LEFTP94=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_listOfDotValues1855); 
+            LEFTP94=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_listOfDotValues1858); 
             LEFTP94_tree = 
             (Object)adaptor.create(LEFTP94)
             ;
             adaptor.addChild(root_0, LEFTP94_tree);
 
 
-            pushFollow(FOLLOW_expr_in_listOfDotValues1859);
+            pushFollow(FOLLOW_expr_in_listOfDotValues1862);
             v1=expr(defer);
 
             state._fsp--;
@@ -4364,7 +4381,7 @@ public TreeAdaptor getTreeAdaptor() {
             }				
             			
 
-            RIGHTP95=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_listOfDotValues1867); 
+            RIGHTP95=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_listOfDotValues1870); 
             RIGHTP95_tree = 
             (Object)adaptor.create(RIGHTP95)
             ;
@@ -4372,35 +4389,35 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1080:13: ( COMMA DOT p= ID LEFTP v2= expr[defer] RIGHTP )*
-            loop34:
+            loop35:
             do {
-                int alt34=2;
-                int LA34_0 = input.LA(1);
+                int alt35=2;
+                int LA35_0 = input.LA(1);
 
-                if ( (LA34_0==COMMA) ) {
-                    alt34=1;
+                if ( (LA35_0==COMMA) ) {
+                    alt35=1;
                 }
 
 
-                switch (alt34) {
+                switch (alt35) {
             	case 1 :
             	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1080:14: COMMA DOT p= ID LEFTP v2= expr[defer] RIGHTP
             	    {
-            	    COMMA96=(Token)match(input,COMMA,FOLLOW_COMMA_in_listOfDotValues1870); 
+            	    COMMA96=(Token)match(input,COMMA,FOLLOW_COMMA_in_listOfDotValues1873); 
             	    COMMA96_tree = 
             	    (Object)adaptor.create(COMMA96)
             	    ;
             	    adaptor.addChild(root_0, COMMA96_tree);
 
 
-            	    DOT97=(Token)match(input,DOT,FOLLOW_DOT_in_listOfDotValues1872); 
+            	    DOT97=(Token)match(input,DOT,FOLLOW_DOT_in_listOfDotValues1875); 
             	    DOT97_tree = 
             	    (Object)adaptor.create(DOT97)
             	    ;
             	    adaptor.addChild(root_0, DOT97_tree);
 
 
-            	    p=(Token)match(input,ID,FOLLOW_ID_in_listOfDotValues1876); 
+            	    p=(Token)match(input,ID,FOLLOW_ID_in_listOfDotValues1879); 
             	    p_tree = 
             	    (Object)adaptor.create(p)
             	    ;
@@ -4417,14 +4434,14 @@ public TreeAdaptor getTreeAdaptor() {
             	    }				
             	    				
 
-            	    LEFTP98=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_listOfDotValues1884); 
+            	    LEFTP98=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_listOfDotValues1887); 
             	    LEFTP98_tree = 
             	    (Object)adaptor.create(LEFTP98)
             	    ;
             	    adaptor.addChild(root_0, LEFTP98_tree);
 
 
-            	    pushFollow(FOLLOW_expr_in_listOfDotValues1888);
+            	    pushFollow(FOLLOW_expr_in_listOfDotValues1891);
             	    v2=expr(defer);
 
             	    state._fsp--;
@@ -4441,7 +4458,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    }				
             	    					
 
-            	    RIGHTP99=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_listOfDotValues1898); 
+            	    RIGHTP99=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_listOfDotValues1901); 
             	    RIGHTP99_tree = 
             	    (Object)adaptor.create(RIGHTP99)
             	    ;
@@ -4452,7 +4469,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    break loop34;
+            	    break loop35;
                 }
             } while (true);
 
@@ -4533,7 +4550,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             		
 
-            pushFollow(FOLLOW_expr_in_listOfValues1919);
+            pushFollow(FOLLOW_expr_in_listOfValues1922);
             val1=expr(defer);
 
             state._fsp--;
@@ -4547,21 +4564,21 @@ public TreeAdaptor getTreeAdaptor() {
             			
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1127:6: ( COMMA val2= expr[defer] )*
-            loop35:
+            loop36:
             do {
-                int alt35=2;
-                int LA35_0 = input.LA(1);
+                int alt36=2;
+                int LA36_0 = input.LA(1);
 
-                if ( (LA35_0==COMMA) ) {
-                    alt35=1;
+                if ( (LA36_0==COMMA) ) {
+                    alt36=1;
                 }
 
 
-                switch (alt35) {
+                switch (alt36) {
             	case 1 :
             	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1127:7: COMMA val2= expr[defer]
             	    {
-            	    COMMA100=(Token)match(input,COMMA,FOLLOW_COMMA_in_listOfValues1925); 
+            	    COMMA100=(Token)match(input,COMMA,FOLLOW_COMMA_in_listOfValues1928); 
             	    COMMA100_tree = 
             	    (Object)adaptor.create(COMMA100)
             	    ;
@@ -4593,7 +4610,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    }
             	                   
 
-            	    pushFollow(FOLLOW_expr_in_listOfValues1931);
+            	    pushFollow(FOLLOW_expr_in_listOfValues1934);
             	    val2=expr(defer);
 
             	    state._fsp--;
@@ -4610,7 +4627,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    break loop35;
+            	    break loop36;
                 }
             } while (true);
 
@@ -4673,14 +4690,14 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            DEVICE101=(Token)match(input,DEVICE,FOLLOW_DEVICE_in_deviceDeclaration1950); 
+            DEVICE101=(Token)match(input,DEVICE,FOLLOW_DEVICE_in_deviceDeclaration1953); 
             DEVICE101_tree = 
             (Object)adaptor.create(DEVICE101)
             ;
             adaptor.addChild(root_0, DEVICE101_tree);
 
 
-            n=(Token)match(input,ID,FOLLOW_ID_in_deviceDeclaration1954); 
+            n=(Token)match(input,ID,FOLLOW_ID_in_deviceDeclaration1957); 
             n_tree = 
             (Object)adaptor.create(n)
             ;
@@ -4688,17 +4705,17 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1158:16: ( LEFTP (dcs= deviceComponents[defer] )? RIGHTP )?
-            int alt37=2;
-            int LA37_0 = input.LA(1);
+            int alt38=2;
+            int LA38_0 = input.LA(1);
 
-            if ( (LA37_0==LEFTP) ) {
-                alt37=1;
+            if ( (LA38_0==LEFTP) ) {
+                alt38=1;
             }
-            switch (alt37) {
+            switch (alt38) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1158:17: LEFTP (dcs= deviceComponents[defer] )? RIGHTP
                     {
-                    LEFTP102=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_deviceDeclaration1957); 
+                    LEFTP102=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_deviceDeclaration1960); 
                     LEFTP102_tree = 
                     (Object)adaptor.create(LEFTP102)
                     ;
@@ -4706,17 +4723,17 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1158:23: (dcs= deviceComponents[defer] )?
-                    int alt36=2;
-                    int LA36_0 = input.LA(1);
+                    int alt37=2;
+                    int LA37_0 = input.LA(1);
 
-                    if ( (LA36_0==ID||LA36_0==LEFTSBR||LA36_0==MINUS||LA36_0==PLUS) ) {
-                        alt36=1;
+                    if ( (LA37_0==ID||LA37_0==LEFTSBR||LA37_0==MINUS||LA37_0==PLUS) ) {
+                        alt37=1;
                     }
-                    switch (alt36) {
+                    switch (alt37) {
                         case 1 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1158:24: dcs= deviceComponents[defer]
                             {
-                            pushFollow(FOLLOW_deviceComponents_in_deviceDeclaration1962);
+                            pushFollow(FOLLOW_deviceComponents_in_deviceDeclaration1965);
                             dcs=deviceComponents(defer);
 
                             state._fsp--;
@@ -4729,7 +4746,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    RIGHTP103=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_deviceDeclaration1967); 
+                    RIGHTP103=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_deviceDeclaration1970); 
                     RIGHTP103_tree = 
                     (Object)adaptor.create(RIGHTP103)
                     ;
@@ -4815,7 +4832,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_selection_in_deviceComponents1998);
+            pushFollow(FOLLOW_selection_in_deviceComponents2001);
             s=selection(defer);
 
             state._fsp--;
@@ -4830,24 +4847,24 @@ public TreeAdaptor getTreeAdaptor() {
             	
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1183:4: ( ',' dcs= deviceComponents[defer] )?
-            int alt38=2;
-            int LA38_0 = input.LA(1);
+            int alt39=2;
+            int LA39_0 = input.LA(1);
 
-            if ( (LA38_0==COMMA) ) {
-                alt38=1;
+            if ( (LA39_0==COMMA) ) {
+                alt39=1;
             }
-            switch (alt38) {
+            switch (alt39) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1183:5: ',' dcs= deviceComponents[defer]
                     {
-                    char_literal104=(Token)match(input,COMMA,FOLLOW_COMMA_in_deviceComponents2004); 
+                    char_literal104=(Token)match(input,COMMA,FOLLOW_COMMA_in_deviceComponents2007); 
                     char_literal104_tree = 
                     (Object)adaptor.create(char_literal104)
                     ;
                     adaptor.addChild(root_0, char_literal104_tree);
 
 
-                    pushFollow(FOLLOW_deviceComponents_in_deviceComponents2008);
+                    pushFollow(FOLLOW_deviceComponents_in_deviceComponents2011);
                     dcs=deviceComponents(defer);
 
                     state._fsp--;
@@ -4920,44 +4937,44 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1193:2: ( LEFTSBR sl= selection_list[defer] RIGHTSBR |dc= device_component[defer] )
-            int alt39=2;
-            int LA39_0 = input.LA(1);
+            int alt40=2;
+            int LA40_0 = input.LA(1);
 
-            if ( (LA39_0==LEFTSBR) ) {
-                alt39=1;
+            if ( (LA40_0==LEFTSBR) ) {
+                alt40=1;
             }
-            else if ( (LA39_0==ID||LA39_0==MINUS||LA39_0==PLUS) ) {
-                alt39=2;
+            else if ( (LA40_0==ID||LA40_0==MINUS||LA40_0==PLUS) ) {
+                alt40=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 39, 0, input);
+                    new NoViableAltException("", 40, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt39) {
+            switch (alt40) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1193:4: LEFTSBR sl= selection_list[defer] RIGHTSBR
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    LEFTSBR105=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_selection2032); 
+                    LEFTSBR105=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_selection2035); 
                     LEFTSBR105_tree = 
                     (Object)adaptor.create(LEFTSBR105)
                     ;
                     adaptor.addChild(root_0, LEFTSBR105_tree);
 
 
-                    pushFollow(FOLLOW_selection_list_in_selection2036);
+                    pushFollow(FOLLOW_selection_list_in_selection2039);
                     sl=selection_list(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, sl.getTree());
 
-                    RIGHTSBR106=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_selection2039); 
+                    RIGHTSBR106=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_selection2042); 
                     RIGHTSBR106_tree = 
                     (Object)adaptor.create(RIGHTSBR106)
                     ;
@@ -4979,7 +4996,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_device_component_in_selection2048);
+                    pushFollow(FOLLOW_device_component_in_selection2051);
                     dc=device_component(defer);
 
                     state._fsp--;
@@ -5058,7 +5075,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_device_component_in_selection_list2077);
+            pushFollow(FOLLOW_device_component_in_selection_list2080);
             dc=device_component(defer);
 
             state._fsp--;
@@ -5073,24 +5090,24 @@ public TreeAdaptor getTreeAdaptor() {
             	
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1221:4: ( PIPE sl= selection_list[defer] )?
-            int alt40=2;
-            int LA40_0 = input.LA(1);
+            int alt41=2;
+            int LA41_0 = input.LA(1);
 
-            if ( (LA40_0==PIPE) ) {
-                alt40=1;
+            if ( (LA41_0==PIPE) ) {
+                alt41=1;
             }
-            switch (alt40) {
+            switch (alt41) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1221:5: PIPE sl= selection_list[defer]
                     {
-                    PIPE107=(Token)match(input,PIPE,FOLLOW_PIPE_in_selection_list2083); 
+                    PIPE107=(Token)match(input,PIPE,FOLLOW_PIPE_in_selection_list2086); 
                     PIPE107_tree = 
                     (Object)adaptor.create(PIPE107)
                     ;
                     adaptor.addChild(root_0, PIPE107_tree);
 
 
-                    pushFollow(FOLLOW_selection_list_in_selection_list2087);
+                    pushFollow(FOLLOW_selection_list_in_selection_list2090);
                     sl=selection_list(defer);
 
                     state._fsp--;
@@ -5165,13 +5182,13 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1231:4: (directionToken= ( MINUS | PLUS ) )?
-            int alt41=2;
-            int LA41_0 = input.LA(1);
+            int alt42=2;
+            int LA42_0 = input.LA(1);
 
-            if ( (LA41_0==MINUS||LA41_0==PLUS) ) {
-                alt41=1;
+            if ( (LA42_0==MINUS||LA42_0==PLUS) ) {
+                alt42=1;
             }
-            switch (alt41) {
+            switch (alt42) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1231:5: directionToken= ( MINUS | PLUS )
                     {
@@ -5196,7 +5213,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            idToken=(Token)match(input,ID,FOLLOW_ID_in_device_component2123); 
+            idToken=(Token)match(input,ID,FOLLOW_ID_in_device_component2126); 
             idToken_tree = 
             (Object)adaptor.create(idToken)
             ;
@@ -5290,14 +5307,14 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_lhs_assignment_in_assignment2143);
+            pushFollow(FOLLOW_lhs_assignment_in_assignment2146);
             lhs=lhs_assignment(defer);
 
             state._fsp--;
 
             adaptor.addChild(root_0, lhs.getTree());
 
-            EQUALS108=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_assignment2146); 
+            EQUALS108=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_assignment2149); 
             EQUALS108_tree = 
             (Object)adaptor.create(EQUALS108)
             ;
@@ -5305,17 +5322,17 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1280:37: (a= AMP )?
-            int alt42=2;
-            int LA42_0 = input.LA(1);
+            int alt43=2;
+            int LA43_0 = input.LA(1);
 
-            if ( (LA42_0==AMP) ) {
-                alt42=1;
+            if ( (LA43_0==AMP) ) {
+                alt43=1;
             }
-            switch (alt42) {
+            switch (alt43) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1280:38: a= AMP
                     {
-                    a=(Token)match(input,AMP,FOLLOW_AMP_in_assignment2151); 
+                    a=(Token)match(input,AMP,FOLLOW_AMP_in_assignment2154); 
                     a_tree = 
                     (Object)adaptor.create(a)
                     ;
@@ -5328,7 +5345,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            pushFollow(FOLLOW_rhs_assignment_in_assignment2157);
+            pushFollow(FOLLOW_rhs_assignment_in_assignment2160);
             rhs=rhs_assignment(defer);
 
             state._fsp--;
@@ -5415,14 +5432,14 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            ID109=(Token)match(input,ID,FOLLOW_ID_in_lhs_assignment2172); 
+            ID109=(Token)match(input,ID,FOLLOW_ID_in_lhs_assignment2175); 
             ID109_tree = 
             (Object)adaptor.create(ID109)
             ;
             adaptor.addChild(root_0, ID109_tree);
 
 
-            pushFollow(FOLLOW_lhs_access_in_lhs_assignment2174);
+            pushFollow(FOLLOW_lhs_access_in_lhs_assignment2177);
             lhs_access110=lhs_access(defer);
 
             state._fsp--;
@@ -5484,23 +5501,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1314:2: (| ( DOT i= ID | LEFTSBR ( ID | NUMBER ) RIGHTSBR ) lhs_access[defer] )
-            int alt44=2;
-            int LA44_0 = input.LA(1);
+            int alt45=2;
+            int LA45_0 = input.LA(1);
 
-            if ( (LA44_0==EQUALS) ) {
-                alt44=1;
+            if ( (LA45_0==EQUALS) ) {
+                alt45=1;
             }
-            else if ( (LA44_0==DOT||LA44_0==LEFTSBR) ) {
-                alt44=2;
+            else if ( (LA45_0==DOT||LA45_0==LEFTSBR) ) {
+                alt45=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 44, 0, input);
+                    new NoViableAltException("", 45, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt44) {
+            switch (alt45) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1315:2: 
                     {
@@ -5516,34 +5533,34 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1315:4: ( DOT i= ID | LEFTSBR ( ID | NUMBER ) RIGHTSBR )
-                    int alt43=2;
-                    int LA43_0 = input.LA(1);
+                    int alt44=2;
+                    int LA44_0 = input.LA(1);
 
-                    if ( (LA43_0==DOT) ) {
-                        alt43=1;
+                    if ( (LA44_0==DOT) ) {
+                        alt44=1;
                     }
-                    else if ( (LA43_0==LEFTSBR) ) {
-                        alt43=2;
+                    else if ( (LA44_0==LEFTSBR) ) {
+                        alt44=2;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 43, 0, input);
+                            new NoViableAltException("", 44, 0, input);
 
                         throw nvae;
 
                     }
-                    switch (alt43) {
+                    switch (alt44) {
                         case 1 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1315:5: DOT i= ID
                             {
-                            DOT111=(Token)match(input,DOT,FOLLOW_DOT_in_lhs_access2194); 
+                            DOT111=(Token)match(input,DOT,FOLLOW_DOT_in_lhs_access2197); 
                             DOT111_tree = 
                             (Object)adaptor.create(DOT111)
                             ;
                             adaptor.addChild(root_0, DOT111_tree);
 
 
-                            i=(Token)match(input,ID,FOLLOW_ID_in_lhs_access2198); 
+                            i=(Token)match(input,ID,FOLLOW_ID_in_lhs_access2201); 
                             i_tree = 
                             (Object)adaptor.create(i)
                             ;
@@ -5555,7 +5572,7 @@ public TreeAdaptor getTreeAdaptor() {
                         case 2 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1315:16: LEFTSBR ( ID | NUMBER ) RIGHTSBR
                             {
-                            LEFTSBR112=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_lhs_access2202); 
+                            LEFTSBR112=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_lhs_access2205); 
                             LEFTSBR112_tree = 
                             (Object)adaptor.create(LEFTSBR112)
                             ;
@@ -5577,7 +5594,7 @@ public TreeAdaptor getTreeAdaptor() {
                             }
 
 
-                            RIGHTSBR114=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_lhs_access2210); 
+                            RIGHTSBR114=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_lhs_access2213); 
                             RIGHTSBR114_tree = 
                             (Object)adaptor.create(RIGHTSBR114)
                             ;
@@ -5590,7 +5607,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    pushFollow(FOLLOW_lhs_access_in_lhs_access2213);
+                    pushFollow(FOLLOW_lhs_access_in_lhs_access2216);
                     lhs_access115=lhs_access(defer);
 
                     state._fsp--;
@@ -5649,12 +5666,12 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1320:2: (fc= functionCall[defer] |de= dataExchange[defer] |exp= expr[defer] )
-            int alt45=3;
+            int alt46=3;
             switch ( input.LA(1) ) {
             case PERMUTE:
             case PRODUCT:
                 {
-                alt45=1;
+                alt46=1;
                 }
                 break;
             case LC_IMPORT:
@@ -5663,7 +5680,7 @@ public TreeAdaptor getTreeAdaptor() {
             case SBOL:
             case UC_IMPORT:
                 {
-                alt45=2;
+                alt46=2;
                 }
                 break;
             case DOLLAR:
@@ -5687,25 +5704,25 @@ public TreeAdaptor getTreeAdaptor() {
             case TRUE_LC:
             case TRUE_UC:
                 {
-                alt45=3;
+                alt46=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 45, 0, input);
+                    new NoViableAltException("", 46, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt45) {
+            switch (alt46) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1320:4: fc= functionCall[defer]
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_functionCall_in_rhs_assignment2236);
+                    pushFollow(FOLLOW_functionCall_in_rhs_assignment2239);
                     fc=functionCall(defer);
 
                     state._fsp--;
@@ -5726,7 +5743,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_dataExchange_in_rhs_assignment2246);
+                    pushFollow(FOLLOW_dataExchange_in_rhs_assignment2249);
                     de=dataExchange(defer);
 
                     state._fsp--;
@@ -5747,7 +5764,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_expr_in_rhs_assignment2256);
+                    pushFollow(FOLLOW_expr_in_rhs_assignment2259);
                     exp=expr(defer);
 
                     state._fsp--;
@@ -5824,7 +5841,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            idToken=(Token)match(input,ID,FOLLOW_ID_in_listOfIDs2284); 
+            idToken=(Token)match(input,ID,FOLLOW_ID_in_listOfIDs2287); 
             idToken_tree = 
             (Object)adaptor.create(idToken)
             ;
@@ -5845,24 +5862,24 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1358:4: ( ',' lstToken= listOfIDs[defer] )?
-            int alt46=2;
-            int LA46_0 = input.LA(1);
+            int alt47=2;
+            int LA47_0 = input.LA(1);
 
-            if ( (LA46_0==COMMA) ) {
-                alt46=1;
+            if ( (LA47_0==COMMA) ) {
+                alt47=1;
             }
-            switch (alt46) {
+            switch (alt47) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1358:5: ',' lstToken= listOfIDs[defer]
                     {
-                    char_literal116=(Token)match(input,COMMA,FOLLOW_COMMA_in_listOfIDs2293); 
+                    char_literal116=(Token)match(input,COMMA,FOLLOW_COMMA_in_listOfIDs2296); 
                     char_literal116_tree = 
                     (Object)adaptor.create(char_literal116)
                     ;
                     adaptor.addChild(root_0, char_literal116_tree);
 
 
-                    pushFollow(FOLLOW_listOfIDs_in_listOfIDs2297);
+                    pushFollow(FOLLOW_listOfIDs_in_listOfIDs2300);
                     lstToken=listOfIDs(defer);
 
                     state._fsp--;
@@ -5946,21 +5963,21 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            RULE117=(Token)match(input,RULE,FOLLOW_RULE_in_ruleDeclaration2321); 
+            RULE117=(Token)match(input,RULE,FOLLOW_RULE_in_ruleDeclaration2324); 
             RULE117_tree = 
             (Object)adaptor.create(RULE117)
             ;
             adaptor.addChild(root_0, RULE117_tree);
 
 
-            name=(Token)match(input,ID,FOLLOW_ID_in_ruleDeclaration2325); 
+            name=(Token)match(input,ID,FOLLOW_ID_in_ruleDeclaration2328); 
             name_tree = 
             (Object)adaptor.create(name)
             ;
             adaptor.addChild(root_0, name_tree);
 
 
-            LEFTP118=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_ruleDeclaration2327); 
+            LEFTP118=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_ruleDeclaration2330); 
             LEFTP118_tree = 
             (Object)adaptor.create(LEFTP118)
             ;
@@ -5971,13 +5988,13 @@ public TreeAdaptor getTreeAdaptor() {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1367:25: ( ( LC_ON | UC_ON ) device= ID COLON )? cnf= cnf_rule[defer]
             {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1367:25: ( ( LC_ON | UC_ON ) device= ID COLON )?
-            int alt47=2;
-            int LA47_0 = input.LA(1);
+            int alt48=2;
+            int LA48_0 = input.LA(1);
 
-            if ( (LA47_0==LC_ON||LA47_0==UC_ON) ) {
-                alt47=1;
+            if ( (LA48_0==LC_ON||LA48_0==UC_ON) ) {
+                alt48=1;
             }
-            switch (alt47) {
+            switch (alt48) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1367:26: ( LC_ON | UC_ON ) device= ID COLON
                     {
@@ -5996,14 +6013,14 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    device=(Token)match(input,ID,FOLLOW_ID_in_ruleDeclaration2340); 
+                    device=(Token)match(input,ID,FOLLOW_ID_in_ruleDeclaration2343); 
                     device_tree = 
                     (Object)adaptor.create(device)
                     ;
                     adaptor.addChild(root_0, device_tree);
 
 
-                    COLON120=(Token)match(input,COLON,FOLLOW_COLON_in_ruleDeclaration2342); 
+                    COLON120=(Token)match(input,COLON,FOLLOW_COLON_in_ruleDeclaration2345); 
                     COLON120_tree = 
                     (Object)adaptor.create(COLON120)
                     ;
@@ -6030,7 +6047,7 @@ public TreeAdaptor getTreeAdaptor() {
             }		
             	
 
-            pushFollow(FOLLOW_cnf_rule_in_ruleDeclaration2350);
+            pushFollow(FOLLOW_cnf_rule_in_ruleDeclaration2353);
             cnf=cnf_rule(defer);
 
             state._fsp--;
@@ -6040,7 +6057,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            RIGHTP121=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_ruleDeclaration2355); 
+            RIGHTP121=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_ruleDeclaration2358); 
             RIGHTP121_tree = 
             (Object)adaptor.create(RIGHTP121)
             ;
@@ -6108,7 +6125,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_ruleOperators_in_ruleOperator2369);
+            pushFollow(FOLLOW_ruleOperators_in_ruleOperator2372);
             ruleOperators122=ruleOperators();
 
             state._fsp--;
@@ -6255,115 +6272,115 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1441:2: ( EQUALS EQUALS | NEQUAL | LTHAN | GTHAN | LEQUAL | GEQUAL | ( 'CONTAINS' | 'contains' ) | ( 'NOTCONTAINS' | 'notcontains' ) | ( 'MATCHES' | 'matches' ) | ( 'NOTMATCHES' | 'notmatches' ) | ( 'STARTSWITH' | 'startswith' ) | ( 'ENDSWITH' | 'endswith' ) | ( 'EQUALS' | 'equals' ) | ( 'NOTEQUALS' | 'notequals' ) | ( 'SOUNDSLIKE' | 'soundslike' ) )
-            int alt48=15;
+            int alt49=15;
             switch ( input.LA(1) ) {
             case EQUALS:
                 {
-                alt48=1;
+                alt49=1;
                 }
                 break;
             case NEQUAL:
                 {
-                alt48=2;
+                alt49=2;
                 }
                 break;
             case LTHAN:
                 {
-                alt48=3;
+                alt49=3;
                 }
                 break;
             case GTHAN:
                 {
-                alt48=4;
+                alt49=4;
                 }
                 break;
             case LEQUAL:
                 {
-                alt48=5;
+                alt49=5;
                 }
                 break;
             case GEQUAL:
                 {
-                alt48=6;
+                alt49=6;
                 }
                 break;
             case 125:
             case 164:
                 {
-                alt48=7;
+                alt49=7;
                 }
                 break;
             case 134:
             case 173:
                 {
-                alt48=8;
+                alt49=8;
                 }
                 break;
             case 131:
             case 170:
                 {
-                alt48=9;
+                alt49=9;
                 }
                 break;
             case 137:
             case 176:
                 {
-                alt48=10;
+                alt49=10;
                 }
                 break;
             case 151:
             case 190:
                 {
-                alt48=11;
+                alt49=11;
                 }
                 break;
             case 127:
             case 166:
                 {
-                alt48=12;
+                alt49=12;
                 }
                 break;
             case 128:
             case 167:
                 {
-                alt48=13;
+                alt49=13;
                 }
                 break;
             case 135:
             case 174:
                 {
-                alt48=14;
+                alt49=14;
                 }
                 break;
             case 150:
             case 189:
                 {
-                alt48=15;
+                alt49=15;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 48, 0, input);
+                    new NoViableAltException("", 49, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt48) {
+            switch (alt49) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1441:4: EQUALS EQUALS
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    EQUALS124=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_relationalOperators2748); 
+                    EQUALS124=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_relationalOperators2751); 
                     EQUALS124_tree = 
                     (Object)adaptor.create(EQUALS124)
                     ;
                     adaptor.addChild(root_0, EQUALS124_tree);
 
 
-                    EQUALS125=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_relationalOperators2750); 
+                    EQUALS125=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_relationalOperators2753); 
                     EQUALS125_tree = 
                     (Object)adaptor.create(EQUALS125)
                     ;
@@ -6378,7 +6395,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    NEQUAL126=(Token)match(input,NEQUAL,FOLLOW_NEQUAL_in_relationalOperators2755); 
+                    NEQUAL126=(Token)match(input,NEQUAL,FOLLOW_NEQUAL_in_relationalOperators2758); 
                     NEQUAL126_tree = 
                     (Object)adaptor.create(NEQUAL126)
                     ;
@@ -6393,7 +6410,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    LTHAN127=(Token)match(input,LTHAN,FOLLOW_LTHAN_in_relationalOperators2760); 
+                    LTHAN127=(Token)match(input,LTHAN,FOLLOW_LTHAN_in_relationalOperators2763); 
                     LTHAN127_tree = 
                     (Object)adaptor.create(LTHAN127)
                     ;
@@ -6408,7 +6425,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    GTHAN128=(Token)match(input,GTHAN,FOLLOW_GTHAN_in_relationalOperators2765); 
+                    GTHAN128=(Token)match(input,GTHAN,FOLLOW_GTHAN_in_relationalOperators2768); 
                     GTHAN128_tree = 
                     (Object)adaptor.create(GTHAN128)
                     ;
@@ -6423,7 +6440,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    LEQUAL129=(Token)match(input,LEQUAL,FOLLOW_LEQUAL_in_relationalOperators2770); 
+                    LEQUAL129=(Token)match(input,LEQUAL,FOLLOW_LEQUAL_in_relationalOperators2773); 
                     LEQUAL129_tree = 
                     (Object)adaptor.create(LEQUAL129)
                     ;
@@ -6438,7 +6455,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    GEQUAL130=(Token)match(input,GEQUAL,FOLLOW_GEQUAL_in_relationalOperators2775); 
+                    GEQUAL130=(Token)match(input,GEQUAL,FOLLOW_GEQUAL_in_relationalOperators2778); 
                     GEQUAL130_tree = 
                     (Object)adaptor.create(GEQUAL130)
                     ;
@@ -6712,7 +6729,7 @@ public TreeAdaptor getTreeAdaptor() {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1460:4: (c= or_predicate[defer] )
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1460:5: c= or_predicate[defer]
             {
-            pushFollow(FOLLOW_or_predicate_in_cnf_rule2876);
+            pushFollow(FOLLOW_or_predicate_in_cnf_rule2879);
             c=or_predicate(defer);
 
             state._fsp--;
@@ -6733,13 +6750,13 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1468:5: ( ( LC_AND | UC_AND | LOG_AND ) cnf= cnf_rule[defer] )?
-            int alt49=2;
-            int LA49_0 = input.LA(1);
+            int alt50=2;
+            int LA50_0 = input.LA(1);
 
-            if ( (LA49_0==LC_AND||LA49_0==LOG_AND||LA49_0==UC_AND) ) {
-                alt49=1;
+            if ( (LA50_0==LC_AND||LA50_0==LOG_AND||LA50_0==UC_AND) ) {
+                alt50=1;
             }
-            switch (alt49) {
+            switch (alt50) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1468:7: ( LC_AND | UC_AND | LOG_AND ) cnf= cnf_rule[defer]
                     {
@@ -6758,7 +6775,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    pushFollow(FOLLOW_cnf_rule_in_cnf_rule2894);
+                    pushFollow(FOLLOW_cnf_rule_in_cnf_rule2897);
                     cnf=cnf_rule(defer);
 
                     state._fsp--;
@@ -6835,7 +6852,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_negated_predicate_in_or_predicate2924);
+            pushFollow(FOLLOW_negated_predicate_in_or_predicate2927);
             n1=negated_predicate(defer);
 
             state._fsp--;
@@ -6849,17 +6866,17 @@ public TreeAdaptor getTreeAdaptor() {
             	
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1484:4: ( ( LC_OR | UC_OR | LOG_OR ) n2= negated_predicate[defer] )*
-            loop50:
+            loop51:
             do {
-                int alt50=2;
-                int LA50_0 = input.LA(1);
+                int alt51=2;
+                int LA51_0 = input.LA(1);
 
-                if ( (LA50_0==LC_OR||LA50_0==LOG_OR||LA50_0==UC_OR) ) {
-                    alt50=1;
+                if ( (LA51_0==LC_OR||LA51_0==LOG_OR||LA51_0==UC_OR) ) {
+                    alt51=1;
                 }
 
 
-                switch (alt50) {
+                switch (alt51) {
             	case 1 :
             	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1484:5: ( LC_OR | UC_OR | LOG_OR ) n2= negated_predicate[defer]
             	    {
@@ -6878,7 +6895,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    }
 
 
-            	    pushFollow(FOLLOW_negated_predicate_in_or_predicate2940);
+            	    pushFollow(FOLLOW_negated_predicate_in_or_predicate2943);
             	    n2=negated_predicate(defer);
 
             	    state._fsp--;
@@ -6903,7 +6920,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    break loop50;
+            	    break loop51;
                 }
             } while (true);
 
@@ -6970,23 +6987,23 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1507:4: ( ( UC_NOT | LC_NOT | LOG_NOT ) c= predicate[defer] |c= predicate[defer] )
-            int alt51=2;
-            int LA51_0 = input.LA(1);
+            int alt52=2;
+            int LA52_0 = input.LA(1);
 
-            if ( (LA51_0==LC_NOT||LA51_0==LOG_NOT||LA51_0==UC_NOT) ) {
-                alt51=1;
+            if ( (LA52_0==LC_NOT||LA52_0==LOG_NOT||LA52_0==UC_NOT) ) {
+                alt52=1;
             }
-            else if ( (LA51_0==ID||LA51_0==LC_INDUCES||LA51_0==LC_REPRESSES||(LA51_0 >= LEFTP && LA51_0 <= LEFTSBR)||LA51_0==MINUS||LA51_0==NUMBER||LA51_0==REAL||LA51_0==STRING||LA51_0==UC_INDUCES||LA51_0==UC_REPRESSES||(LA51_0 >= 115 && LA51_0 <= 149)||(LA51_0 >= 151 && LA51_0 <= 188)||(LA51_0 >= 190 && LA51_0 <= 192)) ) {
-                alt51=2;
+            else if ( (LA52_0==ID||LA52_0==LC_INDUCES||LA52_0==LC_REPRESSES||(LA52_0 >= LEFTP && LA52_0 <= LEFTSBR)||LA52_0==MINUS||LA52_0==NUMBER||LA52_0==REAL||LA52_0==STRING||LA52_0==UC_INDUCES||LA52_0==UC_REPRESSES||(LA52_0 >= 115 && LA52_0 <= 149)||(LA52_0 >= 151 && LA52_0 <= 188)||(LA52_0 >= 190 && LA52_0 <= 192)) ) {
+                alt52=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 51, 0, input);
+                    new NoViableAltException("", 52, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt51) {
+            switch (alt52) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1507:5: ( UC_NOT | LC_NOT | LOG_NOT ) c= predicate[defer]
                     {
@@ -7005,7 +7022,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    pushFollow(FOLLOW_predicate_in_negated_predicate2978);
+                    pushFollow(FOLLOW_predicate_in_negated_predicate2981);
                     c=predicate(defer);
 
                     state._fsp--;
@@ -7027,7 +7044,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1516:4: c= predicate[defer]
                     {
-                    pushFollow(FOLLOW_predicate_in_negated_predicate2988);
+                    pushFollow(FOLLOW_predicate_in_negated_predicate2991);
                     c=predicate(defer);
 
                     state._fsp--;
@@ -7100,7 +7117,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1525:2: ( (lhs= operand[defer] )? op= ruleOperator[defer] (rhs= operand[defer] )? |i= ID |exp= expressionRule[defer] )
-            int alt54=3;
+            int alt55=3;
             switch ( input.LA(1) ) {
             case ID:
                 {
@@ -7120,7 +7137,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case 150:
                 case 189:
                     {
-                    alt54=3;
+                    alt55=3;
                     }
                     break;
                 case 125:
@@ -7129,7 +7146,7 @@ public TreeAdaptor getTreeAdaptor() {
                     switch ( input.LA(3) ) {
                     case ID:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LC_AND:
@@ -7142,7 +7159,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case UC_AND:
                     case UC_OR:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LEFTP:
@@ -7150,12 +7167,12 @@ public TreeAdaptor getTreeAdaptor() {
                     case REAL:
                     case STRING:
                         {
-                        alt54=3;
+                        alt55=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 54, 5, input);
+                            new NoViableAltException("", 55, 5, input);
 
                         throw nvae;
 
@@ -7171,7 +7188,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case UC_AND:
                 case UC_OR:
                     {
-                    alt54=2;
+                    alt55=2;
                     }
                     break;
                 case 134:
@@ -7180,7 +7197,7 @@ public TreeAdaptor getTreeAdaptor() {
                     switch ( input.LA(3) ) {
                     case ID:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LC_AND:
@@ -7193,7 +7210,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case UC_AND:
                     case UC_OR:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LEFTP:
@@ -7201,12 +7218,12 @@ public TreeAdaptor getTreeAdaptor() {
                     case REAL:
                     case STRING:
                         {
-                        alt54=3;
+                        alt55=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 54, 7, input);
+                            new NoViableAltException("", 55, 7, input);
 
                         throw nvae;
 
@@ -7220,7 +7237,7 @@ public TreeAdaptor getTreeAdaptor() {
                     switch ( input.LA(3) ) {
                     case ID:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LC_AND:
@@ -7233,7 +7250,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case UC_AND:
                     case UC_OR:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LEFTP:
@@ -7241,12 +7258,12 @@ public TreeAdaptor getTreeAdaptor() {
                     case REAL:
                     case STRING:
                         {
-                        alt54=3;
+                        alt55=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 54, 8, input);
+                            new NoViableAltException("", 55, 8, input);
 
                         throw nvae;
 
@@ -7260,7 +7277,7 @@ public TreeAdaptor getTreeAdaptor() {
                     switch ( input.LA(3) ) {
                     case ID:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LC_AND:
@@ -7273,7 +7290,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case UC_AND:
                     case UC_OR:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LEFTP:
@@ -7281,12 +7298,12 @@ public TreeAdaptor getTreeAdaptor() {
                     case REAL:
                     case STRING:
                         {
-                        alt54=3;
+                        alt55=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 54, 9, input);
+                            new NoViableAltException("", 55, 9, input);
 
                         throw nvae;
 
@@ -7300,7 +7317,7 @@ public TreeAdaptor getTreeAdaptor() {
                     switch ( input.LA(3) ) {
                     case ID:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LC_AND:
@@ -7313,7 +7330,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case UC_AND:
                     case UC_OR:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LEFTP:
@@ -7321,12 +7338,12 @@ public TreeAdaptor getTreeAdaptor() {
                     case REAL:
                     case STRING:
                         {
-                        alt54=3;
+                        alt55=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 54, 10, input);
+                            new NoViableAltException("", 55, 10, input);
 
                         throw nvae;
 
@@ -7340,7 +7357,7 @@ public TreeAdaptor getTreeAdaptor() {
                     switch ( input.LA(3) ) {
                     case ID:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LC_AND:
@@ -7353,7 +7370,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case UC_AND:
                     case UC_OR:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LEFTP:
@@ -7361,12 +7378,12 @@ public TreeAdaptor getTreeAdaptor() {
                     case REAL:
                     case STRING:
                         {
-                        alt54=3;
+                        alt55=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 54, 11, input);
+                            new NoViableAltException("", 55, 11, input);
 
                         throw nvae;
 
@@ -7380,7 +7397,7 @@ public TreeAdaptor getTreeAdaptor() {
                     switch ( input.LA(3) ) {
                     case ID:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LC_AND:
@@ -7393,7 +7410,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case UC_AND:
                     case UC_OR:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LEFTP:
@@ -7401,12 +7418,12 @@ public TreeAdaptor getTreeAdaptor() {
                     case REAL:
                     case STRING:
                         {
-                        alt54=3;
+                        alt55=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 54, 12, input);
+                            new NoViableAltException("", 55, 12, input);
 
                         throw nvae;
 
@@ -7420,7 +7437,7 @@ public TreeAdaptor getTreeAdaptor() {
                     switch ( input.LA(3) ) {
                     case ID:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LC_AND:
@@ -7433,7 +7450,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case UC_AND:
                     case UC_OR:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LEFTP:
@@ -7441,12 +7458,12 @@ public TreeAdaptor getTreeAdaptor() {
                     case REAL:
                     case STRING:
                         {
-                        alt54=3;
+                        alt55=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 54, 13, input);
+                            new NoViableAltException("", 55, 13, input);
 
                         throw nvae;
 
@@ -7519,12 +7536,12 @@ public TreeAdaptor getTreeAdaptor() {
                 case 191:
                 case 192:
                     {
-                    alt54=1;
+                    alt55=1;
                     }
                     break;
                 default:
                     NoViableAltException nvae =
-                        new NoViableAltException("", 54, 1, input);
+                        new NoViableAltException("", 55, 1, input);
 
                     throw nvae;
 
@@ -7541,7 +7558,7 @@ public TreeAdaptor getTreeAdaptor() {
                     switch ( input.LA(3) ) {
                     case ID:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LC_AND:
@@ -7554,7 +7571,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case UC_AND:
                     case UC_OR:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LEFTP:
@@ -7562,12 +7579,12 @@ public TreeAdaptor getTreeAdaptor() {
                     case REAL:
                     case STRING:
                         {
-                        alt54=3;
+                        alt55=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 54, 5, input);
+                            new NoViableAltException("", 55, 5, input);
 
                         throw nvae;
 
@@ -7588,7 +7605,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case 150:
                 case 189:
                     {
-                    alt54=3;
+                    alt55=3;
                     }
                     break;
                 case 134:
@@ -7597,7 +7614,7 @@ public TreeAdaptor getTreeAdaptor() {
                     switch ( input.LA(3) ) {
                     case ID:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LC_AND:
@@ -7610,7 +7627,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case UC_AND:
                     case UC_OR:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LEFTP:
@@ -7618,12 +7635,12 @@ public TreeAdaptor getTreeAdaptor() {
                     case REAL:
                     case STRING:
                         {
-                        alt54=3;
+                        alt55=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 54, 7, input);
+                            new NoViableAltException("", 55, 7, input);
 
                         throw nvae;
 
@@ -7637,7 +7654,7 @@ public TreeAdaptor getTreeAdaptor() {
                     switch ( input.LA(3) ) {
                     case ID:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LC_AND:
@@ -7650,7 +7667,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case UC_AND:
                     case UC_OR:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LEFTP:
@@ -7658,12 +7675,12 @@ public TreeAdaptor getTreeAdaptor() {
                     case REAL:
                     case STRING:
                         {
-                        alt54=3;
+                        alt55=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 54, 8, input);
+                            new NoViableAltException("", 55, 8, input);
 
                         throw nvae;
 
@@ -7677,7 +7694,7 @@ public TreeAdaptor getTreeAdaptor() {
                     switch ( input.LA(3) ) {
                     case ID:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LC_AND:
@@ -7690,7 +7707,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case UC_AND:
                     case UC_OR:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LEFTP:
@@ -7698,12 +7715,12 @@ public TreeAdaptor getTreeAdaptor() {
                     case REAL:
                     case STRING:
                         {
-                        alt54=3;
+                        alt55=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 54, 9, input);
+                            new NoViableAltException("", 55, 9, input);
 
                         throw nvae;
 
@@ -7717,7 +7734,7 @@ public TreeAdaptor getTreeAdaptor() {
                     switch ( input.LA(3) ) {
                     case ID:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LC_AND:
@@ -7730,7 +7747,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case UC_AND:
                     case UC_OR:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LEFTP:
@@ -7738,12 +7755,12 @@ public TreeAdaptor getTreeAdaptor() {
                     case REAL:
                     case STRING:
                         {
-                        alt54=3;
+                        alt55=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 54, 10, input);
+                            new NoViableAltException("", 55, 10, input);
 
                         throw nvae;
 
@@ -7757,7 +7774,7 @@ public TreeAdaptor getTreeAdaptor() {
                     switch ( input.LA(3) ) {
                     case ID:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LC_AND:
@@ -7770,7 +7787,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case UC_AND:
                     case UC_OR:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LEFTP:
@@ -7778,12 +7795,12 @@ public TreeAdaptor getTreeAdaptor() {
                     case REAL:
                     case STRING:
                         {
-                        alt54=3;
+                        alt55=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 54, 11, input);
+                            new NoViableAltException("", 55, 11, input);
 
                         throw nvae;
 
@@ -7797,7 +7814,7 @@ public TreeAdaptor getTreeAdaptor() {
                     switch ( input.LA(3) ) {
                     case ID:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LC_AND:
@@ -7810,7 +7827,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case UC_AND:
                     case UC_OR:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LEFTP:
@@ -7818,12 +7835,12 @@ public TreeAdaptor getTreeAdaptor() {
                     case REAL:
                     case STRING:
                         {
-                        alt54=3;
+                        alt55=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 54, 12, input);
+                            new NoViableAltException("", 55, 12, input);
 
                         throw nvae;
 
@@ -7837,7 +7854,7 @@ public TreeAdaptor getTreeAdaptor() {
                     switch ( input.LA(3) ) {
                     case ID:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LC_AND:
@@ -7850,7 +7867,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case UC_AND:
                     case UC_OR:
                         {
-                        alt54=1;
+                        alt55=1;
                         }
                         break;
                     case LEFTP:
@@ -7858,12 +7875,12 @@ public TreeAdaptor getTreeAdaptor() {
                     case REAL:
                     case STRING:
                         {
-                        alt54=3;
+                        alt55=3;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 54, 13, input);
+                            new NoViableAltException("", 55, 13, input);
 
                         throw nvae;
 
@@ -7936,12 +7953,12 @@ public TreeAdaptor getTreeAdaptor() {
                 case 191:
                 case 192:
                     {
-                    alt54=1;
+                    alt55=1;
                     }
                     break;
                 default:
                     NoViableAltException nvae =
-                        new NoViableAltException("", 54, 2, input);
+                        new NoViableAltException("", 55, 2, input);
 
                     throw nvae;
 
@@ -8031,7 +8048,7 @@ public TreeAdaptor getTreeAdaptor() {
             case 191:
             case 192:
                 {
-                alt54=1;
+                alt55=1;
                 }
                 break;
             case LEFTP:
@@ -8039,18 +8056,18 @@ public TreeAdaptor getTreeAdaptor() {
             case REAL:
             case STRING:
                 {
-                alt54=3;
+                alt55=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 54, 0, input);
+                    new NoViableAltException("", 55, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt54) {
+            switch (alt55) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1525:4: (lhs= operand[defer] )? op= ruleOperator[defer] (rhs= operand[defer] )?
                     {
@@ -8058,17 +8075,17 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1525:4: (lhs= operand[defer] )?
-                    int alt52=2;
-                    int LA52_0 = input.LA(1);
+                    int alt53=2;
+                    int LA53_0 = input.LA(1);
 
-                    if ( (LA52_0==ID||LA52_0==LEFTSBR||LA52_0==NUMBER) ) {
-                        alt52=1;
+                    if ( (LA53_0==ID||LA53_0==LEFTSBR||LA53_0==NUMBER) ) {
+                        alt53=1;
                     }
-                    switch (alt52) {
+                    switch (alt53) {
                         case 1 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1525:5: lhs= operand[defer]
                             {
-                            pushFollow(FOLLOW_operand_in_predicate3015);
+                            pushFollow(FOLLOW_operand_in_predicate3018);
                             lhs=operand(defer);
 
                             state._fsp--;
@@ -8085,7 +8102,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    pushFollow(FOLLOW_ruleOperator_in_predicate3025);
+                    pushFollow(FOLLOW_ruleOperator_in_predicate3028);
                     op=ruleOperator(defer);
 
                     state._fsp--;
@@ -8097,17 +8114,17 @@ public TreeAdaptor getTreeAdaptor() {
                     	
 
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1529:5: (rhs= operand[defer] )?
-                    int alt53=2;
-                    int LA53_0 = input.LA(1);
+                    int alt54=2;
+                    int LA54_0 = input.LA(1);
 
-                    if ( (LA53_0==ID||LA53_0==LEFTSBR||LA53_0==NUMBER) ) {
-                        alt53=1;
+                    if ( (LA54_0==ID||LA54_0==LEFTSBR||LA54_0==NUMBER) ) {
+                        alt54=1;
                     }
-                    switch (alt53) {
+                    switch (alt54) {
                         case 1 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1529:6: rhs= operand[defer]
                             {
-                            pushFollow(FOLLOW_operand_in_predicate3034);
+                            pushFollow(FOLLOW_operand_in_predicate3037);
                             rhs=operand(defer);
 
                             state._fsp--;
@@ -8145,7 +8162,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    i=(Token)match(input,ID,FOLLOW_ID_in_predicate3048); 
+                    i=(Token)match(input,ID,FOLLOW_ID_in_predicate3051); 
                     i_tree = 
                     (Object)adaptor.create(i)
                     ;
@@ -8178,7 +8195,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_expressionRule_in_predicate3057);
+                    pushFollow(FOLLOW_expressionRule_in_predicate3060);
                     exp=expressionRule(defer);
 
                     state._fsp--;
@@ -8256,36 +8273,36 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1574:4: (i= ID |n= NUMBER | '[' n= NUMBER ']' )
-            int alt55=3;
+            int alt56=3;
             switch ( input.LA(1) ) {
             case ID:
                 {
-                alt55=1;
+                alt56=1;
                 }
                 break;
             case NUMBER:
                 {
-                alt55=2;
+                alt56=2;
                 }
                 break;
             case LEFTSBR:
                 {
-                alt55=3;
+                alt56=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 55, 0, input);
+                    new NoViableAltException("", 56, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt55) {
+            switch (alt56) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1574:5: i= ID
                     {
-                    i=(Token)match(input,ID,FOLLOW_ID_in_operand3088); 
+                    i=(Token)match(input,ID,FOLLOW_ID_in_operand3091); 
                     i_tree = 
                     (Object)adaptor.create(i)
                     ;
@@ -8310,7 +8327,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1586:4: n= NUMBER
                     {
-                    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_operand3097); 
+                    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_operand3100); 
                     n_tree = 
                     (Object)adaptor.create(n)
                     ;
@@ -8328,21 +8345,21 @@ public TreeAdaptor getTreeAdaptor() {
                 case 3 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1591:4: '[' n= NUMBER ']'
                     {
-                    char_literal143=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_operand3104); 
+                    char_literal143=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_operand3107); 
                     char_literal143_tree = 
                     (Object)adaptor.create(char_literal143)
                     ;
                     adaptor.addChild(root_0, char_literal143_tree);
 
 
-                    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_operand3108); 
+                    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_operand3111); 
                     n_tree = 
                     (Object)adaptor.create(n)
                     ;
                     adaptor.addChild(root_0, n_tree);
 
 
-                    char_literal144=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_operand3110); 
+                    char_literal144=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_operand3113); 
                     char_literal144_tree = 
                     (Object)adaptor.create(char_literal144)
                     ;
@@ -8426,21 +8443,21 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_expression_in_expressionRule3136);
+            pushFollow(FOLLOW_expression_in_expressionRule3139);
             lhs=expression(defer);
 
             state._fsp--;
 
             adaptor.addChild(root_0, lhs.getTree());
 
-            pushFollow(FOLLOW_exp_op_in_expressionRule3141);
+            pushFollow(FOLLOW_exp_op_in_expressionRule3144);
             op=exp_op(defer);
 
             state._fsp--;
 
             adaptor.addChild(root_0, op.getTree());
 
-            pushFollow(FOLLOW_expression_in_expressionRule3146);
+            pushFollow(FOLLOW_expression_in_expressionRule3149);
             rhs=expression(defer);
 
             state._fsp--;
@@ -8513,30 +8530,30 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1625:2: (lhs= exp_operand[defer] (expop= exp_operator[defer] rhs= expression[defer] )? | LEFTP expression[defer] RIGHTP )
-            int alt57=2;
-            int LA57_0 = input.LA(1);
+            int alt58=2;
+            int LA58_0 = input.LA(1);
 
-            if ( (LA57_0==ID||LA57_0==MINUS||LA57_0==NUMBER||LA57_0==REAL||LA57_0==STRING) ) {
-                alt57=1;
+            if ( (LA58_0==ID||LA58_0==MINUS||LA58_0==NUMBER||LA58_0==REAL||LA58_0==STRING) ) {
+                alt58=1;
             }
-            else if ( (LA57_0==LEFTP) ) {
-                alt57=2;
+            else if ( (LA58_0==LEFTP) ) {
+                alt58=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 57, 0, input);
+                    new NoViableAltException("", 58, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt57) {
+            switch (alt58) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1625:4: lhs= exp_operand[defer] (expop= exp_operator[defer] rhs= expression[defer] )?
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_exp_operand_in_expression3170);
+                    pushFollow(FOLLOW_exp_operand_in_expression3173);
                     lhs=exp_operand(defer);
 
                     state._fsp--;
@@ -8550,24 +8567,24 @@ public TreeAdaptor getTreeAdaptor() {
                     	
 
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1629:4: (expop= exp_operator[defer] rhs= expression[defer] )?
-                    int alt56=2;
-                    int LA56_0 = input.LA(1);
+                    int alt57=2;
+                    int LA57_0 = input.LA(1);
 
-                    if ( (LA56_0==DIV||LA56_0==MINUS||LA56_0==MULT||LA56_0==PLUS) ) {
-                        alt56=1;
+                    if ( (LA57_0==DIV||LA57_0==MINUS||LA57_0==MULT||LA57_0==PLUS) ) {
+                        alt57=1;
                     }
-                    switch (alt56) {
+                    switch (alt57) {
                         case 1 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1629:6: expop= exp_operator[defer] rhs= expression[defer]
                             {
-                            pushFollow(FOLLOW_exp_operator_in_expression3179);
+                            pushFollow(FOLLOW_exp_operator_in_expression3182);
                             expop=exp_operator(defer);
 
                             state._fsp--;
 
                             adaptor.addChild(root_0, expop.getTree());
 
-                            pushFollow(FOLLOW_expression_in_expression3184);
+                            pushFollow(FOLLOW_expression_in_expression3187);
                             rhs=expression(defer);
 
                             state._fsp--;
@@ -8594,21 +8611,21 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    LEFTP145=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_expression3196); 
+                    LEFTP145=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_expression3199); 
                     LEFTP145_tree = 
                     (Object)adaptor.create(LEFTP145)
                     ;
                     adaptor.addChild(root_0, LEFTP145_tree);
 
 
-                    pushFollow(FOLLOW_expression_in_expression3198);
+                    pushFollow(FOLLOW_expression_in_expression3201);
                     expression146=expression(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, expression146.getTree());
 
-                    RIGHTP147=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_expression3201); 
+                    RIGHTP147=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_expression3204); 
                     RIGHTP147_tree = 
                     (Object)adaptor.create(RIGHTP147)
                     ;
@@ -8675,44 +8692,44 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1643:2: ( PLUS | MINUS | MULT | DIV )
-            int alt58=4;
+            int alt59=4;
             switch ( input.LA(1) ) {
             case PLUS:
                 {
-                alt58=1;
+                alt59=1;
                 }
                 break;
             case MINUS:
                 {
-                alt58=2;
+                alt59=2;
                 }
                 break;
             case MULT:
                 {
-                alt58=3;
+                alt59=3;
                 }
                 break;
             case DIV:
                 {
-                alt58=4;
+                alt59=4;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 58, 0, input);
+                    new NoViableAltException("", 59, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt58) {
+            switch (alt59) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1643:4: PLUS
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    PLUS148=(Token)match(input,PLUS,FOLLOW_PLUS_in_exp_operator3220); 
+                    PLUS148=(Token)match(input,PLUS,FOLLOW_PLUS_in_exp_operator3223); 
                     PLUS148_tree = 
                     (Object)adaptor.create(PLUS148)
                     ;
@@ -8733,7 +8750,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    MINUS149=(Token)match(input,MINUS,FOLLOW_MINUS_in_exp_operator3228); 
+                    MINUS149=(Token)match(input,MINUS,FOLLOW_MINUS_in_exp_operator3231); 
                     MINUS149_tree = 
                     (Object)adaptor.create(MINUS149)
                     ;
@@ -8754,7 +8771,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    MULT150=(Token)match(input,MULT,FOLLOW_MULT_in_exp_operator3235); 
+                    MULT150=(Token)match(input,MULT,FOLLOW_MULT_in_exp_operator3238); 
                     MULT150_tree = 
                     (Object)adaptor.create(MULT150)
                     ;
@@ -8775,7 +8792,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    DIV151=(Token)match(input,DIV,FOLLOW_DIV_in_exp_operator3242); 
+                    DIV151=(Token)match(input,DIV,FOLLOW_DIV_in_exp_operator3245); 
                     DIV151_tree = 
                     (Object)adaptor.create(DIV151)
                     ;
@@ -8858,31 +8875,31 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1671:2: ( (i1= ID DOT )* i2= ID ( LEFTSBR n= NUMBER RIGHTSBR )* |n= NUMBER | MINUS n= NUMBER |r= REAL | MINUS r= REAL |s= STRING )
-            int alt61=6;
+            int alt62=6;
             switch ( input.LA(1) ) {
             case ID:
                 {
-                alt61=1;
+                alt62=1;
                 }
                 break;
             case NUMBER:
                 {
-                alt61=2;
+                alt62=2;
                 }
                 break;
             case MINUS:
                 {
-                int LA61_3 = input.LA(2);
+                int LA62_3 = input.LA(2);
 
-                if ( (LA61_3==NUMBER) ) {
-                    alt61=3;
+                if ( (LA62_3==NUMBER) ) {
+                    alt62=3;
                 }
-                else if ( (LA61_3==REAL) ) {
-                    alt61=5;
+                else if ( (LA62_3==REAL) ) {
+                    alt62=5;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 61, 3, input);
+                        new NoViableAltException("", 62, 3, input);
 
                     throw nvae;
 
@@ -8891,23 +8908,23 @@ public TreeAdaptor getTreeAdaptor() {
                 break;
             case REAL:
                 {
-                alt61=4;
+                alt62=4;
                 }
                 break;
             case STRING:
                 {
-                alt61=6;
+                alt62=6;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 61, 0, input);
+                    new NoViableAltException("", 62, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt61) {
+            switch (alt62) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1671:4: (i1= ID DOT )* i2= ID ( LEFTSBR n= NUMBER RIGHTSBR )*
                     {
@@ -8915,34 +8932,34 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1671:4: (i1= ID DOT )*
-                    loop59:
+                    loop60:
                     do {
-                        int alt59=2;
-                        int LA59_0 = input.LA(1);
+                        int alt60=2;
+                        int LA60_0 = input.LA(1);
 
-                        if ( (LA59_0==ID) ) {
-                            int LA59_1 = input.LA(2);
+                        if ( (LA60_0==ID) ) {
+                            int LA60_1 = input.LA(2);
 
-                            if ( (LA59_1==DOT) ) {
-                                alt59=1;
+                            if ( (LA60_1==DOT) ) {
+                                alt60=1;
                             }
 
 
                         }
 
 
-                        switch (alt59) {
+                        switch (alt60) {
                     	case 1 :
                     	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1671:5: i1= ID DOT
                     	    {
-                    	    i1=(Token)match(input,ID,FOLLOW_ID_in_exp_operand3272); 
+                    	    i1=(Token)match(input,ID,FOLLOW_ID_in_exp_operand3275); 
                     	    i1_tree = 
                     	    (Object)adaptor.create(i1)
                     	    ;
                     	    adaptor.addChild(root_0, i1_tree);
 
 
-                    	    DOT152=(Token)match(input,DOT,FOLLOW_DOT_in_exp_operand3274); 
+                    	    DOT152=(Token)match(input,DOT,FOLLOW_DOT_in_exp_operand3277); 
                     	    DOT152_tree = 
                     	    (Object)adaptor.create(DOT152)
                     	    ;
@@ -8988,12 +9005,12 @@ public TreeAdaptor getTreeAdaptor() {
                     	    break;
 
                     	default :
-                    	    break loop59;
+                    	    break loop60;
                         }
                     } while (true);
 
 
-                    i2=(Token)match(input,ID,FOLLOW_ID_in_exp_operand3283); 
+                    i2=(Token)match(input,ID,FOLLOW_ID_in_exp_operand3286); 
                     i2_tree = 
                     (Object)adaptor.create(i2)
                     ;
@@ -9038,35 +9055,35 @@ public TreeAdaptor getTreeAdaptor() {
                     	
 
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1739:5: ( LEFTSBR n= NUMBER RIGHTSBR )*
-                    loop60:
+                    loop61:
                     do {
-                        int alt60=2;
-                        int LA60_0 = input.LA(1);
+                        int alt61=2;
+                        int LA61_0 = input.LA(1);
 
-                        if ( (LA60_0==LEFTSBR) ) {
-                            alt60=1;
+                        if ( (LA61_0==LEFTSBR) ) {
+                            alt61=1;
                         }
 
 
-                        switch (alt60) {
+                        switch (alt61) {
                     	case 1 :
                     	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1739:6: LEFTSBR n= NUMBER RIGHTSBR
                     	    {
-                    	    LEFTSBR153=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_exp_operand3289); 
+                    	    LEFTSBR153=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_exp_operand3292); 
                     	    LEFTSBR153_tree = 
                     	    (Object)adaptor.create(LEFTSBR153)
                     	    ;
                     	    adaptor.addChild(root_0, LEFTSBR153_tree);
 
 
-                    	    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_exp_operand3293); 
+                    	    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_exp_operand3296); 
                     	    n_tree = 
                     	    (Object)adaptor.create(n)
                     	    ;
                     	    adaptor.addChild(root_0, n_tree);
 
 
-                    	    RIGHTSBR154=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_exp_operand3295); 
+                    	    RIGHTSBR154=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_exp_operand3298); 
                     	    RIGHTSBR154_tree = 
                     	    (Object)adaptor.create(RIGHTSBR154)
                     	    ;
@@ -9089,7 +9106,7 @@ public TreeAdaptor getTreeAdaptor() {
                     	    break;
 
                     	default :
-                    	    break loop60;
+                    	    break loop61;
                         }
                     } while (true);
 
@@ -9102,7 +9119,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_exp_operand3307); 
+                    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_exp_operand3310); 
                     n_tree = 
                     (Object)adaptor.create(n)
                     ;
@@ -9125,14 +9142,14 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    MINUS155=(Token)match(input,MINUS,FOLLOW_MINUS_in_exp_operand3314); 
+                    MINUS155=(Token)match(input,MINUS,FOLLOW_MINUS_in_exp_operand3317); 
                     MINUS155_tree = 
                     (Object)adaptor.create(MINUS155)
                     ;
                     adaptor.addChild(root_0, MINUS155_tree);
 
 
-                    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_exp_operand3318); 
+                    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_exp_operand3321); 
                     n_tree = 
                     (Object)adaptor.create(n)
                     ;
@@ -9155,7 +9172,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    r=(Token)match(input,REAL,FOLLOW_REAL_in_exp_operand3327); 
+                    r=(Token)match(input,REAL,FOLLOW_REAL_in_exp_operand3330); 
                     r_tree = 
                     (Object)adaptor.create(r)
                     ;
@@ -9178,14 +9195,14 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    MINUS156=(Token)match(input,MINUS,FOLLOW_MINUS_in_exp_operand3334); 
+                    MINUS156=(Token)match(input,MINUS,FOLLOW_MINUS_in_exp_operand3337); 
                     MINUS156_tree = 
                     (Object)adaptor.create(MINUS156)
                     ;
                     adaptor.addChild(root_0, MINUS156_tree);
 
 
-                    r=(Token)match(input,REAL,FOLLOW_REAL_in_exp_operand3338); 
+                    r=(Token)match(input,REAL,FOLLOW_REAL_in_exp_operand3341); 
                     r_tree = 
                     (Object)adaptor.create(r)
                     ;
@@ -9208,7 +9225,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    s=(Token)match(input,STRING,FOLLOW_STRING_in_exp_operand3347); 
+                    s=(Token)match(input,STRING,FOLLOW_STRING_in_exp_operand3350); 
                     s_tree = 
                     (Object)adaptor.create(s)
                     ;
@@ -9314,7 +9331,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_relationalOperators_in_exp_op3374);
+            pushFollow(FOLLOW_relationalOperators_in_exp_op3377);
             relationalOperators157=relationalOperators();
 
             state._fsp--;
@@ -9379,35 +9396,35 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            GRAMMAR158=(Token)match(input,GRAMMAR,FOLLOW_GRAMMAR_in_grammarDeclaration3393); 
+            GRAMMAR158=(Token)match(input,GRAMMAR,FOLLOW_GRAMMAR_in_grammarDeclaration3396); 
             GRAMMAR158_tree = 
             (Object)adaptor.create(GRAMMAR158)
             ;
             adaptor.addChild(root_0, GRAMMAR158_tree);
 
 
-            n=(Token)match(input,ID,FOLLOW_ID_in_grammarDeclaration3397); 
+            n=(Token)match(input,ID,FOLLOW_ID_in_grammarDeclaration3400); 
             n_tree = 
             (Object)adaptor.create(n)
             ;
             adaptor.addChild(root_0, n_tree);
 
 
-            LEFTP159=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_grammarDeclaration3399); 
+            LEFTP159=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_grammarDeclaration3402); 
             LEFTP159_tree = 
             (Object)adaptor.create(LEFTP159)
             ;
             adaptor.addChild(root_0, LEFTP159_tree);
 
 
-            pushFollow(FOLLOW_list_of_production_rules_in_grammarDeclaration3401);
+            pushFollow(FOLLOW_list_of_production_rules_in_grammarDeclaration3404);
             list_of_production_rules160=list_of_production_rules(defer);
 
             state._fsp--;
 
             adaptor.addChild(root_0, list_of_production_rules160.getTree());
 
-            RIGHTP161=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_grammarDeclaration3404); 
+            RIGHTP161=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_grammarDeclaration3407); 
             RIGHTP161_tree = 
             (Object)adaptor.create(RIGHTP161)
             ;
@@ -9468,14 +9485,14 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_production_rule_in_list_of_production_rules3416);
+            pushFollow(FOLLOW_production_rule_in_list_of_production_rules3419);
             production_rule162=production_rule(defer);
 
             state._fsp--;
 
             adaptor.addChild(root_0, production_rule162.getTree());
 
-            SEMIC163=(Token)match(input,SEMIC,FOLLOW_SEMIC_in_list_of_production_rules3419); 
+            SEMIC163=(Token)match(input,SEMIC,FOLLOW_SEMIC_in_list_of_production_rules3422); 
             SEMIC163_tree = 
             (Object)adaptor.create(SEMIC163)
             ;
@@ -9483,17 +9500,17 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1807:33: ( list_of_production_rules[defer] )?
-            int alt62=2;
-            int LA62_0 = input.LA(1);
+            int alt63=2;
+            int LA63_0 = input.LA(1);
 
-            if ( (LA62_0==ID) ) {
-                alt62=1;
+            if ( (LA63_0==ID) ) {
+                alt63=1;
             }
-            switch (alt62) {
+            switch (alt63) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1807:34: list_of_production_rules[defer]
                     {
-                    pushFollow(FOLLOW_list_of_production_rules_in_list_of_production_rules3422);
+                    pushFollow(FOLLOW_list_of_production_rules_in_list_of_production_rules3425);
                     list_of_production_rules164=list_of_production_rules(defer);
 
                     state._fsp--;
@@ -9560,7 +9577,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            lhs=(Token)match(input,ID,FOLLOW_ID_in_production_rule3442); 
+            lhs=(Token)match(input,ID,FOLLOW_ID_in_production_rule3445); 
             lhs_tree = 
             (Object)adaptor.create(lhs)
             ;
@@ -9573,14 +9590,14 @@ public TreeAdaptor getTreeAdaptor() {
             }	
             	
 
-            ARROW165=(Token)match(input,ARROW,FOLLOW_ARROW_in_production_rule3446); 
+            ARROW165=(Token)match(input,ARROW,FOLLOW_ARROW_in_production_rule3449); 
             ARROW165_tree = 
             (Object)adaptor.create(ARROW165)
             ;
             adaptor.addChild(root_0, ARROW165_tree);
 
 
-            pushFollow(FOLLOW_right_hand_side_in_production_rule3448);
+            pushFollow(FOLLOW_right_hand_side_in_production_rule3451);
             right_hand_side166=right_hand_side(defer);
 
             state._fsp--;
@@ -9638,21 +9655,21 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1819:2: (i= ID ( COMMA right_hand_side[defer] )? | interaction[defer, \"some_string\"] )
-            int alt64=2;
-            int LA64_0 = input.LA(1);
+            int alt65=2;
+            int LA65_0 = input.LA(1);
 
-            if ( (LA64_0==ID) ) {
-                int LA64_1 = input.LA(2);
+            if ( (LA65_0==ID) ) {
+                int LA65_1 = input.LA(2);
 
-                if ( (LA64_1==COMMA||LA64_1==SEMIC) ) {
-                    alt64=1;
+                if ( (LA65_1==COMMA||LA65_1==SEMIC) ) {
+                    alt65=1;
                 }
-                else if ( (LA64_1==LC_INDUCES||LA64_1==LC_REPRESSES||LA64_1==UC_INDUCES||LA64_1==UC_REPRESSES) ) {
-                    alt64=2;
+                else if ( (LA65_1==LC_INDUCES||LA65_1==LC_REPRESSES||LA65_1==UC_INDUCES||LA65_1==UC_REPRESSES) ) {
+                    alt65=2;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 64, 1, input);
+                        new NoViableAltException("", 65, 1, input);
 
                     throw nvae;
 
@@ -9660,19 +9677,19 @@ public TreeAdaptor getTreeAdaptor() {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 64, 0, input);
+                    new NoViableAltException("", 65, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt64) {
+            switch (alt65) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1819:4: i= ID ( COMMA right_hand_side[defer] )?
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    i=(Token)match(input,ID,FOLLOW_ID_in_right_hand_side3464); 
+                    i=(Token)match(input,ID,FOLLOW_ID_in_right_hand_side3467); 
                     i_tree = 
                     (Object)adaptor.create(i)
                     ;
@@ -9687,24 +9704,24 @@ public TreeAdaptor getTreeAdaptor() {
                     	
 
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1824:4: ( COMMA right_hand_side[defer] )?
-                    int alt63=2;
-                    int LA63_0 = input.LA(1);
+                    int alt64=2;
+                    int LA64_0 = input.LA(1);
 
-                    if ( (LA63_0==COMMA) ) {
-                        alt63=1;
+                    if ( (LA64_0==COMMA) ) {
+                        alt64=1;
                     }
-                    switch (alt63) {
+                    switch (alt64) {
                         case 1 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1824:5: COMMA right_hand_side[defer]
                             {
-                            COMMA167=(Token)match(input,COMMA,FOLLOW_COMMA_in_right_hand_side3469); 
+                            COMMA167=(Token)match(input,COMMA,FOLLOW_COMMA_in_right_hand_side3472); 
                             COMMA167_tree = 
                             (Object)adaptor.create(COMMA167)
                             ;
                             adaptor.addChild(root_0, COMMA167_tree);
 
 
-                            pushFollow(FOLLOW_right_hand_side_in_right_hand_side3471);
+                            pushFollow(FOLLOW_right_hand_side_in_right_hand_side3474);
                             right_hand_side168=right_hand_side(defer);
 
                             state._fsp--;
@@ -9725,7 +9742,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_interaction_in_right_hand_side3479);
+                    pushFollow(FOLLOW_interaction_in_right_hand_side3482);
                     interaction169=interaction(defer, "some_string");
 
                     state._fsp--;
@@ -9790,30 +9807,30 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1834:2: (i1= interaction[defer, null] | INTERACTION name= ID LEFTP i2= interaction[defer, $name.text] RIGHTP )
-            int alt65=2;
-            int LA65_0 = input.LA(1);
+            int alt66=2;
+            int LA66_0 = input.LA(1);
 
-            if ( (LA65_0==ID) ) {
-                alt65=1;
+            if ( (LA66_0==ID) ) {
+                alt66=1;
             }
-            else if ( (LA65_0==INTERACTION) ) {
-                alt65=2;
+            else if ( (LA66_0==INTERACTION) ) {
+                alt66=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 65, 0, input);
+                    new NoViableAltException("", 66, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt65) {
+            switch (alt66) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1834:4: i1= interaction[defer, null]
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_interaction_in_interactionDeclaration3504);
+                    pushFollow(FOLLOW_interaction_in_interactionDeclaration3507);
                     i1=interaction(defer, null);
 
                     state._fsp--;
@@ -9834,35 +9851,35 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    INTERACTION170=(Token)match(input,INTERACTION,FOLLOW_INTERACTION_in_interactionDeclaration3512); 
+                    INTERACTION170=(Token)match(input,INTERACTION,FOLLOW_INTERACTION_in_interactionDeclaration3515); 
                     INTERACTION170_tree = 
                     (Object)adaptor.create(INTERACTION170)
                     ;
                     adaptor.addChild(root_0, INTERACTION170_tree);
 
 
-                    name=(Token)match(input,ID,FOLLOW_ID_in_interactionDeclaration3516); 
+                    name=(Token)match(input,ID,FOLLOW_ID_in_interactionDeclaration3519); 
                     name_tree = 
                     (Object)adaptor.create(name)
                     ;
                     adaptor.addChild(root_0, name_tree);
 
 
-                    LEFTP171=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_interactionDeclaration3518); 
+                    LEFTP171=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_interactionDeclaration3521); 
                     LEFTP171_tree = 
                     (Object)adaptor.create(LEFTP171)
                     ;
                     adaptor.addChild(root_0, LEFTP171_tree);
 
 
-                    pushFollow(FOLLOW_interaction_in_interactionDeclaration3522);
+                    pushFollow(FOLLOW_interaction_in_interactionDeclaration3525);
                     i2=interaction(defer, (name!=null?name.getText():null));
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, i2.getTree());
 
-                    RIGHTP172=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_interactionDeclaration3525); 
+                    RIGHTP172=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_interactionDeclaration3528); 
                     RIGHTP172_tree = 
                     (Object)adaptor.create(RIGHTP172)
                     ;
@@ -9937,41 +9954,41 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1848:2: (lhs1= ID t1= interactionType[defer] rhs1= ID |lhs2= ID t2= interactionType[defer] LEFTP rhs2= interaction[defer, name] RIGHTP )
-            int alt66=2;
-            int LA66_0 = input.LA(1);
+            int alt67=2;
+            int LA67_0 = input.LA(1);
 
-            if ( (LA66_0==ID) ) {
-                int LA66_1 = input.LA(2);
+            if ( (LA67_0==ID) ) {
+                int LA67_1 = input.LA(2);
 
-                if ( (LA66_1==LC_REPRESSES||LA66_1==UC_REPRESSES) ) {
-                    int LA66_2 = input.LA(3);
+                if ( (LA67_1==LC_REPRESSES||LA67_1==UC_REPRESSES) ) {
+                    int LA67_2 = input.LA(3);
 
-                    if ( (LA66_2==ID) ) {
-                        alt66=1;
+                    if ( (LA67_2==ID) ) {
+                        alt67=1;
                     }
-                    else if ( (LA66_2==LEFTP) ) {
-                        alt66=2;
+                    else if ( (LA67_2==LEFTP) ) {
+                        alt67=2;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 66, 2, input);
+                            new NoViableAltException("", 67, 2, input);
 
                         throw nvae;
 
                     }
                 }
-                else if ( (LA66_1==LC_INDUCES||LA66_1==UC_INDUCES) ) {
-                    int LA66_3 = input.LA(3);
+                else if ( (LA67_1==LC_INDUCES||LA67_1==UC_INDUCES) ) {
+                    int LA67_3 = input.LA(3);
 
-                    if ( (LA66_3==ID) ) {
-                        alt66=1;
+                    if ( (LA67_3==ID) ) {
+                        alt67=1;
                     }
-                    else if ( (LA66_3==LEFTP) ) {
-                        alt66=2;
+                    else if ( (LA67_3==LEFTP) ) {
+                        alt67=2;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 66, 3, input);
+                            new NoViableAltException("", 67, 3, input);
 
                         throw nvae;
 
@@ -9979,7 +9996,7 @@ public TreeAdaptor getTreeAdaptor() {
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 66, 1, input);
+                        new NoViableAltException("", 67, 1, input);
 
                     throw nvae;
 
@@ -9987,33 +10004,33 @@ public TreeAdaptor getTreeAdaptor() {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 66, 0, input);
+                    new NoViableAltException("", 67, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt66) {
+            switch (alt67) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1848:4: lhs1= ID t1= interactionType[defer] rhs1= ID
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    lhs1=(Token)match(input,ID,FOLLOW_ID_in_interaction3548); 
+                    lhs1=(Token)match(input,ID,FOLLOW_ID_in_interaction3551); 
                     lhs1_tree = 
                     (Object)adaptor.create(lhs1)
                     ;
                     adaptor.addChild(root_0, lhs1_tree);
 
 
-                    pushFollow(FOLLOW_interactionType_in_interaction3552);
+                    pushFollow(FOLLOW_interactionType_in_interaction3555);
                     t1=interactionType(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, t1.getTree());
 
-                    rhs1=(Token)match(input,ID,FOLLOW_ID_in_interaction3557); 
+                    rhs1=(Token)match(input,ID,FOLLOW_ID_in_interaction3560); 
                     rhs1_tree = 
                     (Object)adaptor.create(rhs1)
                     ;
@@ -10038,35 +10055,35 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    lhs2=(Token)match(input,ID,FOLLOW_ID_in_interaction3566); 
+                    lhs2=(Token)match(input,ID,FOLLOW_ID_in_interaction3569); 
                     lhs2_tree = 
                     (Object)adaptor.create(lhs2)
                     ;
                     adaptor.addChild(root_0, lhs2_tree);
 
 
-                    pushFollow(FOLLOW_interactionType_in_interaction3570);
+                    pushFollow(FOLLOW_interactionType_in_interaction3573);
                     t2=interactionType(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, t2.getTree());
 
-                    LEFTP173=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_interaction3573); 
+                    LEFTP173=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_interaction3576); 
                     LEFTP173_tree = 
                     (Object)adaptor.create(LEFTP173)
                     ;
                     adaptor.addChild(root_0, LEFTP173_tree);
 
 
-                    pushFollow(FOLLOW_interaction_in_interaction3577);
+                    pushFollow(FOLLOW_interaction_in_interaction3580);
                     rhs2=interaction(defer, name);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, rhs2.getTree());
 
-                    RIGHTP174=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_interaction3580); 
+                    RIGHTP174=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_interaction3583); 
                     RIGHTP174_tree = 
                     (Object)adaptor.create(RIGHTP174)
                     ;
@@ -10133,23 +10150,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1870:2: ( ( UC_REPRESSES | LC_REPRESSES ) | ( UC_INDUCES | LC_INDUCES ) )
-            int alt67=2;
-            int LA67_0 = input.LA(1);
+            int alt68=2;
+            int LA68_0 = input.LA(1);
 
-            if ( (LA67_0==LC_REPRESSES||LA67_0==UC_REPRESSES) ) {
-                alt67=1;
+            if ( (LA68_0==LC_REPRESSES||LA68_0==UC_REPRESSES) ) {
+                alt68=1;
             }
-            else if ( (LA67_0==LC_INDUCES||LA67_0==UC_INDUCES) ) {
-                alt67=2;
+            else if ( (LA68_0==LC_INDUCES||LA68_0==UC_INDUCES) ) {
+                alt68=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 67, 0, input);
+                    new NoViableAltException("", 68, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt67) {
+            switch (alt68) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1870:4: ( UC_REPRESSES | LC_REPRESSES )
                     {
@@ -10268,27 +10285,27 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1893:4: (pr= PRODUCT |pe= PERMUTE )
-            int alt68=2;
-            int LA68_0 = input.LA(1);
+            int alt69=2;
+            int LA69_0 = input.LA(1);
 
-            if ( (LA68_0==PRODUCT) ) {
-                alt68=1;
+            if ( (LA69_0==PRODUCT) ) {
+                alt69=1;
             }
-            else if ( (LA68_0==PERMUTE) ) {
-                alt68=2;
+            else if ( (LA69_0==PERMUTE) ) {
+                alt69=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 68, 0, input);
+                    new NoViableAltException("", 69, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt68) {
+            switch (alt69) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1893:5: pr= PRODUCT
                     {
-                    pr=(Token)match(input,PRODUCT,FOLLOW_PRODUCT_in_functionCall3647); 
+                    pr=(Token)match(input,PRODUCT,FOLLOW_PRODUCT_in_functionCall3650); 
                     pr_tree = 
                     (Object)adaptor.create(pr)
                     ;
@@ -10300,7 +10317,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1893:16: pe= PERMUTE
                     {
-                    pe=(Token)match(input,PERMUTE,FOLLOW_PERMUTE_in_functionCall3651); 
+                    pe=(Token)match(input,PERMUTE,FOLLOW_PERMUTE_in_functionCall3654); 
                     pe_tree = 
                     (Object)adaptor.create(pe)
                     ;
@@ -10313,21 +10330,21 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            LEFTP177=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_functionCall3654); 
+            LEFTP177=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_functionCall3657); 
             LEFTP177_tree = 
             (Object)adaptor.create(LEFTP177)
             ;
             adaptor.addChild(root_0, LEFTP177_tree);
 
 
-            idToken=(Token)match(input,ID,FOLLOW_ID_in_functionCall3658); 
+            idToken=(Token)match(input,ID,FOLLOW_ID_in_functionCall3661); 
             idToken_tree = 
             (Object)adaptor.create(idToken)
             ;
             adaptor.addChild(root_0, idToken_tree);
 
 
-            RIGHTP178=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_functionCall3660); 
+            RIGHTP178=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_functionCall3663); 
             RIGHTP178_tree = 
             (Object)adaptor.create(RIGHTP178)
             ;
@@ -10414,51 +10431,51 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1921:2: ( PRINTLN LEFTP tp= toPrint[defer] RIGHTP | PRINT LEFTP tp= toPrint[defer] RIGHTP )
-            int alt69=2;
-            int LA69_0 = input.LA(1);
+            int alt70=2;
+            int LA70_0 = input.LA(1);
 
-            if ( (LA69_0==PRINTLN) ) {
-                alt69=1;
+            if ( (LA70_0==PRINTLN) ) {
+                alt70=1;
             }
-            else if ( (LA69_0==PRINT) ) {
-                alt69=2;
+            else if ( (LA70_0==PRINT) ) {
+                alt70=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 69, 0, input);
+                    new NoViableAltException("", 70, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt69) {
+            switch (alt70) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1921:4: PRINTLN LEFTP tp= toPrint[defer] RIGHTP
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    PRINTLN179=(Token)match(input,PRINTLN,FOLLOW_PRINTLN_in_printStatement3678); 
+                    PRINTLN179=(Token)match(input,PRINTLN,FOLLOW_PRINTLN_in_printStatement3681); 
                     PRINTLN179_tree = 
                     (Object)adaptor.create(PRINTLN179)
                     ;
                     adaptor.addChild(root_0, PRINTLN179_tree);
 
 
-                    LEFTP180=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_printStatement3680); 
+                    LEFTP180=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_printStatement3683); 
                     LEFTP180_tree = 
                     (Object)adaptor.create(LEFTP180)
                     ;
                     adaptor.addChild(root_0, LEFTP180_tree);
 
 
-                    pushFollow(FOLLOW_toPrint_in_printStatement3684);
+                    pushFollow(FOLLOW_toPrint_in_printStatement3687);
                     tp=toPrint(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, tp.getTree());
 
-                    RIGHTP181=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_printStatement3687); 
+                    RIGHTP181=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_printStatement3690); 
                     RIGHTP181_tree = 
                     (Object)adaptor.create(RIGHTP181)
                     ;
@@ -10487,28 +10504,28 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    PRINT182=(Token)match(input,PRINT,FOLLOW_PRINT_in_printStatement3694); 
+                    PRINT182=(Token)match(input,PRINT,FOLLOW_PRINT_in_printStatement3697); 
                     PRINT182_tree = 
                     (Object)adaptor.create(PRINT182)
                     ;
                     adaptor.addChild(root_0, PRINT182_tree);
 
 
-                    LEFTP183=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_printStatement3696); 
+                    LEFTP183=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_printStatement3699); 
                     LEFTP183_tree = 
                     (Object)adaptor.create(LEFTP183)
                     ;
                     adaptor.addChild(root_0, LEFTP183_tree);
 
 
-                    pushFollow(FOLLOW_toPrint_in_printStatement3700);
+                    pushFollow(FOLLOW_toPrint_in_printStatement3703);
                     tp=toPrint(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, tp.getTree());
 
-                    RIGHTP184=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_printStatement3703); 
+                    RIGHTP184=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_printStatement3706); 
                     RIGHTP184_tree = 
                     (Object)adaptor.create(RIGHTP184)
                     ;
@@ -10583,14 +10600,14 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_expr_in_toPrint3724);
+            pushFollow(FOLLOW_expr_in_toPrint3727);
             exp=expr(defer);
 
             state._fsp--;
 
             adaptor.addChild(root_0, exp.getTree());
 
-            pushFollow(FOLLOW_toPrint_prime_in_toPrint3729);
+            pushFollow(FOLLOW_toPrint_prime_in_toPrint3732);
             tpp=toPrint_prime(defer);
 
             state._fsp--;
@@ -10657,23 +10674,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1965:2: (| COMMA tp= toPrint[defer] )
-            int alt70=2;
-            int LA70_0 = input.LA(1);
+            int alt71=2;
+            int LA71_0 = input.LA(1);
 
-            if ( (LA70_0==RIGHTP) ) {
-                alt70=1;
+            if ( (LA71_0==RIGHTP) ) {
+                alt71=1;
             }
-            else if ( (LA70_0==COMMA) ) {
-                alt70=2;
+            else if ( (LA71_0==COMMA) ) {
+                alt71=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 70, 0, input);
+                    new NoViableAltException("", 71, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt70) {
+            switch (alt71) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1965:4: 
                     {
@@ -10694,14 +10711,14 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    COMMA185=(Token)match(input,COMMA,FOLLOW_COMMA_in_toPrint_prime3755); 
+                    COMMA185=(Token)match(input,COMMA,FOLLOW_COMMA_in_toPrint_prime3758); 
                     COMMA185_tree = 
                     (Object)adaptor.create(COMMA185)
                     ;
                     adaptor.addChild(root_0, COMMA185_tree);
 
 
-                    pushFollow(FOLLOW_toPrint_in_toPrint_prime3759);
+                    pushFollow(FOLLOW_toPrint_in_toPrint_prime3762);
                     tp=toPrint(defer);
 
                     state._fsp--;
@@ -10766,42 +10783,42 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1983:2: ( ifStatement[defer] | forall_iterator[defer] | for_loop[defer] )
-            int alt71=3;
+            int alt72=3;
             switch ( input.LA(1) ) {
             case LC_IF:
             case UC_IF:
                 {
-                alt71=1;
+                alt72=1;
                 }
                 break;
             case LC_FORALL:
             case UC_FORALL:
                 {
-                alt71=2;
+                alt72=2;
                 }
                 break;
             case LC_FOR:
             case UC_FOR:
                 {
-                alt71=3;
+                alt72=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 71, 0, input);
+                    new NoViableAltException("", 72, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt71) {
+            switch (alt72) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1983:4: ifStatement[defer]
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_ifStatement_in_imperativeStatements3779);
+                    pushFollow(FOLLOW_ifStatement_in_imperativeStatements3782);
                     ifStatement186=ifStatement(defer);
 
                     state._fsp--;
@@ -10816,7 +10833,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_forall_iterator_in_imperativeStatements3785);
+                    pushFollow(FOLLOW_forall_iterator_in_imperativeStatements3788);
                     forall_iterator187=forall_iterator(defer);
 
                     state._fsp--;
@@ -10831,7 +10848,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_for_loop_in_imperativeStatements3791);
+                    pushFollow(FOLLOW_for_loop_in_imperativeStatements3794);
                     for_loop188=for_loop(defer);
 
                     state._fsp--;
@@ -10936,42 +10953,42 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            LEFTP190=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_ifStatement3823); 
+            LEFTP190=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_ifStatement3826); 
             LEFTP190_tree = 
             (Object)adaptor.create(LEFTP190)
             ;
             adaptor.addChild(root_0, LEFTP190_tree);
 
 
-            pushFollow(FOLLOW_imp_condition_in_ifStatement3827);
+            pushFollow(FOLLOW_imp_condition_in_ifStatement3830);
             co=imp_condition(defer);
 
             state._fsp--;
 
             adaptor.addChild(root_0, co.getTree());
 
-            RIGHTP191=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_ifStatement3830); 
+            RIGHTP191=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_ifStatement3833); 
             RIGHTP191_tree = 
             (Object)adaptor.create(RIGHTP191)
             ;
             adaptor.addChild(root_0, RIGHTP191_tree);
 
 
-            LEFTCUR192=(Token)match(input,LEFTCUR,FOLLOW_LEFTCUR_in_ifStatement3832); 
+            LEFTCUR192=(Token)match(input,LEFTCUR,FOLLOW_LEFTCUR_in_ifStatement3835); 
             LEFTCUR192_tree = 
             (Object)adaptor.create(LEFTCUR192)
             ;
             adaptor.addChild(root_0, LEFTCUR192_tree);
 
 
-            pushFollow(FOLLOW_listOfStatements_in_ifStatement3840);
+            pushFollow(FOLLOW_listOfStatements_in_ifStatement3843);
             stmts=listOfStatements(true);
 
             state._fsp--;
 
             adaptor.addChild(root_0, stmts.getTree());
 
-            RIGHTCUR193=(Token)match(input,RIGHTCUR,FOLLOW_RIGHTCUR_in_ifStatement3843); 
+            RIGHTCUR193=(Token)match(input,RIGHTCUR,FOLLOW_RIGHTCUR_in_ifStatement3846); 
             RIGHTCUR193_tree = 
             (Object)adaptor.create(RIGHTCUR193)
             ;
@@ -10998,17 +11015,17 @@ public TreeAdaptor getTreeAdaptor() {
             		
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2019:3: ( ( UC_ELSEIF | LC_ELSEIF ) LEFTP co= imp_condition[defer] RIGHTP LEFTCUR stmts= listOfStatements[true] RIGHTCUR )*
-            loop72:
+            loop73:
             do {
-                int alt72=2;
-                int LA72_0 = input.LA(1);
+                int alt73=2;
+                int LA73_0 = input.LA(1);
 
-                if ( (LA72_0==LC_ELSEIF||LA72_0==UC_ELSEIF) ) {
-                    alt72=1;
+                if ( (LA73_0==LC_ELSEIF||LA73_0==UC_ELSEIF) ) {
+                    alt73=1;
                 }
 
 
-                switch (alt72) {
+                switch (alt73) {
             	case 1 :
             	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2019:5: ( UC_ELSEIF | LC_ELSEIF ) LEFTP co= imp_condition[defer] RIGHTP LEFTCUR stmts= listOfStatements[true] RIGHTCUR
             	    {
@@ -11027,42 +11044,42 @@ public TreeAdaptor getTreeAdaptor() {
             	    }
 
 
-            	    LEFTP195=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_ifStatement3864); 
+            	    LEFTP195=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_ifStatement3867); 
             	    LEFTP195_tree = 
             	    (Object)adaptor.create(LEFTP195)
             	    ;
             	    adaptor.addChild(root_0, LEFTP195_tree);
 
 
-            	    pushFollow(FOLLOW_imp_condition_in_ifStatement3868);
+            	    pushFollow(FOLLOW_imp_condition_in_ifStatement3871);
             	    co=imp_condition(defer);
 
             	    state._fsp--;
 
             	    adaptor.addChild(root_0, co.getTree());
 
-            	    RIGHTP196=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_ifStatement3871); 
+            	    RIGHTP196=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_ifStatement3874); 
             	    RIGHTP196_tree = 
             	    (Object)adaptor.create(RIGHTP196)
             	    ;
             	    adaptor.addChild(root_0, RIGHTP196_tree);
 
 
-            	    LEFTCUR197=(Token)match(input,LEFTCUR,FOLLOW_LEFTCUR_in_ifStatement3873); 
+            	    LEFTCUR197=(Token)match(input,LEFTCUR,FOLLOW_LEFTCUR_in_ifStatement3876); 
             	    LEFTCUR197_tree = 
             	    (Object)adaptor.create(LEFTCUR197)
             	    ;
             	    adaptor.addChild(root_0, LEFTCUR197_tree);
 
 
-            	    pushFollow(FOLLOW_listOfStatements_in_ifStatement3881);
+            	    pushFollow(FOLLOW_listOfStatements_in_ifStatement3884);
             	    stmts=listOfStatements(true);
 
             	    state._fsp--;
 
             	    adaptor.addChild(root_0, stmts.getTree());
 
-            	    RIGHTCUR198=(Token)match(input,RIGHTCUR,FOLLOW_RIGHTCUR_in_ifStatement3884); 
+            	    RIGHTCUR198=(Token)match(input,RIGHTCUR,FOLLOW_RIGHTCUR_in_ifStatement3887); 
             	    RIGHTCUR198_tree = 
             	    (Object)adaptor.create(RIGHTCUR198)
             	    ;
@@ -11092,19 +11109,19 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    break loop72;
+            	    break loop73;
                 }
             } while (true);
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2042:3: ( ( UC_ELSE | LC_ELSE ) LEFTCUR stmts= listOfStatements[true] RIGHTCUR )?
-            int alt73=2;
-            int LA73_0 = input.LA(1);
+            int alt74=2;
+            int LA74_0 = input.LA(1);
 
-            if ( (LA73_0==LC_ELSE||LA73_0==UC_ELSE) ) {
-                alt73=1;
+            if ( (LA74_0==LC_ELSE||LA74_0==UC_ELSE) ) {
+                alt74=1;
             }
-            switch (alt73) {
+            switch (alt74) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2042:4: ( UC_ELSE | LC_ELSE ) LEFTCUR stmts= listOfStatements[true] RIGHTCUR
                     {
@@ -11123,21 +11140,21 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    LEFTCUR200=(Token)match(input,LEFTCUR,FOLLOW_LEFTCUR_in_ifStatement3906); 
+                    LEFTCUR200=(Token)match(input,LEFTCUR,FOLLOW_LEFTCUR_in_ifStatement3909); 
                     LEFTCUR200_tree = 
                     (Object)adaptor.create(LEFTCUR200)
                     ;
                     adaptor.addChild(root_0, LEFTCUR200_tree);
 
 
-                    pushFollow(FOLLOW_listOfStatements_in_ifStatement3914);
+                    pushFollow(FOLLOW_listOfStatements_in_ifStatement3917);
                     stmts=listOfStatements(true);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, stmts.getTree());
 
-                    RIGHTCUR201=(Token)match(input,RIGHTCUR,FOLLOW_RIGHTCUR_in_ifStatement3917); 
+                    RIGHTCUR201=(Token)match(input,RIGHTCUR,FOLLOW_RIGHTCUR_in_ifStatement3920); 
                     RIGHTCUR201_tree = 
                     (Object)adaptor.create(RIGHTCUR201)
                     ;
@@ -11219,21 +11236,21 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_atom_in_imp_condition3941);
+            pushFollow(FOLLOW_atom_in_imp_condition3944);
             lhs=atom(defer);
 
             state._fsp--;
 
             adaptor.addChild(root_0, lhs.getTree());
 
-            pushFollow(FOLLOW_relationalOperators_in_imp_condition3946);
+            pushFollow(FOLLOW_relationalOperators_in_imp_condition3949);
             ro=relationalOperators();
 
             state._fsp--;
 
             adaptor.addChild(root_0, ro.getTree());
 
-            pushFollow(FOLLOW_atom_in_imp_condition3950);
+            pushFollow(FOLLOW_atom_in_imp_condition3953);
             rhs=atom(defer);
 
             state._fsp--;
@@ -11368,28 +11385,28 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2112:26: (it= ID COLON )?
-            int alt74=2;
-            int LA74_0 = input.LA(1);
+            int alt75=2;
+            int LA75_0 = input.LA(1);
 
-            if ( (LA74_0==ID) ) {
-                int LA74_1 = input.LA(2);
+            if ( (LA75_0==ID) ) {
+                int LA75_1 = input.LA(2);
 
-                if ( (LA74_1==COLON) ) {
-                    alt74=1;
+                if ( (LA75_1==COLON) ) {
+                    alt75=1;
                 }
             }
-            switch (alt74) {
+            switch (alt75) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2112:27: it= ID COLON
                     {
-                    it=(Token)match(input,ID,FOLLOW_ID_in_forall_iterator3975); 
+                    it=(Token)match(input,ID,FOLLOW_ID_in_forall_iterator3978); 
                     it_tree = 
                     (Object)adaptor.create(it)
                     ;
                     adaptor.addChild(root_0, it_tree);
 
 
-                    COLON203=(Token)match(input,COLON,FOLLOW_COLON_in_forall_iterator3977); 
+                    COLON203=(Token)match(input,COLON,FOLLOW_COLON_in_forall_iterator3980); 
                     COLON203_tree = 
                     (Object)adaptor.create(COLON203)
                     ;
@@ -11402,21 +11419,21 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            i=(Token)match(input,ID,FOLLOW_ID_in_forall_iterator3983); 
+            i=(Token)match(input,ID,FOLLOW_ID_in_forall_iterator3986); 
             i_tree = 
             (Object)adaptor.create(i)
             ;
             adaptor.addChild(root_0, i_tree);
 
 
-            LEFTCUR204=(Token)match(input,LEFTCUR,FOLLOW_LEFTCUR_in_forall_iterator3985); 
+            LEFTCUR204=(Token)match(input,LEFTCUR,FOLLOW_LEFTCUR_in_forall_iterator3988); 
             LEFTCUR204_tree = 
             (Object)adaptor.create(LEFTCUR204)
             ;
             adaptor.addChild(root_0, LEFTCUR204_tree);
 
 
-            pushFollow(FOLLOW_listOfStatements_in_forall_iterator3990);
+            pushFollow(FOLLOW_listOfStatements_in_forall_iterator3993);
             listOfStatements205=listOfStatements(defer);
 
             state._fsp--;
@@ -11429,7 +11446,7 @@ public TreeAdaptor getTreeAdaptor() {
             }			
             	
 
-            RIGHTCUR206=(Token)match(input,RIGHTCUR,FOLLOW_RIGHTCUR_in_forall_iterator3997); 
+            RIGHTCUR206=(Token)match(input,RIGHTCUR,FOLLOW_RIGHTCUR_in_forall_iterator4000); 
             RIGHTCUR206_tree = 
             (Object)adaptor.create(RIGHTCUR206)
             ;
@@ -11521,63 +11538,63 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            LEFTP208=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_for_loop4015); 
+            LEFTP208=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_for_loop4018); 
             LEFTP208_tree = 
             (Object)adaptor.create(LEFTP208)
             ;
             adaptor.addChild(root_0, LEFTP208_tree);
 
 
-            pushFollow(FOLLOW_variableDeclaration_in_for_loop4019);
+            pushFollow(FOLLOW_variableDeclaration_in_for_loop4022);
             ds=variableDeclaration(true);
 
             state._fsp--;
 
             adaptor.addChild(root_0, ds.getTree());
 
-            SEMIC209=(Token)match(input,SEMIC,FOLLOW_SEMIC_in_for_loop4022); 
+            SEMIC209=(Token)match(input,SEMIC,FOLLOW_SEMIC_in_for_loop4025); 
             SEMIC209_tree = 
             (Object)adaptor.create(SEMIC209)
             ;
             adaptor.addChild(root_0, SEMIC209_tree);
 
 
-            pushFollow(FOLLOW_imp_condition_in_for_loop4026);
+            pushFollow(FOLLOW_imp_condition_in_for_loop4029);
             co=imp_condition(true);
 
             state._fsp--;
 
             adaptor.addChild(root_0, co.getTree());
 
-            SEMIC210=(Token)match(input,SEMIC,FOLLOW_SEMIC_in_for_loop4029); 
+            SEMIC210=(Token)match(input,SEMIC,FOLLOW_SEMIC_in_for_loop4032); 
             SEMIC210_tree = 
             (Object)adaptor.create(SEMIC210)
             ;
             adaptor.addChild(root_0, SEMIC210_tree);
 
 
-            pushFollow(FOLLOW_assignment_in_for_loop4033);
+            pushFollow(FOLLOW_assignment_in_for_loop4036);
             as=assignment(true);
 
             state._fsp--;
 
             adaptor.addChild(root_0, as.getTree());
 
-            RIGHTP211=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_for_loop4036); 
+            RIGHTP211=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_for_loop4039); 
             RIGHTP211_tree = 
             (Object)adaptor.create(RIGHTP211)
             ;
             adaptor.addChild(root_0, RIGHTP211_tree);
 
 
-            LEFTCUR212=(Token)match(input,LEFTCUR,FOLLOW_LEFTCUR_in_for_loop4038); 
+            LEFTCUR212=(Token)match(input,LEFTCUR,FOLLOW_LEFTCUR_in_for_loop4041); 
             LEFTCUR212_tree = 
             (Object)adaptor.create(LEFTCUR212)
             ;
             adaptor.addChild(root_0, LEFTCUR212_tree);
 
 
-            pushFollow(FOLLOW_listOfStatements_in_for_loop4046);
+            pushFollow(FOLLOW_listOfStatements_in_for_loop4049);
             stmts=listOfStatements(true);
 
             state._fsp--;
@@ -11600,7 +11617,7 @@ public TreeAdaptor getTreeAdaptor() {
             }			
             		
 
-            RIGHTCUR213=(Token)match(input,RIGHTCUR,FOLLOW_RIGHTCUR_in_for_loop4053); 
+            RIGHTCUR213=(Token)match(input,RIGHTCUR,FOLLOW_RIGHTCUR_in_for_loop4056); 
             RIGHTCUR213_tree = 
             (Object)adaptor.create(RIGHTCUR213)
             ;
@@ -11658,22 +11675,22 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2143:4: (stmtToken= statement[defer] )+
-            int cnt75=0;
-            loop75:
+            int cnt76=0;
+            loop76:
             do {
-                int alt75=2;
-                int LA75_0 = input.LA(1);
+                int alt76=2;
+                int LA76_0 = input.LA(1);
 
-                if ( (LA75_0==ARRAY||(LA75_0 >= ASSERT && LA75_0 <= COLLECTION)||LA75_0==DEVICE||(LA75_0 >= EXIT_LC && LA75_0 <= EXIT_UC)||LA75_0==GRAMMAR||(LA75_0 >= HASHMARK && LA75_0 <= ID)||LA75_0==INTERACTION||(LA75_0 >= LC_FOR && LA75_0 <= LC_INCLUDE)||LA75_0==LC_PIGEON||(LA75_0 >= NOTE && LA75_0 <= NUM)||(LA75_0 >= PART && LA75_0 <= PIGEON)||(LA75_0 >= PRINT && LA75_0 <= RANDOM_UC)||(LA75_0 >= RULE && LA75_0 <= SEMIC)||(LA75_0 >= SIZEOF_LC && LA75_0 <= STORE_UC)||(LA75_0 >= TXT && LA75_0 <= TYPE)||(LA75_0 >= UC_FOR && LA75_0 <= UC_INCLUDE)) ) {
-                    alt75=1;
+                if ( (LA76_0==ARRAY||(LA76_0 >= ASSERT && LA76_0 <= COLLECTION)||LA76_0==DEVICE||(LA76_0 >= EXIT_LC && LA76_0 <= EXIT_UC)||LA76_0==GRAMMAR||(LA76_0 >= HASHMARK && LA76_0 <= ID)||LA76_0==INTERACTION||(LA76_0 >= LC_FOR && LA76_0 <= LC_INCLUDE)||LA76_0==LC_PIGEON||(LA76_0 >= NOTE && LA76_0 <= NUM)||(LA76_0 >= PART && LA76_0 <= PIGEON)||(LA76_0 >= PRINT && LA76_0 <= RANDOM_UC)||(LA76_0 >= RULE && LA76_0 <= SEMIC)||(LA76_0 >= SIZEOF_LC && LA76_0 <= STORE_UC)||(LA76_0 >= TXT && LA76_0 <= TYPE)||(LA76_0 >= UC_FOR && LA76_0 <= UC_INCLUDE)) ) {
+                    alt76=1;
                 }
 
 
-                switch (alt75) {
+                switch (alt76) {
             	case 1 :
             	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2143:5: stmtToken= statement[defer]
             	    {
-            	    pushFollow(FOLLOW_statement_in_listOfStatements4072);
+            	    pushFollow(FOLLOW_statement_in_listOfStatements4075);
             	    stmtToken=statement(defer);
 
             	    state._fsp--;
@@ -11684,12 +11701,12 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    if ( cnt75 >= 1 ) break loop75;
+            	    if ( cnt76 >= 1 ) break loop76;
                         EarlyExitException eee =
-                            new EarlyExitException(75, input);
+                            new EarlyExitException(76, input);
                         throw eee;
                 }
-                cnt75++;
+                cnt76++;
             } while (true);
 
 
@@ -11751,7 +11768,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_multExpr_in_expr4100);
+            pushFollow(FOLLOW_multExpr_in_expr4103);
             e=multExpr(defer);
 
             state._fsp--;
@@ -11779,17 +11796,17 @@ public TreeAdaptor getTreeAdaptor() {
             	
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2171:5: (op= ( PLUS | MINUS ) e= multExpr[defer] )*
-            loop76:
+            loop77:
             do {
-                int alt76=2;
-                int LA76_0 = input.LA(1);
+                int alt77=2;
+                int LA77_0 = input.LA(1);
 
-                if ( (LA76_0==MINUS||LA76_0==PLUS) ) {
-                    alt76=1;
+                if ( (LA77_0==MINUS||LA77_0==PLUS) ) {
+                    alt77=1;
                 }
 
 
-                switch (alt76) {
+                switch (alt77) {
             	case 1 :
             	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2171:6: op= ( PLUS | MINUS ) e= multExpr[defer]
             	    {
@@ -11808,7 +11825,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    }
 
 
-            	    pushFollow(FOLLOW_multExpr_in_expr4117);
+            	    pushFollow(FOLLOW_multExpr_in_expr4120);
             	    e=multExpr(defer);
 
             	    state._fsp--;
@@ -11843,7 +11860,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    break loop76;
+            	    break loop77;
                 }
             } while (true);
 
@@ -11908,7 +11925,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_atom_in_multExpr4147);
+            pushFollow(FOLLOW_atom_in_multExpr4150);
             e=atom(defer);
 
             state._fsp--;
@@ -11938,42 +11955,42 @@ public TreeAdaptor getTreeAdaptor() {
             	
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2232:5: ( (mul= MULT |div= DIV ) e= atom[defer] )*
-            loop78:
+            loop79:
             do {
-                int alt78=2;
-                int LA78_0 = input.LA(1);
+                int alt79=2;
+                int LA79_0 = input.LA(1);
 
-                if ( (LA78_0==DIV||LA78_0==MULT) ) {
-                    alt78=1;
+                if ( (LA79_0==DIV||LA79_0==MULT) ) {
+                    alt79=1;
                 }
 
 
-                switch (alt78) {
+                switch (alt79) {
             	case 1 :
             	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2232:7: (mul= MULT |div= DIV ) e= atom[defer]
             	    {
             	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2232:7: (mul= MULT |div= DIV )
-            	    int alt77=2;
-            	    int LA77_0 = input.LA(1);
+            	    int alt78=2;
+            	    int LA78_0 = input.LA(1);
 
-            	    if ( (LA77_0==MULT) ) {
-            	        alt77=1;
+            	    if ( (LA78_0==MULT) ) {
+            	        alt78=1;
             	    }
-            	    else if ( (LA77_0==DIV) ) {
-            	        alt77=2;
+            	    else if ( (LA78_0==DIV) ) {
+            	        alt78=2;
             	    }
             	    else {
             	        NoViableAltException nvae =
-            	            new NoViableAltException("", 77, 0, input);
+            	            new NoViableAltException("", 78, 0, input);
 
             	        throw nvae;
 
             	    }
-            	    switch (alt77) {
+            	    switch (alt78) {
             	        case 1 :
             	            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2232:8: mul= MULT
             	            {
-            	            mul=(Token)match(input,MULT,FOLLOW_MULT_in_multExpr4158); 
+            	            mul=(Token)match(input,MULT,FOLLOW_MULT_in_multExpr4161); 
             	            mul_tree = 
             	            (Object)adaptor.create(mul)
             	            ;
@@ -11985,7 +12002,7 @@ public TreeAdaptor getTreeAdaptor() {
             	        case 2 :
             	            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2232:17: div= DIV
             	            {
-            	            div=(Token)match(input,DIV,FOLLOW_DIV_in_multExpr4162); 
+            	            div=(Token)match(input,DIV,FOLLOW_DIV_in_multExpr4165); 
             	            div_tree = 
             	            (Object)adaptor.create(div)
             	            ;
@@ -11998,7 +12015,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    }
 
 
-            	    pushFollow(FOLLOW_atom_in_multExpr4167);
+            	    pushFollow(FOLLOW_atom_in_multExpr4170);
             	    e=atom(defer);
 
             	    state._fsp--;
@@ -12025,7 +12042,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    break loop78;
+            	    break loop79;
                 }
             } while (true);
 
@@ -12107,17 +12124,17 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2251:2: ( (n= NUMBER |n= REAL ) | MINUS (n= NUMBER |n= REAL ) | (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) ) |dn= dynamic_naming[defer] oc= object_access[defer, $element] | STRING | '(' expr[defer] ')' | LEFTSBR list[defer] RIGHTSBR |bif= built_in_function[defer] )
-            int alt82=8;
+            int alt83=8;
             switch ( input.LA(1) ) {
             case NUMBER:
             case REAL:
                 {
-                alt82=1;
+                alt83=1;
                 }
                 break;
             case MINUS:
                 {
-                alt82=2;
+                alt83=2;
                 }
                 break;
             case FALSE_LC:
@@ -12125,28 +12142,28 @@ public TreeAdaptor getTreeAdaptor() {
             case TRUE_LC:
             case TRUE_UC:
                 {
-                alt82=3;
+                alt83=3;
                 }
                 break;
             case DOLLAR:
             case ID:
                 {
-                alt82=4;
+                alt83=4;
                 }
                 break;
             case STRING:
                 {
-                alt82=5;
+                alt83=5;
                 }
                 break;
             case LEFTP:
                 {
-                alt82=6;
+                alt83=6;
                 }
                 break;
             case LEFTSBR:
                 {
-                alt82=7;
+                alt83=7;
                 }
                 break;
             case RANDOM_LC:
@@ -12158,18 +12175,18 @@ public TreeAdaptor getTreeAdaptor() {
             case STORE_LC:
             case STORE_UC:
                 {
-                alt82=8;
+                alt83=8;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 82, 0, input);
+                    new NoViableAltException("", 83, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt82) {
+            switch (alt83) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2251:4: (n= NUMBER |n= REAL )
                     {
@@ -12177,27 +12194,27 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2251:4: (n= NUMBER |n= REAL )
-                    int alt79=2;
-                    int LA79_0 = input.LA(1);
+                    int alt80=2;
+                    int LA80_0 = input.LA(1);
 
-                    if ( (LA79_0==NUMBER) ) {
-                        alt79=1;
+                    if ( (LA80_0==NUMBER) ) {
+                        alt80=1;
                     }
-                    else if ( (LA79_0==REAL) ) {
-                        alt79=2;
+                    else if ( (LA80_0==REAL) ) {
+                        alt80=2;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 79, 0, input);
+                            new NoViableAltException("", 80, 0, input);
 
                         throw nvae;
 
                     }
-                    switch (alt79) {
+                    switch (alt80) {
                         case 1 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2251:5: n= NUMBER
                             {
-                            n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_atom4194); 
+                            n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_atom4197); 
                             n_tree = 
                             (Object)adaptor.create(n)
                             ;
@@ -12209,7 +12226,7 @@ public TreeAdaptor getTreeAdaptor() {
                         case 2 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2251:16: n= REAL
                             {
-                            n=(Token)match(input,REAL,FOLLOW_REAL_in_atom4200); 
+                            n=(Token)match(input,REAL,FOLLOW_REAL_in_atom4203); 
                             n_tree = 
                             (Object)adaptor.create(n)
                             ;
@@ -12239,7 +12256,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    MINUS214=(Token)match(input,MINUS,FOLLOW_MINUS_in_atom4210); 
+                    MINUS214=(Token)match(input,MINUS,FOLLOW_MINUS_in_atom4213); 
                     MINUS214_tree = 
                     (Object)adaptor.create(MINUS214)
                     ;
@@ -12247,27 +12264,27 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2260:10: (n= NUMBER |n= REAL )
-                    int alt80=2;
-                    int LA80_0 = input.LA(1);
+                    int alt81=2;
+                    int LA81_0 = input.LA(1);
 
-                    if ( (LA80_0==NUMBER) ) {
-                        alt80=1;
+                    if ( (LA81_0==NUMBER) ) {
+                        alt81=1;
                     }
-                    else if ( (LA80_0==REAL) ) {
-                        alt80=2;
+                    else if ( (LA81_0==REAL) ) {
+                        alt81=2;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 80, 0, input);
+                            new NoViableAltException("", 81, 0, input);
 
                         throw nvae;
 
                     }
-                    switch (alt80) {
+                    switch (alt81) {
                         case 1 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2260:11: n= NUMBER
                             {
-                            n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_atom4215); 
+                            n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_atom4218); 
                             n_tree = 
                             (Object)adaptor.create(n)
                             ;
@@ -12279,7 +12296,7 @@ public TreeAdaptor getTreeAdaptor() {
                         case 2 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2260:22: n= REAL
                             {
-                            n=(Token)match(input,REAL,FOLLOW_REAL_in_atom4221); 
+                            n=(Token)match(input,REAL,FOLLOW_REAL_in_atom4224); 
                             n_tree = 
                             (Object)adaptor.create(n)
                             ;
@@ -12310,23 +12327,23 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2269:4: (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) )
-                    int alt81=2;
-                    int LA81_0 = input.LA(1);
+                    int alt82=2;
+                    int LA82_0 = input.LA(1);
 
-                    if ( ((LA81_0 >= TRUE_LC && LA81_0 <= TRUE_UC)) ) {
-                        alt81=1;
+                    if ( ((LA82_0 >= TRUE_LC && LA82_0 <= TRUE_UC)) ) {
+                        alt82=1;
                     }
-                    else if ( ((LA81_0 >= FALSE_LC && LA81_0 <= FALSE_UC)) ) {
-                        alt81=2;
+                    else if ( ((LA82_0 >= FALSE_LC && LA82_0 <= FALSE_UC)) ) {
+                        alt82=2;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 81, 0, input);
+                            new NoViableAltException("", 82, 0, input);
 
                         throw nvae;
 
                     }
-                    switch (alt81) {
+                    switch (alt82) {
                         case 1 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2269:5: t= ( TRUE_LC | TRUE_UC )
                             {
@@ -12392,7 +12409,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_dynamic_naming_in_atom4260);
+                    pushFollow(FOLLOW_dynamic_naming_in_atom4263);
                     dn=dynamic_naming(defer);
 
                     state._fsp--;
@@ -12418,7 +12435,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     	
 
-                    pushFollow(FOLLOW_object_access_in_atom4267);
+                    pushFollow(FOLLOW_object_access_in_atom4270);
                     oc=object_access(defer, retval.element);
 
                     state._fsp--;
@@ -12449,7 +12466,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    STRING215=(Token)match(input,STRING,FOLLOW_STRING_in_atom4276); 
+                    STRING215=(Token)match(input,STRING,FOLLOW_STRING_in_atom4279); 
                     STRING215_tree = 
                     (Object)adaptor.create(STRING215)
                     ;
@@ -12473,21 +12490,21 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    char_literal216=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_atom4284); 
+                    char_literal216=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_atom4287); 
                     char_literal216_tree = 
                     (Object)adaptor.create(char_literal216)
                     ;
                     adaptor.addChild(root_0, char_literal216_tree);
 
 
-                    pushFollow(FOLLOW_expr_in_atom4286);
+                    pushFollow(FOLLOW_expr_in_atom4289);
                     expr217=expr(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, expr217.getTree());
 
-                    char_literal218=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_atom4289); 
+                    char_literal218=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_atom4292); 
                     char_literal218_tree = 
                     (Object)adaptor.create(char_literal218)
                     ;
@@ -12510,21 +12527,21 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    LEFTSBR219=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_atom4298); 
+                    LEFTSBR219=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_atom4301); 
                     LEFTSBR219_tree = 
                     (Object)adaptor.create(LEFTSBR219)
                     ;
                     adaptor.addChild(root_0, LEFTSBR219_tree);
 
 
-                    pushFollow(FOLLOW_list_in_atom4300);
+                    pushFollow(FOLLOW_list_in_atom4303);
                     list220=list(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, list220.getTree());
 
-                    RIGHTSBR221=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_atom4303); 
+                    RIGHTSBR221=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_atom4306); 
                     RIGHTSBR221_tree = 
                     (Object)adaptor.create(RIGHTSBR221)
                     ;
@@ -12547,7 +12564,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_built_in_function_in_atom4314);
+                    pushFollow(FOLLOW_built_in_function_in_atom4317);
                     bif=built_in_function(defer);
 
                     state._fsp--;
@@ -12618,7 +12635,7 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_expr_in_list4337);
+            pushFollow(FOLLOW_expr_in_list4340);
             str1=expr(defer);
 
             state._fsp--;
@@ -12647,28 +12664,28 @@ public TreeAdaptor getTreeAdaptor() {
             	
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2368:5: ( COMMA str2= expr[defer] )*
-            loop83:
+            loop84:
             do {
-                int alt83=2;
-                int LA83_0 = input.LA(1);
+                int alt84=2;
+                int LA84_0 = input.LA(1);
 
-                if ( (LA83_0==COMMA) ) {
-                    alt83=1;
+                if ( (LA84_0==COMMA) ) {
+                    alt84=1;
                 }
 
 
-                switch (alt83) {
+                switch (alt84) {
             	case 1 :
             	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2368:6: COMMA str2= expr[defer]
             	    {
-            	    COMMA222=(Token)match(input,COMMA,FOLLOW_COMMA_in_list4344); 
+            	    COMMA222=(Token)match(input,COMMA,FOLLOW_COMMA_in_list4347); 
             	    COMMA222_tree = 
             	    (Object)adaptor.create(COMMA222)
             	    ;
             	    adaptor.addChild(root_0, COMMA222_tree);
 
 
-            	    pushFollow(FOLLOW_expr_in_list4348);
+            	    pushFollow(FOLLOW_expr_in_list4351);
             	    str2=expr(defer);
 
             	    state._fsp--;
@@ -12689,7 +12706,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    break loop83;
+            	    break loop84;
                 }
             } while (true);
 
@@ -12760,18 +12777,18 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2385:2: ( ( SIZEOF_LC | SIZEOF_UC ) LEFTP e= expr[defer] RIGHTP | ( RANDOM_LC | RANDOM_UC ) LEFTP rg= range[defer] RIGHTP | ( SAVE_LC | SAVE_UC | STORE_LC | STORE_UC ) LEFTP e= expr[defer] RIGHTP )
-            int alt84=3;
+            int alt85=3;
             switch ( input.LA(1) ) {
             case SIZEOF_LC:
             case SIZEOF_UC:
                 {
-                alt84=1;
+                alt85=1;
                 }
                 break;
             case RANDOM_LC:
             case RANDOM_UC:
                 {
-                alt84=2;
+                alt85=2;
                 }
                 break;
             case SAVE_LC:
@@ -12779,18 +12796,18 @@ public TreeAdaptor getTreeAdaptor() {
             case STORE_LC:
             case STORE_UC:
                 {
-                alt84=3;
+                alt85=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 84, 0, input);
+                    new NoViableAltException("", 85, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt84) {
+            switch (alt85) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2385:4: ( SIZEOF_LC | SIZEOF_UC ) LEFTP e= expr[defer] RIGHTP
                     {
@@ -12812,21 +12829,21 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    LEFTP224=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_built_in_function4382); 
+                    LEFTP224=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_built_in_function4385); 
                     LEFTP224_tree = 
                     (Object)adaptor.create(LEFTP224)
                     ;
                     adaptor.addChild(root_0, LEFTP224_tree);
 
 
-                    pushFollow(FOLLOW_expr_in_built_in_function4386);
+                    pushFollow(FOLLOW_expr_in_built_in_function4389);
                     e=expr(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, e.getTree());
 
-                    RIGHTP225=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_built_in_function4389); 
+                    RIGHTP225=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_built_in_function4392); 
                     RIGHTP225_tree = 
                     (Object)adaptor.create(RIGHTP225)
                     ;
@@ -12870,21 +12887,21 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    LEFTP227=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_built_in_function4402); 
+                    LEFTP227=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_built_in_function4405); 
                     LEFTP227_tree = 
                     (Object)adaptor.create(LEFTP227)
                     ;
                     adaptor.addChild(root_0, LEFTP227_tree);
 
 
-                    pushFollow(FOLLOW_range_in_built_in_function4406);
+                    pushFollow(FOLLOW_range_in_built_in_function4409);
                     rg=range(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, rg.getTree());
 
-                    RIGHTP228=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_built_in_function4409); 
+                    RIGHTP228=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_built_in_function4412); 
                     RIGHTP228_tree = 
                     (Object)adaptor.create(RIGHTP228)
                     ;
@@ -12924,21 +12941,21 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    LEFTP230=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_built_in_function4426); 
+                    LEFTP230=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_built_in_function4429); 
                     LEFTP230_tree = 
                     (Object)adaptor.create(LEFTP230)
                     ;
                     adaptor.addChild(root_0, LEFTP230_tree);
 
 
-                    pushFollow(FOLLOW_expr_in_built_in_function4430);
+                    pushFollow(FOLLOW_expr_in_built_in_function4433);
                     e=expr(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, e.getTree());
 
-                    RIGHTP231=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_built_in_function4433); 
+                    RIGHTP231=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_built_in_function4436); 
                     RIGHTP231_tree = 
                     (Object)adaptor.create(RIGHTP231)
                     ;
@@ -13017,21 +13034,21 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_expr_in_range4455);
+            pushFollow(FOLLOW_expr_in_range4458);
             s=expr(defer);
 
             state._fsp--;
 
             adaptor.addChild(root_0, s.getTree());
 
-            COMMA232=(Token)match(input,COMMA,FOLLOW_COMMA_in_range4458); 
+            COMMA232=(Token)match(input,COMMA,FOLLOW_COMMA_in_range4461); 
             COMMA232_tree = 
             (Object)adaptor.create(COMMA232)
             ;
             adaptor.addChild(root_0, COMMA232_tree);
 
 
-            pushFollow(FOLLOW_expr_in_range4462);
+            pushFollow(FOLLOW_expr_in_range4465);
             e=expr(defer);
 
             state._fsp--;
@@ -13130,23 +13147,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2479:2: (| ( DOT (id= ID | SIZE ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR ) o= object_access[defer, $child] )
-            int alt88=2;
-            int LA88_0 = input.LA(1);
+            int alt89=2;
+            int LA89_0 = input.LA(1);
 
-            if ( (LA88_0==COMMA||LA88_0==DIV||LA88_0==EQUALS||LA88_0==GEQUAL||LA88_0==GTHAN||LA88_0==LEQUAL||(LA88_0 >= LTHAN && LA88_0 <= MINUS)||(LA88_0 >= MULT && LA88_0 <= NEQUAL)||LA88_0==PLUS||(LA88_0 >= RIGHTCUR && LA88_0 <= RIGHTSBR)||LA88_0==SEMIC||LA88_0==125||(LA88_0 >= 127 && LA88_0 <= 128)||LA88_0==131||(LA88_0 >= 134 && LA88_0 <= 135)||LA88_0==137||(LA88_0 >= 150 && LA88_0 <= 151)||LA88_0==164||(LA88_0 >= 166 && LA88_0 <= 167)||LA88_0==170||(LA88_0 >= 173 && LA88_0 <= 174)||LA88_0==176||(LA88_0 >= 189 && LA88_0 <= 190)) ) {
-                alt88=1;
+            if ( (LA89_0==COMMA||LA89_0==DIV||LA89_0==EQUALS||LA89_0==GEQUAL||LA89_0==GTHAN||LA89_0==LEQUAL||(LA89_0 >= LTHAN && LA89_0 <= MINUS)||(LA89_0 >= MULT && LA89_0 <= NEQUAL)||LA89_0==PLUS||(LA89_0 >= RIGHTCUR && LA89_0 <= RIGHTSBR)||LA89_0==SEMIC||LA89_0==125||(LA89_0 >= 127 && LA89_0 <= 128)||LA89_0==131||(LA89_0 >= 134 && LA89_0 <= 135)||LA89_0==137||(LA89_0 >= 150 && LA89_0 <= 151)||LA89_0==164||(LA89_0 >= 166 && LA89_0 <= 167)||LA89_0==170||(LA89_0 >= 173 && LA89_0 <= 174)||LA89_0==176||(LA89_0 >= 189 && LA89_0 <= 190)) ) {
+                alt89=1;
             }
-            else if ( (LA88_0==DOT||LA88_0==LEFTSBR) ) {
-                alt88=2;
+            else if ( (LA89_0==DOT||LA89_0==LEFTSBR) ) {
+                alt89=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 88, 0, input);
+                    new NoViableAltException("", 89, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt88) {
+            switch (alt89) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2480:2: 
                     {
@@ -13168,27 +13185,27 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2485:4: ( DOT (id= ID | SIZE ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR )
-                    int alt87=2;
-                    int LA87_0 = input.LA(1);
+                    int alt88=2;
+                    int LA88_0 = input.LA(1);
 
-                    if ( (LA87_0==DOT) ) {
-                        alt87=1;
+                    if ( (LA88_0==DOT) ) {
+                        alt88=1;
                     }
-                    else if ( (LA87_0==LEFTSBR) ) {
-                        alt87=2;
+                    else if ( (LA88_0==LEFTSBR) ) {
+                        alt88=2;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 87, 0, input);
+                            new NoViableAltException("", 88, 0, input);
 
                         throw nvae;
 
                     }
-                    switch (alt87) {
+                    switch (alt88) {
                         case 1 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2485:5: DOT (id= ID | SIZE ( LEFTP RIGHTP )? )
                             {
-                            DOT233=(Token)match(input,DOT,FOLLOW_DOT_in_object_access4498); 
+                            DOT233=(Token)match(input,DOT,FOLLOW_DOT_in_object_access4501); 
                             DOT233_tree = 
                             (Object)adaptor.create(DOT233)
                             ;
@@ -13196,27 +13213,27 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2485:9: (id= ID | SIZE ( LEFTP RIGHTP )? )
-                            int alt86=2;
-                            int LA86_0 = input.LA(1);
+                            int alt87=2;
+                            int LA87_0 = input.LA(1);
 
-                            if ( (LA86_0==ID) ) {
-                                alt86=1;
+                            if ( (LA87_0==ID) ) {
+                                alt87=1;
                             }
-                            else if ( (LA86_0==SIZE) ) {
-                                alt86=2;
+                            else if ( (LA87_0==SIZE) ) {
+                                alt87=2;
                             }
                             else {
                                 NoViableAltException nvae =
-                                    new NoViableAltException("", 86, 0, input);
+                                    new NoViableAltException("", 87, 0, input);
 
                                 throw nvae;
 
                             }
-                            switch (alt86) {
+                            switch (alt87) {
                                 case 1 :
                                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2485:10: id= ID
                                     {
-                                    id=(Token)match(input,ID,FOLLOW_ID_in_object_access4503); 
+                                    id=(Token)match(input,ID,FOLLOW_ID_in_object_access4506); 
                                     id_tree = 
                                     (Object)adaptor.create(id)
                                     ;
@@ -13244,7 +13261,7 @@ public TreeAdaptor getTreeAdaptor() {
                                 case 2 :
                                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2499:6: SIZE ( LEFTP RIGHTP )?
                                     {
-                                    SIZE234=(Token)match(input,SIZE,FOLLOW_SIZE_in_object_access4509); 
+                                    SIZE234=(Token)match(input,SIZE,FOLLOW_SIZE_in_object_access4512); 
                                     SIZE234_tree = 
                                     (Object)adaptor.create(SIZE234)
                                     ;
@@ -13252,24 +13269,24 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2499:11: ( LEFTP RIGHTP )?
-                                    int alt85=2;
-                                    int LA85_0 = input.LA(1);
+                                    int alt86=2;
+                                    int LA86_0 = input.LA(1);
 
-                                    if ( (LA85_0==LEFTP) ) {
-                                        alt85=1;
+                                    if ( (LA86_0==LEFTP) ) {
+                                        alt86=1;
                                     }
-                                    switch (alt85) {
+                                    switch (alt86) {
                                         case 1 :
                                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2499:12: LEFTP RIGHTP
                                             {
-                                            LEFTP235=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_object_access4512); 
+                                            LEFTP235=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_object_access4515); 
                                             LEFTP235_tree = 
                                             (Object)adaptor.create(LEFTP235)
                                             ;
                                             adaptor.addChild(root_0, LEFTP235_tree);
 
 
-                                            RIGHTP236=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_object_access4514); 
+                                            RIGHTP236=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_object_access4517); 
                                             RIGHTP236_tree = 
                                             (Object)adaptor.create(RIGHTP236)
                                             ;
@@ -13303,7 +13320,7 @@ public TreeAdaptor getTreeAdaptor() {
                         case 2 :
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2508:4: LEFTSBR (exp= expr[defer] ) RIGHTSBR
                             {
-                            LEFTSBR237=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_object_access4524); 
+                            LEFTSBR237=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_object_access4527); 
                             LEFTSBR237_tree = 
                             (Object)adaptor.create(LEFTSBR237)
                             ;
@@ -13313,7 +13330,7 @@ public TreeAdaptor getTreeAdaptor() {
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2508:12: (exp= expr[defer] )
                             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2508:13: exp= expr[defer]
                             {
-                            pushFollow(FOLLOW_expr_in_object_access4529);
+                            pushFollow(FOLLOW_expr_in_object_access4532);
                             exp=expr(defer);
 
                             state._fsp--;
@@ -13323,7 +13340,7 @@ public TreeAdaptor getTreeAdaptor() {
                             }
 
 
-                            RIGHTSBR238=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_object_access4533); 
+                            RIGHTSBR238=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_object_access4536); 
                             RIGHTSBR238_tree = 
                             (Object)adaptor.create(RIGHTSBR238)
                             ;
@@ -13360,7 +13377,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    pushFollow(FOLLOW_object_access_in_object_access4540);
+                    pushFollow(FOLLOW_object_access_in_object_access4543);
                     o=object_access(defer, retval.child);
 
                     state._fsp--;
@@ -13429,30 +13446,30 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2542:2: (i= ID | DOLLAR LEFTCUR e= expr[defer] RIGHTCUR )
-            int alt89=2;
-            int LA89_0 = input.LA(1);
+            int alt90=2;
+            int LA90_0 = input.LA(1);
 
-            if ( (LA89_0==ID) ) {
-                alt89=1;
+            if ( (LA90_0==ID) ) {
+                alt90=1;
             }
-            else if ( (LA89_0==DOLLAR) ) {
-                alt89=2;
+            else if ( (LA90_0==DOLLAR) ) {
+                alt90=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 89, 0, input);
+                    new NoViableAltException("", 90, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt89) {
+            switch (alt90) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2542:4: i= ID
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    i=(Token)match(input,ID,FOLLOW_ID_in_dynamic_naming4565); 
+                    i=(Token)match(input,ID,FOLLOW_ID_in_dynamic_naming4568); 
                     i_tree = 
                     (Object)adaptor.create(i)
                     ;
@@ -13473,28 +13490,28 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    DOLLAR239=(Token)match(input,DOLLAR,FOLLOW_DOLLAR_in_dynamic_naming4572); 
+                    DOLLAR239=(Token)match(input,DOLLAR,FOLLOW_DOLLAR_in_dynamic_naming4575); 
                     DOLLAR239_tree = 
                     (Object)adaptor.create(DOLLAR239)
                     ;
                     adaptor.addChild(root_0, DOLLAR239_tree);
 
 
-                    LEFTCUR240=(Token)match(input,LEFTCUR,FOLLOW_LEFTCUR_in_dynamic_naming4574); 
+                    LEFTCUR240=(Token)match(input,LEFTCUR,FOLLOW_LEFTCUR_in_dynamic_naming4577); 
                     LEFTCUR240_tree = 
                     (Object)adaptor.create(LEFTCUR240)
                     ;
                     adaptor.addChild(root_0, LEFTCUR240_tree);
 
 
-                    pushFollow(FOLLOW_expr_in_dynamic_naming4578);
+                    pushFollow(FOLLOW_expr_in_dynamic_naming4581);
                     e=expr(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, e.getTree());
 
-                    RIGHTCUR241=(Token)match(input,RIGHTCUR,FOLLOW_RIGHTCUR_in_dynamic_naming4581); 
+                    RIGHTCUR241=(Token)match(input,RIGHTCUR,FOLLOW_RIGHTCUR_in_dynamic_naming4584); 
                     RIGHTCUR241_tree = 
                     (Object)adaptor.create(RIGHTCUR241)
                     ;
@@ -13565,41 +13582,41 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2566:2: (s= sbolStatement[defer] |p= pigeonStatement[defer] |i= importStatement[defer] )
-            int alt90=3;
+            int alt91=3;
             switch ( input.LA(1) ) {
             case SBOL:
                 {
-                alt90=1;
+                alt91=1;
                 }
                 break;
             case LC_PIGEON:
             case PIGEON:
                 {
-                alt90=2;
+                alt91=2;
                 }
                 break;
             case LC_IMPORT:
             case UC_IMPORT:
                 {
-                alt90=3;
+                alt91=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 90, 0, input);
+                    new NoViableAltException("", 91, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt90) {
+            switch (alt91) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2566:4: s= sbolStatement[defer]
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_sbolStatement_in_dataExchange4606);
+                    pushFollow(FOLLOW_sbolStatement_in_dataExchange4609);
                     s=sbolStatement(defer);
 
                     state._fsp--;
@@ -13620,7 +13637,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_pigeonStatement_in_dataExchange4616);
+                    pushFollow(FOLLOW_pigeonStatement_in_dataExchange4619);
                     p=pigeonStatement(defer);
 
                     state._fsp--;
@@ -13635,7 +13652,7 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_importStatement_in_dataExchange4624);
+                    pushFollow(FOLLOW_importStatement_in_dataExchange4627);
                     i=importStatement(defer);
 
                     state._fsp--;
@@ -13705,17 +13722,17 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2584:4: ( HASHMARK )?
-            int alt91=2;
-            int LA91_0 = input.LA(1);
+            int alt92=2;
+            int LA92_0 = input.LA(1);
 
-            if ( (LA91_0==HASHMARK) ) {
-                alt91=1;
+            if ( (LA92_0==HASHMARK) ) {
+                alt92=1;
             }
-            switch (alt91) {
+            switch (alt92) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2584:5: HASHMARK
                     {
-                    HASHMARK242=(Token)match(input,HASHMARK,FOLLOW_HASHMARK_in_includeStatement4646); 
+                    HASHMARK242=(Token)match(input,HASHMARK,FOLLOW_HASHMARK_in_includeStatement4649); 
                     HASHMARK242_tree = 
                     (Object)adaptor.create(HASHMARK242)
                     ;
@@ -13743,7 +13760,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            file=(Token)match(input,STRING,FOLLOW_STRING_in_includeStatement4658); 
+            file=(Token)match(input,STRING,FOLLOW_STRING_in_includeStatement4661); 
             file_tree = 
             (Object)adaptor.create(file)
             ;
@@ -13832,14 +13849,14 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            LEFTP245=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_importStatement4685); 
+            LEFTP245=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_importStatement4688); 
             LEFTP245_tree = 
             (Object)adaptor.create(LEFTP245)
             ;
             adaptor.addChild(root_0, LEFTP245_tree);
 
 
-            file=(Token)match(input,STRING,FOLLOW_STRING_in_importStatement4689); 
+            file=(Token)match(input,STRING,FOLLOW_STRING_in_importStatement4692); 
             file_tree = 
             (Object)adaptor.create(file)
             ;
@@ -13856,7 +13873,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             	
 
-            RIGHTP246=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_importStatement4693); 
+            RIGHTP246=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_importStatement4696); 
             RIGHTP246_tree = 
             (Object)adaptor.create(RIGHTP246)
             ;
@@ -13920,14 +13937,14 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            SBOL247=(Token)match(input,SBOL,FOLLOW_SBOL_in_sbolStatement4715); 
+            SBOL247=(Token)match(input,SBOL,FOLLOW_SBOL_in_sbolStatement4718); 
             SBOL247_tree = 
             (Object)adaptor.create(SBOL247)
             ;
             adaptor.addChild(root_0, SBOL247_tree);
 
 
-            DOT248=(Token)match(input,DOT,FOLLOW_DOT_in_sbolStatement4717); 
+            DOT248=(Token)match(input,DOT,FOLLOW_DOT_in_sbolStatement4720); 
             DOT248_tree = 
             (Object)adaptor.create(DOT248)
             ;
@@ -13935,27 +13952,27 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2612:13: ( sbolExportStatement[defer] |i= sbolImportStatement[defer] )
-            int alt92=2;
-            int LA92_0 = input.LA(1);
+            int alt93=2;
+            int LA93_0 = input.LA(1);
 
-            if ( (LA92_0==EXPORT) ) {
-                alt92=1;
+            if ( (LA93_0==EXPORT) ) {
+                alt93=1;
             }
-            else if ( (LA92_0==LC_IMPORT||LA92_0==UC_IMPORT) ) {
-                alt92=2;
+            else if ( (LA93_0==LC_IMPORT||LA93_0==UC_IMPORT) ) {
+                alt93=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 92, 0, input);
+                    new NoViableAltException("", 93, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt92) {
+            switch (alt93) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2612:14: sbolExportStatement[defer]
                     {
-                    pushFollow(FOLLOW_sbolExportStatement_in_sbolStatement4720);
+                    pushFollow(FOLLOW_sbolExportStatement_in_sbolStatement4723);
                     sbolExportStatement249=sbolExportStatement(defer);
 
                     state._fsp--;
@@ -13967,7 +13984,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2612:43: i= sbolImportStatement[defer]
                     {
-                    pushFollow(FOLLOW_sbolImportStatement_in_sbolStatement4727);
+                    pushFollow(FOLLOW_sbolImportStatement_in_sbolStatement4730);
                     i=sbolImportStatement(defer);
 
                     state._fsp--;
@@ -14046,42 +14063,42 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            EXPORT250=(Token)match(input,EXPORT,FOLLOW_EXPORT_in_sbolExportStatement4744); 
+            EXPORT250=(Token)match(input,EXPORT,FOLLOW_EXPORT_in_sbolExportStatement4747); 
             EXPORT250_tree = 
             (Object)adaptor.create(EXPORT250)
             ;
             adaptor.addChild(root_0, EXPORT250_tree);
 
 
-            LEFTP251=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_sbolExportStatement4746); 
+            LEFTP251=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_sbolExportStatement4749); 
             LEFTP251_tree = 
             (Object)adaptor.create(LEFTP251)
             ;
             adaptor.addChild(root_0, LEFTP251_tree);
 
 
-            idToken=(Token)match(input,ID,FOLLOW_ID_in_sbolExportStatement4750); 
+            idToken=(Token)match(input,ID,FOLLOW_ID_in_sbolExportStatement4753); 
             idToken_tree = 
             (Object)adaptor.create(idToken)
             ;
             adaptor.addChild(root_0, idToken_tree);
 
 
-            COMMA252=(Token)match(input,COMMA,FOLLOW_COMMA_in_sbolExportStatement4752); 
+            COMMA252=(Token)match(input,COMMA,FOLLOW_COMMA_in_sbolExportStatement4755); 
             COMMA252_tree = 
             (Object)adaptor.create(COMMA252)
             ;
             adaptor.addChild(root_0, COMMA252_tree);
 
 
-            filenameToken=(Token)match(input,STRING,FOLLOW_STRING_in_sbolExportStatement4756); 
+            filenameToken=(Token)match(input,STRING,FOLLOW_STRING_in_sbolExportStatement4759); 
             filenameToken_tree = 
             (Object)adaptor.create(filenameToken)
             ;
             adaptor.addChild(root_0, filenameToken_tree);
 
 
-            RIGHTP253=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_sbolExportStatement4758); 
+            RIGHTP253=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_sbolExportStatement4761); 
             RIGHTP253_tree = 
             (Object)adaptor.create(RIGHTP253)
             ;
@@ -14172,21 +14189,21 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            LEFTP255=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_sbolImportStatement4787); 
+            LEFTP255=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_sbolImportStatement4790); 
             LEFTP255_tree = 
             (Object)adaptor.create(LEFTP255)
             ;
             adaptor.addChild(root_0, LEFTP255_tree);
 
 
-            fileToken=(Token)match(input,STRING,FOLLOW_STRING_in_sbolImportStatement4791); 
+            fileToken=(Token)match(input,STRING,FOLLOW_STRING_in_sbolImportStatement4794); 
             fileToken_tree = 
             (Object)adaptor.create(fileToken)
             ;
             adaptor.addChild(root_0, fileToken_tree);
 
 
-            RIGHTP256=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_sbolImportStatement4793); 
+            RIGHTP256=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_sbolImportStatement4796); 
             RIGHTP256_tree = 
             (Object)adaptor.create(RIGHTP256)
             ;
@@ -14274,21 +14291,21 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            LEFTP258=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_pigeonStatement4822); 
+            LEFTP258=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_pigeonStatement4825); 
             LEFTP258_tree = 
             (Object)adaptor.create(LEFTP258)
             ;
             adaptor.addChild(root_0, LEFTP258_tree);
 
 
-            idToken=(Token)match(input,ID,FOLLOW_ID_in_pigeonStatement4826); 
+            idToken=(Token)match(input,ID,FOLLOW_ID_in_pigeonStatement4829); 
             idToken_tree = 
             (Object)adaptor.create(idToken)
             ;
             adaptor.addChild(root_0, idToken_tree);
 
 
-            RIGHTP259=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_pigeonStatement4828); 
+            RIGHTP259=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_pigeonStatement4831); 
             RIGHTP259_tree = 
             (Object)adaptor.create(RIGHTP259)
             ;
@@ -14388,32 +14405,32 @@ public TreeAdaptor getTreeAdaptor() {
 
         try {
             // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2730:2: (| ASSERT LEFTP id= ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP | NOTE LEFTP id= ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP )
-            int alt93=3;
+            int alt94=3;
             switch ( input.LA(1) ) {
             case SEMIC:
                 {
-                alt93=1;
+                alt94=1;
                 }
                 break;
             case ASSERT:
                 {
-                alt93=2;
+                alt94=2;
                 }
                 break;
             case NOTE:
                 {
-                alt93=3;
+                alt94=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 93, 0, input);
+                    new NoViableAltException("", 94, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt93) {
+            switch (alt94) {
                 case 1 :
                     // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2730:5: 
                     {
@@ -14428,77 +14445,77 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    ASSERT260=(Token)match(input,ASSERT,FOLLOW_ASSERT_in_testStatements4852); 
+                    ASSERT260=(Token)match(input,ASSERT,FOLLOW_ASSERT_in_testStatements4855); 
                     ASSERT260_tree = 
                     (Object)adaptor.create(ASSERT260)
                     ;
                     adaptor.addChild(root_0, ASSERT260_tree);
 
 
-                    LEFTP261=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_testStatements4854); 
+                    LEFTP261=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_testStatements4857); 
                     LEFTP261_tree = 
                     (Object)adaptor.create(LEFTP261)
                     ;
                     adaptor.addChild(root_0, LEFTP261_tree);
 
 
-                    id=(Token)match(input,ID,FOLLOW_ID_in_testStatements4858); 
+                    id=(Token)match(input,ID,FOLLOW_ID_in_testStatements4861); 
                     id_tree = 
                     (Object)adaptor.create(id)
                     ;
                     adaptor.addChild(root_0, id_tree);
 
 
-                    DOT262=(Token)match(input,DOT,FOLLOW_DOT_in_testStatements4860); 
+                    DOT262=(Token)match(input,DOT,FOLLOW_DOT_in_testStatements4863); 
                     DOT262_tree = 
                     (Object)adaptor.create(DOT262)
                     ;
                     adaptor.addChild(root_0, DOT262_tree);
 
 
-                    SIZE263=(Token)match(input,SIZE,FOLLOW_SIZE_in_testStatements4862); 
+                    SIZE263=(Token)match(input,SIZE,FOLLOW_SIZE_in_testStatements4865); 
                     SIZE263_tree = 
                     (Object)adaptor.create(SIZE263)
                     ;
                     adaptor.addChild(root_0, SIZE263_tree);
 
 
-                    LEFTP264=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_testStatements4864); 
+                    LEFTP264=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_testStatements4867); 
                     LEFTP264_tree = 
                     (Object)adaptor.create(LEFTP264)
                     ;
                     adaptor.addChild(root_0, LEFTP264_tree);
 
 
-                    RIGHTP265=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_testStatements4866); 
+                    RIGHTP265=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_testStatements4869); 
                     RIGHTP265_tree = 
                     (Object)adaptor.create(RIGHTP265)
                     ;
                     adaptor.addChild(root_0, RIGHTP265_tree);
 
 
-                    EQUALS266=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_testStatements4868); 
+                    EQUALS266=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_testStatements4871); 
                     EQUALS266_tree = 
                     (Object)adaptor.create(EQUALS266)
                     ;
                     adaptor.addChild(root_0, EQUALS266_tree);
 
 
-                    EQUALS267=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_testStatements4870); 
+                    EQUALS267=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_testStatements4873); 
                     EQUALS267_tree = 
                     (Object)adaptor.create(EQUALS267)
                     ;
                     adaptor.addChild(root_0, EQUALS267_tree);
 
 
-                    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_testStatements4874); 
+                    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_testStatements4877); 
                     n_tree = 
                     (Object)adaptor.create(n)
                     ;
                     adaptor.addChild(root_0, n_tree);
 
 
-                    RIGHTP268=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_testStatements4876); 
+                    RIGHTP268=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_testStatements4879); 
                     RIGHTP268_tree = 
                     (Object)adaptor.create(RIGHTP268)
                     ;
@@ -14530,77 +14547,77 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    NOTE269=(Token)match(input,NOTE,FOLLOW_NOTE_in_testStatements4884); 
+                    NOTE269=(Token)match(input,NOTE,FOLLOW_NOTE_in_testStatements4887); 
                     NOTE269_tree = 
                     (Object)adaptor.create(NOTE269)
                     ;
                     adaptor.addChild(root_0, NOTE269_tree);
 
 
-                    LEFTP270=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_testStatements4886); 
+                    LEFTP270=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_testStatements4889); 
                     LEFTP270_tree = 
                     (Object)adaptor.create(LEFTP270)
                     ;
                     adaptor.addChild(root_0, LEFTP270_tree);
 
 
-                    id=(Token)match(input,ID,FOLLOW_ID_in_testStatements4890); 
+                    id=(Token)match(input,ID,FOLLOW_ID_in_testStatements4893); 
                     id_tree = 
                     (Object)adaptor.create(id)
                     ;
                     adaptor.addChild(root_0, id_tree);
 
 
-                    DOT271=(Token)match(input,DOT,FOLLOW_DOT_in_testStatements4892); 
+                    DOT271=(Token)match(input,DOT,FOLLOW_DOT_in_testStatements4895); 
                     DOT271_tree = 
                     (Object)adaptor.create(DOT271)
                     ;
                     adaptor.addChild(root_0, DOT271_tree);
 
 
-                    SIZE272=(Token)match(input,SIZE,FOLLOW_SIZE_in_testStatements4894); 
+                    SIZE272=(Token)match(input,SIZE,FOLLOW_SIZE_in_testStatements4897); 
                     SIZE272_tree = 
                     (Object)adaptor.create(SIZE272)
                     ;
                     adaptor.addChild(root_0, SIZE272_tree);
 
 
-                    LEFTP273=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_testStatements4896); 
+                    LEFTP273=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_testStatements4899); 
                     LEFTP273_tree = 
                     (Object)adaptor.create(LEFTP273)
                     ;
                     adaptor.addChild(root_0, LEFTP273_tree);
 
 
-                    RIGHTP274=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_testStatements4898); 
+                    RIGHTP274=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_testStatements4901); 
                     RIGHTP274_tree = 
                     (Object)adaptor.create(RIGHTP274)
                     ;
                     adaptor.addChild(root_0, RIGHTP274_tree);
 
 
-                    EQUALS275=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_testStatements4900); 
+                    EQUALS275=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_testStatements4903); 
                     EQUALS275_tree = 
                     (Object)adaptor.create(EQUALS275)
                     ;
                     adaptor.addChild(root_0, EQUALS275_tree);
 
 
-                    EQUALS276=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_testStatements4902); 
+                    EQUALS276=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_testStatements4905); 
                     EQUALS276_tree = 
                     (Object)adaptor.create(EQUALS276)
                     ;
                     adaptor.addChild(root_0, EQUALS276_tree);
 
 
-                    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_testStatements4906); 
+                    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_testStatements4909); 
                     n_tree = 
                     (Object)adaptor.create(n)
                     ;
                     adaptor.addChild(root_0, n_tree);
 
 
-                    RIGHTP277=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_testStatements4908); 
+                    RIGHTP277=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_testStatements4911); 
                     RIGHTP277_tree = 
                     (Object)adaptor.create(RIGHTP277)
                     ;
@@ -14749,339 +14766,339 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_listOfIDs_in_partTypeDeclaration1652 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
     public static final BitSet FOLLOW_RIGHTP_in_partTypeDeclaration1657 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_COLLECTION_in_containerDeclaration1684 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ARRAY_in_containerDeclaration1691 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_LEFTSBR_in_containerDeclaration1693 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
-    public static final BitSet FOLLOW_RIGHTSBR_in_containerDeclaration1695 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_containerDeclaration1701 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_LEFTP_in_containerDeclaration1706 = new BitSet(new long[]{0x040C000523024E40L,0x0000000FBC74780FL});
-    public static final BitSet FOLLOW_list_of_declarations_in_containerDeclaration1709 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_containerDeclaration1714 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declarationStatement_in_list_of_declarations1747 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_expr_in_list_of_declarations1754 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_COMMA_in_list_of_declarations1762 = new BitSet(new long[]{0x040C000523024E40L,0x0000000FBC70780FL});
-    public static final BitSet FOLLOW_list_of_declarations_in_list_of_declarations1766 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_instantiation1794 = new BitSet(new long[]{0x0000000100020000L});
-    public static final BitSet FOLLOW_dynamic_naming_in_instantiation1800 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_LEFTP_in_instantiation1807 = new BitSet(new long[]{0x040C000103060000L,0x00000003BC647002L});
-    public static final BitSet FOLLOW_listOfDotValues_in_instantiation1812 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_listOfValues_in_instantiation1817 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_instantiation1822 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DOT_in_listOfDotValues1845 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_listOfDotValues1849 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_listOfDotValues1855 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_listOfDotValues1859 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_listOfDotValues1867 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_COMMA_in_listOfDotValues1870 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_DOT_in_listOfDotValues1872 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_listOfDotValues1876 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_listOfDotValues1884 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_listOfDotValues1888 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_listOfDotValues1898 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_expr_in_listOfValues1919 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_COMMA_in_listOfValues1925 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_listOfValues1931 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_DEVICE_in_deviceDeclaration1950 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_deviceDeclaration1954 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_LEFTP_in_deviceDeclaration1957 = new BitSet(new long[]{0x0408000100000000L,0x0000000000040080L});
-    public static final BitSet FOLLOW_deviceComponents_in_deviceDeclaration1962 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_deviceDeclaration1967 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_selection_in_deviceComponents1998 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_COMMA_in_deviceComponents2004 = new BitSet(new long[]{0x0408000100000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_deviceComponents_in_deviceComponents2008 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LEFTSBR_in_selection2032 = new BitSet(new long[]{0x0400000100000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_selection_list_in_selection2036 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
-    public static final BitSet FOLLOW_RIGHTSBR_in_selection2039 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_device_component_in_selection2048 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_device_component_in_selection_list2077 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000040L});
-    public static final BitSet FOLLOW_PIPE_in_selection_list2083 = new BitSet(new long[]{0x0400000100000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_selection_list_in_selection_list2087 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_device_component2113 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_device_component2123 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_lhs_assignment_in_assignment2143 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_EQUALS_in_assignment2146 = new BitSet(new long[]{0x040C820103020020L,0x00000403BCE07432L});
-    public static final BitSet FOLLOW_AMP_in_assignment2151 = new BitSet(new long[]{0x040C820103020000L,0x00000403BCE07432L});
-    public static final BitSet FOLLOW_rhs_assignment_in_assignment2157 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_lhs_assignment2172 = new BitSet(new long[]{0x0008000000040000L});
-    public static final BitSet FOLLOW_lhs_access_in_lhs_assignment2174 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DOT_in_lhs_access2194 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_lhs_access2198 = new BitSet(new long[]{0x0008000000040000L});
-    public static final BitSet FOLLOW_LEFTSBR_in_lhs_access2202 = new BitSet(new long[]{0x0000000100000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_lhs_access2204 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
-    public static final BitSet FOLLOW_RIGHTSBR_in_lhs_access2210 = new BitSet(new long[]{0x0008000000040000L});
-    public static final BitSet FOLLOW_lhs_access_in_lhs_access2213 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_functionCall_in_rhs_assignment2236 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dataExchange_in_rhs_assignment2246 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_rhs_assignment2256 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_listOfIDs2284 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_COMMA_in_listOfIDs2293 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_listOfIDs_in_listOfIDs2297 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_in_ruleDeclaration2321 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_ruleDeclaration2325 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_ruleDeclaration2327 = new BitSet(new long[]{0x048D380100000000L,0xFFF9700080004002L,0xDFFFFFFFFFBFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_set_in_ruleDeclaration2332 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_ruleDeclaration2340 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_COLON_in_ruleDeclaration2342 = new BitSet(new long[]{0x048D180100000000L,0xFFF9300080004002L,0xDFFFFFFFFFBFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_cnf_rule_in_ruleDeclaration2350 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_ruleDeclaration2355 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOperators_in_ruleOperator2369 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_EQUALS_in_relationalOperators2748 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_EQUALS_in_relationalOperators2750 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NEQUAL_in_relationalOperators2755 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LTHAN_in_relationalOperators2760 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_GTHAN_in_relationalOperators2765 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LEQUAL_in_relationalOperators2770 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_GEQUAL_in_relationalOperators2775 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_relationalOperators2780 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_relationalOperators2789 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_relationalOperators2798 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_relationalOperators2807 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_relationalOperators2816 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_relationalOperators2825 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_relationalOperators2834 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_relationalOperators2843 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_relationalOperators2852 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_or_predicate_in_cnf_rule2876 = new BitSet(new long[]{0x0040000800000002L,0x0000001000000000L});
-    public static final BitSet FOLLOW_set_in_cnf_rule2884 = new BitSet(new long[]{0x048D180100000000L,0xFFF9300080004002L,0xDFFFFFFFFFBFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_cnf_rule_in_cnf_rule2894 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_negated_predicate_in_or_predicate2924 = new BitSet(new long[]{0x0100400000000002L,0x0000800000000000L});
-    public static final BitSet FOLLOW_set_in_or_predicate2930 = new BitSet(new long[]{0x048D180100000000L,0xFFF9300080004002L,0xDFFFFFFFFFBFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_negated_predicate_in_or_predicate2940 = new BitSet(new long[]{0x0100400000000002L,0x0000800000000000L});
-    public static final BitSet FOLLOW_set_in_negated_predicate2968 = new BitSet(new long[]{0x040D080100000000L,0xFFF9100080004002L,0xDFFFFFFFFFBFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_predicate_in_negated_predicate2978 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_predicate_in_negated_predicate2988 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_operand_in_predicate3015 = new BitSet(new long[]{0x0001080000000000L,0xFFF9100000000000L,0xDFFFFFFFFFBFFFFFL,0x0000000000000001L});
-    public static final BitSet FOLLOW_ruleOperator_in_predicate3025 = new BitSet(new long[]{0x0008000100000002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_operand_in_predicate3034 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_predicate3048 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expressionRule_in_predicate3057 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_operand3088 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_operand3097 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LEFTSBR_in_operand3104 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_operand3108 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
-    public static final BitSet FOLLOW_RIGHTSBR_in_operand3110 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_expressionRule3136 = new BitSet(new long[]{0x2210000050100000L,0xA000000000000000L,0x600164D000C002C9L});
-    public static final BitSet FOLLOW_exp_op_in_expressionRule3141 = new BitSet(new long[]{0x0404000100000000L,0x0000000080004002L});
-    public static final BitSet FOLLOW_expression_in_expressionRule3146 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_exp_operand_in_expression3170 = new BitSet(new long[]{0x1400000000010002L,0x0000000000000080L});
-    public static final BitSet FOLLOW_exp_operator_in_expression3179 = new BitSet(new long[]{0x0404000100000000L,0x0000000080004002L});
-    public static final BitSet FOLLOW_expression_in_expression3184 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LEFTP_in_expression3196 = new BitSet(new long[]{0x0404000100000000L,0x0000000080004002L});
-    public static final BitSet FOLLOW_expression_in_expression3198 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_expression3201 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_PLUS_in_exp_operator3220 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_MINUS_in_exp_operator3228 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_MULT_in_exp_operator3235 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DIV_in_exp_operator3242 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_exp_operand3272 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_DOT_in_exp_operand3274 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_exp_operand3283 = new BitSet(new long[]{0x0008000000000002L});
-    public static final BitSet FOLLOW_LEFTSBR_in_exp_operand3289 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_exp_operand3293 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
-    public static final BitSet FOLLOW_RIGHTSBR_in_exp_operand3295 = new BitSet(new long[]{0x0008000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_exp_operand3307 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_MINUS_in_exp_operand3314 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_exp_operand3318 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_REAL_in_exp_operand3327 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_MINUS_in_exp_operand3334 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
-    public static final BitSet FOLLOW_REAL_in_exp_operand3338 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_exp_operand3347 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_relationalOperators_in_exp_op3374 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_GRAMMAR_in_grammarDeclaration3393 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_grammarDeclaration3397 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_grammarDeclaration3399 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_list_of_production_rules_in_grammarDeclaration3401 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_grammarDeclaration3404 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_production_rule_in_list_of_production_rules3416 = new BitSet(new long[]{0x0000000000000000L,0x0000000001000000L});
-    public static final BitSet FOLLOW_SEMIC_in_list_of_production_rules3419 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_list_of_production_rules_in_list_of_production_rules3422 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_production_rule3442 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_ARROW_in_production_rule3446 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_right_hand_side_in_production_rule3448 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_right_hand_side3464 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_COMMA_in_right_hand_side3469 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_right_hand_side_in_right_hand_side3471 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_interaction_in_right_hand_side3479 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_interaction_in_interactionDeclaration3504 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INTERACTION_in_interactionDeclaration3512 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_interactionDeclaration3516 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_interactionDeclaration3518 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_interaction_in_interactionDeclaration3522 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_interactionDeclaration3525 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_interaction3548 = new BitSet(new long[]{0x0001080000000000L,0x0001100000000000L});
-    public static final BitSet FOLLOW_interactionType_in_interaction3552 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_interaction3557 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_interaction3566 = new BitSet(new long[]{0x0001080000000000L,0x0001100000000000L});
-    public static final BitSet FOLLOW_interactionType_in_interaction3570 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_interaction3573 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_interaction_in_interaction3577 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_interaction3580 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_interactionType3600 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_interactionType3613 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_PRODUCT_in_functionCall3647 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_PERMUTE_in_functionCall3651 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_functionCall3654 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_functionCall3658 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_functionCall3660 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_PRINTLN_in_printStatement3678 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_printStatement3680 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_toPrint_in_printStatement3684 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_printStatement3687 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_PRINT_in_printStatement3694 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_printStatement3696 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_toPrint_in_printStatement3700 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_printStatement3703 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_toPrint3724 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_toPrint_prime_in_toPrint3729 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_COMMA_in_toPrint_prime3755 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_toPrint_in_toPrint_prime3759 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ifStatement_in_imperativeStatements3779 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_forall_iterator_in_imperativeStatements3785 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_for_loop_in_imperativeStatements3791 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_ifStatement3817 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_ifStatement3823 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_imp_condition_in_ifStatement3827 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_ifStatement3830 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_LEFTCUR_in_ifStatement3832 = new BitSet(new long[]{0x800087C5A0604F40L,0x00000F8C3CF03F3DL});
-    public static final BitSet FOLLOW_listOfStatements_in_ifStatement3840 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_RIGHTCUR_in_ifStatement3843 = new BitSet(new long[]{0x0000003000000002L,0x0000006000000000L});
-    public static final BitSet FOLLOW_set_in_ifStatement3858 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_ifStatement3864 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_imp_condition_in_ifStatement3868 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_ifStatement3871 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_LEFTCUR_in_ifStatement3873 = new BitSet(new long[]{0x800087C5A0604F40L,0x00000F8C3CF03F3DL});
-    public static final BitSet FOLLOW_listOfStatements_in_ifStatement3881 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_RIGHTCUR_in_ifStatement3884 = new BitSet(new long[]{0x0000003000000002L,0x0000006000000000L});
-    public static final BitSet FOLLOW_set_in_ifStatement3900 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_LEFTCUR_in_ifStatement3906 = new BitSet(new long[]{0x800087C5A0604F40L,0x00000F8C3CF03F3DL});
-    public static final BitSet FOLLOW_listOfStatements_in_ifStatement3914 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_RIGHTCUR_in_ifStatement3917 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_atom_in_imp_condition3941 = new BitSet(new long[]{0x2210000050100000L,0xA000000000000000L,0x600164D000C002C9L});
-    public static final BitSet FOLLOW_relationalOperators_in_imp_condition3946 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_atom_in_imp_condition3950 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_forall_iterator3966 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_forall_iterator3975 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_COLON_in_forall_iterator3977 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_forall_iterator3983 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_LEFTCUR_in_forall_iterator3985 = new BitSet(new long[]{0x800087C5A0604F40L,0x00000F8C3CF03F3DL});
-    public static final BitSet FOLLOW_listOfStatements_in_forall_iterator3990 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_RIGHTCUR_in_forall_iterator3997 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_for_loop4009 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_for_loop4015 = new BitSet(new long[]{0x0000000000000600L,0x0000000400000001L});
-    public static final BitSet FOLLOW_variableDeclaration_in_for_loop4019 = new BitSet(new long[]{0x0000000000000000L,0x0000000001000000L});
-    public static final BitSet FOLLOW_SEMIC_in_for_loop4022 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_imp_condition_in_for_loop4026 = new BitSet(new long[]{0x0000000000000000L,0x0000000001000000L});
-    public static final BitSet FOLLOW_SEMIC_in_for_loop4029 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_assignment_in_for_loop4033 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_for_loop4036 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_LEFTCUR_in_for_loop4038 = new BitSet(new long[]{0x800087C5A0604F40L,0x00000F8C3CF03F3DL});
-    public static final BitSet FOLLOW_listOfStatements_in_for_loop4046 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_RIGHTCUR_in_for_loop4053 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_statement_in_listOfStatements4072 = new BitSet(new long[]{0x800087C5A0604F42L,0x00000F8C3CF03F3DL});
-    public static final BitSet FOLLOW_multExpr_in_expr4100 = new BitSet(new long[]{0x0400000000000002L,0x0000000000000080L});
-    public static final BitSet FOLLOW_set_in_expr4109 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_multExpr_in_expr4117 = new BitSet(new long[]{0x0400000000000002L,0x0000000000000080L});
-    public static final BitSet FOLLOW_atom_in_multExpr4147 = new BitSet(new long[]{0x1000000000010002L});
-    public static final BitSet FOLLOW_MULT_in_multExpr4158 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_DIV_in_multExpr4162 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_atom_in_multExpr4167 = new BitSet(new long[]{0x1000000000010002L});
-    public static final BitSet FOLLOW_NUMBER_in_atom4194 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_REAL_in_atom4200 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_MINUS_in_atom4210 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004002L});
-    public static final BitSet FOLLOW_NUMBER_in_atom4215 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_REAL_in_atom4221 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_atom4234 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_atom4244 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dynamic_naming_in_atom4260 = new BitSet(new long[]{0x0008000000040000L});
-    public static final BitSet FOLLOW_object_access_in_atom4267 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_atom4276 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LEFTP_in_atom4284 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_atom4286 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_atom4289 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LEFTSBR_in_atom4298 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_list_in_atom4300 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
-    public static final BitSet FOLLOW_RIGHTSBR_in_atom4303 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_built_in_function_in_atom4314 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_list4337 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_COMMA_in_list4344 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_list4348 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_set_in_built_in_function4376 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_built_in_function4382 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_built_in_function4386 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_built_in_function4389 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_built_in_function4396 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_built_in_function4402 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_range_in_built_in_function4406 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_built_in_function4409 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_built_in_function4416 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_built_in_function4426 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_built_in_function4430 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_built_in_function4433 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_range4455 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_COMMA_in_range4458 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_range4462 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DOT_in_object_access4498 = new BitSet(new long[]{0x0000000100000000L,0x0000000002000000L});
-    public static final BitSet FOLLOW_ID_in_object_access4503 = new BitSet(new long[]{0x0008000000040000L});
-    public static final BitSet FOLLOW_SIZE_in_object_access4509 = new BitSet(new long[]{0x000C000000040000L});
-    public static final BitSet FOLLOW_LEFTP_in_object_access4512 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_object_access4514 = new BitSet(new long[]{0x0008000000040000L});
-    public static final BitSet FOLLOW_LEFTSBR_in_object_access4524 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_object_access4529 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
-    public static final BitSet FOLLOW_RIGHTSBR_in_object_access4533 = new BitSet(new long[]{0x0008000000040000L});
-    public static final BitSet FOLLOW_object_access_in_object_access4540 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_dynamic_naming4565 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DOLLAR_in_dynamic_naming4572 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_LEFTCUR_in_dynamic_naming4574 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_dynamic_naming4578 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_RIGHTCUR_in_dynamic_naming4581 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_sbolStatement_in_dataExchange4606 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pigeonStatement_in_dataExchange4616 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_importStatement_in_dataExchange4624 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HASHMARK_in_includeStatement4646 = new BitSet(new long[]{0x0000040000000000L,0x0000080000000000L});
-    public static final BitSet FOLLOW_set_in_includeStatement4650 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_STRING_in_includeStatement4658 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_importStatement4679 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_importStatement4685 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_STRING_in_importStatement4689 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_importStatement4693 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SBOL_in_sbolStatement4715 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_DOT_in_sbolStatement4717 = new BitSet(new long[]{0x0000020000800000L,0x0000040000000000L});
-    public static final BitSet FOLLOW_sbolExportStatement_in_sbolStatement4720 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_sbolImportStatement_in_sbolStatement4727 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_EXPORT_in_sbolExportStatement4744 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_sbolExportStatement4746 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_sbolExportStatement4750 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_COMMA_in_sbolExportStatement4752 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_STRING_in_sbolExportStatement4756 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_sbolExportStatement4758 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_sbolImportStatement4781 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_sbolImportStatement4787 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_STRING_in_sbolImportStatement4791 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_sbolImportStatement4793 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_pigeonStatement4816 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_pigeonStatement4822 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_pigeonStatement4826 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_pigeonStatement4828 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ASSERT_in_testStatements4852 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_testStatements4854 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_testStatements4858 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_DOT_in_testStatements4860 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
-    public static final BitSet FOLLOW_SIZE_in_testStatements4862 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_testStatements4864 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_testStatements4866 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_EQUALS_in_testStatements4868 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_EQUALS_in_testStatements4870 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_testStatements4874 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_testStatements4876 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NOTE_in_testStatements4884 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_testStatements4886 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_testStatements4890 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_DOT_in_testStatements4892 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
-    public static final BitSet FOLLOW_SIZE_in_testStatements4894 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_testStatements4896 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_testStatements4898 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_EQUALS_in_testStatements4900 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_EQUALS_in_testStatements4902 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_testStatements4906 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_testStatements4908 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ARRAY_in_containerDeclaration1691 = new BitSet(new long[]{0x0008000100000000L});
+    public static final BitSet FOLLOW_LEFTSBR_in_containerDeclaration1694 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
+    public static final BitSet FOLLOW_RIGHTSBR_in_containerDeclaration1696 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_containerDeclaration1704 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_LEFTP_in_containerDeclaration1709 = new BitSet(new long[]{0x040C000523024E40L,0x0000000FBC74780FL});
+    public static final BitSet FOLLOW_list_of_declarations_in_containerDeclaration1712 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_containerDeclaration1717 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declarationStatement_in_list_of_declarations1750 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_expr_in_list_of_declarations1757 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_COMMA_in_list_of_declarations1765 = new BitSet(new long[]{0x040C000523024E40L,0x0000000FBC70780FL});
+    public static final BitSet FOLLOW_list_of_declarations_in_list_of_declarations1769 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_instantiation1797 = new BitSet(new long[]{0x0000000100020000L});
+    public static final BitSet FOLLOW_dynamic_naming_in_instantiation1803 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_LEFTP_in_instantiation1810 = new BitSet(new long[]{0x040C000103060000L,0x00000003BC647002L});
+    public static final BitSet FOLLOW_listOfDotValues_in_instantiation1815 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_listOfValues_in_instantiation1820 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_instantiation1825 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DOT_in_listOfDotValues1848 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_listOfDotValues1852 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_listOfDotValues1858 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_listOfDotValues1862 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_listOfDotValues1870 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_COMMA_in_listOfDotValues1873 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_DOT_in_listOfDotValues1875 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_listOfDotValues1879 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_listOfDotValues1887 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_listOfDotValues1891 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_listOfDotValues1901 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_expr_in_listOfValues1922 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_COMMA_in_listOfValues1928 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_listOfValues1934 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_DEVICE_in_deviceDeclaration1953 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_deviceDeclaration1957 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_LEFTP_in_deviceDeclaration1960 = new BitSet(new long[]{0x0408000100000000L,0x0000000000040080L});
+    public static final BitSet FOLLOW_deviceComponents_in_deviceDeclaration1965 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_deviceDeclaration1970 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_selection_in_deviceComponents2001 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_COMMA_in_deviceComponents2007 = new BitSet(new long[]{0x0408000100000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_deviceComponents_in_deviceComponents2011 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LEFTSBR_in_selection2035 = new BitSet(new long[]{0x0400000100000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_selection_list_in_selection2039 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
+    public static final BitSet FOLLOW_RIGHTSBR_in_selection2042 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_device_component_in_selection2051 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_device_component_in_selection_list2080 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000040L});
+    public static final BitSet FOLLOW_PIPE_in_selection_list2086 = new BitSet(new long[]{0x0400000100000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_selection_list_in_selection_list2090 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_device_component2116 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_device_component2126 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_lhs_assignment_in_assignment2146 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_EQUALS_in_assignment2149 = new BitSet(new long[]{0x040C820103020020L,0x00000403BCE07432L});
+    public static final BitSet FOLLOW_AMP_in_assignment2154 = new BitSet(new long[]{0x040C820103020000L,0x00000403BCE07432L});
+    public static final BitSet FOLLOW_rhs_assignment_in_assignment2160 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_lhs_assignment2175 = new BitSet(new long[]{0x0008000000040000L});
+    public static final BitSet FOLLOW_lhs_access_in_lhs_assignment2177 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DOT_in_lhs_access2197 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_lhs_access2201 = new BitSet(new long[]{0x0008000000040000L});
+    public static final BitSet FOLLOW_LEFTSBR_in_lhs_access2205 = new BitSet(new long[]{0x0000000100000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_lhs_access2207 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
+    public static final BitSet FOLLOW_RIGHTSBR_in_lhs_access2213 = new BitSet(new long[]{0x0008000000040000L});
+    public static final BitSet FOLLOW_lhs_access_in_lhs_access2216 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_functionCall_in_rhs_assignment2239 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dataExchange_in_rhs_assignment2249 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_rhs_assignment2259 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_listOfIDs2287 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_COMMA_in_listOfIDs2296 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_listOfIDs_in_listOfIDs2300 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_in_ruleDeclaration2324 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_ruleDeclaration2328 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_ruleDeclaration2330 = new BitSet(new long[]{0x048D380100000000L,0xFFF9700080004002L,0xDFFFFFFFFFBFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_set_in_ruleDeclaration2335 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_ruleDeclaration2343 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_COLON_in_ruleDeclaration2345 = new BitSet(new long[]{0x048D180100000000L,0xFFF9300080004002L,0xDFFFFFFFFFBFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_cnf_rule_in_ruleDeclaration2353 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_ruleDeclaration2358 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOperators_in_ruleOperator2372 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EQUALS_in_relationalOperators2751 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_EQUALS_in_relationalOperators2753 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NEQUAL_in_relationalOperators2758 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LTHAN_in_relationalOperators2763 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_GTHAN_in_relationalOperators2768 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LEQUAL_in_relationalOperators2773 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_GEQUAL_in_relationalOperators2778 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_relationalOperators2783 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_relationalOperators2792 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_relationalOperators2801 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_relationalOperators2810 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_relationalOperators2819 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_relationalOperators2828 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_relationalOperators2837 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_relationalOperators2846 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_relationalOperators2855 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_or_predicate_in_cnf_rule2879 = new BitSet(new long[]{0x0040000800000002L,0x0000001000000000L});
+    public static final BitSet FOLLOW_set_in_cnf_rule2887 = new BitSet(new long[]{0x048D180100000000L,0xFFF9300080004002L,0xDFFFFFFFFFBFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_cnf_rule_in_cnf_rule2897 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_negated_predicate_in_or_predicate2927 = new BitSet(new long[]{0x0100400000000002L,0x0000800000000000L});
+    public static final BitSet FOLLOW_set_in_or_predicate2933 = new BitSet(new long[]{0x048D180100000000L,0xFFF9300080004002L,0xDFFFFFFFFFBFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_negated_predicate_in_or_predicate2943 = new BitSet(new long[]{0x0100400000000002L,0x0000800000000000L});
+    public static final BitSet FOLLOW_set_in_negated_predicate2971 = new BitSet(new long[]{0x040D080100000000L,0xFFF9100080004002L,0xDFFFFFFFFFBFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_predicate_in_negated_predicate2981 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_predicate_in_negated_predicate2991 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_operand_in_predicate3018 = new BitSet(new long[]{0x0001080000000000L,0xFFF9100000000000L,0xDFFFFFFFFFBFFFFFL,0x0000000000000001L});
+    public static final BitSet FOLLOW_ruleOperator_in_predicate3028 = new BitSet(new long[]{0x0008000100000002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_operand_in_predicate3037 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_predicate3051 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expressionRule_in_predicate3060 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_operand3091 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_operand3100 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LEFTSBR_in_operand3107 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_operand3111 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
+    public static final BitSet FOLLOW_RIGHTSBR_in_operand3113 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_expressionRule3139 = new BitSet(new long[]{0x2210000050100000L,0xA000000000000000L,0x600164D000C002C9L});
+    public static final BitSet FOLLOW_exp_op_in_expressionRule3144 = new BitSet(new long[]{0x0404000100000000L,0x0000000080004002L});
+    public static final BitSet FOLLOW_expression_in_expressionRule3149 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_exp_operand_in_expression3173 = new BitSet(new long[]{0x1400000000010002L,0x0000000000000080L});
+    public static final BitSet FOLLOW_exp_operator_in_expression3182 = new BitSet(new long[]{0x0404000100000000L,0x0000000080004002L});
+    public static final BitSet FOLLOW_expression_in_expression3187 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LEFTP_in_expression3199 = new BitSet(new long[]{0x0404000100000000L,0x0000000080004002L});
+    public static final BitSet FOLLOW_expression_in_expression3201 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_expression3204 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_PLUS_in_exp_operator3223 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_MINUS_in_exp_operator3231 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_MULT_in_exp_operator3238 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DIV_in_exp_operator3245 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_exp_operand3275 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_DOT_in_exp_operand3277 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_exp_operand3286 = new BitSet(new long[]{0x0008000000000002L});
+    public static final BitSet FOLLOW_LEFTSBR_in_exp_operand3292 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_exp_operand3296 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
+    public static final BitSet FOLLOW_RIGHTSBR_in_exp_operand3298 = new BitSet(new long[]{0x0008000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_exp_operand3310 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_MINUS_in_exp_operand3317 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_exp_operand3321 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_REAL_in_exp_operand3330 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_MINUS_in_exp_operand3337 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
+    public static final BitSet FOLLOW_REAL_in_exp_operand3341 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_exp_operand3350 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_relationalOperators_in_exp_op3377 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_GRAMMAR_in_grammarDeclaration3396 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_grammarDeclaration3400 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_grammarDeclaration3402 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_list_of_production_rules_in_grammarDeclaration3404 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_grammarDeclaration3407 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_production_rule_in_list_of_production_rules3419 = new BitSet(new long[]{0x0000000000000000L,0x0000000001000000L});
+    public static final BitSet FOLLOW_SEMIC_in_list_of_production_rules3422 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_list_of_production_rules_in_list_of_production_rules3425 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_production_rule3445 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_ARROW_in_production_rule3449 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_right_hand_side_in_production_rule3451 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_right_hand_side3467 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_COMMA_in_right_hand_side3472 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_right_hand_side_in_right_hand_side3474 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_interaction_in_right_hand_side3482 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_interaction_in_interactionDeclaration3507 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INTERACTION_in_interactionDeclaration3515 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_interactionDeclaration3519 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_interactionDeclaration3521 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_interaction_in_interactionDeclaration3525 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_interactionDeclaration3528 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_interaction3551 = new BitSet(new long[]{0x0001080000000000L,0x0001100000000000L});
+    public static final BitSet FOLLOW_interactionType_in_interaction3555 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_interaction3560 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_interaction3569 = new BitSet(new long[]{0x0001080000000000L,0x0001100000000000L});
+    public static final BitSet FOLLOW_interactionType_in_interaction3573 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_interaction3576 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_interaction_in_interaction3580 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_interaction3583 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_interactionType3603 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_interactionType3616 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_PRODUCT_in_functionCall3650 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_PERMUTE_in_functionCall3654 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_functionCall3657 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_functionCall3661 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_functionCall3663 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_PRINTLN_in_printStatement3681 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_printStatement3683 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_toPrint_in_printStatement3687 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_printStatement3690 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_PRINT_in_printStatement3697 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_printStatement3699 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_toPrint_in_printStatement3703 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_printStatement3706 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_toPrint3727 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_toPrint_prime_in_toPrint3732 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_COMMA_in_toPrint_prime3758 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_toPrint_in_toPrint_prime3762 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ifStatement_in_imperativeStatements3782 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_forall_iterator_in_imperativeStatements3788 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_for_loop_in_imperativeStatements3794 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_ifStatement3820 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_ifStatement3826 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_imp_condition_in_ifStatement3830 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_ifStatement3833 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_LEFTCUR_in_ifStatement3835 = new BitSet(new long[]{0x800087C5A0604F40L,0x00000F8C3CF03F3DL});
+    public static final BitSet FOLLOW_listOfStatements_in_ifStatement3843 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_RIGHTCUR_in_ifStatement3846 = new BitSet(new long[]{0x0000003000000002L,0x0000006000000000L});
+    public static final BitSet FOLLOW_set_in_ifStatement3861 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_ifStatement3867 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_imp_condition_in_ifStatement3871 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_ifStatement3874 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_LEFTCUR_in_ifStatement3876 = new BitSet(new long[]{0x800087C5A0604F40L,0x00000F8C3CF03F3DL});
+    public static final BitSet FOLLOW_listOfStatements_in_ifStatement3884 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_RIGHTCUR_in_ifStatement3887 = new BitSet(new long[]{0x0000003000000002L,0x0000006000000000L});
+    public static final BitSet FOLLOW_set_in_ifStatement3903 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_LEFTCUR_in_ifStatement3909 = new BitSet(new long[]{0x800087C5A0604F40L,0x00000F8C3CF03F3DL});
+    public static final BitSet FOLLOW_listOfStatements_in_ifStatement3917 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_RIGHTCUR_in_ifStatement3920 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_atom_in_imp_condition3944 = new BitSet(new long[]{0x2210000050100000L,0xA000000000000000L,0x600164D000C002C9L});
+    public static final BitSet FOLLOW_relationalOperators_in_imp_condition3949 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_atom_in_imp_condition3953 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_forall_iterator3969 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_forall_iterator3978 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_COLON_in_forall_iterator3980 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_forall_iterator3986 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_LEFTCUR_in_forall_iterator3988 = new BitSet(new long[]{0x800087C5A0604F40L,0x00000F8C3CF03F3DL});
+    public static final BitSet FOLLOW_listOfStatements_in_forall_iterator3993 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_RIGHTCUR_in_forall_iterator4000 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_for_loop4012 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_for_loop4018 = new BitSet(new long[]{0x0000000000000600L,0x0000000400000001L});
+    public static final BitSet FOLLOW_variableDeclaration_in_for_loop4022 = new BitSet(new long[]{0x0000000000000000L,0x0000000001000000L});
+    public static final BitSet FOLLOW_SEMIC_in_for_loop4025 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_imp_condition_in_for_loop4029 = new BitSet(new long[]{0x0000000000000000L,0x0000000001000000L});
+    public static final BitSet FOLLOW_SEMIC_in_for_loop4032 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_assignment_in_for_loop4036 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_for_loop4039 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_LEFTCUR_in_for_loop4041 = new BitSet(new long[]{0x800087C5A0604F40L,0x00000F8C3CF03F3DL});
+    public static final BitSet FOLLOW_listOfStatements_in_for_loop4049 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_RIGHTCUR_in_for_loop4056 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_statement_in_listOfStatements4075 = new BitSet(new long[]{0x800087C5A0604F42L,0x00000F8C3CF03F3DL});
+    public static final BitSet FOLLOW_multExpr_in_expr4103 = new BitSet(new long[]{0x0400000000000002L,0x0000000000000080L});
+    public static final BitSet FOLLOW_set_in_expr4112 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_multExpr_in_expr4120 = new BitSet(new long[]{0x0400000000000002L,0x0000000000000080L});
+    public static final BitSet FOLLOW_atom_in_multExpr4150 = new BitSet(new long[]{0x1000000000010002L});
+    public static final BitSet FOLLOW_MULT_in_multExpr4161 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_DIV_in_multExpr4165 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_atom_in_multExpr4170 = new BitSet(new long[]{0x1000000000010002L});
+    public static final BitSet FOLLOW_NUMBER_in_atom4197 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_REAL_in_atom4203 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_MINUS_in_atom4213 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004002L});
+    public static final BitSet FOLLOW_NUMBER_in_atom4218 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_REAL_in_atom4224 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_atom4237 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_atom4247 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dynamic_naming_in_atom4263 = new BitSet(new long[]{0x0008000000040000L});
+    public static final BitSet FOLLOW_object_access_in_atom4270 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_atom4279 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LEFTP_in_atom4287 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_atom4289 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_atom4292 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LEFTSBR_in_atom4301 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_list_in_atom4303 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
+    public static final BitSet FOLLOW_RIGHTSBR_in_atom4306 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_built_in_function_in_atom4317 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_list4340 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_COMMA_in_list4347 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_list4351 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_set_in_built_in_function4379 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_built_in_function4385 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_built_in_function4389 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_built_in_function4392 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_built_in_function4399 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_built_in_function4405 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_range_in_built_in_function4409 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_built_in_function4412 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_built_in_function4419 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_built_in_function4429 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_built_in_function4433 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_built_in_function4436 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_range4458 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_COMMA_in_range4461 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_range4465 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DOT_in_object_access4501 = new BitSet(new long[]{0x0000000100000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_ID_in_object_access4506 = new BitSet(new long[]{0x0008000000040000L});
+    public static final BitSet FOLLOW_SIZE_in_object_access4512 = new BitSet(new long[]{0x000C000000040000L});
+    public static final BitSet FOLLOW_LEFTP_in_object_access4515 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_object_access4517 = new BitSet(new long[]{0x0008000000040000L});
+    public static final BitSet FOLLOW_LEFTSBR_in_object_access4527 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_object_access4532 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
+    public static final BitSet FOLLOW_RIGHTSBR_in_object_access4536 = new BitSet(new long[]{0x0008000000040000L});
+    public static final BitSet FOLLOW_object_access_in_object_access4543 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_dynamic_naming4568 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DOLLAR_in_dynamic_naming4575 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_LEFTCUR_in_dynamic_naming4577 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_dynamic_naming4581 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_RIGHTCUR_in_dynamic_naming4584 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_sbolStatement_in_dataExchange4609 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pigeonStatement_in_dataExchange4619 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_importStatement_in_dataExchange4627 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HASHMARK_in_includeStatement4649 = new BitSet(new long[]{0x0000040000000000L,0x0000080000000000L});
+    public static final BitSet FOLLOW_set_in_includeStatement4653 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_STRING_in_includeStatement4661 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_importStatement4682 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_importStatement4688 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_STRING_in_importStatement4692 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_importStatement4696 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SBOL_in_sbolStatement4718 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_DOT_in_sbolStatement4720 = new BitSet(new long[]{0x0000020000800000L,0x0000040000000000L});
+    public static final BitSet FOLLOW_sbolExportStatement_in_sbolStatement4723 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_sbolImportStatement_in_sbolStatement4730 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EXPORT_in_sbolExportStatement4747 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_sbolExportStatement4749 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_sbolExportStatement4753 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_COMMA_in_sbolExportStatement4755 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_STRING_in_sbolExportStatement4759 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_sbolExportStatement4761 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_sbolImportStatement4784 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_sbolImportStatement4790 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_STRING_in_sbolImportStatement4794 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_sbolImportStatement4796 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_pigeonStatement4819 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_pigeonStatement4825 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_pigeonStatement4829 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_pigeonStatement4831 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ASSERT_in_testStatements4855 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_testStatements4857 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_testStatements4861 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_DOT_in_testStatements4863 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_SIZE_in_testStatements4865 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_testStatements4867 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_testStatements4869 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_EQUALS_in_testStatements4871 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_EQUALS_in_testStatements4873 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_testStatements4877 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_testStatements4879 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NOTE_in_testStatements4887 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_testStatements4889 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_testStatements4893 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_DOT_in_testStatements4895 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_SIZE_in_testStatements4897 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_testStatements4899 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_testStatements4901 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_EQUALS_in_testStatements4903 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_EQUALS_in_testStatements4905 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_testStatements4909 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_testStatements4911 = new BitSet(new long[]{0x0000000000000002L});
 
 }

@@ -948,7 +948,7 @@ if(!defer) {
  *------------------------------------------------------------------*/ 
 containerDeclaration[boolean defer]
 	returns [NamedElement ne]
-	:	(c=COLLECTION | (a=ARRAY LEFTSBR RIGHTSBR)) name=ID {
+	:	(c=COLLECTION | (a=ARRAY (LEFTSBR RIGHTSBR)?)) name=ID {
 if(!defer) {
     if(null != c) {
         $ne = new EugeneCollection($name.text);

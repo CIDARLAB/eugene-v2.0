@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import org.cidarlab.eugene.dom.NamedElement;
+import org.cidarlab.eugene.dom.Part;
+import org.cidarlab.eugene.dom.PartType;
 import org.cidarlab.eugene.exception.EugeneException;
 
 /**
@@ -43,7 +45,11 @@ public class EugeneCollection
 		StringBuilder sb = new StringBuilder();
 		sb.append("Collection ").append(this.getName()).append(" (").append(NEWLINE);
 		for(NamedElement ne : this.getElements()) {
-			sb.append(ne).append(NEWLINE);
+			if(ne instanceof EugeneContainer) {
+				sb.append(((EugeneContainer)ne).toString()).append(NEWLINE);
+			} else {
+				sb.append(ne.getName()).append(NEWLINE);
+			}
 		}
 		sb.append(");");
 		return sb.toString();
@@ -109,5 +115,29 @@ public class EugeneCollection
 	public NamedElement getElement(int idx) 
 			throws EugeneException {
 		throw new EugeneException("A EugeneCollection does not support access through array indices!");
+	}
+	
+	@Override
+	public int hashCode() {
+		int hash = this.getName().hashCode();
+		
+		if(null != this.getElements() && !(this.getElements().isEmpty())) {
+			for(NamedElement el : this.getElements()) {
+				hash += el.hashCode();
+			}
+		}
+		
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if(o == null) {
+			return false;
+		} else if(!(o instanceof EugeneCollection)) {
+			return false;
+		}
+		
+		return this.hashCode() == ((EugeneCollection)o).hashCode();
 	}
 }

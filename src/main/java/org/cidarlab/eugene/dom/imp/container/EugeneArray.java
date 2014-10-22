@@ -37,7 +37,7 @@ public class EugeneArray
 		StringBuilder sb = new StringBuilder();
 		sb.append("Array[] ").append(this.getName()).append(" (").append(NEWLINE);
 		for(NamedElement ne : this.getElements()) {
-			sb.append(ne).append(NEWLINE);
+			sb.append(ne.getName()).append(NEWLINE);
 		}
 		sb.append(");");
 		return sb.toString();
@@ -111,5 +111,28 @@ public class EugeneArray
 		}
 		return null;
 	}
+	
+	@Override
+	public int hashCode() {
+		int hash = this.getName().hashCode();
+		
+		if(null != this.getElements() && !(this.getElements().isEmpty())) {
+			for(NamedElement el : this.getElements()) {
+				hash += el.hashCode();
+			}
+		}
+		
+		return hash;
+	}
 
+	@Override
+	public boolean equals(Object o) {
+		if(o == null) {
+			return false;
+		} else if(!(o instanceof EugeneArray)) {
+			return false;
+		}
+		
+		return this.hashCode() == ((EugeneArray)o).hashCode();
+	}
 }

@@ -65,4 +65,21 @@ public class Property
 			throws EugeneException {
 		throw new EugeneException("Properties do not support the array access! ('["+idx+"]')");
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o == null) {
+			return false;
+		} else if(!(o instanceof Property)) {
+			return false;
+		}
+		
+		return this.hashCode() == ((Property)o).hashCode();
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.getName().hashCode() + this.getType().hashCode();
+	}
+
 }

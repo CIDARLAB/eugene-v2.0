@@ -265,5 +265,22 @@ public class Variable
 			throw new EugeneException("Variables of type "+this.getType()+" do not support array access!");
 		}
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o == null) {
+			return false;
+		} else if(!(o instanceof Variable)) {
+			return false;
+		}
+		
+		return this.hashCode() == ((Variable)o).hashCode();
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.getName().hashCode() + this.getType().hashCode();
+	}
+
 
 }
