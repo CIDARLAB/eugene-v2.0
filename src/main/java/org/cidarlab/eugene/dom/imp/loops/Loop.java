@@ -30,7 +30,7 @@ import org.cidarlab.eugene.dom.imp.ImperativeFeature;
  * 
  * @author Ernst Oberortner
  */
-public class ForLoop 
+public class Loop 
 	extends ImperativeFeature {
 
 	/**
@@ -45,14 +45,14 @@ public class ForLoop
 	 */
 	private String varname;
 	
-	public ForLoop() {
+	public Loop() {
 		super(null);
 		this.lstStatements = null;
 		nOldPosition = 0;
 		this.varname = null;
 	}
 	
-	public ForLoop(String name) {
+	public Loop(String name) {
 		super(name);
 		this.lstStatements = null;
 		nOldPosition = 0;

@@ -1,0 +1,10 @@
+println("*** WHILE LOOPS ***");
+
+num i = 1; 
+while(i <= 2) {
+
+    num k = i;
+    println("k: ", k, " -> i: ", i);
+    
+    i = i + 1;    
+}

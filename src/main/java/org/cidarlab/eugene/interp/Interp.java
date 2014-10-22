@@ -58,7 +58,7 @@ import org.cidarlab.eugene.dom.imp.StackElement;
 import org.cidarlab.eugene.dom.imp.container.EugeneArray;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.dom.imp.container.EugeneContainer;
-import org.cidarlab.eugene.dom.imp.loops.ForLoop;
+import org.cidarlab.eugene.dom.imp.loops.Loop;
 import org.cidarlab.eugene.dom.interaction.Interaction;
 import org.cidarlab.eugene.dom.rules.ArrangementConstraint;
 import org.cidarlab.eugene.dom.rules.ArrangementOperand;
@@ -1485,8 +1485,8 @@ public class Interp {
 			/*
 			 * scoping
 			 */
-			if(this.stack.peek() instanceof ForLoop &&
-					((ForLoop)this.stack.peek()).getVarname().equals(name)) {
+			if(this.stack.peek() instanceof Loop &&
+					((Loop)this.stack.peek()).getVarname().equals(name)) {
 					
 				StackElement se = this.stack.pop();
 				se.put(ne);

@@ -104,6 +104,8 @@ tokens {
 	UC_FORALL = 'FORALL';
 	LC_FOR = 'for';
 	UC_FOR = 'FOR';
+	LC_WHILE = 'while';
+	UC_WHILE = 'WHILE';
 
 	ARROW = '-->';
 	GRAMMAR = 'Grammar';
@@ -163,6 +165,7 @@ import java.io.OutputStreamWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.UUID;
 
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.dom.*;
@@ -178,7 +181,7 @@ import org.cidarlab.eugene.dom.interaction.Interaction;
 import org.cidarlab.eugene.dom.rules.exp.*;
 import org.cidarlab.eugene.dom.imp.*;
 import org.cidarlab.eugene.dom.imp.container.*;
-import org.cidarlab.eugene.dom.imp.loops.ForLoop;
+import org.cidarlab.eugene.dom.imp.loops.Loop;
 
 import org.antlr.runtime.*;
 
@@ -599,7 +602,7 @@ public Object exec(String rule, int tokenIndex)
 }
  
  
-    public void for_loop(Token initStart, Token condStart, Token incStart, Token forStart) 
+    public void execute_loop(Token initStart, Token condStart, Token incStart, Token loopStart) 
             throws EugeneException, EugeneReturnException {
 
         /*
@@ -610,18 +613,22 @@ public Object exec(String rule, int tokenIndex)
 
         /*
          * execute the declaration statement
-         */    
-        variableDeclaration_return vdr = 
-             (variableDeclaration_return)this.exec(
-                 "variableDeclaration", 
-                 initStart.getTokenIndex());    
+         */ 
+        Loop l = new Loop();
+        if(null != initStart) {
+            variableDeclaration_return vdr = 
+                 (variableDeclaration_return)this.exec(
+                     "variableDeclaration", 
+                     initStart.getTokenIndex());    
 
-        /*
-         * create a new ForLoop object
-         */
-        ForLoop fl = new ForLoop();
-        if(null != vdr) {
-            fl.setVarname(vdr.varname);
+            /*
+             * create a new ForLoop object
+             */
+            if(null != vdr) {
+                l.setVarname(vdr.varname);
+            }
+        } else {
+            l.setVarname(UUID.randomUUID().toString());
         }
         
         /*
@@ -641,14 +648,14 @@ public Object exec(String rule, int tokenIndex)
              * push the ForLoop object onto the stack
              * (for scoping)
              */
-            this.interp.push(fl);
+            this.interp.push(l);
                 
             /*
              *   execute the statements
              */
             this.exec(
                 "listOfStatements", 
-                forStart.getTokenIndex()); 
+                loopStart.getTokenIndex()); 
              
             /*
              * pop the ForLoop statement
@@ -658,10 +665,12 @@ public Object exec(String rule, int tokenIndex)
             /*
              *   do the assignment statement
              */
-            this.exec(
-                "assignment", 
-                incStart.getTokenIndex()); 
-             
+            if(null != incStart) { 
+                this.exec(
+                    "assignment", 
+                    incStart.getTokenIndex()); 
+            }
+            
             /*
              *    evaluate the condition again
              */ 
@@ -670,12 +679,15 @@ public Object exec(String rule, int tokenIndex)
                                    condStart.getTokenIndex());  
         }
         
-        /*
-         * lastly, we need to get rid of the 
-         * iteration variable (e.g. num i)
-         */
-        this.interp.removeVariable(
-            fl.getVarname());
+        
+        if(null != l.getVarname()) {
+            /*
+             * lastly, we need to get rid of the 
+             * iteration variable (e.g. num i)
+             */
+            this.interp.removeVariable(
+                    l.getVarname());
+        }
         
         /*
          * and continue parsing/interpreting 
@@ -1983,6 +1995,7 @@ imperativeStatements[boolean defer]
 	:	ifStatement[defer]
 	|	forall_iterator[defer]
 	|	for_loop[defer]
+	|	while_loop[defer]
 	;	
 
 ifStatement[boolean defer]
@@ -2057,7 +2070,7 @@ if(!defer && !bExecuted) {
 
 imp_condition[boolean defer] 
 	returns [boolean bTrue]
-	:	lhs=atom[defer] ro=relationalOperators rhs=atom[defer] {
+	:	lhs=expr[defer] ro=relationalOperators rhs=expr[defer] {
 if(!defer) {
     try {
 
@@ -2119,15 +2132,23 @@ if(!defer) {
 	;
 
 for_loop[boolean defer]
-	:	(UC_FOR|LC_FOR) LEFTP ds=variableDeclaration[true] SEMIC co=imp_condition[true] SEMIC as=assignment[true] RIGHTP LEFTCUR 
+	:	(UC_FOR|LC_FOR) LEFTP ds=variableDeclaration[true] SEMIC co=imp_condition[true] SEMIC (as=assignment[true])? RIGHTP LEFTCUR 
 			stmts=listOfStatements[true] {
 if(!defer) {
     try {
-        this.for_loop(
-            $ds.start,      // init
-            $co.start,      // condition
-            $as.start,      // increment
-            $stmts.start);  // loop-body
+        if(null != as) {
+            this.execute_loop(
+                $ds.start,      // init
+                $co.start,      // condition
+                $as.start,      // increment
+                $stmts.start);  // loop-body
+        } else {
+            this.execute_loop(
+                $ds.start,      // init
+                $co.start,      // condition
+                null,           // increment
+                $stmts.start);  // loop-body
+        }
     } catch(EugeneReturnException ere) {
         // TODO!
     } catch(Exception ee) {
@@ -2138,7 +2159,26 @@ if(!defer) {
 		RIGHTCUR
 	;		
 
-
+while_loop[boolean defer]
+	:	(UC_WHILE|LC_WHILE) LEFTP co=imp_condition[true] RIGHTP LEFTCUR 
+			stmts=listOfStatements[true] {
+if(!defer) {
+    try {
+        this.execute_loop(
+            null,           // init
+            $co.start,      // condition
+            null,           // increment
+            $stmts.start);  // loop-body
+    } catch(EugeneReturnException ere) {
+        // TODO!
+    } catch(Exception ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}			
+	}
+		RIGHTCUR
+	;
+	
 listOfStatements[boolean defer] 
 	:	(stmtToken=statement[defer])+ 
 	;

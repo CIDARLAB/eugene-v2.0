@@ -4,8 +4,6 @@
  */
  
 num[] array = [9, 8, 7, 6, 5, 4, 3, 2, 1];
-//num[] array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-//num[] array = [1, 1, 1, 1, 1, 1, 1, 1, 1];
 num s = SIZEOF(array);
 
 num tmp;
@@ -13,10 +11,15 @@ num tmp;
 // a counter for the number of iterations
 num nr_iterations = 0;
 
-for(bool swap = true; swap == true; )
+// we bubble-sort while "swappings"
+// have been performed
+bool swap = true;
+while(swap == true)
 {
     swap = false;
     
+    // in this loop we swap adjacent 
+    // elements in the array
     for(num i = 0; i < s - 1; i = i + 1)
     {
         num j = i+1;
