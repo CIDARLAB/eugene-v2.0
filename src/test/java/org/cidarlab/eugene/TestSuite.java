@@ -12,67 +12,71 @@ public class TestSuite {
 		/*---------------------------------------------
 		 * BACKWARD COMPATIBILITY
 		 *---------------------------------------------*/
-//		new TestSuite().test("./tests/backward-comp/AllSyntaxExample.eug");
-//		new TestSuite().test("./tests/backward-comp/variable-declarations");
-		new TestSuite().test("./tests/backward-comp/hard-expression-test");
-//		new TestSuite().test("./tests/backward-comp/complex");    
+//		new TestSuite().test("./tests/basics/backward-comp/AllSyntaxExample.eug");
+//		new TestSuite().test("./tests/basics/backward-comp/variable-declarations");
+		new TestSuite().test("./tests/basics/backward-comp/hard-expression-test");
+//		new TestSuite().test("./tests/basics/backward-comp/complex");    
 		
 		/*---------------------------------------------
 		 * PRIMITIVE DATA TYPES AND MODIFICATIONS
 		 *---------------------------------------------*/
-		new TestSuite().test("./tests/primitives/primitives-assign");    
-		new TestSuite().test("./tests/primitives/part-property-assign");    
-		new TestSuite().test("./tests/primitives/array-manip");    
-		new TestSuite().test("./tests/primitives/plus-operator");    
+		new TestSuite().test("./tests/basics/primitives/primitives-assign");    
+		new TestSuite().test("./tests/basics/primitives/part-property-assign");    
+		new TestSuite().test("./tests/basics/primitives/array-manip");    
+		new TestSuite().test("./tests/basics/primitives/plus-operator");    
 
 		// EXPRESSIONS
-		new TestSuite().test("./tests/expressions/plus-sub-mult-div");
-		new TestSuite().test("./tests/expressions/loops-and-calculations");    
+		new TestSuite().test("./tests/basics/expressions/plus-sub-mult-div");
+		new TestSuite().test("./tests/basics/expressions/loops-and-calculations");    
+		new TestSuite().test("./tests/basics/expressions/expression01");    
 		
 		// ASSIGNMENTS
-		new TestSuite().test("./tests/assignments");
+		new TestSuite().test("./tests/basics/assignments");
 
 		// ACCESS statements
-		new TestSuite().test("./tests/data-access");
+		new TestSuite().test("./tests/basics/data-access");
 
 		// PRINT
-		new TestSuite().test("./tests/print-statements");
+		new TestSuite().test("./tests/basics/print-statements");
 		
 
 		/*---------------------------------------------
 		 * BUILT-IN FUNCTIONS AND FEATURES
 		 *---------------------------------------------*/
-		new TestSuite().test("./tests/built-in/sizeof");    
-		new TestSuite().test("./tests/built-in/random");    
-		new TestSuite().test("./tests/built-in/store");    
+		new TestSuite().test("./tests/basics/built-in/sizeof");    
+		new TestSuite().test("./tests/basics/built-in/random");    
+		new TestSuite().test("./tests/basics/built-in/store");    
 		
 		/*---------------------------------------------
 		 * SEQUENCE SHENANIGANS
 		 *---------------------------------------------*/
-		new TestSuite().test("./tests/sequence/reverse-complement");    
-		new TestSuite().test("./tests/sequence/random-sequence");    
-		new TestSuite().test("./tests/sequence/sequence-homology");    
+		new TestSuite().test("./tests/basics/sequence/reverse-complement");    
+		new TestSuite().test("./tests/basics/sequence/random-sequence");    
+		new TestSuite().test("./tests/basics/sequence/sequence-homology");    
 		
-		/*---------------------------------------------
-		 * EUGENE BASICS
-		 *---------------------------------------------*/
-		new TestSuite().test("./tests/property-definitions");
-		new TestSuite().test("./tests/part-type-definitions");
-		new TestSuite().test("./tests/part-definitions");
-		new TestSuite().test("./tests/device-definitions");
-
 		/*---------------------------------------------
 		 * EUGENE FUN - INSPIRED BY EC327 :)
 		 *---------------------------------------------*/
-		new TestSuite().test("./tests/just-fun/diagonals");
-		new TestSuite().test("./tests/just-fun/no-duplicates");
+		new TestSuite().test("./tests/basics/just-fun/diagonals");
+		new TestSuite().test("./tests/basics/just-fun/no-duplicates");
+
+		/*---------------------------------------------
+		 * EUGENE + BIOLOGOY BASICS
+		 *---------------------------------------------*/
+		new TestSuite().test("./tests/basics/biology/property-definitions");
+		new TestSuite().test("./tests/basics/biology/part-type-definitions");
+		new TestSuite().test("./tests/basics/biology/part-definitions");
+		new TestSuite().test("./tests/basics/biology/device-definitions");
+		new TestSuite().test("./tests/basics/biology/hierarchical-composition");
 
 		/*---------------------------------------------
 		 * EUGENE CONTAINERS
 		 *---------------------------------------------*/
-		new TestSuite().test("./tests/containers/collections");
-		new TestSuite().test("./tests/containers/collection-access");
-		new TestSuite().test("./tests/containers/arrays");
+		new TestSuite().test("./tests/basics/containers/collections");
+		new TestSuite().test("./tests/basics/containers/collection-access");
+//		new TestSuite().test("./tests/basics/containers/collection-operations");
+		
+		new TestSuite().test("./tests/basics/containers/arrays");
 
 	}
 	
@@ -285,12 +289,12 @@ public class TestSuite {
 	public static void main(String[] args) 
 			throws EugeneException {
 
-//		testBasics();
+		testBasics();
 //		testDataExchange();
 //		testRules();
 //		testImperativeFeatures();
 //		testRealWorldExamples();
-		testEugeneLabTutorials();
+//		testEugeneLabTutorials();
 		
 //		testAll();
 	

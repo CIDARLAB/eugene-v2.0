@@ -2198,65 +2198,33 @@ if(!defer) {
         $element = null;
     }
 }
-	} 	(pl=PLUS e=multExpr[defer] {
+	} 	(op=(PLUS|MINUS) e=multExpr[defer] {
 if(!defer) {
     try {
-        // PropertyValue + PropertyValue
         if(null != $element) {
-            
-            if(!($element instanceof PropertyValue) && 
-               !($element instanceof Variable)) {
-                throw new EugeneException("Unsupported + operation for " + $element.getClass() + "!");
-            }
-            
             if(null != $e.element) {
-
-                if($e.element instanceof PropertyValue && $element instanceof PropertyValue) {
-                    this.interp.doMinPlusOp((PropertyValue)$e.element, (PropertyValue)$element, $pl.text);
-                } else if($e.element instanceof PropertyValue && $element instanceof Variable) {
-                    this.interp.doMinPlusOp((PropertyValue)$e.element, (Variable)$element, $pl.text);
-                } else if($e.element instanceof Variable && $element instanceof PropertyValue) {
-                    this.interp.doMinPlusOp((Variable)$e.element, (PropertyValue)$element, $pl.text);
-                } else if($e.element instanceof Variable && $element instanceof Variable) {
-                    this.interp.doMinPlusOp((Variable)$e.element, (Variable)$element, $pl.text);
-                } else {
-                    throw new EugeneException("Unsupported + operation!");
-                }
-                
+                this.interp.doMinPlusOp($e.element, $element, $op.text);                
             } else if(null != $e.p) {
-                if($element instanceof PropertyValue) {
-                    this.interp.doMinPlusOp($e.p, (PropertyValue)$element, $pl.text);
-                } else {
-                    this.interp.doMinPlusOp($e.p, (Variable)$element, $pl.text);
-                }
+                this.interp.doMinPlusOp($e.p, $element, $op.text);
             }
-            
-        } else {
-        
+            $p = null;            
+        } else {        
             if(null != $e.element) {
-            
-                if(!($e.element instanceof PropertyValue) && 
-                   !($e.element instanceof Variable)) {
-                    throw new EugeneException("Unsupported + operation!");
-                }
-                
-                if($e.element instanceof PropertyValue) {
-                    this.interp.doMinPlusOp((PropertyValue)$e.element, $p, $pl.text);
-                } else {
-                    this.interp.doMinPlusOp((Variable)$e.element, $p, $pl.text);
-                }
-                
+                this.interp.doMinPlusOp($e.element, $p, $op.text);
             } else {
-                this.interp.doMinPlusOp($e.p, $p, $pl.text); 
+                this.interp.doMinPlusOp($e.p, $p, $op.text); 
             }
+            $element = null;
         }
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
     }
-    
-    $element = null;
 }
-	} 	| mi=MINUS e=multExpr[defer] {
+	})*
+	;
+
+/****
+	 	| mi=MINUS e=multExpr[defer] {
 if(!defer) {
     try {
         this.interp.doMinPlusOp($e.p, $p, $mi.text);
@@ -2266,9 +2234,9 @@ if(!defer) {
     
     $element = null;
 }
-	} )*
-	;
-
+	} 
+ ****/
+ 	
 multExpr[boolean defer] 
 	returns [Variable p, String instance, int index, String listAddress, Variable primVariable, NamedElement element]
 	:	e=atom[defer] {

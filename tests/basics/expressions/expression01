@@ -1,0 +1,5 @@
+num one = 1;
+num two = 2;
+num three = one + two;
+num zero = (one - one) + (two - two);
+if(zero != 0) {exit;}

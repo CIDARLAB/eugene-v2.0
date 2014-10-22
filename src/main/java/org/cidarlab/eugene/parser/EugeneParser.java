@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g 2014-10-21 09:22:00
+// $ANTLR 3.4 /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g 2014-10-22 09:07:58
 
 /*
 Copyright (c) 2012 Boston University.
@@ -11760,7 +11760,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "expr"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2181:1: expr[boolean defer] returns [Variable p, String instance, int index, String listAddress, Variable primVariable, NamedElement element] : e= multExpr[defer] (pl= PLUS e= multExpr[defer] |mi= MINUS e= multExpr[defer] )* ;
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2181:1: expr[boolean defer] returns [Variable p, String instance, int index, String listAddress, Variable primVariable, NamedElement element] : e= multExpr[defer] (op= ( PLUS | MINUS ) e= multExpr[defer] )* ;
     public final EugeneParser.expr_return expr(boolean defer) throws RecognitionException {
         EugeneParser.expr_return retval = new EugeneParser.expr_return();
         retval.start = input.LT(1);
@@ -11768,17 +11768,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token pl=null;
-        Token mi=null;
+        Token op=null;
         EugeneParser.multExpr_return e =null;
 
 
-        Object pl_tree=null;
-        Object mi_tree=null;
+        Object op_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2183:2: (e= multExpr[defer] (pl= PLUS e= multExpr[defer] |mi= MINUS e= multExpr[defer] )* )
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2183:4: e= multExpr[defer] (pl= PLUS e= multExpr[defer] |mi= MINUS e= multExpr[defer] )*
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2183:2: (e= multExpr[defer] (op= ( PLUS | MINUS ) e= multExpr[defer] )* )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2183:4: e= multExpr[defer] (op= ( PLUS | MINUS ) e= multExpr[defer] )*
             {
             root_0 = (Object)adaptor.nil();
 
@@ -11810,32 +11808,37 @@ public TreeAdaptor getTreeAdaptor() {
             }
             	
 
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2201:5: (pl= PLUS e= multExpr[defer] |mi= MINUS e= multExpr[defer] )*
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2201:5: (op= ( PLUS | MINUS ) e= multExpr[defer] )*
             loop76:
             do {
-                int alt76=3;
+                int alt76=2;
                 int LA76_0 = input.LA(1);
 
-                if ( (LA76_0==PLUS) ) {
+                if ( (LA76_0==MINUS||LA76_0==PLUS) ) {
                     alt76=1;
-                }
-                else if ( (LA76_0==MINUS) ) {
-                    alt76=2;
                 }
 
 
                 switch (alt76) {
             	case 1 :
-            	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2201:6: pl= PLUS e= multExpr[defer]
+            	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2201:6: op= ( PLUS | MINUS ) e= multExpr[defer]
             	    {
-            	    pl=(Token)match(input,PLUS,FOLLOW_PLUS_in_expr4110); 
-            	    pl_tree = 
-            	    (Object)adaptor.create(pl)
-            	    ;
-            	    adaptor.addChild(root_0, pl_tree);
+            	    op=(Token)input.LT(1);
+
+            	    if ( input.LA(1)==MINUS||input.LA(1)==PLUS ) {
+            	        input.consume();
+            	        adaptor.addChild(root_0, 
+            	        (Object)adaptor.create(op)
+            	        );
+            	        state.errorRecovery=false;
+            	    }
+            	    else {
+            	        MismatchedSetException mse = new MismatchedSetException(null,input);
+            	        throw mse;
+            	    }
 
 
-            	    pushFollow(FOLLOW_multExpr_in_expr4114);
+            	    pushFollow(FOLLOW_multExpr_in_expr4118);
             	    e=multExpr(defer);
 
             	    state._fsp--;
@@ -11845,91 +11848,24 @@ public TreeAdaptor getTreeAdaptor() {
 
             	    if(!defer) {
             	        try {
-            	            // PropertyValue + PropertyValue
             	            if(null != retval.element) {
-            	                
-            	                if(!(retval.element instanceof PropertyValue) && 
-            	                   !(retval.element instanceof Variable)) {
-            	                    throw new EugeneException("Unsupported + operation for " + retval.element.getClass() + "!");
-            	                }
-            	                
             	                if(null != (e!=null?e.element:null)) {
-
-            	                    if((e!=null?e.element:null) instanceof PropertyValue && retval.element instanceof PropertyValue) {
-            	                        this.interp.doMinPlusOp((PropertyValue)(e!=null?e.element:null), (PropertyValue)retval.element, (pl!=null?pl.getText():null));
-            	                    } else if((e!=null?e.element:null) instanceof PropertyValue && retval.element instanceof Variable) {
-            	                        this.interp.doMinPlusOp((PropertyValue)(e!=null?e.element:null), (Variable)retval.element, (pl!=null?pl.getText():null));
-            	                    } else if((e!=null?e.element:null) instanceof Variable && retval.element instanceof PropertyValue) {
-            	                        this.interp.doMinPlusOp((Variable)(e!=null?e.element:null), (PropertyValue)retval.element, (pl!=null?pl.getText():null));
-            	                    } else if((e!=null?e.element:null) instanceof Variable && retval.element instanceof Variable) {
-            	                        this.interp.doMinPlusOp((Variable)(e!=null?e.element:null), (Variable)retval.element, (pl!=null?pl.getText():null));
-            	                    } else {
-            	                        throw new EugeneException("Unsupported + operation!");
-            	                    }
-            	                    
+            	                    this.interp.doMinPlusOp((e!=null?e.element:null), retval.element, (op!=null?op.getText():null));                
             	                } else if(null != (e!=null?e.p:null)) {
-            	                    if(retval.element instanceof PropertyValue) {
-            	                        this.interp.doMinPlusOp((e!=null?e.p:null), (PropertyValue)retval.element, (pl!=null?pl.getText():null));
-            	                    } else {
-            	                        this.interp.doMinPlusOp((e!=null?e.p:null), (Variable)retval.element, (pl!=null?pl.getText():null));
-            	                    }
+            	                    this.interp.doMinPlusOp((e!=null?e.p:null), retval.element, (op!=null?op.getText():null));
             	                }
-            	                
-            	            } else {
-            	            
+            	                retval.p = null;            
+            	            } else {        
             	                if(null != (e!=null?e.element:null)) {
-            	                
-            	                    if(!((e!=null?e.element:null) instanceof PropertyValue) && 
-            	                       !((e!=null?e.element:null) instanceof Variable)) {
-            	                        throw new EugeneException("Unsupported + operation!");
-            	                    }
-            	                    
-            	                    if((e!=null?e.element:null) instanceof PropertyValue) {
-            	                        this.interp.doMinPlusOp((PropertyValue)(e!=null?e.element:null), retval.p, (pl!=null?pl.getText():null));
-            	                    } else {
-            	                        this.interp.doMinPlusOp((Variable)(e!=null?e.element:null), retval.p, (pl!=null?pl.getText():null));
-            	                    }
-            	                    
+            	                    this.interp.doMinPlusOp((e!=null?e.element:null), retval.p, (op!=null?op.getText():null));
             	                } else {
-            	                    this.interp.doMinPlusOp((e!=null?e.p:null), retval.p, (pl!=null?pl.getText():null)); 
+            	                    this.interp.doMinPlusOp((e!=null?e.p:null), retval.p, (op!=null?op.getText():null)); 
             	                }
+            	                retval.element = null;
             	            }
             	        } catch(EugeneException ee) {
             	            printError(ee.getLocalizedMessage());
             	        }
-            	        
-            	        retval.element = null;
-            	    }
-            	    	
-
-            	    }
-            	    break;
-            	case 2 :
-            	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2259:7: mi= MINUS e= multExpr[defer]
-            	    {
-            	    mi=(Token)match(input,MINUS,FOLLOW_MINUS_in_expr4124); 
-            	    mi_tree = 
-            	    (Object)adaptor.create(mi)
-            	    ;
-            	    adaptor.addChild(root_0, mi_tree);
-
-
-            	    pushFollow(FOLLOW_multExpr_in_expr4128);
-            	    e=multExpr(defer);
-
-            	    state._fsp--;
-
-            	    adaptor.addChild(root_0, e.getTree());
-
-
-            	    if(!defer) {
-            	        try {
-            	            this.interp.doMinPlusOp((e!=null?e.p:null), retval.p, (mi!=null?mi.getText():null));
-            	        } catch(EugeneException ee) {
-            	            printError(ee.getLocalizedMessage());
-            	        }
-            	        
-            	        retval.element = null;
             	    }
             	    	
 
@@ -11979,7 +11915,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "multExpr"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2272:1: multExpr[boolean defer] returns [Variable p, String instance, int index, String listAddress, Variable primVariable, NamedElement element] : e= atom[defer] ( (mul= MULT |div= DIV ) e= atom[defer] )* ;
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2240:1: multExpr[boolean defer] returns [Variable p, String instance, int index, String listAddress, Variable primVariable, NamedElement element] : e= atom[defer] ( (mul= MULT |div= DIV ) e= atom[defer] )* ;
     public final EugeneParser.multExpr_return multExpr(boolean defer) throws RecognitionException {
         EugeneParser.multExpr_return retval = new EugeneParser.multExpr_return();
         retval.start = input.LT(1);
@@ -11996,13 +11932,13 @@ public TreeAdaptor getTreeAdaptor() {
         Object div_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2274:2: (e= atom[defer] ( (mul= MULT |div= DIV ) e= atom[defer] )* )
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2274:4: e= atom[defer] ( (mul= MULT |div= DIV ) e= atom[defer] )*
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2242:2: (e= atom[defer] ( (mul= MULT |div= DIV ) e= atom[defer] )* )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2242:4: e= atom[defer] ( (mul= MULT |div= DIV ) e= atom[defer] )*
             {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_atom_in_multExpr4154);
+            pushFollow(FOLLOW_atom_in_multExpr4148);
             e=atom(defer);
 
             state._fsp--;
@@ -12031,7 +11967,7 @@ public TreeAdaptor getTreeAdaptor() {
             }	
             	
 
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2294:5: ( (mul= MULT |div= DIV ) e= atom[defer] )*
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2262:5: ( (mul= MULT |div= DIV ) e= atom[defer] )*
             loop78:
             do {
                 int alt78=2;
@@ -12044,9 +11980,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt78) {
             	case 1 :
-            	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2294:7: (mul= MULT |div= DIV ) e= atom[defer]
+            	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2262:7: (mul= MULT |div= DIV ) e= atom[defer]
             	    {
-            	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2294:7: (mul= MULT |div= DIV )
+            	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2262:7: (mul= MULT |div= DIV )
             	    int alt77=2;
             	    int LA77_0 = input.LA(1);
 
@@ -12065,9 +12001,9 @@ public TreeAdaptor getTreeAdaptor() {
             	    }
             	    switch (alt77) {
             	        case 1 :
-            	            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2294:8: mul= MULT
+            	            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2262:8: mul= MULT
             	            {
-            	            mul=(Token)match(input,MULT,FOLLOW_MULT_in_multExpr4165); 
+            	            mul=(Token)match(input,MULT,FOLLOW_MULT_in_multExpr4159); 
             	            mul_tree = 
             	            (Object)adaptor.create(mul)
             	            ;
@@ -12077,9 +12013,9 @@ public TreeAdaptor getTreeAdaptor() {
             	            }
             	            break;
             	        case 2 :
-            	            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2294:17: div= DIV
+            	            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2262:17: div= DIV
             	            {
-            	            div=(Token)match(input,DIV,FOLLOW_DIV_in_multExpr4169); 
+            	            div=(Token)match(input,DIV,FOLLOW_DIV_in_multExpr4163); 
             	            div_tree = 
             	            (Object)adaptor.create(div)
             	            ;
@@ -12092,7 +12028,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    }
 
 
-            	    pushFollow(FOLLOW_atom_in_multExpr4174);
+            	    pushFollow(FOLLOW_atom_in_multExpr4168);
             	    e=atom(defer);
 
             	    state._fsp--;
@@ -12161,7 +12097,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "atom"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2311:1: atom[boolean defer] returns [Variable p = new Variable(), String instance, int index = -1, String listAddress, Variable primVariable, NamedElement element] : ( (n= NUMBER |n= REAL ) | MINUS (n= NUMBER |n= REAL ) | (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) ) |dn= dynamic_naming[defer] oc= object_access[defer, $element] | STRING | '(' expr[defer] ')' | LEFTSBR list[defer] RIGHTSBR |bif= built_in_function[defer] );
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2279:1: atom[boolean defer] returns [Variable p = new Variable(), String instance, int index = -1, String listAddress, Variable primVariable, NamedElement element] : ( (n= NUMBER |n= REAL ) | MINUS (n= NUMBER |n= REAL ) | (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) ) |dn= dynamic_naming[defer] oc= object_access[defer, $element] | STRING | '(' expr[defer] ')' | LEFTSBR list[defer] RIGHTSBR |bif= built_in_function[defer] );
     public final EugeneParser.atom_return atom(boolean defer) throws RecognitionException {
         EugeneParser.atom_return retval = new EugeneParser.atom_return();
         retval.start = input.LT(1);
@@ -12200,7 +12136,7 @@ public TreeAdaptor getTreeAdaptor() {
         Object RIGHTSBR221_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2313:2: ( (n= NUMBER |n= REAL ) | MINUS (n= NUMBER |n= REAL ) | (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) ) |dn= dynamic_naming[defer] oc= object_access[defer, $element] | STRING | '(' expr[defer] ')' | LEFTSBR list[defer] RIGHTSBR |bif= built_in_function[defer] )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2281:2: ( (n= NUMBER |n= REAL ) | MINUS (n= NUMBER |n= REAL ) | (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) ) |dn= dynamic_naming[defer] oc= object_access[defer, $element] | STRING | '(' expr[defer] ')' | LEFTSBR list[defer] RIGHTSBR |bif= built_in_function[defer] )
             int alt82=8;
             switch ( input.LA(1) ) {
             case NUMBER:
@@ -12265,12 +12201,12 @@ public TreeAdaptor getTreeAdaptor() {
 
             switch (alt82) {
                 case 1 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2313:4: (n= NUMBER |n= REAL )
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2281:4: (n= NUMBER |n= REAL )
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2313:4: (n= NUMBER |n= REAL )
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2281:4: (n= NUMBER |n= REAL )
                     int alt79=2;
                     int LA79_0 = input.LA(1);
 
@@ -12289,9 +12225,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt79) {
                         case 1 :
-                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2313:5: n= NUMBER
+                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2281:5: n= NUMBER
                             {
-                            n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_atom4201); 
+                            n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_atom4195); 
                             n_tree = 
                             (Object)adaptor.create(n)
                             ;
@@ -12301,9 +12237,9 @@ public TreeAdaptor getTreeAdaptor() {
                             }
                             break;
                         case 2 :
-                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2313:16: n= REAL
+                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2281:16: n= REAL
                             {
-                            n=(Token)match(input,REAL,FOLLOW_REAL_in_atom4207); 
+                            n=(Token)match(input,REAL,FOLLOW_REAL_in_atom4201); 
                             n_tree = 
                             (Object)adaptor.create(n)
                             ;
@@ -12328,19 +12264,19 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2322:4: MINUS (n= NUMBER |n= REAL )
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2290:4: MINUS (n= NUMBER |n= REAL )
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    MINUS214=(Token)match(input,MINUS,FOLLOW_MINUS_in_atom4217); 
+                    MINUS214=(Token)match(input,MINUS,FOLLOW_MINUS_in_atom4211); 
                     MINUS214_tree = 
                     (Object)adaptor.create(MINUS214)
                     ;
                     adaptor.addChild(root_0, MINUS214_tree);
 
 
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2322:10: (n= NUMBER |n= REAL )
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2290:10: (n= NUMBER |n= REAL )
                     int alt80=2;
                     int LA80_0 = input.LA(1);
 
@@ -12359,9 +12295,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt80) {
                         case 1 :
-                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2322:11: n= NUMBER
+                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2290:11: n= NUMBER
                             {
-                            n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_atom4222); 
+                            n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_atom4216); 
                             n_tree = 
                             (Object)adaptor.create(n)
                             ;
@@ -12371,9 +12307,9 @@ public TreeAdaptor getTreeAdaptor() {
                             }
                             break;
                         case 2 :
-                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2322:22: n= REAL
+                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2290:22: n= REAL
                             {
-                            n=(Token)match(input,REAL,FOLLOW_REAL_in_atom4228); 
+                            n=(Token)match(input,REAL,FOLLOW_REAL_in_atom4222); 
                             n_tree = 
                             (Object)adaptor.create(n)
                             ;
@@ -12398,12 +12334,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2331:4: (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) )
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2299:4: (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) )
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2331:4: (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) )
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2299:4: (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) )
                     int alt81=2;
                     int LA81_0 = input.LA(1);
 
@@ -12422,7 +12358,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt81) {
                         case 1 :
-                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2331:5: t= ( TRUE_LC | TRUE_UC )
+                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2299:5: t= ( TRUE_LC | TRUE_UC )
                             {
                             t=(Token)input.LT(1);
 
@@ -12442,7 +12378,7 @@ public TreeAdaptor getTreeAdaptor() {
                             }
                             break;
                         case 2 :
-                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2331:27: f= ( FALSE_LC | FALSE_UC )
+                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2299:27: f= ( FALSE_LC | FALSE_UC )
                             {
                             f=(Token)input.LT(1);
 
@@ -12481,12 +12417,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 4 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2344:4: dn= dynamic_naming[defer] oc= object_access[defer, $element]
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2312:4: dn= dynamic_naming[defer] oc= object_access[defer, $element]
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_dynamic_naming_in_atom4267);
+                    pushFollow(FOLLOW_dynamic_naming_in_atom4261);
                     dn=dynamic_naming(defer);
 
                     state._fsp--;
@@ -12512,7 +12448,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     	
 
-                    pushFollow(FOLLOW_object_access_in_atom4274);
+                    pushFollow(FOLLOW_object_access_in_atom4268);
                     oc=object_access(defer, retval.element);
 
                     state._fsp--;
@@ -12538,12 +12474,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 5 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2376:4: STRING
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2344:4: STRING
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    STRING215=(Token)match(input,STRING,FOLLOW_STRING_in_atom4283); 
+                    STRING215=(Token)match(input,STRING,FOLLOW_STRING_in_atom4277); 
                     STRING215_tree = 
                     (Object)adaptor.create(STRING215)
                     ;
@@ -12562,26 +12498,26 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 6 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2385:4: '(' expr[defer] ')'
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2353:4: '(' expr[defer] ')'
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    char_literal216=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_atom4291); 
+                    char_literal216=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_atom4285); 
                     char_literal216_tree = 
                     (Object)adaptor.create(char_literal216)
                     ;
                     adaptor.addChild(root_0, char_literal216_tree);
 
 
-                    pushFollow(FOLLOW_expr_in_atom4293);
+                    pushFollow(FOLLOW_expr_in_atom4287);
                     expr217=expr(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, expr217.getTree());
 
-                    char_literal218=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_atom4296); 
+                    char_literal218=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_atom4290); 
                     char_literal218_tree = 
                     (Object)adaptor.create(char_literal218)
                     ;
@@ -12599,26 +12535,26 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 7 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2393:5: LEFTSBR list[defer] RIGHTSBR
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2361:5: LEFTSBR list[defer] RIGHTSBR
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    LEFTSBR219=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_atom4305); 
+                    LEFTSBR219=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_atom4299); 
                     LEFTSBR219_tree = 
                     (Object)adaptor.create(LEFTSBR219)
                     ;
                     adaptor.addChild(root_0, LEFTSBR219_tree);
 
 
-                    pushFollow(FOLLOW_list_in_atom4307);
+                    pushFollow(FOLLOW_list_in_atom4301);
                     list220=list(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, list220.getTree());
 
-                    RIGHTSBR221=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_atom4310); 
+                    RIGHTSBR221=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_atom4304); 
                     RIGHTSBR221_tree = 
                     (Object)adaptor.create(RIGHTSBR221)
                     ;
@@ -12636,12 +12572,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 8 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2401:5: bif= built_in_function[defer]
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2369:5: bif= built_in_function[defer]
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_built_in_function_in_atom4321);
+                    pushFollow(FOLLOW_built_in_function_in_atom4315);
                     bif=built_in_function(defer);
 
                     state._fsp--;
@@ -12689,7 +12625,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "list"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2409:1: list[boolean defer] returns [Variable listPrim] : str1= expr[defer] ( COMMA str2= expr[defer] )* ;
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2377:1: list[boolean defer] returns [Variable listPrim] : str1= expr[defer] ( COMMA str2= expr[defer] )* ;
     public final EugeneParser.list_return list(boolean defer) throws RecognitionException {
         EugeneParser.list_return retval = new EugeneParser.list_return();
         retval.start = input.LT(1);
@@ -12706,13 +12642,13 @@ public TreeAdaptor getTreeAdaptor() {
         Object COMMA222_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2411:2: (str1= expr[defer] ( COMMA str2= expr[defer] )* )
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2411:4: str1= expr[defer] ( COMMA str2= expr[defer] )*
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2379:2: (str1= expr[defer] ( COMMA str2= expr[defer] )* )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2379:4: str1= expr[defer] ( COMMA str2= expr[defer] )*
             {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_expr_in_list4344);
+            pushFollow(FOLLOW_expr_in_list4338);
             str1=expr(defer);
 
             state._fsp--;
@@ -12740,7 +12676,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             	
 
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2430:5: ( COMMA str2= expr[defer] )*
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2398:5: ( COMMA str2= expr[defer] )*
             loop83:
             do {
                 int alt83=2;
@@ -12753,16 +12689,16 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt83) {
             	case 1 :
-            	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2430:6: COMMA str2= expr[defer]
+            	    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2398:6: COMMA str2= expr[defer]
             	    {
-            	    COMMA222=(Token)match(input,COMMA,FOLLOW_COMMA_in_list4351); 
+            	    COMMA222=(Token)match(input,COMMA,FOLLOW_COMMA_in_list4345); 
             	    COMMA222_tree = 
             	    (Object)adaptor.create(COMMA222)
             	    ;
             	    adaptor.addChild(root_0, COMMA222_tree);
 
 
-            	    pushFollow(FOLLOW_expr_in_list4355);
+            	    pushFollow(FOLLOW_expr_in_list4349);
             	    str2=expr(defer);
 
             	    state._fsp--;
@@ -12820,7 +12756,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "built_in_function"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2445:1: built_in_function[boolean defer] returns [Variable p] : ( ( SIZEOF_LC | SIZEOF_UC ) LEFTP e= expr[defer] RIGHTP | ( RANDOM_LC | RANDOM_UC ) LEFTP rg= range[defer] RIGHTP | ( SAVE_LC | SAVE_UC | STORE_LC | STORE_UC ) LEFTP e= expr[defer] RIGHTP );
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2413:1: built_in_function[boolean defer] returns [Variable p] : ( ( SIZEOF_LC | SIZEOF_UC ) LEFTP e= expr[defer] RIGHTP | ( RANDOM_LC | RANDOM_UC ) LEFTP rg= range[defer] RIGHTP | ( SAVE_LC | SAVE_UC | STORE_LC | STORE_UC ) LEFTP e= expr[defer] RIGHTP );
     public final EugeneParser.built_in_function_return built_in_function(boolean defer) throws RecognitionException {
         EugeneParser.built_in_function_return retval = new EugeneParser.built_in_function_return();
         retval.start = input.LT(1);
@@ -12853,7 +12789,7 @@ public TreeAdaptor getTreeAdaptor() {
         Object RIGHTP231_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2447:2: ( ( SIZEOF_LC | SIZEOF_UC ) LEFTP e= expr[defer] RIGHTP | ( RANDOM_LC | RANDOM_UC ) LEFTP rg= range[defer] RIGHTP | ( SAVE_LC | SAVE_UC | STORE_LC | STORE_UC ) LEFTP e= expr[defer] RIGHTP )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2415:2: ( ( SIZEOF_LC | SIZEOF_UC ) LEFTP e= expr[defer] RIGHTP | ( RANDOM_LC | RANDOM_UC ) LEFTP rg= range[defer] RIGHTP | ( SAVE_LC | SAVE_UC | STORE_LC | STORE_UC ) LEFTP e= expr[defer] RIGHTP )
             int alt84=3;
             switch ( input.LA(1) ) {
             case SIZEOF_LC:
@@ -12886,7 +12822,7 @@ public TreeAdaptor getTreeAdaptor() {
 
             switch (alt84) {
                 case 1 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2447:4: ( SIZEOF_LC | SIZEOF_UC ) LEFTP e= expr[defer] RIGHTP
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2415:4: ( SIZEOF_LC | SIZEOF_UC ) LEFTP e= expr[defer] RIGHTP
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -12906,21 +12842,21 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    LEFTP224=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_built_in_function4389); 
+                    LEFTP224=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_built_in_function4383); 
                     LEFTP224_tree = 
                     (Object)adaptor.create(LEFTP224)
                     ;
                     adaptor.addChild(root_0, LEFTP224_tree);
 
 
-                    pushFollow(FOLLOW_expr_in_built_in_function4393);
+                    pushFollow(FOLLOW_expr_in_built_in_function4387);
                     e=expr(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, e.getTree());
 
-                    RIGHTP225=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_built_in_function4396); 
+                    RIGHTP225=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_built_in_function4390); 
                     RIGHTP225_tree = 
                     (Object)adaptor.create(RIGHTP225)
                     ;
@@ -12944,7 +12880,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2460:4: ( RANDOM_LC | RANDOM_UC ) LEFTP rg= range[defer] RIGHTP
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2428:4: ( RANDOM_LC | RANDOM_UC ) LEFTP rg= range[defer] RIGHTP
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -12964,21 +12900,21 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    LEFTP227=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_built_in_function4409); 
+                    LEFTP227=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_built_in_function4403); 
                     LEFTP227_tree = 
                     (Object)adaptor.create(LEFTP227)
                     ;
                     adaptor.addChild(root_0, LEFTP227_tree);
 
 
-                    pushFollow(FOLLOW_range_in_built_in_function4413);
+                    pushFollow(FOLLOW_range_in_built_in_function4407);
                     rg=range(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, rg.getTree());
 
-                    RIGHTP228=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_built_in_function4416); 
+                    RIGHTP228=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_built_in_function4410); 
                     RIGHTP228_tree = 
                     (Object)adaptor.create(RIGHTP228)
                     ;
@@ -12998,7 +12934,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2469:4: ( SAVE_LC | SAVE_UC | STORE_LC | STORE_UC ) LEFTP e= expr[defer] RIGHTP
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2437:4: ( SAVE_LC | SAVE_UC | STORE_LC | STORE_UC ) LEFTP e= expr[defer] RIGHTP
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -13018,21 +12954,21 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    LEFTP230=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_built_in_function4433); 
+                    LEFTP230=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_built_in_function4427); 
                     LEFTP230_tree = 
                     (Object)adaptor.create(LEFTP230)
                     ;
                     adaptor.addChild(root_0, LEFTP230_tree);
 
 
-                    pushFollow(FOLLOW_expr_in_built_in_function4437);
+                    pushFollow(FOLLOW_expr_in_built_in_function4431);
                     e=expr(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, e.getTree());
 
-                    RIGHTP231=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_built_in_function4440); 
+                    RIGHTP231=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_built_in_function4434); 
                     RIGHTP231_tree = 
                     (Object)adaptor.create(RIGHTP231)
                     ;
@@ -13088,7 +13024,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "range"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2484:1: range[boolean defer] returns [Variable sor, Variable eor] : s= expr[defer] COMMA e= expr[defer] ;
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2452:1: range[boolean defer] returns [Variable sor, Variable eor] : s= expr[defer] COMMA e= expr[defer] ;
     public final EugeneParser.range_return range(boolean defer) throws RecognitionException {
         EugeneParser.range_return retval = new EugeneParser.range_return();
         retval.start = input.LT(1);
@@ -13105,27 +13041,27 @@ public TreeAdaptor getTreeAdaptor() {
         Object COMMA232_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2486:2: (s= expr[defer] COMMA e= expr[defer] )
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2486:4: s= expr[defer] COMMA e= expr[defer]
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2454:2: (s= expr[defer] COMMA e= expr[defer] )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2454:4: s= expr[defer] COMMA e= expr[defer]
             {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_expr_in_range4462);
+            pushFollow(FOLLOW_expr_in_range4456);
             s=expr(defer);
 
             state._fsp--;
 
             adaptor.addChild(root_0, s.getTree());
 
-            COMMA232=(Token)match(input,COMMA,FOLLOW_COMMA_in_range4465); 
+            COMMA232=(Token)match(input,COMMA,FOLLOW_COMMA_in_range4459); 
             COMMA232_tree = 
             (Object)adaptor.create(COMMA232)
             ;
             adaptor.addChild(root_0, COMMA232_tree);
 
 
-            pushFollow(FOLLOW_expr_in_range4469);
+            pushFollow(FOLLOW_expr_in_range4463);
             e=expr(defer);
 
             state._fsp--;
@@ -13194,7 +13130,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "object_access"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2539:1: object_access[boolean defer, NamedElement parent] returns [NamedElement child] : (| ( DOT (id= ID | SIZE ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR ) o= object_access[defer, $child] );
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2507:1: object_access[boolean defer, NamedElement parent] returns [NamedElement child] : (| ( DOT (id= ID | SIZE ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR ) o= object_access[defer, $child] );
     public final EugeneParser.object_access_return object_access(boolean defer, NamedElement parent) throws RecognitionException {
         EugeneParser.object_access_return retval = new EugeneParser.object_access_return();
         retval.start = input.LT(1);
@@ -13223,7 +13159,7 @@ public TreeAdaptor getTreeAdaptor() {
         Object RIGHTSBR238_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2541:2: (| ( DOT (id= ID | SIZE ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR ) o= object_access[defer, $child] )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2509:2: (| ( DOT (id= ID | SIZE ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR ) o= object_access[defer, $child] )
             int alt88=2;
             int LA88_0 = input.LA(1);
 
@@ -13242,7 +13178,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt88) {
                 case 1 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2542:2: 
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2510:2: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -13256,12 +13192,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2547:4: ( DOT (id= ID | SIZE ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR ) o= object_access[defer, $child]
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2515:4: ( DOT (id= ID | SIZE ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR ) o= object_access[defer, $child]
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2547:4: ( DOT (id= ID | SIZE ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR )
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2515:4: ( DOT (id= ID | SIZE ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR )
                     int alt87=2;
                     int LA87_0 = input.LA(1);
 
@@ -13280,16 +13216,16 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt87) {
                         case 1 :
-                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2547:5: DOT (id= ID | SIZE ( LEFTP RIGHTP )? )
+                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2515:5: DOT (id= ID | SIZE ( LEFTP RIGHTP )? )
                             {
-                            DOT233=(Token)match(input,DOT,FOLLOW_DOT_in_object_access4505); 
+                            DOT233=(Token)match(input,DOT,FOLLOW_DOT_in_object_access4499); 
                             DOT233_tree = 
                             (Object)adaptor.create(DOT233)
                             ;
                             adaptor.addChild(root_0, DOT233_tree);
 
 
-                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2547:9: (id= ID | SIZE ( LEFTP RIGHTP )? )
+                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2515:9: (id= ID | SIZE ( LEFTP RIGHTP )? )
                             int alt86=2;
                             int LA86_0 = input.LA(1);
 
@@ -13308,9 +13244,9 @@ public TreeAdaptor getTreeAdaptor() {
                             }
                             switch (alt86) {
                                 case 1 :
-                                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2547:10: id= ID
+                                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2515:10: id= ID
                                     {
-                                    id=(Token)match(input,ID,FOLLOW_ID_in_object_access4510); 
+                                    id=(Token)match(input,ID,FOLLOW_ID_in_object_access4504); 
                                     id_tree = 
                                     (Object)adaptor.create(id)
                                     ;
@@ -13336,16 +13272,16 @@ public TreeAdaptor getTreeAdaptor() {
                                     }
                                     break;
                                 case 2 :
-                                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2561:6: SIZE ( LEFTP RIGHTP )?
+                                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2529:6: SIZE ( LEFTP RIGHTP )?
                                     {
-                                    SIZE234=(Token)match(input,SIZE,FOLLOW_SIZE_in_object_access4516); 
+                                    SIZE234=(Token)match(input,SIZE,FOLLOW_SIZE_in_object_access4510); 
                                     SIZE234_tree = 
                                     (Object)adaptor.create(SIZE234)
                                     ;
                                     adaptor.addChild(root_0, SIZE234_tree);
 
 
-                                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2561:11: ( LEFTP RIGHTP )?
+                                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2529:11: ( LEFTP RIGHTP )?
                                     int alt85=2;
                                     int LA85_0 = input.LA(1);
 
@@ -13354,16 +13290,16 @@ public TreeAdaptor getTreeAdaptor() {
                                     }
                                     switch (alt85) {
                                         case 1 :
-                                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2561:12: LEFTP RIGHTP
+                                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2529:12: LEFTP RIGHTP
                                             {
-                                            LEFTP235=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_object_access4519); 
+                                            LEFTP235=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_object_access4513); 
                                             LEFTP235_tree = 
                                             (Object)adaptor.create(LEFTP235)
                                             ;
                                             adaptor.addChild(root_0, LEFTP235_tree);
 
 
-                                            RIGHTP236=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_object_access4521); 
+                                            RIGHTP236=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_object_access4515); 
                                             RIGHTP236_tree = 
                                             (Object)adaptor.create(RIGHTP236)
                                             ;
@@ -13395,19 +13331,19 @@ public TreeAdaptor getTreeAdaptor() {
                             }
                             break;
                         case 2 :
-                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2570:4: LEFTSBR (exp= expr[defer] ) RIGHTSBR
+                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2538:4: LEFTSBR (exp= expr[defer] ) RIGHTSBR
                             {
-                            LEFTSBR237=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_object_access4531); 
+                            LEFTSBR237=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_object_access4525); 
                             LEFTSBR237_tree = 
                             (Object)adaptor.create(LEFTSBR237)
                             ;
                             adaptor.addChild(root_0, LEFTSBR237_tree);
 
 
-                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2570:12: (exp= expr[defer] )
-                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2570:13: exp= expr[defer]
+                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2538:12: (exp= expr[defer] )
+                            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2538:13: exp= expr[defer]
                             {
-                            pushFollow(FOLLOW_expr_in_object_access4536);
+                            pushFollow(FOLLOW_expr_in_object_access4530);
                             exp=expr(defer);
 
                             state._fsp--;
@@ -13417,7 +13353,7 @@ public TreeAdaptor getTreeAdaptor() {
                             }
 
 
-                            RIGHTSBR238=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_object_access4540); 
+                            RIGHTSBR238=(Token)match(input,RIGHTSBR,FOLLOW_RIGHTSBR_in_object_access4534); 
                             RIGHTSBR238_tree = 
                             (Object)adaptor.create(RIGHTSBR238)
                             ;
@@ -13454,7 +13390,7 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    pushFollow(FOLLOW_object_access_in_object_access4547);
+                    pushFollow(FOLLOW_object_access_in_object_access4541);
                     o=object_access(defer, retval.child);
 
                     state._fsp--;
@@ -13501,7 +13437,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "dynamic_naming"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2602:1: dynamic_naming[boolean defer] returns [String name] : (i= ID | DOLLAR LEFTCUR e= expr[defer] RIGHTCUR );
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2570:1: dynamic_naming[boolean defer] returns [String name] : (i= ID | DOLLAR LEFTCUR e= expr[defer] RIGHTCUR );
     public final EugeneParser.dynamic_naming_return dynamic_naming(boolean defer) throws RecognitionException {
         EugeneParser.dynamic_naming_return retval = new EugeneParser.dynamic_naming_return();
         retval.start = input.LT(1);
@@ -13522,7 +13458,7 @@ public TreeAdaptor getTreeAdaptor() {
         Object RIGHTCUR241_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2604:2: (i= ID | DOLLAR LEFTCUR e= expr[defer] RIGHTCUR )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2572:2: (i= ID | DOLLAR LEFTCUR e= expr[defer] RIGHTCUR )
             int alt89=2;
             int LA89_0 = input.LA(1);
 
@@ -13541,12 +13477,12 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt89) {
                 case 1 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2604:4: i= ID
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2572:4: i= ID
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    i=(Token)match(input,ID,FOLLOW_ID_in_dynamic_naming4572); 
+                    i=(Token)match(input,ID,FOLLOW_ID_in_dynamic_naming4566); 
                     i_tree = 
                     (Object)adaptor.create(i)
                     ;
@@ -13562,33 +13498,33 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2609:4: DOLLAR LEFTCUR e= expr[defer] RIGHTCUR
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2577:4: DOLLAR LEFTCUR e= expr[defer] RIGHTCUR
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    DOLLAR239=(Token)match(input,DOLLAR,FOLLOW_DOLLAR_in_dynamic_naming4579); 
+                    DOLLAR239=(Token)match(input,DOLLAR,FOLLOW_DOLLAR_in_dynamic_naming4573); 
                     DOLLAR239_tree = 
                     (Object)adaptor.create(DOLLAR239)
                     ;
                     adaptor.addChild(root_0, DOLLAR239_tree);
 
 
-                    LEFTCUR240=(Token)match(input,LEFTCUR,FOLLOW_LEFTCUR_in_dynamic_naming4581); 
+                    LEFTCUR240=(Token)match(input,LEFTCUR,FOLLOW_LEFTCUR_in_dynamic_naming4575); 
                     LEFTCUR240_tree = 
                     (Object)adaptor.create(LEFTCUR240)
                     ;
                     adaptor.addChild(root_0, LEFTCUR240_tree);
 
 
-                    pushFollow(FOLLOW_expr_in_dynamic_naming4585);
+                    pushFollow(FOLLOW_expr_in_dynamic_naming4579);
                     e=expr(defer);
 
                     state._fsp--;
 
                     adaptor.addChild(root_0, e.getTree());
 
-                    RIGHTCUR241=(Token)match(input,RIGHTCUR,FOLLOW_RIGHTCUR_in_dynamic_naming4588); 
+                    RIGHTCUR241=(Token)match(input,RIGHTCUR,FOLLOW_RIGHTCUR_in_dynamic_naming4582); 
                     RIGHTCUR241_tree = 
                     (Object)adaptor.create(RIGHTCUR241)
                     ;
@@ -13641,7 +13577,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "dataExchange"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2626:1: dataExchange[boolean defer] returns [NamedElement e] : (s= sbolStatement[defer] |p= pigeonStatement[defer] |i= importStatement[defer] );
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2594:1: dataExchange[boolean defer] returns [NamedElement e] : (s= sbolStatement[defer] |p= pigeonStatement[defer] |i= importStatement[defer] );
     public final EugeneParser.dataExchange_return dataExchange(boolean defer) throws RecognitionException {
         EugeneParser.dataExchange_return retval = new EugeneParser.dataExchange_return();
         retval.start = input.LT(1);
@@ -13658,7 +13594,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2628:2: (s= sbolStatement[defer] |p= pigeonStatement[defer] |i= importStatement[defer] )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2596:2: (s= sbolStatement[defer] |p= pigeonStatement[defer] |i= importStatement[defer] )
             int alt90=3;
             switch ( input.LA(1) ) {
             case SBOL:
@@ -13688,12 +13624,12 @@ public TreeAdaptor getTreeAdaptor() {
 
             switch (alt90) {
                 case 1 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2628:4: s= sbolStatement[defer]
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2596:4: s= sbolStatement[defer]
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_sbolStatement_in_dataExchange4613);
+                    pushFollow(FOLLOW_sbolStatement_in_dataExchange4607);
                     s=sbolStatement(defer);
 
                     state._fsp--;
@@ -13709,12 +13645,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2633:4: p= pigeonStatement[defer]
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2601:4: p= pigeonStatement[defer]
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_pigeonStatement_in_dataExchange4623);
+                    pushFollow(FOLLOW_pigeonStatement_in_dataExchange4617);
                     p=pigeonStatement(defer);
 
                     state._fsp--;
@@ -13724,12 +13660,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2634:4: i= importStatement[defer]
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2602:4: i= importStatement[defer]
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_importStatement_in_dataExchange4631);
+                    pushFollow(FOLLOW_importStatement_in_dataExchange4625);
                     i=importStatement(defer);
 
                     state._fsp--;
@@ -13775,7 +13711,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "includeStatement"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2645:1: includeStatement[boolean defer] : ( HASHMARK )? ( LC_INCLUDE | UC_INCLUDE ) file= STRING ;
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2613:1: includeStatement[boolean defer] : ( HASHMARK )? ( LC_INCLUDE | UC_INCLUDE ) file= STRING ;
     public final EugeneParser.includeStatement_return includeStatement(boolean defer) throws RecognitionException {
         EugeneParser.includeStatement_return retval = new EugeneParser.includeStatement_return();
         retval.start = input.LT(1);
@@ -13792,13 +13728,13 @@ public TreeAdaptor getTreeAdaptor() {
         Object set243_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2646:2: ( ( HASHMARK )? ( LC_INCLUDE | UC_INCLUDE ) file= STRING )
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2646:4: ( HASHMARK )? ( LC_INCLUDE | UC_INCLUDE ) file= STRING
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2614:2: ( ( HASHMARK )? ( LC_INCLUDE | UC_INCLUDE ) file= STRING )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2614:4: ( HASHMARK )? ( LC_INCLUDE | UC_INCLUDE ) file= STRING
             {
             root_0 = (Object)adaptor.nil();
 
 
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2646:4: ( HASHMARK )?
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2614:4: ( HASHMARK )?
             int alt91=2;
             int LA91_0 = input.LA(1);
 
@@ -13807,9 +13743,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt91) {
                 case 1 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2646:5: HASHMARK
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2614:5: HASHMARK
                     {
-                    HASHMARK242=(Token)match(input,HASHMARK,FOLLOW_HASHMARK_in_includeStatement4653); 
+                    HASHMARK242=(Token)match(input,HASHMARK,FOLLOW_HASHMARK_in_includeStatement4647); 
                     HASHMARK242_tree = 
                     (Object)adaptor.create(HASHMARK242)
                     ;
@@ -13837,7 +13773,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            file=(Token)match(input,STRING,FOLLOW_STRING_in_includeStatement4665); 
+            file=(Token)match(input,STRING,FOLLOW_STRING_in_includeStatement4659); 
             file_tree = 
             (Object)adaptor.create(file)
             ;
@@ -13886,7 +13822,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "importStatement"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2658:1: importStatement[boolean defer] returns [NamedElement e] : ( LC_IMPORT | UC_IMPORT ) LEFTP file= STRING RIGHTP ;
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2626:1: importStatement[boolean defer] returns [NamedElement e] : ( LC_IMPORT | UC_IMPORT ) LEFTP file= STRING RIGHTP ;
     public final EugeneParser.importStatement_return importStatement(boolean defer) throws RecognitionException {
         EugeneParser.importStatement_return retval = new EugeneParser.importStatement_return();
         retval.start = input.LT(1);
@@ -13905,8 +13841,8 @@ public TreeAdaptor getTreeAdaptor() {
         Object RIGHTP246_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2660:2: ( ( LC_IMPORT | UC_IMPORT ) LEFTP file= STRING RIGHTP )
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2660:4: ( LC_IMPORT | UC_IMPORT ) LEFTP file= STRING RIGHTP
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2628:2: ( ( LC_IMPORT | UC_IMPORT ) LEFTP file= STRING RIGHTP )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2628:4: ( LC_IMPORT | UC_IMPORT ) LEFTP file= STRING RIGHTP
             {
             root_0 = (Object)adaptor.nil();
 
@@ -13926,14 +13862,14 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            LEFTP245=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_importStatement4692); 
+            LEFTP245=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_importStatement4686); 
             LEFTP245_tree = 
             (Object)adaptor.create(LEFTP245)
             ;
             adaptor.addChild(root_0, LEFTP245_tree);
 
 
-            file=(Token)match(input,STRING,FOLLOW_STRING_in_importStatement4696); 
+            file=(Token)match(input,STRING,FOLLOW_STRING_in_importStatement4690); 
             file_tree = 
             (Object)adaptor.create(file)
             ;
@@ -13950,7 +13886,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             	
 
-            RIGHTP246=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_importStatement4700); 
+            RIGHTP246=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_importStatement4694); 
             RIGHTP246_tree = 
             (Object)adaptor.create(RIGHTP246)
             ;
@@ -13989,7 +13925,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "sbolStatement"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2672:1: sbolStatement[boolean defer] returns [NamedElement e] : SBOL DOT ( sbolExportStatement[defer] |i= sbolImportStatement[defer] ) ;
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2640:1: sbolStatement[boolean defer] returns [NamedElement e] : SBOL DOT ( sbolExportStatement[defer] |i= sbolImportStatement[defer] ) ;
     public final EugeneParser.sbolStatement_return sbolStatement(boolean defer) throws RecognitionException {
         EugeneParser.sbolStatement_return retval = new EugeneParser.sbolStatement_return();
         retval.start = input.LT(1);
@@ -14008,27 +13944,27 @@ public TreeAdaptor getTreeAdaptor() {
         Object DOT248_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2674:2: ( SBOL DOT ( sbolExportStatement[defer] |i= sbolImportStatement[defer] ) )
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2674:4: SBOL DOT ( sbolExportStatement[defer] |i= sbolImportStatement[defer] )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2642:2: ( SBOL DOT ( sbolExportStatement[defer] |i= sbolImportStatement[defer] ) )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2642:4: SBOL DOT ( sbolExportStatement[defer] |i= sbolImportStatement[defer] )
             {
             root_0 = (Object)adaptor.nil();
 
 
-            SBOL247=(Token)match(input,SBOL,FOLLOW_SBOL_in_sbolStatement4722); 
+            SBOL247=(Token)match(input,SBOL,FOLLOW_SBOL_in_sbolStatement4716); 
             SBOL247_tree = 
             (Object)adaptor.create(SBOL247)
             ;
             adaptor.addChild(root_0, SBOL247_tree);
 
 
-            DOT248=(Token)match(input,DOT,FOLLOW_DOT_in_sbolStatement4724); 
+            DOT248=(Token)match(input,DOT,FOLLOW_DOT_in_sbolStatement4718); 
             DOT248_tree = 
             (Object)adaptor.create(DOT248)
             ;
             adaptor.addChild(root_0, DOT248_tree);
 
 
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2674:13: ( sbolExportStatement[defer] |i= sbolImportStatement[defer] )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2642:13: ( sbolExportStatement[defer] |i= sbolImportStatement[defer] )
             int alt92=2;
             int LA92_0 = input.LA(1);
 
@@ -14047,9 +13983,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt92) {
                 case 1 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2674:14: sbolExportStatement[defer]
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2642:14: sbolExportStatement[defer]
                     {
-                    pushFollow(FOLLOW_sbolExportStatement_in_sbolStatement4727);
+                    pushFollow(FOLLOW_sbolExportStatement_in_sbolStatement4721);
                     sbolExportStatement249=sbolExportStatement(defer);
 
                     state._fsp--;
@@ -14059,9 +13995,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2674:43: i= sbolImportStatement[defer]
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2642:43: i= sbolImportStatement[defer]
                     {
-                    pushFollow(FOLLOW_sbolImportStatement_in_sbolStatement4734);
+                    pushFollow(FOLLOW_sbolImportStatement_in_sbolStatement4728);
                     i=sbolImportStatement(defer);
 
                     state._fsp--;
@@ -14111,7 +14047,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "sbolExportStatement"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2681:1: sbolExportStatement[boolean defer] : EXPORT LEFTP idToken= ID COMMA filenameToken= STRING RIGHTP ;
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2649:1: sbolExportStatement[boolean defer] : EXPORT LEFTP idToken= ID COMMA filenameToken= STRING RIGHTP ;
     public final EugeneParser.sbolExportStatement_return sbolExportStatement(boolean defer) throws RecognitionException {
         EugeneParser.sbolExportStatement_return retval = new EugeneParser.sbolExportStatement_return();
         retval.start = input.LT(1);
@@ -14134,48 +14070,48 @@ public TreeAdaptor getTreeAdaptor() {
         Object RIGHTP253_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2682:2: ( EXPORT LEFTP idToken= ID COMMA filenameToken= STRING RIGHTP )
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2682:4: EXPORT LEFTP idToken= ID COMMA filenameToken= STRING RIGHTP
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2650:2: ( EXPORT LEFTP idToken= ID COMMA filenameToken= STRING RIGHTP )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2650:4: EXPORT LEFTP idToken= ID COMMA filenameToken= STRING RIGHTP
             {
             root_0 = (Object)adaptor.nil();
 
 
-            EXPORT250=(Token)match(input,EXPORT,FOLLOW_EXPORT_in_sbolExportStatement4751); 
+            EXPORT250=(Token)match(input,EXPORT,FOLLOW_EXPORT_in_sbolExportStatement4745); 
             EXPORT250_tree = 
             (Object)adaptor.create(EXPORT250)
             ;
             adaptor.addChild(root_0, EXPORT250_tree);
 
 
-            LEFTP251=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_sbolExportStatement4753); 
+            LEFTP251=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_sbolExportStatement4747); 
             LEFTP251_tree = 
             (Object)adaptor.create(LEFTP251)
             ;
             adaptor.addChild(root_0, LEFTP251_tree);
 
 
-            idToken=(Token)match(input,ID,FOLLOW_ID_in_sbolExportStatement4757); 
+            idToken=(Token)match(input,ID,FOLLOW_ID_in_sbolExportStatement4751); 
             idToken_tree = 
             (Object)adaptor.create(idToken)
             ;
             adaptor.addChild(root_0, idToken_tree);
 
 
-            COMMA252=(Token)match(input,COMMA,FOLLOW_COMMA_in_sbolExportStatement4759); 
+            COMMA252=(Token)match(input,COMMA,FOLLOW_COMMA_in_sbolExportStatement4753); 
             COMMA252_tree = 
             (Object)adaptor.create(COMMA252)
             ;
             adaptor.addChild(root_0, COMMA252_tree);
 
 
-            filenameToken=(Token)match(input,STRING,FOLLOW_STRING_in_sbolExportStatement4763); 
+            filenameToken=(Token)match(input,STRING,FOLLOW_STRING_in_sbolExportStatement4757); 
             filenameToken_tree = 
             (Object)adaptor.create(filenameToken)
             ;
             adaptor.addChild(root_0, filenameToken_tree);
 
 
-            RIGHTP253=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_sbolExportStatement4765); 
+            RIGHTP253=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_sbolExportStatement4759); 
             RIGHTP253_tree = 
             (Object)adaptor.create(RIGHTP253)
             ;
@@ -14226,7 +14162,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "sbolImportStatement"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2695:1: sbolImportStatement[boolean defer] returns [NamedElement e] : ( LC_IMPORT | UC_IMPORT ) LEFTP fileToken= STRING RIGHTP ;
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2663:1: sbolImportStatement[boolean defer] returns [NamedElement e] : ( LC_IMPORT | UC_IMPORT ) LEFTP fileToken= STRING RIGHTP ;
     public final EugeneParser.sbolImportStatement_return sbolImportStatement(boolean defer) throws RecognitionException {
         EugeneParser.sbolImportStatement_return retval = new EugeneParser.sbolImportStatement_return();
         retval.start = input.LT(1);
@@ -14245,8 +14181,8 @@ public TreeAdaptor getTreeAdaptor() {
         Object RIGHTP256_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2697:2: ( ( LC_IMPORT | UC_IMPORT ) LEFTP fileToken= STRING RIGHTP )
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2697:4: ( LC_IMPORT | UC_IMPORT ) LEFTP fileToken= STRING RIGHTP
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2665:2: ( ( LC_IMPORT | UC_IMPORT ) LEFTP fileToken= STRING RIGHTP )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2665:4: ( LC_IMPORT | UC_IMPORT ) LEFTP fileToken= STRING RIGHTP
             {
             root_0 = (Object)adaptor.nil();
 
@@ -14266,21 +14202,21 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            LEFTP255=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_sbolImportStatement4794); 
+            LEFTP255=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_sbolImportStatement4788); 
             LEFTP255_tree = 
             (Object)adaptor.create(LEFTP255)
             ;
             adaptor.addChild(root_0, LEFTP255_tree);
 
 
-            fileToken=(Token)match(input,STRING,FOLLOW_STRING_in_sbolImportStatement4798); 
+            fileToken=(Token)match(input,STRING,FOLLOW_STRING_in_sbolImportStatement4792); 
             fileToken_tree = 
             (Object)adaptor.create(fileToken)
             ;
             adaptor.addChild(root_0, fileToken_tree);
 
 
-            RIGHTP256=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_sbolImportStatement4800); 
+            RIGHTP256=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_sbolImportStatement4794); 
             RIGHTP256_tree = 
             (Object)adaptor.create(RIGHTP256)
             ;
@@ -14328,7 +14264,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "pigeonStatement"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2742:1: pigeonStatement[boolean defer] : ( PIGEON | LC_PIGEON ) LEFTP idToken= ID RIGHTP ;
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2710:1: pigeonStatement[boolean defer] : ( PIGEON | LC_PIGEON ) LEFTP idToken= ID RIGHTP ;
     public final EugeneParser.pigeonStatement_return pigeonStatement(boolean defer) throws RecognitionException {
         EugeneParser.pigeonStatement_return retval = new EugeneParser.pigeonStatement_return();
         retval.start = input.LT(1);
@@ -14347,8 +14283,8 @@ public TreeAdaptor getTreeAdaptor() {
         Object RIGHTP259_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2743:2: ( ( PIGEON | LC_PIGEON ) LEFTP idToken= ID RIGHTP )
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2743:4: ( PIGEON | LC_PIGEON ) LEFTP idToken= ID RIGHTP
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2711:2: ( ( PIGEON | LC_PIGEON ) LEFTP idToken= ID RIGHTP )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2711:4: ( PIGEON | LC_PIGEON ) LEFTP idToken= ID RIGHTP
             {
             root_0 = (Object)adaptor.nil();
 
@@ -14368,21 +14304,21 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            LEFTP258=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_pigeonStatement4829); 
+            LEFTP258=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_pigeonStatement4823); 
             LEFTP258_tree = 
             (Object)adaptor.create(LEFTP258)
             ;
             adaptor.addChild(root_0, LEFTP258_tree);
 
 
-            idToken=(Token)match(input,ID,FOLLOW_ID_in_pigeonStatement4833); 
+            idToken=(Token)match(input,ID,FOLLOW_ID_in_pigeonStatement4827); 
             idToken_tree = 
             (Object)adaptor.create(idToken)
             ;
             adaptor.addChild(root_0, idToken_tree);
 
 
-            RIGHTP259=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_pigeonStatement4835); 
+            RIGHTP259=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_pigeonStatement4829); 
             RIGHTP259_tree = 
             (Object)adaptor.create(RIGHTP259)
             ;
@@ -14430,7 +14366,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "testStatements"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2791:1: testStatements[boolean defer] : (| ASSERT LEFTP id= ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP | NOTE LEFTP id= ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP );
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2759:1: testStatements[boolean defer] : (| ASSERT LEFTP id= ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP | NOTE LEFTP id= ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP );
     public final EugeneParser.testStatements_return testStatements(boolean defer) throws RecognitionException {
         EugeneParser.testStatements_return retval = new EugeneParser.testStatements_return();
         retval.start = input.LT(1);
@@ -14481,7 +14417,7 @@ public TreeAdaptor getTreeAdaptor() {
         Object RIGHTP277_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2792:2: (| ASSERT LEFTP id= ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP | NOTE LEFTP id= ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2760:2: (| ASSERT LEFTP id= ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP | NOTE LEFTP id= ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP )
             int alt93=3;
             switch ( input.LA(1) ) {
             case SEMIC:
@@ -14509,7 +14445,7 @@ public TreeAdaptor getTreeAdaptor() {
 
             switch (alt93) {
                 case 1 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2792:5: 
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2760:5: 
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -14517,82 +14453,82 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2792:7: ASSERT LEFTP id= ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2760:7: ASSERT LEFTP id= ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    ASSERT260=(Token)match(input,ASSERT,FOLLOW_ASSERT_in_testStatements4859); 
+                    ASSERT260=(Token)match(input,ASSERT,FOLLOW_ASSERT_in_testStatements4853); 
                     ASSERT260_tree = 
                     (Object)adaptor.create(ASSERT260)
                     ;
                     adaptor.addChild(root_0, ASSERT260_tree);
 
 
-                    LEFTP261=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_testStatements4861); 
+                    LEFTP261=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_testStatements4855); 
                     LEFTP261_tree = 
                     (Object)adaptor.create(LEFTP261)
                     ;
                     adaptor.addChild(root_0, LEFTP261_tree);
 
 
-                    id=(Token)match(input,ID,FOLLOW_ID_in_testStatements4865); 
+                    id=(Token)match(input,ID,FOLLOW_ID_in_testStatements4859); 
                     id_tree = 
                     (Object)adaptor.create(id)
                     ;
                     adaptor.addChild(root_0, id_tree);
 
 
-                    DOT262=(Token)match(input,DOT,FOLLOW_DOT_in_testStatements4867); 
+                    DOT262=(Token)match(input,DOT,FOLLOW_DOT_in_testStatements4861); 
                     DOT262_tree = 
                     (Object)adaptor.create(DOT262)
                     ;
                     adaptor.addChild(root_0, DOT262_tree);
 
 
-                    SIZE263=(Token)match(input,SIZE,FOLLOW_SIZE_in_testStatements4869); 
+                    SIZE263=(Token)match(input,SIZE,FOLLOW_SIZE_in_testStatements4863); 
                     SIZE263_tree = 
                     (Object)adaptor.create(SIZE263)
                     ;
                     adaptor.addChild(root_0, SIZE263_tree);
 
 
-                    LEFTP264=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_testStatements4871); 
+                    LEFTP264=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_testStatements4865); 
                     LEFTP264_tree = 
                     (Object)adaptor.create(LEFTP264)
                     ;
                     adaptor.addChild(root_0, LEFTP264_tree);
 
 
-                    RIGHTP265=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_testStatements4873); 
+                    RIGHTP265=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_testStatements4867); 
                     RIGHTP265_tree = 
                     (Object)adaptor.create(RIGHTP265)
                     ;
                     adaptor.addChild(root_0, RIGHTP265_tree);
 
 
-                    EQUALS266=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_testStatements4875); 
+                    EQUALS266=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_testStatements4869); 
                     EQUALS266_tree = 
                     (Object)adaptor.create(EQUALS266)
                     ;
                     adaptor.addChild(root_0, EQUALS266_tree);
 
 
-                    EQUALS267=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_testStatements4877); 
+                    EQUALS267=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_testStatements4871); 
                     EQUALS267_tree = 
                     (Object)adaptor.create(EQUALS267)
                     ;
                     adaptor.addChild(root_0, EQUALS267_tree);
 
 
-                    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_testStatements4881); 
+                    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_testStatements4875); 
                     n_tree = 
                     (Object)adaptor.create(n)
                     ;
                     adaptor.addChild(root_0, n_tree);
 
 
-                    RIGHTP268=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_testStatements4883); 
+                    RIGHTP268=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_testStatements4877); 
                     RIGHTP268_tree = 
                     (Object)adaptor.create(RIGHTP268)
                     ;
@@ -14619,82 +14555,82 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2808:5: NOTE LEFTP id= ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2776:5: NOTE LEFTP id= ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    NOTE269=(Token)match(input,NOTE,FOLLOW_NOTE_in_testStatements4891); 
+                    NOTE269=(Token)match(input,NOTE,FOLLOW_NOTE_in_testStatements4885); 
                     NOTE269_tree = 
                     (Object)adaptor.create(NOTE269)
                     ;
                     adaptor.addChild(root_0, NOTE269_tree);
 
 
-                    LEFTP270=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_testStatements4893); 
+                    LEFTP270=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_testStatements4887); 
                     LEFTP270_tree = 
                     (Object)adaptor.create(LEFTP270)
                     ;
                     adaptor.addChild(root_0, LEFTP270_tree);
 
 
-                    id=(Token)match(input,ID,FOLLOW_ID_in_testStatements4897); 
+                    id=(Token)match(input,ID,FOLLOW_ID_in_testStatements4891); 
                     id_tree = 
                     (Object)adaptor.create(id)
                     ;
                     adaptor.addChild(root_0, id_tree);
 
 
-                    DOT271=(Token)match(input,DOT,FOLLOW_DOT_in_testStatements4899); 
+                    DOT271=(Token)match(input,DOT,FOLLOW_DOT_in_testStatements4893); 
                     DOT271_tree = 
                     (Object)adaptor.create(DOT271)
                     ;
                     adaptor.addChild(root_0, DOT271_tree);
 
 
-                    SIZE272=(Token)match(input,SIZE,FOLLOW_SIZE_in_testStatements4901); 
+                    SIZE272=(Token)match(input,SIZE,FOLLOW_SIZE_in_testStatements4895); 
                     SIZE272_tree = 
                     (Object)adaptor.create(SIZE272)
                     ;
                     adaptor.addChild(root_0, SIZE272_tree);
 
 
-                    LEFTP273=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_testStatements4903); 
+                    LEFTP273=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_testStatements4897); 
                     LEFTP273_tree = 
                     (Object)adaptor.create(LEFTP273)
                     ;
                     adaptor.addChild(root_0, LEFTP273_tree);
 
 
-                    RIGHTP274=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_testStatements4905); 
+                    RIGHTP274=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_testStatements4899); 
                     RIGHTP274_tree = 
                     (Object)adaptor.create(RIGHTP274)
                     ;
                     adaptor.addChild(root_0, RIGHTP274_tree);
 
 
-                    EQUALS275=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_testStatements4907); 
+                    EQUALS275=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_testStatements4901); 
                     EQUALS275_tree = 
                     (Object)adaptor.create(EQUALS275)
                     ;
                     adaptor.addChild(root_0, EQUALS275_tree);
 
 
-                    EQUALS276=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_testStatements4909); 
+                    EQUALS276=(Token)match(input,EQUALS,FOLLOW_EQUALS_in_testStatements4903); 
                     EQUALS276_tree = 
                     (Object)adaptor.create(EQUALS276)
                     ;
                     adaptor.addChild(root_0, EQUALS276_tree);
 
 
-                    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_testStatements4913); 
+                    n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_testStatements4907); 
                     n_tree = 
                     (Object)adaptor.create(n)
                     ;
                     adaptor.addChild(root_0, n_tree);
 
 
-                    RIGHTP277=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_testStatements4915); 
+                    RIGHTP277=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_testStatements4909); 
                     RIGHTP277_tree = 
                     (Object)adaptor.create(RIGHTP277)
                     ;
@@ -15072,112 +15008,110 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_RIGHTCUR_in_for_loop4054 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_statement_in_listOfStatements4073 = new BitSet(new long[]{0x800087C5A0604F42L,0x00000F8C3CF03F3DL});
     public static final BitSet FOLLOW_multExpr_in_expr4101 = new BitSet(new long[]{0x0400000000000002L,0x0000000000000080L});
-    public static final BitSet FOLLOW_PLUS_in_expr4110 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_multExpr_in_expr4114 = new BitSet(new long[]{0x0400000000000002L,0x0000000000000080L});
-    public static final BitSet FOLLOW_MINUS_in_expr4124 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_multExpr_in_expr4128 = new BitSet(new long[]{0x0400000000000002L,0x0000000000000080L});
-    public static final BitSet FOLLOW_atom_in_multExpr4154 = new BitSet(new long[]{0x1000000000010002L});
-    public static final BitSet FOLLOW_MULT_in_multExpr4165 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_DIV_in_multExpr4169 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_atom_in_multExpr4174 = new BitSet(new long[]{0x1000000000010002L});
-    public static final BitSet FOLLOW_NUMBER_in_atom4201 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_REAL_in_atom4207 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_MINUS_in_atom4217 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004002L});
-    public static final BitSet FOLLOW_NUMBER_in_atom4222 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_REAL_in_atom4228 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_atom4241 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_atom4251 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_dynamic_naming_in_atom4267 = new BitSet(new long[]{0x0008000000040000L});
-    public static final BitSet FOLLOW_object_access_in_atom4274 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_atom4283 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LEFTP_in_atom4291 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_atom4293 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_atom4296 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LEFTSBR_in_atom4305 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_list_in_atom4307 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
-    public static final BitSet FOLLOW_RIGHTSBR_in_atom4310 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_built_in_function_in_atom4321 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_list4344 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_COMMA_in_list4351 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_list4355 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_set_in_built_in_function4383 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_built_in_function4389 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_built_in_function4393 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_built_in_function4396 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_built_in_function4403 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_built_in_function4409 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_range_in_built_in_function4413 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_built_in_function4416 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_built_in_function4423 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_built_in_function4433 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_built_in_function4437 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_built_in_function4440 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_range4462 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_COMMA_in_range4465 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_range4469 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DOT_in_object_access4505 = new BitSet(new long[]{0x0000000100000000L,0x0000000002000000L});
-    public static final BitSet FOLLOW_ID_in_object_access4510 = new BitSet(new long[]{0x0008000000040000L});
-    public static final BitSet FOLLOW_SIZE_in_object_access4516 = new BitSet(new long[]{0x000C000000040000L});
-    public static final BitSet FOLLOW_LEFTP_in_object_access4519 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_object_access4521 = new BitSet(new long[]{0x0008000000040000L});
-    public static final BitSet FOLLOW_LEFTSBR_in_object_access4531 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_object_access4536 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
-    public static final BitSet FOLLOW_RIGHTSBR_in_object_access4540 = new BitSet(new long[]{0x0008000000040000L});
-    public static final BitSet FOLLOW_object_access_in_object_access4547 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_dynamic_naming4572 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DOLLAR_in_dynamic_naming4579 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_LEFTCUR_in_dynamic_naming4581 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
-    public static final BitSet FOLLOW_expr_in_dynamic_naming4585 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
-    public static final BitSet FOLLOW_RIGHTCUR_in_dynamic_naming4588 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_sbolStatement_in_dataExchange4613 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pigeonStatement_in_dataExchange4623 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_importStatement_in_dataExchange4631 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HASHMARK_in_includeStatement4653 = new BitSet(new long[]{0x0000040000000000L,0x0000080000000000L});
-    public static final BitSet FOLLOW_set_in_includeStatement4657 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_STRING_in_includeStatement4665 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_importStatement4686 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_importStatement4692 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_STRING_in_importStatement4696 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_importStatement4700 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SBOL_in_sbolStatement4722 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_DOT_in_sbolStatement4724 = new BitSet(new long[]{0x0000020000800000L,0x0000040000000000L});
-    public static final BitSet FOLLOW_sbolExportStatement_in_sbolStatement4727 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_sbolImportStatement_in_sbolStatement4734 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_EXPORT_in_sbolExportStatement4751 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_sbolExportStatement4753 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_sbolExportStatement4757 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_COMMA_in_sbolExportStatement4759 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_STRING_in_sbolExportStatement4763 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_sbolExportStatement4765 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_sbolImportStatement4788 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_sbolImportStatement4794 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_STRING_in_sbolImportStatement4798 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_sbolImportStatement4800 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_pigeonStatement4823 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_pigeonStatement4829 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_pigeonStatement4833 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_pigeonStatement4835 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ASSERT_in_testStatements4859 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_testStatements4861 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_testStatements4865 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_DOT_in_testStatements4867 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
-    public static final BitSet FOLLOW_SIZE_in_testStatements4869 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_testStatements4871 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_testStatements4873 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_EQUALS_in_testStatements4875 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_EQUALS_in_testStatements4877 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_testStatements4881 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_testStatements4883 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NOTE_in_testStatements4891 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_testStatements4893 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_ID_in_testStatements4897 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_DOT_in_testStatements4899 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
-    public static final BitSet FOLLOW_SIZE_in_testStatements4901 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_LEFTP_in_testStatements4903 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_testStatements4905 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_EQUALS_in_testStatements4907 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_EQUALS_in_testStatements4909 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_testStatements4913 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_RIGHTP_in_testStatements4915 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_expr4110 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_multExpr_in_expr4118 = new BitSet(new long[]{0x0400000000000002L,0x0000000000000080L});
+    public static final BitSet FOLLOW_atom_in_multExpr4148 = new BitSet(new long[]{0x1000000000010002L});
+    public static final BitSet FOLLOW_MULT_in_multExpr4159 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_DIV_in_multExpr4163 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_atom_in_multExpr4168 = new BitSet(new long[]{0x1000000000010002L});
+    public static final BitSet FOLLOW_NUMBER_in_atom4195 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_REAL_in_atom4201 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_MINUS_in_atom4211 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004002L});
+    public static final BitSet FOLLOW_NUMBER_in_atom4216 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_REAL_in_atom4222 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_atom4235 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_atom4245 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_dynamic_naming_in_atom4261 = new BitSet(new long[]{0x0008000000040000L});
+    public static final BitSet FOLLOW_object_access_in_atom4268 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_atom4277 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LEFTP_in_atom4285 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_atom4287 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_atom4290 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LEFTSBR_in_atom4299 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_list_in_atom4301 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
+    public static final BitSet FOLLOW_RIGHTSBR_in_atom4304 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_built_in_function_in_atom4315 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_list4338 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_COMMA_in_list4345 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_list4349 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_set_in_built_in_function4377 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_built_in_function4383 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_built_in_function4387 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_built_in_function4390 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_built_in_function4397 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_built_in_function4403 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_range_in_built_in_function4407 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_built_in_function4410 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_built_in_function4417 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_built_in_function4427 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_built_in_function4431 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_built_in_function4434 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_range4456 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_COMMA_in_range4459 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_range4463 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DOT_in_object_access4499 = new BitSet(new long[]{0x0000000100000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_ID_in_object_access4504 = new BitSet(new long[]{0x0008000000040000L});
+    public static final BitSet FOLLOW_SIZE_in_object_access4510 = new BitSet(new long[]{0x000C000000040000L});
+    public static final BitSet FOLLOW_LEFTP_in_object_access4513 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_object_access4515 = new BitSet(new long[]{0x0008000000040000L});
+    public static final BitSet FOLLOW_LEFTSBR_in_object_access4525 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_object_access4530 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
+    public static final BitSet FOLLOW_RIGHTSBR_in_object_access4534 = new BitSet(new long[]{0x0008000000040000L});
+    public static final BitSet FOLLOW_object_access_in_object_access4541 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_dynamic_naming4566 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DOLLAR_in_dynamic_naming4573 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_LEFTCUR_in_dynamic_naming4575 = new BitSet(new long[]{0x040C000103020000L,0x00000003BC607002L});
+    public static final BitSet FOLLOW_expr_in_dynamic_naming4579 = new BitSet(new long[]{0x0000000000000000L,0x0000000000020000L});
+    public static final BitSet FOLLOW_RIGHTCUR_in_dynamic_naming4582 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_sbolStatement_in_dataExchange4607 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pigeonStatement_in_dataExchange4617 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_importStatement_in_dataExchange4625 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HASHMARK_in_includeStatement4647 = new BitSet(new long[]{0x0000040000000000L,0x0000080000000000L});
+    public static final BitSet FOLLOW_set_in_includeStatement4651 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_STRING_in_includeStatement4659 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_importStatement4680 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_importStatement4686 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_STRING_in_importStatement4690 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_importStatement4694 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SBOL_in_sbolStatement4716 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_DOT_in_sbolStatement4718 = new BitSet(new long[]{0x0000020000800000L,0x0000040000000000L});
+    public static final BitSet FOLLOW_sbolExportStatement_in_sbolStatement4721 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_sbolImportStatement_in_sbolStatement4728 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EXPORT_in_sbolExportStatement4745 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_sbolExportStatement4747 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_sbolExportStatement4751 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_COMMA_in_sbolExportStatement4753 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_STRING_in_sbolExportStatement4757 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_sbolExportStatement4759 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_sbolImportStatement4782 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_sbolImportStatement4788 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_STRING_in_sbolImportStatement4792 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_sbolImportStatement4794 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_pigeonStatement4817 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_pigeonStatement4823 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_pigeonStatement4827 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_pigeonStatement4829 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ASSERT_in_testStatements4853 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_testStatements4855 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_testStatements4859 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_DOT_in_testStatements4861 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_SIZE_in_testStatements4863 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_testStatements4865 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_testStatements4867 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_EQUALS_in_testStatements4869 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_EQUALS_in_testStatements4871 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_testStatements4875 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_testStatements4877 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NOTE_in_testStatements4885 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_testStatements4887 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_ID_in_testStatements4891 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_DOT_in_testStatements4893 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_SIZE_in_testStatements4895 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_LEFTP_in_testStatements4897 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_testStatements4899 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_EQUALS_in_testStatements4901 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_EQUALS_in_testStatements4903 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_testStatements4907 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_RIGHTP_in_testStatements4909 = new BitSet(new long[]{0x0000000000000002L});
 
 }
