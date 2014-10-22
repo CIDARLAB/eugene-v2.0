@@ -1,0 +1,34 @@
+/*
+ *  In this example, we present Eugene's imperative 
+ *  features to bubble-sort an array
+ */
+ 
+num[] array = [9, 8, 7, 6, 5, 4, 3, 2, 1];
+num s = SIZEOF(array);
+
+num tmp;
+num nr_iterations = 0;
+
+for(bool swap = true; swap == true; nr_iterations = nr_iterations + 1)
+{
+    swap = false;
+    
+    num X = s - 1;
+    for(num i = 0; i < X; i = i + 1)
+    {
+        num j = i+1;
+        if(array[i] > array[j]) {
+
+            // do the swapping
+            tmp = array[i];
+            array[i] = array[j];
+            array[j] = tmp;
+        
+            swap = true;
+        }    
+    }
+}
+
+// finally, we print the array
+println("sorted -> ", array, " in ", nr_iterations, " iterations");
+ 
