@@ -116,7 +116,20 @@ public class Interp {
     // such as ((a + b) * c ) / d
     private ExpressionExecutor executor;
     
-    
+    // the includedFiles set keeps track of all files 
+    // that have been included. if a file has been included 
+    // and is being included again, then it will not 
+    // be included and interpreted.    
+	private Set<String> includedFiles;
+
+
+	/**
+	 * CONSTRUCTOR
+	 * 
+	 * @param sparrow  ... a Sparrow object which represents the library management system (LMS)
+	 * @param writer   ... a BufferedWriter to that all output (via print statements) is being directed 
+	 * @param ROOT_DIRECTORY  ... the ROOT directory of the Eugene script which is being interpreted
+	 */
 	public Interp(Sparrow sparrow, BufferedWriter writer, String ROOT_DIRECTORY) {
 
 		/*
@@ -1969,6 +1982,19 @@ public class Interp {
 	public void includeFile(String file) 
 			throws EugeneException {
 
+		if(null == this.includedFiles) {
+			this.includedFiles = new HashSet<String>();
+		}
+
+		// if the file has been included already, 
+		// then there's no need to include it again.
+		if(this.includedFiles.contains(file)) {
+			return;
+		}
+		// if the file has not been included,
+		// then we store the filename in the includedFiles set
+		this.includedFiles.add(file);
+		
 		// first, we read the file's content
 		String script = this.readFileContent(file);
 		

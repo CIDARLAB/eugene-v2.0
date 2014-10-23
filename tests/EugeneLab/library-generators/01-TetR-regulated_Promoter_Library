@@ -9,19 +9,9 @@
  *
  *  see Supplementary Figure 1
  */
- 
-// number of desired parts
-num N = 20;
 
-// part specification
+include "./library-generators/common-definitions.h"
 
-// each part should only have a sequence property
-Property seq(txt);
-PartType Promoter(seq);
-
-
-// generate random sequences
-txt[] nucleotides = ["A", "T", "C", "G"];
 txt left_op_side = "AAAAAA"; 
 txt right_op_side = "AAAAAA";
 
@@ -55,15 +45,6 @@ for(num i = 1; i <= N; i = i + 1) {
     SAVE(${part_name});
 } 
 
-/*
- *  let's print the individual parts
- */
-println(T1);
-println(T2);
-println(T5);
-println(T10);
-println(T15);
-println(T20);
 
 
 

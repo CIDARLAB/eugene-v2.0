@@ -345,7 +345,7 @@ public class Device
 					sb.append("-");
 				}
 					
-				sb.append(this.getComponents().get(i).get(0).getName());
+				sb.append(this.getComponentList().get(i).getName());
 			}
 			
 			if(i < this.getComponents().size() - 1) {

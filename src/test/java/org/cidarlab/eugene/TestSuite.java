@@ -269,8 +269,16 @@ public class TestSuite {
 	 *---------------------------------------------*/	
 	private static void testEugeneLabTutorials()
 			throws EugeneException {
-		ROOT_DIRECTORY = "./tests/EugeneLab/";
-		new TestSuite().testAll("./tests/EugeneLab");
+		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/tests/EugeneLab";
+//		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/EugeneLab_Home/home/no_name_user/";
+
+		// TESTING INDIVIDUAL FILES
+		new TestSuite().test("./tests/EugeneLab/library-generators/05-design-and-export-to-SBOL");
+		
+
+		// TESTING ALL FILES
+//		new TestSuite().testAll(ROOT_DIRECTORY);
+
 	}
 	
 	private static void testAll() {

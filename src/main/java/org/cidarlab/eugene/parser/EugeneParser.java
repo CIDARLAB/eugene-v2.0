@@ -14309,6 +14309,7 @@ public TreeAdaptor getTreeAdaptor() {
                         (idToken!=null?idToken.getText():null), 
                         (filenameToken!=null?filenameToken.getText():null).substring(1, (filenameToken!=null?filenameToken.getText():null).length()-1));
                 } catch(EugeneException ee) {
+                	ee.printStackTrace();
                     printError(ee.getMessage());
                 }
             }	

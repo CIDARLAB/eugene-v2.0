@@ -1,0 +1,16 @@
+/*
+ *   SIZEOF
+ */
+txt[] ta = ["A", "T", "C", "G"];
+num ta_size = SIZEOF(ta);
+println(ta_size);
+
+/*
+ *   RANDOM
+ */
+
+// generate a random number between 1 and 100
+num r = RANDOM(1,100);
+println(r); 
+ 
+  

@@ -193,7 +193,9 @@ public class Eugene2SBOL {
 		String subComponentDisplayIds = null;
 		for (NamedElement c : objDevice.getComponents().get(0)) {
 
+			System.out.println(objDevice+" -> " +objDevice.getComponentList());
 			if(null == subComponentDisplayIds) {
+				
 				subComponentDisplayIds=c.getName();
 			} else {
 				subComponentDisplayIds+="_"+c.getName();

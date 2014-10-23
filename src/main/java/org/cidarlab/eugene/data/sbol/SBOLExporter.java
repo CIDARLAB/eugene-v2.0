@@ -89,7 +89,8 @@ public class SBOLExporter {
 			return document;
 			
 		} catch(Exception e) {
-			throw new EugeneException(e.toString());
+			e.printStackTrace();
+			throw new EugeneException(e.getLocalizedMessage());
 		}
 	}
 
@@ -132,6 +133,7 @@ public class SBOLExporter {
 			SBOLExporter.serializeSBOL(document, sFileName);
 			
 		} catch(Exception e) {
+			e.printStackTrace();
 			throw new EugeneException(e.toString());
 		}
 	}
