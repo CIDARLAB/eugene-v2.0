@@ -2093,7 +2093,7 @@ public class Interp {
 	public NamedElement importSBOL(String file) 
 			throws EugeneException {
 		
-		file = this.getFileWithPathInformation(file);
+		file = this.getFileWithRootPathInformation(file);
 		
 		Set<NamedElement> elements = SBOLImporter.importSBOL(file);
 		if (null != elements && !elements.isEmpty()) {
@@ -2121,17 +2121,21 @@ public class Interp {
 	/*
 	 * SBOL EXPORT
 	 */ 
-	public void exportToSBOL(String sName, String sFileName)
+	public void exportToSBOL(String sName, String file)
 			throws EugeneException {
-		
+
+		// augment the file/path name with the current
+		// ROOT folder information
+		file = this.getFileWithRootPathInformation(file);
+
 		NamedElement objElement = this.get(sName);
 		if (objElement == null) {
-			throw new EugeneException("I don't know anything about " + sName
-					+ "!");
+			throw new EugeneException(
+					"NULL is not SBOL compliant!");
 		} else if (objElement instanceof EugeneContainer) {
-			SBOLExporter.serialize((EugeneContainer) objElement, sFileName);
+			SBOLExporter.serialize((EugeneContainer) objElement, file);
 		} else if (objElement instanceof Component) {
-			SBOLExporter.serialize((Component) objElement, sFileName);
+			SBOLExporter.serialize((Component) objElement, file);
 		} else {
 			throw new EugeneException(
 					"I cannot export the "
@@ -2266,7 +2270,7 @@ public class Interp {
 	private String readFileContent(String file) 
 			throws EugeneException {
 		
-		file = getFileWithPathInformation(file);
+		file = getFileWithRootPathInformation(file);
 		
 		String script = null; 
 		try {
@@ -2289,16 +2293,24 @@ public class Interp {
 	 *              
 	 * @throws EugeneException
 	 */
-	private String getFileWithPathInformation(String file) 
+	private String getFileWithRootPathInformation(String file) 
 			throws EugeneException {
 		
-		/*
-		 * first, we remove the double-quotas
-		 */
-		if(null == file || file.length() <= 2) {
+		// NULL filename
+		if(null == file) {
 			throw new EugeneException("Invalid file name!");
 		}
-		file = file.substring(1, file.length() - 1);
+		
+		// checking and removing double-quotas
+		if(file.startsWith("\"") && file.endsWith("\"")) {
+			file = file.substring(1, file.length() - 1);
+		}
+		
+		// empty file name, example:
+		// include ""
+		if(file.isEmpty()) {
+			throw new EugeneException("File is empty!");
+		}
 		
 		// put Eugene's ROOT directory in front of 
 		// the specified INCLUDE file
