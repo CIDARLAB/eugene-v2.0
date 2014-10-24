@@ -193,7 +193,6 @@ public class Eugene2SBOL {
 		String subComponentDisplayIds = null;
 		for (NamedElement c : objDevice.getComponents().get(0)) {
 
-			System.out.println(objDevice+" -> " +objDevice.getComponentList());
 			if(null == subComponentDisplayIds) {
 				
 				subComponentDisplayIds=c.getName();
@@ -512,16 +511,9 @@ public class Eugene2SBOL {
 				return new URI("http://purl.obolibrary.org/obo/SO_0000805");
 			} catch(Exception e) {}
 		}
-		//System.out.println(s);
+
 		return SequenceOntology.CDS;
 	}
-
-//	public static Collection convert(
-//			org.cidarlab.eugene.dom.collection.EugeneCollection objCollection) {
-//		Collection c = new CollectionImpl();
-//
-//		return c;
-//	}
 
 	public static void addURI(String s) {
 		if (null == lstURIs) {
@@ -530,8 +522,6 @@ public class Eugene2SBOL {
 
 		if (!lstURIs.contains(s)) {
 			lstURIs.add(s);
-		} else {
-			System.out.println(s + " appears several times");
 		}
 	}
 }

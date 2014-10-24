@@ -651,7 +651,7 @@ public class Interp {
 
 		
 		if(null == meAdapter) {
-			meAdapter = new MiniEugeneAdapter(this.symbols);
+			meAdapter = new MiniEugeneAdapter(this);
 		}
 
 		/*
@@ -668,6 +668,7 @@ public class Interp {
 //			System.out.println("***************************");
 		} catch(Exception ee) {
 			ee.printStackTrace();
+			throw new EugeneException(ee.getLocalizedMessage());
 		}
 
 		
@@ -1297,6 +1298,21 @@ public class Interp {
 		
 		System.out.println("[Interp.updateElement] -> "  + ne);
 		
+	}
+
+	/**
+	 * The getComponents/1 method returns a set of all 
+	 * components of a given component type ct.
+	 * 
+	 * @param ct  ... the type of the components
+	 * 
+	 * @return ... a set of components of the given type
+	 * 
+	 * @throws EugeneException
+	 */
+	public Set<Component> getComponents(ComponentType ct) 
+			throws EugeneException {
+		return this.symbols.getComponents(ct);
 	}
 	
 	/**

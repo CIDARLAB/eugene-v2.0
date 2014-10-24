@@ -36,7 +36,7 @@ Device d5_5(PT5, PT5, PT5, PT5, PT5);
 Rule r_d5_5(ON d5_5: contains pt5_1 and contains pt5_2);
 product(d5_5);
 
-Device d5_5_1(PT5, PT5, PT5, PT5, PT5);
-Rule r_d5_5_1(ON d5_5_1: contains pt5_1 and contains pt5_2 and pt5_1 nextto pt5_2 and pt5_1 before pt5_2 and all_forward);
-product(d5_5_1);
+Device d5_5_new(PT5, PT5, PT5, PT5, PT5);
+Rule r_d5_5_new(ON d5_5_new: contains pt5_1 and contains pt5_2 and pt5_1 nextto pt5_2 and pt5_1 before pt5_2 and all_forward);
+product(d5_5_new);
 

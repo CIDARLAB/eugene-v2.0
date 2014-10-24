@@ -27,19 +27,13 @@ Rule r1(on D1:
 product(D1);    
 
  
-/*** returns 1 device ***/
-Device D1_9(PT);
-Rule r1_9(on D1_9:
-    prop2 >= 9 and all_forward);
-product(D1_9);
-
  
-Device D1_2(PT, PT);
-Rule r1_2(ON D1_2:
+Device D2(PT, PT);
+Rule r2(ON D1_2:
     prop1 == "0" \/ prop2 == 9 
     /\
     all_forward);
-product(D1_2);
+product(D2);
 
 /*** returns 10 devices ***/    
 Device D10(PT);

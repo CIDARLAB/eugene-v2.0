@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import org.cidarlab.eugene.dom.NamedElement;
-import org.cidarlab.eugene.dom.Part;
-import org.cidarlab.eugene.dom.PartType;
 import org.cidarlab.eugene.exception.EugeneException;
 
 /**

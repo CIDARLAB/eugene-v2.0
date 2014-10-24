@@ -89,7 +89,6 @@ public class SBOLExporter {
 			return document;
 			
 		} catch(Exception e) {
-			e.printStackTrace();
 			throw new EugeneException(e.getLocalizedMessage());
 		}
 	}

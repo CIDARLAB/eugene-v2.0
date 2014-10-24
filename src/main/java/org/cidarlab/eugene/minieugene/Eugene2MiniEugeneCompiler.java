@@ -49,7 +49,7 @@ import org.cidarlab.eugene.dom.rules.LogicalOr;
 import org.cidarlab.eugene.dom.rules.Predicate;
 import org.cidarlab.eugene.dom.rules.Rule;
 import org.cidarlab.eugene.exception.EugeneException;
-import org.cidarlab.eugene.interp.SymbolTable;
+import org.cidarlab.eugene.interp.Interp;
 
 public class Eugene2MiniEugeneCompiler {
 
@@ -57,14 +57,19 @@ public class Eugene2MiniEugeneCompiler {
 	 * A list of parts relevant for arrangement
 	 */
 	private Map<ComponentType, Set<Component>> components;
-	
+
 	/*
-	 * a reference to the symbol tables
+	 * A reference to the Interpreter
 	 */
-	private SymbolTable symbols;
+	private Interp interp;
 	
-	public Eugene2MiniEugeneCompiler(SymbolTable symbols) {
-		this.symbols = symbols;
+	/**
+	 * CONSTRUCTOR
+	 * 
+	 * @param interp  ... a reference to the Eugene interpreter
+	 */
+	public Eugene2MiniEugeneCompiler(Interp interp) {
+		this.interp = interp;
 	}
 
 	/**
@@ -226,7 +231,8 @@ public class Eugene2MiniEugeneCompiler {
 		return sb;
 	}
 		
-	private void updatedComponentsMap(ComponentType ct) {
+	private void updatedComponentsMap(ComponentType ct) 
+			throws EugeneException {
 		
 		/*
 		 * if parts with appropriate characteristics were already selected, 
@@ -237,7 +243,11 @@ public class Eugene2MiniEugeneCompiler {
 		}
 		
 		if(!this.components.containsKey(ct)) {
-			this.components.put(ct, this.symbols.getComponents(ct));
+			try {
+				this.components.put(ct, this.interp.getComponents(ct));
+			} catch(EugeneException ee) {
+				throw new EugeneException(ee.getLocalizedMessage());
+			}
 		}
 	}
 	

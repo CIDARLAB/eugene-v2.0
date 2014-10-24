@@ -11,16 +11,12 @@ import org.cidarlab.eugene.dom.interaction.Interaction;
 import org.cidarlab.eugene.dom.rules.Rule;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.eugene.interp.SymbolTable;
+import org.cidarlab.eugene.interp.Interp;
 import org.cidarlab.minieugene.MiniEugene;
 
 public class MiniEugeneAdapter {
 
 	private static final int MAX_NR_OF_SOLUTIONS = 50000;
-	
-	/*
-	 * A reference to the symbol tables
-	 */
-	private SymbolTable symbols;
 	
 	/*
 	 * the Eugene 2 MiniEugene compiler
@@ -32,10 +28,16 @@ public class MiniEugeneAdapter {
 	 */
 	private MiniEugene me;
 	
-	public MiniEugeneAdapter(SymbolTable symbols) {		
-		this.symbols = symbols;
+	/*
+	 * a reference to the Interpreter
+	 */
+	private Interp interp;
+	
+	public MiniEugeneAdapter(Interp interp) {		
+		this.interp = interp;
+
 		this.me = new MiniEugene();
-		this.compiler = new Eugene2MiniEugeneCompiler(this.symbols);
+		this.compiler = new Eugene2MiniEugeneCompiler(this.interp);		
 	}
 
 	/**
@@ -127,8 +129,9 @@ public class MiniEugeneAdapter {
 		} catch(Exception ee) {
 			throw new EugeneException(ee.getMessage());
 		}
-
+		
 //		me.getStatistics().print();
+		
 		return this.convertToEugene(d.getName(), me.getSolutions());
 	}
 
@@ -145,10 +148,19 @@ public class MiniEugeneAdapter {
 		int i=1;
 		for(org.cidarlab.minieugene.dom.Component[] solution : solutions) {
 			Device d = new Device(name+"_"+i);
+			
 
 			for(int k=0; k<solution.length; k++) {
-				org.cidarlab.eugene.dom.Component c = 
-						(org.cidarlab.eugene.dom.Component)this.symbols.get(solution[k].getName());
+				
+				org.cidarlab.eugene.dom.Component c = null;
+				
+				try {
+					c = (org.cidarlab.eugene.dom.Component)this.interp.get(solution[k].getName());
+				} catch(EugeneException ee) {
+					ee.printStackTrace();
+				}
+				
+//						(org.cidarlab.eugene.dom.Component)this.symbols.get(solution[k].getName());
 				
 				/*
 				 * component
@@ -168,6 +180,7 @@ public class MiniEugeneAdapter {
 				}
 				d.getOrientations().add(orientations);
 				
+//				System.out.println("[MiniEugeneAdapter.convertToEugene] -> " + d.getName() + " -> " + d);
 			}
 			
 			/*
