@@ -270,7 +270,7 @@ public class TestSuite {
 //		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/EugeneLab_Home/home/no_name_user/";
 
 		// TESTING INDIVIDUAL FILES
-		new TestSuite().test("./tests/EugeneLab/library-generators/05-design-and-export-to-SBOL.eug");
+		new TestSuite().test("./tests/EugeneLab/data-exchange/01-Rule-based-Design.eug");
 		
 
 		// TESTING ALL FILES

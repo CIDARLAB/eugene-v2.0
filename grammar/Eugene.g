@@ -37,9 +37,6 @@ tokens {
 	RULE = 'Rule';
 	TXT = 'txt';
 	ADDPROPS = 'addProperties';
-	PRINT = 'print';
-	SIZE = 'size';
-	PRINTLN = 'println';
 	AMP = '&';
 	REF = 'ref';
 	IMAGE = 'Image';
@@ -78,26 +75,14 @@ tokens {
 	COLLECTION = 'Collection';
 	ARRAY = 'Array';
 	SBOL = 'SBOL';
-	EXPORT = 'export';
 	GENBANK = 'Genbank';
-	PIGEON = 'Pigeon';
-	LC_PIGEON = 'pigeon';
 	REGISTRY = 'Registry';
-	EXIT_UC = 'EXIT';
-	EXIT_LC = 'exit';
 
 	INTERACTION = 'Interaction';
 	UC_REPRESSES = 'REPRESSES';
 	LC_REPRESSES = 'represses';
 	UC_INDUCES = 'INDUCES';
 	LC_INDUCES = 'induces';
-	
-	LC_INCLUDE = 'include';
-	UC_INCLUDE = 'INCLUDE';
-	
-	LC_IMPORT = 'import';
-	UC_IMPORT = 'IMPORT';
-
 	HASHMARK = '#';	
 
 	LC_FORALL = 'forall';
@@ -113,8 +98,25 @@ tokens {
 	/*  
 	 * RESERVED WORDS FOR BUILT-IN FUNCTIONS
 	 */
+	
+	INCLUDE_LC = 'include';
+	INCLUDE_UC = 'INCLUDE';
+	
+	IMPORT_LC = 'import';
+	IMPORT_UC = 'IMPORT';
+
+	EXPORT_LC = 'export';
+	EXPORT_UC = 'EXPORT';
+
+	PRINT_LC = 'print';
+	PRINT_UC = 'PRINT';
+	PRINTLN_LC = 'println';
+	PRINTLN_UC = 'PRINTLN';
+
 	SIZEOF_LC = 'sizeof';
 	SIZEOF_UC = 'SIZEOF';
+	SIZE_LC = 'size';
+	SIZE_UC = 'SIZE';
 	
 	RANDOM_LC = 'random';
 	RANDOM_UC = 'RANDOM';
@@ -123,6 +125,12 @@ tokens {
 	SAVE_UC = 'SAVE';
 	STORE_LC = 'store';
 	STORE_UC = 'STORE';
+	
+	PIGEON_LC = 'pigeon';
+	PIGEON_UC = 'PIGEON';
+
+	EXIT_UC = 'EXIT';
+	EXIT_LC = 'exit';
 }
 
 
@@ -1930,7 +1938,7 @@ if(!defer) {
  * PRINT STATEMENTS
  *------------------------------------------------------------------*/
 printStatement[boolean defer] 
-	:	PRINTLN LEFTP tp=toPrint[defer] RIGHTP {
+	:	(PRINTLN_LC|PRINTLN_UC) LEFTP tp=toPrint[defer] RIGHTP {
 if(!defer) {
     if(null != $tp.sb) {
         try {
@@ -1943,7 +1951,7 @@ if(!defer) {
     }
 }	
 	}
-	|	PRINT LEFTP tp=toPrint[defer] RIGHTP {
+	|	(PRINT_LC|PRINT_UC) LEFTP tp=toPrint[defer] RIGHTP {
 if(!defer) {
     if(null != $tp.sb) {
         try {
@@ -2422,7 +2430,7 @@ if(!defer) {
  *------------------------------------------------------------------*/
 built_in_function[boolean defer]
 	returns [Variable p]
-	:	(SIZEOF_LC|SIZEOF_UC) LEFTP e=expr[defer] RIGHTP {
+	:	(SIZEOF_LC|SIZEOF_UC|SIZE_LC|SIZE_UC) LEFTP e=expr[defer] RIGHTP {
 if(!defer) {
     try {
         if(null != $e.element) {
@@ -2536,7 +2544,7 @@ if(!defer) {
         printError(ee.getLocalizedMessage());
     }
 }	
-	} |	SIZE (LEFTP RIGHTP)? {
+	} |	(SIZE_UC|SIZE_LC) (LEFTP RIGHTP)? {
 if(!defer) {
     try {
         $child = this.interp.getSizeOf(parent);
@@ -2621,7 +2629,7 @@ if(!defer) {
 	
 /*** include STATEMENT ***/
 includeStatement[boolean defer]
-	:	(HASHMARK)? (LC_INCLUDE|UC_INCLUDE) file=STRING {
+	:	(HASHMARK)? (INCLUDE_LC|INCLUDE_UC) file=STRING {
 if(!defer) {
     try {
         this.interp.includeFile($file.text);
@@ -2635,7 +2643,7 @@ if(!defer) {
 /*** include STATEMENT ***/
 importStatement[boolean defer]
 	returns [NamedElement e]
-	:	(LC_IMPORT|UC_IMPORT) LEFTP file=STRING {
+	:	(IMPORT_LC|IMPORT_UC) LEFTP file=STRING {
 if(!defer) {
     try {
         $e = this.interp.importFile($file.text);
@@ -2657,7 +2665,7 @@ if(!defer) {
 	;
 
 sbolExportStatement[boolean defer] 
-	:	EXPORT LEFTP idToken=ID COMMA filenameToken=STRING RIGHTP {
+	:	(EXPORT_LC|EXPORT_UC) LEFTP idToken=ID COMMA filenameToken=STRING RIGHTP {
 if(!defer) {
     try {
         this.interp.exportToSBOL(
@@ -2672,7 +2680,7 @@ if(!defer) {
 	
 sbolImportStatement[boolean defer]
 	returns [NamedElement e]  
-	:	(LC_IMPORT|UC_IMPORT) LEFTP fileToken=STRING RIGHTP {
+	:	(IMPORT_LC|IMPORT_UC) LEFTP fileToken=STRING RIGHTP {
 if(!defer) {
     try {
         $e = this.interp.importSBOL($fileToken.text);
@@ -2718,7 +2726,7 @@ if(!defer) {
  * Pigeon / SBOL Visual
  *----------------------*/
 pigeonStatement[boolean defer]
-	:	(PIGEON|LC_PIGEON) LEFTP idToken=ID RIGHTP {
+	:	(PIGEON_LC|PIGEON_UC) LEFTP idToken=ID RIGHTP {
 if(!defer) {
     try {
         this.interp.pigeon($idToken.text);
@@ -2767,7 +2775,7 @@ if(!defer) {
 
 
 testStatements[boolean defer]
-	: 	|	ASSERT LEFTP id=ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n=NUMBER RIGHTP {
+	: 	|	ASSERT LEFTP id=ID DOT (SIZE_UC|SIZE_LC) LEFTP RIGHTP EQUALS EQUALS n=NUMBER RIGHTP {
 if(!defer) {
     try {
         NamedElement el = this.interp.get($id.text);
@@ -2783,7 +2791,7 @@ if(!defer) {
     }
 }	
 	}
-	|		NOTE LEFTP id=ID DOT SIZE LEFTP RIGHTP EQUALS EQUALS n=NUMBER RIGHTP {
+	|		NOTE LEFTP id=ID DOT (SIZE_UC|SIZE_LC) LEFTP RIGHTP EQUALS EQUALS n=NUMBER RIGHTP {
 if(!defer) {
 }
 }

@@ -7,7 +7,7 @@
  *  ASK EVAN FOR FURTHER DETAILS
  */
  
-include "./library-generators/commons.h"
+include "./data-exchange/commons.h"
 
 // the length of the generated sequences
 num LENGTH = 1000;

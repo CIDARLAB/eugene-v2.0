@@ -1,0 +1,38 @@
+/*
+ * here, we manually specify the Anderson RBS library
+ * see http://parts.igem.org/Ribosome_Binding_Sites/Prokaryotic/Constitutive/Anderson
+ */
+
+include "./data-exchange/commons.h"
+ 
+RBS J61100(.seq("tctagaGAAAGAGGGGACAAactagt"));
+RBS J61101(.seq("tctagaGAAAGACAGGACCCactagt"));
+RBS J61102(.seq("tctagaGAAAGATCCGATGTactagt"));
+RBS J61103(.seq("tctagaGAAAGATTAGACAAactagt"));
+RBS J61104(.seq("tctagaGAAAGAAGGGACAGactagt"));
+RBS J61105(.seq("tctagaGAAAGACATGACGTactagt"));
+
+/*
+ *  hm... I'm getting tired of manually copy-pasting 
+ *  DNA sequences from a registry
+ *  
+ *  Idea! let's import them automatically
+ */
+//Registry.import("J61106");
+//Registry.import("J61107");
+//Registry.import("J61108");
+//Registry.import("J61109");
+
+/*
+ *  hm... there are 40 of them.
+ *
+ *  HEUREKA! Eugene has loops!
+ */
+txt rbs_name;
+for(num i=10; i<=39; i = i + 1)
+{
+    rbs_name = "J611" + i;
+
+    //Registry.import("J611" + i);
+    //println("importing ", rbs_name);
+}

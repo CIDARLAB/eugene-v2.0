@@ -7,5 +7,6 @@ Property seq(txt);
 
 // COMMON PART TYPES
 PartType Promoter(seq);
+PartType RBS(seq);
 PartType CDS(seq);
- 
+PartType Terminator(seq); 

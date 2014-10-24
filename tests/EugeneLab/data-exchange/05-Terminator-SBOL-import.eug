@@ -1,0 +1,9 @@
+/*
+ *   Import Terminators using SBOL
+ *
+ *   we utilize the following terminators:
+ *   Voigt et al.,
+ *   Characterization of 582 natural and synthetic terminators
+ */
+
+Terminator t1(.seq("TTTT"));
