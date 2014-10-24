@@ -1,0 +1,72 @@
+/*
+ *   PART LIBRARY
+ */
+Property name(txt); 
+Property strength(num);
+
+PartType Promoter(name, strength);
+PartType RBS(name, strength);
+PartType CDS(name);
+PartType Terminator(name, strength);
+
+
+Promoter p00(.name("p0"), .strength(0));
+Promoter p01(.name("p1"), .strength(1));
+Promoter p02(.name("p2"), .strength(2));
+Promoter p03(.name("p3"), .strength(3));
+Promoter p04(.name("p4"), .strength(4));
+Promoter p05(.name("p5"), .strength(5));
+Promoter p06(.name("p6"), .strength(6));
+Promoter p07(.name("p7"), .strength(7));
+Promoter p08(.name("p8"), .strength(8));
+Promoter p09(.name("p9"), .strength(9));
+
+RBS rbs00(.name("rbs0"), .strength(0));
+RBS rbs01(.name("rbs1"), .strength(1));
+RBS rbs02(.name("rbs2"), .strength(2));
+RBS rbs03(.name("rbs3"), .strength(3));
+RBS rbs04(.name("rbs4"), .strength(4));
+RBS rbs05(.name("rbs5"), .strength(5));
+RBS rbs06(.name("rbs6"), .strength(6));
+RBS rbs07(.name("rbs7"), .strength(7));
+RBS rbs08(.name("rbs8"), .strength(8));
+RBS rbs09(.name("rbs9"), .strength(9));
+
+CDS g00(.name("g0"));
+CDS g01(.name("g1"));
+CDS g02(.name("g2"));
+CDS g03(.name("g3"));
+CDS g04(.name("g4"));
+CDS g05(.name("g5"));
+CDS g06(.name("g6"));
+CDS g07(.name("g7"));
+CDS g08(.name("g8"));
+CDS g09(.name("g9"));
+
+Terminator t00(.name("t0"), .strength(0));
+Terminator t01(.name("t1"), .strength(1));
+Terminator t02(.name("t2"), .strength(2));
+Terminator t03(.name("t3"), .strength(3));
+Terminator t04(.name("t4"), .strength(4));
+Terminator t05(.name("t5"), .strength(5));
+Terminator t06(.name("t6"), .strength(6));
+Terminator t07(.name("t7"), .strength(7));
+Terminator t08(.name("t8"), .strength(8));
+Terminator t09(.name("t9"), .strength(9));
+
+
+/*
+ * in these tests, we do not specify the part type
+ * we only specify constraints on property values
+ */
+Device D04(
+	[Promoter|RBS|CDS|Terminator], 
+	[Promoter|RBS|CDS|Terminator],
+	[Promoter|RBS|CDS|Terminator],
+	[Promoter|RBS|CDS|Terminator]
+);
+Rule r04(on D04:
+    Promoter exactly 1 /\ RBS exactly 1 /\ CDS exactly 1 /\ Terminator exactly 1 /\
+    Promoter.strength + RBS.strength + Terminator.strength == 4);
+product(D04);   
+ 

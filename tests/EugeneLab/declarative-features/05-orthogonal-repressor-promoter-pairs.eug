@@ -1,0 +1,63 @@
+/*-------------------
+ *   PART LIBRARY
+ *-------------------*/
+Property name(txt); 
+Property repress(txt); 
+Property strength(num);
+
+PartType Promoter(name, strength);
+PartType CDS_Repressor(name, repress);
+
+Promoter p0(.name("p0"), .strength(0));
+Promoter p1(.name("p1"), .strength(1));
+Promoter p2(.name("p2"), .strength(2));
+Promoter p3(.name("p3"), .strength(3));
+Promoter p4(.name("p4"), .strength(4));
+Promoter p5(.name("p5"), .strength(5));
+Promoter p6(.name("p6"), .strength(6));
+Promoter p7(.name("p7"), .strength(7));
+Promoter p8(.name("p8"), .strength(8));
+Promoter p9(.name("p9"), .strength(9));
+
+CDS_Repressor r0(.name("r0"), .repress("p0"));
+CDS_Repressor r1(.name("r0"), .repress("p1"));
+CDS_Repressor r2(.name("r0"), .repress("p2"));
+CDS_Repressor r3(.name("r0"), .repress("p3"));
+CDS_Repressor r4(.name("r0"), .repress("p4"));
+CDS_Repressor r5(.name("r0"), .repress("p5"));
+CDS_Repressor r6(.name("r0"), .repress("p6"));
+CDS_Repressor r7(.name("r0"), .repress("p7"));
+CDS_Repressor r8(.name("r0"), .repress("p8"));
+CDS_Repressor r9(.name("r0"), .repress("p9"));
+
+
+/*---------------------
+ *   DESIGN TEMPLATE
+ *---------------------*/
+Device D([CDS_Repressor|Promoter], [Promoter|CDS_Repressor]);
+
+/*-----------------------
+ *   RULES/CONSTRAINTS
+ *-----------------------*/
+Rule r(ON D:
+    // STEP 1: ``Query/Selection''
+    Promoter.strength >= 0 
+
+    /\
+    
+    // STEP 2: ``Arrangement''
+    all_forward
+    /\
+    Promoter with CDS_Repressor
+    /\
+    CDS_Repressor before Promoter
+
+    /\
+ 
+    // STEP 3: ``Pruning/Alignment''
+    CDS_Repressor.repress == Promoter.name);
+
+/*-----------------------
+ *   ENUMERATION
+ *-----------------------*/    
+product(D);    

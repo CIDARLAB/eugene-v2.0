@@ -1,0 +1,29 @@
+/*
+ *  INCLUDE statements
+ */
+include "./library-generators/01-TetR-regulated_Promoter_Library.eug"
+include "./library-generators/03-random-CDS-sequences.eug"
+
+/*
+ *  DESIGN of transcriptional units
+ */
+Device TU([Promoter|CDS], [Promoter|CDS]);
+
+// Rules on the transcriptional units
+// - forward oriented parts and promoter before cds
+Rule forwardDevice(ON TU:
+	all_forward and
+	Promoter WITH CDS and
+	Promoter BEFORE CDS);
+	
+// - reverse oriented parts and promoter after cds
+Rule reverseDevice(ON TU:
+	all_reverse and
+	Promoter WITH CDS and
+	Promoter AFTER CDS);
+
+// Generate all rule-compliant designs	
+lod = product(TU);
+
+
+
