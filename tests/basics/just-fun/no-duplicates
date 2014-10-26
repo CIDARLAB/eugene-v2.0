@@ -2,12 +2,11 @@
 // with random numbers ranging over 0 to N and
 // any number can appear only once
 
-// run the second test 100 times
-num N;
-for(num t = 1; t <= 100; t = t+1) {
+num NR_OF_RUNS = 1;
+for(num t = 1; t <= NR_OF_RUNS; t = t+1) {
 
 	num[] array = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-	N = sizeof(array);
+	num N = sizeof(array);
 	for(num i = 0; i < N; i = i + 1) {
 	    num r = RANDOM(1, N);
 	    

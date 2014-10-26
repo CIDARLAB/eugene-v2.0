@@ -235,20 +235,24 @@ public class TestSuite {
 	 *---------------------------------------------*/	
 	private static void testImperativeFeatures() 
 			throws EugeneException {
-		// CONDITIONAL BRANCHES
-		new TestSuite().test("./tests/imperative/branches/if");
-		new TestSuite().test("./tests/imperative/branches/if-else");
-		new TestSuite().test("./tests/imperative/branches/if-elseif");
-		new TestSuite().test("./tests/imperative/branches/if-elseif-else");
+//		// CONDITIONAL BRANCHES
+//		new TestSuite().test("./tests/imperative/branches/if");
+//		new TestSuite().test("./tests/imperative/branches/if-else");
+//		new TestSuite().test("./tests/imperative/branches/if-elseif");
+//		new TestSuite().test("./tests/imperative/branches/if-elseif-else");
+//		
+//		// FOR LOOPS
+//		new TestSuite().test("./tests/imperative/loops/for-loop-01");   // correctness tests
+//		new TestSuite().test("./tests/imperative/loops/for-loop-02");   // efficiency tests
+//		new TestSuite().test("./tests/imperative/loops/nested-for-loop-01");
+//		new TestSuite().test("./tests/imperative/loops/loops-syntax-demos");
+//		
+//		// WHILE LOOPS
+//		new TestSuite().test("./tests/imperative/loops/while-loop-01");
 		
-		// FOR LOOPS
-		new TestSuite().test("./tests/imperative/loops/for-loop-01");   // correctness tests
-		new TestSuite().test("./tests/imperative/loops/for-loop-02");   // efficiency tests
-		new TestSuite().test("./tests/imperative/loops/nested-for-loop-01");
-		new TestSuite().test("./tests/imperative/loops/loops-syntax-demos");
 		
-		// WHILE LOOPS
-		new TestSuite().test("./tests/imperative/loops/while-loop-01");
+		// FUNCTIONS
+		new TestSuite().testAll("./tests/imperative/functions");
 	}
 	
 	/*---------------------------------------------
@@ -302,9 +306,9 @@ public class TestSuite {
 //		testBasics();
 //		testDataExchange();
 //		testRules();
-//		testImperativeFeatures();
+		testImperativeFeatures();
 //		testRealWorldExamples();
-		testEugeneLabTutorials();
+//		testEugeneLabTutorials();
 		
 //		testAll();
 	
@@ -342,6 +346,10 @@ public class TestSuite {
 	public void testAll( String path ) 
 			throws EugeneException {
 		File root = new File( path );
+		
+		if(!root.exists()) {
+			throw new EugeneException("Path does not exist! " + path);
+		}
 	    File[] list = root.listFiles();
 
 		for ( File f : list ) {

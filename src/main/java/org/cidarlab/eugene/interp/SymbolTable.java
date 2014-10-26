@@ -1,6 +1,7 @@
 package org.cidarlab.eugene.interp;
 
 import org.cidarlab.eugene.dom.*;
+import org.cidarlab.eugene.dom.imp.functions.Function;
 import org.cidarlab.eugene.dom.rules.Rule;
 
 import java.util.ArrayList;
@@ -47,6 +48,10 @@ public class SymbolTable {
 	 */
 	private Map<ComponentType, Set<Component>> type_components;
 	
+	/*
+	 * also, we hold references to all defined functions
+	 */
+	private Map<String, Function> functions;
 	
 	public Map<String, Variable> variables;
 
@@ -54,6 +59,7 @@ public class SymbolTable {
 		this.symbols = new HashMap<String, NamedElement>();
 		this.type_components = new HashMap<ComponentType, Set<Component>>();
 		this.variables = new HashMap<String, Variable>();
+		this.functions = new HashMap<String, Function>();
 	}
 	
 	/**
@@ -270,5 +276,28 @@ public class SymbolTable {
 	 */
 	public Collection<NamedElement> getAll() {
 		return this.symbols.values();
+	}
+	
+	/**
+	 * The getFunction/1 method returns the Function object 
+	 * of the given name.
+	 * 
+	 * @param name  ... the name of the desired function
+	 * 
+	 * @return
+	 */
+	public Function getFunction(String name) {
+		return this.functions.get(name);
+	}
+	
+	/**
+	 * The putFunction/1 method stores a given Function object 
+	 * in the functions hashmap
+	 * 
+	 * @param f ... the Function object
+	 * 
+	 */
+	public void putFunction(Function f) {
+		this.functions.put(f.getName(), f);
 	}
 }

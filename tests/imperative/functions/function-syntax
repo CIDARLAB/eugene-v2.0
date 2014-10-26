@@ -1,0 +1,7 @@
+num a = 1;
+num b = 2;
+
+num add(num a, num b)
+{
+    return a + b;
+}

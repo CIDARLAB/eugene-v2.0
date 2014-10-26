@@ -95,6 +95,9 @@ tokens {
 	ARROW = '-->';
 	GRAMMAR = 'Grammar';
 	
+	RETURN_UC = 'RETURN';
+	RETURN_LC = 'return';
+	
 	/*  
 	 * RESERVED WORDS FOR BUILT-IN FUNCTIONS
 	 */
@@ -721,7 +724,7 @@ if(null == this.interp) {
     this.interp = new Interp(new Sparrow());
 }
 }
-	:	(statement[false])+ EOF!
+	:	(statement[false] | function_definition[false])+ EOF!
 	;
 
 
@@ -931,7 +934,7 @@ $type = EugeneConstants.BOOLEAN;
 	;
 
 /*------------------------------------------------------------------
- * TYPES (e.g. PartType, DeviceType, ...)
+ * TYPES (i.e. Part Types and Device Templates)
  *------------------------------------------------------------------*/ 
 
 typeDeclaration[boolean defer]
@@ -964,7 +967,7 @@ if(!defer) {
 	;
 
 /*------------------------------------------------------------------
- *  CONTAINERS / SETS / ARRAYS
+ *  EUGENE CONTAINERS (i.e. COLLECTIONS and ARRAYS)
  *------------------------------------------------------------------*/ 
 containerDeclaration[boolean defer]
 	returns [NamedElement ne]
@@ -2797,6 +2800,61 @@ if(!defer) {
 }
 	;
 
+/*------------------------
+ * USER-DEFINED FUNCTIONS
+ *------------------------*/
+function_definition[boolean defer] 
+	:	rt=type_specification[defer] n=ID LEFTP lop=list_of_parameters[defer] RIGHTP LEFTCUR stmts=function_statements[defer] RIGHTCUR {
+if(!defer) {
+    try {
+        this.interp.defineFunction(
+            $rt.text,          // return type
+            $n.text,           // the name of the function
+            $lop.parameters,   // list of parameters
+            $stmts.start);     // list of statements
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}	
+	}
+	;
+
+type_specification[boolean defer] 
+	:	NUM | TXT
+	;	
+
+list_of_parameters[boolean defer]
+	returns [List<NamedElement> parameters]
+	:	t=type_specification[defer] n=ID {
+if(!defer) {
+    if(null == $parameters) {
+        $parameters = new ArrayList<NamedElement>();
+    }
+    
+    try {
+        $parameters.add(
+            this.interp.createFunctionParameter(
+                $t.text,      // type of the parameter
+                $n.text));    // name of the parameter
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}	
+	}	(COMMA lop=list_of_parameters[defer] {
+if(!defer) {
+    $parameters.addAll($lop.parameters);    
+}	
+	}	)?
+	;	
+	
+function_statements[boolean defer]
+	:	(statement[defer] | return_statement[defer])+
+	;
+	
+return_statement[boolean defer]
+	:	(RETURN_LC | RETURN_UC) e=expr[defer] SEMIC
+	;	
+	
 /*------------------------------------------------------------------
  * LEXER RULES
  *------------------------------------------------------------------*/

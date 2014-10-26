@@ -39,6 +39,7 @@ import java.util.UUID;
 
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.Token;
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.data.pigeon.Pigeonizer;
@@ -58,6 +59,7 @@ import org.cidarlab.eugene.dom.imp.StackElement;
 import org.cidarlab.eugene.dom.imp.container.EugeneArray;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.dom.imp.container.EugeneContainer;
+import org.cidarlab.eugene.dom.imp.functions.Function;
 import org.cidarlab.eugene.dom.imp.loops.Loop;
 import org.cidarlab.eugene.dom.interaction.Interaction;
 import org.cidarlab.eugene.dom.rules.ArrangementConstraint;
@@ -1942,11 +1944,66 @@ public class Interp {
 		
 		return false;
 	}
+
+	/*-------------------------------------------------
+	 * METHODS REGARDING USER-DEFINED FUNCTIONS
+	 *-------------------------------------------------*/
+	
+	/**
+	 * The defineFunction/4 method takes as input all relevant information for 
+	 * a Eugene function, i.e. return type, name, list of parameters, and the function's 
+	 * statements.
+	 * It creates a org.cidarlab.eugene.dom.functions.Function object and stores 
+	 * it in the symbol tables. 
+	 * 
+	 * @param return_type   ... the return type of the function (must be a reserved keyword for Eugene types)
+	 * @param name          ... the name of the function
+	 * @param parameters    ... a list of NamedElement objects which represent the function's parameters 
+	 * @param statements    ... the statements of the function body
+	 * 
+	 * @throws EugeneException
+	 */
+	public void defineFunction(String return_type, String name, List<NamedElement> parameters, Token statements) 
+			throws EugeneException {
+		
+		// first, we define a function
+		Function f = new Function(return_type, name, parameters, statements);
+		
+		// then, we store the function in the symbol tables
+		this.symbols.putFunction(f);
+	}
+	
+	/**
+	 * The createFunctionParameter/2 method takes as input a type-name pair representing
+	 * the name and the type of a Function parameter. It checks if the type is valid, 
+	 * creates a NamedElement object (depending on the type), and returns the 
+	 * NamedElement object.
+	 * 
+	 * @param type  ... the type of the parameter
+	 * @param name  ... the name of the parameter
+	 * 
+	 * @return
+	 * @throws EugeneException
+	 */
+	public NamedElement createFunctionParameter(String type, String name)
+			throws EugeneException {
+		
+		// currently, we support the following types
+		// num
+		if(EugeneConstants.NUM.equals(type)) {
+			return new Variable(EugeneConstants.NUM, name);
+		// txt
+		} else if(EugeneConstants.TXT.equals(type)) {
+			return new Variable(EugeneConstants.TXT, name);
+		}
+		
+		// invalid type! -> throw an exception
+		throw new EugeneException("Unsupported type for function parameter!" + type);
+	}
 	
 	/*-------------------------------------------------
 	 * METHODS REGARDING DATE EXCHANGE FEATURES
 	 *-------------------------------------------------*/
-	
 	private String getRootDirectory() {
 		return this.ROOT_DIRECTORY;
 	}
@@ -1983,8 +2040,6 @@ public class Interp {
 		} else {
 			this.put(e);
 		} 
-		
-		
 	}
  
 	/**
