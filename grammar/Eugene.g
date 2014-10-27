@@ -193,6 +193,7 @@ import org.cidarlab.eugene.dom.rules.exp.*;
 import org.cidarlab.eugene.dom.imp.*;
 import org.cidarlab.eugene.dom.imp.container.*;
 import org.cidarlab.eugene.dom.imp.loops.Loop;
+import org.cidarlab.eugene.dom.imp.functions.Function;
 
 import org.antlr.runtime.*;
 
@@ -706,6 +707,41 @@ public Object exec(String rule, int tokenIndex)
          */
         this.input.seek(oldPosition);
     }
+    
+    public NamedElement call_function(String name, List<NamedElement> parameter_values)
+        throws EugeneException {
+    
+        // first, we ask the interpreter if the function exists
+        // and let it return the function object
+        Function f = this.interp.getFunction(name);
+        if(null == f) {
+            printError("The function " + name + " is not defined!");
+        }
+        
+        // then, we compare the types of the function parameters 
+        // with the types of the parameter values
+        try {
+            this.interp.compareParameterTypes(
+                    f.getParameters(), 
+                    parameter_values);
+        } catch(EugeneException ee) {
+            printError(ee.getLocalizedMessage());
+        }
+        
+        // if everything's fine at this point in time, then we 
+        // execute the function.
+        /** TODO:
+        int oldPosition = this.input.index(); 
+	try {
+	
+	} catch(EugeneReturnException ere) {
+	    // a return statement has been encountered
+	}            
+        this.input.seek(oldPosition);
+        **/
+        
+        return null;
+    }
 
 }
 
@@ -724,7 +760,7 @@ if(null == this.interp) {
     this.interp = new Interp(new Sparrow());
 }
 }
-	:	(statement[false] | function_definition[false])+ EOF!
+	:	(statement[false] | function_definition[true])+ EOF!
 	;
 
 
@@ -735,7 +771,6 @@ statement[boolean defer]
 	|	declarationStatement[defer] SEMIC	
 	|	printStatement[defer] SEMIC
 	|	assignment[defer] SEMIC
-	|	functionCall[defer] SEMIC
 	|	de=dataExchange[defer] SEMIC {
 if(!defer) {
     try {
@@ -751,19 +786,15 @@ if(!defer) {
 }	
 	}
 	|	imperativeStatements[defer]
-	|	predefined_statements[defer] SEMIC
+	|	function_call[defer] SEMIC
+	|	built_in_function[defer] SEMIC
 	;
-
+/***
 predefined_statements[boolean defer] 
 	:	testStatements[defer]
-	|	(EXIT_LC | EXIT_UC) {
-if(!defer) {
-    printError("exiting...");
-}
-	}
 	|	built_in_function[defer]
 	;
-
+ ***/
 
 declarationStatement[boolean defer]
 	returns [String name]
@@ -1338,14 +1369,17 @@ lhs_access[boolean defer]
 	|	(DOT i=ID | LEFTSBR (ID|NUMBER) RIGHTSBR) lhs_access[defer]
 	;	
 	
-rhs_assignment[boolean defer]	
-	returns [NamedElement e]
-	:	fc=functionCall[defer] {
+/*** BACKUP:
+fc=function_call[defer] {
 if(!defer) {
     $e = $fc.e;
 }	
-	}
-	|	de=dataExchange[defer] {
+	}	|	
+**/	
+
+rhs_assignment[boolean defer]	
+	returns [NamedElement e]
+	:	de=dataExchange[defer] {
 if(!defer) {
     $e = $de.e;
 }	
@@ -1905,39 +1939,6 @@ if(!defer) {
 
 
 /*------------------------------------------------------------------
- * FUNCTION CALLS
- * are either:
- * - calls of predefined functions (like product, permute)
- * - calls of user-defined functions
- *------------------------------------------------------------------*/
-
-functionCall[boolean defer]
-	returns [NamedElement e]
-	:	(pr=PRODUCT|pe=PERMUTE) LEFTP idToken=ID RIGHTP {
-if(!defer) {
-    try {
-    
-        if(!this.interp.contains($idToken.text)) {
-            printError($idToken.text+" does not exists.");
-        } 
-        NamedElement ne = this.interp.get($idToken.text);
-        if(!(ne instanceof Device)) {
-            printError($idToken.text+" is not a Device.");
-        }
-        
-        if(pr != null) {
-            $e = this.interp.product((Device)ne);
-        } else {
-            $e = this.interp.permute((Device)ne);
-        }
-    } catch(Exception e) {
-        printError(e.getMessage());
-    }
-}	
-	}
-	;
-	
-/*------------------------------------------------------------------
  * PRINT STATEMENTS
  *------------------------------------------------------------------*/
 printStatement[boolean defer] 
@@ -2387,11 +2388,21 @@ if(!defer) {
 			typeList="";
 		}
 	}
-		|	bif=built_in_function[defer] {
-if(!defer) {
-    $p = $bif.p;
-    $element = null;
+		|bif=built_in_function[defer] {
+if(!defer && null != $bif.element) {
+    if($bif.element instanceof Variable) {
+        $p = (Variable)$bif.element;
+        $element = null;
+    } else {
+        $element = $bif.element;
+        $p = null;
+    }
 }		
+	}
+	|	fc=function_call[defer] {
+if(!defer) {
+
+}	
 	}
 	;
 
@@ -2432,14 +2443,14 @@ if(!defer) {
  * E.g. sizeof()
  *------------------------------------------------------------------*/
 built_in_function[boolean defer]
-	returns [Variable p]
+	returns [NamedElement element]
 	:	(SIZEOF_LC|SIZEOF_UC|SIZE_LC|SIZE_UC) LEFTP e=expr[defer] RIGHTP {
 if(!defer) {
     try {
         if(null != $e.element) {
-            $p = this.interp.getSizeOf($e.element);
+            $element = this.interp.getSizeOf($e.element);
         } else if(null != $e.p) {
-            $p = this.interp.getSizeOf($e.p);
+            $element = this.interp.getSizeOf($e.p);
         }
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
@@ -2449,7 +2460,7 @@ if(!defer) {
 	|	(RANDOM_LC|RANDOM_UC) LEFTP rg=range[defer] RIGHTP {
 if(!defer) {
     try {
-        $p = this.interp.getRandom(rg.sor, rg.eor);
+        $element = this.interp.getRandom(rg.sor, rg.eor);
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
     }
@@ -2463,11 +2474,40 @@ if(!defer) {
         } else {
             throw new EugeneException("Cannot store " + $e.text + " into the library!");
         }
+        $element = null;
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
     }
 }	
 	}
+	|	(pr=PRODUCT|pe=PERMUTE) LEFTP idToken=ID RIGHTP {
+if(!defer) {
+    try {
+    
+        if(!this.interp.contains($idToken.text)) {
+            printError($idToken.text+" does not exists.");
+        } 
+        NamedElement ne = this.interp.get($idToken.text);
+        if(!(ne instanceof Device)) {
+            printError($idToken.text+" is not a Device.");
+        }
+        
+        if(pr != null) {
+            $element = this.interp.product((Device)ne);
+        } else {
+            $element = this.interp.permute((Device)ne);
+        }
+    } catch(Exception ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}	
+	}
+	|	(EXIT_LC | EXIT_UC) {
+if(!defer) {
+    printError("exiting...");
+}
+	}
+	|	ID LEFTP RIGHTP
 	;
 
 range[boolean defer] 
@@ -2804,14 +2844,30 @@ if(!defer) {
  * USER-DEFINED FUNCTIONS
  *------------------------*/
 function_definition[boolean defer] 
-	:	rt=type_specification[defer] n=ID LEFTP lop=list_of_parameters[defer] RIGHTP LEFTCUR stmts=function_statements[defer] RIGHTCUR {
-if(!defer) {
+	:	(rt=type_specification[defer])? n=ID LEFTP (lop=list_of_parameters[defer])? RIGHTP LEFTCUR 
+			stmts=function_statements[defer] 
+		RIGHTCUR {
+if(defer) {  // FUNCTION DEFINITION 
     try {
+        // let's check if a return type is specified
+        String return_type = null;
+        if(null != rt) {
+            return_type = $rt.text;
+        }
+        
+        // let's check if parameters are specified
+        List<NamedElement> parameters = null;
+        if(null != lop) {
+            parameters = $lop.parameters;
+        }
+        
+        // Function w/ parameters
         this.interp.defineFunction(
-            $rt.text,          // return type
-            $n.text,           // the name of the function
-            $lop.parameters,   // list of parameters
-            $stmts.start);     // list of statements
+                return_type,     // return type
+                $n.text,         // the name of the function
+                parameters,      // list of parameters
+                $stmts.start);   // list of statements
+                
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
     }
@@ -2826,7 +2882,7 @@ type_specification[boolean defer]
 list_of_parameters[boolean defer]
 	returns [List<NamedElement> parameters]
 	:	t=type_specification[defer] n=ID {
-if(!defer) {
+if(defer) {
     if(null == $parameters) {
         $parameters = new ArrayList<NamedElement>();
     }
@@ -2841,7 +2897,7 @@ if(!defer) {
     }
 }	
 	}	(COMMA lop=list_of_parameters[defer] {
-if(!defer) {
+if(defer) {
     $parameters.addAll($lop.parameters);    
 }	
 	}	)?
@@ -2853,6 +2909,53 @@ function_statements[boolean defer]
 	
 return_statement[boolean defer]
 	:	(RETURN_LC | RETURN_UC) e=expr[defer] SEMIC
+	;	
+
+/*------------------------------------------------------------------
+ * FUNCTION CALLS
+ * are either:
+ * - calls of predefined functions (like product, permute)
+ * - calls of user-defined functions
+ *------------------------------------------------------------------*/
+
+function_call[boolean defer]
+	returns [NamedElement e]
+	:	user_defined_function[defer]
+	;
+	
+	
+user_defined_function[boolean defer]
+	:	f=ID LEFTP (loe=list_of_expressions[defer])? RIGHTP {
+if(!defer) {
+    try {
+        this.call_function($f.text, $loe.parameter_values);
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}	
+	}
+	;	
+
+list_of_expressions[boolean defer]
+	returns [List<NamedElement> parameter_values]
+	:	e=expr[defer] {
+if(!defer) {
+    if(null == $parameter_values) {
+        $parameter_values = new ArrayList<NamedElement>();
+    }
+    
+    if(null == $e.p) {
+        $parameter_values.add($e.element);
+    } else {
+        $parameter_values.add($e.p);
+    }
+    
+}	
+	} 	(COMMA loe=list_of_expressions[defer] {
+if(!defer) {
+    $parameter_values.addAll($loe.parameter_values);
+}	
+	})? 
 	;	
 	
 /*------------------------------------------------------------------

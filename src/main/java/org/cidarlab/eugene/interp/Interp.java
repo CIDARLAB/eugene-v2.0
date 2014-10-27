@@ -1946,62 +1946,6 @@ public class Interp {
 	}
 
 	/*-------------------------------------------------
-	 * METHODS REGARDING USER-DEFINED FUNCTIONS
-	 *-------------------------------------------------*/
-	
-	/**
-	 * The defineFunction/4 method takes as input all relevant information for 
-	 * a Eugene function, i.e. return type, name, list of parameters, and the function's 
-	 * statements.
-	 * It creates a org.cidarlab.eugene.dom.functions.Function object and stores 
-	 * it in the symbol tables. 
-	 * 
-	 * @param return_type   ... the return type of the function (must be a reserved keyword for Eugene types)
-	 * @param name          ... the name of the function
-	 * @param parameters    ... a list of NamedElement objects which represent the function's parameters 
-	 * @param statements    ... the statements of the function body
-	 * 
-	 * @throws EugeneException
-	 */
-	public void defineFunction(String return_type, String name, List<NamedElement> parameters, Token statements) 
-			throws EugeneException {
-		
-		// first, we define a function
-		Function f = new Function(return_type, name, parameters, statements);
-		
-		// then, we store the function in the symbol tables
-		this.symbols.putFunction(f);
-	}
-	
-	/**
-	 * The createFunctionParameter/2 method takes as input a type-name pair representing
-	 * the name and the type of a Function parameter. It checks if the type is valid, 
-	 * creates a NamedElement object (depending on the type), and returns the 
-	 * NamedElement object.
-	 * 
-	 * @param type  ... the type of the parameter
-	 * @param name  ... the name of the parameter
-	 * 
-	 * @return
-	 * @throws EugeneException
-	 */
-	public NamedElement createFunctionParameter(String type, String name)
-			throws EugeneException {
-		
-		// currently, we support the following types
-		// num
-		if(EugeneConstants.NUM.equals(type)) {
-			return new Variable(EugeneConstants.NUM, name);
-		// txt
-		} else if(EugeneConstants.TXT.equals(type)) {
-			return new Variable(EugeneConstants.TXT, name);
-		}
-		
-		// invalid type! -> throw an exception
-		throw new EugeneException("Unsupported type for function parameter!" + type);
-	}
-	
-	/*-------------------------------------------------
 	 * METHODS REGARDING DATE EXCHANGE FEATURES
 	 *-------------------------------------------------*/
 	private String getRootDirectory() {
@@ -2376,5 +2320,132 @@ public class Interp {
 		return file;
 	}
 
+	/*-------------------------------------------------
+	 * METHODS REGARDING USER-DEFINED FUNCTIONS
+	 *-------------------------------------------------*/
+	
+	/**
+	 * The defineFunction/4 method takes as input all relevant information for 
+	 * a Eugene function, i.e. return type, name, list of parameters, and the function's 
+	 * statements.
+	 * It creates a org.cidarlab.eugene.dom.functions.Function object and stores 
+	 * it in the symbol tables. 
+	 * 
+	 * @param return_type   ... the return type of the function (must be a reserved keyword for Eugene types)
+	 * @param name          ... the name of the function
+	 * @param parameters    ... a list of NamedElement objects which represent the function's parameters 
+	 * @param statements    ... the statements of the function body
+	 * 
+	 * @throws EugeneException
+	 */
+	public void defineFunction(String return_type, String name, List<NamedElement> parameters, Token statements) 
+			throws EugeneException {
+		
+		// first, we evaluate if the function has been 
+		// defined already
+		if(this.symbols.containsFunction(name)) {
+			throw new EugeneException("The function " + name + " has been defined already!");
+		}
+		
+		// if the function has not been defined, then we instantiate the 
+		// Function class and set its variables properly
+		Function f = new Function(return_type, name, parameters, statements);
+		
+		// finally, we store the Function object in the symbol tables
+		this.symbols.putFunction(f);
+	}
+	
+	/**
+	 * The createFunctionParameter/2 method takes as input a type-name pair representing
+	 * the name and the type of a Function parameter. It checks if the type is valid, 
+	 * creates a NamedElement object (depending on the type), and returns the 
+	 * NamedElement object.
+	 * 
+	 * @param type  ... the type of the parameter
+	 * @param name  ... the name of the parameter
+	 * 
+	 * @return
+	 * @throws EugeneException
+	 */
+	public NamedElement createFunctionParameter(String type, String name)
+			throws EugeneException {
+		
+		// currently, we support the following types
+		// num
+		if(EugeneConstants.NUM.equals(type)) {
+			return new Variable(name, EugeneConstants.NUM);
+		// txt
+		} else if(EugeneConstants.TXT.equals(type)) {
+			return new Variable(name, EugeneConstants.TXT);
+		}
+		
+		// invalid type! -> throw an exception
+		throw new EugeneException("Unsupported type for function parameter!" + type);
+	}
+	
+	/**
+	 * The getFunction/1 method returns the Function object
+	 * for a given name. It returns NULL if the function 
+	 * does not exist. 
+	 * 
+	 * @param name  ... the name of the function
+	 * @return
+	 * @throws EugeneException
+	 */
+	public Function getFunction(String name) {
+		return this.symbols.getFunction(name);
+	}
+
+	
+	/**
+	 * The compareParameterTypes/2 compares the types of a function's parameters
+	 * with the types of parameter values specified in a function call statement.
+	 * It throws a EugeneException if any types do not match.
+	 *  
+	 * @param params        ... the parameters of the function
+	 * @param param_values  ... the parameter values of the function call
+	 * 
+	 * @throws EugeneException
+	 */
+	public void compareParameterTypes(List<NamedElement> params, List<NamedElement> param_values)
+			throws EugeneException {
+
+		if(params != null && null != param_values) {
+			
+			// for the time being, both lists must be of equal size
+			// i.e. there are no default-values for parameters
+			if(params.size() != param_values.size()) {
+				throw new EugeneException("The number of parameter values does not " +
+						"match the number of paramters!");
+			}
+			
+			// lazy evaluation of Comparator object
+			if(null == comparator) {
+				this.comparator = new Comparator();
+			}
+			
+			// we check each parameter individually 
+			// using the Comparator class
+			for(int i=0; i<params.size(); i++) {
+				
+				if(!this.comparator.compareTypes(
+						params.get(i), 
+						param_values.get(i))) {
+					
+					// if the types do not match, we throw an 
+					// exception with a pretty expressive 
+					// error message.
+					throw new EugeneException(
+							"Incompatible types for parameter " + 
+									params.get(i).getName());
+				}
+				
+			}
+			
+		} else if(!(params == null && param_values == null)) {			
+			throw new EugeneException("Invalid number of parameter values of " +
+					"function call!");
+		}
+	} 
 	
 }

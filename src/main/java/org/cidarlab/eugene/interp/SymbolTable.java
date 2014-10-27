@@ -300,4 +300,23 @@ public class SymbolTable {
 	public void putFunction(Function f) {
 		this.functions.put(f.getName(), f);
 	}
+	
+	/**
+	 * The contains/1 method checks if a Function with a 
+	 * given name has been defined. It's being used for 
+	 * two resons in the Interp:
+	 * 1. for function calls and 2. for function definitions
+	 * 
+	 * Currently, a function name must be unique in the Eugene script.
+	 * Future improvements can, for example, also evaluate the 
+	 * number and types of parameters.
+	 * 
+	 * @param name ... the name of the defined function
+	 * 
+	 * @return  ... true ... if the function has been defined
+	 *              false .. otherwise
+	 */
+	public boolean containsFunction(String name) {
+		return this.functions.containsKey(name);
+	}
 }

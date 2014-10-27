@@ -228,9 +228,12 @@ public class Comparator {
 		// then we need to compare their primitive types
 		if(lhs instanceof Variable) {
 			if(rhs instanceof Variable) {
+				
 				return ((Variable)lhs).getType().equals(
 						((Variable)rhs).getType());
+				
 			} else if(rhs instanceof PropertyValue) {
+				
 				return ((Variable)lhs).getType().equals(
 						((PropertyValue)rhs).getType());
 			}
