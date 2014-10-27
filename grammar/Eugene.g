@@ -566,6 +566,7 @@ public Object exec(String rule, int tokenIndex)
     Object rv = null;
     int oldPosition = this.input.index(); // save current location
     this.input.seek(tokenIndex); // seek to place to start execution
+    
     try { // which rule are we executing?
         if("variableDeclaration".equals(rule)) {
             rv = this.variableDeclaration(false);
@@ -573,36 +574,16 @@ public Object exec(String rule, int tokenIndex)
             rv = this.imp_condition(false);
         } else if("listOfStatements".equals(rule)) {
             rv = this.listOfStatements(false);
+        } else if("function_statements".equals(rule)) {
+            rv = this.function_statements(false);
         } else if("assignment".equals(rule)) {
             rv = this.assignment(false);
         } else if("listOfStatements".equals(rule)) {
             rv = this.listOfStatements(false);
         } 
         
-/****        
-        else if(rule.equals("ifCondition")) { 
-            rv = this.expression(false).objElement; 
-        } else if("onDeviceRule".equals(rule)) {
-            rv = null;
-            //rv = this.onDeviceRule(false).objRule;            
-        } else if (rule.equals("listOfStatements")) {
-            this.listOfStatements(false);
-        } else if (rule.equals("PropertyValueDeclaration")){
-            variableDeclaration_return ret=this.variableDeclaration(false);
-        } else if(rule.equals("expression")) {
-            return this.expression(false);
-        } else if(rule.equals("computationalStatement")) {
-            return this.computationalStatement(false);
-        } else {
-            System.err.println("Error: cannot execute rule " + rule + ".");
-            //this.cleanUp(1);
-        }
-    } catch (EugeneReturnException e) {
-        //return e.getReturnValue();
-        throw new EugeneReturnException(e.getReturnValue());
- ****/        
-//    } catch (EugeneReturnException ere) {
-//       throw new EugeneReturnException(ere.getLocalizedMessage());
+    } catch (EugeneReturnException ere) {
+        throw new EugeneReturnException(ere.getReturnValue());    
     } catch (Exception e) {
         throw new EugeneException(e.getLocalizedMessage());
     }
@@ -728,23 +709,55 @@ public Object exec(String rule, int tokenIndex)
             printError(ee.getLocalizedMessage());
         }
         
+
         // if everything's fine at this point in time, then we 
         // execute the function.
-        /** TODO:
+            
+        // first, we initialize its parameters with the specified 
+        // parameter values (if there are any)
+        if(null != parameter_values) {
+	    try {
+	        f.initialize(parameter_values);
+	    } catch(EugeneException ee) {
+	        throw new EugeneException(ee.getLocalizedMessage());
+	    }
+        }
+
+        // we store the current position in the Eugene script
+        // for the jump back
         int oldPosition = this.input.index(); 
-	try {
-	
-	} catch(EugeneReturnException ere) {
-	    // a return statement has been encountered
-	}            
+        
+        NamedElement ret_el = null;
+        
+        try {
+            this.interp.push(f);
+            
+            // execute each statement of the function body
+            this.exec(
+                "function_statements", 
+                f.getStatements().getTokenIndex());
+
+        } catch(EugeneReturnException ere) {
+
+            // a return statement has been encountered
+            ret_el = ere.getReturnValue();
+
+        } finally {
+        
+            // we need to pop the function from the stack!
+            this.interp.pop();
+        }
+            
+        // and jump back to the original position in 
+        // the Eugene script
         this.input.seek(oldPosition);
-        **/
+
         /*
          * FOR TESTING PURPOSE:
          * - we simulate the function's return value
          */
-
-        return f.simulateReturnValue();
+        return ret_el;
+//        return f.simulateReturnValue();
     }
 
 }
@@ -759,6 +772,7 @@ public Object exec(String rule, int tokenIndex)
  
 /* start of program consisting of statements */
 prog
+	throws EugeneReturnException
 @before {
 if(null == this.interp) {
     this.interp = new Interp(new Sparrow());
@@ -2195,11 +2209,6 @@ if(!defer) {
 		RIGHTCUR
 	;
 	
-listOfStatements[boolean defer] 
-	:	(stmtToken=statement[defer])+ 
-	;
-
-
 /*------------------------------------------------------------------
  * EXPRESSIONS
  *------------------------------------------------------------------*/
@@ -2858,8 +2867,9 @@ if(!defer) {
  * USER-DEFINED FUNCTIONS
  *------------------------*/
 function_definition[boolean defer] 
-	:	(rt=type_specification[defer])? n=ID LEFTP (lop=list_of_parameters[defer])? RIGHTP LEFTCUR 
-			stmts=function_statements[defer] 
+	throws EugeneReturnException
+	:	(rt=type_specification[true])? n=ID LEFTP (lop=list_of_parameters[true])? RIGHTP LEFTCUR 
+			stmts=function_statements[true] 
 		RIGHTCUR {
 if(defer) {  // FUNCTION DEFINITION 
     try {
@@ -2917,13 +2927,6 @@ if(defer) {
 	}	)?
 	;	
 	
-function_statements[boolean defer]
-	:	(statement[defer] | return_statement[defer])+
-	;
-	
-return_statement[boolean defer]
-	:	(RETURN_LC | RETURN_UC) e=expr[defer] SEMIC
-	;	
 
 /*------------------------------------------------------------------
  * FUNCTION CALLS
@@ -2976,6 +2979,42 @@ if(!defer) {
 }	
 	}	)? 
 	;	
+
+
+listOfStatements[boolean defer]
+	returns [NamedElement e]
+	:	(stmtToken=statement[defer] {
+if(!defer) {
+    $e = (NamedElement)null;
+}	
+	} 	)+ 
+	;
+
+
+function_statements[boolean defer]
+	throws EugeneReturnException
+	:	(statement[defer] | rs=return_statement[defer] {
+if(!defer) {
+    throw new EugeneReturnException($rs.el);
+}
+	})+
+	;
+
+return_statement[boolean defer]
+	returns [NamedElement el]
+	:	(RETURN_LC | RETURN_UC) e=expr[defer] SEMIC {
+if(!defer) {
+    if(null != $e.element) {
+        $el = $e.element;
+    } else {
+        $el = $e.p;
+    }
+}	
+	}
+	;	
+	
+
+
 	
 /*------------------------------------------------------------------
  * LEXER RULES
