@@ -1,0 +1,43 @@
+// the print_hello function has 
+// no return-type and no parameters
+print_hello() 
+{
+    println("Hello!");
+}
+
+// call the print_hello function
+print_hello();
+
+
+// the print_text function takes as input 
+// a string t and prints it onto the console
+print_text(txt t)
+{
+    println(t);
+}
+print_text("print_text");
+
+
+// the print_sum function takes as input two numbers 
+// and prints the sum to the console
+print_sum(num a, num b) 
+{
+    num sum = a + b;
+    
+    println(a, " + ", b, " = ", sum);
+}
+
+print_sum(-1, 1);
+print_sum(100, -100);
+print_sum(0, 0);
+
+
+
+print_some(num n, txt t)
+{
+    println("print_some(", n, ", ", t, ")");
+}
+print_some(1, "A");
+print_some(2, "T");
+print_some(3, "C");
+print_some(4, "G");

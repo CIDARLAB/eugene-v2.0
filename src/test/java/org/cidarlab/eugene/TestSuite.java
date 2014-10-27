@@ -235,24 +235,20 @@ public class TestSuite {
 	 *---------------------------------------------*/	
 	private static void testImperativeFeatures() 
 			throws EugeneException {
-//		// CONDITIONAL BRANCHES
-//		new TestSuite().test("./tests/imperative/branches/if");
-//		new TestSuite().test("./tests/imperative/branches/if-else");
-//		new TestSuite().test("./tests/imperative/branches/if-elseif");
-//		new TestSuite().test("./tests/imperative/branches/if-elseif-else");
-//		
-//		// FOR LOOPS
-//		new TestSuite().test("./tests/imperative/loops/for-loop-01");   // correctness tests
-//		new TestSuite().test("./tests/imperative/loops/for-loop-02");   // efficiency tests
-//		new TestSuite().test("./tests/imperative/loops/nested-for-loop-01");
-//		new TestSuite().test("./tests/imperative/loops/loops-syntax-demos");
-//		
-//		// WHILE LOOPS
-//		new TestSuite().test("./tests/imperative/loops/while-loop-01");
-		
+		// CONDITIONAL BRANCHES
+//		new TestSuite().testAll("./tests/imperative/branches");
+
+		// FOR LOOPS
+//		new TestSuite().testAll("./tests/imperative/loops");
 		
 		// FUNCTIONS
-		new TestSuite().testAll("./tests/imperative/functions");
+//		new TestSuite().testAll("./tests/imperative/functions");
+
+		// individual tests
+		new TestSuite().test("./tests/imperative/functions/function-execution");
+		
+//		new TestSuite().test("./tests/imperative/functions/function-syntax");
+//		new TestSuite().test("./tests/imperative/functions/function-call-as-parameters");
 	}
 	
 	/*---------------------------------------------

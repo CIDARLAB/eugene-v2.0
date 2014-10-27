@@ -754,20 +754,41 @@ public TreeAdaptor getTreeAdaptor() {
             
             // if everything's fine at this point in time, then we 
             // execute the function.
-            /** TODO:
+            
+            // first, we initialize its parameters with the specified 
+            // parameter values (if there are any)
+            if(null != parameter_values) {
+	            try {
+	            	f.initialize(parameter_values);
+	            } catch(EugeneException ee) {
+	            	throw new EugeneException(ee.getLocalizedMessage());
+	            }
+            }
+
+            // we store the current position in the Eugene script
+            // for the jump back
             int oldPosition = this.input.index(); 
-    	try {
-    	
-    	} catch(EugeneReturnException ere) {
-    	    // a return statement has been encountered
-    	}            
+            try {
+            	this.interp.push(f);
+            	// execute each statement of the function body
+            	this.exec(
+            		"listOfStatements", 
+            		f.getStatements().getTokenIndex());
+
+            	this.interp.pop();
+            	
+            } catch(EugeneReturnException ere) {
+            	// a return statement has been encountered
+            }
+            
+            // and jump back to the original position in 
+            // the Eugene script
             this.input.seek(oldPosition);
-            **/
+
             /*
              * FOR TESTING PURPOSE:
              * - we simulate the function's return value
              */
-
             return f.simulateReturnValue();
         }
 
