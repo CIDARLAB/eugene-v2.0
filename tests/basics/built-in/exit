@@ -1,0 +1,30 @@
+/*
+ * The Eugene exit function serves to stop the execution of a Eugene script.
+ * This function can be helpful, for example, for testing the correct 
+ * execution of a Eugene script. 
+ *
+ * The exit function CAN take as input parameter a concatenated string that 
+ * should be printed when exiting the executing of the Eugene script.
+ * If no input parameter is specified, then the exit function prints "exiting..." 
+ * to the console.
+ */
+
+// Syntax:
+// -------
+// (EXIT | exit) ( ( expression ) )?
+
+// Examples:
+// - exit w/o any output
+exit;
+
+// - exit w/ simple output
+exit("Bye Bye!");
+
+// - exit and print a concatenated string, if
+//   two variables do not have the same value.
+num a = 0;
+num b = 1;
+if(a != b) {
+    exit("The value ", a, " is not equal to the value ", b, "!");
+}
+

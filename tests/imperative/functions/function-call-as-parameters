@@ -5,14 +5,20 @@ num add(num a, num b)
     return a + b;
 }
 
-// recursive
-add(add(1, 1), add(2, 2));
-add(
+num three = add(1, 2);
+if(three != 3)  {exit("three equals ", three, " instead of 3");}
+
+num six = add(add(1, 1), add(2, 2));
+if(six != 6) {exit;}
+
+
+num twelve = num add(
 	add(add(1, 1), add(2, 2)),
 	add(add(1, 1), add(2, 2))
 );
+if(twelve != 12) {exit;}
 
-add(
+num twenty_four = add(
 	add(
 		add(add(1, 1), add(2, 2)),
 		add(add(1, 1), add(2, 2))
@@ -22,16 +28,5 @@ add(
 		add(add(1, 1), add(2, 2))
 		)
 );
+if(twenty_four != 24) {exit;}
 
-num sum = add(
-	add(
-		add(add(1, 1), add(2, 2)),
-		add(add(1, 1), add(2, 2))
-		),
-	add(
-		add(add(1, 1), add(2, 2)),
-		add(add(1, 1), add(2, 2))
-		)
-);
-
-println(sum);

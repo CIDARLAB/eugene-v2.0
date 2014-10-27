@@ -2349,7 +2349,13 @@ public class Interp {
 		
 		// if the function has not been defined, then we instantiate the 
 		// Function class and set its variables properly
-		Function f = new Function(return_type, name, parameters, statements);
+		Function f = new Function(
+				return_type,    // the function's return type 
+				name,           // the function's name
+				parameters,     // the function's list of parameters
+				statements,     // the function's statements ("Function Body")
+				this.symbols);  // a reference to the global symbol tables
+		
 		
 		// finally, we store the Function object in the symbol tables
 		this.symbols.putFunction(f);

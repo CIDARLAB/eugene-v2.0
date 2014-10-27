@@ -7,6 +7,7 @@ import java.util.List;
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.dom.*;
 import org.cidarlab.eugene.exception.EugeneException;
+import org.cidarlab.eugene.interp.SymbolTable;
 
 public class Function 
 		extends NamedElement {
@@ -30,12 +31,19 @@ public class Function
 	// the statements of the functions
 	private Token statements;
 	
-	public Function(String return_type, String name, List<NamedElement> parameters, Token statements) {
+	// also, a function has a reference to the global symbol tables
+	private SymbolTable global_symbols;
+	
+	public Function(
+			String return_type, String name, List<NamedElement> parameters, Token statements, 
+			SymbolTable global_symbols) {
 		super(name);
 		
 		this.return_type = return_type;
 		this.parameters = parameters;
 		this.statements = statements;
+		
+		this.global_symbols = global_symbols;
 	}
 	
 	/*---------

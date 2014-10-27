@@ -2512,9 +2512,13 @@ if(!defer) {
     }
 }	
 	}
-	|	(EXIT_LC | EXIT_UC) {
+	|	(EXIT_LC | EXIT_UC) (LEFTP p=toPrint[defer] RIGHTP)? {
 if(!defer) {
-    printError("exiting...");
+    if(null == p) {
+        printError("exiting...");
+    } else {
+        printError($p.sb);
+    }
 }
 	}
 	|	ID LEFTP RIGHTP
