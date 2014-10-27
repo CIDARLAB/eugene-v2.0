@@ -1,0 +1,37 @@
+// - a function w/ return type and w/ parameters
+num add(num a, num b)
+{
+    println(a, " + ", b, " = ", a+b);
+    return a + b;
+}
+
+// recursive
+add(add(1, 1), add(2, 2));
+add(
+	add(add(1, 1), add(2, 2)),
+	add(add(1, 1), add(2, 2))
+);
+
+add(
+	add(
+		add(add(1, 1), add(2, 2)),
+		add(add(1, 1), add(2, 2))
+		),
+	add(
+		add(add(1, 1), add(2, 2)),
+		add(add(1, 1), add(2, 2))
+		)
+);
+
+num sum = add(
+	add(
+		add(add(1, 1), add(2, 2)),
+		add(add(1, 1), add(2, 2))
+		),
+	add(
+		add(add(1, 1), add(2, 2)),
+		add(add(1, 1), add(2, 2))
+		)
+);
+
+println(sum);

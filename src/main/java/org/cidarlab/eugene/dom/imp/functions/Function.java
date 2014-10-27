@@ -1,8 +1,10 @@
 package org.cidarlab.eugene.dom.imp.functions;
 
 import org.antlr.runtime.Token;
+
 import java.util.List;
 
+import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.dom.*;
 import org.cidarlab.eugene.exception.EugeneException;
 
@@ -63,5 +65,15 @@ public class Function
 			throws EugeneException {
 		throw new UnsupportedOperationException("Function.getElement(int) is a unsupported operation!");
 	}
-
+	
+	/*------------------
+	 * FOR TESTING ONLY
+	 *------------------*/
+	public NamedElement simulateReturnValue() {
+		if(EugeneConstants.NUM.equals(this.getReturnType()) || 
+				EugeneConstants.TXT.equals(this.getReturnType())) {
+			return new Variable(this.getName(), this.getReturnType());
+		}
+		return null;
+	}
 }

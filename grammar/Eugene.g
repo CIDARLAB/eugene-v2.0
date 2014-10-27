@@ -739,8 +739,12 @@ public Object exec(String rule, int tokenIndex)
 	}            
         this.input.seek(oldPosition);
         **/
-        
-        return null;
+        /*
+         * FOR TESTING PURPOSE:
+         * - we simulate the function's return value
+         */
+
+        return f.simulateReturnValue();
     }
 
 }
@@ -2400,9 +2404,15 @@ if(!defer && null != $bif.element) {
 }		
 	}
 	|	fc=function_call[defer] {
-if(!defer) {
-
-}	
+if(!defer && null != $fc.e) {
+    if($fc.e instanceof Variable) {
+        $p = (Variable)$fc.e;
+        $element = null;
+    } else {
+        $element = $fc.e;
+        $p = null;
+    }
+}		
 	}
 	;
 
@@ -2920,15 +2930,20 @@ return_statement[boolean defer]
 
 function_call[boolean defer]
 	returns [NamedElement e]
-	:	user_defined_function[defer]
+	:	udf=user_defined_function[defer] {
+if(!defer) {
+    $e = udf.e;
+}	
+	}
 	;
 	
 	
 user_defined_function[boolean defer]
+	returns [NamedElement e]
 	:	f=ID LEFTP (loe=list_of_expressions[defer])? RIGHTP {
 if(!defer) {
     try {
-        this.call_function($f.text, $loe.parameter_values);
+        $e = this.call_function($f.text, $loe.parameter_values);
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
     }
@@ -2944,7 +2959,7 @@ if(!defer) {
         $parameter_values = new ArrayList<NamedElement>();
     }
     
-    if(null == $e.p) {
+    if(null == $e.p) { 
         $parameter_values.add($e.element);
     } else {
         $parameter_values.add($e.p);
@@ -2955,7 +2970,7 @@ if(!defer) {
 if(!defer) {
     $parameter_values.addAll($loe.parameter_values);
 }	
-	})? 
+	}	)? 
 	;	
 	
 /*------------------------------------------------------------------

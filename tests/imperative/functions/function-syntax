@@ -3,7 +3,7 @@ num b = 2;
 
 // function definition
 // -------------------
-// Syntax: <return-type> <function-name> ( (<list-of-parameters>)? ) {
+// Syntax: (<return-type>)? <function-name> ( (<list-of-parameters>)? ) {
 //     (statement)+
 // }
 
@@ -52,10 +52,11 @@ print_text("Hello");
 get_one();
 
 add(1, 2);
-add(1+1, 2+2);
+add(1 + 1, 2 + 2);
+add(a, b);
+add(2 * a, 2 * b);
 
-
-//add(add(1, 1), add(2, 2));
+ 
 
 // INVALID:
 
@@ -70,5 +71,8 @@ add(1+1, 2+2);
 //add(1, 2, 3);        // invalid number of parameter values
 
 //add("1", "2");       // incompatible types
+//add(1, "2");         // incompatible types
+//add("1", 2);         // incompatible types
+
 //add("1");            // incompatible types and invalid number
 //add("1", "2", "3");  // incompatible types and invalid number
