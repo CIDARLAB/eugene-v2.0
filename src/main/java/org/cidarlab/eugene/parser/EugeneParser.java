@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g 2014-10-28 16:40:44
+// $ANTLR 3.4 /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g 2014-10-28 16:46:33
 
 /*
 Copyright (c) 2012 Boston University.
@@ -15925,6 +15925,11 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+
+                if(!this.interp.isReturnAllowed()) {
+                    printError("a return statement is not allowed at this position!");
+                }
+
                 if(null != (e!=null?e.element:null)) {
                     retval.el = (e!=null?e.element:null);
                 } else {
@@ -15967,7 +15972,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "function_call"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3057:1: function_call[boolean defer] returns [NamedElement e] : udf= call_user_defined_function[defer] ;
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3062:1: function_call[boolean defer] returns [NamedElement e] : udf= call_user_defined_function[defer] ;
     public final EugeneParser.function_call_return function_call(boolean defer) throws RecognitionException {
         EugeneParser.function_call_return retval = new EugeneParser.function_call_return();
         retval.start = input.LT(1);
@@ -15980,8 +15985,8 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3059:2: (udf= call_user_defined_function[defer] )
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3059:4: udf= call_user_defined_function[defer]
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3064:2: (udf= call_user_defined_function[defer] )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3064:4: udf= call_user_defined_function[defer]
             {
             root_0 = (Object)adaptor.nil();
 
@@ -16031,7 +16036,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "call_user_defined_function"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3067:1: call_user_defined_function[boolean defer] returns [NamedElement e] : f= ID LEFTP (loe= list_of_expressions[defer] )? RIGHTP ;
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3072:1: call_user_defined_function[boolean defer] returns [NamedElement e] : f= ID LEFTP (loe= list_of_expressions[defer] )? RIGHTP ;
     public final EugeneParser.call_user_defined_function_return call_user_defined_function(boolean defer) throws RecognitionException {
         EugeneParser.call_user_defined_function_return retval = new EugeneParser.call_user_defined_function_return();
         retval.start = input.LT(1);
@@ -16050,8 +16055,8 @@ public TreeAdaptor getTreeAdaptor() {
         Object RIGHTP307_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3069:2: (f= ID LEFTP (loe= list_of_expressions[defer] )? RIGHTP )
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3069:4: f= ID LEFTP (loe= list_of_expressions[defer] )? RIGHTP
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3074:2: (f= ID LEFTP (loe= list_of_expressions[defer] )? RIGHTP )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3074:4: f= ID LEFTP (loe= list_of_expressions[defer] )? RIGHTP
             {
             root_0 = (Object)adaptor.nil();
 
@@ -16070,7 +16075,7 @@ public TreeAdaptor getTreeAdaptor() {
             adaptor.addChild(root_0, LEFTP306_tree);
 
 
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3069:15: (loe= list_of_expressions[defer] )?
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3074:15: (loe= list_of_expressions[defer] )?
             int alt100=2;
             int LA100_0 = input.LA(1);
 
@@ -16079,7 +16084,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt100) {
                 case 1 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3069:16: loe= list_of_expressions[defer]
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3074:16: loe= list_of_expressions[defer]
                     {
                     pushFollow(FOLLOW_list_of_expressions_in_call_user_defined_function5359);
                     loe=list_of_expressions(defer);
@@ -16143,7 +16148,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "list_of_expressions"
-    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3080:1: list_of_expressions[boolean defer] returns [List<NamedElement> parameter_values] : e= expr[defer] ( COMMA loe= list_of_expressions[defer] )? ;
+    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3085:1: list_of_expressions[boolean defer] returns [List<NamedElement> parameter_values] : e= expr[defer] ( COMMA loe= list_of_expressions[defer] )? ;
     public final EugeneParser.list_of_expressions_return list_of_expressions(boolean defer) throws RecognitionException {
         EugeneParser.list_of_expressions_return retval = new EugeneParser.list_of_expressions_return();
         retval.start = input.LT(1);
@@ -16160,8 +16165,8 @@ public TreeAdaptor getTreeAdaptor() {
         Object COMMA308_tree=null;
 
         try {
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3082:2: (e= expr[defer] ( COMMA loe= list_of_expressions[defer] )? )
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3082:4: e= expr[defer] ( COMMA loe= list_of_expressions[defer] )?
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3087:2: (e= expr[defer] ( COMMA loe= list_of_expressions[defer] )? )
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3087:4: e= expr[defer] ( COMMA loe= list_of_expressions[defer] )?
             {
             root_0 = (Object)adaptor.nil();
 
@@ -16188,7 +16193,7 @@ public TreeAdaptor getTreeAdaptor() {
             }	
             	
 
-            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3095:5: ( COMMA loe= list_of_expressions[defer] )?
+            // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3100:5: ( COMMA loe= list_of_expressions[defer] )?
             int alt101=2;
             int LA101_0 = input.LA(1);
 
@@ -16197,7 +16202,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt101) {
                 case 1 :
-                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3095:6: COMMA loe= list_of_expressions[defer]
+                    // /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3100:6: COMMA loe= list_of_expressions[defer]
                     {
                     COMMA308=(Token)match(input,COMMA,FOLLOW_COMMA_in_list_of_expressions5393); 
                     COMMA308_tree = 

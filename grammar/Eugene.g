@@ -3034,6 +3034,11 @@ return_statement[boolean defer]
 	throws EugeneReturnException
 	:	(RETURN_LC | RETURN_UC) e=expr[defer] {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+
+    if(!this.interp.isReturnAllowed()) {
+        printError("a return statement is not allowed at this position!");
+    }
+
     if(null != $e.element) {
         $el = $e.element;
     } else {

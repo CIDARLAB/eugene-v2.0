@@ -2480,6 +2480,29 @@ public class Interp {
 	}
 	
 	/**
+	 * The isReturnAllowed/0 method evaluates if the occurrence 
+	 * of a RETURN statement is valid or not. 
+	 * 
+	 * A RETURN statement can only occur, iff a Function object is on the 
+	 * stack.
+	 * 
+	 * @return  true ... the RETURN statement is valid
+	 *         false ... otherwise
+	 */
+	public boolean isReturnAllowed() {
+		if(!this.stack.isEmpty()) {
+			Enumeration<StackElement> els = this.stack.elements();
+			StackElement se = null;
+			while((se = els.nextElement()) != null) {
+				if(se instanceof Function) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	/**
 	 * The compareParameterTypes/2 compares the types of a function's parameters
 	 * with the types of parameter values specified in a function call statement.
 	 * It throws a EugeneException if any types do not match.
