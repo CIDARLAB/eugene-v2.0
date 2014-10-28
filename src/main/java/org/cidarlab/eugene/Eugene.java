@@ -188,7 +188,7 @@ public class Eugene {
 		 * PHASE 1:
 		 * COLLECTING FUNCTIONS
 		 */
-		System.out.println("*** PHASE I ***");
+//		System.out.println("*** PHASE I ***");
 		EugeneParser parser = this.initParser(script, ParsingPhase.PRE_PROCESSING);
 		try {
 			parser.prog(true);
@@ -197,13 +197,13 @@ public class Eugene {
 			throw new EugeneException(e.toString());
 		}
 		
-		parser.printFunctions();
+//		parser.printFunctions();
 		
 		/*
 		 * PHASE II:
 		 * INTERPRETATION
 		 */
-		System.out.println("*** PHASE II ***");		
+//		System.out.println("*** PHASE II ***");		
 		parser = this.initParser(script, ParsingPhase.INTERPRETING);
 
 		try {
@@ -223,12 +223,18 @@ public class Eugene {
 //			throw new EugeneException(e.getMessage());
 //		}
 		
-		// finally, we return a collection
+		// we will return a collection
 		// of all Component objects in the 
 		// working memory
-		return this.getLibrary();
-//		return parser.getAllComponents();
-
+		Collection<Component> lib = this.getLibrary();
+		
+		// but we first have to clean up the 
+		// parser and all its mess
+		parser.cleanUp();
+		
+		// and then we return the collection 
+		// of components
+		return lib;
 	}
 
 	public Collection<Component> getLibrary() 

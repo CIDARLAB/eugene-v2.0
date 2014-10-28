@@ -55,13 +55,6 @@ public class TestSuite {
 		new TestSuite().test("./tests/basics/sequence/sequence-homology");    
 		
 		/*---------------------------------------------
-		 * EUGENE FUN - INSPIRED BY EC327 :)
-		 *---------------------------------------------*/
-		new TestSuite().test("./tests/basics/just-fun/diagonals");
-		new TestSuite().test("./tests/basics/just-fun/no-duplicates");
-		new TestSuite().test("./tests/basics/just-fun/bubble-sort");
-
-		/*---------------------------------------------
 		 * EUGENE + BIOLOGOY BASICS
 		 *---------------------------------------------*/
 		new TestSuite().test("./tests/basics/biology/property-definitions");
@@ -244,20 +237,16 @@ public class TestSuite {
 		// FUNCTIONS
 //		new TestSuite().testAll("./tests/imperative/functions");
 
-		// individual tests
-		
-		new TestSuite().test("./tests/imperative/functions/function-syntax");
-		new TestSuite().test("./tests/imperative/functions/function-execution");
-		new TestSuite().test("./tests/imperative/functions/function-call-as-parameters");
-		
-		new TestSuite().test("./tests/imperative/functions/2-phase-interpreter");
-
-		// TODOS:
+		// individual tests		
+//		new TestSuite().test("./tests/imperative/functions/function-syntax");
+//		new TestSuite().test("./tests/imperative/functions/function-execution");
+//		new TestSuite().test("./tests/imperative/functions/function-call-as-parameters");		
+//		new TestSuite().test("./tests/imperative/functions/2-phase-interpreter");
+//		new TestSuite().test("./tests/imperative/functions/functions-calling-functions");
 //		new TestSuite().test("./tests/imperative/functions/scope-in-functions");
-//		new TestSuite().test("./tests/imperative/functions/include-function-library");
+		new TestSuite().test("./tests/imperative/functions/include-function-library");
 
 		// TODO!!
-//		new TestSuite().test("./tests/imperative/functions/functions-calling-functions");
 	}
 	
 	/*---------------------------------------------
@@ -279,11 +268,11 @@ public class TestSuite {
 //		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/EugeneLab_Home/home/no_name_user/";
 
 		// TESTING INDIVIDUAL FILES
-		new TestSuite().test("./tests/EugeneLab/data-exchange/01-Rule-based-Design.eug");
+//		new TestSuite().test("./tests/EugeneLab/data-exchange/01-Rule-based-Design.eug");
 		
 
 		// TESTING ALL FILES
-//		new TestSuite().testAll(ROOT_DIRECTORY);
+		new TestSuite().testAll(ROOT_DIRECTORY);
 
 	}
 	
@@ -297,6 +286,18 @@ public class TestSuite {
 			ee.printStackTrace();
 		}
 		
+	}
+	
+	public static void testHavingSomeFunWithEugene()
+			throws EugeneException {
+		
+		/*---------------------------------------------
+		 * EUGENE FUN - INSPIRED BY EC327 :)
+		 *---------------------------------------------*/
+		new TestSuite().test("./tests/eugene-fun/diagonals");
+		new TestSuite().test("./tests/eugene-fun/no-duplicates");
+		new TestSuite().test("./tests/eugene-fun/bubble-sort");		
+		new TestSuite().test("./tests/eugene-fun/rhombus");
 	}
 	
 	/**
@@ -314,6 +315,8 @@ public class TestSuite {
 		testImperativeFeatures();
 //		testEugeneLabTutorials();
 //		testRealWorldExamples();
+		
+//		testHavingSomeFunWithEugene();
 		
 //		testAll();
 	

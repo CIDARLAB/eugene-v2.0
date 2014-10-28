@@ -1,9 +1,0 @@
-num N = 9;
-for(num i=N; i>0; i=i-1) {
-
-    for(num j=1; j<i; j=j+1) {
-        print(" ");
-    }
-    
-    println(i);
-}

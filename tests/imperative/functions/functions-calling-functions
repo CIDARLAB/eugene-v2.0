@@ -1,0 +1,59 @@
+num get_min(num a, num b)
+{
+    if( a > b )
+    {
+        return b;
+    } 
+    return a;
+}
+
+num get_max(num a, num b)
+{
+    if( a < b )
+    {
+        return b;
+    } 
+    return a;
+}
+num max = get_max(1, 2);
+println(max);
+
+// the print_range function prints all numbers 
+// in the range from a to b
+print_range(num a, num b)
+{   
+    num start = get_min(a, b);
+    num end = get_max(a, b);
+
+    println("start: ", start);
+    println("end: ", end);
+    for(num i = start; i <= end; i = i + 1) 
+    {
+        println(i);
+    }
+}
+
+
+print_range(0, 2);
+print_range(2, 0);
+
+// f1 -> f2 -> f3
+num f1(num one)
+{
+    return f2(one + 1);
+}
+
+num f2(num two)
+{
+    return f3(two + 1);
+}
+
+num f3(num three)
+{
+    return three;
+}
+ 
+num three = f1(1);
+if(three != 3) {exit;} 
+
+

@@ -1,0 +1,67 @@
+// no scope!
+print_num(num a) 
+{
+    println(a);
+}
+print_num(10);
+
+
+// FUNCTIONS WITH IF STATEMENTS INSIDE
+
+num min(num a, num b)
+{
+    println("[min] ", a, " vs ", b);
+    if( a < b )
+    {
+        println("[min] ", a, " < ", b);
+    	return a;
+    }
+    
+    println("[min] ", a, " >= ", b);
+    return b;
+}
+
+num min = min(1, 2);
+if(min != 1) {exit("min(1, 2) returned ", min);}
+min = min(2, 1);
+if(min != 1) {exit("min(2, 1) returned ", min);}
+
+num max(num a, num b)
+{
+    if( a < b )
+    {
+    	return b;
+    }
+    return a;
+}
+num max = max(1, 2);
+if(max != 2) {exit("max(1, 2) returned ", max);}
+max = max(2, 1);
+if(max != 2) {exit("max(2, 1) returned ", max);}
+
+
+
+// FUNCTIONS WITH LOOPS INSIDE
+// the print_range function prints all numbers 
+// in the range from a to b
+print_range(num a, num b)
+{   
+    println("[print_range] ", a, ", ", b);
+    
+    num start = min(a, b);
+    num end = max(a, b);
+ 
+    println("[print_range] ", start, ", ", end);
+    
+    for(num i=start; i<=end; i=i+1) {
+        print(i);
+        if(i <= end - 1) {
+            print(", ");
+        }
+    }
+    println("");
+}
+
+print_range(0, 20);
+print_range(20, 0);
+

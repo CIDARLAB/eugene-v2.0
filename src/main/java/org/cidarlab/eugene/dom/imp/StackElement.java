@@ -44,8 +44,7 @@ public abstract class StackElement
 	
 	/*
 	 * common methods
-	 */
-	
+	 */	
 	protected SymbolTable getSymbols() {
 		return this.symbols;
 	}

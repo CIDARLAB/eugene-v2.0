@@ -1,0 +1,11 @@
+num one = 1;
+num two = 2;
+
+num min = min(one, two);
+println("min: ", min);
+
+include "./tests/imperative/functions/my-library.h"
+
+
+num max = max(1, 2);
+println("max: ", max);

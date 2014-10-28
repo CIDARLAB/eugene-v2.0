@@ -1,0 +1,67 @@
+//
+num MAX_N = 99;
+println("MAX_N: ", MAX_N);
+
+// N is the "user's input"
+num N = 99;
+
+printLine(num i)
+{
+    for(num k=1; k<=N-i; k=k+1)
+    {
+        print("   ");
+    }
+
+    for(num k=1; k<=i; k=k+1) 
+    {
+        if(k <= 9) {
+            print("0");
+        }
+        print(k, " ");
+    }
+    
+    for(num k=i-1; k>=1; k=k-1)
+    {
+        if(k <= 9) {
+            print("0");
+        }
+        print(k, " ");
+    }
+
+    println("");
+}
+
+printRhombus_loops(num n)
+{
+    // upper portion
+    for(num i=1; i<=n; i=i+1) {
+        printLine(i);
+    }
+        
+    // lower portion
+    for(num i=n-1; i>=1; i=i-1) {
+        printLine(i);
+    }
+}
+
+
+printRhombus_recursive(num n)
+{
+    if(n <= N)
+    {
+        printLine(n);
+        
+        printRhombus_recursive(n + 1);
+        
+        if(n != N) 
+        {
+            printLine(n);
+        }
+    }
+}
+
+println("*** LOOPS ***");
+printRhombus_loops(99);
+
+println("*** RECURSIVE ***");
+printRhombus_recursive(1);

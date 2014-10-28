@@ -40,6 +40,7 @@ import java.util.UUID;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Token;
+import org.antlr.runtime.TokenStream;
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.constants.EugeneConstants.ParsingPhase;
@@ -1333,7 +1334,6 @@ public class Interp {
 		// if we're not in the GLOBAL scope,
 		if(!this.stack.isEmpty()) {
 			
-			
 			// then we look into all higher scopes 
 			// if the requested element exists
 			Stack<StackElement> tmp = new Stack<StackElement>();
@@ -1341,8 +1341,16 @@ public class Interp {
 				StackElement se = this.stack.pop();
 				tmp.push(se);
 
+				// we ask the stackelement if they contain 
+				// the desired namedlement object
 				if(se.contains(name)) {
 					ne = se.get(name);
+				}
+
+				// if we've popped a function from the stack, 
+				// then we do not pop further elements.
+				if(se instanceof Function) {
+					break;
 				}
 			}
 
@@ -1350,7 +1358,8 @@ public class Interp {
 			 * we need to restore the old stack
 			 */
 			while(tmp.size() > 0) {
-				this.stack.push(tmp.pop());
+				this.stack.push(
+						tmp.pop());
 			}
 
 		}
@@ -1850,6 +1859,38 @@ public class Interp {
 	}
 	
 	/**
+	 * The cleanupFunctionStack/1 method pops elements from 
+	 * the stack until we've reached the desired function
+	 * 
+	 * @param f   ... the function
+	 * 
+	 * @throws EugeneException
+	 */
+	public void cleanupFunction(Function f) 
+			throws EugeneException {
+ 
+		if(!this.stack.isEmpty()) {
+			
+			StackElement se = null;
+			// first, we pop everything from the stack
+			// until we've reached the first occurrence of the function f
+			while(!this.stack.peek().getName().equals(f.getName())) {
+				se = this.stack.pop();
+				
+				// we clear the symbol tables of the popped element
+				se.clear();
+			}
+
+			// then, we also pop the function
+			se = this.stack.pop();
+			// and clear its symbol tables
+			se.clear();
+		}
+		
+		f = null;
+	}
+	
+	/**
 	 * The removeVariable/1 method removes the variable of the given
 	 * name from the symbol tables.
 	 * 
@@ -1860,7 +1901,8 @@ public class Interp {
 	 * @param varname
 	 */
 	public void removeVariable(String varname) {
-		if(0 == this.stack.size()) {
+		
+		if(this.stack.isEmpty()) {
 			this.symbols.removeVariable(varname);
 		} else {
 			if(this.stack.peek() instanceof ImperativeFeature) {
@@ -1998,7 +2040,7 @@ public class Interp {
 	 * 
 	 * @throws EugeneException
 	 */
-	public void includeFile(String file) 
+	public void includeFile(String file, ParsingPhase phase) 
 			throws EugeneException {
 
 		if(null == this.includedFiles) {
@@ -2007,7 +2049,7 @@ public class Interp {
 
 		// if the file has been included already, 
 		// then there's no need to include it again.
-		if(this.includedFiles.contains(file)) {
+		if(this.includedFiles.contains(file) && phase != ParsingPhase.INTERPRETING) {
 			return;
 		}
 		
@@ -2029,11 +2071,19 @@ public class Interp {
 		/*
 		 * initialize the with this interpreter
 		 */
-		parser.init(this, this.getWriter(), ParsingPhase.INTERPRETING);	
+		parser.init(this, this.getWriter(), phase);	
 		parser.setFilename(file);
 		
 		try {
-			parser.prog(false);
+			switch(phase) {
+			case PRE_PROCESSING:
+				parser.prog(true);
+				break;
+				
+			case INTERPRETING:
+				parser.prog(false);
+				break;
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new EugeneException(e.getMessage());
@@ -2344,7 +2394,7 @@ public class Interp {
 	 * 
 	 * @throws EugeneException
 	 */
-	public void defineFunction(String return_type, String name, List<NamedElement> parameters, Token statements) 
+	public void defineFunction(String return_type, String name, List<NamedElement> parameters, Token statements, TokenStream tokenstream) 
 			throws EugeneException {
 		
 		// first, we evaluate if the function has been 
@@ -2360,6 +2410,8 @@ public class Interp {
 				name,           // the function's name
 				parameters,     // the function's list of parameters
 				statements,     // the function's statements ("Function Body")
+				tokenstream,    // the stream of tokens in that the function exists
+				
 				this.symbols);  // a reference to the global symbol tables
 		
 		
@@ -2405,7 +2457,11 @@ public class Interp {
 	 * @throws EugeneException
 	 */
 	public Function getFunction(String name) {
-		return this.symbols.getFunction(name);
+		Function f = this.symbols.getFunction(name);
+		if(f != null) {
+			return (Function)this.cloner.deepClone(f);
+		}
+		return null;
 	}
 
 	public void printFunctions() {
@@ -2466,4 +2522,47 @@ public class Interp {
 		}
 	} 
 	
+	/**
+	 * The cleanUp/0 method cleans up the entire mess 
+	 * caused by the Interpreter 
+	 */
+	public void cleanUp() {
+		
+		// clear the symbol tables
+		if(null != this.symbols) {
+			this.symbols.clear();
+			this.symbols = null;
+		}
+		
+		
+		// clean up the stack
+		// in theory, the stack should be empty ?!
+		if(null != this.stack && !this.stack.isEmpty()) {
+			StackElement se = null;
+			while((se = this.stack.pop()) != null) {
+				se.clear();
+			}
+			
+			this.stack.clear();
+			this.stack = null;
+		}
+		
+		// clean up the adapters for 
+		// miniEugene and sparrow
+		this.meAdapter = null;
+		this.spAdapter = null;
+		
+		// cleanup sparrow
+		if(null != this.sparrow) {
+			try {
+				this.sparrow.clear();
+			} catch(SparrowException spe) {
+				// ignore this one
+			}
+			this.sparrow = null;
+		}
+		
+		
+		
+	}
 }

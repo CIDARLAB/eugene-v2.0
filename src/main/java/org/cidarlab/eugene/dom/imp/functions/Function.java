@@ -1,19 +1,20 @@
 package org.cidarlab.eugene.dom.imp.functions;
 
 import org.antlr.runtime.Token;
+import org.antlr.runtime.TokenStream;
 
 import java.util.List;
 
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.dom.*;
-import org.cidarlab.eugene.dom.imp.StackElement;
+import org.cidarlab.eugene.dom.imp.ImperativeFeature;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.eugene.interp.SymbolTable;
 
 import com.rits.cloning.Cloner;
 
 public class Function 
-		extends StackElement {
+		extends ImperativeFeature {
 
 	private static final long serialVersionUID = 2662476634283408818L;
 
@@ -34,24 +35,30 @@ public class Function
 	// the statements of the functions
 	private Token statements;
 	
+	// the stream the function was read from
+	// (because of include statements)
+	private TokenStream stream;
+	
 	// also, a function has a reference to the global symbol tables
 	private SymbolTable global_symbols;
 	
-	// in addition, a function has local symbol tables
-	private SymbolTable local_symbols;
+//	// in addition, a function has local symbol tables
+//	private SymbolTable local_symbols;
 	
 	// since parameters are passed by-value in Eugene, we also 
 	// create an instance of the Cloner
 	private Cloner cloner;
 	
 	public Function(
-			String return_type, String name, List<NamedElement> parameters, Token statements, 
+			String return_type, String name, List<NamedElement> parameters, Token statements,
+			TokenStream stream,
 			SymbolTable global_symbols) {
 		super(name);
 		
 		this.return_type = return_type;
 		this.parameters = parameters;
 		this.statements = statements;
+		this.stream = stream;
 		
 		this.global_symbols = global_symbols;
 		
@@ -72,6 +79,10 @@ public class Function
 	
 	public Token getStatements() {
 		return this.statements;
+	}
+	
+	public TokenStream getTokenStream() {
+		return this.stream;
 	}
 	
 	/**
@@ -132,30 +143,20 @@ public class Function
 		return null;
 	}
 
+
 	@Override
 	public NamedElement get(String name) {
 		
-		initLocalSymbolTable();
-		
-		NamedElement ne = this.local_symbols.get(name);
+		NamedElement ne = this.getSymbols().get(name);
 		if(null == ne) {
 			ne = this.global_symbols.get(name);
 		}
 		return ne;
 	}
 
-	private void initLocalSymbolTable() {
-		if(null == this.local_symbols) {
-			this.local_symbols = new SymbolTable();
-		}
-	}
-	
 	@Override
 	public boolean contains(String name) {
-		
-		initLocalSymbolTable();
-		
-		return this.local_symbols.contains(name);
+		return this.getSymbols().contains(name);
 	}
 
 	@Override
@@ -163,16 +164,14 @@ public class Function
 			throws EugeneException {
 
 		if(null != ne && !this.contains(ne.getName())) {
-			this.local_symbols.put(ne);
+			this.getSymbols().put(ne);
 		}
 	}
 
+
 	@Override
 	public void clear() {
-		if(null != this.local_symbols) {
-			this.local_symbols.clear();
-			this.local_symbols = null;
-		}
+		this.getSymbols().clear();
 	}
 	
 	@Override

@@ -336,6 +336,18 @@ public void init(Interp interp, BufferedWriter writer, ParsingPhase PARSING_PHAS
     
 }
 
+/**
+ *  The cleanUp/0 method cleans up all the mess that
+ *  Eugene has caused.
+ */
+public void cleanUp() {
+    // clean up the mess of the interpreter
+    if(null != this.interp) {
+        this.interp.cleanUp();
+        this.interp = null;
+    }
+}
+
 public EugeneCollection getAllElements() 
         throws EugeneException {
     try {
@@ -584,14 +596,10 @@ public Object exec(String rule, int tokenIndex)
             rv = this.variableDeclaration(false);
         } else if("imp_condition".equals(rule)) {
             rv = this.imp_condition(false);
-        } else if("listOfStatements".equals(rule)) {
-            rv = this.listOfStatements(false);
-        } else if("function_statements".equals(rule)) {
-            rv = this.function_statements(false);
+        } else if("list_of_statements".equals(rule)) {
+            rv = this.list_of_statements(false);
         } else if("assignment".equals(rule)) {
             rv = this.assignment(false);
-        } else if("listOfStatements".equals(rule)) {
-            rv = this.listOfStatements(false);
         } 
         
     } catch (EugeneReturnException ere) {
@@ -659,7 +667,7 @@ public Object exec(String rule, int tokenIndex)
              *   execute the statements
              */
             this.exec(
-                "listOfStatements", 
+                "list_of_statements", 
                 loopStart.getTokenIndex()); 
              
             /*
@@ -735,33 +743,55 @@ public Object exec(String rule, int tokenIndex)
 	    }
         }
 
-        // we store the current position in the Eugene script
-        // for the jump back
-        
+
         NamedElement ret_el = null;
         
+        // we remember the current position in the script
         int oldPosition = this.input.index();
+        // and we hold a temporary reference to the current
+        // stream of tokens
+        TokenStream tmp = this.input;
+        
+        // we put the function onto the stack
+        // SCOPING !
         this.interp.push(f);
         
         try {
-            this.function_statements(false);
+            // we point the current input token stream to the 
+            // token stream from that we've read the function
+            this.input = f.getTokenStream();
+            
+            // since a function can be defined "ahead" 
+            // of the current position in the script,
+            // we need to stretch the input
+            // and that's how we do it
+            this.input.toString();
+
+            // then, we let the input point to the first statement
+            // of the function
+            this.input.seek(
+                 f.getStatements().getTokenIndex());
+            
+            // we execute all statements of the function
+            this.list_of_statements(false);
+            
         } catch(RecognitionException re) {
             printError(re.getLocalizedMessage());	    
         } catch(EugeneReturnException ere) {
-
+            
             // a return statement has been encountered
             ret_el = ere.getReturnValue();
-
+            
         }
         
-        // we need to pop the function from the stack!
-        this.interp.pop();
+        // and we need to cleanup the function's stack
+        this.interp.cleanupFunction(f);
 
-        // and jump back to the original position in 
-        // the Eugene script
-        if(oldPosition != -1) {
-            this.input.seek(oldPosition);
-        }
+        // finally we restore everything to what it was 
+        // before the function call and 
+        // jump to the original position        
+        this.input = tmp;
+        this.input.seek(oldPosition);
 
         return ret_el;
 
@@ -790,12 +820,13 @@ if(null == this.interp) {
     this.interp = new Interp(new Sparrow());
 }
 }
-	:	(statement[defer] | function_definition[true])+ EOF!
+	:	(statement[defer] | function_definition[true])* EOF!
 	;
 
 
 statement[boolean defer] 
-    returns [NamedElement objReturnValue]
+	returns [NamedElement objReturnValue]
+	throws EugeneReturnException
 	:	
 		includeStatement[defer] (SEMIC)?
 	|	declarationStatement[defer] SEMIC	
@@ -818,6 +849,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 	|	imperativeStatements[defer]
 	|	function_call[defer] SEMIC
 	|	built_in_function[defer] SEMIC
+	|	return_statement[defer] SEMIC
 	;
 /***
 predefined_statements[boolean defer] 
@@ -2034,6 +2066,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
  *  IMPERATIVE LANGUAGE STATEMENTS
  *------------------------------------------------------------------*/ 
 imperativeStatements[boolean defer]
+	throws EugeneReturnException
 	:	ifStatement[defer]
 	|	forall_iterator[defer]
 	|	for_loop[defer]
@@ -2041,6 +2074,8 @@ imperativeStatements[boolean defer]
 	;	
 
 ifStatement[boolean defer]
+	throws EugeneReturnException
+
 @init {
 boolean bExecuted = false;
 }
@@ -2049,7 +2084,7 @@ boolean bExecuted = false;
 		 *    ONE IF-BRANCH
 		 */
 		(UC_IF|LC_IF) LEFTP co=imp_condition[defer] RIGHTP LEFTCUR 
-			stmts=listOfStatements[true] RIGHTCUR {
+			stmts=list_of_statements[true] RIGHTCUR {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     // evaluate the condition
     if($co.bTrue) {
@@ -2057,9 +2092,9 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
         // and ignore the rest of the ifStatement
         
         try {
-            this.exec("listOfStatements", $stmts.start.getTokenIndex());
+            this.exec("list_of_statements", $stmts.start.getTokenIndex());
         } catch(EugeneReturnException ere) {
-            // TODO!
+            throw new EugeneReturnException(ere.getReturnValue());
         } catch(EugeneException ee) {
             printError(ee.getLocalizedMessage());
         }
@@ -2072,16 +2107,16 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 		 *    ZERO-OR-MORE ELSEIF BRANCHES
 		 */
 		( (UC_ELSEIF|LC_ELSEIF) LEFTP co=imp_condition[defer] RIGHTP LEFTCUR 
-			stmts=listOfStatements[true] RIGHTCUR {
+			stmts=list_of_statements[true] RIGHTCUR {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING && !bExecuted) {
     // evaluate the condition
     if($co.bTrue) {
         // if true => execute the statements
         // and ignore the rest of the ifStatement
         try {        
-            this.exec("listOfStatements", $stmts.start.getTokenIndex());
+            this.exec("list_of_statements", $stmts.start.getTokenIndex());
         } catch(EugeneReturnException ere) {
-            // TODO!
+            throw new EugeneReturnException(ere.getReturnValue());
         } catch(EugeneException ee) {
             printError(ee.getLocalizedMessage());
         }
@@ -2095,12 +2130,12 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING && !bExecuted) {
 		 *    ONE OPTIONAL ELSE BRANCH
 		 */
 		((UC_ELSE|LC_ELSE) LEFTCUR 
-			stmts=listOfStatements[true] RIGHTCUR {
+			stmts=list_of_statements[true] RIGHTCUR {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING && !bExecuted) {
     try {
-        this.exec("listOfStatements", $stmts.start.getTokenIndex());        
+        this.exec("list_of_statements", $stmts.start.getTokenIndex());        
     } catch(EugeneReturnException ere) {
-        // TODO!
+        throw new EugeneReturnException(ere.getReturnValue());
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
     }
@@ -2164,18 +2199,26 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 	;	
 
 forall_iterator[boolean defer]
+	throws EugeneReturnException
 	:	(UC_FORALL|LC_FORALL) (it=ID COLON)? i=ID LEFTCUR
-			listOfStatements[defer] {
+			los=list_of_statements[defer] {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-
+    try {
+        this.exec("list_of_statements", $los.start.getTokenIndex());
+    } catch(EugeneReturnException ere) {
+        throw new EugeneReturnException(ere.getReturnValue());
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
 }			
 	}
 		RIGHTCUR
 	;
 
 for_loop[boolean defer]
+	throws EugeneReturnException
 	:	(UC_FOR|LC_FOR) LEFTP ds=variableDeclaration[true] SEMIC co=imp_condition[true] SEMIC (as=assignment[true])? RIGHTP LEFTCUR 
-			stmts=listOfStatements[true] {
+			stmts=list_of_statements[true] {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         if(null != as) {
@@ -2192,7 +2235,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
                 $stmts.start);  // loop-body
         }
     } catch(EugeneReturnException ere) {
-        // TODO!
+        throw new EugeneReturnException(ere.getReturnValue());
     } catch(Exception ee) {
         printError(ee.getLocalizedMessage());
     }
@@ -2202,8 +2245,9 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 	;		
 
 while_loop[boolean defer]
+	throws EugeneReturnException
 	:	(UC_WHILE|LC_WHILE) LEFTP co=imp_condition[true] RIGHTP LEFTCUR 
-			stmts=listOfStatements[true] {
+			stmts=list_of_statements[true] {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         this.execute_loop(
@@ -2212,7 +2256,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
             null,           // increment
             $stmts.start);  // loop-body
     } catch(EugeneReturnException ere) {
-        // TODO!
+        throw new EugeneReturnException(ere.getReturnValue());
     } catch(Exception ee) {
         printError(ee.getLocalizedMessage());
     }
@@ -2708,9 +2752,15 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 /*** include STATEMENT ***/
 includeStatement[boolean defer]
 	:	(HASHMARK)? (INCLUDE_LC|INCLUDE_UC) file=STRING {
-if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+if(this.PARSING_PHASE == ParsingPhase.PRE_PROCESSING) {
     try {
-        this.interp.includeFile($file.text);
+        this.interp.includeFile($file.text, ParsingPhase.PRE_PROCESSING);
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+} else if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    try {
+        this.interp.includeFile($file.text, ParsingPhase.INTERPRETING);
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
     }
@@ -2881,7 +2931,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 function_definition[boolean defer] 
 	throws EugeneReturnException
 	:	(rt=type_specification[true])? n=ID LEFTP (lop=list_of_parameters[true])? RIGHTP LEFTCUR 
-			stmts=function_statements[true] 
+			stmts=list_of_statements[true] 
 		RIGHTCUR {
 if(defer && this.PARSING_PHASE == ParsingPhase.PRE_PROCESSING) {  // FUNCTION DEFINITION 
     try {
@@ -2902,7 +2952,8 @@ if(defer && this.PARSING_PHASE == ParsingPhase.PRE_PROCESSING) {  // FUNCTION DE
                 return_type,     // return type
                 $n.text,         // the name of the function
                 parameters,      // list of parameters
-                $stmts.start);   // list of statements
+                $stmts.start,    // list of statements
+                this.input);     // the token stream
                 
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
@@ -2938,6 +2989,28 @@ if(defer && this.PARSING_PHASE == ParsingPhase.PRE_PROCESSING) {
 }	
 	}	)?
 	;	
+
+list_of_statements[boolean defer]
+	throws EugeneReturnException
+	:	statement[defer] (statement[defer])*
+	;
+
+return_statement[boolean defer]
+	returns [NamedElement el]
+	throws EugeneReturnException
+	:	(RETURN_LC | RETURN_UC) e=expr[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    if(null != $e.element) {
+        $el = $e.element;
+    } else {
+        $el = $e.p;
+    }
+    
+    throw new EugeneReturnException($el);
+}
+	}	
+	;	
+	
 	
 
 /*------------------------------------------------------------------
@@ -2993,38 +3066,6 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 	;	
 
 
-listOfStatements[boolean defer]
-	returns [NamedElement e]
-	:	(stmtToken=statement[defer] {
-if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-    $e = (NamedElement)null;
-}	
-	} 	)+ 
-	;
-
-
-function_statements[boolean defer]
-	throws EugeneReturnException
-	:	(statement[defer] | rs=return_statement[defer] {
-if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-    throw new EugeneReturnException($rs.el);
-}
-	})+
-	;
-
-return_statement[boolean defer]
-	returns [NamedElement el]
-	:	(RETURN_LC | RETURN_UC) e=expr[defer] SEMIC {
-if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-    if(null != $e.element) {
-        $el = $e.element;
-    } else {
-        $el = $e.p;
-    }
-}	
-	}
-	;	
-	
 
 
 	

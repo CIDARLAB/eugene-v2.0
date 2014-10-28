@@ -5,5 +5,6 @@
  *   Voigt et al.,
  *   Characterization of 582 natural and synthetic terminators
  */
+include "./data-exchange/commons.h"
 
 Terminator t1(.seq("TTTT"));
