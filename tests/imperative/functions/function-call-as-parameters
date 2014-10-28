@@ -12,7 +12,8 @@ num six = add(add(1, 1), add(2, 2));
 if(six != 6) {exit;}
 
 
-num twelve = num add(
+
+num twelve = add(
 	add(add(1, 1), add(2, 2)),
 	add(add(1, 1), add(2, 2))
 );
@@ -29,4 +30,3 @@ num twenty_four = add(
 		)
 );
 if(twenty_four != 24) {exit;}
-

@@ -1,0 +1,21 @@
+println("main");
+f1();
+println("main");
+
+
+f1()
+{
+   println("f1");
+   f2();
+   println("f1");
+}
+
+f2() {
+    println("f2");
+    f3();
+    println("f2");
+}
+
+f3() {
+    println("f3");
+}

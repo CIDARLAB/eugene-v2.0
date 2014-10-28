@@ -42,6 +42,7 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Token;
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.constants.Orientation;
+import org.cidarlab.eugene.constants.EugeneConstants.ParsingPhase;
 import org.cidarlab.eugene.data.pigeon.Pigeonizer;
 import org.cidarlab.eugene.data.sbol.SBOLExporter;
 import org.cidarlab.eugene.data.sbol.SBOLImporter;
@@ -1327,9 +1328,12 @@ public class Interp {
 			throws EugeneException {
 
 		NamedElement ne = null;
+//		System.out.println("[Interp.get] -> " + name);
 
 		// if we're not in the GLOBAL scope,
 		if(!this.stack.isEmpty()) {
+			
+			
 			// then we look into all higher scopes 
 			// if the requested element exists
 			Stack<StackElement> tmp = new Stack<StackElement>();
@@ -2006,6 +2010,7 @@ public class Interp {
 		if(this.includedFiles.contains(file)) {
 			return;
 		}
+		
 		// if the file has not been included,
 		// then we store the filename in the includedFiles set
 		this.includedFiles.add(file);
@@ -2024,11 +2029,11 @@ public class Interp {
 		/*
 		 * initialize the with this interpreter
 		 */
-		parser.init(this, this.getWriter());	
+		parser.init(this, this.getWriter(), ParsingPhase.INTERPRETING);	
 		parser.setFilename(file);
 		
 		try {
-			parser.prog();
+			parser.prog(false);
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new EugeneException(e.getMessage());
@@ -2064,14 +2069,15 @@ public class Interp {
 		try {
 			parser.init(
 					new Interp(new Sparrow(), this.getWriter(), this.getRootDirectory()), 
-					this.getWriter());
+					this.getWriter(),
+					ParsingPhase.INTERPRETING);
 		} catch(SparrowException spe) {
 			throw new EugeneException(spe.toString());
 		}
 		parser.setFilename(file);
 		
 		try {
-			parser.prog();
+			parser.prog(false);
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new EugeneException(e.getMessage());
@@ -2402,6 +2408,12 @@ public class Interp {
 		return this.symbols.getFunction(name);
 	}
 
+	public void printFunctions() {
+		Collection<Function> fs = this.symbols.getFunctions();
+		for(Function f : fs) {
+			System.out.println(f);
+		}
+	}
 	
 	/**
 	 * The compareParameterTypes/2 compares the types of a function's parameters

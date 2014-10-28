@@ -319,4 +319,8 @@ public class SymbolTable {
 	public boolean containsFunction(String name) {
 		return this.functions.containsKey(name);
 	}
+	
+	public Collection<Function> getFunctions() {
+		return this.functions.values();
+	}
 }

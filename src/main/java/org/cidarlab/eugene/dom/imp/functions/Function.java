@@ -174,4 +174,13 @@ public class Function
 			this.local_symbols = null;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(this.getReturnType()).append(" ")
+			.append(this.getName()).append("(")
+			.append(this.getParameters()).append(")");
+		return sb.toString();		
+	}
 }

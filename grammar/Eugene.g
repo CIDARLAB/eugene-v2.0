@@ -194,6 +194,7 @@ import org.cidarlab.eugene.dom.imp.*;
 import org.cidarlab.eugene.dom.imp.container.*;
 import org.cidarlab.eugene.dom.imp.loops.Loop;
 import org.cidarlab.eugene.dom.imp.functions.Function;
+import org.cidarlab.eugene.constants.EugeneConstants.ParsingPhase;
 
 import org.antlr.runtime.*;
 
@@ -294,6 +295,9 @@ public void includeFile(String name) {
 // the interpreter
 private Interp interp;
 
+// the number of the parser's run
+private ParsingPhase PARSING_PHASE;
+
 // IMPORTERS
 //private SBOLRegistryImporter registryImporter;
 
@@ -312,7 +316,7 @@ ArrayList<String> propertyListHolder = new ArrayList<String>();
 // the name of the file to be parsed
 String filename = null;
 
-public void init(Interp interp, BufferedWriter writer) {
+public void init(Interp interp, BufferedWriter writer, ParsingPhase PARSING_PHASE) {
     this.interp = interp;
     
     if(null != writer) {
@@ -327,6 +331,9 @@ public void init(Interp interp, BufferedWriter writer) {
             printError(e.getLocalizedMessage());
         }
     }
+    
+    this.PARSING_PHASE = PARSING_PHASE;
+    
 }
 
 public EugeneCollection getAllElements() 
@@ -340,6 +347,11 @@ public EugeneCollection getAllElements()
 
 public void setFilename(String filename) {
     this.filename = filename;
+}
+
+// for testing purpose
+public void printFunctions() {
+    this.interp.printFunctions();
 }
 
 @Override
@@ -725,38 +737,38 @@ public Object exec(String rule, int tokenIndex)
 
         // we store the current position in the Eugene script
         // for the jump back
-        int oldPosition = this.input.index(); 
         
         NamedElement ret_el = null;
         
+        int oldPosition = this.input.index();
+        this.interp.push(f);
+        
         try {
-            this.interp.push(f);
-            
-            // execute each statement of the function body
-            this.exec(
-                "function_statements", 
-                f.getStatements().getTokenIndex());
-
+            this.function_statements(false);
+        } catch(RecognitionException re) {
+            printError(re.getLocalizedMessage());	    
         } catch(EugeneReturnException ere) {
 
             // a return statement has been encountered
             ret_el = ere.getReturnValue();
 
-        } finally {
-        
-            // we need to pop the function from the stack!
-            this.interp.pop();
         }
-            
+        
+        // we need to pop the function from the stack!
+        this.interp.pop();
+
         // and jump back to the original position in 
         // the Eugene script
-        this.input.seek(oldPosition);
+        if(oldPosition != -1) {
+            this.input.seek(oldPosition);
+        }
+
+        return ret_el;
 
         /*
          * FOR TESTING PURPOSE:
          * - we simulate the function's return value
          */
-        return ret_el;
 //        return f.simulateReturnValue();
     }
 
@@ -771,14 +783,14 @@ public Object exec(String rule, int tokenIndex)
  */
  
 /* start of program consisting of statements */
-prog
+prog[boolean defer]
 	throws EugeneReturnException
 @before {
 if(null == this.interp) {
     this.interp = new Interp(new Sparrow());
 }
 }
-	:	(statement[false] | function_definition[true])+ EOF!
+	:	(statement[defer] | function_definition[true])+ EOF!
 	;
 
 
@@ -790,7 +802,7 @@ statement[boolean defer]
 	|	printStatement[defer] SEMIC
 	|	assignment[defer] SEMIC
 	|	de=dataExchange[defer] SEMIC {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         // iff there's no assignment to a LHS element,
         // then we store the imported data into the 
@@ -817,7 +829,7 @@ predefined_statements[boolean defer]
 declarationStatement[boolean defer]
 	returns [String name]
 	:	v=variableDeclaration[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $name = $v.varname;
 }	
 	}
@@ -834,27 +846,27 @@ if(!defer) {
 variableDeclaration[boolean defer]
 	returns [String varname]
 	:	NUM n=numdecl[defer]  /* declaration of nums, which can be both real and integer*/ {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $varname = $n.varname;
 }	
 	}
 	|	TXT t=txtdecl[defer]  /* declaration of text instances*/ {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $varname = $t.varname;
 }	
 	}
 	|	TXT LEFTSBR RIGHTSBR tl=txtlistdecl[defer]  /*  declaration of text lists */ {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $varname = $tl.varname;
 }	
 	}
 	|	NUM LEFTSBR RIGHTSBR nl=numlistdecl[defer]  /* declaration of num lists */ {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $varname = $nl.varname;
 }	
 	}
 	|	(BOOLEAN|BOOL) b=booldecl[defer]  /* declaration of boolean instances*/ {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $varname = $b.varname;
 }	
 	}
@@ -863,13 +875,13 @@ if(!defer) {
 numdecl[boolean defer]
 	returns [String varname]
 	:	ID {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     declareVariableNoValue($ID.text, EugeneConstants.NUM);
     $varname = $ID.text;
 }
 	} 	(COMMA numdecl[defer])?
 	|	ID EQUALS (ex=expr[defer]) {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     declareVariableWithValueNum($ID.text, $ex.p, $ex.index);
     $varname = $ID.text;
 }
@@ -880,7 +892,7 @@ txtdecl[boolean defer]
 	returns [String varname]
 	:	ID
 		{
-		if(!defer) {
+		if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 			declareVariableNoValue($ID.text, EugeneConstants.TXT);
 			$varname = $ID.text;
 		}
@@ -888,7 +900,7 @@ txtdecl[boolean defer]
 
 	|	var=ID EQUALS let=expr[defer]
 		{
-		if(!defer) {
+		if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 			declareVariableWithValueTxt($var.text, $let.p, $let.index);
 			$varname = $ID.text;
 		}
@@ -899,14 +911,14 @@ txtlistdecl[boolean defer]
 	returns [String varname]
 	:	ID
 		{
-		if(!defer) {
+		if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 			declareVariableNoValue($ID.text, EugeneConstants.TXTLIST);
 			$varname = $ID.text;
 		}
 		} (COMMA txtlistdecl[defer])?
 	|	var=ID EQUALS {typeList = EugeneConstants.TXT;} let=expr[defer]
 		{
-		if(!defer) {
+		if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 			declareVariableWithValueTxtList($var.text, $let.p);
 			$varname = $ID.text;
 		}
@@ -917,14 +929,14 @@ numlistdecl[boolean defer]
 	returns [String varname]
 	:	ID
 		{
-		if(!defer) {
+		if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 			declareVariableNoValue($ID.text, EugeneConstants.TXTLIST);
 			$varname = $ID.text;
 		}
 		} (COMMA numlistdecl[defer])?
 	|	var=ID EQUALS { typeList = EugeneConstants.NUM;}let=expr[defer]
 		{
-		if(!defer) {
+		if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 			declareVariableWithValueNumList($var.text, $let.p);
 			$varname = $ID.text;
 		}
@@ -935,14 +947,14 @@ booldecl[boolean defer]
 	returns [String varname]
 	:	ID
 		{
-		if(!defer) {
+		if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 			declareVariableNoValue($ID.text, EugeneConstants.BOOLEAN);
 			$varname = $ID.text;
 		}
 		} (COMMA booldecl[defer])?
 	|	var=ID EQUALS let=expr[defer]
 		{
-		if(!defer) {
+		if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 			declareVariableWithValueBool($var.text, $let.p);
 			$varname = $ID.text;
 		}
@@ -951,7 +963,7 @@ booldecl[boolean defer]
 	
 propertyDeclaration[boolean defer]
 	:	PROPERTY nameToken=ID LEFTP typeToken=propertyType RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         interp.createProperty(
             $nameToken.text, 
@@ -989,7 +1001,7 @@ $type = EugeneConstants.BOOLEAN;
 typeDeclaration[boolean defer]
 	:	partTypeDeclaration[defer]
 	|	(TYPE) nameToken=ID (LEFTP (lstToken=listOfIDs[defer])? RIGHTP)? {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         interp.createType(
             $nameToken.text, 
@@ -1003,7 +1015,7 @@ if(!defer) {
 	
 partTypeDeclaration[boolean defer] 
 	:	(PART|PART_TYPE)  nameToken=ID (LEFTP (lstToken=listOfIDs[defer])? RIGHTP)? {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         interp.createPartType(
             $nameToken.text, 
@@ -1021,7 +1033,7 @@ if(!defer) {
 containerDeclaration[boolean defer]
 	returns [NamedElement ne]
 	:	(c=COLLECTION | (a=ARRAY (LEFTSBR RIGHTSBR)?)) name=ID {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if(null != c) {
         $ne = new EugeneCollection($name.text);
     } else if(null != a) {
@@ -1035,7 +1047,7 @@ if(!defer) {
     
 }	
 	}	(LEFTP (list_of_declarations[defer])? RIGHTP)? {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         /*
          *   after all declarations are done, we 
@@ -1052,7 +1064,7 @@ if(!defer) {
 list_of_declarations[boolean defer]	
         returns [List<NamedElement> elements]
 	:	( ds=declarationStatement[defer] | exp=expr[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         if(null != $exp.element) {
             this.interp.addToContainer($exp.element);
@@ -1077,7 +1089,7 @@ NamedElement type = null;
 String instance_name = null;
 }
 	:	t=ID {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         type = this.interp.get($t.text);
     } catch(EugeneException ee) {
@@ -1093,11 +1105,11 @@ if(!defer) {
     }                  
 }	
 	}	n=dynamic_naming[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     instance_name = $n.name;	
 }
 	}	( LEFTP (dotToken=listOfDotValues[defer]|valueToken=listOfValues[defer, (ComponentType)type])? RIGHTP )? {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         if(null != dotToken) {
             this.interp.instantiate(
@@ -1133,7 +1145,7 @@ if(!defer) {
 listOfDotValues [boolean defer] 
 	:	DOT prop=ID
 		{
-if(!defer) {		
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {		
     try {
         addToPropertyListHolder($prop.text);
     } catch(EugeneException ee) {
@@ -1142,7 +1154,7 @@ if(!defer) {
 }			
 		} LEFTP v1=expr[defer]
 			{
-if(!defer) {			
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {			
     try {
         addToPropertyValuesHolder($prop.text, $v1.p, $v1.index);
     } catch(EugeneException ee) {
@@ -1151,7 +1163,7 @@ if(!defer) {
 }				
 			} RIGHTP (COMMA DOT p=ID
 				{
-if(!defer) {			
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {			
     try {
         addToPropertyListHolder($p.text);
     } catch(EugeneException ee) {
@@ -1160,7 +1172,7 @@ if(!defer) {
 }				
 				} LEFTP v2=expr[defer]
 					{
-if(!defer) {			
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {			
     try {
         addToPropertyValuesHolder($p.text, $v2.p, $v2.index);
     } catch(EugeneException ee) {
@@ -1173,7 +1185,7 @@ if(!defer) {
 listOfValues[boolean defer, ComponentType pt]
 	:
 		{
-if(!defer) {	
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {	
 
     List<Property> propertyList = pt.getProperties();            					
     if(propertyList.size() < 1) {
@@ -1193,11 +1205,11 @@ if(!defer) {
     }				
 }
 		} val1=expr[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     propertyValuesHolder.add($val1.p);
 }				
 			} (COMMA {
-if(!defer) {	
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {	
 
     List<Property> propertyList = pt.getProperties();            					
     if(propertyList.size() <= propertyValuesHolder.size()) {
@@ -1220,7 +1232,7 @@ if(!defer) {
 
 }
                } val2=expr[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     propertyValuesHolder.add($val2.p);
 }				
 		} )*
@@ -1228,7 +1240,7 @@ if(!defer) {
 	
 deviceDeclaration[boolean defer]
 	:	DEVICE n=ID (LEFTP (dcs=deviceComponents[defer])? RIGHTP)?  {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         interp.createDevice(
             $n.text, 
@@ -1248,12 +1260,12 @@ $lstComponents = new ArrayList<List<NamedElement>>();
 $lstOrientations = new ArrayList<List<Orientation>>();
 }	
 	:	s=selection[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $lstComponents.add($s.components);
     $lstOrientations.add($s.orientations);
 }	
 	}	(',' dcs=deviceComponents[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $lstComponents.addAll($dcs.lstComponents);
     $lstOrientations.addAll($dcs.lstOrientations);
 }	
@@ -1263,13 +1275,13 @@ if(!defer) {
 selection[boolean defer] 
 	returns [List<NamedElement> components, List<Orientation> orientations]
 	:	LEFTSBR sl=selection_list[defer] RIGHTSBR {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $components = $sl.components;
     $orientations = $sl.orientations;
 }	
 	}
 	|	dc=device_component[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $components = new ArrayList<NamedElement>(1);
     $components.add($dc.component);
     
@@ -1286,12 +1298,12 @@ $components = new ArrayList<NamedElement>();
 $orientations = new ArrayList<Orientation>();
 }
 	:	dc=device_component[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $components.add($dc.component);
     $orientations.add($dc.orientation);
 }	
 	}	(PIPE sl=selection_list[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $components.addAll($sl.components);
     $orientations.addAll($sl.orientations);
 }	
@@ -1301,7 +1313,7 @@ if(!defer) {
 device_component[boolean defer]
 	returns [NamedElement component, Orientation orientation]
 	:	(directionToken=(MINUS|PLUS))? idToken=ID {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         NamedElement ne = interp.get($idToken.text);
         if(null == ne) {
@@ -1350,7 +1362,7 @@ if(!defer) {
   */
 assignment[boolean defer]
 	:	lhs=lhs_assignment[defer] EQUALS (a=AMP)? rhs=rhs_assignment[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
 
         /* --- NEW VERSION: Updated Oct 15th, 2014 
@@ -1389,7 +1401,7 @@ lhs_access[boolean defer]
 	
 /*** BACKUP:
 fc=function_call[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $e = $fc.e;
 }	
 	}	|	
@@ -1398,12 +1410,12 @@ if(!defer) {
 rhs_assignment[boolean defer]	
 	returns [NamedElement e]
 	:	de=dataExchange[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $e = $de.e;
 }	
 	}
 	|	exp=expr[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if($exp.element != null) {
         $e = $exp.element;
     } else {
@@ -1419,7 +1431,7 @@ listOfIDs[boolean defer]
 $lstElements=new ArrayList<NamedElement>();
 }
 	:	idToken=ID { 
-if(!defer)
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING)
     try {
         NamedElement ne = interp.get($idToken.text);
         if(null == ne) {
@@ -1431,7 +1443,7 @@ if(!defer)
     }
 }	
 	 	(',' lstToken=listOfIDs[defer] {
-if(!defer){
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING){
     $lstElements.addAll($lstToken.lstElements);
 }
         }	)?
@@ -1440,7 +1452,7 @@ if(!defer){
 ruleDeclaration[boolean defer]
 	returns [Rule rule]
 	:	RULE name=ID LEFTP ( ((LC_ON|UC_ON) device=ID COLON)? {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         if(null == device) {
             $rule = interp.createRule($name.text, null);
@@ -1452,7 +1464,7 @@ if(!defer) {
     }
 }		
 	}	cnf=cnf_rule[defer] ) RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $rule.setLogicalAnd($cnf.lAnd);
 
     /*
@@ -1533,7 +1545,7 @@ relationalOperators
 cnf_rule[boolean defer]
 	returns [LogicalAnd lAnd]
 	:	(c=or_predicate[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if(null == $lAnd) {
         $lAnd = new LogicalAnd();
     }
@@ -1541,7 +1553,7 @@ if(!defer) {
     $lAnd.getPredicates().add($c.p);
 }	
 	}) ( (LC_AND|UC_AND|LOG_AND) cnf=cnf_rule[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $lAnd.union($cnf.lAnd);
 }	
 	})?
@@ -1553,11 +1565,11 @@ or_predicate[boolean defer]
 LogicalOr lor = null;
 }	
 	:	n1=negated_predicate[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $p = $n1.p;
 }	
 	}	((LC_OR|UC_OR|LOG_OR) n2=negated_predicate[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         if(null == lor) {
             lor = this.interp.logicalOr($n1.p, $n2.p);
@@ -1569,7 +1581,7 @@ if(!defer) {
     }
 }	
 	}	)*  {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if(null != lor) {
         $p = lor;
     }
@@ -1580,7 +1592,7 @@ if(!defer) {
 negated_predicate[boolean defer]
 	returns [Predicate p]
 	:	((UC_NOT|LC_NOT|LOG_NOT) c=predicate[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         $p = this.interp.negate($c.p);
     } catch(Exception e) {
@@ -1589,7 +1601,7 @@ if(!defer) {
 }
 	}
 	|	c=predicate[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $p = $c.p;
 }	
 	}) 
@@ -1616,7 +1628,7 @@ try {
 this.tokens = null;
 	}
 	|	i=ID {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         NamedElement ne = this.interp.get($i.text);
         if(null == ne) {
@@ -1633,7 +1645,7 @@ if(!defer) {
 }		
 	}
 	|	exp=expressionRule[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $p = $exp.p;
 }	
 	}
@@ -1647,7 +1659,7 @@ int constant = -1;
 int index = -1;
 }		
 	:	(i=ID {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if(!this.interp.contains($i.text)) {
         printError($i.text+" not defined.");
     }
@@ -1659,16 +1671,16 @@ if(!defer) {
 }
 }
 	|	n=NUMBER {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     constant = Integer.parseInt($n.text);
 }	
 	}
 	|	'[' n=NUMBER ']' {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     index = Integer.parseInt($n.text);
 }	
 	}) {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         $o = new ArrangementOperand(element, constant, index);
     } catch(EugeneException ee) {
@@ -1685,7 +1697,7 @@ if(!defer) {
 expressionRule[boolean defer]
 	returns [Predicate p]
 	:	lhs=expression[defer] op=exp_op[defer] rhs=expression[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         $p = new ExpressionConstraint($lhs.exp, $op.text, $rhs.exp);
     } catch(EugeneException ee) {
@@ -1698,16 +1710,16 @@ if(!defer) {
 expression[boolean defer]
 	returns [Expression exp]
 	:	lhs=exp_operand[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $exp = new Expression($lhs.eop, null, null);
 }
 	}	( expop=exp_operator[defer] rhs=expression[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $exp = new Expression($lhs.eop, $expop.op, $rhs.exp);
 }	
 	}	)? 
 	|	LEFTP expression[defer] RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     	
 }	
 	}
@@ -1716,22 +1728,22 @@ if(!defer) {
 exp_operator[boolean defer]
 	returns [Expression.ExpOp op]
 	:	PLUS {
-if(!defer) {	
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {	
     $op = Expression.ExpOp.PLUS;	
 }
 	} 
 	|	MINUS {
-if(!defer) {	
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {	
     $op = Expression.ExpOp.MINUS;	
 }
 	}
 	|	MULT {
-if(!defer) {	
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {	
     $op = Expression.ExpOp.MULT;	
 }
 	}
 	|	DIV {
-if(!defer) {	
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {	
     $op = Expression.ExpOp.DIV;	
 }
 	}
@@ -1744,7 +1756,7 @@ List<NamedElement> elements = null;
 NamedElement ne = null;
 }	
 	:	(i1=ID DOT {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         if(ne == null) {
             ne = this.interp.get($i1.text);
@@ -1777,7 +1789,7 @@ if(!defer) {
     elements.add(ne);
 }	
 	}	)* i2=ID {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         NamedElement property = null;
 
@@ -1812,7 +1824,7 @@ if(!defer) {
     }
 }	
 	} 	(LEFTSBR n=NUMBER RIGHTSBR {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if(null != $eop) {
         try {
             $eop.addIndex($n.text);
@@ -1823,35 +1835,35 @@ if(!defer) {
 }	
 	}	)*
 	|	n=NUMBER {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     Variable v = new Variable(null, EugeneConstants.NUM);
     v.num = Double.parseDouble($n.text);
     $eop = new ExpressionOperand(v);
 }	
 	}
 	|	MINUS n=NUMBER {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     Variable v = new Variable(null, EugeneConstants.NUM);
     v.num = Double.parseDouble($n.text) * -1;
     $eop = new ExpressionOperand(v);
 }	
 	}
 	|	r=REAL {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     Variable v = new Variable(null, EugeneConstants.NUM);
     v.num = Double.parseDouble($r.text);
     $eop = new ExpressionOperand(v);
 }	
 	}
 	|	MINUS r=REAL {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     Variable v = new Variable(null, EugeneConstants.NUM);
     v.num = Double.parseDouble($r.text) * -1.0;
     $eop = new ExpressionOperand(v);
 }	
 	}
 	|	s=STRING {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     Variable v = new Variable(null, EugeneConstants.TXT);
     v.txt = $s.text;
     $eop = new ExpressionOperand(v);
@@ -1884,7 +1896,7 @@ list_of_production_rules[boolean defer]
 
 production_rule[boolean defer]	
 	:	lhs=ID {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     // ID denotes a non-terminal of the grammar
 }	
 	}	ARROW right_hand_side[defer] 
@@ -1892,7 +1904,7 @@ if(!defer) {
 
 right_hand_side[boolean defer]
 	:	i=ID {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     // ID must be either a terminal (i.e. a part)
     // or a non-terminal defined within the grammar
 }	
@@ -1907,12 +1919,12 @@ if(!defer) {
 interactionDeclaration[boolean defer]
 	returns [Interaction ia]
 	:	i1=interaction[defer, null] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $ia = $i1.ia;
 }
 }
 	|	INTERACTION name=ID LEFTP i2=interaction[defer, $name.text] RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $ia = $i2.ia;
 }
 }
@@ -1921,7 +1933,7 @@ if(!defer) {
 interaction[boolean defer, String name] 
 	returns [Interaction ia]
 	:	lhs1=ID t1=interactionType[defer] rhs1=ID {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         $ia = this.interp.createInteraction(name, $lhs1.text, $t1.type, $rhs1.text);
     } catch(EugeneException ee) {
@@ -1930,7 +1942,7 @@ if(!defer) {
 }	
 	}
 	|	lhs2=ID t2=interactionType[defer] LEFTP rhs2=interaction[defer, name] RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         $ia = this.interp.createInteraction(name, $lhs2.text, $t2.type, $rhs2.ia);
     } catch(EugeneException ee) {
@@ -1943,12 +1955,12 @@ if(!defer) {
 interactionType[boolean defer] 
 	returns [Interaction.InteractionType type]
 	:	(UC_REPRESSES | LC_REPRESSES) {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $type = Interaction.InteractionType.REPRESSES;
 }	
 	}
 	|	(UC_INDUCES | LC_INDUCES) {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $type = Interaction.InteractionType.INDUCES;
 }	
 	}
@@ -1961,7 +1973,7 @@ if(!defer) {
  *------------------------------------------------------------------*/
 printStatement[boolean defer] 
 	:	(PRINTLN_LC|PRINTLN_UC) LEFTP tp=toPrint[defer] RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if(null != $tp.sb) {
         try {
             this.writer.write($tp.sb.toString());
@@ -1974,7 +1986,7 @@ if(!defer) {
 }	
 	}
 	|	(PRINT_LC|PRINT_UC) LEFTP tp=toPrint[defer] RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if(null != $tp.sb) {
         try {
             this.writer.write($tp.sb.toString());
@@ -1990,7 +2002,7 @@ if(!defer) {
 toPrint[boolean defer]
 	returns [StringBuilder sb]
 	:	exp=expr[defer] tpp=toPrint_prime[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $sb = new StringBuilder();
     if(null != $exp.element) {
         $sb.append($exp.element);
@@ -2005,12 +2017,12 @@ if(!defer) {
 toPrint_prime[boolean defer]
 	returns [StringBuilder sb]
 	:	{
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $sb = new StringBuilder();
 }
 	}
 	|	COMMA tp=toPrint[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $sb = new StringBuilder();
     $sb.append($tp.sb);
 }	
@@ -2038,7 +2050,7 @@ boolean bExecuted = false;
 		 */
 		(UC_IF|LC_IF) LEFTP co=imp_condition[defer] RIGHTP LEFTCUR 
 			stmts=listOfStatements[true] RIGHTCUR {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     // evaluate the condition
     if($co.bTrue) {
         // if true => execute the statements
@@ -2061,7 +2073,7 @@ if(!defer) {
 		 */
 		( (UC_ELSEIF|LC_ELSEIF) LEFTP co=imp_condition[defer] RIGHTP LEFTCUR 
 			stmts=listOfStatements[true] RIGHTCUR {
-if(!defer && !bExecuted) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING && !bExecuted) {
     // evaluate the condition
     if($co.bTrue) {
         // if true => execute the statements
@@ -2084,7 +2096,7 @@ if(!defer && !bExecuted) {
 		 */
 		((UC_ELSE|LC_ELSE) LEFTCUR 
 			stmts=listOfStatements[true] RIGHTCUR {
-if(!defer && !bExecuted) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING && !bExecuted) {
     try {
         this.exec("listOfStatements", $stmts.start.getTokenIndex());        
     } catch(EugeneReturnException ere) {
@@ -2101,7 +2113,7 @@ if(!defer && !bExecuted) {
 imp_condition[boolean defer] 
 	returns [boolean bTrue]
 	:	lhs=expr[defer] ro=relationalOperators rhs=expr[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
 
 
@@ -2154,7 +2166,7 @@ if(!defer) {
 forall_iterator[boolean defer]
 	:	(UC_FORALL|LC_FORALL) (it=ID COLON)? i=ID LEFTCUR
 			listOfStatements[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 
 }			
 	}
@@ -2164,7 +2176,7 @@ if(!defer) {
 for_loop[boolean defer]
 	:	(UC_FOR|LC_FOR) LEFTP ds=variableDeclaration[true] SEMIC co=imp_condition[true] SEMIC (as=assignment[true])? RIGHTP LEFTCUR 
 			stmts=listOfStatements[true] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         if(null != as) {
             this.execute_loop(
@@ -2192,7 +2204,7 @@ if(!defer) {
 while_loop[boolean defer]
 	:	(UC_WHILE|LC_WHILE) LEFTP co=imp_condition[true] RIGHTP LEFTCUR 
 			stmts=listOfStatements[true] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         this.execute_loop(
             null,           // init
@@ -2216,7 +2228,7 @@ if(!defer) {
 expr[boolean defer] 
 	returns [Variable p,  String instance, int index, String listAddress, Variable primVariable, NamedElement element]
 	:	e=multExpr[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if(null != $e.p) {
         $p = copyVariable($e.p);
     
@@ -2234,7 +2246,7 @@ if(!defer) {
     }
 }
 	} 	(op=(PLUS|MINUS) e=multExpr[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         if(null != $element) {
             if(null != $e.element) {
@@ -2260,7 +2272,7 @@ if(!defer) {
 
 /****
 	 	| mi=MINUS e=multExpr[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         this.interp.doMinPlusOp($e.p, $p, $mi.text);
     } catch(EugeneException ee) {
@@ -2275,7 +2287,7 @@ if(!defer) {
 multExpr[boolean defer] 
 	returns [Variable p, String instance, int index, String listAddress, Variable primVariable, NamedElement element]
 	:	e=atom[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if( null != $e.p) {
         $p = copyVariable($e.p);
         if ($e.instance != null) {
@@ -2295,7 +2307,7 @@ if(!defer) {
     }
 }	
 	} 	( (mul=MULT|div=DIV) e=atom[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         if ($mul.text != null) {
             this.interp.doMultDivOp($e.p, $p, $mul.text);
@@ -2315,7 +2327,7 @@ atom [boolean defer]
 	returns [Variable p = new Variable(), String instance, int index = -1, String listAddress, Variable primVariable, NamedElement element]
 	:	(n=NUMBER | n=REAL)
 		{
-		if(!defer) {
+		if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 			$p.num = Double.parseDouble($n.text);
 			$p.type = EugeneConstants.NUM;
 			
@@ -2324,7 +2336,7 @@ atom [boolean defer]
 		}
 	|	MINUS (n=NUMBER | n=REAL)
 		{
-		if(!defer) {
+		if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 			$p.num = Double.parseDouble($n.text) * -1.0;
 			$p.type = EugeneConstants.NUM;
 
@@ -2333,7 +2345,7 @@ atom [boolean defer]
 		}
 	|	(t=(TRUE_LC|TRUE_UC) | f=(FALSE_LC|FALSE_UC))
 		{
-		if(!defer) {
+		if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 			$p.type = EugeneConstants.BOOLEAN;
 			if ($t != null) {
 				$p.bool = true;
@@ -2345,7 +2357,7 @@ atom [boolean defer]
 		}
 		}
 	|	dn=dynamic_naming[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         $element = this.interp.get($dn.name);
 					
@@ -2362,7 +2374,7 @@ if(!defer) {
     }
 }
 	}	oc=object_access[defer, $element] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $element = $oc.child;
     
     if($element instanceof Variable) {
@@ -2378,7 +2390,7 @@ if(!defer) {
 	} 
 	|	STRING
 	{
-		if(!defer) {
+		if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 			$p.type = EugeneConstants.TXT;
 			$p.txt = $STRING.text.substring(1, $STRING.text.length()-1);
 
@@ -2387,7 +2399,7 @@ if(!defer) {
 	}
 	|	'(' expr[defer] ')'
 	{
-		if(!defer) {
+		if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 			$p = $expr.p;
 			$primVariable = $expr.primVariable;
 			$element = $expr.element;
@@ -2395,14 +2407,14 @@ if(!defer) {
 	}
 		|	LEFTSBR list[defer] RIGHTSBR
 	{
-		if(!defer) {
+		if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 			$p = $list.listPrim;
 			$primVariable = $list.listPrim;
 			typeList="";
 		}
 	}
 		|bif=built_in_function[defer] {
-if(!defer && null != $bif.element) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING && null != $bif.element) {
     if($bif.element instanceof Variable) {
         $p = (Variable)$bif.element;
         $element = null;
@@ -2413,7 +2425,7 @@ if(!defer && null != $bif.element) {
 }		
 	}
 	|	fc=function_call[defer] {
-if(!defer && null != $fc.e) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING && null != $fc.e) {
     if($fc.e instanceof Variable) {
         $p = (Variable)$fc.e;
         $element = null;
@@ -2428,7 +2440,7 @@ if(!defer && null != $fc.e) {
 list [boolean defer]
 	returns [Variable listPrim]
 	:	str1=expr[defer] {
-if(!defer){
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING){
     if (null != $str1.p) {
         $listPrim = new Variable();
         if(EugeneConstants.NUM.equals(($str1.p).getType())) {
@@ -2447,7 +2459,7 @@ if(!defer){
     }
 }
 	} 	(COMMA str2=expr[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if(null != $str2.p) {
         addToListPrim($str2.p, $listPrim);
     } else {
@@ -2464,7 +2476,7 @@ if(!defer) {
 built_in_function[boolean defer]
 	returns [NamedElement element]
 	:	(SIZEOF_LC|SIZEOF_UC|SIZE_LC|SIZE_UC) LEFTP e=expr[defer] RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         if(null != $e.element) {
             $element = this.interp.getSizeOf($e.element);
@@ -2477,7 +2489,7 @@ if(!defer) {
 }	
 	}
 	|	(RANDOM_LC|RANDOM_UC) LEFTP rg=range[defer] RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         $element = this.interp.getRandom(rg.sor, rg.eor);
     } catch(EugeneException ee) {
@@ -2486,7 +2498,7 @@ if(!defer) {
 }	
 	}
 	|	(SAVE_LC|SAVE_UC|STORE_LC|STORE_UC) LEFTP e=expr[defer] RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try  {
         if(null != $e.element) {
             this.interp.storeIntoLibrary($e.element);
@@ -2500,7 +2512,7 @@ if(!defer) {
 }	
 	}
 	|	(pr=PRODUCT|pe=PERMUTE) LEFTP idToken=ID RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
     
         if(!this.interp.contains($idToken.text)) {
@@ -2522,7 +2534,7 @@ if(!defer) {
 }	
 	}
 	|	(EXIT_LC | EXIT_UC) (LEFTP p=toPrint[defer] RIGHTP)? {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if(null == p) {
         printError("exiting...");
     } else {
@@ -2536,7 +2548,7 @@ if(!defer) {
 range[boolean defer] 
 	returns [Variable sor, Variable eor]
 	:	s=expr[defer] COMMA e=expr[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 
     if(null != $s.p) {
         if(!EugeneConstants.NUM.equals($s.p.getType())) {
@@ -2574,14 +2586,14 @@ if(!defer) {
 data_access[boolean defer]
 	returns [NamedElement e]
 	:	id=ID {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $e = this.interp.get($id.text);
     if(null == $e) {
         printError($e + " does not exist.");
     }
 }	
 	}	rhs=object_access[defer, $e] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $e = $rhs.child;
 }		
 	}
@@ -2592,12 +2604,12 @@ object_access[boolean defer, NamedElement parent]
 	returns [NamedElement child]
 	:	// empty-word 
 	{
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $child = parent;
 }	
 	}
 		|(DOT (id=ID {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
     
         $child = parent.getElement($id.text);
@@ -2611,7 +2623,7 @@ if(!defer) {
     }
 }	
 	} |	(SIZE_UC|SIZE_LC) (LEFTP RIGHTP)? {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         $child = this.interp.getSizeOf(parent);
     } catch(EugeneException ee) {
@@ -2620,7 +2632,7 @@ if(!defer) {
 }	
 	})
 	|	LEFTSBR (exp=expr[defer]) RIGHTSBR {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         if(null != $exp.p && EugeneConstants.NUM.equals($exp.p.getType())) {
         
@@ -2642,7 +2654,7 @@ if(!defer) {
     }
 }	
 	})	o=object_access[defer, $child] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $child = $o.child;
 }	
 	}
@@ -2654,12 +2666,12 @@ if(!defer) {
 dynamic_naming[boolean defer]
 	returns [String name]
 	:	i=ID {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $name = $i.text;
 }	
 	}
 	|	DOLLAR LEFTCUR e=expr[defer] RIGHTCUR {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if($e.p == null) {
         printError("Invalid name!");
     } else if(!EugeneConstants.TXT.equals(($e.p).getType())) {
@@ -2678,13 +2690,13 @@ if(!defer) {
 dataExchange[boolean defer] 
 	returns [NamedElement e]
 	:	s=sbolStatement[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $e = $s.e;
 }	
 	}
 	|	p=pigeonStatement[defer]
 	|	i=importStatement[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $e = $i.e;
 }	
 	}
@@ -2696,7 +2708,7 @@ if(!defer) {
 /*** include STATEMENT ***/
 includeStatement[boolean defer]
 	:	(HASHMARK)? (INCLUDE_LC|INCLUDE_UC) file=STRING {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         this.interp.includeFile($file.text);
     } catch(EugeneException ee) {
@@ -2710,7 +2722,7 @@ if(!defer) {
 importStatement[boolean defer]
 	returns [NamedElement e]
 	:	(IMPORT_LC|IMPORT_UC) LEFTP file=STRING {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         $e = this.interp.importFile($file.text);
     } catch(EugeneException ee) {
@@ -2724,7 +2736,7 @@ if(!defer) {
 sbolStatement[boolean defer] 
 	returns [NamedElement e]
 	:	SBOL DOT (sbolExportStatement[defer] | i=sbolImportStatement[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $e = $i.e;
 }	
 	})
@@ -2732,7 +2744,7 @@ if(!defer) {
 
 sbolExportStatement[boolean defer] 
 	:	(EXPORT_LC|EXPORT_UC) LEFTP idToken=ID COMMA filenameToken=STRING RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         this.interp.exportToSBOL(
             $idToken.text, 
@@ -2747,7 +2759,7 @@ if(!defer) {
 sbolImportStatement[boolean defer]
 	returns [NamedElement e]  
 	:	(IMPORT_LC|IMPORT_UC) LEFTP fileToken=STRING RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         $e = this.interp.importSBOL($fileToken.text);
     } catch(EugeneException ee) {
@@ -2763,7 +2775,7 @@ if(!defer) {
 /************** 
 genbankStatement[boolean defer] returns [NamedElement objElement]
 	:	GENBANK DOT (importToken=genbankImportStatement[defer] | genbankExportStatement[defer]) {
-if(!defer && importToken!=null) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING && importToken!=null) {
     $objElement = $importToken.objElement;
 }	
 	}
@@ -2776,12 +2788,12 @@ genbankExportStatement[boolean defer] returns [NamedElement objElement]
 genbankImportStatement[boolean defer] 
         returns [NamedElement objElement]
 	:	(LC_IMPORT|UC_IMPORT) LEFTP RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 
 }
 	}
 	|	(LC_IMPORT|UC_IMPORT) LEFTP typeToken=ID COMMA partToken=STRING RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 
 }	
 	} 
@@ -2793,7 +2805,7 @@ if(!defer) {
  *----------------------*/
 pigeonStatement[boolean defer]
 	:	(PIGEON_LC|PIGEON_UC) LEFTP idToken=ID RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         this.interp.pigeon($idToken.text);
     } catch(EugeneException ee) {
@@ -2809,7 +2821,7 @@ if(!defer) {
 /***** 
 registryStatement[boolean defer]
 	:	REGISTRY DOT (LC_IMPORT|UC_IMPORT) LEFTP nameToken=STRING RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 
     String name = $nameToken.text;
     if(null != name) {
@@ -2842,7 +2854,7 @@ if(!defer) {
 
 testStatements[boolean defer]
 	: 	|	ASSERT LEFTP id=ID DOT (SIZE_UC|SIZE_LC) LEFTP RIGHTP EQUALS EQUALS n=NUMBER RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         NamedElement el = this.interp.get($id.text);
         if(null != el) {
@@ -2858,7 +2870,7 @@ if(!defer) {
 }	
 	}
 	|		NOTE LEFTP id=ID DOT (SIZE_UC|SIZE_LC) LEFTP RIGHTP EQUALS EQUALS n=NUMBER RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 }
 }
 	;
@@ -2871,7 +2883,7 @@ function_definition[boolean defer]
 	:	(rt=type_specification[true])? n=ID LEFTP (lop=list_of_parameters[true])? RIGHTP LEFTCUR 
 			stmts=function_statements[true] 
 		RIGHTCUR {
-if(defer) {  // FUNCTION DEFINITION 
+if(defer && this.PARSING_PHASE == ParsingPhase.PRE_PROCESSING) {  // FUNCTION DEFINITION 
     try {
         // let's check if a return type is specified
         String return_type = null;
@@ -2906,7 +2918,7 @@ type_specification[boolean defer]
 list_of_parameters[boolean defer]
 	returns [List<NamedElement> parameters]
 	:	t=type_specification[defer] n=ID {
-if(defer) {
+if(defer && this.PARSING_PHASE == ParsingPhase.PRE_PROCESSING) {
     if(null == $parameters) {
         $parameters = new ArrayList<NamedElement>();
     }
@@ -2921,7 +2933,7 @@ if(defer) {
     }
 }	
 	}	(COMMA lop=list_of_parameters[defer] {
-if(defer) {
+if(defer && this.PARSING_PHASE == ParsingPhase.PRE_PROCESSING) {
     $parameters.addAll($lop.parameters);    
 }	
 	}	)?
@@ -2937,18 +2949,18 @@ if(defer) {
 
 function_call[boolean defer]
 	returns [NamedElement e]
-	:	udf=user_defined_function[defer] {
-if(!defer) {
+	:	udf=call_user_defined_function[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $e = udf.e;
 }	
 	}
 	;
 	
 	
-user_defined_function[boolean defer]
+call_user_defined_function[boolean defer]
 	returns [NamedElement e]
 	:	f=ID LEFTP (loe=list_of_expressions[defer])? RIGHTP {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         $e = this.call_function($f.text, $loe.parameter_values);
     } catch(EugeneException ee) {
@@ -2961,7 +2973,7 @@ if(!defer) {
 list_of_expressions[boolean defer]
 	returns [List<NamedElement> parameter_values]
 	:	e=expr[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if(null == $parameter_values) {
         $parameter_values = new ArrayList<NamedElement>();
     }
@@ -2974,7 +2986,7 @@ if(!defer) {
     
 }	
 	} 	(COMMA loe=list_of_expressions[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $parameter_values.addAll($loe.parameter_values);
 }	
 	}	)? 
@@ -2984,7 +2996,7 @@ if(!defer) {
 listOfStatements[boolean defer]
 	returns [NamedElement e]
 	:	(stmtToken=statement[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $e = (NamedElement)null;
 }	
 	} 	)+ 
@@ -2994,7 +3006,7 @@ if(!defer) {
 function_statements[boolean defer]
 	throws EugeneReturnException
 	:	(statement[defer] | rs=return_statement[defer] {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     throw new EugeneReturnException($rs.el);
 }
 	})+
@@ -3003,7 +3015,7 @@ if(!defer) {
 return_statement[boolean defer]
 	returns [NamedElement el]
 	:	(RETURN_LC | RETURN_UC) e=expr[defer] SEMIC {
-if(!defer) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if(null != $e.element) {
         $el = $e.element;
     } else {

@@ -99,3 +99,23 @@ num add(num a, num b)
 
 num a = add(1, 2);
 println("a: ", a);
+
+
+// the concat function takes as input two 
+// strings (t1, t2) and returns a string which 
+// is the concatenation of t1 and t2;  
+txt concat(txt t1, txt t2)
+{
+	return t1 + t2;
+}
+
+txt hello_world = concat("Hello ", "World!");
+println(hello_world);
+
+// INVALID FUNCTIONS:
+// - incompatible return type
+// num inv = concat("Hello ", "World!");
+
+
+println(concat("Hello ", "World!"));
+

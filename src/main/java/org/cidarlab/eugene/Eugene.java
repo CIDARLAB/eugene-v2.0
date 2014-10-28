@@ -32,6 +32,7 @@ import java.util.logging.LogManager;
 
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
+import org.cidarlab.eugene.constants.EugeneConstants.ParsingPhase;
 import org.cidarlab.eugene.dom.Component;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.eugene.interp.Interp;
@@ -53,6 +54,11 @@ public class Eugene {
 	 * library management software
 	 */
 	private Sparrow sparrow;
+	
+	/*
+	 * the interpreter
+	 */
+	private Interp interp;
 	
 	/*
 	 * a writer for writing any output
@@ -165,7 +171,7 @@ public class Eugene {
 		/*
 		 * then, we execute the script
 		 */
-		this.executeScript(script, file.toString());
+		this.executeScript(script/*, file.toString()*/);
 	}
 	
 	/**
@@ -177,51 +183,31 @@ public class Eugene {
 	 */
 	public Collection<Component> executeScript(String script) 
 		throws EugeneException {
-		
-		return this.executeScript(script, null);
-		
-	}
-	
-	private Collection<Component> executeScript(String script, String filename)
-			throws EugeneException {
 
 		/*
-		 * lexical analysis and parsing
+		 * PHASE 1:
+		 * COLLECTING FUNCTIONS
 		 */
-		EugeneLexer lexer = new EugeneLexer(new ANTLRStringStream(script));
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-
-		EugeneParser parser = new EugeneParser(tokens);
-
-		/*
-		 * instantiate the library
-		 * or clear its working memory
-		 */
+		System.out.println("*** PHASE I ***");
+		EugeneParser parser = this.initParser(script, ParsingPhase.PRE_PROCESSING);
 		try {
-			if(null == this.sparrow) {
-				this.sparrow = new Sparrow();
-			} else {
-				this.sparrow.clear();
-			}		
-		} catch(SparrowException spe) {
-			throw new EugeneException(spe.toString());
+			parser.prog(true);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new EugeneException(e.toString());
 		}
-
+		
+		parser.printFunctions();
 		
 		/*
-		 * initialize the parser, with the connection 
-		 * to the library (i.e. Java Drools in our case)
-		 * and the writer for writing the outputs
-		 */		
-		parser.init(
-				new Interp(this.sparrow, this.writer, this.getRootDirectory()), 
-				this.writer);
-		
-		/*
-		 * do the lexing, parsing, interpreting
+		 * PHASE II:
+		 * INTERPRETATION
 		 */
+		System.out.println("*** PHASE II ***");		
+		parser = this.initParser(script, ParsingPhase.INTERPRETING);
+
 		try {
-			parser.prog();
+			parser.prog(false);
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new EugeneException(e.toString());
@@ -252,6 +238,45 @@ public class Eugene {
 		} catch(SparrowException spe) {
 			throw new EugeneException(spe.getMessage());
 		}
+	}
+	
+	private EugeneParser initParser(String script, ParsingPhase phase) 
+			throws EugeneException {
+		
+		EugeneLexer lexer = new EugeneLexer(new ANTLRStringStream(script));
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+		EugeneParser parser = new EugeneParser(tokens);
+
+		/*
+		 * instantiate the library
+		 * or clear its working memory
+		 */
+		if(phase == ParsingPhase.PRE_PROCESSING) {
+			try {
+				if(null == this.sparrow) {
+					this.sparrow = new Sparrow();
+				} else {
+					this.sparrow.clear();
+				}		
+			} catch(SparrowException spe) {
+				throw new EugeneException(spe.toString());
+			}
+
+			this.interp = new Interp(this.sparrow, this.writer, this.getRootDirectory());
+		}
+		
+		/*
+		 * initialize the parser, with the connection 
+		 * to the library (i.e. Java Drools in our case)
+		 * and the writer for writing the outputs
+		 */		
+		parser.init(
+				this.interp, 
+				this.writer, 
+				phase);
+		
+		return parser;
 	}
 
 	public static void main(String[] args) 

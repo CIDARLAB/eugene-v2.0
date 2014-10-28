@@ -245,10 +245,19 @@ public class TestSuite {
 //		new TestSuite().testAll("./tests/imperative/functions");
 
 		// individual tests
-		new TestSuite().test("./tests/imperative/functions/function-execution");
 		
-//		new TestSuite().test("./tests/imperative/functions/function-syntax");
-//		new TestSuite().test("./tests/imperative/functions/function-call-as-parameters");
+		new TestSuite().test("./tests/imperative/functions/function-syntax");
+		new TestSuite().test("./tests/imperative/functions/function-execution");
+		new TestSuite().test("./tests/imperative/functions/function-call-as-parameters");
+		
+		new TestSuite().test("./tests/imperative/functions/2-phase-interpreter");
+
+		// TODOS:
+//		new TestSuite().test("./tests/imperative/functions/scope-in-functions");
+//		new TestSuite().test("./tests/imperative/functions/include-function-library");
+
+		// TODO!!
+//		new TestSuite().test("./tests/imperative/functions/functions-calling-functions");
 	}
 	
 	/*---------------------------------------------
@@ -303,8 +312,8 @@ public class TestSuite {
 //		testDataExchange();
 //		testRules();
 		testImperativeFeatures();
-//		testRealWorldExamples();
 //		testEugeneLabTutorials();
+//		testRealWorldExamples();
 		
 //		testAll();
 	

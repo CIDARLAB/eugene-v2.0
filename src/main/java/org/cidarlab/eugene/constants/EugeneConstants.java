@@ -127,4 +127,8 @@ public class EugeneConstants {
 	
 	public static final String ANONYMOUS_VARIABLE = "ANONYMOUS_VARIABLE";
 	
+	public static enum ParsingPhase {
+		PRE_PROCESSING, INTERPRETING
+	}
+	
 }
