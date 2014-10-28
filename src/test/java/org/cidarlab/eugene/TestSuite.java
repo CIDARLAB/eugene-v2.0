@@ -229,13 +229,13 @@ public class TestSuite {
 	private static void testImperativeFeatures() 
 			throws EugeneException {
 		// CONDITIONAL BRANCHES
-//		new TestSuite().testAll("./tests/imperative/branches");
+		new TestSuite().testAll("./tests/imperative/branches");
 
 		// FOR LOOPS
-//		new TestSuite().testAll("./tests/imperative/loops");
+		new TestSuite().testAll("./tests/imperative/loops");
 		
 		// FUNCTIONS
-//		new TestSuite().testAll("./tests/imperative/functions");
+		new TestSuite().testAll("./tests/imperative/functions");
 
 		// individual tests		
 //		new TestSuite().test("./tests/imperative/functions/function-syntax");
@@ -269,12 +269,12 @@ public class TestSuite {
 
 		// TESTING INDIVIDUAL FILES
 //		new TestSuite().test("./tests/EugeneLab/data-exchange/01-Rule-based-Design.eug");
-		new TestSuite().test("./tests/EugeneLab/imperative-features/11-functions.eug");
-		new TestSuite().test("./tests/EugeneLab/imperative-features/12-functions-and-arrays.eug");
+//		new TestSuite().test("./tests/EugeneLab/imperative-features/11-functions.eug");
+//		new TestSuite().test("./tests/EugeneLab/imperative-features/12-functions-and-arrays.eug");
 		
 
 		// TESTING ALL FILES
-//		new TestSuite().testAll(ROOT_DIRECTORY);
+		new TestSuite().testAll(ROOT_DIRECTORY);
 
 	}
 	
@@ -311,11 +311,11 @@ public class TestSuite {
 	public static void main(String[] args) 
 			throws EugeneException {
 
-//		testBasics();
+		testBasics();
 		testImperativeFeatures();
 		testEugeneLabTutorials();
 		
-//		testHavingSomeFunWithEugene();
+		testHavingSomeFunWithEugene();
 		
 //		testDataExchange();
 //		testRules();

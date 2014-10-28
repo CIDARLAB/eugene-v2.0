@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.dom.NamedElement;
+import org.cidarlab.eugene.dom.Part;
 import org.cidarlab.eugene.dom.PropertyValue;
 import org.cidarlab.eugene.dom.Variable;
 import org.cidarlab.eugene.exception.EugeneException;
@@ -247,6 +248,20 @@ public class Comparator {
 				return ((PropertyValue)lhs).getType().equals(
 						((Variable)rhs).getType());
 			}
+		} else if(lhs instanceof Part && rhs instanceof Part) {
+
+			// the part types must match
+			if(((Part)lhs).getType() != null && 
+					((Part)rhs).getType() != null) {
+				
+				return ((Part)lhs).getType().getName().equals(
+						((Part)rhs).getType().getName());
+			}
+			
+			return false;
+			
+		} else {
+		
 		}
 		
 		// otherwise, we just compare it both objects
