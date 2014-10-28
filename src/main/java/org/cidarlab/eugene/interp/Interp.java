@@ -1414,12 +1414,7 @@ public class Interp {
 		boolean bContains = false;
 		try {
 			
-			bContains = this.symbols.contains(name) || this.sparrow.contains(name);
-			if(bContains) {
-				return true;
-			}
-			
-			if(this.stack.size() > 0) {
+			if(!this.stack.isEmpty()) {
 				Stack<StackElement> tmp = new Stack<StackElement>();
 				while(this.stack.size() > 0 && !bContains) {
 					StackElement se = this.stack.pop();
@@ -1438,6 +1433,11 @@ public class Interp {
 				
 				if(bContains) {
 					return bContains;
+				}
+			} else {
+				bContains = this.symbols.contains(name) || this.sparrow.contains(name);
+				if(bContains) {
+					return true;
 				}
 			}
 			
@@ -2043,19 +2043,22 @@ public class Interp {
 	public void includeFile(String file, ParsingPhase phase) 
 			throws EugeneException {
 
-		if(null == this.includedFiles) {
-			this.includedFiles = new HashSet<String>();
+		if(phase == ParsingPhase.INTERPRETING) {
+			if(null == this.includedFiles) {
+				this.includedFiles = new HashSet<String>();
+			}
+	
+			// if the file has been included already, 
+			// then there's no need to include it again.
+			if(this.includedFiles.contains(file)) {
+				return;
+			}
+			
+			
+			// if the file has not been included,
+			// then we store the filename in the includedFiles set
+			this.includedFiles.add(file);
 		}
-
-		// if the file has been included already, 
-		// then there's no need to include it again.
-		if(this.includedFiles.contains(file) && phase != ParsingPhase.INTERPRETING) {
-			return;
-		}
-		
-		// if the file has not been included,
-		// then we store the filename in the includedFiles set
-		this.includedFiles.add(file);
 		
 		// first, we read the file's content
 		String script = this.readFileContent(file);
@@ -2411,7 +2414,6 @@ public class Interp {
 				parameters,     // the function's list of parameters
 				statements,     // the function's statements ("Function Body")
 				tokenstream,    // the stream of tokens in that the function exists
-				
 				this.symbols);  // a reference to the global symbol tables
 		
 		
@@ -2441,6 +2443,12 @@ public class Interp {
 		// txt
 		} else if(EugeneConstants.TXT.equals(type)) {
 			return new Variable(name, EugeneConstants.TXT);
+		} else if(EugeneConstants.NUMLIST.equals(type)) {
+			return new Variable(name, EugeneConstants.NUMLIST);
+		} else if(EugeneConstants.TXTLIST.equals(type)) {
+			return new Variable(name, EugeneConstants.TXTLIST);
+		} else if(EugeneConstants.BOOLEAN.equals(type)) {
+			return new Variable(name, EugeneConstants.BOOLEAN);
 		}
 		
 		// invalid type! -> throw an exception

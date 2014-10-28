@@ -310,14 +310,14 @@ public class TestSuite {
 			throws EugeneException {
 
 //		testBasics();
-//		testDataExchange();
-//		testRules();
 		testImperativeFeatures();
 //		testEugeneLabTutorials();
-//		testRealWorldExamples();
 		
 //		testHavingSomeFunWithEugene();
 		
+//		testDataExchange();
+//		testRules();
+//		testRealWorldExamples();
 //		testAll();
 	
 	}

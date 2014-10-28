@@ -2,10 +2,25 @@ num one = 1;
 num two = 2;
 
 num min = min(one, two);
-println("min: ", min);
+if(min != 1) {exit;}
 
-include "./tests/imperative/functions/my-library.h"
+include "./tests/imperative/functions/min-max-library.h"
 
 
 num max = max(1, 2);
-println("max: ", max);
+if(max != 2) {exit;}
+
+
+include "./tests/imperative/functions/factorial.h"
+
+num fact = factorial(10);
+if(fact != 3628800) {exit;}
+
+
+include "./tests/imperative/functions/array-functions.h"
+num[] arr = [1, 2, 3, 4, 5];
+min = min_of(arr);
+if(min != 1) {exit;}
+
+max = max_of(arr);
+if(max != 5) {exit;}

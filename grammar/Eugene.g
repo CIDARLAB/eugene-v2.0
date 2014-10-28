@@ -30,7 +30,7 @@ tokens {
 	BOOLEAN = 'boolean';
 	IMAGE = 'Image';
 	PROPERTY = 'Property';
-	TYPE = 'Type';
+	TYPE = 'Type';c
 	PART_TYPE = 'PartType';
 	PART = 'Part';
 	DEVICE = 'Device';
@@ -2938,7 +2938,7 @@ if(defer && this.PARSING_PHASE == ParsingPhase.PRE_PROCESSING) {  // FUNCTION DE
         // let's check if a return type is specified
         String return_type = null;
         if(null != rt) {
-            return_type = $rt.text;
+            return_type = $rt.t;
         }
         
         // let's check if parameters are specified
@@ -2963,12 +2963,37 @@ if(defer && this.PARSING_PHASE == ParsingPhase.PRE_PROCESSING) {  // FUNCTION DE
 	;
 
 type_specification[boolean defer] 
-	:	NUM | TXT
+	returns [String t]
+	:	NUM {
+if(defer && this.PARSING_PHASE == ParsingPhase.PRE_PROCESSING) {
+    $t = EugeneConstants.NUM;
+}	
+	}
+	|	TXT {
+if(defer && this.PARSING_PHASE == ParsingPhase.PRE_PROCESSING) {
+    $t = EugeneConstants.TXT;
+}	
+	}
+	|	NUM LEFTSBR RIGHTSBR {
+if(defer && this.PARSING_PHASE == ParsingPhase.PRE_PROCESSING) {
+    $t = EugeneConstants.NUMLIST;
+}	
+	}
+	|	TXT LEFTSBR RIGHTSBR {
+if(defer && this.PARSING_PHASE == ParsingPhase.PRE_PROCESSING) {
+    $t = EugeneConstants.TXTLIST;
+}	
+	}
+	|	(BOOL|BOOLEAN) {
+if(defer && this.PARSING_PHASE == ParsingPhase.PRE_PROCESSING) {
+    $t = EugeneConstants.BOOLEAN;
+}	
+	}
 	;	
 
 list_of_parameters[boolean defer]
 	returns [List<NamedElement> parameters]
-	:	t=type_specification[defer] n=ID {
+	:	pt=type_specification[defer] n=ID {
 if(defer && this.PARSING_PHASE == ParsingPhase.PRE_PROCESSING) {
     if(null == $parameters) {
         $parameters = new ArrayList<NamedElement>();
@@ -2977,7 +3002,7 @@ if(defer && this.PARSING_PHASE == ParsingPhase.PRE_PROCESSING) {
     try {
         $parameters.add(
             this.interp.createFunctionParameter(
-                $t.text,      // type of the parameter
+                $pt.t,        // type of the parameter
                 $n.text));    // name of the parameter
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
