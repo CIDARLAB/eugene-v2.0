@@ -244,7 +244,7 @@ public class TestSuite {
 //		new TestSuite().test("./tests/imperative/functions/2-phase-interpreter");
 //		new TestSuite().test("./tests/imperative/functions/functions-calling-functions");
 //		new TestSuite().test("./tests/imperative/functions/scope-in-functions");
-		new TestSuite().test("./tests/imperative/functions/include-function-library");
+//		new TestSuite().test("./tests/imperative/functions/include-function-library");
 
 		// TODO!!
 	}
@@ -269,10 +269,12 @@ public class TestSuite {
 
 		// TESTING INDIVIDUAL FILES
 //		new TestSuite().test("./tests/EugeneLab/data-exchange/01-Rule-based-Design.eug");
+		new TestSuite().test("./tests/EugeneLab/imperative-features/11-functions.eug");
+		new TestSuite().test("./tests/EugeneLab/imperative-features/12-functions-and-arrays.eug");
 		
 
 		// TESTING ALL FILES
-		new TestSuite().testAll(ROOT_DIRECTORY);
+//		new TestSuite().testAll(ROOT_DIRECTORY);
 
 	}
 	
@@ -311,7 +313,7 @@ public class TestSuite {
 
 //		testBasics();
 		testImperativeFeatures();
-//		testEugeneLabTutorials();
+		testEugeneLabTutorials();
 		
 //		testHavingSomeFunWithEugene();
 		

@@ -30,7 +30,7 @@ tokens {
 	BOOLEAN = 'boolean';
 	IMAGE = 'Image';
 	PROPERTY = 'Property';
-	TYPE = 'Type';c
+	TYPE = 'Type';
 	PART_TYPE = 'PartType';
 	PART = 'Part';
 	DEVICE = 'Device';
@@ -744,8 +744,6 @@ public Object exec(String rule, int tokenIndex)
         }
 
 
-        NamedElement ret_el = null;
-        
         // we remember the current position in the script
         int oldPosition = this.input.index();
         // and we hold a temporary reference to the current
@@ -756,6 +754,9 @@ public Object exec(String rule, int tokenIndex)
         // SCOPING !
         this.interp.push(f);
         
+        
+        NamedElement ret_el = null;
+        String error_msg = null;
         try {
             // we point the current input token stream to the 
             // token stream from that we've read the function
@@ -776,12 +777,13 @@ public Object exec(String rule, int tokenIndex)
             this.list_of_statements(false);
             
         } catch(RecognitionException re) {
-            printError(re.getLocalizedMessage());	    
+            // if a syntax error was detected, then
+            // we store the error message in a string
+            error_msg = re.getLocalizedMessage();	
+
         } catch(EugeneReturnException ere) {
-            
             // a return statement has been encountered
             ret_el = ere.getReturnValue();
-            
         }
         
         // and we need to cleanup the function's stack
@@ -793,6 +795,13 @@ public Object exec(String rule, int tokenIndex)
         this.input = tmp;
         this.input.seek(oldPosition);
 
+        // if an error occured (e.g. syntax error),
+        // then we print the error message and
+        // exit
+        if(error_msg != null) {
+            printError(error_msg);
+        }
+        
         return ret_el;
 
         /*
@@ -820,7 +829,7 @@ if(null == this.interp) {
     this.interp = new Interp(new Sparrow());
 }
 }
-	:	(statement[defer] | function_definition[true])* EOF!
+	:	(statement[defer] | function_definition[true])* EOF
 	;
 
 
@@ -962,7 +971,7 @@ numlistdecl[boolean defer]
 	:	ID
 		{
 		if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-			declareVariableNoValue($ID.text, EugeneConstants.TXTLIST);
+			declareVariableNoValue($ID.text, EugeneConstants.NUMLIST);
 			$varname = $ID.text;
 		}
 		} (COMMA numlistdecl[defer])?

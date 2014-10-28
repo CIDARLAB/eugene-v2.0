@@ -1,0 +1,16 @@
+// this is a test
+// and another one
+num[] min_of(num[] arr)
+{
+    num size_arr = SIZE(arr);
+    println(size_arr);
+    
+    num[] rev;
+    for(num i=0; i<size_arr; i=i+1) {    
+    	rev[i] = 1;
+    }    
+    return rev;
+}
+
+num[] arr = [1, 2, 3, 4];
+min_of(arr);

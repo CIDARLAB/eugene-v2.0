@@ -19,6 +19,7 @@ Collection vars01 (
 	boolean t = true,
 	boolean f = false
 );
+println(vars01);
 
 /*------------------------------------
  * Collections of Biological Components
@@ -29,6 +30,7 @@ Collection col1 (
     PT p1(.seq("ATCG")),
     PT p2(.seq("TCGA"))    
 );  
+println(col1);
 
 Collection col2 (
     Property seq(txt),
@@ -36,6 +38,7 @@ Collection col2 (
     PT p2(.seq("TCGA")),
     PT p3(.seq("CGAT"))    
 );  
+println(col2);
 
 /*------------------------------------
  * Nested Collections
@@ -57,12 +60,14 @@ Collection nc01 (
 		)
 	)
 );
+println(nc01);
 
 // union two collections into one
 Collection nc02(
     col1, 
     col2
 );
+println(nc02);
 
 Collection nc03(
     nc01,
@@ -71,8 +76,4 @@ Collection nc03(
     col2,
     nc01.prop1
 );
-
-
-
-
- 
+println(nc03);

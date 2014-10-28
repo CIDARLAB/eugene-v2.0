@@ -286,6 +286,7 @@ public class Comparator {
 			return this.compareTypes(v_lhs, rhs);
 			
 		} else if(lhs instanceof Variable) {
+			
 			// first, we get the type of the LHS and 
 			// derive the type of the indexed element
 			String type = null;

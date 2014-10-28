@@ -1,0 +1,50 @@
+num a = 1;
+num b = 2;
+
+// function definition
+// -------------------
+// Syntax: (<return-type>)? <function-name> ( (<list-of-parameters>)? ) {
+//     (statement)+
+// }
+
+// - a function w/o return-type and w/o parameters
+print_hello() 
+{
+    println("Hello!");
+}
+
+// - a function w/o return type and w/ parameters
+print_text(txt to_print) 
+{
+    println(to_print);
+}
+
+// -- a function w/ return type and w/o parameters
+num get_one()
+{
+    return 1;
+}
+
+// - a function w/ return type and w/ parameters
+num add(num a, num b)
+{
+    println(a, " + ", b, " = ", a+b);
+    return a + b;
+}
+
+
+// function call
+// -------------
+// Syntax: <function-name> ( (<list-of-expressions>)? ) ;
+//
+// In a function call, Eugene first evaluates if the correct number 
+// of parameter values is specified and then compares the types of the 
+// parameter value against the types of the function parameters.
+//
+
+
+// Examples of function calls:
+print_hello();
+print_text("Hello");
+get_one();
+add(1, 2);
