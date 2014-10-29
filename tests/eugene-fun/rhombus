@@ -61,7 +61,7 @@ printRhombus_recursive(num n)
 }
 
 println("*** LOOPS ***");
-//printRhombus_loops(99);
+//printRhombus_loops(MAX_N);
 
 println("*** RECURSIVE ***");
 printRhombus_recursive(1);

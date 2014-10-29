@@ -243,7 +243,7 @@ public class EndToEndTestSuite {
 //		new EndToEndTestSuite().test("./tests/imperative/functions/function-call-as-parameters");		
 //		new EndToEndTestSuite().test("./tests/imperative/functions/2-phase-interpreter");
 //		new EndToEndTestSuite().test("./tests/imperative/functions/functions-calling-functions");
-//		new EndToEndTestSuite().test("./tests/imperative/functions/scope-in-functions");
+		new EndToEndTestSuite().test("./tests/imperative/functions/scope-in-functions");
 //		new EndToEndTestSuite().test("./tests/imperative/functions/include-function-library");
 
 		// TODO!!
@@ -271,11 +271,11 @@ public class EndToEndTestSuite {
 //		new EndToEndTestSuite().test("./tests/EugeneLab/data-exchange/01-Rule-based-Design.eug");
 //		new EndToEndTestSuite().test("./tests/EugeneLab/imperative-features/11-functions.eug");
 //		new EndToEndTestSuite().test("./tests/EugeneLab/imperative-features/12-functions-and-arrays.eug");
-//		new EndToEndTestSuite().test("./tests/EugeneLab/sequence-shenanigans/04-constraint-number-of-occurrences.eug");
+		new EndToEndTestSuite().test("./tests/EugeneLab/sequence-shenanigans/04-constraint-number-of-occurrences.eug");
 		
 
 		// TESTING ALL FILES
-		new EndToEndTestSuite().testAll(ROOT_DIRECTORY);
+//		new EndToEndTestSuite().testAll(ROOT_DIRECTORY);
 
 	}
 	
@@ -312,10 +312,10 @@ public class EndToEndTestSuite {
 	public static void main(String[] args) 
 			throws EugeneException {
 
-		testBasics();
+//		testBasics();
 		testImperativeFeatures();
-		testEugeneLabTutorials();
-		testHavingSomeFunWithEugene();
+//		testEugeneLabTutorials();
+//		testHavingSomeFunWithEugene();
 		
 //		testDataExchange();
 //		testRules();

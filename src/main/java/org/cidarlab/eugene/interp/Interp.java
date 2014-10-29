@@ -1330,7 +1330,6 @@ public class Interp {
 			throws EugeneException {
 
 		NamedElement ne = null;
-//		System.out.println("[Interp.get] -> " + name);
 
 		// if we're not in the GLOBAL scope,
 		if(!this.stack.isEmpty()) {
@@ -1413,6 +1412,7 @@ public class Interp {
 	public boolean contains(String name) {
 
 		boolean bContains = false;
+		
 		try {
 			
 			if(!this.stack.isEmpty()) {
@@ -1423,11 +1423,16 @@ public class Interp {
 					if(bContains == false) {
 						bContains = se.contains(name);
 					}
+					
+					// if we've popped a function from the stack, 
+					// then we do not pop further elements.
+					if(se instanceof FunctionInstance) {
+						break;
+					}
 				}
 				
-				/*
-				 * we need to rebuild the old stack
-				 */
+				// since we were messing around with the stack, we 
+				// need to rebuild it
 				while(tmp.size() > 0) {
 					this.stack.push(tmp.pop());
 				}
