@@ -63,17 +63,6 @@ println(sequence);
 sequence = generate_constraint_random_sequence([1000, 1000, 1000, 1000]);
 println("*** DONE with 10 to the 3 ***");
 
-/****
-sequence = generate_constraint_random_sequence([10000, 10000, 10000, 10000]);
-println("*** DONE with 10 to the 4 ***");
-
-sequence = generate_constraint_random_sequence([100000, 100000, 100000, 100000]);
-println("*** DONE with 10 to the 5 ***");
-
-sequence = generate_constraint_random_sequence([1000000, 1000000, 1000000, 1000000]);
-println("*** DONE with 10 to the 6 ***");
- ****/
-
 /*
  *  now, we define a function that can generate a given number 
  *  of random sequences with given constraints on the number of 
@@ -93,8 +82,8 @@ txt[] generate_constraint_sequences(num nr_of_seqs, num[] max_occurrences)
 
 // in the following, we generate 100 DNA sequences in that each nucleotide
 // can appear at maximum 10 times. 
-txt[] seqs = generate_constraint_sequences(100, [10, 10, 10, 10]);
+txt[] seqs = generate_constraint_sequences(100, [100, 100, 100, 100]);
 num nr_of_seqs = SIZE(seqs);
 if(nr_of_seqs != 100) {exit;} 
-println(seqs);
+println("**** DONE ****");
  

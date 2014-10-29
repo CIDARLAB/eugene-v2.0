@@ -229,13 +229,13 @@ public class EndToEndTestSuite {
 	private static void testImperativeFeatures() 
 			throws EugeneException {
 		// CONDITIONAL BRANCHES
-//		new EndToEndTestSuite().testAll("./tests/imperative/branches");
+		new EndToEndTestSuite().testAll("./tests/imperative/branches");
 
 		// FOR LOOPS
-//		new EndToEndTestSuite().testAll("./tests/imperative/loops");
+		new EndToEndTestSuite().testAll("./tests/imperative/loops");
 		
 		// FUNCTIONS
-//		new EndToEndTestSuite().testAll("./tests/imperative/functions");
+		new EndToEndTestSuite().testAll("./tests/imperative/functions");
 
 		// individual tests		
 //		new EndToEndTestSuite().test("./tests/imperative/functions/function-syntax");
@@ -243,7 +243,7 @@ public class EndToEndTestSuite {
 //		new EndToEndTestSuite().test("./tests/imperative/functions/function-call-as-parameters");		
 //		new EndToEndTestSuite().test("./tests/imperative/functions/2-phase-interpreter");
 //		new EndToEndTestSuite().test("./tests/imperative/functions/functions-calling-functions");
-		new EndToEndTestSuite().test("./tests/imperative/functions/scope-in-functions");
+//		new EndToEndTestSuite().test("./tests/imperative/functions/scope-in-functions");
 //		new EndToEndTestSuite().test("./tests/imperative/functions/include-function-library");
 
 		// TODO!!
@@ -313,8 +313,8 @@ public class EndToEndTestSuite {
 			throws EugeneException {
 
 //		testBasics();
-		testImperativeFeatures();
-//		testEugeneLabTutorials();
+//		testImperativeFeatures();
+		testEugeneLabTutorials();
 //		testHavingSomeFunWithEugene();
 		
 //		testDataExchange();
