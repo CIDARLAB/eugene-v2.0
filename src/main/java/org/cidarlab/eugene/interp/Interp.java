@@ -61,7 +61,8 @@ import org.cidarlab.eugene.dom.imp.StackElement;
 import org.cidarlab.eugene.dom.imp.container.EugeneArray;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.dom.imp.container.EugeneContainer;
-import org.cidarlab.eugene.dom.imp.functions.Function;
+import org.cidarlab.eugene.dom.imp.functions.FunctionInstance;
+import org.cidarlab.eugene.dom.imp.functions.FunctionPrototype;
 import org.cidarlab.eugene.dom.imp.loops.Loop;
 import org.cidarlab.eugene.dom.interaction.Interaction;
 import org.cidarlab.eugene.dom.rules.ArrangementConstraint;
@@ -1349,7 +1350,7 @@ public class Interp {
 
 				// if we've popped a function from the stack, 
 				// then we do not pop further elements.
-				if(se instanceof Function) {
+				if(se instanceof FunctionInstance) {
 					break;
 				}
 			}
@@ -1866,7 +1867,7 @@ public class Interp {
 	 * 
 	 * @throws EugeneException
 	 */
-	public void cleanupFunction(Function f) 
+	public void cleanupFunction(FunctionInstance f) 
 			throws EugeneException {
  
 		if(!this.stack.isEmpty()) {
@@ -2408,17 +2409,18 @@ public class Interp {
 		
 		// if the function has not been defined, then we instantiate the 
 		// Function class and set its variables properly
-		Function f = new Function(
-				return_type,    // the function's return type 
-				name,           // the function's name
-				parameters,     // the function's list of parameters
-				statements,     // the function's statements ("Function Body")
-				tokenstream,    // the stream of tokens in that the function exists
-				this.symbols);  // a reference to the global symbol tables
+		FunctionPrototype fp = 
+				new FunctionPrototype(
+						return_type,    // the function's return type 
+						name,           // the function's name
+						parameters,     // the function's list of parameters
+						statements,     // the function's statements ("Function Body")
+						tokenstream,    // the stream of tokens in that the function exists
+						this.symbols);  // a reference to the global symbol tables
 		
 		
 		// finally, we store the Function object in the symbol tables
-		this.symbols.putFunction(f);
+		this.symbols.putFunction(fp);
 	}
 	
 	/**
@@ -2456,25 +2458,45 @@ public class Interp {
 	}
 	
 	/**
-	 * The getFunction/1 method returns the Function object
-	 * for a given name. It returns NULL if the function 
-	 * does not exist. 
+	 * The executeFunction/2 method gets as input the name of the function that 
+	 * is being called and a list of parameter values (lopv). The executeFunction/2
+	 * instantiates the FunctionPrototype (if it exists) with the given 
+	 * parameter values.
 	 * 
-	 * @param name  ... the name of the function
-	 * @return
-	 * @throws EugeneException
+	 * @param name ... the name of the function prototype
+	 * @param lopv ... a list of parameter values passed to the function
+	 * 
+	 * @return an instance of the Function prototype ready for execution.
 	 */
-	public Function getFunction(String name) {
-		Function f = this.symbols.getFunction(name);
-		if(f != null) {
-			return (Function)this.cloner.deepClone(f);
+	public FunctionInstance instantiateFunction(String name, List<NamedElement> lopv) 
+			throws EugeneException {
+		FunctionPrototype fp = this.symbols.getFunction(name);
+		if(fp != null) {
+			
+            // then, we compare the types of the function parameters 
+            // with the types of the parameter values
+			try {
+				this.compareParameterTypes(fp.getParameters(), lopv);
+			} catch(EugeneException ee) {
+				throw new EugeneException(ee.getLocalizedMessage());
+			}
+
+            // if everything's fine at this point in time, then we 
+            // instantiate the function by initializing its parameters with 
+			// the specified parameter values (if there are any)
+			try {
+				return fp.instantiate(lopv);
+			} catch(EugeneException ee) {
+				throw new EugeneException(ee.getLocalizedMessage());
+			}
 		}
-		return null;
+		
+		throw new EugeneException("The function  " + name + " has not been defined!");
 	}
 
 	public void printFunctions() {
-		Collection<Function> fs = this.symbols.getFunctions();
-		for(Function f : fs) {
+		Collection<FunctionPrototype> fs = this.symbols.getFunctions();
+		for(FunctionPrototype f : fs) {
 			System.out.println(f);
 		}
 	}
@@ -2494,7 +2516,7 @@ public class Interp {
 			Enumeration<StackElement> els = this.stack.elements();
 			StackElement se = null;
 			while((se = els.nextElement()) != null) {
-				if(se instanceof Function) {
+				if(se instanceof FunctionInstance) {
 					return true;
 				}
 			}

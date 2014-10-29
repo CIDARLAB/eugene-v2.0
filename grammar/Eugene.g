@@ -193,7 +193,7 @@ import org.cidarlab.eugene.dom.rules.exp.*;
 import org.cidarlab.eugene.dom.imp.*;
 import org.cidarlab.eugene.dom.imp.container.*;
 import org.cidarlab.eugene.dom.imp.loops.Loop;
-import org.cidarlab.eugene.dom.imp.functions.Function;
+import org.cidarlab.eugene.dom.imp.functions.*;
 import org.cidarlab.eugene.constants.EugeneConstants.ParsingPhase;
 
 import org.antlr.runtime.*;
@@ -709,41 +709,16 @@ public Object exec(String rule, int tokenIndex)
         this.input.seek(oldPosition);
     }
     
-    public NamedElement call_function(String name, List<NamedElement> parameter_values)
+    public NamedElement call_function(String name, List<NamedElement> lopv)
         throws EugeneException {
     
         // first, we ask the interpreter if the function exists
         // and let it return the function object
-        Function f = this.interp.getFunction(name);
-        if(null == f) {
+        FunctionInstance fi = this.interp.instantiateFunction(name, lopv);
+        if(null == fi) {
             printError("The function " + name + " is not defined!");
         }
         
-        // then, we compare the types of the function parameters 
-        // with the types of the parameter values
-        try {
-            this.interp.compareParameterTypes(
-                    f.getParameters(), 
-                    parameter_values);
-        } catch(EugeneException ee) {
-            printError(ee.getLocalizedMessage());
-        }
-        
-
-        // if everything's fine at this point in time, then we 
-        // execute the function.
-            
-        // first, we initialize its parameters with the specified 
-        // parameter values (if there are any)
-        if(null != parameter_values) {
-	    try {
-	        f.initialize(parameter_values);
-	    } catch(EugeneException ee) {
-	        throw new EugeneException(ee.getLocalizedMessage());
-	    }
-        }
-
-
         // we remember the current position in the script
         int oldPosition = this.input.index();
         // and we hold a temporary reference to the current
@@ -752,7 +727,7 @@ public Object exec(String rule, int tokenIndex)
         
         // we put the function onto the stack
         // SCOPING !
-        this.interp.push(f);
+        this.interp.push(fi);
         
         
         NamedElement ret_el = null;
@@ -760,7 +735,7 @@ public Object exec(String rule, int tokenIndex)
         try {
             // we point the current input token stream to the 
             // token stream from that we've read the function
-            this.input = f.getTokenStream();
+            this.input = fi.getPrototype().getTokenStream();
             
             // since a function can be defined "ahead" 
             // of the current position in the script,
@@ -771,7 +746,7 @@ public Object exec(String rule, int tokenIndex)
             // then, we let the input point to the first statement
             // of the function
             this.input.seek(
-                 f.getStatements().getTokenIndex());
+                 fi.getPrototype().getStatements().getTokenIndex());
             
             // we execute all statements of the function
             this.list_of_statements(false);
@@ -787,7 +762,7 @@ public Object exec(String rule, int tokenIndex)
         }
         
         // and we need to cleanup the function's stack
-        this.interp.cleanupFunction(f);
+        this.interp.cleanupFunction(fi);
 
         // finally we restore everything to what it was 
         // before the function call and 

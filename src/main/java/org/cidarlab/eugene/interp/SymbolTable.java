@@ -1,7 +1,7 @@
 package org.cidarlab.eugene.interp;
 
 import org.cidarlab.eugene.dom.*;
-import org.cidarlab.eugene.dom.imp.functions.Function;
+import org.cidarlab.eugene.dom.imp.functions.FunctionPrototype;
 import org.cidarlab.eugene.dom.rules.Rule;
 
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class SymbolTable {
 	/*
 	 * also, we hold references to all defined functions
 	 */
-	private Map<String, Function> functions;
+	private Map<String, FunctionPrototype> functions;
 	
 	public Map<String, Variable> variables;
 
@@ -59,7 +59,7 @@ public class SymbolTable {
 		this.symbols = new HashMap<String, NamedElement>();
 		this.type_components = new HashMap<ComponentType, Set<Component>>();
 		this.variables = new HashMap<String, Variable>();
-		this.functions = new HashMap<String, Function>();
+		this.functions = new HashMap<String, FunctionPrototype>();
 	}
 	
 	/**
@@ -286,7 +286,7 @@ public class SymbolTable {
 	 * 
 	 * @return
 	 */
-	public Function getFunction(String name) {
+	public FunctionPrototype getFunction(String name) {
 		return this.functions.get(name);
 	}
 	
@@ -297,7 +297,7 @@ public class SymbolTable {
 	 * @param f ... the Function object
 	 * 
 	 */
-	public void putFunction(Function f) {
+	public void putFunction(FunctionPrototype f) {
 		this.functions.put(f.getName(), f);
 	}
 	
@@ -320,7 +320,15 @@ public class SymbolTable {
 		return this.functions.containsKey(name);
 	}
 	
-	public Collection<Function> getFunctions() {
+	/**
+	 * The getFunctions/0 method returns all defined function 
+	 * prototypes in a Eugene script (including the ones 
+	 * defined in an included file (include)).
+	 * 
+	 * @return ... a collection of FunctionPrototypes objects
+	 *             representing all defined functions
+	 */
+	public Collection<FunctionPrototype> getFunctions() {
 		return this.functions.values();
 	}
 }

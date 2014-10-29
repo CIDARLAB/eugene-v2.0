@@ -1,0 +1,65 @@
+txt[] nucleotides = ["A", "T", "C", "G"];
+  
+num get_random_number(num min, num max) {
+  return RANDOM(min, max);
+}
+
+num get_sum(num[] arr) {
+  num arr_size = SIZE(arr);
+  
+  num sum = 0;
+  for(num i=0; i<arr_size; i=i+1) {
+      sum = sum + arr[i];
+  }
+  
+  return sum;
+}
+
+
+txt generate_random_sequence(num[] max_occurrences) {
+
+  // the max. length must be the sum of the max_occurrences
+  num length = get_sum(max_occurrences);
+  
+  println("[generate_random_sequence] -> ", length);
+
+  txt seq;
+  for(num i=0; i<length; i=i+1) {
+    
+    num r = get_random_number(0, 3);
+    
+    if(max_occurrences[r] - 1 < 0) {
+        
+        boolean bTooMany = true;
+        while(bTooMany == true) {
+            r=get_random_number(0, 3);
+            
+            if(max_occurrences[r] - 1 < 0) {
+                bTooMany = false;
+            }
+        }
+    }
+    max_occurrences[r] = max_occurrences[r] - 1;
+    
+    seq = seq + nucleotides[r];
+  }
+  
+  return seq;  
+}
+
+
+txt sequence = generate_random_sequence([1, 1, 1, 1]);
+println(sequence);
+
+sequence = generate_random_sequence([2, 2, 2, 2]);
+println(sequence);
+
+sequence = generate_random_sequence([10, 10, 10, 10]);
+println(sequence);
+
+sequence = generate_random_sequence([100, 100, 100, 100]);
+println(sequence);
+
+sequence = generate_random_sequence([1000, 1000, 1000, 1000]);
+println(sequence);
+

@@ -13,19 +13,23 @@ import org.cidarlab.eugene.interp.SymbolTable;
 
 import com.rits.cloning.Cloner;
 
-public class Function 
-		extends ImperativeFeature {
+/**
+ * The FunctionPrototype class represents a Eugene function definition.
+ * It holds the name of the function, its return type, list of parameters, 
+ * a reference to the global symbol tables, as well as the tokens and 
+ * the tokenstream the function was defined (due to include statements).
+ * 
+ * Hence, in the Eugene symbol table, we only store the the Function prototype 
+ * and if a function gets invoked, then we instantiate the function 
+ * prototype (see the FunctionExecution class for more details).
+ * 
+ * @author Ernst Oberortner
+ */
+public class FunctionPrototype 
+		extends NamedElement {
 
 	private static final long serialVersionUID = 2662476634283408818L;
 
-	// los ... List of Statements
-	private Token los;
-	
-	// variable to keep track of the 
-	// position in the Eugene script where the
-	// function call takes place
-	private int callPosition;
-	
 	// the return type of the function
 	private String return_type;
 	
@@ -42,14 +46,11 @@ public class Function
 	// also, a function has a reference to the global symbol tables
 	private SymbolTable global_symbols;
 	
-//	// in addition, a function has local symbol tables
-//	private SymbolTable local_symbols;
-	
-	// since parameters are passed by-value in Eugene, we also 
-	// create an instance of the Cloner
+	// also we have a cloner object which eases the passing 
+	// of the parameter values to the function instance
 	private Cloner cloner;
 	
-	public Function(
+	public FunctionPrototype(
 			String return_type, String name, List<NamedElement> parameters, Token statements,
 			TokenStream stream,
 			SymbolTable global_symbols) {
@@ -62,7 +63,6 @@ public class Function
 		
 		this.global_symbols = global_symbols;
 		
-		// the cloner
 		this.cloner = new Cloner();
 	}
 	
@@ -95,29 +95,55 @@ public class Function
 	 * 
 	 * @throws EugeneException
 	 */
-	public void initialize(List<NamedElement> parameter_values)
+	public FunctionInstance instantiate(List<NamedElement> parameter_values)
 			throws EugeneException {
 		
 		int i = 0;
 		
-		// we iterate over the parameter values
-		for(NamedElement pv : parameter_values) {
+		// here, we instance the function prototype. 
+		// we give it a name (following the convention <prototype-name>_<current-time-millis>)
+		// and provide a reference to the instance's prototype, i.e. this.
+		FunctionInstance fi = new FunctionInstance(
+				this.getName()+"_"+System.nanoTime(), 
+				this);
+		
+		// iff there are parameter values specified, then
+		// we deep clone them (pass by value) and 
+		// put them into the instance's local symbol tables
+		if(null != parameter_values) {
 			
-			NamedElement p = this.getParameters().get(i++);
-			
-			// function calls in Eugene are done by-value.
-			// therefore we create a local variable lv 
-			// that is a deep clone of the parameter value
-			NamedElement lv = cloner.deepClone(pv);
-			
-			// and assign it the name of the corresponding 
-			// parameter
-			lv.setName(p.getName());
-			
-			// finally, we store the parameter value with the 
-			// name of the parameter into the symbol tables
-			this.put(lv);
+			// we iterate over the parameter values
+			for(NamedElement pv : parameter_values) {
+				
+				NamedElement p = this.getParameters().get(i++);
+				
+				// function calls in Eugene are done by-value.
+				// therefore we create a local variable lv 
+				// that is a deep clone of the parameter value
+				NamedElement lv = cloner.deepClone(pv);
+				
+				// and assign it the name of the corresponding 
+				// parameter
+				lv.setName(p.getName());
+				
+				// finally, we store the parameter value with the 
+				// name of the parameter into the symbol tables
+				fi.put(lv);
+			}
 		}
+		
+		// lastly, we return the function instance
+		return fi;
+	}
+
+	/**
+	 * The get/1 method returns the NamedElement object
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public NamedElement get(String name) {
+		return this.global_symbols.get(name);
 	}
 
 	@Override
@@ -144,36 +170,6 @@ public class Function
 	}
 
 
-	@Override
-	public NamedElement get(String name) {
-		
-		NamedElement ne = this.getSymbols().get(name);
-		if(null == ne) {
-			ne = this.global_symbols.get(name);
-		}
-		return ne;
-	}
-
-	@Override
-	public boolean contains(String name) {
-		return this.getSymbols().contains(name);
-	}
-
-	@Override
-	public void put(NamedElement ne) 
-			throws EugeneException {
-
-		if(null != ne && !this.contains(ne.getName())) {
-			this.getSymbols().put(ne);
-		}
-	}
-
-
-	@Override
-	public void clear() {
-		this.getSymbols().clear();
-	}
-	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
