@@ -45,6 +45,7 @@ import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.constants.EugeneConstants.ParsingPhase;
+import org.cidarlab.eugene.data.genbank.GenbankImporter;
 import org.cidarlab.eugene.data.pigeon.Pigeonizer;
 import org.cidarlab.eugene.data.sbol.SBOLExporter;
 import org.cidarlab.eugene.data.sbol.SBOLImporter;
@@ -97,6 +98,7 @@ public class Interp {
 	private SparrowAdapter spAdapter;
 	
 	private Pigeonizer pigeon;
+	private GenbankImporter genbanker;
 	
 	private Cloner cloner;
 	
@@ -713,103 +715,6 @@ public class Interp {
 		// enumerated device since it should be the task 
 		// of the user what to do with those devices.
 		return ec;
-	}
-	
-//	private void doQueryTests() 
-//			throws EugeneException {
-//		int inters = -1;
-//		int reps = -1;
-//		int inds = -1;
-//		try {
-//			/*
-//			 * retrieve all interactions
-//			 */
-//			Set<Interaction> soi = this.sparrow.getInteractions();
-//			inters = soi.size();
-//		} catch(SparrowException spe) {
-//			throw new EugeneException(spe.toString());
-//		}
-//		
-//
-//		try {
-//			/*
-//			 * retrieve all REPRESSES interactions
-//			 */
-//			Set<Interaction> soi = this.sparrow.getInteractions(InteractionType.REPRESSES);
-//			reps = soi.size();
-//		} catch(SparrowException spe) {
-//			throw new EugeneException(spe.toString());
-//		}
-//		
-//		try {
-//			/*
-//			 * retrieve all INDUCES interactions
-//			 */
-//			Set<Interaction> soi = this.sparrow.getInteractions(InteractionType.INDUCES);
-//			inds = soi.size();
-//		} catch(SparrowException spe) {
-//			throw new EugeneException(spe.toString());
-//		}
-//		
-//		if(inters != reps + inds) {
-//			throw new EugeneException("TEST NOT PASSED!");
-//		}
-//		
-//		System.exit(1);
-//
-//		try {
-//			List<Object> loo = this.sparrow.query("union", null);
-//			System.out.println(loo.size());
-//			
-//		} catch(SparrowException spe) {
-//			throw new EugeneException(spe.toString());
-//		}
-//
-//		try {
-//			List<Object> loo = this.sparrow.query("union2", null);
-//			System.out.println(loo);
-//			
-//		} catch(SparrowException spe) {
-//			throw new EugeneException(spe.toString());
-//		}
-//
-//		try {
-//			List<Object> loo = this.sparrow.query("test", null);
-//			System.out.println(loo);
-//			
-//		} catch(SparrowException spe) {
-//			throw new EugeneException(spe.toString());
-//		}
-//
-//		try {
-//			List<Object> loo = this.sparrow.query("test01", null);
-//			System.out.println(loo);
-//		
-//		} catch(SparrowException spe) {
-//			throw new EugeneException(spe.toString());
-//		}
-//
-//		System.out.println("executing ...");
-//		try {
-//			this.sparrow.fireRules("tester01.drl");
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		System.exit(1);
-//	}
-	
-	private void storeRuleCompliantDevices(Set<Device> sod) 
-			throws EugeneException {
-		if(null!=sod && !sod.isEmpty()) {
-			for(Device device : sod) {
-				try {
-//					System.out.println(device);
-					this.sparrow.insertFact(device);
-				} catch(SparrowException spe) {
-					throw new EugeneException(spe.getMessage());
-				}
-			}
-		}
 	}
 	
 	/**
@@ -2346,6 +2251,23 @@ public class Interp {
 	
 	public NamedElement importGenbank(String filename) 
 			throws EugeneException {
+		
+		if(filename.startsWith("\"")) {
+			filename = filename.substring(1, filename.length());
+		} 
+		if(filename.endsWith("\"")) {
+			filename = filename.substring(0, filename.length() - 1);
+		}
+		
+		if(null == this.genbanker) {
+			this.genbanker = new GenbankImporter(this.symbols);
+		}
+		
+		try {
+			this.genbanker.importGenbank(filename);
+		} catch(EugeneException ee) {
+			throw new EugeneException(ee.getLocalizedMessage());
+		}
 		
 		return null;
 	}

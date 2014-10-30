@@ -1,0 +1,3 @@
+Genbank.import("./data/genbank/pJGIL023_colE1-amp-lacUV5_lox.gb");
+Genbank.import("./data/genbank/pJGIL024 colE1-amp-lacUV5 rox.gb");
+Genbank.import("./data/genbank/pJGIL031 p15a-cm-ptet Cre.gb");

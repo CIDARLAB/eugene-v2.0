@@ -104,6 +104,14 @@ public class EndToEndTestSuite {
 //
 		// PIGEON
 		new EndToEndTestSuite().test("./tests/data-exchange/pigeon");
+		
+		
+		// GENBANK
+		// - IMPORT
+		new EndToEndTestSuite().test("./tests/data-exchange/genbank/genbank-import");
+		
+		// - EXPORT
+		
 	}
 	
 	/*---------------------------------------------

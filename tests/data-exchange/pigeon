@@ -5,10 +5,9 @@ Property prop1(txt);
 Property repress(txt); 
 Property name(txt); 
 Property strength(num);
-Property PIGEON(txt);
 
-PartType Promoter(name, strength, PIGEON);
-PartType CDS(name, strength, repress, PIGEON);
+PartType Promoter(name, strength);
+PartType CDS(name, strength, repress);
 
 
 Promoter p0(.name("p0"), .strength(0), .PIGEON("p p0 1"));
@@ -32,12 +31,14 @@ CDS g6(.repress("p6"), .PIGEON("g g6 7"));
 CDS g7(.repress("p7"), .PIGEON("g g7 8"));
 CDS g8(.repress("p8"), .PIGEON("g g8 9"));
 CDS g9(.repress("p9"), .PIGEON("g g9 10"));
- 
+
+/*** 
 Device D01([CDS|Promoter]);
 lod = product(D01);
 println(lod);
 SBOL.visualize(lod);
 
+println("********** D01 -- DONE");
 
 Device D02([CDS|Promoter], [CDS|Promoter]);
 Rule R02_1(ON D02:
@@ -67,12 +68,21 @@ lod = product(D02);
 
 println(lod);
 SBOL.visualize(lod);
+println("********** D02 -- DONE");
 
 
-/*** 
+Device D03([CDS|Promoter], [CDS|Promoter], [CDS|Promoter]);
+lod = product(D03);
+println(lod);
+SBOL.visualize(lod);
+println("********** D03 -- DONE");
+
+
 Device D04([CDS|Promoter], [CDS|Promoter], [CDS|Promoter], [CDS|Promoter]);
 lod = product(D04);
 println(lod);
-pigeon (lod);
- ***/
+SBOL.visualize(lod);
+
+println("********** D04 -- DONE");
+***/
  

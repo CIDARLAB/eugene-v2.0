@@ -80,7 +80,9 @@ public class EugeneConstants {
 	public static final String STRICT = "strict";
 	public static final String FLEXIBLE = "flexible";
 
-	public static final String SEQUENCE_PROPERTY = "Sequence";
+	public static final String PIGEON_PROPERTY = "PIGEON";
+	public static final String SEQUENCE_PROPERTY = "SEQUENCE";
+	
 	public static final String SBOL_PART_TYPE = "SBOLPartType";
 	public static final String DISPLAY_ID_PROPERTY = "displayId";
 	public static final String URI_PROPERTY = "URI";

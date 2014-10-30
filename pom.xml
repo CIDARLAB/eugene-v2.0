@@ -54,6 +54,13 @@
             <id>Sonatype OSS Snapshot Repository</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
+        
+        <repository>
+        	<id>biojava-maven-repo</id>
+        	<name>BioJava repository</name>
+      		<url>http://www.biojava.org/download/maven/</url>           
+      	</repository>
+      
     </repositories>
   <dependencies>
   
@@ -113,9 +120,15 @@
 		
 		<!--  BioJava -->
 		<dependency>
-	      	<groupId>org.biojava</groupId>
-	      	<artifactId>core</artifactId>
-	      	<version>1.9.1</version>
+       	 	<groupId>org.biojava</groupId>
+        	<artifactId>biojava3-core</artifactId>
+        	<version>3.1.0</version>
+      	</dependency>
+      		
+		 <dependency>
+      		<groupId>org.biojava</groupId>
+      		<artifactId>core</artifactId>
+      		<version>1.9.0</version>
     	</dependency>
     
       </dependencies>

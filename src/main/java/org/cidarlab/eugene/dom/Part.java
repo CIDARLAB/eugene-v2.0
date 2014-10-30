@@ -24,6 +24,7 @@ package org.cidarlab.eugene.dom;
 
 import java.util.Iterator;
 
+import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.exception.EugeneException;
 
 public class Part 
@@ -33,12 +34,34 @@ public class Part
 	
 	public Part(PartType pt, String name) {
 		super(pt, name);
+		
+		this.predefinedProperties();
 	}
 
 	public Part(String sName, PartType pt) {
 		super(pt, sName);
+		
+		this.predefinedProperties();
 	}
 
+	/**
+	 * every part has two pre-defined properties:
+	 * - SEQUENCE
+	 * - PIGEON
+	 * 
+	 * both are of type txt
+	 */
+	private void predefinedProperties() {
+		if(this.getProperty(EugeneConstants.SEQUENCE_PROPERTY) == null) {
+			this.properties.add(new Property(EugeneConstants.SEQUENCE_PROPERTY, EugeneConstants.TXT));
+			this.getType().properties.add(new Property(EugeneConstants.SEQUENCE_PROPERTY, EugeneConstants.TXT));
+		}
+		
+		if(this.getProperty(EugeneConstants.PIGEON_PROPERTY) == null) {
+			this.properties.add(new Property(EugeneConstants.PIGEON_PROPERTY, EugeneConstants.TXT));
+			this.getType().properties.add(new Property(EugeneConstants.PIGEON_PROPERTY, EugeneConstants.TXT));
+		}
+	}
 
 	/**
 	 * In case of a part, we need to check if the part's part type 
@@ -52,6 +75,11 @@ public class Part
 			}
 		}
 		return (Property) null;
+	}
+	
+	@Override
+	public void setSequence(String seq) {
+		this.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY).setTxt(seq);
 	}
 
 
