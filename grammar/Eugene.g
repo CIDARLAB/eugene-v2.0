@@ -129,8 +129,8 @@ tokens {
 	STORE_LC = 'store';
 	STORE_UC = 'STORE';
 	
-	PIGEON_LC = 'pigeon';
-	PIGEON_UC = 'PIGEON';
+	VISUALIZE_LC = 'visualize';
+	VISUALIZE_UC = 'VISUALIZE';
 
 	EXIT_UC = 'EXIT';
 	EXIT_LC = 'exit';
@@ -2519,7 +2519,9 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 	|	(RANDOM_LC|RANDOM_UC) LEFTP rg=range[defer] RIGHTP {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
-        $element = this.interp.getRandom(rg.sor, rg.eor);
+        $element = this.interp.getRandom(
+                          $rg.sor, 
+                          $rg.eor);
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
     }
@@ -2722,15 +2724,22 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $e = $s.e;
 }	
 	}
-	|	p=pigeonStatement[defer]
 	|	i=importStatement[defer] {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $e = $i.e;
 }	
 	}
-// TODO:
-//	|	g=genbankStatement[defer]
-//	|	r=registryStatement[defer]
+	|	g=genbankStatement[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    $e = $g.e;
+}	
+	
+	}
+	|	r=registryStatement[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    $e = $r.e;
+}		
+	}
 	;
 	
 /*** include STATEMENT ***/
@@ -2773,6 +2782,8 @@ sbolStatement[boolean defer]
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $e = $i.e;
 }	
+	} | 	sbolVisualStatement[defer] {
+	
 	})
 	;
 
@@ -2802,88 +2813,77 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 }	
 	}
 	;	
-
-/*---------------------
- * GenBank
- *--------------------*/	
-/************** 
-genbankStatement[boolean defer] returns [NamedElement objElement]
-	:	GENBANK DOT (importToken=genbankImportStatement[defer] | genbankExportStatement[defer]) {
-if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING && importToken!=null) {
-    $objElement = $importToken.objElement;
-}	
-	}
-	;
-		
-genbankExportStatement[boolean defer] returns [NamedElement objElement] 
-	:	EXPORT LEFTP RIGHTP
-	;
 	
-genbankImportStatement[boolean defer] 
-        returns [NamedElement objElement]
-	:	(LC_IMPORT|UC_IMPORT) LEFTP RIGHTP {
-if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-
-}
-	}
-	|	(LC_IMPORT|UC_IMPORT) LEFTP typeToken=ID COMMA partToken=STRING RIGHTP {
-if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-
-}	
-	} 
-	;	
-****************/
-
-/*----------------------
- * Pigeon / SBOL Visual
- *----------------------*/
-pigeonStatement[boolean defer]
-	:	(PIGEON_LC|PIGEON_UC) LEFTP idToken=ID RIGHTP {
+sbolVisualStatement[boolean defer]
+	:	(VISUALIZE_LC|VISUALIZE_UC) LEFTP idToken=ID RIGHTP {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
-        this.interp.pigeon($idToken.text);
+        this.interp.visualSBOL($idToken.text);
     } catch(EugeneException ee) {
         printError(ee.getMessage());
     }
 }		
-	}
+	}	
 	;	
+
+/*---------------------
+ * GenBank
+ *--------------------*/	
+genbankStatement[boolean defer] 
+	returns [NamedElement e]
+	:	GENBANK DOT (i=genbankImportStatement[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    $e = $i.e;
+}	
+	}
+	|	genbankExportStatement[defer]) {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    $e = null;
+}	
+	}
+	;
+		
+genbankExportStatement[boolean defer] 
+	:	(EXPORT_UC|EXPORT_LC) LEFTP RIGHTP
+	;
+	
+genbankImportStatement[boolean defer] 
+        returns [NamedElement e]
+	:	(IMPORT_LC|IMPORT_UC) LEFTP f=STRING RIGHTP {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    try {
+        $e = this.interp.importGenbank($f.text);
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    } 
+}
+	}
+	|	(IMPORT_LC|IMPORT_UC) LEFTP typeToken=ID COMMA partToken=STRING RIGHTP {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    // TODO!!!
+}	
+	} 
+	;	
+
 
 /*---------------------
  * iGEM partsregistry
  *---------------------*/
-/***** 
 registryStatement[boolean defer]
-	:	REGISTRY DOT (LC_IMPORT|UC_IMPORT) LEFTP nameToken=STRING RIGHTP {
+	returns [NamedElement e]
+	:	REGISTRY DOT (IMPORT_LC|IMPORT_UC) LEFTP n=STRING RIGHTP {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 
-    String name = $nameToken.text;
-    if(null != name) {
-    
-        // remove the double quotas
+    try {
+        String name = $n.text;
         name = name.substring(1, name.length()-2);
-        
-        if(null == this.registryImporter) {
-            this.registryImporter = new SBOLRegistryImporter();
-        }
-        
-        try {
-            List<Component> lst = this.registryImporter.importComponent($nameToken.text);
-            if(null!=lst && !lst.isEmpty()) {
-                for(Component component : lst) {
-                    this.interp.put(component);
-                }
-            } else {
-                throw new EugeneException("Cannot import "+name+"!");
-            }
-        } catch(EugeneException ee) {
-            printError(ee.getMessage());
-        }
+        $e = this.interp.importRegistry(name);
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());    
     }
 }		
 	}	
 	;
-****/
 
 
 testStatements[boolean defer]
@@ -3038,7 +3038,7 @@ function_call[boolean defer]
 	returns [NamedElement e]
 	:	udf=call_user_defined_function[defer] {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-    $e = udf.e;
+    $e = $udf.e;
 }	
 	}
 	;

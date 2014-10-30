@@ -65,7 +65,8 @@ public class Eugene {
 	 */
 	private BufferedWriter writer = null;
 
-	private String ROOT_DIRECTORY = ".";
+	public static String ROOT_DIRECTORY = ".";
+	public static String IMAGES_DIRECTORY = "./exports/pigeon/";
 	
 	/*--------------------------------------
 	 * EUGENE CONSTRUCTORS
@@ -129,7 +130,7 @@ public class Eugene {
 	 * @param dir ... the desired root directory of Eugene
 	 */
 	public void setRootDirectory(String dir) {
-		this.ROOT_DIRECTORY = dir;
+		ROOT_DIRECTORY = dir;
 	}
 	
 	
@@ -139,7 +140,7 @@ public class Eugene {
 	 * @return ... Eugene's current root directory
 	 */
 	public String getRootDirectory() {
-		return this.ROOT_DIRECTORY;
+		return ROOT_DIRECTORY;
 	}
 	
 	

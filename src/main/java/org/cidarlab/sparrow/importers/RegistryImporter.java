@@ -2,6 +2,7 @@ package org.cidarlab.sparrow.importers;
 
 import java.net.URL;
 
+import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.Component;
 import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.Part;
@@ -19,18 +20,21 @@ public class RegistryImporter
 	}
 
 	@Override
-	public void importData(String pattern) 
+	public NamedElement importData(String pattern) 
 			throws ImportException {
 		try {
 			Component c = (Component)SBOLImporter.importSBOL(new URL(URL_PREFIX+pattern));
 			if(null != c) {
-				System.out.println(c.getName()+" -> "+c.getClass());
 				
-				if(c instanceof Device) {
-					importDevice((Device)c);
-				} else if(c instanceof Part) {
-					this.session.insert(c);
-				}
+				return c;
+				
+//				System.out.println(c.getName()+" -> "+c.getClass());
+//				
+//				if(c instanceof Device) {
+//					importDevice((Device)c);
+//				} else if(c instanceof Part) {
+//					this.session.insert(c);
+//				}
 			} else {
 				throw new ImportException("Cannot import "+pattern+" from partsregistry! "+URL_PREFIX+pattern);
 			}

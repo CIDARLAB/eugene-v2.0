@@ -66,7 +66,7 @@ public interface ISparrow {
 	 * @param name         ... the name of the ``thing'' 
 	 * @throws SparrowException
 	 */
-	public void importFrom(String name, Repository repository) 
+	public NamedElement importFrom(String name, Repository repository) 
 		throws SparrowException;
 
 	/**
@@ -81,7 +81,7 @@ public interface ISparrow {
 	 *                         
 	 * @throws SparrowException
 	 */
-	public void importFrom(File file, Standard standard)
+	public NamedElement importFrom(File file, Standard standard)
 		throws SparrowException;
 	
 	/**
@@ -97,7 +97,7 @@ public interface ISparrow {
 	 *                         
 	 * @throws SparrowException
 	 */
-	public void importFrom(File file)
+	public NamedElement importFrom(File file)
 		throws SparrowException;
 
 //	/**

@@ -1,11 +1,11 @@
 //include "" // invalid!
 //include "/path/to/non-existing/file"
 
-include "./tests/include/variables"
+include "./tests/data-exchange/include/variables"
 println(n);
 println(t);
 
-include "./tests/include/parts"
+include "./tests/data-exchange/include/parts"
 println(prop01);
 println(PT01);
 println(p0101);

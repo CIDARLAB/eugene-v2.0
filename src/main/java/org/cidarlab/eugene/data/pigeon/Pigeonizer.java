@@ -48,6 +48,7 @@ import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
+import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.NamedElement;
@@ -60,6 +61,24 @@ import org.cidarlab.minieugene.predicates.interaction.Interaction;
 import org.cidarlab.minieugene.predicates.interaction.Participation;
 import org.cidarlab.minieugene.predicates.interaction.Interaction.InteractionType;
 
+/**
+ * The Pigeonizer class serves for compiling 
+ * a EugeneContainer or a Device into a Pigeon script.
+ *
+ * Optionally, a coloring map can be specified that contains 
+ * key-value pairs. The key represents the name of the component (e.g. p1) 
+ * and the value is a non-negative integer representing a 
+ * Pigeon color.
+ * Example: the pair <p1, 14> will draw the p1 promoter black.
+ *  
+ * Besides, Eugene Parts can have a property name PIGEON (lower- or upper-case)
+ * that encapsulates the Pigeon statement of the corresponding part.
+ * Example: Promoter p1(.Pigeon("p p1 14 nl")) indicates that the part p1 should be 
+ *          visualized non-labeled, black, and using the Promoter SBOLv symbol.
+ * 
+ * @author Ernst Oberortner
+ *
+ */
 public class Pigeonizer {
 
 	private Map<String, Integer> colors;
@@ -80,7 +99,7 @@ public class Pigeonizer {
 	/**
 	 * 
 	 * @param colors ... the desired color coding map in that the keys are the part names and the values are the colors [1-14]  
-	 * @param label  ... if true, then the Pigeon symbols will be labelled
+	 * @param label  ... if true, then the Pigeon symbols will be labeled
 	 */
 	public Pigeonizer(Map<String, Integer> colors, boolean label) {
 
@@ -140,11 +159,14 @@ public class Pigeonizer {
     	// into one big image
     	RenderedImage img = toMergedImage(uris);
     	 
-    	String filename = "./exports/pigeon/" + UUID.randomUUID() + ".png";
+    	String filename = 
+    			Eugene.ROOT_DIRECTORY + "/" + 
+    			Eugene.IMAGES_DIRECTORY + "/" +
+    					UUID.randomUUID() + ".png";
     	try {
     		// then, we serialize the RenderedImage object 
     		// into a PNG file
-    		serializeImage(img, filename);
+    		this.serializeImage(img, filename);
     	} catch(EugeneException ee) {
     		throw new EugeneException(ee.getMessage());
     	}

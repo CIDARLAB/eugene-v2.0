@@ -41,6 +41,7 @@ import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
+import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.constants.EugeneConstants.ParsingPhase;
@@ -80,6 +81,7 @@ import org.cidarlab.eugene.sparrow.SparrowAdapter;
 import org.cidarlab.eugene.util.EugeneUtil;
 import org.cidarlab.minieugene.data.pigeon.WeyekinPoster;
 import org.cidarlab.sparrow.Sparrow;
+import org.cidarlab.sparrow.constants.Repository;
 import org.cidarlab.sparrow.constants.SparrowConstants;
 import org.cidarlab.sparrow.exception.DOMException;
 import org.cidarlab.sparrow.exception.SparrowException;
@@ -588,7 +590,7 @@ public class Interp {
 	 * @param d ... the device
 	 * @throws EugeneException
 	 */
-	public EugeneCollection product(Device d) 
+	public EugeneArray product(Device d) 
 			throws EugeneException {
 
 		if(null == spAdapter) {
@@ -665,7 +667,7 @@ public class Interp {
 		 * here, we use miniEugene
 		 * e.g. promoter BEFORE repressor
 		 */
-		Set<Device> sod = null;
+		List<Device> sod = null;
 		try {
 //			System.out.println("*** STEP2: ARCHITECTURE ***");
 			sod = this.meAdapter.product(d, rules, sop, soi);
@@ -690,27 +692,27 @@ public class Interp {
 //		System.out.println("********************");
 		
 		/*
-		 * STEP 4: ``Storing''
-		 * 
-		 * finally, we store all rule-compliant devices into the WM
+		 * then, we store all devices into a EugeneArray and 
+		 * name them properly
 		 */
+		EugeneArray ec = new EugeneArray(null);
+		int i=1;
+		if(!sod.isEmpty()) {
+			for(Device sd : sod) {
+				// naming of the device
+				sd.setName(d.getName()+"_"+i);
+				i++;
 
-//		System.out.println("*** STEP4: STORING ***");
-		EugeneCollection ec = new EugeneCollection(null);
-		for(Device dev : sod) {
-			ec.getElements().add(dev);
+				// putting the device into the 
+				// EugeneArray
+				ec.getElements().add(sd);
+			}
 		}
 		
-		this.put(ec);
-
-		this.storeRuleCompliantDevices(sod);
-//		System.out.println("**********************");
-		
-//		this.pigeon(ea.getName());
-		
+		// in the product/1 method, we do not store any
+		// enumerated device since it should be the task 
+		// of the user what to do with those devices.
 		return ec;
-		
-//		return devices;
 	}
 	
 //	private void doQueryTests() 
@@ -956,7 +958,7 @@ public class Interp {
 		
 		NamedElement el_lhs = this.parseAndGetElement(lhs);
 		
-//		System.out.println("[Interp.assignment] " + lhs +" <- "+el_rhs);
+//		System.out.println("[Interp.assignment] " + el_lhs +" <- "+el_rhs);
 //		System.out.println("[Interp.assignment] " + el_lhs.getClass() +" <- "+el_rhs.getClass());
 //		
 		if(null != el_lhs) {
@@ -1056,6 +1058,23 @@ public class Interp {
 						}
 					}
 				}
+			} else {
+				
+				this.removeVariable(el_lhs.getName());
+
+				el_lhs = this.cloner.deepClone(el_rhs);
+				el_lhs.setName(lhs);
+				
+				if(el_lhs instanceof EugeneCollection) {
+					for(NamedElement e : ((EugeneCollection)el_lhs).getElements()) {
+						if(e instanceof Device) {
+							System.out.println(e.getName()+" -> "+((Device)e).getComponentList());
+						}
+					}
+				}
+				
+				this.put(el_lhs);
+
 			}
 		
 		// in this case, the LHS of the assignment does not exist.
@@ -2210,9 +2229,9 @@ public class Interp {
 	}
 	
 	/*
-	 * PIGEON
+	 * SBOL VISUAL -- PIGEON
 	 */ 
-	public Collection<URI> pigeon(String name) 
+	public Collection<URI> visualSBOL(String name) 
 			throws EugeneException {
 		
 		if(null == name || name.isEmpty()) {
@@ -2264,7 +2283,9 @@ public class Interp {
 						ret_uris.add(
 								this.toSerializedImage(
 										uris, 
-										"./exports/pigeon/"+UUID.randomUUID()+".png"));
+										Eugene.ROOT_DIRECTORY+"/"+
+												Eugene.IMAGES_DIRECTORY+"/"+
+												UUID.randomUUID()+".png"));
 						uris.clear();
 
 					} else {
@@ -2284,7 +2305,9 @@ public class Interp {
 				ret_uris.add(
 						this.toSerializedImage(
 								uris, 
-								"./exports/pigeon/"+UUID.randomUUID()+".png"));
+								Eugene.ROOT_DIRECTORY+"/"+
+								Eugene.IMAGES_DIRECTORY+"/"+
+										UUID.randomUUID()+".png"));
 			}
 			
 		}
@@ -2319,6 +2342,42 @@ public class Interp {
 		// if everything went fine, then 
 		// we return the generated image as an URI
 		return URI.create(filename);
+	}
+	
+	public NamedElement importGenbank(String filename) 
+			throws EugeneException {
+		
+		return null;
+	}
+	
+	public NamedElement importRegistry(String partId) 
+			throws EugeneException {
+        // remove the double quotas
+		
+		try {
+			this.sparrow.importFrom(partId, Repository.iGEM);
+		} catch(SparrowException spe) {
+			throw new EugeneException(spe.getLocalizedMessage());
+		}
+		
+		return null;
+		
+//        if(null == this.registryImporter) {
+//            this.registryImporter = new SBOLRegistryImporter();
+//        }
+//        
+//        try {
+//            List<Component> lst = this.registryImporter.importComponent(partId);
+//            if(null!=lst && !lst.isEmpty()) {
+//                for(Component component : lst) {
+//                    this.put(component);
+//                }
+//            } else {
+//                throw new EugeneException("Cannot import " + partId + "!");
+//            }
+//        } catch(EugeneException ee) {
+//            throw new EugeneException(ee.getLocalizedMessage());
+//        }
 	}
 
 	

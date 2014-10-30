@@ -13,10 +13,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.Component;
 import org.cidarlab.eugene.dom.ComponentType;
 import org.cidarlab.eugene.dom.Device;
-import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.Part;
 import org.cidarlab.eugene.dom.PartType;
 import org.cidarlab.eugene.dom.interaction.Interaction;
@@ -35,8 +35,6 @@ import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
 import org.drools.conf.AssertBehaviorOption;
-import org.drools.event.rule.DebugAgendaEventListener;
-import org.drools.event.rule.DebugWorkingMemoryEventListener;
 import org.drools.io.ResourceFactory;
 import org.drools.marshalling.Marshaller;
 import org.drools.marshalling.MarshallerFactory;
@@ -45,6 +43,26 @@ import org.drools.runtime.rule.QueryResults;
 import org.drools.runtime.rule.QueryResultsRow;
 import org.drools.template.ObjectDataCompiler;
 
+/**
+ * Sparrow is a Library Management System (LMS) providing 
+ * functionalities to insert, import, query, and export 
+ * biological data represented in the SBOL v2.0 data model.
+ * 
+ * The following import facilities are supported:
+ * - iGEM partsregistry
+ * - Genbank
+ * - SBOL
+ * 
+ * Sparrow is build around the JBoss Drools Rule-Engine.
+ * (use your favorite Internet search engine to find out 
+ *  what JBoss Drools is :)
+ *  
+ * Sparrow is a session-based LMS. That is, you can instantiate  
+ * Sparrow with a session ID, persist all the data when you're done,
+ * and resume a session later on.
+ * 
+ * @author Ernst Oberortner
+ */
 public class Sparrow 
 		implements ISparrow {
 
@@ -60,6 +78,17 @@ public class Sparrow
 		this.sessionId = java.util.UUID.randomUUID().toString();
 	}
 	
+	/**
+	 * Every Sparrow instance has an ID. 
+	 * if the ID exists, then Sparrow tries to 
+	 * resume the session.
+	 * 
+	 * It is the task of the Sparrow user to keep 
+	 * track of her/his sessions! 
+	 * 
+	 * @param sessionId
+	 * @throws SparrowException
+	 */
 	public Sparrow(String sessionId) 
 			throws SparrowException {
 		
@@ -92,12 +121,6 @@ public class Sparrow
 		 */
 		this.kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 		// parse and compile the predefined queries
-//		this.kbuilder.add( 
-//				ResourceFactory.newClassPathResource( "predefined-queries.drl", getClass() ), 
-//				ResourceType.DRL );
-//		this.kbuilder.add( 
-//				ResourceFactory.newClassPathResource( "queries.drl", getClass() ), 
-//				ResourceType.DRL );
 		this.kbuilder.add( 
 				ResourceFactory.newClassPathResource( "eugene-queries.drl", getClass() ), 
 				ResourceType.DRL );
@@ -112,9 +135,6 @@ public class Sparrow
 		 * create a new Session
 		 */
 		this.ksession = this.kbase.newStatefulKnowledgeSession();
-//		this.ksession.addEventListener( new DebugAgendaEventListener() );
-//		this.ksession.addEventListener( new DebugWorkingMemoryEventListener() );
-
 	}
 	
 	/**
@@ -336,21 +356,21 @@ public class Sparrow
 	 * IMPORT AND INSERT OF FACTS
 	 ***********/
 
-	public void importFrom(String name, final Repository repository)
+	public NamedElement importFrom(String name, final Repository repository)
 			throws SparrowException {
-		repository.importData(this.ksession, name);
+		return repository.importData(this.ksession, name);
 	}
 
-	public void importFrom(File file, Standard standard)
+	public NamedElement importFrom(File file) 
 			throws SparrowException {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("[in progress] NamedElement importFrom(File)");
 	}
 
-	public void importFrom(File file) throws SparrowException {
-		// TODO Auto-generated method stub
-		
+	public NamedElement importFrom(File file, Standard standard)
+			throws SparrowException {
+		throw new UnsupportedOperationException("[in progress] NamedElement importFrom(File, Standard)");
 	}
+
 	
 	/**
 	 * 

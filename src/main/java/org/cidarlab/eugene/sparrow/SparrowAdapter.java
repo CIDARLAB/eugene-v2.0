@@ -79,7 +79,7 @@ public class SparrowAdapter {
 		return components;
 	}
 	
-	public Set<Device> prune(Set<Device> devices, List<Rule> rules) 
+	public List<Device> prune(List<Device> devices, List<Rule> rules) 
 			throws EugeneException {
 		
 		if(null == rules || rules.isEmpty()) {
@@ -112,9 +112,9 @@ public class SparrowAdapter {
 		return devices;
 	}
 	
-	private Set<Device> doPrune(Set<Device> devices, List<Rule> rules) 
+	private List<Device> doPrune(List<Device> devices, List<Rule> rules) 
 			throws EugeneException { 
-		Set<Device> devs = new HashSet<Device>();
+		List<Device> devs = new ArrayList<Device>();
 
 		try {
 

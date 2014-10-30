@@ -1,5 +1,6 @@
 package org.cidarlab.sparrow.importers;
 
+import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.sparrow.exception.ImportException;
 import org.drools.runtime.StatefulKnowledgeSession;
 
@@ -15,7 +16,7 @@ public abstract class SparrowImporter
 	/**
 	 * 
 	 */
-	public abstract void importData(String pattern) 
+	public abstract NamedElement importData(String pattern) 
 			throws ImportException;
 
 }

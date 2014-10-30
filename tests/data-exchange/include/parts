@@ -1,4 +1,4 @@
-include "./tests/include/part-types"
+include "./tests/data-exchange/include/part-types"
 
 PT01 p0101("p0101");
 PT01 p0102("p0102");

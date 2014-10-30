@@ -1,0 +1,78 @@
+/*
+ *   PART LIBRARY
+ */
+Property prop1(txt);
+Property repress(txt); 
+Property name(txt); 
+Property strength(num);
+Property PIGEON(txt);
+
+PartType Promoter(name, strength, PIGEON);
+PartType CDS(name, strength, repress, PIGEON);
+
+
+Promoter p0(.name("p0"), .strength(0), .PIGEON("p p0 1"));
+Promoter p1(.name("p1"), .strength(1), .PIGEON("p p1 2"));
+Promoter p2(.name("p2"), .strength(2), .PIGEON("p p2 3"));
+Promoter p3(.name("p3"), .strength(3), .PIGEON("p p3 4"));
+Promoter p4(.name("p4"), .strength(4), .PIGEON("p p4 5"));
+Promoter p5(.name("p5"), .strength(5), .PIGEON("p p5 6"));
+Promoter p6(.name("p6"), .strength(6), .PIGEON("p p6 7"));
+Promoter p7(.name("p7"), .strength(7), .PIGEON("p p7 8"));
+Promoter p8(.name("p8"), .strength(8), .PIGEON("p p8 9"));
+Promoter p9(.name("p9"), .strength(9), .PIGEON("p p9 10"));
+ 
+CDS g0(.repress("p0"), .PIGEON("g g0 1"));
+CDS g1(.repress("p1"), .PIGEON("g g1 2"));
+CDS g2(.repress("p2"), .PIGEON("g g2 3"));
+CDS g3(.repress("p3"), .PIGEON("g g3 4"));
+CDS g4(.repress("p4"), .PIGEON("g g4 5"));
+CDS g5(.repress("p5"), .PIGEON("g g5 6"));
+CDS g6(.repress("p6"), .PIGEON("g g6 7"));
+CDS g7(.repress("p7"), .PIGEON("g g7 8"));
+CDS g8(.repress("p8"), .PIGEON("g g8 9"));
+CDS g9(.repress("p9"), .PIGEON("g g9 10"));
+ 
+Device D01([CDS|Promoter]);
+lod = product(D01);
+println(lod);
+SBOL.visualize(lod);
+
+
+Device D02([CDS|Promoter], [CDS|Promoter]);
+Rule R02_1(ON D02:
+	CDS with Promoter
+	/\
+	not Promoter same_orientation CDS
+	/\
+	forward Promoter 
+	/\
+	reverse CDS
+	/\
+	Promoter after CDS
+);
+		
+Rule R02_2(ON D02:
+	CDS with Promoter
+	/\
+	not Promoter same_orientation CDS
+	/\
+	reverse Promoter 
+	/\
+	forward CDS
+	/\
+	Promoter before CDS
+);
+lod = product(D02);
+
+println(lod);
+SBOL.visualize(lod);
+
+
+/*** 
+Device D04([CDS|Promoter], [CDS|Promoter], [CDS|Promoter], [CDS|Promoter]);
+lod = product(D04);
+println(lod);
+pigeon (lod);
+ ***/
+ 

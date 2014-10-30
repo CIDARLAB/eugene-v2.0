@@ -1,0 +1,7 @@
+import("./tests/data-exchange/include/variables");
+//println(variables);
+
+import("./tests/data-exchange/include/properties");
+//println(properties);
+
+//parts = import("./tests/data-exchange/include/parts");

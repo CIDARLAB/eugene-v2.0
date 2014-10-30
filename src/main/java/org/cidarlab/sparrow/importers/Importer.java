@@ -3,6 +3,7 @@
  */
 package org.cidarlab.sparrow.importers;
 
+import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.sparrow.exception.ImportException;
 
 /**
@@ -16,6 +17,6 @@ public interface Importer {
 	 *                     of the data object(s) to be imported
 	 * @throws ImportException
 	 */
-	public void importData(String pattern) 
+	public NamedElement importData(String pattern) 
 		throws ImportException;
 }

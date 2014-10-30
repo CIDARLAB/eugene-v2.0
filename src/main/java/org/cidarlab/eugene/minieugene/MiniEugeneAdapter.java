@@ -51,7 +51,7 @@ public class MiniEugeneAdapter {
 	 * 
 	 * @throws EugeneException
 	 */
-	public Set<Device> product(
+	public List<Device> product(
 			Device d, 
 			List<Rule> rules, 
 			Set<org.cidarlab.eugene.dom.Component> components,
@@ -67,7 +67,7 @@ public class MiniEugeneAdapter {
 			throw new EugeneException("Cannot use product() on an empty device.");
 		}
 
-		Set<Device> solutions = new HashSet<Device>();
+		List<Device> solutions = new ArrayList<Device>();
 
 		if(!rules.isEmpty()) {
 			/*
@@ -88,7 +88,6 @@ public class MiniEugeneAdapter {
 				solutions.addAll(sod);
 			}
 		}
-		
 		
 		/*
 		 * STEP 3: TRANSFORMATION of the miniEugene solutions 
