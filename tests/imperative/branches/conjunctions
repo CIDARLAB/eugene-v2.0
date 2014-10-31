@@ -1,0 +1,30 @@
+// --- CONJUNCTIONS
+
+num one = 1;
+num two = 2;
+num three = 3;
+
+if(one != 1) {exit;}
+if(two != 2) {exit;}
+if(three != 3) {exit;}
+if(one == 1) {println("one==1");} else {exit;}
+if(two == 2) {println("two==2");} else {exit;}
+
+
+if(one != 1 && two != 2) {exit;}
+if(one != 1 && two != 2 && three != 3) {exit;}
+
+if(one == 1 && two == 2) {println("one==1 && two==2");} else {exit;}
+if(two == 2 && one == 1) {println("one==1 && two==2");} else {exit;}
+if(one == 1 && two == 2 && three == 3) {println("one == 1 && two == 2 && three == 3");} else {exit;}
+if(one == 1 && three == 3 && two == 2) {println("one == 1 && three == 3 && two == 2");} else {exit;}
+if(two == 2 && one == 1 && three == 3) {println("two == 2 && one == 1 && three == 3");} else {exit;}
+if(two == 2 && three == 3 && one == 1) {println("two == 2 && three == 3 && one == 1");} else {exit;}
+if(three == 3 && one == 1 && two == 2) {println("three == 3 && one == 1 && two == 2");} else {exit;}
+if(three == 3 && two == 2 && one == 1) {println("three == 3 && two == 2 && one == 1");} else {exit;}
+
+
+
+println("****");
+
+ 

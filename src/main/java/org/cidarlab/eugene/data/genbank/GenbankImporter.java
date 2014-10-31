@@ -109,41 +109,7 @@ public class GenbankImporter {
 	public NamedElement importGenbank(String filename) 
 			throws EugeneException {
 		File dnaFile = new File(filename);
-		
-//		 BufferedReader br = null;
-//		 
-//		 try {
-//		 
-//			 br = new BufferedReader(
-//					 new FileReader(new File("/Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/data/genbank/pJGIL023_colE1-amp-lacUV5_lox.gb")));
-//		 
-//		 } catch (FileNotFoundException ex) {
-//		    	throw new EugeneException("file not found! " + Eugene.ROOT_DIRECTORY+"/"+filename);
-//		 }
-//		 
-//			//read the GenBank File
-//			SequenceIterator sequences = 
-//			    		SeqIOTools.readGenbank(br);
-//			 
-//			//iterate through the sequences
-//			while(sequences.hasNext()){
-//			try {
-//			 
-//			Sequence seq = sequences.nextSequence();
-//			
-//			if(seq.countFeatures() > 1) {
-//			} else {
-//				// here, we return a Part
-//			        }
-//			        
-//			        
-//			        System.out.println(seq.toString());
-//			 
-//			      } catch (Exception ex) {
-//				    	throw new EugeneException("file not found! " + filename);
-//			  }
-//		}
-		
+				
 		try {
 			Map<String, DNASequence> dnaSequences = GenbankReaderHelper.readGenbankDNASequence( dnaFile );
 			for (DNASequence sequence : dnaSequences.values()) {

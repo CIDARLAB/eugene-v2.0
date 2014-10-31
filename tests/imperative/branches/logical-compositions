@@ -1,0 +1,16 @@
+num one = 1;
+num two = 2;
+num three = 3;
+
+
+if(one!=1 && !(two==2)) {exit;}
+if(!(one==1) && two!=2) {exit;}
+
+/***
+// --- CONJUNCTION OF DISJUNCTIONS
+if(one != 1 || two != 2 && three == 3) {println("good");} else {exit;}
+if(one == 1 && two == 2 || three != 3) {println("good");} else {exit;}
+
+if((one != 1 || two != 2) && three == 3) {println("good");} else {exit;}
+if(one == 1 && (two == 2 || three != 3)) {println("good");} else {exit;}
+ ***/

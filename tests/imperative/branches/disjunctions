@@ -1,0 +1,49 @@
+num one = 1;
+num two = 2;
+num three = 3;
+
+// --- DISJUNCTIONS
+if(one != 1) {exit;}
+
+if(one != 1 || two != 2) {exit;}
+if(two != 2 || one != 1) {exit;}
+
+if(one != 1 || two != 2 || three != 3) {exit;}
+if(one != 1 || three != 3 || two != 2) {exit;}
+if(two != 2 || one != 1 || three != 3) {exit;}
+if(two != 2 || three != 3 || one != 1) {exit;}
+if(three != 3 || one != 1 || two != 2) {exit;}
+if(three != 3 || two != 2 || one != 1) {exit;}
+
+
+// --- DISJUNCTIONS
+if(one != 1 \/ two != 2) {exit;}
+if(two != 2 \/ one != 1) {exit;}
+
+if(one != 1 \/ two != 2 \/ three != 3) {exit;}
+if(one != 1 \/ three != 3 \/ two != 2) {exit;}
+if(two != 2 \/ one != 1 \/ three != 3) {exit;}
+if(two != 2 \/ three != 3 \/ one != 1) {exit;}
+if(three != 3 \/ one != 1 \/ two != 2) {exit;}
+if(three != 3 \/ two != 2 \/ one != 1) {exit;}
+ 
+
+if(one != 1 OR two != 2) {exit;}
+if(two != 2 OR one != 1) {exit;}
+
+if(one != 1 OR two != 2 OR three != 3) {exit;}
+if(one != 1 OR three != 3 OR two != 2) {exit;}
+if(two != 2 OR one != 1 OR three != 3) {exit;}
+if(two != 2 OR three != 3 OR one != 1) {exit;}
+if(three != 3 OR one != 1 OR two != 2) {exit;}
+if(three != 3 OR two != 2 OR one != 1) {exit;}
+
+if(one != 1 or two != 2) {exit;}
+if(two != 2 or one != 1) {exit;}
+
+if(one != 1 or two != 2 or three != 3) {exit;}
+if(one != 1 or three != 3 or two != 2) {exit;}
+if(two != 2 or one != 1 or three != 3) {exit;}
+if(two != 2 or three != 3 or one != 1) {exit;}
+if(three != 3 or one != 1 or two != 2) {exit;}
+if(three != 3 or two != 2 or one != 1) {exit;}

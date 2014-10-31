@@ -245,10 +245,10 @@ public class EndToEndTestSuite {
 		new EndToEndTestSuite().testAll("./tests/imperative/branches");
 
 		// FOR LOOPS
-		new EndToEndTestSuite().testAll("./tests/imperative/loops");
+//		new EndToEndTestSuite().testAll("./tests/imperative/loops");
 		
 		// FUNCTIONS
-		new EndToEndTestSuite().testAll("./tests/imperative/functions");
+//		new EndToEndTestSuite().testAll("./tests/imperative/functions");
 
 		// individual tests		
 //		new EndToEndTestSuite().test("./tests/imperative/functions/function-syntax");
@@ -279,17 +279,14 @@ public class EndToEndTestSuite {
 			throws EugeneException {
 		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/tests/EugeneLab";
 //		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/EugeneLab_Home/home/no_name_user/";
+		// TESTING ALL FILES
+//		new EndToEndTestSuite().testAll(ROOT_DIRECTORY);
 
 		// TESTING INDIVIDUAL FILES
 //		new EndToEndTestSuite().test("./tests/EugeneLab/data-exchange/01-Rule-based-Design.eug");
 //		new EndToEndTestSuite().test("./tests/EugeneLab/imperative-features/11-functions.eug");
 //		new EndToEndTestSuite().test("./tests/EugeneLab/imperative-features/12-functions-and-arrays.eug");
-//		new EndToEndTestSuite().test("./tests/EugeneLab/sequence-shenanigans/04-constraint-number-of-occurrences.eug");
-		
-
-		// TESTING ALL FILES
-		new EndToEndTestSuite().testAll(ROOT_DIRECTORY);
-
+		new EndToEndTestSuite().test("./tests/EugeneLab/sequence-shenanigans/04-constraint-number-of-occurrences.eug");
 	}
 	
 	private static void testAll() {
@@ -326,10 +323,10 @@ public class EndToEndTestSuite {
 			throws EugeneException {
 
 //		testBasics();
-//		testImperativeFeatures();
+		testImperativeFeatures();
 //		testEugeneLabTutorials();
 		
-		testDataExchange();
+//		testDataExchange();
 //		testRules();
 
 //		testRealWorldExamples();

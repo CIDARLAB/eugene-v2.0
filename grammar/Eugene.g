@@ -53,7 +53,7 @@ tokens {
 	LOG_OR = '\\/';
 	UC_NOT = 'NOT';
 	LC_NOT = 'not';
-	LOG_NOT = '!';
+	OP_NOT = '!';
 	ASSERT = 'Assert';
 	NOTE = 'Note';
 	LC_IF = 'if';
@@ -594,8 +594,8 @@ public Object exec(String rule, int tokenIndex)
     try { // which rule are we executing?
         if("variableDeclaration".equals(rule)) {
             rv = this.variableDeclaration(false);
-        } else if("imp_condition".equals(rule)) {
-            rv = this.imp_condition(false);
+        } else if("logical_condition".equals(rule)) {
+            rv = this.logical_condition(false);
         } else if("list_of_statements".equals(rule)) {
             rv = this.list_of_statements(false);
         } else if("assignment".equals(rule)) {
@@ -648,14 +648,14 @@ public Object exec(String rule, int tokenIndex)
          * evaluate the condition
          */
         // first, parse the condition
-        imp_condition_return ret = 
-               (imp_condition_return)this.exec(
-                                           "imp_condition",         
+        logical_condition_return ret = 
+               (logical_condition_return)this.exec(
+                                           "logical_condition",         
                                            condStart.getTokenIndex());
         /*
          * while the condition is satisfied
          */
-        while(ret.bTrue) {
+        while(ret.b) {
 
             /*
              * push the ForLoop object onto the stack
@@ -687,8 +687,8 @@ public Object exec(String rule, int tokenIndex)
             /*
              *    evaluate the condition again
              */ 
-            ret = (imp_condition_return)this.exec(
-                                   "imp_condition",         
+            ret = (logical_condition_return)this.exec(
+                                   "logical_condition",         
                                    condStart.getTokenIndex());  
         }
         
@@ -1607,7 +1607,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 	
 negated_predicate[boolean defer]
 	returns [Predicate p]
-	:	((UC_NOT|LC_NOT|LOG_NOT) c=predicate[defer] {
+	:	((UC_NOT|LC_NOT|OP_NOT) c=predicate[defer] {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         $p = this.interp.negate($c.p);
@@ -2067,11 +2067,11 @@ boolean bExecuted = false;
 		/*
 		 *    ONE IF-BRANCH
 		 */
-		(UC_IF|LC_IF) LEFTP co=imp_condition[defer] RIGHTP LEFTCUR 
+		(UC_IF|LC_IF) LEFTP co=logical_condition[defer] RIGHTP LEFTCUR 
 			stmts=list_of_statements[true] RIGHTCUR {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     // evaluate the condition
-    if($co.bTrue) {
+    if($co.b) {
         // if true => execute the statements
         // and ignore the rest of the ifStatement
         
@@ -2090,11 +2090,11 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 		/*
 		 *    ZERO-OR-MORE ELSEIF BRANCHES
 		 */
-		( (UC_ELSEIF|LC_ELSEIF) LEFTP co=imp_condition[defer] RIGHTP LEFTCUR 
+		( (UC_ELSEIF|LC_ELSEIF) LEFTP co=logical_condition[defer] RIGHTP LEFTCUR 
 			stmts=list_of_statements[true] RIGHTCUR {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING && !bExecuted) {
     // evaluate the condition
-    if($co.bTrue) {
+    if($co.b) {
         // if true => execute the statements
         // and ignore the rest of the ifStatement
         try {        
@@ -2129,58 +2129,6 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING && !bExecuted) {
 	})?
 	;
 
-imp_condition[boolean defer] 
-	returns [boolean bTrue]
-	:	lhs=expr[defer] ro=relationalOperators rhs=expr[defer] {
-if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-    try {
-
-
-        if(null != $lhs.element) {
-            if(null != $rhs.element) {
-                // comparing two NamedElements against each other
-                // e.g. p.prop = q.prop
-                $bTrue = this.interp.evaluateCondition(
-                             $lhs.element, 
-                             $ro.text, 
-                             $rhs.element);
-            } else if(null != $rhs.p) {
-                // comparing a LHS NamedElement against a Variable
-                // that could be either a variable or constant
-                // e.g. p.prop = i
-                $bTrue = this.interp.evaluateCondition(
-                             $lhs.element, 
-                             $ro.text, 
-                             $rhs.p);
-            }
-        } else {
-        
-            if(null != $rhs.element) {
-                // comparing a LHS variable against a RHS 
-                // NamedElement
-                // e.g. i == q.prop
-                $bTrue = this.interp.evaluateCondition(
-                             $lhs.p, 
-                             $ro.text, 
-                             $rhs.element);
-            } else if(null != $rhs.p) {
-                // comparing a LHS Variable against a Variable
-                // that could be either a variable or constant
-                // e.g. i == j
-                $bTrue = this.interp.evaluateCondition(
-                             $lhs.p, 
-                             $ro.text, 
-                             $rhs.p);
-            } else {
-                throw new EugeneException("Invalid condition!");
-            }
-        }
-    } catch(EugeneException ee) {
-        printError(ee.getLocalizedMessage());
-    }
-}	
-	}
-	;	
 
 forall_iterator[boolean defer]
 	throws EugeneReturnException
@@ -2201,7 +2149,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 
 for_loop[boolean defer]
 	throws EugeneReturnException
-	:	(UC_FOR|LC_FOR) LEFTP ds=variableDeclaration[true] SEMIC co=imp_condition[true] SEMIC (as=assignment[true])? RIGHTP LEFTCUR 
+	:	(UC_FOR|LC_FOR) LEFTP ds=variableDeclaration[true] SEMIC co=logical_condition[true] SEMIC (as=assignment[true])? RIGHTP LEFTCUR 
 			stmts=list_of_statements[true] {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
@@ -2230,7 +2178,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 
 while_loop[boolean defer]
 	throws EugeneReturnException
-	:	(UC_WHILE|LC_WHILE) LEFTP co=imp_condition[true] RIGHTP LEFTCUR 
+	:	(UC_WHILE|LC_WHILE) LEFTP co=logical_condition[true] RIGHTP LEFTCUR 
 			stmts=list_of_statements[true] {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
@@ -2248,6 +2196,113 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 	}
 		RIGHTCUR
 	;
+	
+	
+/*------------------------------------------------------------------
+ * LOGICAL CONDITIONS
+ *------------------------------------------------------------------*/
+
+logical_condition[boolean defer] 
+	returns [boolean b]
+	:	loc=logical_or_condition[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    $b = $loc.b;
+}	
+	}
+	;
+		
+logical_not_condition[boolean defer]
+	returns [boolean b] 
+	:	loc=logical_or_condition[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    $b = $loc.b;
+}	
+	}
+	;
+		
+logical_or_condition[boolean defer] 
+	returns [boolean b]
+	:	lac=logical_and_condition[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    $b = $lac.b;
+}	
+	}	((LC_OR|UC_OR|LOG_OR|PIPE (PIPE)?) loc=logical_or_condition[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    System.out.println("-> b: " + $b + " || " + $loc.b + " -> " + ($b||$loc.b));
+    $b = $b || $loc.b;
+}		
+	}	)*
+	;
+
+logical_and_condition[boolean defer]
+	returns [boolean b]
+	:	ac=atomic_condition[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    $b = $ac.b;
+}	
+	}	((LC_AND|UC_AND|LOG_AND|AMP (AMP)?) lac=logical_and_condition[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    System.out.println("-> b: " + $b + " && " + $lac.b + " -> " + ($b||$lac.b));
+    $b = $b && $lac.b;
+}	
+	}	)*
+	;
+		
+atomic_condition[boolean defer] 
+	returns [boolean b]
+	:	lhs=expr[defer] ro=relationalOperators rhs=expr[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    try {
+        if(null != $lhs.element) {
+            if(null != $rhs.element) {
+                // comparing two NamedElements against each other
+                // e.g. p.prop = q.prop
+                $b = this.interp.evaluateCondition(
+                             $lhs.element, 
+                             $ro.text, 
+                             $rhs.element);
+            } else if(null != $rhs.p) {
+                // comparing a LHS NamedElement against a Variable
+                // that could be either a variable or constant
+                // e.g. p.prop = i
+                $b = this.interp.evaluateCondition(
+                             $lhs.element, 
+                             $ro.text, 
+                             $rhs.p);
+            }
+        } else {
+        
+            if(null != $rhs.element) {
+                // comparing a LHS variable against a RHS 
+                // NamedElement
+                // e.g. i == q.prop
+                $b = this.interp.evaluateCondition(
+                             $lhs.p, 
+                             $ro.text, 
+                             $rhs.element);
+            } else if(null != $rhs.p) {
+                // comparing a LHS Variable against a Variable
+                // that could be either a variable or constant
+                // e.g. i == j
+                $b = this.interp.evaluateCondition(
+                             $lhs.p, 
+                             $ro.text, 
+                             $rhs.p);
+            } else {
+                throw new EugeneException("Invalid condition!");
+            }
+        }
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}	
+	}
+	|	(LC_NOT|UC_NOT|OP_NOT) LEFTP lac=atomic_condition[defer] RIGHTP {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    $b = !($lac.b);
+}
+	}
+	;	
 	
 /*------------------------------------------------------------------
  * EXPRESSIONS

@@ -1,0 +1,19 @@
+// --- NEGATIONS
+num one = 1;
+num two = 2;
+num three = 3;
+
+if(!(one==1)) {exit;}
+if(!(two==2)) {exit;}
+if(!(three==3)) {exit;}
+
+if(not(one==1)) {exit;}
+if(not(two==2)) {exit;}
+if(not(three==3)) {exit;}
+
+if(NOT(one==1)) {exit;}
+if(NOT(two==2)) {exit;}
+if(NOT(three==3)) {exit;}
+
+
+
