@@ -246,10 +246,10 @@ public class EndToEndTestSuite {
 		new EndToEndTestSuite().testAll("./tests/imperative/branches");
 
 		// FOR LOOPS
-//		new EndToEndTestSuite().testAll("./tests/imperative/loops");
+		new EndToEndTestSuite().testAll("./tests/imperative/loops");
 		
 		// FUNCTIONS
-//		new EndToEndTestSuite().testAll("./tests/imperative/functions");
+		new EndToEndTestSuite().testAll("./tests/imperative/functions");
 
 		// SCOPING
 		new EndToEndTestSuite().testAll("./tests/imperative/scoping");
@@ -295,7 +295,7 @@ public class EndToEndTestSuite {
 		
 	}
 	
-	public static void testHavingSomeFunWithEugene()
+	public static void testEC327FunWithEugene()
 			throws EugeneException {
 		
 		/*---------------------------------------------
@@ -305,6 +305,13 @@ public class EndToEndTestSuite {
 		new EndToEndTestSuite().test("./tests/eugene-fun/no-duplicates");
 		new EndToEndTestSuite().test("./tests/eugene-fun/bubble-sort");		
 		new EndToEndTestSuite().test("./tests/eugene-fun/rhombus");
+	}
+	
+	public static void testInteractWithLMS()
+			throws EugeneException {
+		
+		ROOT_DIRECTORY = "./tests/lms";
+		new EndToEndTestSuite().testAll(ROOT_DIRECTORY);		
 	}
 	
 	/**
@@ -317,16 +324,17 @@ public class EndToEndTestSuite {
 			throws EugeneException {
 
 //		testBasics();
-		testImperativeFeatures();
+//		testImperativeFeatures();
 //		testEugeneLabTutorials();		
 //		testDataExchange();
 
-//		testHavingSomeFunWithEugene();
+		testInteractWithLMS();
 
 		// TODOs:
 //		testRules();
 //		testRealWorldExamples();
 
+//		testEC327FunWithEugene();
 //		testAll();	
 	}
 	

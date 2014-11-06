@@ -134,6 +134,21 @@ tokens {
 
 	EXIT_UC = 'EXIT';
 	EXIT_LC = 'exit';
+
+/*   -----
+ *   Functions to interact with LMS
+ *   ----- */
+	CREATE_UC = 'CREATE';
+	CREATE_LC = 'create';
+	
+	READ_UC = 'READ';
+	READ_LC = 'read';
+	
+	UPDATE_UC = 'UPDATE';
+	UPDATE_LC = 'update';
+	
+	DELETE_UC = 'DELETE';
+	DELETE_LC = 'delete';
 }
 
 
@@ -1740,7 +1755,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
         printError(ee.getMessage());
     }
 }
-}
+	}
 	|	n=NUMBER {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     constant = Integer.parseInt($n.text);
@@ -2662,7 +2677,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
  * i.e. they perform actions immediately
  *------------------------------------------------------------------*/
 stand_alone_function[boolean defer] 
-	:	(SAVE_LC|SAVE_UC|STORE_LC|STORE_UC) LEFTP e=expr[defer] RIGHTP {
+	:	(SAVE_LC|SAVE_UC|STORE_LC|STORE_UC|CREATE_LC|CREATE_UC) LEFTP e=expr[defer] RIGHTP {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try  {
         if(null != $e.element) {

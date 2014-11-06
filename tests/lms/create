@@ -1,0 +1,25 @@
+Property prop(txt);
+PartType PT;
+
+//--- CREATING PARTS
+for(num i=1; i<=3; i=i+1) {
+    PT ${"p"+i};
+    CREATE(${"p"+i});
+}
+
+// --- CREATING a LIST OF DEVICES
+Device D1(PT);
+lod = product(D1);
+CREATE(lod);
+
+// --- CREATING individual devices
+for(num i=0; i<SIZEOF(lod); i=i+1) {
+    CREATE(lod[i]);
+    
+    println(${"D1_"+(i+1)});
+}
+
+
+
+
+
