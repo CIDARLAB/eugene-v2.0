@@ -32,11 +32,10 @@ CDS g7(.repress("p7"), .PIGEON("g g7 8"));
 CDS g8(.repress("p8"), .PIGEON("g g8 9"));
 CDS g9(.repress("p9"), .PIGEON("g g9 10"));
 
-/*** 
 Device D01([CDS|Promoter]);
 lod = product(D01);
 println(lod);
-SBOL.visualize(lod);
+//SBOL.visualize(lod);
 
 println("********** D01 -- DONE");
 
@@ -67,10 +66,11 @@ Rule R02_2(ON D02:
 lod = product(D02);
 
 println(lod);
-SBOL.visualize(lod);
+//SBOL.visualize(lod);
+SBOL.visualize(lod[0]);
 println("********** D02 -- DONE");
 
-
+/***
 Device D03([CDS|Promoter], [CDS|Promoter], [CDS|Promoter]);
 lod = product(D03);
 println(lod);
@@ -84,5 +84,5 @@ println(lod);
 SBOL.visualize(lod);
 
 println("********** D04 -- DONE");
-***/
+ ***/
  

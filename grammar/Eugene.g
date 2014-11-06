@@ -2941,10 +2941,10 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 	;	
 	
 sbolVisualStatement[boolean defer]
-	:	(VISUALIZE_LC|VISUALIZE_UC) LEFTP idToken=ID RIGHTP {
+	:	(VISUALIZE_LC|VISUALIZE_UC) LEFTP e=expr[defer] RIGHTP {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-    try {
-        this.interp.visualSBOL($idToken.text);
+    try {        
+        this.interp.visualSBOL($e.element);
     } catch(EugeneException ee) {
         printError(ee.getMessage());
     }

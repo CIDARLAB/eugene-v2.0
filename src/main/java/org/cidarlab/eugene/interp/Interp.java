@@ -2211,11 +2211,11 @@ public class Interp {
 	/*
 	 * SBOL VISUAL -- PIGEON
 	 */ 
-	public Collection<URI> visualSBOL(String name) 
+	public Collection<URI> visualSBOL(NamedElement element) 
 			throws EugeneException {
 		
-		if(null == name || name.isEmpty()) {
-			throw new EugeneException("Invalid name!");
+		if(null == element) {
+			throw new EugeneException("Invalid element to visualize!");
 		}
 		
 		Collection<URI> ret_uris = new HashSet<URI>();
@@ -2223,13 +2223,8 @@ public class Interp {
 		/*
 		 * retrieve the object from the this.symbols
 		 */
-		NamedElement element = this.get(name);
-		if(null == element) {
-			throw new EugeneException("I cannot find an element named "+name+"!");
-		}
-		
 		if(!(element instanceof Component) && !(element instanceof EugeneContainer)) {
-			throw new EugeneException("I cannot visualize "+name+"!");
+			throw new EugeneException("I cannot visualize "+element+"!");
 		}
 
 		if(null == this.pigeon) {

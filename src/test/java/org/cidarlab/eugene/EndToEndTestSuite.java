@@ -95,7 +95,7 @@ public class EndToEndTestSuite {
 //		
 //		// SBOL -- IMPORT
 //		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-import01");
-		new EndToEndTestSuite().test("./tests/data-exchange/sbol/import-from-cello-01");
+//		new EndToEndTestSuite().test("./tests/data-exchange/sbol/import-from-cello-01");
 
 //		// SBOL -- EXPORT
 //		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-export01");
@@ -104,7 +104,7 @@ public class EndToEndTestSuite {
 //		new EndToEndTestSuite().test("./tests/data-exchange/sbol/round-trip");
 //
 		// PIGEON
-//		new EndToEndTestSuite().test("./tests/data-exchange/pigeon");
+		new EndToEndTestSuite().test("./tests/data-exchange/pigeon");
 		
 		
 		// GENBANK
@@ -326,9 +326,9 @@ public class EndToEndTestSuite {
 //		testBasics();
 //		testImperativeFeatures();
 //		testEugeneLabTutorials();		
-//		testDataExchange();
+		testDataExchange();
 
-		testInteractWithLMS();
+//		testInteractWithLMS();
 
 		// TODOs:
 //		testRules();
