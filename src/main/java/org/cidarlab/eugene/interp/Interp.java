@@ -1391,27 +1391,40 @@ public class Interp {
 	 * @return true  ... if a NamedElement object of name name has been declard
 	 *         false ... otherwise
 	 */
-	public boolean contains(String name) {
+	public boolean contains(String name) 
+			throws EugeneException {
 
 		boolean bContains = false;
 		
 		try {
 			
 			
+			// if we're not in the global scope, 
+			// then we scan the current stack elements for 
+			// the requested name
 			if(!this.stack.isEmpty()) {
-				System.out.println("[contains] -> " + name + " -> " + this.stack.peek());
+				
 				Stack<StackElement> tmp = new Stack<StackElement>();
-				while(this.stack.size() > 0 && !bContains) {
+				
+				// we pop the elements from the stack until we've found the element (done via break)
+				// or there's no more element left
+				while(!this.stack.isEmpty()) {
+					
 					StackElement se = this.stack.pop();
+					
+					// we need to keep track of the popped elements
+					// that is done via a temporary stack
+					// i.e. the temporary stack will be the reverse of 
+					// the current stack
 					tmp.push(se);
-					if(bContains == false) {
-						System.out.println("[contains] -> " + name + " -> " + se +" -> " + se.contains(name));
-						bContains = se.contains(name);
-					}
+
+					// then, we search the requested name 
+					// in the stack's element symbol tables
+					bContains = se.contains(name);
 					
 					// if we've popped a function from the stack, 
 					// then we do not pop further elements.
-					if(se instanceof FunctionInstance) {
+					if(se instanceof FunctionInstance || bContains) {
 						break;
 					}
 				}
@@ -1421,25 +1434,22 @@ public class Interp {
 				while(tmp.size() > 0) {
 					this.stack.push(tmp.pop());
 				}
-				
-				if(bContains) {
-					return bContains;
-				}
-			} else {
-				bContains = this.symbols.contains(name) || this.sparrow.contains(name);
-				if(bContains) {
-					return true;
-				}
 			}
 			
-			// the requested object can either be in the symbol tables 
-			// or in the WM of the KBS
+			// everything got popped from the stack and we still 
+			// haven't found what we're looking for
+			if(!bContains) {
+				
+				// then we search the global symbol tables for the element!
+				bContains = this.symbols.contains(name) || this.sparrow.contains(name);
+			}
+			
+			return bContains;
 			
 		} catch(SparrowException se) {
-			// ignore
+			// something went wrong.
+			throw new EugeneException(se.getMessage());
 		}
-		
-		return false;
 	}
 	
 

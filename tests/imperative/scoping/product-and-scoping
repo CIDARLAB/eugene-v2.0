@@ -24,62 +24,41 @@ testSh_t(num k) {
 testSh_t(1);
 
 /**** TEST 1: Definition of Parts depending on conditions (IF-ELSE) ***/
-/**
+PartType PT;
+Device D(PT);
 testConditionalPartDefinitions(num k) {
-    PartType PT;
     if(k==1) {
         PT p1;
+        SAVE(p1);
     } else {
         PT p2;
+        SAVE(p2);
         PT p3;
+        SAVE(p3);
     }
 
-    Device D(PT);
-    lod = product(D);
-    println(lod);
-    if(SIZEOF(lod) != 2 * k) {exit;}
 }
 
-testConditionalPartDefinitions(1);
+num k = 1;
+testConditionalPartDefinitions(k);
+lod = product(D);
+if(SIZEOF(lod) != 2 * k) {exit;}
+
+k = 2;
 testConditionalPartDefinitions(2); 
+lod = product(D);
+if(SIZEOF(lod) != 2 * k + 2 * (k-1)) {exit;}
 
-/**** Definition of Devices depending on conditions (IF-ELSE)
-// TEST -- START
-PartType PT;
-PT p1;
-
-num s = 1;
-//num s = 2;
-
-Device d;
-IF(s == 1) {
-    Device D1(PT);
-    d = D1;
-} else {
-    Device D2(PT, PT);
-    d = D2;
-}
-lod = product(d);
-println(lod);
-if(SIZEOF(lod) != 2 * s) {exit;}
-// TEST2 -- END
-  ****/
   
 
 /**** Definition of Rules depending on conditions ****/
-PartType PT;
-PT p1;
-Device D(PT);
-println(D);
-//num s = 1;
-num s = 2;
+PT p1_1;
+num s = 1;
+//num s = 2;
 if(s == 1) {
-    println("*** s==1 -> " , D);
-    //Rule R(ON D: all_forward);
+    Rule R(ON D: all_forward);
 } else {
-    println("*** s==1 -> " , D);
-    //Rule R(ON D: all_forward \/ all_reverse);
+    Rule R(ON D: all_forward \/ all_reverse);
 }
 lod = product(D);
 println(lod);
-if(SIZEOF(lod) != s) {exit;}

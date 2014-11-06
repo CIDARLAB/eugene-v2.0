@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g 2014-11-06 12:41:29
+// $ANTLR 3.5.1 /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g 2014-11-06 13:58:12
 
 /*
 Copyright (c) 2012 Boston University.
@@ -7812,10 +7812,10 @@ public class EugeneParser extends Parser {
 
 
 					if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-					    if(!this.interp.contains((i!=null?i.getText():null))) {
-					        printError((i!=null?i.getText():null)+" not defined.");
-					    }
 					    try {
+					        if(!this.interp.contains((i!=null?i.getText():null))) {
+					            printError((i!=null?i.getText():null)+" not defined.");
+					        }
 					        element = this.interp.get((i!=null?i.getText():null));
 					    } catch(EugeneException ee) {
 					        printError(ee.getMessage());

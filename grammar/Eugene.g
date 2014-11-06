@@ -1731,10 +1731,10 @@ int index = -1;
 }		
 	:	(i=ID {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-    if(!this.interp.contains($i.text)) {
-        printError($i.text+" not defined.");
-    }
     try {
+        if(!this.interp.contains($i.text)) {
+            printError($i.text+" not defined.");
+        }
         element = this.interp.get($i.text);
     } catch(EugeneException ee) {
         printError(ee.getMessage());
