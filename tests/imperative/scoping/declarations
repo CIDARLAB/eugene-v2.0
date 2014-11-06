@@ -1,0 +1,61 @@
+/*
+ *   declaration of variables
+ */
+num i = 1;
+if(i == 1) {
+    num i = 2;
+    if(i!=2) {exit;}
+    else     {println(i);}
+} 
+if(i!=1) {exit;}
+else     {println(i);}
+
+
+/*
+ *    declaration of biological components
+ */
+PartType PT;
+Device D(PT);
+if(i==1) {
+    Device D(PT, PT, PT);
+    println(SIZEOF(D));
+    if(SIZEOF(D) != 3) {exit;}
+}
+if(SIZEOF(D) != 1) {exit;}
+
+/*
+ *    accessing variables
+ */
+Device printableD;
+if(i == 1) {
+    println(printableD);
+} 
+
+/*
+ *   Parts in scopes  --> need saving!
+ */
+num if_r = RANDOM(1,2);
+if(if_r==1) {
+    PT p1;
+    SAVE(p1);
+} else {
+    PT p1;
+    SAVE(p1);   // also save it!
+    PT p2;
+    SAVE(p2);
+}
+lod = product(D);
+if(sizeof(lod) != 2 * if_r) {exit;}
+
+/*
+ *    
+ */
+num for_r = RANDOM(1, 10);
+for(num k = 1; k<=for_r; k = k + 1) {
+    PT ${"p"+k};
+    SAVE(${"p"+k});
+} 
+lod = product(D);
+if(sizeof(lod) != 2 * for_r) {exit;}
+println("FOR -> ", lod);
+

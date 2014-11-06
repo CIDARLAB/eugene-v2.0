@@ -283,7 +283,6 @@ public class Pigeonizer {
 		// INTERACTIONS
 		sb.append(this.toPigeon(interactions));
 
-		
 		/*
 		 * sending the Pigeon script to the Pigeon server
 		 */

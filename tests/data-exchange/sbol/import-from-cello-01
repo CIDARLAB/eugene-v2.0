@@ -1,0 +1,23 @@
+
+/*lod = */SBOL.import("./designs/cidar/cello/cello_XOR.xml");
+//println(lod);
+
+println(input_pTac);
+println(input_pTet);
+println(AmtR);
+
+
+println(pAmtR);
+println(input_pTac);
+println(PhlF);
+
+
+println(input_pTac);
+println(pAmtR);
+println(HlyIIR);
+
+
+println(pPhlF);
+println(pHlyIIR);
+println(output_YFP);
+

@@ -95,7 +95,8 @@ public class EndToEndTestSuite {
 //		
 //		// SBOL -- IMPORT
 //		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-import01");
-//		
+		new EndToEndTestSuite().test("./tests/data-exchange/sbol/import-from-cello-01");
+
 //		// SBOL -- EXPORT
 //		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-export01");
 //		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-export02");
@@ -103,12 +104,12 @@ public class EndToEndTestSuite {
 //		new EndToEndTestSuite().test("./tests/data-exchange/sbol/round-trip");
 //
 		// PIGEON
-		new EndToEndTestSuite().test("./tests/data-exchange/pigeon");
+//		new EndToEndTestSuite().test("./tests/data-exchange/pigeon");
 		
 		
 		// GENBANK
 		// - IMPORT
-		new EndToEndTestSuite().test("./tests/data-exchange/genbank/genbank-import");
+		//new EndToEndTestSuite().test("./tests/data-exchange/genbank/genbank-import");
 		
 		// - EXPORT
 		
@@ -250,16 +251,9 @@ public class EndToEndTestSuite {
 		// FUNCTIONS
 //		new EndToEndTestSuite().testAll("./tests/imperative/functions");
 
-		// individual tests		
-//		new EndToEndTestSuite().test("./tests/imperative/functions/function-syntax");
-//		new EndToEndTestSuite().test("./tests/imperative/functions/function-execution");
-//		new EndToEndTestSuite().test("./tests/imperative/functions/function-call-as-parameters");		
-//		new EndToEndTestSuite().test("./tests/imperative/functions/2-phase-interpreter");
-//		new EndToEndTestSuite().test("./tests/imperative/functions/functions-calling-functions");
-//		new EndToEndTestSuite().test("./tests/imperative/functions/scope-in-functions");
-//		new EndToEndTestSuite().test("./tests/imperative/functions/include-function-library");
+		// SCOPING
+		new EndToEndTestSuite().testAll("./tests/imperative/scoping");
 
-		// TODO!!
 	}
 	
 	/*---------------------------------------------
@@ -277,15 +271,15 @@ public class EndToEndTestSuite {
 	 *---------------------------------------------*/	
 	private static void testEugeneLabTutorials()
 			throws EugeneException {
-		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/tests/EugeneLab";
-//		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/EugeneLab_Home/home/no_name_user/";
+//		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/tests/EugeneLab";
+		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/EugeneLab_Home/home/no_name_user/";
 		// TESTING ALL FILES
-//		new EndToEndTestSuite().testAll(ROOT_DIRECTORY);
+		new EndToEndTestSuite().testAll(ROOT_DIRECTORY);
 
 		// TESTING INDIVIDUAL FILES
-//		new EndToEndTestSuite().test("./tests/EugeneLab/data-exchange/01-Rule-based-Design.eug");
-//		new EndToEndTestSuite().test("./tests/EugeneLab/imperative-features/11-functions.eug");
-//		new EndToEndTestSuite().test("./tests/EugeneLab/imperative-features/12-functions-and-arrays.eug");
+		new EndToEndTestSuite().test("./tests/EugeneLab/data-exchange/01-Rule-based-Design.eug");
+		new EndToEndTestSuite().test("./tests/EugeneLab/imperative-features/11-functions.eug");
+		new EndToEndTestSuite().test("./tests/EugeneLab/imperative-features/12-functions-and-arrays.eug");
 		new EndToEndTestSuite().test("./tests/EugeneLab/sequence-shenanigans/04-constraint-number-of-occurrences.eug");
 	}
 	
@@ -324,15 +318,16 @@ public class EndToEndTestSuite {
 
 //		testBasics();
 		testImperativeFeatures();
-//		testEugeneLabTutorials();
-		
+//		testEugeneLabTutorials();		
 //		testDataExchange();
-//		testRules();
 
-//		testRealWorldExamples();
 //		testHavingSomeFunWithEugene();
-//		testAll();
-	
+
+		// TODOs:
+//		testRules();
+//		testRealWorldExamples();
+
+//		testAll();	
 	}
 	
 

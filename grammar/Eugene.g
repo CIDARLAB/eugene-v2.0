@@ -194,6 +194,7 @@ import org.cidarlab.eugene.dom.imp.*;
 import org.cidarlab.eugene.dom.imp.container.*;
 import org.cidarlab.eugene.dom.imp.loops.Loop;
 import org.cidarlab.eugene.dom.imp.functions.*;
+import org.cidarlab.eugene.dom.imp.branches.ConditionalBranch;
 import org.cidarlab.eugene.constants.EugeneConstants.ParsingPhase;
 
 import org.antlr.runtime.*;
@@ -407,10 +408,14 @@ NamedElement child = null;
  */
 //checks if the name has been defined in program
 public boolean checkIfAlreadyDeclared(String name, boolean all) {
-    if (this.interp.contains(name)) {
-        printError(name + " has already been defined.");
-        return true;
-    } 
+    try {
+        if (this.interp.checkIfDeclaredInScope(name)) {
+            printError(name + " has already been defined.");
+            return true;
+        } 
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
     return false;
 }
 
@@ -603,18 +608,53 @@ public Object exec(String rule, int tokenIndex)
         } 
         
     } catch (EugeneReturnException ere) {
-        throw new EugeneReturnException(ere.getReturnValue());    
-    } catch (Exception e) {
-        throw new EugeneException(e.getLocalizedMessage());
-    }
-    finally { 
         // restore location
         this.input.seek(oldPosition); 
+        // and throw exception
+        throw new EugeneReturnException(ere.getReturnValue());    
+    } catch (Exception e) {
+        // restore location
+        this.input.seek(oldPosition); 
+        // and throw exception
+        throw new EugeneException(e.getLocalizedMessage());
     }
+
+    // restore location
+    this.input.seek(oldPosition); 
+    // and return the returned object	    
     return rv;
 }
  
- 
+    /**
+     *   The exec_branch/1 method executes the branch of an IF-ELSE statement
+     *   depending on the condition.
+     *   The condition is evaluated during the Parsing process by invoking the Interp.evaluateCondition()
+     *   method. Depending on this, the parser invokes the exec_branch method.
+     *   (see if_elseif_else rule)
+     */
+    public void exec_branch(int tokenIndex) 
+        throws EugeneException, EugeneReturnException {
+
+        // push it!
+        this.interp.push(new ConditionalBranch());
+        try {
+            this.exec("list_of_statements", tokenIndex);
+        } catch (EugeneReturnException ere) {
+            // pop the if statement from the stack
+            this.interp.pop();
+            // and throw the exception
+            throw new EugeneReturnException(ere.getReturnValue());    
+        } catch (Exception e) {
+            // pop the if statement from the stack
+            this.interp.pop();
+            // and throw the exception
+            throw new EugeneException(e.getLocalizedMessage());
+        }
+        
+        // pop the if statement from the stack
+        this.interp.pop();
+    }
+    
     public void execute_loop(Token initStart, Token condStart, Token incStart, Token loopStart) 
             throws EugeneException, EugeneReturnException {
 
@@ -823,7 +863,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
         // then we store the imported data into the 
         // current scope's symbol tables
         if(null != $de.e) {
-            this.interp.dataExchange($de.e);
+            this.interp.recursiveStoringOf($de.e);
         }
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
@@ -832,7 +872,22 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 	}
 	|	imperativeStatements[defer]
 	|	function_call[defer] SEMIC
-	|	built_in_function[defer] SEMIC
+	|	bif=built_in_function[defer] SEMIC // product/1, random/2, size/1, ...
+	{  
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    try {
+        // iff there's no assignment to a LHS element,
+        // then we store the imported data into the 
+        // current scope's symbol tables
+        if(null != $bif.element) {
+            this.interp.recursiveStoringOf($de.e);
+        }
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}	
+	}
+	|	stand_alone_function[defer] SEMIC  // save/1, exit/0
 	|	return_statement[defer] SEMIC
 	;
 /***
@@ -2051,13 +2106,13 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
  *------------------------------------------------------------------*/ 
 imperativeStatements[boolean defer]
 	throws EugeneReturnException
-	:	ifStatement[defer]
+	:	if_elseif_else[defer]
 	|	forall_iterator[defer]
 	|	for_loop[defer]
 	|	while_loop[defer]
 	;	
 
-ifStatement[boolean defer]
+if_elseif_else[boolean defer]
 	throws EugeneReturnException
 
 @init {
@@ -2076,7 +2131,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
         // and ignore the rest of the ifStatement
         
         try {
-            this.exec("list_of_statements", $stmts.start.getTokenIndex());
+            this.exec_branch($stmts.start.getTokenIndex());
         } catch(EugeneReturnException ere) {
             throw new EugeneReturnException(ere.getReturnValue());
         } catch(EugeneException ee) {
@@ -2098,7 +2153,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING && !bExecuted) {
         // if true => execute the statements
         // and ignore the rest of the ifStatement
         try {        
-            this.exec("list_of_statements", $stmts.start.getTokenIndex());
+            this.exec_branch($stmts.start.getTokenIndex());
         } catch(EugeneReturnException ere) {
             throw new EugeneReturnException(ere.getReturnValue());
         } catch(EugeneException ee) {
@@ -2117,7 +2172,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING && !bExecuted) {
 			stmts=list_of_statements[true] RIGHTCUR {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING && !bExecuted) {
     try {
-        this.exec("list_of_statements", $stmts.start.getTokenIndex());        
+        this.exec_branch($stmts.start.getTokenIndex());        
     } catch(EugeneReturnException ere) {
         throw new EugeneReturnException(ere.getReturnValue());
     } catch(EugeneException ee) {
@@ -2555,6 +2610,9 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 /*------------------------------------------------------------------
  * BUILT-IN FUNCTIONS
  * E.g. sizeof()
+ * Built-in functions can be used on the RHS of assignments, 
+ * i.e. they return same result which is interpreted later
+ * i.e. in the "assignment" or "statement" rule 
  *------------------------------------------------------------------*/
 built_in_function[boolean defer]
 	returns [NamedElement element]
@@ -2582,7 +2640,29 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     }
 }	
 	}
-	|	(SAVE_LC|SAVE_UC|STORE_LC|STORE_UC) LEFTP e=expr[defer] RIGHTP {
+	|	(pr=PRODUCT|pe=PERMUTE) LEFTP idToken=ID RIGHTP {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    try {
+        if(pr != null) {
+            $element = this.interp.product($idToken.text);
+        } else {
+            $element = this.interp.permute($idToken.text);
+        }
+    } catch(Exception ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}	
+	}
+	;
+
+/*------------------------------------------------------------------
+ * STAND-ALONE FUNCTIONS
+ * E.g. SAVE(my_part)
+ * Stand-alone functions can NOT be used on the RHS of assignments, 
+ * i.e. they perform actions immediately
+ *------------------------------------------------------------------*/
+stand_alone_function[boolean defer] 
+	:	(SAVE_LC|SAVE_UC|STORE_LC|STORE_UC) LEFTP e=expr[defer] RIGHTP {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try  {
         if(null != $e.element) {
@@ -2590,30 +2670,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
         } else {
             throw new EugeneException("Cannot store " + $e.text + " into the library!");
         }
-        $element = null;
     } catch(EugeneException ee) {
-        printError(ee.getLocalizedMessage());
-    }
-}	
-	}
-	|	(pr=PRODUCT|pe=PERMUTE) LEFTP idToken=ID RIGHTP {
-if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-    try {
-    
-        if(!this.interp.contains($idToken.text)) {
-            printError($idToken.text+" does not exists.");
-        } 
-        NamedElement ne = this.interp.get($idToken.text);
-        if(!(ne instanceof Device)) {
-            printError($idToken.text+" is not a Device.");
-        }
-        
-        if(pr != null) {
-            $element = this.interp.product((Device)ne);
-        } else {
-            $element = this.interp.permute((Device)ne);
-        }
-    } catch(Exception ee) {
         printError(ee.getLocalizedMessage());
     }
 }	
@@ -2627,7 +2684,6 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     }
 }
 	}
-	|	ID LEFTP RIGHTP
 	;
 
 range[boolean defer] 

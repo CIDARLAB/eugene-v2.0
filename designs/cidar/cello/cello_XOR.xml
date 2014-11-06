@@ -163,18 +163,18 @@
             </SequenceAnnotation>
         </annotation>
     </DnaComponent>
-    <DnaComponent ns2:about="http://cellocad.org/input_pTet.pAmtR(js).PhlF:7">
-        <displayId>input_pTet.pAmtR(js).PhlF:7</displayId>
-        <name>input_pTet.pAmtR(js).PhlF</name>
+    <DnaComponent ns2:about="http://cellocad.org/input_pTet.pAmtR.PhlF:7">
+        <displayId>input_pTet.pAmtR.PhlF:7</displayId>
+        <name>input_pTet.pAmtR.PhlF</name>
         <description>{
 	Name:NOR_js2-PhlF
 	Type:NOR
 	Index:2
 	ChildIndexes:5,3
-	ChildPromoters:input_pTet,pAmtR(js)
+	ChildPromoters:input_pTet,pAmtR
 	}</description>
         <dnaSequence>
-            <DnaSequence ns2:about="http://cellocad.org/input_pTet.pAmtR(js).PhlF/logicGateSeqURI:14">
+            <DnaSequence ns2:about="http://cellocad.org/input_pTet.pAmtR.PhlF/logicGateSeqURI:14">
                 <nucleotides>gctttactccaccgttggcttttttccctatcagtgatagagattgacatccctatcagtgatagagataatgagcaccttgtccaaccaaatgattcgttaccctttgacagtttctatcgatctatagataatgctagcctgaagcggtcaacgcatgtgctttgcgttctgatgagacagtgatgtcgaaaccgcctctacaaataattttgtttaactttacgagggcgatcctatggcacgtaccccgagccgtagcagcattggtagcctgcgtagtccgcatacccataaagcaattctgaccagcaccattgaaatcctgaaagaatgtggttatagcggtctgagcattgaaagcgttgcacgtcgtgccggtgcaagcaaaccgaccatttatcgttggtggaccaataaagcagcactgattgccgaagtgtatgaaaatgaaagcgaacaggtgcgtaaatttccggatctgggtagctttaaagccgatctggattttctgctgcgtaatctgtggaaagtttggcgtgaaaccatttgtggtgaagcatttcgttgtgttattgcagaagcacagctggaccctgcaaccctgacccagctgaaagatcagtttatggaacgtcgtcgtgagatgccgaaaaaactggttgaaaatgccattagcaatggtgaactgccgaaagataccaatcgtgaactgctgctggatatgatttttggtttttgttggtatcgcctgctgaccgaacagctgaccgttgaacaggatattgaagaatttaccttcctgctgattaatggtgtttgtccgggtacacagcgttaataaggaaacacagaaaaaagcccgcacctgacagtgcgggctttttttttcgaccaaagg</nucleotides>
             </DnaSequence>
         </dnaSequence>
@@ -221,19 +221,19 @@
             </SequenceAnnotation>
         </annotation>
         <annotation>
-            <SequenceAnnotation ns2:about="http://cellocad.org/pAmtR(js)/seqAnnotation:10">
+            <SequenceAnnotation ns2:about="http://cellocad.org/pAmtR/seqAnnotation:10">
                 <bioStart>79</bioStart>
                 <bioEnd>141</bioEnd>
                 <strand>+</strand>
                 <subComponent>
-                    <DnaComponent ns2:about="http://cellocad.org/pAmtR(js):10">
-                        <displayId>pAmtR(js):10</displayId>
-                        <name>pAmtR(js)</name>
+                    <DnaComponent ns2:about="http://cellocad.org/pAmtR:10">
+                        <displayId>pAmtR:10</displayId>
+                        <name>pAmtR</name>
                         <description>{
 	type:promoter
 	}</description>
                         <dnaSequence>
-                            <DnaSequence ns2:about="http://cellocad.org/pAmtR(js)/DnaSeqURI:10">
+                            <DnaSequence ns2:about="http://cellocad.org/pAmtR/DnaSeqURI:10">
 <nucleotides>cttgtccaaccaaatgattcgttaccctttgacagtttctatcgatctatagataatgctagc</nucleotides>
                             </DnaSequence>
                         </dnaSequence>
@@ -326,18 +326,18 @@
             </SequenceAnnotation>
         </annotation>
     </DnaComponent>
-    <DnaComponent ns2:about="http://cellocad.org/input_pTac.pAmtR(js).HlyIIR(js):14">
-        <displayId>input_pTac.pAmtR(js).HlyIIR(js):14</displayId>
-        <name>input_pTac.pAmtR(js).HlyIIR(js)</name>
+    <DnaComponent ns2:about="http://cellocad.org/input_pTac.pAmtR.HlyIIR:14">
+        <displayId>input_pTac.pAmtR.HlyIIR:14</displayId>
+        <name>input_pTac.pAmtR.HlyIIR</name>
         <description>{
 	Name:NOR_js2-HlyIIR
 	Type:NOR
 	Index:1
 	ChildIndexes:4,3
-	ChildPromoters:input_pTac,pAmtR(js)
+	ChildPromoters:input_pTac,pAmtR
 	}</description>
         <dnaSequence>
-            <DnaSequence ns2:about="http://cellocad.org/input_pTac.pAmtR(js).HlyIIR(js)/logicGateSeqURI:21">
+            <DnaSequence ns2:about="http://cellocad.org/input_pTac.pAmtR.HlyIIR/logicGateSeqURI:21">
                 <nucleotides>aggtaacgatcgttggctgtgttgacaattaatcatcggctcgtataatgtgtggaattgtgagcgctcacaattcttgtccaaccaaatgattcgttaccctttgacagtttctatcgatctatagataatgctagcctgaagtagtcaccggctgtgcttgccggtctgatgagcctgtgaaggcgaaactacctctacaaataattttgtttaaacccccgagatgaaatacatcctgtttgaggtgtgcgaaatgggtaaaagccgtgaacagaccatggaaaatattctgaaagcagccaaaaagaaattcggcgaacgtggttatgaaggcaccagcattcaagaaattaccaaagaagccaaagttaacgttgcaatggccagctattactttaatggcaaagagaacctgtactacgaggtgttcaaaaaatacggtctggcaaatgaactgccgaactttctggaaaaaaaccagtttaatccgattaatgccctgcgtgaatatctgaccgtttttaccacccacattaaagaaaatccggaaattggcaccctggcctatgaagaaattatcaaagaaagcgcacgcctggaaaaaatcaaaccgtattttatcggcagcttcgaacagctgaaagaaattctgcaagagggtgaaaaacagggtgtgtttcacttttttagcatcaaccataccatccattggattaccagcattgttctgtttccgaaattcaaaaaattcatcgatagcctgggtccgaatgaaaccaatgataccaatcatgaatggatgccggaagatctggttagccgtattattagcgcactgaccgataaaccgaacatttaataaaacgcatgagaaagcccccggaagatcaccttccgggggcttttttattgcgc</nucleotides>
             </DnaSequence>
         </dnaSequence>
@@ -384,19 +384,19 @@
             </SequenceAnnotation>
         </annotation>
         <annotation>
-            <SequenceAnnotation ns2:about="http://cellocad.org/pAmtR(js)/seqAnnotation:17">
+            <SequenceAnnotation ns2:about="http://cellocad.org/pAmtR/seqAnnotation:17">
                 <bioStart>76</bioStart>
                 <bioEnd>138</bioEnd>
                 <strand>+</strand>
                 <subComponent>
-                    <DnaComponent ns2:about="http://cellocad.org/pAmtR(js):17">
-                        <displayId>pAmtR(js):17</displayId>
-                        <name>pAmtR(js)</name>
+                    <DnaComponent ns2:about="http://cellocad.org/pAmtR:17">
+                        <displayId>pAmtR:17</displayId>
+                        <name>pAmtR</name>
                         <description>{
 	type:promoter
 	}</description>
                         <dnaSequence>
-                            <DnaSequence ns2:about="http://cellocad.org/pAmtR(js)/DnaSeqURI:17">
+                            <DnaSequence ns2:about="http://cellocad.org/pAmtR/DnaSeqURI:17">
 <nucleotides>cttgtccaaccaaatgattcgttaccctttgacagtttctatcgatctatagataatgctagc</nucleotides>
                             </DnaSequence>
                         </dnaSequence>
@@ -447,19 +447,19 @@
             </SequenceAnnotation>
         </annotation>
         <annotation>
-            <SequenceAnnotation ns2:about="http://cellocad.org/HlyIIR(js)/seqAnnotation:20">
+            <SequenceAnnotation ns2:about="http://cellocad.org/HlyIIR/seqAnnotation:20">
                 <bioStart>227</bioStart>
                 <bioEnd>865</bioEnd>
                 <strand>+</strand>
                 <subComponent>
-                    <DnaComponent ns2:about="http://cellocad.org/HlyIIR(js):20">
-                        <displayId>HlyIIR(js):20</displayId>
-                        <name>HlyIIR(js)</name>
+                    <DnaComponent ns2:about="http://cellocad.org/HlyIIR:20">
+                        <displayId>HlyIIR:20</displayId>
+                        <name>HlyIIR</name>
                         <description>{
 	type:cds
 	}</description>
                         <dnaSequence>
-                            <DnaSequence ns2:about="http://cellocad.org/HlyIIR(js)/DnaSeqURI:20">
+                            <DnaSequence ns2:about="http://cellocad.org/HlyIIR/DnaSeqURI:20">
 <nucleotides>atgaaatacatcctgtttgaggtgtgcgaaatgggtaaaagccgtgaacagaccatggaaaatattctgaaagcagccaaaaagaaattcggcgaacgtggttatgaaggcaccagcattcaagaaattaccaaagaagccaaagttaacgttgcaatggccagctattactttaatggcaaagagaacctgtactacgaggtgttcaaaaaatacggtctggcaaatgaactgccgaactttctggaaaaaaaccagtttaatccgattaatgccctgcgtgaatatctgaccgtttttaccacccacattaaagaaaatccggaaattggcaccctggcctatgaagaaattatcaaagaaagcgcacgcctggaaaaaatcaaaccgtattttatcggcagcttcgaacagctgaaagaaattctgcaagagggtgaaaaacagggtgtgtttcacttttttagcatcaaccataccatccattggattaccagcattgttctgtttccgaaattcaaaaaattcatcgatagcctgggtccgaatgaaaccaatgataccaatcatgaatggatgccggaagatctggttagccgtattattagcgcactgaccgataaaccgaacatttaataa</nucleotides>
                             </DnaSequence>
                         </dnaSequence>

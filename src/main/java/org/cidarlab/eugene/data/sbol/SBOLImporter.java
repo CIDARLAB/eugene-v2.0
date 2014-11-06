@@ -64,6 +64,7 @@ public class SBOLImporter {
 			}
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new EugeneException(e.getMessage());
 		}
 		

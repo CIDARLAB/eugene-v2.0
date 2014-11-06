@@ -1,17 +1,8 @@
 package org.cidarlab.eugene.dom.imp.functions;
 
-import org.antlr.runtime.Token;
-import org.antlr.runtime.TokenStream;
-
-import java.util.List;
-
-import org.cidarlab.eugene.constants.EugeneConstants;
-import org.cidarlab.eugene.dom.*;
+import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.imp.ImperativeFeature;
 import org.cidarlab.eugene.exception.EugeneException;
-import org.cidarlab.eugene.interp.SymbolTable;
-
-import com.rits.cloning.Cloner;
 
 /**
  * The FunctionInstance class represents an executing function. That is,
@@ -57,7 +48,8 @@ public class FunctionInstance
 	
 	@Override
 	public NamedElement get(String name) {
-		
+//		System.out.println("[FunctionInstance.get] -> " + this.getName()+", "+name);
+
 		// first, we check the local symbols
 		NamedElement ne = this.getSymbols().get(name);
 		
@@ -81,6 +73,8 @@ public class FunctionInstance
 	public void put(NamedElement ne) 
 			throws EugeneException {
 
+//		System.out.println("[FunctionInstance.put] -> " + this.getName()+", "+ne.getName()+", " +ne);
+		
 		if(null != ne && !this.contains(ne.getName())) {
 			this.getSymbols().put(ne);
 		}

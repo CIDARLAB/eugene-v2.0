@@ -186,11 +186,22 @@ public class SBOL2Eugene {
 			org.sbolstandard.core.impl.DnaComponentImpl sbolDC)
 		throws EugeneException {
 
+		// first, let's check if the SBOL Dna component is valid.
+		// i.e. it has a type.
+		if(null == sbolDC) {
+			throw new EugeneException(sbolDC + " is an invalid SBOL Dna Component.");
+		}
 		
 		/*
 		 * let's get the part type
 		 */
-		PartType pt = getPartType(sbolDC.getTypes().get(0).toString());
+		
+		PartType pt = null;
+		if(sbolDC.getTypes() == null || sbolDC.getTypes().isEmpty()) {
+			pt = getPartType(null);
+		} else {
+			pt = getPartType(sbolDC.getTypes().get(0).toString());
+		}
 
 		/*
 		 * finally, we set the part's property values
@@ -201,16 +212,16 @@ public class SBOL2Eugene {
 		 * next, we create the Part object and
 		 * set its property values
 		 */		
-		Part objPart = new Part(
-				pt, sbolDC.getDisplayId());
+		Part objPart = null;
+		if(null != sbolDC.getName() && !sbolDC.getName().isEmpty()) {
+			objPart = new Part(pt, sbolDC.getName());
+		} else { 
+			objPart = new Part(pt, sbolDC.getDisplayId());
+		}
+		
 		for(PropertyValue pv : lstValues) {
 			objPart.getPropertyValues().put(pv.getName(), pv);
 		}
-
-		/*
-		 * and store it in the symbol tables
-		 */
-//		SymbolTables.put(objPart);
 
 		return objPart;
 	}
@@ -268,29 +279,30 @@ public class SBOL2Eugene {
 		return lstValues;
 	}
 	
-	private static PartType buildPartType(
-			org.sbolstandard.core.impl.DnaComponentImpl sbolDC)
-					throws EugeneException {
-		PartType pt = getPartType(sbolDC.getTypes());
+//	private static PartType buildPartType(
+//			org.sbolstandard.core.impl.DnaComponentImpl sbolDC)
+//					throws EugeneException {
+//		PartType pt = getPartType(sbolDC.getTypes());
+////		if(null != pt) {
+////			SymbolTables.put(pt);
+////		}
+//		return pt;
+//	}
+//	
+
+//	private static PartType getPartType(List<URI> types) 
+//		throws EugeneException {
+//		
+//		PartType pt = getPartType(types.get(0).toString());
 //		if(null != pt) {
-//			SymbolTables.put(pt);
+//			return pt;
 //		}
-		return pt;
-	}
-	
-	private static PartType getPartType(List<URI> types) 
-		throws EugeneException {
-		
-		PartType pt = getPartType(types.get(0).toString());
-		if(null != pt) {
-			return pt;
-		}
-		
-		/*
-		 * we need to create the part type
-		 */
-		return getPartType(types.get(0).toString());
-	}
+//		
+//		/*
+//		 * we need to create the part type
+//		 */
+//		return getPartType(types.get(0).toString());
+//	}
 	
 	private static PartType getPartType(String type) 
 			throws EugeneException {

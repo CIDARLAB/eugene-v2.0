@@ -22,7 +22,8 @@ ENHANCEMENTS, OR MODIFICATIONS.
 
 package org.cidarlab.eugene.dom.imp.branches;
 
-import org.antlr.runtime.Token;
+import java.util.UUID;
+
 import org.cidarlab.eugene.dom.imp.ImperativeFeature;
 
 
@@ -31,22 +32,31 @@ public class ConditionalBranch
 
 	private static final long serialVersionUID = 1L;
 	
-	private Token condition;
-	private Token statements;
+//	private Token condition;
+//	private Token statements;
 
-	public ConditionalBranch(Token condition, Token statements) {
-		super(null);
-		this.condition = condition;
-		this.statements = statements;
+	public ConditionalBranch() {
+		super(UUID.randomUUID().toString());
 	}
+	
+//	@Override
+//	public boolean contains(String name) {
+//		return this.getSymbols().contains(symbol)
+//	}
 
-	public Token getCondition() {
-		return this.condition;
-	}
-
-	public Token getStatements() {
-		return this.statements;
-	}
+//	public ConditionalBranch(Token condition, Token statements) {
+//		super(null);
+//		this.condition = condition;
+//		this.statements = statements;
+//	}
+//
+//	public Token getCondition() {
+//		return this.condition;
+//	}
+//
+//	public Token getStatements() {
+//		return this.statements;
+//	}
 
 	@Override
 	public void clear() {

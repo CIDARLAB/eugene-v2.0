@@ -23,6 +23,7 @@ ENHANCEMENTS, OR MODIFICATIONS.
 package org.cidarlab.eugene.dom.imp.branches;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import org.cidarlab.eugene.dom.imp.ImperativeFeature;
 
@@ -31,10 +32,14 @@ public class IfStatement
 
 	private static final long serialVersionUID = -7656749626269724555L;
 	
-	private ConditionalBranch objIfBranch;
-	private ArrayList<ConditionalBranch> lstElseIfBranches;
-	private ConditionalBranch objElseBranch;
+//	private ConditionalBranch objIfBranch;
+//	private ArrayList<ConditionalBranch> lstElseIfBranches;
+//	private ConditionalBranch objElseBranch;
 
+	public IfStatement() {
+		super(UUID.randomUUID().toString());
+	}
+/****	
 	public IfStatement(ConditionalBranch objIfBranch,
 			ArrayList<ConditionalBranch> lstElseIfBranches,
 			ConditionalBranch objElseBranch) {
@@ -57,5 +62,5 @@ public class IfStatement
 	public ConditionalBranch getElseBranch() {
 		return this.objElseBranch;
 	}
-	
+	****/
 }

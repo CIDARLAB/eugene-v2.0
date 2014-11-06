@@ -206,7 +206,7 @@ public class Interp {
 	public void createProperty(String name, String type)
 			throws EugeneException {
 		
-		if(this.contains(name)) {
+		if(this.checkIfDeclaredInScope(name)) {
 			throw new EugeneException("An element named "+name+" exists already!");
 		}
 		
@@ -274,7 +274,7 @@ public class Interp {
 	public void createType(String name, List<NamedElement> elements) 
 			throws EugeneException {
 		
-		if(this.contains(name)) {
+		if(this.checkIfDeclaredInScope(name)) {
 			throw new EugeneException("An element named "+name+" exists already!");
 		}
 		
@@ -305,7 +305,7 @@ public class Interp {
 	public void createPartType(String name, List<NamedElement> elements) 
 			throws EugeneException {
 		
-		if(this.contains(name)) {
+		if(this.checkIfDeclaredInScope(name)) {
 			throw new EugeneException("An element named "+name+" exists already!");
 		}
 		
@@ -352,7 +352,7 @@ public class Interp {
 		/*
 		 * error checking
 		 */
-		if(this.contains(name)) {
+		if(this.checkIfDeclaredInScope(name)) {
 			throw new EugeneException("An element named "+name+" exists already!");
 		}
 	
@@ -503,7 +503,7 @@ public class Interp {
 	public void createDevice(String name, List<List<NamedElement>> components, List<List<Orientation>> orientations)
 			throws EugeneException {
 
-		if(this.contains(name)) {
+		if(this.checkIfDeclaredInScope(name)) {
 			throw new EugeneException("An element named "+name+" exists already.");
 		}
 		
@@ -579,7 +579,7 @@ public class Interp {
 	public Interaction createInteraction(String name, String lhs, Interaction.InteractionType type, Interaction rhs) 
 			throws EugeneException {
 		
-		if(!this.contains(rhs.getName())) {
+		if(!this.checkIfDeclaredInScope(rhs.getName())) {
 			this.put(rhs);
 		}
 		
@@ -587,14 +587,25 @@ public class Interp {
 	}
 
 	/**
-	 * The product/1 method calculates the cartesian product of the given device.
+	 * The product/1 method enumerates all rule-compliant 
+	 * devices based on a given device (``Device Template'')
 	 * 
-	 * @param d ... the device
+	 * @param name ... the name of the ``device template''
 	 * @throws EugeneException
 	 */
-	public EugeneArray product(Device d) 
+	public EugeneArray product(String name) 
 			throws EugeneException {
-
+		
+        NamedElement ne = this.get(name);
+        if(ne == null) {
+            throw new EugeneException(name+" does not exists.");
+        }
+        
+        if(!(ne instanceof Device)) {
+            throw new EugeneException(name+" is not a Device.");
+        }
+        Device d = (Device)ne;
+        
 		if(null == spAdapter) {
 			spAdapter = new SparrowAdapter(this.sparrow);
 		}
@@ -786,7 +797,18 @@ public class Interp {
     	} else if(el instanceof EugeneContainer) {
     		if(null != ((EugeneContainer)el).getElements()) {
         		v.num = ((EugeneContainer)el).getElements().size();
+    		} else {
+    			v.num = 0;
     		}
+    		
+    	// Device	
+    	} else if(el instanceof Device) {
+    		if(null != ((Device)el).getComponentList()) {
+    			v.num = ((Device)el).getComponentList().size();
+    		} else {
+    			v.num = 0;
+    		}
+    		
     	}
     	
     	return v;
@@ -837,9 +859,20 @@ public class Interp {
 	 * @param d ... the device
 	 * @throws EugeneException
 	 */
-	public EugeneCollection permute(Device d) 
+	public EugeneArray permute(String name) 
 			throws EugeneException {
-		return new EugeneCollection(null);
+		
+        NamedElement ne = this.get(name);
+        if(ne == null) {
+            throw new EugeneException(name+" does not exists.");
+        }
+        
+        //Device d = null;
+        if(!(ne instanceof Device)) {
+            throw new EugeneException(name+" is not a Device.");
+        }
+        
+		return new EugeneArray(null);
 	}
 
 	/**
@@ -1325,6 +1358,31 @@ public class Interp {
 		return (Variable)ne;
 	}
 		
+	
+	/**
+	 * The checkIfDeclaredInScope/1 method checks if a 
+	 * given identifier is declared in the current scope.
+	 * This method is particularly important to avoid 
+	 * duplicate declarations of the same identifier.
+	 * 
+	 * @param name   ... the name, i.e. the identifier
+	 * @return       ... true ... if declard
+	 *                  false ... otherwise
+	 *                  
+	 * @throws EugeneException
+	 */
+	public boolean checkIfDeclaredInScope(String name) 
+			throws EugeneException {		
+		if(!this.stack.isEmpty()) {
+			return this.stack.peek().contains(name);
+		}
+		try {
+			return this.symbols.contains(name) || this.sparrow.contains(name);
+		} catch(SparrowException spe) {
+			throw new EugeneException(spe.getLocalizedMessage());
+		}
+	}
+	
 	/**
 	 * The contains/1 method checks if a given name has been declared.
 	 * 
@@ -1339,12 +1397,15 @@ public class Interp {
 		
 		try {
 			
+			
 			if(!this.stack.isEmpty()) {
+				System.out.println("[contains] -> " + name + " -> " + this.stack.peek());
 				Stack<StackElement> tmp = new Stack<StackElement>();
 				while(this.stack.size() > 0 && !bContains) {
 					StackElement se = this.stack.pop();
 					tmp.push(se);
 					if(bContains == false) {
+						System.out.println("[contains] -> " + name + " -> " + se +" -> " + se.contains(name));
 						bContains = se.contains(name);
 					}
 					
@@ -1402,12 +1463,12 @@ public class Interp {
 	public void putImportedData(NamedElement ne) 
 			throws EugeneException {
 		
-		if(ne instanceof EugeneCollection) {
+		if(ne instanceof EugeneContainer) {
 			/*
 			 * iterate over the elements and put them 
 			 * individually into the symbol tables
 			 */
-			for(NamedElement e : ((EugeneCollection)ne).getElements()) {
+			for(NamedElement e : ((EugeneContainer)ne).getElements()) {
 				this.put(e);
 			}
 		} else {
@@ -1433,7 +1494,25 @@ public class Interp {
 	public void put(String name, NamedElement ne) 
 			throws EugeneException {
 		
-		if(this.stack.isEmpty()) {
+		if(!this.stack.isEmpty()) {
+			
+			/*
+			 * scoping
+			 */
+			
+			// in this case, we store the loop's iteration variable 
+			// into the symbol tables of the below stack element
+			if(this.stack.peek() instanceof Loop &&
+					((Loop)this.stack.peek()).getVarname().equals(name)) {
+					
+				StackElement se = this.stack.pop();
+				se.put(ne);
+				this.stack.push(se);
+
+			} else {
+				this.stack.peek().put(ne);
+			}
+		} else {
 			/*
 			 * MAIN scope
 			 */
@@ -1455,21 +1534,6 @@ public class Interp {
 					// let's ignore it for the time being.
 				}
 			}
-		} else {
-			/*
-			 * scoping
-			 */
-			if(this.stack.peek() instanceof Loop &&
-					((Loop)this.stack.peek()).getVarname().equals(name)) {
-					
-				StackElement se = this.stack.pop();
-				se.put(ne);
-//				this.put(name, ne);
-				this.stack.push(se);
-
-			} else {
-				this.stack.peek().put(ne);
-			}
 		}
 		
 	}
@@ -1487,7 +1551,7 @@ public class Interp {
 		/*
 		 * first, we need to some error checking 
 		 */
-		if(this.contains(name)) {
+		if(this.checkIfDeclaredInScope(name)) {
 			throw new EugeneException(name +" exists already.");
 		}
 
@@ -1611,7 +1675,7 @@ public class Interp {
 	 */
 	public void createCollection(String name) 
 			throws EugeneException {
-		if(this.contains(name)) {
+		if(this.checkIfDeclaredInScope(name)) {
 			throw new EugeneException(name+" exists already.");
 		}
 
@@ -1625,7 +1689,9 @@ public class Interp {
 	 */
 	public void createArray(String name) 
 			throws EugeneException {
-		if(this.contains(name)) {
+		// first, we evaluate if something with the same 
+		// name is declared in the current scope.
+		if(this.checkIfDeclaredInScope(name)) {
 			throw new EugeneException(name+" exists already.");
 		}
 		this.push(new EugeneArray(name));
@@ -1758,7 +1824,8 @@ public class Interp {
 	 */
 	public void clear() 
 			throws EugeneException {
-		if(0 == this.stack.size()) {
+		if(!this.stack.isEmpty()) {
+			
 			throw new EugeneException("The stack is empty!");
 		}
 		this.stack.peek().clear();
@@ -1938,28 +2005,26 @@ public class Interp {
 	 * 
 	 * @throws EugeneException
 	 */
-	public void dataExchange(NamedElement e) 
+	public void recursiveStoringOf(NamedElement e) 
 			throws EugeneException {
 		
-		// in case it's a EugeneCollection, then we store every single
-		// element of the collection in the symbol tables
-		if(e instanceof EugeneCollection) {
-			for(NamedElement el : ((EugeneCollection)e).getElements()) {
-				this.put(el);
+		if(e instanceof EugeneContainer) {
+			for(NamedElement el : ((EugeneContainer)e).getElements()) {
+				this.recursiveStoringOf(el);
 			}
 
 		// in case it's a EugeneArray, then we store every single
 		// element of the collection in the symbol tables
-		} else if(e instanceof EugeneArray) {
-			for(NamedElement el : ((EugeneArray)e).getElements()) {
-				this.put(el);
+		} else if(e instanceof Device) {
+			for(NamedElement el : ((Device)e).getComponentList()) {
+				this.recursiveStoringOf(el);
 			}
 		
 		// otherwise, we just put the NamedElement object 
 		// into the symbol tables
-		} else {
+		} else { 
 			this.put(e);
-		} 
+		}
 	}
  
 	/**
