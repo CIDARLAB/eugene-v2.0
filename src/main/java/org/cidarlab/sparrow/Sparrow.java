@@ -230,7 +230,7 @@ public class Sparrow
 				Sparrow.class.getClassLoader().getResourceAsStream("query-template.drt");
 
 		String drl = converter.compile( queries, templateStream );
-//		System.out.println(drl);
+		System.out.println(drl);
 		
 		/*
 		 * next, we open a new session to query all data 

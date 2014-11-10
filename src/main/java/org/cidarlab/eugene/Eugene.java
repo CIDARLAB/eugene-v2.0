@@ -151,7 +151,7 @@ public class Eugene {
 	 * @param f
 	 * @throws EugeneException
 	 */
-	public void executeFile(File file) 
+	public Collection<Component> executeFile(File file) 
 			throws EugeneException {
 		
 		/*
@@ -172,7 +172,7 @@ public class Eugene {
 		/*
 		 * then, we execute the script
 		 */
-		this.executeScript(script/*, file.toString()*/);
+		return this.executeScript(script);
 	}
 	
 	/**

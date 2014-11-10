@@ -36,26 +36,32 @@ PT5 pt5_3("", 3.14151, ["A", "T", "C", "G"], [0, 1.1, 2.2, 3.3, 4.4, 5.5], true)
 Device D01(PT5);
 Rule con01(ON D01:
 	PT5.prop1 == "ATCG");
-product(D01);	
+lod = product(D01);
+if(sizeof(lod) != 4) {exit;}
+	
 
 /*-----------------------------------
  * CONTAINS
  * searches for substrings
  *-----------------------------------*/
+/*
 Device D02(PT5);
 Rule con02(ON D02:
 	PT5.prop1 CONTAINS "A");
-product(D02);		
-
+lod = product(D02);
+if(sizeof(lod) != 4) {exit;}
+*/
 /*-----------------------------------
  * NOTCONTAINS
  * searches for substrings
  *-----------------------------------*/
+/*
 Device D02_1(PT5);
 Rule con02_1(ON D02_1:
 	PT5.prop1 NOTCONTAINS "A");
-product(D02_1);		
-
+lod = product(D02_1);		
+if(sizeof(lod) != 2) {exit;}
+*/
 
 /*-----------------------------------
  * MATCHES
@@ -63,9 +69,11 @@ product(D02_1);
  *-----------------------------------*/
 Device D03(PT5);
 Rule con03(ON D03:
-	PT5.prop1 MATCHES "[ATCG]+"); // one or more characters from the alphabet 
+	PT5.prop1 MATCHES "(.)T(\\.)*"); // one or more characters from the alphabet 
 	                              // A, T, C, G
-product(D03);	
+lod = product(D03);
+println(lod);
+exit;	
  
 /*-----------------------------------
  * STARTSWITH
@@ -86,8 +94,8 @@ product(D05);
 /*-----------------------------------
  * SOUNDSLIKE
  *-----------------------------------*/
-PT5 pt5_4("fubar");
-Device D06(PT5);
-Rule con06(ON D06:
-	PT5.prop1 SOUNDSLIKE "foobar");
-product(D06);
+//PT5 pt5_4("fubar");
+//Device D06(PT5);
+//Rule con06(ON D06:
+//	PT5.prop1 SOUNDSLIKE "foobar");
+//product(D06);

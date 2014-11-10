@@ -28,5 +28,29 @@ Rule reverseDevice(ON TU:
 // Generate all rule-compliant designs	
 lod = product(TU);
 
+/*---------------------
+ *  PROCESSING OF THE 
+ *  GENERATED DESIGNS
+ *---------------------*/
+
+// determining the number of generated designs
 num nr_of_designs = SIZEOF(lod);
 println("There are ", nr_of_designs, " rule-compliant designs.");
+
+
+// saving the designs into the library management system (LMS)
+for(num i=0; i<nr_of_designs; i=i+1) {
+    SAVE(lod[i]);
+}
+
+// visualizing 10 of the designs
+Array[] sub;
+for(num i=0; i<10; i=i+1) {
+    sub = sub + lod[i];
+}
+SBOL.visualize(sub);
+
+// exporting all designs to SBOL
+SBOL.export(lod, "./exports/sbol/my-library.sbol.xml");
+
+

@@ -316,8 +316,15 @@ public class Eugene2SparrowCompiler {
 				
 				exp_op = this.compileExpression(exp.getLhs(), exp.isQuery());
 
-				this.sb_eval.append(" ").append(this.operandsMap.get(exp.getOp().toLowerCase())).append(" ");			
+				System.out.println("HERE!  " + exp_op + ", " +exp.getOp().toLowerCase());
+				
+				this.sb_eval.append(" ").append(this.operandsMap.get(exp.getOp().toLowerCase())).append(" ");		
+				
+				System.out.println("HERE!  " + this.sb_eval);
+				
 				this.compileExpressionConstant(exp.getRhs());
+
+				System.out.println("HERE!  " + this.sb_eval);
 			}
 			
 		/*
@@ -349,6 +356,8 @@ public class Eugene2SparrowCompiler {
 		
 		if(null != this.sb_eval) {
 			this.evaluations.add(this.sb_eval);
+			
+			System.out.println(this.evaluations);
 		}
 		
 		return exp_op;
@@ -524,7 +533,8 @@ public class Eugene2SparrowCompiler {
 	private StringBuilder buildDroolsQuery() {
 		StringBuilder sb_query = new StringBuilder();
 
-//		System.out.println("[buildDroolsQuery] -> " + this.locd);
+		System.out.println("[buildDroolsQuery] -> " + this.locd);
+		
 		/*
 		 * EVALUATIONS
 		 */
@@ -723,6 +733,7 @@ public class Eugene2SparrowCompiler {
 		this.operandsMap.put("notequals", "!=");
 		this.operandsMap.put("contains", "contains");
 		this.operandsMap.put("not contains", "not contains");
+		this.operandsMap.put("notcontains", "not contains");
 		this.operandsMap.put("matches", "matches");
 		this.operandsMap.put("not matches", "not matches");
 		this.operandsMap.put("startswith", "str[startsWith]");

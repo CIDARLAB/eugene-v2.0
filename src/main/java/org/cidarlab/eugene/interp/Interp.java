@@ -1747,22 +1747,19 @@ public class Interp {
 	 * EXPRESSIONS 
 	 **********************************************************************/
     //does multiplication or division on a primitive, used by grammar rule multExpr
-    public void doMultDivOp(Variable source, Variable destination, String op) 
+    public NamedElement doMultDivOp(NamedElement LHS, NamedElement RHS, String op) 
     		throws EugeneException {
     	
-        if (source.type.equals(EugeneConstants.NUM)) {
-            if ("*".equals(op)) {
-                destination.num *= source.num;
-            } else {
-                if (source.num != 0) {
-                    destination.num /= source.num;
-                } else {
-                    throw new EugeneException("Division by zero.");
-                }
-            }
-        } else {
-        	throw new EugeneException("Cannot perform * operation on non-numerical values!");
-        }
+    	if(null == this.executor) {
+    		this.executor = new ExpressionExecutor();
+    	}
+    	
+    	try {
+    		return this.executor.doMultDivOp(RHS, LHS, op);
+    	} catch(EugeneException ee) {
+    		throw new EugeneException(ee.getLocalizedMessage());
+    	}
+
     }
 
     
@@ -2034,6 +2031,14 @@ public class Interp {
 		// into the symbol tables
 		} else { 
 			this.put(e);
+		}
+		
+		try {
+			if(!this.sparrow.contains(e.getName())) {
+				this.sparrow.insertFact(e);
+			}
+		} catch(SparrowException se) {
+			throw new EugeneException(se.getMessage());
 		}
 	}
  

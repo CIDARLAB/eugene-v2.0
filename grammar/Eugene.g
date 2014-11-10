@@ -890,16 +890,37 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 	|	bif=built_in_function[defer] SEMIC // product/1, random/2, size/1, ...
 	{  
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-    try {
+//    try {
         // iff there's no assignment to a LHS element,
         // then we store the imported data into the 
         // current scope's symbol tables
-        if(null != $bif.element) {
-            this.interp.recursiveStoringOf($de.e);
-        }
-    } catch(EugeneException ee) {
-        printError(ee.getLocalizedMessage());
-    }
+
+// Ernst's brain is storming!
+//
+//--------------
+// what should happen with the returned result of a built-in-function?
+//--------------
+//
+// the user should specify what should happen with the result 
+// of built-in functions. this can be achieved by using 
+// assignments.
+// Example: lod = product(D);
+//     The list of devices (lod) contains then all enumerated
+//     devices of device D returned by the product function
+//
+// moreover, should we allow the specification of built-in functions 
+// as stand-alone? i.e. giving the user the possibility to neglect 
+// the returned result?
+//
+// here's an option: storing the result into the LMS.
+// no so ``time'' and ``memory'' efficient though.
+//        if(null != $bif.element) {
+//            this.interp.recursiveStoringOf($bif.element);
+//        }
+//
+//    } catch(EugeneException ee) {
+//        printError(ee.getLocalizedMessage());
+//    }
 }	
 	}
 	|	stand_alone_function[defer] SEMIC  // save/1, exit/0
@@ -2459,14 +2480,24 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
         $element = null;
     }
 }	
-	} 	( (mul=MULT|div=DIV) e=atom[defer] {
+	} 	( op=(MULT|DIV) e=atom[defer] {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
-        if ($mul.text != null) {
-            this.interp.doMultDivOp($e.p, $p, $mul.text);
-        } else {
-            this.interp.doMultDivOp($e.p, $p, $div.text);
-        }
+        if(null != $element) {
+            if(null != $e.element) {
+                $element = this.interp.doMultDivOp($e.element, $element, $op.text);                
+            } else if(null != $e.p) {
+                $element = this.interp.doMultDivOp($e.p, $element, $op.text);
+            }
+            $p = null;            
+        } else {        
+            if(null != $e.element) {
+                this.interp.doMultDivOp($e.element, $p, $op.text);
+            } else {
+                this.interp.doMultDivOp($e.p, $p, $op.text); 
+            }
+            $element = null;
+        }    
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
     }
@@ -2663,6 +2694,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
         } else {
             $element = this.interp.permute($idToken.text);
         }
+
     } catch(Exception ee) {
         printError(ee.getLocalizedMessage());
     }

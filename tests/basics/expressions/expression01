@@ -9,3 +9,5 @@ if(three != 3) {exit;}
 if(zero != 0) {exit;}
 
 
+num two_dot_five = 1 + 2 * 3 / 4;
+if(two_dot_five != 2.5) {exit(two_dot_five, " != 2.5");}

@@ -3,6 +3,8 @@ package org.cidarlab.eugene.interp;
 import java.util.ArrayList;
 
 import org.cidarlab.eugene.constants.EugeneConstants;
+import org.cidarlab.eugene.dom.Component;
+import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.PropertyValue;
 import org.cidarlab.eugene.dom.Variable;
@@ -33,6 +35,10 @@ public class ExpressionExecutor {
     public NamedElement doMinPlusOp(NamedElement RHS, NamedElement LHS, String op) 
     		throws EugeneException {
     	
+    	if(!("-".equals(op) || "+".equals(op))) {
+    		throw new EugeneException(op + " is an invalid operator!");
+    	}
+    	
     	try {
 	        if(RHS instanceof PropertyValue && LHS instanceof PropertyValue) {
 	            return this.doMinPlusOp((PropertyValue)RHS, (PropertyValue)LHS, op);
@@ -42,8 +48,12 @@ public class ExpressionExecutor {
 	        	return this.doMinPlusOp((Variable)RHS, (PropertyValue)LHS, op);
 	        } else if(RHS instanceof Variable && LHS instanceof Variable) {
 	        	return this.doMinPlusOp((Variable)RHS, (Variable)LHS, op);
-	        } else if(RHS instanceof EugeneContainer && LHS instanceof EugeneContainer) {
-	        	return this.doMinPlusOp((EugeneContainer)RHS, (EugeneContainer)LHS, op);
+
+	        	// adding/removing elements to/from containers
+	        } else if(LHS instanceof EugeneContainer) {
+	        	return this.doMinPlusOp((EugeneContainer)LHS, RHS, op);
+	        } else if(RHS instanceof EugeneContainer) {
+	        	return this.doMinPlusOp((EugeneContainer)RHS, LHS, op);
 	        }
 	        
     	} catch(EugeneException ee) {
@@ -282,6 +292,90 @@ public class ExpressionExecutor {
 		throw new EugeneException("Unsupported " + op + " operation for Eugene containers!");
 		
 	}
+	
+	/*
+	 * COMPONENT + CONTAINER
+	 */
+	private EugeneContainer doMinPlusOp( EugeneContainer c, NamedElement e, String op) 
+				throws EugeneException { 
+		if(null != e && null != c) {
+			if("+".equals(op)) {
+				// add the LHS to the container
+				c.getElements().add(e);
+			} else if("-".equals(op)) {
+				// remove the LHS from the container
+				if(c.getElements().contains(e)) {
+					
+				} else {
+					throw new EugeneException("The " + c.getName() + " container does not contain " + e.getName());
+				}
+			}
+		}
+		return c;
+	}
 
+	
+	/**
+	 * The doMultDivOp/3 takes as input the left-hand-side (LHS) and the right-hand-side (RHS)  
+	 * of the operator op which can either be "*" (multiplication) or "/" (division).
+	 * 
+	 * @param lhs  ... the LHS of the operation
+	 * @param rhs  ... the RHS of the operation 
+	 * @param op   ... the operator, either "*" or "/"
+	 * @return  ... a NamedElement that represents the multiplication/division result
+	 * 
+	 * @throws EugeneException  ... if the operator is not support on the types of operands
+	 */
+	public NamedElement doMultDivOp(NamedElement lhs, NamedElement rhs, String op) 
+			throws EugeneException {
+		
+		Variable v_lhs = null;
+		Variable v_rhs = null;
+		
+		// Left-Hand-Side
+		if(lhs instanceof PropertyValue) {
+			v_lhs = this.comparator.convertPropertyValueToVariable(
+					(PropertyValue)lhs);
+		} else if(lhs instanceof Variable) {
+			v_lhs = (Variable)lhs;
+		}
+		
+		// Right-Hand-Side
+		if(rhs instanceof PropertyValue) {
+			v_rhs = this.comparator.convertPropertyValueToVariable(
+					(PropertyValue)rhs);
+		} else if(rhs instanceof Variable) {
+			v_rhs = (Variable)rhs;
+		}
+
+		if(null != v_lhs && null != v_rhs) {
+			return this.doMultDivOp(v_lhs, v_rhs, op);
+		}
+		
+		throw new EugeneException("Unsupported " + op +" operation!");
+	}
+	
+	
+	public Variable doMultDivOp(Variable lhs, Variable rhs, String op) 
+			throws EugeneException {
+        
+		// NUM * NUM --> NUM
+		if (EugeneConstants.NUM.equals(lhs.getType()) && 
+        		EugeneConstants.NUM.equals(rhs.getType())) {
+            if ("*".equals(op)) {
+                lhs.num *= rhs.num;
+            } else {
+                if (rhs.num != 0) {
+                    lhs.num /= rhs.num;
+                } else {
+                    throw new EugeneException("Division by zero.");
+                }
+            }
+
+            return lhs;
+        }
+		
+    	throw new EugeneException("Cannot perform * operation on non-numerical values!");
+	}
 
 }

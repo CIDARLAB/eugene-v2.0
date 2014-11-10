@@ -1,7 +1,5 @@
-num a = 1;
-num b = 2;
 
-// function definition
+// FUNCTION DEFINITION
 // -------------------
 // Syntax: (<return-type>)? <function-name> ( (<list-of-parameters>)? ) {
 //     (statement)+
@@ -33,7 +31,7 @@ num add(num a, num b)
 }
 
 
-// function call
+// FUNCTION CALL
 // -------------
 // Syntax: <function-name> ( (<list-of-expressions>)? ) ;
 //
@@ -51,15 +49,15 @@ print_text("Hello");
 
 get_one();
 
+num a = 1;
+num b = 2;
 add(1, 2);
 add(1 + 1, 2 + 2);
 add(a, b);
 add(2 * a, 2 * b);
 
  
-
 // INVALID:
-
 //print_hello("text");  // invalid number of parameter values
 //print_hello(1);       // invalid number of parameter values
 

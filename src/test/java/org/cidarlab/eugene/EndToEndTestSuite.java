@@ -1,7 +1,9 @@
 package org.cidarlab.eugene;
 
 import java.io.File;
+import java.util.Collection;
 
+import org.cidarlab.eugene.dom.Component;
 import org.cidarlab.eugene.exception.EugeneException;
 
 public class EndToEndTestSuite {
@@ -104,7 +106,7 @@ public class EndToEndTestSuite {
 //		new EndToEndTestSuite().test("./tests/data-exchange/sbol/round-trip");
 //
 		// PIGEON
-		new EndToEndTestSuite().test("./tests/data-exchange/pigeon");
+//		new EndToEndTestSuite().test("./tests/data-exchange/pigeon");
 		
 		
 		// GENBANK
@@ -187,7 +189,7 @@ public class EndToEndTestSuite {
 		
 //		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-01"); 
 //		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-02");
-//		new EndToEndTestSuite().test("./tests/rules/expression/string-rules-01");
+		new EndToEndTestSuite().test("./tests/rules/expression/string-rules-01");
 //		new EndToEndTestSuite().test("./tests/rules/expression/string-regexp-01");
 //		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-declaration");
 //		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-or");		
@@ -210,11 +212,11 @@ public class EndToEndTestSuite {
 		
 		// 1. EXPRESSION RULES
 		// a1 + a2 + ... + aN >= 10
-		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-01"); 
-		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-02");
-		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-03");  
-		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-04");  
-		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-05");  
+//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-01"); 
+//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-02");
+//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-03");  
+//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-04");  
+//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-05");  
 //		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-or-01");		
 //		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-or-02");		
 //		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-NOT-01");		
@@ -271,16 +273,16 @@ public class EndToEndTestSuite {
 	 *---------------------------------------------*/	
 	private static void testEugeneLabTutorials()
 			throws EugeneException {
-//		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/tests/EugeneLab";
-		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/EugeneLab_Home/home/no_name_user/";
+		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/tests/EugeneLab";
+//		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/EugeneLab_Home/home/no_name_user/";
 		// TESTING ALL FILES
-		new EndToEndTestSuite().testAll(ROOT_DIRECTORY);
+//		new EndToEndTestSuite().testAll(ROOT_DIRECTORY);
 
 		// TESTING INDIVIDUAL FILES
-		new EndToEndTestSuite().test("./tests/EugeneLab/data-exchange/01-Rule-based-Design.eug");
-		new EndToEndTestSuite().test("./tests/EugeneLab/imperative-features/11-functions.eug");
-		new EndToEndTestSuite().test("./tests/EugeneLab/imperative-features/12-functions-and-arrays.eug");
-		new EndToEndTestSuite().test("./tests/EugeneLab/sequence-shenanigans/04-constraint-number-of-occurrences.eug");
+//		new EndToEndTestSuite().test("./tests/EugeneLab/data-exchange/01-Rule-based-Design.eug");
+//		new EndToEndTestSuite().test("./tests/EugeneLab/imperative-features/11-functions.eug");
+//		new EndToEndTestSuite().test("./tests/EugeneLab/imperative-features/12-functions-and-arrays.eug");
+//		new EndToEndTestSuite().test("./tests/EugeneLab/sequence-shenanigans/04-constraint-number-of-occurrences.eug");
 	}
 	
 	private static void testAll() {
@@ -323,10 +325,10 @@ public class EndToEndTestSuite {
 	public static void main(String[] args) 
 			throws EugeneException {
 
-//		testBasics();
+		testBasics();
 //		testImperativeFeatures();
 //		testEugeneLabTutorials();		
-		testDataExchange();
+//		testDataExchange();
 
 //		testInteractWithLMS();
 
@@ -349,9 +351,9 @@ public class EndToEndTestSuite {
 			
 			Eugene e= new Eugene();
 			e.setRootDirectory(ROOT_DIRECTORY);
-			e.executeFile(
-					new File(file));
-			
+			Collection<Component> coc = e.executeFile(
+											new File(file));
+
 			long tProcessing = System.nanoTime() - t1;
 			
 			System.out.println("[TestSuite.test] full processing time: "+tProcessing*Math.pow(10, -9)+"sec");
