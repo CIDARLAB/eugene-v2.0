@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:RDF xmlns="http://sbols.org/v1#" xmlns:ns2="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <DnaComponent ns2:about="http://cellocad.org/input_pTac__input_pTet__AmtR_:0">
+        <displayId>input_pTac__input_pTet__AmtR_:0</displayId>
+        <name>input_pTac__input_pTet__AmtR_</name>
+        <description>{
+	Name:NOR_js2-AmtR
+	Type:NOR
+	Index:3
+	ChildIndexes:
+	ChildPromoters:
+	}</description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://cellocad.org/input_pTac__input_pTet__AmtR_/logicGateSeqURI:7">
+                <nucleotides>cgctaacgatcgttggctgtgttgacaattaatcatcggctcgtataatgtgtggaattgtgagcgctcacaatttactccaccgttggcttttttccctatcagtgatagagattgacatccctatcagtgatagagataatgagcacctgaagggtgtctcaaggtgcgtaccttgactgatgagtccgaaaggacgaaacacccctctacaaataattttgtttaaaatgttccctaataatcagcaaagaggttactagatggcaggcgcagttggtcgtccgcgtcgtagtgcaccgcgtcgtgcaggtaaaaatccgcgtgaagaaattctggatgcaagcgcagaactgtttacccgtcagggttttgcaaccaccagtacccatcagattgcagatgcagttggtattcgtcaggcaagcctgtattatcattttccgagcaaaaccgaaatctttctgaccctgctgaaaagcaccgttgaaccgagcaccgttctggcagaagatctgagcaccctggatgcaggtccggaaatgcgtctgtgggcaattgttgcaagcgaagttcgtctgctgctgagcaccaaatggaatgttggtcgtctgtatcagctgccgattgttggtagcgaagaatttgcagaatatcatagccagcgtgaagcactgaccaatgtttttcgtgatctggcaaccgaaattgttggtgatgatccgcgtgcagaactgccgtttcatattaccatgagcgttattgaaatgcgtcgcaatgatggtaaaattccgagtccgctgagcgcagatagcctgccggaaaccgcaattatgctggcagatgcaagcctggcagttctgggtgcaccgctgcctgcagatcgtgttgaaaaaaccctggaactgattaaacaggcagatgcaaaataataactcggtaccaaagacgaacaataagacgctgaaaagcgtcttttttcgttttggtcc</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/F-scar/seqAnnotation:1">
+                <bioStart>1</bioStart>
+                <bioEnd>4</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/F-scar:1">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                        <displayId>F-scar:1</displayId>
+                        <name>F-scar</name>
+                        <description>{
+	type:scar
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/F-scar/DnaSeqURI:1">
+<nucleotides>cgct</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/input_pTac/seqAnnotation:2">
+                <bioStart>5</bioStart>
+                <bioEnd>75</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/input_pTac:2">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+                        <displayId>input_pTac:2</displayId>
+                        <name>input_pTac</name>
+                        <description>{
+	type:promoter
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/input_pTac/DnaSeqURI:2">
+<nucleotides>aacgatcgttggctgtgttgacaattaatcatcggctcgtataatgtgtggaattgtgagcgctcacaatt</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/input_pTet/seqAnnotation:3">
+                <bioStart>76</bioStart>
+                <bioEnd>149</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/input_pTet:3">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+                        <displayId>input_pTet:3</displayId>
+                        <name>input_pTet</name>
+                        <description>{
+	type:promoter
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/input_pTet/DnaSeqURI:3">
+<nucleotides>tactccaccgttggcttttttccctatcagtgatagagattgacatccctatcagtgatagagataatgagcac</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/BydvJ/seqAnnotation:4">
+                <bioStart>150</bioStart>
+                <bioEnd>229</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/BydvJ:4">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000627"/>
+                        <displayId>BydvJ:4</displayId>
+                        <name>BydvJ</name>
+                        <description>{
+	type:insulator
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/BydvJ/DnaSeqURI:4">
+<nucleotides>ctgaagggtgtctcaaggtgcgtaccttgactgatgagtccgaaaggacgaaacacccctctacaaataattttgtttaa</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/js2_amtr/seqAnnotation:5">
+                <bioStart>230</bioStart>
+                <bioEnd>263</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/js2_amtr:5">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                        <displayId>js2_amtr:5</displayId>
+                        <name>js2_amtr</name>
+                        <description>{
+	type:rbs
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/js2_amtr/DnaSeqURI:5">
+<nucleotides>aatgttccctaataatcagcaaagaggttactag</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/AmtR/seqAnnotation:6">
+                <bioStart>264</bioStart>
+                <bioEnd>935</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/AmtR:6">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                        <displayId>AmtR:6</displayId>
+                        <name>AmtR</name>
+                        <description>{
+	type:cds
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/AmtR/DnaSeqURI:6">
+<nucleotides>atggcaggcgcagttggtcgtccgcgtcgtagtgcaccgcgtcgtgcaggtaaaaatccgcgtgaagaaattctggatgcaagcgcagaactgtttacccgtcagggttttgcaaccaccagtacccatcagattgcagatgcagttggtattcgtcaggcaagcctgtattatcattttccgagcaaaaccgaaatctttctgaccctgctgaaaagcaccgttgaaccgagcaccgttctggcagaagatctgagcaccctggatgcaggtccggaaatgcgtctgtgggcaattgttgcaagcgaagttcgtctgctgctgagcaccaaatggaatgttggtcgtctgtatcagctgccgattgttggtagcgaagaatttgcagaatatcatagccagcgtgaagcactgaccaatgtttttcgtgatctggcaaccgaaattgttggtgatgatccgcgtgcagaactgccgtttcatattaccatgagcgttattgaaatgcgtcgcaatgatggtaaaattccgagtccgctgagcgcagatagcctgccggaaaccgcaattatgctggcagatgcaagcctggcagttctgggtgcaccgctgcctgcagatcgtgttgaaaaaaccctggaactgattaaacaggcagatgcaaaataataa</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/L3S2P55/seqAnnotation:7">
+                <bioStart>936</bioStart>
+                <bioEnd>992</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/L3S2P55:7">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000141"/>
+                        <displayId>L3S2P55:7</displayId>
+                        <name>L3S2P55</name>
+                        <description>{
+	type:terminator
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/L3S2P55/DnaSeqURI:7">
+<nucleotides>ctcggtaccaaagacgaacaataagacgctgaaaagcgtcttttttcgttttggtcc</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://cellocad.org/input_pTet__pAmtRjs__LitR_:7">
+        <displayId>input_pTet__pAmtRjs__LitR_:7</displayId>
+        <name>input_pTet__pAmtRjs__LitR_</name>
+        <description>{
+	Name:NOR_js2-LitR
+	Type:NOR
+	Index:2
+	ChildIndexes:
+	ChildPromoters:
+	}</description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://cellocad.org/input_pTet__pAmtRjs__LitR_/logicGateSeqURI:14">
+                <nucleotides>gctttactccaccgttggcttttttccctatcagtgatagagattgacatccctatcagtgatagagataatgagcaccttgtccaaccaaatgattcgttaccctttgacagtttctatcgatctatagataatgctagcctgaagtcataagtctgggctaagcccactgatgagtcgctgaaatgcgacgaaacttatgacctctacaaataattttgtttaagtcctatggactttttcatacaggagaaccctcgatggataccattcagaaacgtccgcgtacccgtctgagtccggaaaaacgtaaagaacagctgctggatattgccattgaagtttttagccagcgtggtattggtcgtggtggtcatgcagatattgcagaaattgcacaggttagcgttgcaaccgtgtttaactattttccgacccgtgaagatctggttgatgatgttctgaacaaagtggaaaacgagtttcaccagttcatcaataacagcattagcctggatctggatgttcgtagcaatctgaataccctgctgctgaacattattgatagcgttcagaccggcaacaaatggattaaagtttggtttgaatggtcaaccagcacccgtgatgaagtttggcctctgtttctgagcacccatagcaataccaatcaggtgatcaaaaccatgtttgaagagggtattgaacgcaatgaagtgtgcaatgatcatacaccggaaaatctgaccaaaatgctgcatggtatttgctatagcgtgtttattcaggccaatcgtaatagcagcagcgaagaaatggaagaaaccgcaaattgctttctgaatatgctgtgcatctacaaataataactcggtaccaaattccagaaaagacacccgaaagggtgttttttcgttttggtcc</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/E-scar/seqAnnotation:8">
+                <bioStart>1</bioStart>
+                <bioEnd>4</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/E-scar:8">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                        <displayId>E-scar:8</displayId>
+                        <name>E-scar</name>
+                        <description>{
+	type:scar
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/E-scar/DnaSeqURI:8">
+<nucleotides>gctt</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/input_pTet/seqAnnotation:9">
+                <bioStart>5</bioStart>
+                <bioEnd>78</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/input_pTet:9">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+                        <displayId>input_pTet:9</displayId>
+                        <name>input_pTet</name>
+                        <description>{
+	type:promoter
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/input_pTet/DnaSeqURI:9">
+<nucleotides>tactccaccgttggcttttttccctatcagtgatagagattgacatccctatcagtgatagagataatgagcac</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/pAmtRjs/seqAnnotation:10">
+                <bioStart>79</bioStart>
+                <bioEnd>141</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/pAmtRjs:10">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+                        <displayId>pAmtRjs:10</displayId>
+                        <name>pAmtRjs</name>
+                        <description>{
+	type:promoter
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/pAmtRjs/DnaSeqURI:10">
+<nucleotides>cttgtccaaccaaatgattcgttaccctttgacagtttctatcgatctatagataatgctagc</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/PlmJ/seqAnnotation:11">
+                <bioStart>142</bioStart>
+                <bioEnd>226</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/PlmJ:11">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000627"/>
+                        <displayId>PlmJ:11</displayId>
+                        <name>PlmJ</name>
+                        <description>{
+	type:insulator
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/PlmJ/DnaSeqURI:11">
+<nucleotides>ctgaagtcataagtctgggctaagcccactgatgagtcgctgaaatgcgacgaaacttatgacctctacaaataattttgtttaa</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/js2_litr/seqAnnotation:12">
+                <bioStart>227</bioStart>
+                <bioEnd>260</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/js2_litr:12">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                        <displayId>js2_litr:12</displayId>
+                        <name>js2_litr</name>
+                        <description>{
+	type:rbs
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/js2_litr/DnaSeqURI:12">
+<nucleotides>gtcctatggactttttcatacaggagaaccctcg</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/LitR/seqAnnotation:13">
+                <bioStart>261</bioStart>
+                <bioEnd>869</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/LitR:13">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                        <displayId>LitR:13</displayId>
+                        <name>LitR</name>
+                        <description>{
+	type:cds
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/LitR/DnaSeqURI:13">
+<nucleotides>atggataccattcagaaacgtccgcgtacccgtctgagtccggaaaaacgtaaagaacagctgctggatattgccattgaagtttttagccagcgtggtattggtcgtggtggtcatgcagatattgcagaaattgcacaggttagcgttgcaaccgtgtttaactattttccgacccgtgaagatctggttgatgatgttctgaacaaagtggaaaacgagtttcaccagttcatcaataacagcattagcctggatctggatgttcgtagcaatctgaataccctgctgctgaacattattgatagcgttcagaccggcaacaaatggattaaagtttggtttgaatggtcaaccagcacccgtgatgaagtttggcctctgtttctgagcacccatagcaataccaatcaggtgatcaaaaccatgtttgaagagggtattgaacgcaatgaagtgtgcaatgatcatacaccggaaaatctgaccaaaatgctgcatggtatttgctatagcgtgtttattcaggccaatcgtaatagcagcagcgaagaaatggaagaaaccgcaaattgctttctgaatatgctgtgcatctacaaataataa</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/L3S2P24/seqAnnotation:14">
+                <bioStart>870</bioStart>
+                <bioEnd>924</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/L3S2P24:14">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000141"/>
+                        <displayId>L3S2P24:14</displayId>
+                        <name>L3S2P24</name>
+                        <description>{
+	type:terminator
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/L3S2P24/DnaSeqURI:14">
+<nucleotides>ctcggtaccaaattccagaaaagacacccgaaagggtgttttttcgttttggtcc</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://cellocad.org/input_pTac__pAmtRjs__PhlF_:14">
+        <displayId>input_pTac__pAmtRjs__PhlF_:14</displayId>
+        <name>input_pTac__pAmtRjs__PhlF_</name>
+        <description>{
+	Name:NOR_an1-PhlF
+	Type:NOR
+	Index:1
+	ChildIndexes:
+	ChildPromoters:
+	}</description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://cellocad.org/input_pTac__pAmtRjs__PhlF_/logicGateSeqURI:21">
+                <nucleotides>aggtaacgatcgttggctgtgttgacaattaatcatcggctcgtataatgtgtggaattgtgagcgctcacaattcttgtccaaccaaatgattcgttaccctttgacagtttctatcgatctatagataatgctagcctgaagcggtcaacgcatgtgctttgcgttctgatgagacagtgatgtcgaaaccgcctctacaaataattttgtttaaggagctatggactatgtttgaaaggctgaaatactagatggcacgtaccccgagccgtagcagcattggtagcctgcgtagtccgcatacccataaagcaattctgaccagcaccattgaaatcctgaaagaatgtggttatagcggtctgagcattgaaagcgttgcacgtcgtgccggtgcaagcaaaccgaccatttatcgttggtggaccaataaagcagcactgattgccgaagtgtatgaaaatgaaagcgaacaggtgcgtaaatttccggatctgggtagctttaaagccgatctggattttctgctgcgtaatctgtggaaagtttggcgtgaaaccatttgtggtgaagcatttcgttgtgttattgcagaagcacagctggaccctgcaaccctgacccagctgaaagatcagtttatggaacgtcgtcgtgagatgccgaaaaaactggttgaaaatgccattagcaatggtgaactgccgaaagataccaatcgtgaactgctgctggatatgatttttggtttttgttggtatcgcctgctgaccgaacagctgaccgttgaacaggatattgaagaatttaccttcctgctgattaatggtgtttgtccgggtacacagcgttaataaggaaacacagaaaaaagcccgcacctgacagtgcgggctttttttttcgaccaaagg</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/D-scar/seqAnnotation:15">
+                <bioStart>1</bioStart>
+                <bioEnd>4</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/D-scar:15">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                        <displayId>D-scar:15</displayId>
+                        <name>D-scar</name>
+                        <description>{
+	type:scar
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/D-scar/DnaSeqURI:15">
+<nucleotides>aggt</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/input_pTac/seqAnnotation:16">
+                <bioStart>5</bioStart>
+                <bioEnd>75</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/input_pTac:16">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+                        <displayId>input_pTac:16</displayId>
+                        <name>input_pTac</name>
+                        <description>{
+	type:promoter
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/input_pTac/DnaSeqURI:16">
+<nucleotides>aacgatcgttggctgtgttgacaattaatcatcggctcgtataatgtgtggaattgtgagcgctcacaatt</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/pAmtRjs/seqAnnotation:17">
+                <bioStart>76</bioStart>
+                <bioEnd>138</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/pAmtRjs:17">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+                        <displayId>pAmtRjs:17</displayId>
+                        <name>pAmtRjs</name>
+                        <description>{
+	type:promoter
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/pAmtRjs/DnaSeqURI:17">
+<nucleotides>cttgtccaaccaaatgattcgttaccctttgacagtttctatcgatctatagataatgctagc</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/RiboJ53/seqAnnotation:18">
+                <bioStart>139</bioStart>
+                <bioEnd>217</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/RiboJ53:18">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000627"/>
+                        <displayId>RiboJ53:18</displayId>
+                        <name>RiboJ53</name>
+                        <description>{
+	type:insulator
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/RiboJ53/DnaSeqURI:18">
+<nucleotides>ctgaagcggtcaacgcatgtgctttgcgttctgatgagacagtgatgtcgaaaccgcctctacaaataattttgtttaa</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/an1_phlf/seqAnnotation:19">
+                <bioStart>218</bioStart>
+                <bioEnd>254</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/an1_phlf:19">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+                        <displayId>an1_phlf:19</displayId>
+                        <name>an1_phlf</name>
+                        <description>{
+	type:rbs
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/an1_phlf/DnaSeqURI:19">
+<nucleotides>ggagctatggactatgtttgaaaggctgaaatactag</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/PhlF/seqAnnotation:20">
+                <bioStart>255</bioStart>
+                <bioEnd>860</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/PhlF:20">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                        <displayId>PhlF:20</displayId>
+                        <name>PhlF</name>
+                        <description>{
+	type:cds
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/PhlF/DnaSeqURI:20">
+<nucleotides>atggcacgtaccccgagccgtagcagcattggtagcctgcgtagtccgcatacccataaagcaattctgaccagcaccattgaaatcctgaaagaatgtggttatagcggtctgagcattgaaagcgttgcacgtcgtgccggtgcaagcaaaccgaccatttatcgttggtggaccaataaagcagcactgattgccgaagtgtatgaaaatgaaagcgaacaggtgcgtaaatttccggatctgggtagctttaaagccgatctggattttctgctgcgtaatctgtggaaagtttggcgtgaaaccatttgtggtgaagcatttcgttgtgttattgcagaagcacagctggaccctgcaaccctgacccagctgaaagatcagtttatggaacgtcgtcgtgagatgccgaaaaaactggttgaaaatgccattagcaatggtgaactgccgaaagataccaatcgtgaactgctgctggatatgatttttggtttttgttggtatcgcctgctgaccgaacagctgaccgttgaacaggatattgaagaatttaccttcctgctgattaatggtgtttgtccgggtacacagcgttaataa</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/ECK120033737/seqAnnotation:21">
+                <bioStart>861</bioStart>
+                <bioEnd>917</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/ECK120033737:21">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000141"/>
+                        <displayId>ECK120033737:21</displayId>
+                        <name>ECK120033737</name>
+                        <description>{
+	type:terminator
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/ECK120033737/DnaSeqURI:21">
+<nucleotides>ggaaacacagaaaaaagcccgcacctgacagtgcgggctttttttttcgaccaaagg</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://cellocad.org/pPhlF__pLitRjs__output_YFP_:21">
+        <displayId>pPhlF__pLitRjs__output_YFP_:21</displayId>
+        <name>pPhlF__pLitRjs__output_YFP_</name>
+        <description>{
+	Name:output_YFP
+	Type:OUTPUT_OR
+	Index:0
+	ChildIndexes:
+	ChildPromoters:
+	}</description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://cellocad.org/pPhlF__pLitRjs__output_YFP_/logicGateSeqURI:25">
+                <nucleotides>aatgcgacgtacggtggaatctgattcgttaccaattgacatgatacgaaacgtaccgtatcgttaaggtcgagcgtagagcttagattcgttaccaattgacaaatttataaattgtcagtacagtcctagcctgaagctgtcaccggatgtgctttccggtctgatgagtccgtgaggacgaaacagcctctacaaataattttgtttaatactagagaaagaggggaaatactagatggtgagcaagggcgaggagctgttcaccggggtggtgcccatcctggtcgagctggacggcgacgtaaacggccacaagttcagcgtgtccggcgagggcgagggcgatgccacctacggcaagctgaccctgaagttcatctgcaccacaggcaagctgcccgtgccctggcccaccctcgtgaccaccttcggctacggcctgcaatgcttcgcccgctaccccgaccacatgaagctgcacgacttcttcaagtccgccatgcccgaaggctacgtccaggagcgcaccatcttcttcaaggacgacggcaactacaagacccgcgccgaggtgaagttcgagggcgacaccctggtgaaccgcatcgagctgaagggcatcgacttcaaggaggacggcaacatcctggggcacaagctggagtacaactacaacagccacaacgtctatatcatggccgacaagcagaagaacggcatcaaggtgaacttcaagatccgccacaacatcgaggacggcagcgtgcagctcgccgaccactaccagcagaacaccccaatcggcgacggccccgtgctgctgcccgacaaccactaccttagctaccagtccgccctgagcaaagaccccaacgagaagcgcgatcacatggtcctgctggagttcgtgaccgccgccgggatcactctcggcatggacgagctgtacaagtaactcggtaccaaattccagaaaagaggcctcccgaaaggggggccttttttcgttttggtcc</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/C-scar/seqAnnotation:22">
+                <bioStart>1</bioStart>
+                <bioEnd>4</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/C-scar:22">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                        <displayId>C-scar:22</displayId>
+                        <name>C-scar</name>
+                        <description>{
+	type:scar
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/C-scar/DnaSeqURI:22">
+<nucleotides>aatg</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/pPhlF/seqAnnotation:23">
+                <bioStart>5</bioStart>
+                <bioEnd>70</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/pPhlF:23">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+                        <displayId>pPhlF:23</displayId>
+                        <name>pPhlF</name>
+                        <description>{
+	type:promoter
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/pPhlF/DnaSeqURI:23">
+<nucleotides>cgacgtacggtggaatctgattcgttaccaattgacatgatacgaaacgtaccgtatcgttaaggt</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/pLitRjs/seqAnnotation:24">
+                <bioStart>71</bioStart>
+                <bioEnd>133</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/pLitRjs:24">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+                        <displayId>pLitRjs:24</displayId>
+                        <name>pLitRjs</name>
+                        <description>{
+	type:promoter
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/pLitRjs/DnaSeqURI:24">
+<nucleotides>cgagcgtagagcttagattcgttaccaattgacaaatttataaattgtcagtacagtcctagc</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/output_YFP/seqAnnotation:25">
+                <bioStart>134</bioStart>
+                <bioEnd>1019</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/output_YFP:25">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                        <displayId>output_YFP:25</displayId>
+                        <name>output_YFP</name>
+                        <description>{
+	type:output
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/output_YFP/DnaSeqURI:25">
+<nucleotides>ctgaagctgtcaccggatgtgctttccggtctgatgagtccgtgaggacgaaacagcctctacaaataattttgtttaatactagagaaagaggggaaatactagatggtgagcaagggcgaggagctgttcaccggggtggtgcccatcctggtcgagctggacggcgacgtaaacggccacaagttcagcgtgtccggcgagggcgagggcgatgccacctacggcaagctgaccctgaagttcatctgcaccacaggcaagctgcccgtgccctggcccaccctcgtgaccaccttcggctacggcctgcaatgcttcgcccgctaccccgaccacatgaagctgcacgacttcttcaagtccgccatgcccgaaggctacgtccaggagcgcaccatcttcttcaaggacgacggcaactacaagacccgcgccgaggtgaagttcgagggcgacaccctggtgaaccgcatcgagctgaagggcatcgacttcaaggaggacggcaacatcctggggcacaagctggagtacaactacaacagccacaacgtctatatcatggccgacaagcagaagaacggcatcaaggtgaacttcaagatccgccacaacatcgaggacggcagcgtgcagctcgccgaccactaccagcagaacaccccaatcggcgacggccccgtgctgctgcccgacaaccactaccttagctaccagtccgccctgagcaaagaccccaacgagaagcgcgatcacatggtcctgctggagttcgtgaccgccgccgggatcactctcggcatggacgagctgtacaagtaactcggtaccaaattccagaaaagaggcctcccgaaaggggggccttttttcgttttggtcc</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+    </DnaComponent>
+</ns2:RDF>

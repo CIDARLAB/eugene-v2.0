@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:RDF xmlns="http://sbols.org/v1#" xmlns:ns2="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <DnaComponent ns2:about="http://cellocad.org/input_pTac__input_pTet__AmtR_:0">
+        <displayId>input_pTac__input_pTet__AmtR_:0</displayId>
+        <name>composite_device</name>
+        <description>{
+	Name:NOR_js2-AmtR
+	Type:NOR
+	Index:3
+	ChildIndexes:
+	ChildPromoters:
+	}</description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://cellocad.org/input_pTac__input_pTet__AmtR_/logicGateSeqURI:7">
+                <nucleotides>cgctatcg</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/F-scar/seqAnnotation:1">
+                <bioStart>1</bioStart>
+                <bioEnd>4</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/F-scar:1">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                        <displayId>F_scar_1</displayId>
+                        <name>F_scar</name>
+                        <description>{
+	type:scar
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/F-scar/DnaSeqURI:1">
+<nucleotides>cgct</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+        <annotation>
+            <SequenceAnnotation ns2:about="http://cellocad.org/input_pTac/seqAnnotation:2">
+                <bioStart>5</bioStart>
+                <bioEnd>8</bioEnd>
+                <strand>+</strand>
+                <subComponent>
+                    <DnaComponent ns2:about="http://cellocad.org/input_pTac:2">
+                        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+                        <displayId>input_pTac:2</displayId>
+                        <name>input_pTac</name>
+                        <description>{
+	type:promoter
+	}</description>
+                        <dnaSequence>
+                            <DnaSequence ns2:about="http://cellocad.org/input_pTac/DnaSeqURI:2">
+<nucleotides>atcg</nucleotides>
+                            </DnaSequence>
+                        </dnaSequence>
+                    </DnaComponent>
+                </subComponent>
+            </SequenceAnnotation>
+        </annotation>
+    </DnaComponent>
+</ns2:RDF>

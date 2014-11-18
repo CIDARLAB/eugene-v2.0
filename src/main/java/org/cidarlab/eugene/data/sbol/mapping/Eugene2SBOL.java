@@ -26,6 +26,7 @@ package org.cidarlab.eugene.data.sbol.mapping;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -45,6 +46,24 @@ import org.sbolstandard.core.impl.DnaSequenceImpl;
 import org.sbolstandard.core.util.SequenceOntology;
 
 
+/**
+ * The Eugene2SBOL class provides static methods for compiling 
+ * a Eugene component or container into an SBOL equivalent.
+ *  
+ * The Eugene2SBOL compiler is based on the 
+ * following mapping table:
+ *       Eugene        |                         SBOL
+ * --------------------+--------------------------------------------------
+ *      Container      |   Collection
+ *      Device         |   DNAComponent w/ SequenceAnnotations
+ *                     |   and sub-DNAComponents
+ *      Part           |   DNAComponent w/o SequenceAnnotations     
+ *                     |   and sub-DNAComponents, but w/ a DNASequence
+ *      PartType       |   DNAComponent w/o SequenceAnnotations     
+ *                     |   and sub-DNAComponents, and w/o a DNASequence
+ *                     
+ * @author Ernst Oberortner
+ */
 public class Eugene2SBOL {
 
 	public static ArrayList<String> lstURIs;
@@ -61,8 +80,15 @@ public class Eugene2SBOL {
 			throw new EugeneException("I cannot export a NULL value to SBOL!");
 		}
 
-		lstURIs = new ArrayList<String>();
-		reusedComponents = new HashMap<String, URI>();
+		if(null == lstURIs) {
+			lstURIs = new ArrayList<String>();
+		}
+		if(null == reusedComponents) {
+			reusedComponents = new HashMap<String, URI>();
+		}
+
+//		lstURIs = new ArrayList<String>();
+//		reusedComponents = new HashMap<String, URI>();
 		
 		Collection sbolCollection = SBOLFactory.createCollection();
 		sbolCollection.setDescription(objContainer.getName());
@@ -100,12 +126,16 @@ public class Eugene2SBOL {
 		if (null == objComponent) {
 			throw new EugeneException("I cannot export a NULL value to SBOL!");
 		}
+		
+//		if(null == lstURIs) {
+//			lstURIs = new ArrayList<String>();
+//		}
 
 		if (objComponent instanceof Device) {
 
 			/*
 			 * Eugene Device --> SBOL DnaComponent w/ SequenceAnnotations and subComponents
-			 */			
+			 */		
 			return toDnaComponent((Device)objComponent, parent);
 			
 		} else if (objComponent instanceof Part) {
@@ -116,9 +146,9 @@ public class Eugene2SBOL {
 			return toDnaComponent((Part)objComponent, parent, pos);
 			
 		} else {
-			throw new EugeneException("I cannot export the " + objComponent.getName() + " element to SBOL!");
+			throw new EugeneException(
+					"I cannot export the " + objComponent.getName() + " element to SBOL!");
 		}
-		
 	}
 	
 	/*
@@ -157,15 +187,24 @@ public class Eugene2SBOL {
 		 * displayId
 		 */
 		String deviceDisplayId = objDevice.getName();
-		dc.setDisplayId(deviceDisplayId);
+		if(null == parent) {
+			dc.setDisplayId(deviceDisplayId);
+		} else {
+			dc.setDisplayId(parent.getDisplayId()+"_"+deviceDisplayId);
+		}
 
 		/*
-		 * the composite DNAComponent's description
+		 * name
+		 */
+		dc.setName(objDevice.getName());
+		
+		/*
+		 * description
 		 */		
 		dc.setDescription(objDevice.getName());
 		
 		/*
-		 * the DNAComponent's URI
+		 * URI
 		 */
 		String sURI = null;
 		if(null != parent) {
@@ -175,7 +214,9 @@ public class Eugene2SBOL {
 		}
 		dc.setURI(URI.create(sURI));
 		addURI(sURI);
-
+		
+//		System.out.println("DNAComponent: " + dc.getURI());
+		
 		/*
 		 * n is a counter over the device's sub components
 		 */
@@ -191,27 +232,49 @@ public class Eugene2SBOL {
 		
 		int pos = 0;
 		String subComponentDisplayIds = null;
-		for (NamedElement c : objDevice.getComponents().get(0)) {
+		
+		StringBuilder device_seq = new StringBuilder();
+		
+		/*
+		 * a Eugene Device is a composite component. 
+		 * Hence, we iterate over the list of a device's components 
+		 * and compile each Device's sub-component into an SBOL
+		 * SequenceAnnotation w/ a sub-DNAComponent
+		 */
+		for (NamedElement c : objDevice.getComponentList()) {
 
-			if(null == subComponentDisplayIds) {
-				
-				subComponentDisplayIds=c.getName();
-			} else {
-				subComponentDisplayIds+="_"+c.getName();
-			}
-			
-			/*
-			 * create a SequenceAnnotation for each sub component
-			 */
+			/*--------------------
+			 * SequenceAnnotation 
+			 *--------------------*/
 			SequenceAnnotation sa = SBOLFactory.createSequenceAnnotation();
 			if(null != parent) {
-				sa.setURI(URI.create(parent.getURI() + "/" + objDevice.getName()+"/"+c.getName()+"_annotation_"+n));
-				addURI(URI.create(parent.getURI() + "/" + objDevice.getName()+"/"+c.getName()+"_annotation_"+n).toASCIIString());
-
+				sa.setURI(URI.create(parent.getURI() + "/" + objDevice.getName() + "/annotation_" + n + "/" + c.getName()));
 			} else {
-				sa.setURI(URI.create(DEFAULT_URI + "/" + objDevice.getName()+"/"+c.getName()+"_annotation_"+n));
-				addURI(URI.create(DEFAULT_URI + "/" + objDevice.getName()+"/"+c.getName()+"_annotation_"+n).toASCIIString());
+				sa.setURI(URI.create(DEFAULT_URI + "/" + objDevice.getName() + "/annotation_" + n + "/" + c.getName()));
 			}
+			addURI(sa.getURI().toASCIIString());
+			
+			/*
+			 * if the device's sub-component is a device, then
+			 * we flip it. see the flip/1 method for further documentation. 
+			 */
+			if(c instanceof Device && objDevice.getOrientations().get(n-1).get(0) == Orientation.REVERSE) {
+				c = Eugene2SBOL.flip((Device)c);
+			}
+
+			/*
+			 * Strand/Orientation of the SequenceAnnotation
+			 */
+			if(objDevice.getOrientations().get(n-1).get(0) == Orientation.FORWARD ||
+					objDevice.getOrientations().get(n-1).get(0) == Orientation.UNDEFINED) { 
+				sa.setStrand(StrandType.POSITIVE);
+			} else {
+				sa.setStrand(StrandType.NEGATIVE);
+			}
+	
+			/*----------------------------
+			 * Sub DNAComponent
+			 *----------------------------*/
 			
 			/*
 			 * convert the device's sub component into a SBOL DNAComponent
@@ -219,15 +282,31 @@ public class Eugene2SBOL {
 			 */
 			DnaComponent subComponent = null;
 			
+			/*
+			 * displayId of the sub-component
+			 */
+			if(null == subComponentDisplayIds) {
+				subComponentDisplayIds=c.getName();
+			} else {
+				subComponentDisplayIds+="_"+c.getName();
+			}
+			
 			if(c instanceof Component) {
-				subComponent = Eugene2SBOL.convert((Component)c, dc, pos++);
+				subComponent = Eugene2SBOL.convert((Component)c, dc, pos);
 			} else if(c instanceof ComponentType) {
-				subComponent = Eugene2SBOL.convert((ComponentType)c, dc, pos++);
+				subComponent = Eugene2SBOL.convert((ComponentType)c, dc, pos);
 			} else {
 				throw new EugeneException("Invalid!");
 			}
+			
+			// assign the sub-DNAComponent to the
+			// SequenceAnnotation
 			sa.setSubComponent(subComponent);
 
+
+			/*
+			 *  Sequence of the sub-component
+			 */ 
 			if(null != subComponent.getDnaSequence() &&
 					subComponent.getDnaSequence().getNucleotides().length() > 0) {
 			
@@ -247,60 +326,80 @@ public class Eugene2SBOL {
 				 * adjust the current strand index appropriately
 				 */
 				nCurrentStrandIdx = end + 1; 
-
-				/*
-				 * STRAND / DIRECTIONALITY
-				 */
-				if(objDevice.getOrientations().get(n-1).get(0) == Orientation.FORWARD ||
-						objDevice.getOrientations().get(n-1).get(0) == Orientation.UNDEFINED) { 
-					sa.setStrand(StrandType.POSITIVE);
-				} else {
-					// here, we need to reverse complement the sequence
-					// and we use BioJava for this
-					// see http://biojava.org/wiki/BioJava:Cookbook:Sequence:Reverse
+				
+				 /* 
+				  * if the orientation is reversed, then we have to 
+				  * build the reverse complemented sequence
+				  */
+				if(c instanceof Part) {
 					
-					try {
-						sa.getSubComponent().getDnaSequence().setNucleotides(
-								DNATools.reverseComplement(
-										DNATools.createDNA(
-												sa.getSubComponent().getDnaSequence().getNucleotides())).seqString());
-					} catch(Exception e) {
-						e.printStackTrace();
-						throw new EugeneException("Invalid DNA sequence!");
+					// in case of a part, we must do the reverse complement
+					// of the sequence
+					if(sa.getStrand() == StrandType.NEGATIVE) {
+						
+						try {
+							
+							// we call the reverse_complement/1 method
+							String rev_comp = Eugene2SBOL.reverse_complement(
+									sa.getSubComponent().getDnaSequence().getNucleotides().toString());
+							
+							// and assign the reverse complemented DNA sequence 
+							// to the sub-component
+							sa.getSubComponent().getDnaSequence().setNucleotides(rev_comp);
+							
+							// we also append the reverse complemented 
+							// DNA sequence to the string buffer in that we 
+							// keep track of the device's sequence
+							device_seq.append(rev_comp);
+							
+						} catch(Exception e) {
+							
+							throw new EugeneException("Invalid DNA sequence!");
+						}
+					} else {
+						
+						// we also append the part's DNA sequence to the string buffer 
+						// in that we keep track of the device's sequence
+						device_seq.append(sa.getSubComponent().getDnaSequence().getNucleotides().toString());
 					}
-					
-					sa.setStrand(StrandType.NEGATIVE);
+				} else if(c instanceof Device) {
+					// if the DNAComponent's sub-component is a Device, then we append the
+					// sub-Device's sequence
+					device_seq.append(sa.getSubComponent().getDnaSequence().getNucleotides().toString());
 				}
 				
 			}
-
+			
+			// assign the SequenceAnnotation 
+			// to the DNAComponent 
 			dc.addAnnotation(sa);
 			
-			n++;				
+			n++;	
+			pos++;
 		}
 
-		/*
-		 * complete the DNAComponent's displayId
-		 */
-		if(null != subComponentDisplayIds && parent != null) {
-			
-			String displayId = subComponentDisplayIds;
-
-			URI uri = null;
-			if(reusedComponents.containsKey(displayId)) {
-				uri = reusedComponents.get(displayId);
-			} else {
-				uri = URI.create("http://www.eugenecad.org/device/"+displayId);
-				reusedComponents.put(displayId, uri);
-			}
-
-			/*
-			 * complete the DNAComponent's URI
-			 */
-			dc.setDisplayId(displayId);
-			dc.setURI(uri);
-			addURI(uri.toASCIIString());
-		}
+//		/*
+//		 * complete the DNAComponent's displayId
+//		 */
+//		if(null != subComponentDisplayIds && parent != null) {
+//			
+//			String displayId = subComponentDisplayIds;
+//
+//			URI uri = null;
+//			if(reusedComponents.containsKey(displayId)) {
+//				uri = reusedComponents.get(displayId);
+//			} else {
+//				uri = URI.create("http://www.eugenecad.org/device/"+displayId);
+//				reusedComponents.put(displayId, uri);
+//			}
+//
+//			/*
+//			 * complete the DNAComponent's URI
+//			 */
+//			dc.setDisplayId(displayId);
+//			dc.setURI(uri);
+//			addURI(uri.toASCIIString());
+//		}
 
 		/*
 		 * map Eugene device onto the
@@ -308,26 +407,136 @@ public class Eugene2SBOL {
 		 */
 		dc.getTypes().add(soMapping("Device"));
 
-
-		String seq = objDevice.toSequence();
-		if (null != seq && !seq.isEmpty()) {
+//		String seq = device_seq.toString(); //Eugene2SBOL.deviceSequence(objDevice);
+//		System.out.println(objDevice.getName()+" -> " +device_seq);
+		if (null != device_seq.toString() && !device_seq.toString().isEmpty()) {
 			DnaSequence dnaSeq = new DnaSequenceImpl();
 			dnaSeq.setURI(URI.create(dc.getURI() + "_sequence"));
 			addURI(URI.create(dc.getURI() + "_sequence").toASCIIString());
-			dnaSeq.setNucleotides(seq.toLowerCase());
+			
+			dnaSeq.setNucleotides(device_seq.toString());
+			
 			dc.setDnaSequence(dnaSeq);
 		}
 
 		return dc;
 	}
 	
+	/**
+	 * The reverse_complement/1 method reverse complements a given string 
+	 * of DNA sequence.
+	 * 
+	 * The reverse_complement/1 method uses BioJava.
+	 * see http://biojava.org/wiki/BioJava:Cookbook:Sequence:Reverse
+	 * 
+	 * @param seq   ... the sequence to be reverse complemented
+	 * @return      ... the reserve complemented sequence
+	 * 
+	 * @throws EugeneException
+	 */
+	private static String reverse_complement(String seq) 
+			throws EugeneException {
+		try {
+			return DNATools.reverseComplement(
+						DNATools.createDNA(seq)).seqString();
+		} catch(Exception e) {
+			throw new EugeneException(e.getMessage());
+		}
+	}
+	
+	/**
+	 * The flip/1 method reverses the elements in a given 
+	 * device. The flip/1 method returns a duplicate object 
+	 * containing the original device's elements in reverse
+	 * order.
+	 * 
+	 * Example:
+	 * Device D(+a, +b, +c); --> Device D(-c, -b, -a);
+	 * Device D(-c, -b, -a); --> Device D(+a, +b, +c); 
+	 * 
+	 * @param d  ... the device whose elements must be reverse
+	 * 
+	 * @return
+	 */
+	private static Device flip(Device d) {
+		
+		if(null == d.getComponents() || d.getComponents().isEmpty()) {
+			return d;
+		}
+		
+		Device fd = new Device(d.getName());
+		List<Orientation> loo = null;
+		int size = d.getComponents().size();
+		for(int i=size-1; i>=0; i--) {
+			
+			try {
+				// components
+				fd.getComponents().add(d.getComponents(i));
+				
+				// orientations
+				loo = d.getOrientations(i);
+				for(int j=0; j<loo.size(); j++) {
+					if(loo.get(j) == Orientation.FORWARD) {
+						loo.set(j, Orientation.REVERSE);
+					} else {
+						loo.set(j, Orientation.FORWARD);
+					}
+				}
+				
+				fd.getOrientations().add(loo);
+				// reverse the orientations
+				
+			} catch(EugeneException ee) {
+				ee.printStackTrace();
+			}
+			
+		}
+		
+		return fd;
+	}
+	
+//	/**
+//	 * The deviceSequence/1 method recursively generates the DNA sequence 
+//	 * of a device based on its sub-components.
+//	 * 
+//	 * @param d ... the Device object
+//	 * 
+//	 * @return a String that represents the DNA sequence of the Device object
+//	 */
+//	private static String deviceSequence(Device d) {
+//		
+////		System.out.println("[deviceSequence] -> " + d);
+//		StringBuffer sb = new StringBuffer();
+//		if(null != d.getComponentList() && !d.getComponentList().isEmpty()) {
+//			for(NamedElement e : d.getComponentList()) {
+////				System.out.println(e);
+//				if(e instanceof Device) {
+//					sb.append(Eugene2SBOL.deviceSequence((Device)e));
+//				} else if(e instanceof Part) {
+//					PropertyValue seq = ((Part)e).getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY);
+//					if(null != seq) {
+//						sb.append(seq.getTxt());
+//					}
+//				}
+//				
+//			}
+//		}
+//		return sb.toString();
+//	}
+	
 	/*
-	 * Part Type --> basic DNAComponent
+	 */
+	/**
+	 * The toDnaComponent(PartType, DnaComponent) method compiles a Eugene Part Type into 
+	 * an SBOL DNAComponent w/o SequenceAnnotations and w/o DNASequence.
+	 * 
+	 * @param objPartType   ... the Eugene PartType object that should be compiled
+	 * @param parent        ... the PartType's parent
+	 * 
+	 * @return  an SBOL DNAComponent w/o SequenceAnnotations and w/o DNASequence
 	 */
 	public static DnaComponent toDnaComponent(PartType objPartType, DnaComponent parent) {
 		DnaComponent c = SBOLFactory.createDnaComponent();
-		
-		c.setDescription(objPartType.getName());
 		
 		/*
 		 * displayId
@@ -338,6 +547,11 @@ public class Eugene2SBOL {
 			c.setDisplayId(objPartType.getName());
 		}
 
+		/*
+		 * description
+		 */
+		c.setDescription(objPartType.getName());
+		
 		/*
 		 * URI
 		 */
@@ -364,6 +578,7 @@ public class Eugene2SBOL {
 	public static DnaComponent toDnaComponent(Part objPart, DnaComponent parent, int pos) {
 		
 		DnaComponent c = SBOLFactory.createDnaComponent();
+//		System.out.println("[toDnaComponent(Part)] -> " + objPart);
 
 		/*
 		 * Part Type
@@ -422,6 +637,7 @@ public class Eugene2SBOL {
 		/*
 		 *  SEQUENCE information			
 		 */
+//		System.out.println("[Eugene2SBOL] -> " + objPart.getName()+" -> "+objPart.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY));
 		if(null != objPart.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY)) {
 			DnaSequence seq = SBOLFactory.createDnaSequence();
 			seq.setURI(URI.create(partURI+"_sequence"));
@@ -524,4 +740,15 @@ public class Eugene2SBOL {
 			lstURIs.add(s);
 		}
 	}
+
+	public static void addDisplayId(String s) {
+		if (null == lstURIs) {
+			lstURIs = new ArrayList<String>();
+		}
+
+		if (!lstURIs.contains(s)) {
+			lstURIs.add(s);
+		}
+	}
+
 }

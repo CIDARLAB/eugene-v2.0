@@ -691,8 +691,6 @@ public class Interp {
 			throw new EugeneException(ee.getLocalizedMessage());
 		}
 
-		
-
 		/*
 		 * STEP 3: ``Pruning''
 		 *  
@@ -708,7 +706,7 @@ public class Interp {
 		 * then, we store all devices into a EugeneArray and 
 		 * name them properly
 		 */
-		EugeneArray ec = new EugeneArray(null);
+		EugeneArray ea = new EugeneArray(null);
 		int i=1;
 		if(!sod.isEmpty()) {
 			for(Device sd : sod) {
@@ -718,14 +716,14 @@ public class Interp {
 
 				// putting the device into the 
 				// EugeneArray
-				ec.getElements().add(sd);
+				ea.getElements().add(sd);
 			}
 		}
 		
 		// in the product/1 method, we do not store any
 		// enumerated device since it should be the task 
 		// of the user what to do with those devices.
-		return ec;
+		return ea; 
 	}
 	
 	/**

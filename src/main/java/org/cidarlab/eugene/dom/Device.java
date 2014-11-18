@@ -191,7 +191,7 @@ public class Device
 		if(idx < 0 || idx >= this.getComponents().size()) {
 			throw new EugeneException("The index must be >=0 and <="+(this.getComponents().size()-1)+".");
 		}
-		
+
 		this.getComponents().set(idx, components);
 	}
 	
@@ -276,7 +276,7 @@ public class Device
 	 * 
 	 * @param lst ... the list of list of orientations
 	 */
-	private void setOrientations(List<List<Orientation>> orientations) {
+	public void setOrientations(List<List<Orientation>> orientations) {
 		if(null == orientations) {
 			this.orientations = new ArrayList<List<Orientation>>();
 		} else {

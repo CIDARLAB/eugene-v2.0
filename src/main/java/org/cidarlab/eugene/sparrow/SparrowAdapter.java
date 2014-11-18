@@ -73,11 +73,11 @@ public class SparrowAdapter {
 
 		for(Rule rule : rules)  {
 			
-			System.out.println("[SparrowAdapter] -> " + rule);
+//			System.out.println("[SparrowAdapter] -> " + rule);
 			components.addAll(
 					this.queryParts(rule));
 			
-			System.out.println(components);
+//			System.out.println(components);
 		}
 		
 		return components;

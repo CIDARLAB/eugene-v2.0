@@ -305,7 +305,7 @@ public class ExpressionExecutor {
 			} else if("-".equals(op)) {
 				// remove the LHS from the container
 				if(c.getElements().contains(e)) {
-					
+					c.getElements().remove(e);
 				} else {
 					throw new EugeneException("The " + c.getName() + " container does not contain " + e.getName());
 				}

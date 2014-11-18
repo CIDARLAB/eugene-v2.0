@@ -1,0 +1,91 @@
+println("let's go Eugene! let's go!");
+
+/****   TEST-CASE
+SBOL.import("./designs/cidar/cello/xor/tester.sbol.xml");
+
+//println(F_scar);
+//println(input_pTac);
+//println(composite_device);
+
+Device xor_template( composite_device );
+designs = product( xor_template );
+
+//d = designs[1];
+SBOL.export( designs, "./designs/cidar/cello/xor/tester_out.sbol.xml" );
+ ****/
+ 
+/****  TEST-CASE: single-unit device
+//xor = SBOL.import("./designs/cidar/cello/xor/import_cello_XOR.sbol.xml");
+//println(xor);
+
+SBOL.import("./designs/cidar/cello/xor/import_cello_XOR.sbol.xml");
+
+println("**** IMPORTED PARTS ****");
+println(input_pTac);
+println(AmtR);
+println(output_YFP);
+println(BydvJ);
+println("**** IMPORTED DEVICES ****");
+println(input_pTac__pAmtRjs__PhlF_);
+println(input_pTac__input_pTet__AmtR_);
+println(input_pTet__pAmtRjs__LitR_);
+println(pPhlF__pLitRjs__output_YFP_);
+
+Device xor_template( pPhlF__pLitRjs__output_YFP_ );
+designs = product( xor_template );
+println( sizeof(designs) );
+for(num i=0; i<SIZEOF(designs); i=i+1) {
+	println( designs[i] );
+}
+println("**** EXPORTING: ", designs[1]);
+d = designs[1];
+println("designs[1]: ", d); 
+SBOL.export( d, "./designs/cidar/cello/xor/single.sbol.xml" );
+ ****/
+ 
+/***** REAL USE-CASE *****/
+
+SBOL.import("./designs/cidar/cello/xor/import_cello_XOR.sbol.xml");
+
+Device xor_template( [input_pTac__input_pTet__AmtR_ |
+                      input_pTet__pAmtRjs__LitR_ |
+                      input_pTac__pAmtRjs__PhlF_ |
+                      pPhlF__pLitRjs__output_YFP_ ],
+
+                      [input_pTac__input_pTet__AmtR_ |
+                       input_pTet__pAmtRjs__LitR_ |
+                       input_pTac__pAmtRjs__PhlF_ |
+                       pPhlF__pLitRjs__output_YFP_ ],
+
+                       [input_pTac__input_pTet__AmtR_ |
+                        input_pTet__pAmtRjs__LitR_ |
+                        input_pTac__pAmtRjs__PhlF_ |
+                        pPhlF__pLitRjs__output_YFP_ ],
+
+                       [input_pTac__input_pTet__AmtR_ |
+                        input_pTet__pAmtRjs__LitR_ |
+                        input_pTac__pAmtRjs__PhlF_ |
+                        pPhlF__pLitRjs__output_YFP_ ]);
+
+
+Rule output_last( ON xor_template : 
+	ENDSWITH pPhlF__pLitRjs__output_YFP_ 
+AND 
+	ALTERNATE_ORIENTATION
+AND
+	input_pTac__input_pTet__AmtR_ EXACTLY 1
+AND
+	input_pTet__pAmtRjs__LitR_ EXACTLY 1
+AND
+	input_pTac__pAmtRjs__PhlF_ EXACTLY 1
+AND
+	pPhlF__pLitRjs__output_YFP_ EXACTLY 1);
+
+designs = product( xor_template );
+println( sizeof(designs) );
+
+for(num i=0; i<SIZEOF(designs); i=i+1) {
+	println( designs[i] );
+}
+
+SBOL.export( designs, "./designs/cidar/cello/xor/export_cello_XOR.sbol.xml" );

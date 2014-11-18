@@ -316,15 +316,15 @@ public class Eugene2SparrowCompiler {
 				
 				exp_op = this.compileExpression(exp.getLhs(), exp.isQuery());
 
-				System.out.println("HERE!  " + exp_op + ", " +exp.getOp().toLowerCase());
+//				System.out.println("HERE!  " + exp_op + ", " +exp.getOp().toLowerCase());
 				
 				this.sb_eval.append(" ").append(this.operandsMap.get(exp.getOp().toLowerCase())).append(" ");		
 				
-				System.out.println("HERE!  " + this.sb_eval);
+//				System.out.println("HERE!  " + this.sb_eval);
 				
 				this.compileExpressionConstant(exp.getRhs());
 
-				System.out.println("HERE!  " + this.sb_eval);
+//				System.out.println("HERE!  " + this.sb_eval);
 			}
 			
 		/*
@@ -357,7 +357,7 @@ public class Eugene2SparrowCompiler {
 		if(null != this.sb_eval) {
 			this.evaluations.add(this.sb_eval);
 			
-			System.out.println(this.evaluations);
+//			System.out.println(this.evaluations);
 		}
 		
 		return exp_op;
@@ -533,7 +533,7 @@ public class Eugene2SparrowCompiler {
 	private StringBuilder buildDroolsQuery() {
 		StringBuilder sb_query = new StringBuilder();
 
-		System.out.println("[buildDroolsQuery] -> " + this.locd);
+//		System.out.println("[buildDroolsQuery] -> " + this.locd);
 		
 		/*
 		 * EVALUATIONS

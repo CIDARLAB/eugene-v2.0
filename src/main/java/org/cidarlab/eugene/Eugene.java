@@ -29,9 +29,12 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.Collection;
 import java.util.logging.LogManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
+//import org.apache.log4j.Logger;
 import org.cidarlab.eugene.constants.EugeneConstants.ParsingPhase;
 import org.cidarlab.eugene.dom.Component;
 import org.cidarlab.eugene.exception.EugeneException;
@@ -65,62 +68,118 @@ public class Eugene {
 	 */
 	private BufferedWriter writer = null;
 
+	/*
+	 * a logger
+	 */
+	private Logger logger;
+	
 	public static String ROOT_DIRECTORY = ".";
 	public static String IMAGES_DIRECTORY = "./exports/pigeon/";
 	
 	/*--------------------------------------
 	 * EUGENE CONSTRUCTORS
 	 *--------------------------------------*/
-	
-	// default no-args constructor
-	public Eugene() {
-		LogManager.getLogManager().reset();
+
+	/**
+	 * The default no-arguments constructor instantiates Eugene 
+	 * by creating a new instance of Sparrow and a default output writer.
+	 * 
+	 * @throws EugeneException
+	 */
+	public Eugene() 
+			throws EugeneException {
+		
+		this.init(null, null);
 	}
 	
-	// constructor with SessionID
+	/**
+	 * The Eugene/1 constructor instantiates Eugene with a default output 
+	 * writer. Also, this constructor instantiates Eugene's Sparrow with 
+	 * the given session-id. If such a session exists already, then 
+	 * the session will be resumed. Otherwise, a new session will be created.
+	 *  
+	 * @param sessionId  ... An ID of a Sparrow session.
+	 * 
+	 * @throws EugeneException 
+	 */
 	public Eugene(String sessionId)
 			throws EugeneException {
 
-		LogManager.getLogManager().reset();
-
-		// initialize the rule-engine with 
-		// a session id
-		try {
-			this.sparrow = new Sparrow(sessionId);
-		} catch(SparrowException spe) {
-			throw new EugeneException(spe.toString());
-		}
-		
-		/*
-		 * here, we also a create a writer for 
-		 * writing any outputs
-		 */
-        try {        	
-            // init the writer too
-            writer = new BufferedWriter(
-                              new OutputStreamWriter(
-                                  new FileOutputStream(java.io.FileDescriptor.out), "ASCII"), 512);
-        } catch(Exception e) {
-        	throw new EugeneException(e.getLocalizedMessage());
-        }
+		this.init(sessionId, null);
 	}
 	
 	// constructor with sessionID and a writer to 
 	// that the Eugene output is being written
+	/**
+	 * The Eugene/2 constructor instantiates Eugene w/ the given 
+	 * output-writer and the given session-id. If such a session exists already, then 
+	 * the session will be resumed. Otherwise, a new session will be created.
+	 * 
+	 * @param sessionId   ... the session-id
+	 * @param writer      ... the output writer
+	 * 
+	 * @throws EugeneException
+	 */
 	public Eugene(String sessionId, BufferedWriter writer) 
 			throws EugeneException {
+		
+		this.init(sessionId, writer);
+	}
+	
+	/**
+	 * The init/2 method initializes the Eugene instance with 
+	 * - a the session-based Sparrow LMS and RE, 
+	 * - a writer to that all the output is written, and 
+	 * - a logger for DEBUG messages.
+	 * 
+	 * If the session-id is null, then we generate a random one.
+	 * Otherwise, Sparrow tries to resume the session of the given id.
+	 * If the session does not exist, then a new one will be created.
+	 * 
+	 * The init/2 method is private and is invoked with the parameters 
+	 * of the used Constructor. 
+	 * 
+	 * @param sessionId   ... the Session ID
+	 * @param writer      ... the output writer
+	 * 
+	 * @throws EugeneException
+	 */
+	private void init(String sessionId, BufferedWriter writer) 
+			throws EugeneException {
 
+		// LOGGING
 		LogManager.getLogManager().reset();
-
-		// initialize the rule-engine with 
-		// a session id
+		this.logger = LoggerFactory.getLogger(Eugene.class);
+		
+		// SPARROW
+		// --- Eugene's session-based Library Management System (LMS) 
+		//     and Rule-Engine (RE)
 		try {
-			this.sparrow = new Sparrow(sessionId);
+			if(null == sessionId) {
+				// init Sparrow w/ a randomly generated session ID
+				this.sparrow = new Sparrow();
+			} else {
+				// init Sparrow w/ a given session ID
+				this.sparrow = new Sparrow(sessionId);
+			}
 		} catch(SparrowException spe) {
 			throw new EugeneException(spe.toString());
 		}
 		
-		this.writer = writer;
+		// OUTPUT WRITER
+		if(null == writer) {
+	        try {        	
+	            // init the writer too
+	            this.writer = new BufferedWriter(
+	                              new OutputStreamWriter(
+	                                  new FileOutputStream(java.io.FileDescriptor.out), "ASCII"), 512);
+	        } catch(Exception e) {
+	        	throw new EugeneException(e.getLocalizedMessage());
+	        }
+		} else {
+			this.writer = writer;
+		}
+
 	}
 	
 	/**
@@ -153,6 +212,8 @@ public class Eugene {
 	 */
 	public Collection<Component> executeFile(File file) 
 			throws EugeneException {
+		
+		this.logger.debug("hello");
 		
 		/*
 		 * first, we read the file

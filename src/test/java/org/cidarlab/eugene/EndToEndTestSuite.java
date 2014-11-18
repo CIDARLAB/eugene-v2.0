@@ -102,7 +102,13 @@ public class EndToEndTestSuite {
 //		// SBOL -- EXPORT
 //		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-export01");
 //		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-export02");
-//		
+//
+		// HIEARCHIES
+		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-hierarchy-export");
+
+		// SEQUENCES
+//		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-sequence-hierarchy-export");
+
 //		new EndToEndTestSuite().test("./tests/data-exchange/sbol/round-trip");
 //
 		// PIGEON
@@ -325,10 +331,10 @@ public class EndToEndTestSuite {
 	public static void main(String[] args) 
 			throws EugeneException {
 
-		testBasics();
+//		testBasics();
 //		testImperativeFeatures();
 //		testEugeneLabTutorials();		
-//		testDataExchange();
+		testDataExchange();
 
 //		testInteractWithLMS();
 

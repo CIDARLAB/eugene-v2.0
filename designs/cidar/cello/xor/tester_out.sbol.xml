@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:RDF xmlns="http://sbols.org/v1#" xmlns:ns2="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <Collection ns2:about="http://www.eugenecad.org/designs">
+        <displayId>designs</displayId>
+        <description>designs</description>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/xor_template_1">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>xor_template_1</displayId>
+                <description>xor_template_1</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/xor_template_1/composite_device_annotation_1">
+                        <bioStart>1</bioStart>
+                        <bioEnd>8</bioEnd>
+                        <strand>+</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/F_scar_input_pTac">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>F_scar_input_pTac</displayId>
+<description>composite_device</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/F_scar_input_pTac_sequence">
+        <nucleotides>cgctatcg</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/xor_template_1/composite_device/F_scar_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>4</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://cellocad.org/F-scar:1/75baae45-6ed9-47fe-b42e-208aabface24">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>F_scar_1/75baae45-6ed9-47fe-b42e-208aabface24</displayId>
+                <name>F_scar</name>
+                <description>{
+	type:scar
+	}</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://cellocad.org/F-scar:1/75baae45-6ed9-47fe-b42e-208aabface24_sequence">
+                        <nucleotides>cgct</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/xor_template_1/composite_device/input_pTac_annotation_2">
+        <bioStart>5</bioStart>
+        <bioEnd>8</bioEnd>
+        <strand>+</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://cellocad.org/input_pTac:2/ad07cc32-1cd0-434d-aaea-588f5b37b0ad">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+                <displayId>input_pTac:2/ad07cc32-1cd0-434d-aaea-588f5b37b0ad</displayId>
+                <name>input_pTac</name>
+                <description>{
+	type:promoter
+	}</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://cellocad.org/input_pTac:2/ad07cc32-1cd0-434d-aaea-588f5b37b0ad_sequence">
+                        <nucleotides>atcg</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+        <component>
+            <DnaComponent ns2:about="http://www.eugenecad.org/xor_template_2">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+                <displayId>xor_template_2</displayId>
+                <description>xor_template_2</description>
+                <annotation>
+                    <SequenceAnnotation ns2:about="http://www.eugenecad.org/xor_template_2/composite_device_annotation_1">
+                        <bioStart>1</bioStart>
+                        <bioEnd>8</bioEnd>
+                        <strand>-</strand>
+                        <subComponent>
+                            <DnaComponent ns2:about="http://www.eugenecad.org/device/input_pTac_F_scar">
+<ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000805"/>
+<displayId>input_pTac_F_scar</displayId>
+<description>composite_device</description>
+<dnaSequence>
+    <DnaSequence ns2:about="http://www.eugenecad.org/device/input_pTac_F_scar_sequence">
+        <nucleotides>cgatagcg</nucleotides>
+    </DnaSequence>
+</dnaSequence>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/xor_template_2/composite_device/input_pTac_annotation_1">
+        <bioStart>1</bioStart>
+        <bioEnd>4</bioEnd>
+        <strand>-</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://cellocad.org/input_pTac:2/24886d1a-9804-4d8f-8afe-6a716c5934f2">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000167"/>
+                <displayId>input_pTac:2/24886d1a-9804-4d8f-8afe-6a716c5934f2</displayId>
+                <name>input_pTac</name>
+                <description>{
+	type:promoter
+	}</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://cellocad.org/input_pTac:2/24886d1a-9804-4d8f-8afe-6a716c5934f2_sequence">
+                        <nucleotides>cgat</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+<annotation>
+    <SequenceAnnotation ns2:about="http://www.eugenecad.org/xor_template_2/composite_device/F_scar_annotation_2">
+        <bioStart>5</bioStart>
+        <bioEnd>8</bioEnd>
+        <strand>-</strand>
+        <subComponent>
+            <DnaComponent ns2:about="http://cellocad.org/F-scar:1/03c2e4d5-9299-4806-bf6b-16e4a056321a">
+                <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
+                <displayId>F_scar_1/03c2e4d5-9299-4806-bf6b-16e4a056321a</displayId>
+                <name>F_scar</name>
+                <description>{
+	type:scar
+	}</description>
+                <dnaSequence>
+                    <DnaSequence ns2:about="http://cellocad.org/F-scar:1/03c2e4d5-9299-4806-bf6b-16e4a056321a_sequence">
+                        <nucleotides>agcg</nucleotides>
+                    </DnaSequence>
+                </dnaSequence>
+            </DnaComponent>
+        </subComponent>
+    </SequenceAnnotation>
+</annotation>
+                            </DnaComponent>
+                        </subComponent>
+                    </SequenceAnnotation>
+                </annotation>
+            </DnaComponent>
+        </component>
+    </Collection>
+</ns2:RDF>

@@ -184,7 +184,7 @@ public class Sparrow
 			throws SparrowException {
 		
 		QueryResults results = ksession.getQueryResults( "get all", new Object[] {  pt.getName() } );
-		System.out.println( "there are " + results.size() + " "+pt.getName()+"s" );
+//		System.out.println( "there are " + results.size() + " "+pt.getName()+"s" );
 		
 		return null;
 	}
@@ -230,7 +230,7 @@ public class Sparrow
 				Sparrow.class.getClassLoader().getResourceAsStream("query-template.drt");
 
 		String drl = converter.compile( queries, templateStream );
-		System.out.println(drl);
+//		System.out.println(drl);
 		
 		/*
 		 * next, we open a new session to query all data 
@@ -296,8 +296,8 @@ public class Sparrow
 		Reader rdr = new StringReader( drl );
 		kbuilder.add( ResourceFactory.newReaderResource( rdr ), ResourceType.DRL );
 		if( kbuilder.hasErrors() ){
-			System.out.println(kbuilder.getErrors());
-		    throw new IllegalStateException( "DRL errors" );
+//			System.out.println(kbuilder.getErrors());
+		    throw new IllegalStateException( "DRL errors: " +  kbuilder.getErrors());
 		}
 		this.ksession.getKnowledgeBase().addKnowledgePackages( kbuilder.getKnowledgePackages() );			
 		
