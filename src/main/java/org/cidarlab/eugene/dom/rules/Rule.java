@@ -4,7 +4,6 @@ import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.rules.exp.ExpressionConstraint;
 import org.cidarlab.eugene.exception.EugeneException;
-import org.cidarlab.sparrow.rule.SparrowQuery;
 
 /**
  * In Eugene, we utilize the Disjunctive Normal Form, 
@@ -35,7 +34,8 @@ public class Rule
 	
 	/**
 	 * Constructor for rules that are not specified on a device
-	 * @param name
+	 * 
+	 * @param name ... the name of the rule
 	 */
 	public Rule(String name) {
 		super(name);

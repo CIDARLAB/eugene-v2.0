@@ -1,0 +1,16 @@
+// RuleBuilder w/o device
+RuleBuilder rb;
+
+// RuleBuilder w/o device
+RuleBuilder rb2();
+
+// RuleBuilder w/ device
+Device D;
+RuleBuilder rb_on_D(ON D);
+
+// INVALID!
+// - RuleBuilder duplicate
+//RuleBuilder rb;     // exists
+//rulebuilder rb;   // no camel-case
+//RULEBUILDER rb;   // no camel-case
+//RuLeBuIlDeR rb;   // no camel-case

@@ -73,8 +73,6 @@ public class MiniEugeneAdapter {
 			/*
 			 * since we use DNF, we need to solve the problem for every rule
 			 * and then union the results
-			 * 
-			 * => TODO: parallelization 
 			 */
 			for(Rule rule : rules) {
 				Set<Device> sod = this.execute(d, rule, components, interactions);
@@ -114,7 +112,8 @@ public class MiniEugeneAdapter {
 		 */
 		String meScript = this.compiler.compile(d, rule, components, interactions);
 		
-//		System.out.println(meScript);
+		System.out.println(meScript);
+//		System.exit(1);
 		
 		/*
 		 * STEP 3: EXECUTE miniEugene script

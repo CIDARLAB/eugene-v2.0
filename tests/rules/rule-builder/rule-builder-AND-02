@@ -1,0 +1,25 @@
+PartType PT;
+Device D(PT, PT, PT, PT, PT, PT, PT, PT, PT, PT);
+
+
+
+// RuleBuilder w/o device
+Rule rb(ON D: all_forward);
+println(rb);
+
+for(num i=1; i<=SIZEOF(D); i=i+1) {
+
+    PT ${"p_"+i}(.pigeon("p p " + i + " nl"));
+    
+    SAVE(${"p_"+i});
+
+	AND(rb, ${"p_"+i} EXACTLY 1 OR );
+	if(i >= 2) 
+	{
+	    AND(rb, ${"p_"+(i-1)} BEFORE ${"p_"+i});
+	}
+}
+
+lod = product(D);
+
+SBOL.visualize(lod);

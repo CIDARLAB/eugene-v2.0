@@ -330,7 +330,7 @@ public class Device
 						sb.append("-");
 					}
 						
-					sb.append(this.getComponents().get(i).get(j).getName());
+					sb.append(this.getComponents().get(i).get(j)/*.getName()*/);
 					
 					if(j < this.getComponents().get(i).size() - 1) {
 						sb.append("|");
@@ -345,7 +345,7 @@ public class Device
 					sb.append("-");
 				}
 					
-				sb.append(this.getComponentList().get(i).getName());
+				sb.append(this.getComponentList().get(i)/*.getName()*/);
 			}
 			
 			if(i < this.getComponents().size() - 1) {

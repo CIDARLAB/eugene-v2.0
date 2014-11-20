@@ -3,6 +3,22 @@ package org.cidarlab.eugene.dom.rules;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.exception.EugeneException;
 
+/**
+ * The ArrangementOperand class serves to hold information 
+ * about rule operands. 
+
+ * Example: CONTAINS x 
+ * the operand x of the CONTAINS rule is an instance of 
+ * the ArrangementOperand class. 
+ *  
+ * A rule operand is either characterized by
+ * - a NamedElement object (e.g. x),
+ * - a constant (e.g. 1), or
+ * - an index (e.g. [i])
+ * 
+ * @author Ernst Oberortner
+ *
+ */
 public class ArrangementOperand {
 
 	private NamedElement element;
@@ -10,6 +26,15 @@ public class ArrangementOperand {
 	private int index;
 	
 	
+	/**
+	 * The ArrangementOperand/1 constructor takes as input three parameters
+	 * where only one of them must be set.
+	 * 
+	 * @param element   ... the rule's operand is a NamedElement object
+	 * @param constant  ... the rule's operand is a constant
+	 * @param index     ... the rule's operand is an index
+	 * @throws EugeneException
+	 */
 	public ArrangementOperand(NamedElement element, int constant, int index) 
 			throws EugeneException {
 		if(null != element) {
@@ -29,7 +54,9 @@ public class ArrangementOperand {
 		}
 	}
 	
-	
+	/*---------
+	 * GETTERS
+	 *---------*/
 	public NamedElement getElement() {
 		return this.element;
 	}

@@ -103,6 +103,11 @@ public class Interp {
 	private Cloner cloner;
 	
 	/*
+	 * an instance of the RuleBuilder
+	 */
+	private RuleBuilder ruleBuilder;
+	
+	/*
 	 * STACK for scoping
 	 */
 	private Stack<StackElement> stack;
@@ -388,12 +393,19 @@ public class Interp {
 			int i = 0;
 			for(String property : properties) {
 
-				if(null == pt.getProperty(property)) {
+				Property prop = null;
+				
+				// pre-defined properties of parts
+				if(EugeneConstants.PIGEON_PROPERTY.equals(property.toUpperCase())) {
+					prop = pt.getProperty(EugeneConstants.PIGEON_PROPERTY);
+				} else if (EugeneConstants.SEQUENCE_PROPERTY.equals(property.toUpperCase())) {
+					prop = pt.getProperty(EugeneConstants.SEQUENCE_PROPERTY);
+				} else if(null == (prop = pt.getProperty(property))) {
 					throw new EugeneException("Parts of part type "+pt.getName()+" do not have "+property+" property.");
 				}
 				
 				try {
-					p.setPropertyValue(pt.getProperty(property), values.get(i));
+					p.setPropertyValue(prop, values.get(i));
 				} catch(DOMException de) {
 					throw new EugeneException(de.getMessage());
 				}
@@ -691,6 +703,9 @@ public class Interp {
 			throw new EugeneException(ee.getLocalizedMessage());
 		}
 
+		System.out.println(sod.size());
+//		System.exit(1);
+		
 		/*
 		 * STEP 3: ``Pruning''
 		 *  
@@ -1589,6 +1604,107 @@ public class Interp {
 		 * and finally, we return the Rule object
 		 */
 		return r;
+	}
+	
+	/**
+	 * The createRuleBuilder/2 method instantiates the RuleBuilder class 
+	 * with the given parameters (name and device) and returns the 
+	 * created RuleBuilder object.
+	 * 
+	 * @param name    ... a String representing the name of the RuleBuilder object 
+	 * @param device  ... a String representing the name of the device the RuleBuilder is defined on
+	 *                    
+	 * @return ... the RuleBuilder object
+	 * 
+	 * @throws EugeneException
+	 */
+	public void instantiateRuleBuilder(String name, String device) 
+			throws EugeneException {
+		
+		/*
+		 * first, we do some error checking 
+		 */
+		
+		// does an element with the same name exist?
+		if(this.checkIfDeclaredInScope(name)) {
+			throw new EugeneException(name +" exists already.");
+		}
+
+		NamedElement ne = null;
+		if(null != device) {
+			// does an element with the device name exist?
+			if(!this.contains(device)) {
+				throw new EugeneException("A device named "+device+" does not exist.");
+			}
+			
+			// is the device a device?
+			ne = this.get(device);
+			if(!(ne instanceof Device)) {
+				throw new EugeneException(device+" is not a device.");
+			}
+		}
+		
+		if(null == this.ruleBuilder) {
+			this.ruleBuilder = new RuleBuilder();
+		}
+		
+		Rule r = this.ruleBuilder.instantiate(name, (Device)ne);
+		
+        // if everything went fine, then we put the RuleBuilder
+        // object into the symbol-tables for later retrieval.
+        this.put(r);
+	}
+	
+	/**
+	 * The andRule/2 method builds the logical conjunction of 
+	 * a rule and the given predicate. Therefore, it takes as 
+	 * input the name of the rule and the predicate that should 
+	 * be logically conjugated with the rule. 
+	 * If a rule with the specified name does not a exist, 
+	 * then an exception will be thrown.
+	 * 
+	 * @param ruleName   ... the name of the rule
+	 * @param p          ... the predicate
+	 * 
+	 * @throws EugeneException
+	 */
+	public void andRule(String ruleName, Predicate p) 
+			throws EugeneException {
+		Rule r = this.doErrorChecking(ruleName);
+		this.ruleBuilder.and(r, p);
+	}
+	
+
+	/**
+	 * 
+	 * @param lhs
+	 * @param rhs
+	 * @throws EugeneException
+	 */
+	public void andRule(String lhs, String rhs) 
+			throws EugeneException {
+		Rule lhsRule = this.doErrorChecking(lhs);
+		Rule rhsRule = this.doErrorChecking(rhs);
+		
+		this.ruleBuilder.and(lhsRule, rhsRule);
+	}
+
+	private Rule doErrorChecking(String ruleName) 
+			throws EugeneException {
+		if(null == this.ruleBuilder) {
+			this.ruleBuilder = new RuleBuilder();
+		}
+		
+		// first, we retrieve the rule from the sybmol tables
+		NamedElement e = this.get(ruleName);
+		if(null == e) {
+			throw new EugeneException(ruleName + " does not exist!");
+		}
+		if(!(e instanceof Rule)) {
+			throw new EugeneException(ruleName +" is not a rule!");
+		}
+		
+		return (Rule)e;
 	}
 	
 	/**

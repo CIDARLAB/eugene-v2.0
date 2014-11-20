@@ -73,6 +73,7 @@ tokens {
 	STRICT = 'strict';
 	FLEXIBLE = 'flexible';
 	COLLECTION = 'Collection';
+	RULE_BUILDER = 'RuleBuilder';
 	ARRAY = 'Array';
 	SBOL = 'SBOL';
 	GENBANK = 'Genbank';
@@ -202,6 +203,7 @@ import org.cidarlab.eugene.data.sbol.*;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.eugene.exception.EugeneReturnException;
 import org.cidarlab.eugene.interp.Interp;
+import org.cidarlab.eugene.interp.RuleBuilder;
 import org.cidarlab.eugene.dom.rules.*;
 import org.cidarlab.eugene.dom.interaction.Interaction;
 import org.cidarlab.eugene.dom.rules.exp.*;
@@ -945,9 +947,10 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 	|	typeDeclaration[defer]
 	|	instantiation[defer]
 	|	interactionDeclaration[defer]
-	|	ruleDeclaration[defer]
-	|	grammarDeclaration[defer]
 	|	deviceDeclaration[defer]
+	|	ruleDeclaration[defer]
+	|	rulebuilderDeclaration[defer]
+	|	grammarDeclaration[defer]
 	;
 
 variableDeclaration[boolean defer]
@@ -1250,8 +1253,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 // Promoter pLac(.Sequence(".."),.Orientation(".."));
 // this rule only applies for PartType instances!
 listOfDotValues [boolean defer] 
-	:	DOT prop=ID
-		{
+	:	DOT prop=ID {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {		
     try {
         addToPropertyListHolder($prop.text);
@@ -1259,8 +1261,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
         printError(ee.getMessage());
     }				
 }			
-		} LEFTP v1=expr[defer]
-			{
+	} LEFTP v1=expr[defer] {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {			
     try {
         addToPropertyValuesHolder($prop.text, $v1.p, $v1.index);
@@ -1268,8 +1269,8 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
         printError(ee.getMessage());
     }				
 }				
-			} RIGHTP (COMMA DOT p=ID
-				{
+	} RIGHTP 
+	(COMMA DOT p=ID {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {			
     try {
         addToPropertyListHolder($p.text);
@@ -1277,8 +1278,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
         printError(ee.getMessage());
     }				
 }				
-				} LEFTP v2=expr[defer]
-					{
+	} LEFTP v2=expr[defer] {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {			
     try {
         addToPropertyValuesHolder($p.text, $v2.p, $v2.index);
@@ -1286,7 +1286,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
         printError(ee.getMessage());
     }				
 }				
-					} RIGHTP )*
+	} RIGHTP )*
 	;
 
 listOfValues[boolean defer, ComponentType pt]
@@ -1344,7 +1344,10 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 }				
 		} )*
 	;
-	
+
+/*------------------------------------------------------------------
+ *  DEVICES and DEVICE-TEMPLATES
+ *------------------------------------------------------------------*/ 		
 deviceDeclaration[boolean defer]
 	:	DEVICE n=ID (LEFTP (dcs=deviceComponents[defer])? RIGHTP)?  {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
@@ -1379,6 +1382,9 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 	}	)?
 	;
 
+/*------------------------------------------------------------------
+ *  SELECTION OPERATOR ('[' ']')
+ *------------------------------------------------------------------*/ 		
 selection[boolean defer] 
 	returns [List<NamedElement> components, List<Orientation> orientations]
 	:	LEFTSBR sl=selection_list[defer] RIGHTSBR {
@@ -1432,7 +1438,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
         } else if(ne instanceof ComponentType) {
             $component = (ComponentType)ne;        
         } else {
-            printError($idToken.text+" is neither a Device, Part, nor Part Type.");
+            printError($idToken.text+" is neither a Device, Part nor a Part Type.");
         }
 
         if(directionToken != null) {        	        
@@ -1556,6 +1562,25 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING){
         }	)?
 	;
 	
+/*------------------------------------------------------------------
+ *  RULE-BUILDER
+ *------------------------------------------------------------------*/ 			
+rulebuilderDeclaration[boolean defer]
+	:	RULE_BUILDER i=ID (LEFTP ((LC_ON|UC_ON) d=ID)? RIGHTP)? {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING){
+    try {
+        // first, we ask the Interpreter to instantate a RuleBuilder
+        this.interp.instantiateRuleBuilder($i.text, $d.text);
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}
+	}
+	;
+
+/*------------------------------------------------------------------
+ *  RULES
+ *------------------------------------------------------------------*/ 			
 ruleDeclaration[boolean defer]
 	returns [Rule rule]
 	:	RULE name=ID LEFTP ( ((LC_ON|UC_ON) device=ID COLON)? {
@@ -1786,6 +1811,17 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     index = Integer.parseInt($n.text);
 }	
+	}	|dn=dynamic_naming[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    try {
+        if(!this.interp.contains($dn.name)) {
+            printError($dn.name+" not defined.");
+        }
+        element = this.interp.get($dn.name);
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}	
 	}) {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
@@ -1895,7 +1931,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 
     elements.add(ne);
 }	
-	}	)* i2=ID {
+	}	)* (i2=ID {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         NamedElement property = null;
@@ -1930,7 +1966,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
         printError(ee.getMessage());
     }
 }	
-	} 	(LEFTSBR n=NUMBER RIGHTSBR {
+	}) 	(LEFTSBR n=NUMBER RIGHTSBR {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if(null != $eop) {
         try {
@@ -2717,6 +2753,15 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
         } else {
             throw new EugeneException("Cannot store " + $e.text + " into the library!");
         }
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}	
+	}
+	|	(UC_AND|LC_AND) LEFTP i=ID COMMA pred=or_predicate[defer] RIGHTP {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    try {
+         this.interp.andRule($i.text, $pred.p);
     } catch(EugeneException ee) {
         printError(ee.getLocalizedMessage());
     }

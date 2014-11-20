@@ -47,6 +47,12 @@ SBOL.export( d, "./designs/cidar/cello/xor/single.sbol.xml" );
 
 SBOL.import("./designs/cidar/cello/xor/import_cello_XOR.sbol.xml");
 
+println(SIZEOF(input_pTac__pAmtRjs__PhlF_));
+println(SIZEOF(input_pTac__input_pTet__AmtR_));
+println(SIZEOF(input_pTet__pAmtRjs__LitR_));
+println(SIZEOF(pPhlF__pLitRjs__output_YFP_));
+
+
 Device xor_template( [input_pTac__input_pTet__AmtR_ |
                       input_pTet__pAmtRjs__LitR_ |
                       input_pTac__pAmtRjs__PhlF_ |

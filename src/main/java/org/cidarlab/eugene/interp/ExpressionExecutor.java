@@ -3,8 +3,6 @@ package org.cidarlab.eugene.interp;
 import java.util.ArrayList;
 
 import org.cidarlab.eugene.constants.EugeneConstants;
-import org.cidarlab.eugene.dom.Component;
-import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.PropertyValue;
 import org.cidarlab.eugene.dom.Variable;

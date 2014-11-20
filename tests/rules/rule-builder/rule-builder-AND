@@ -1,0 +1,26 @@
+
+PartType X;
+X x;
+PartType Y;
+Y y;
+
+// RuleBuilder w/o device
+RuleBuilder rb;
+AND(rb, CONTAINS x);
+AND(rb, CONTAINS y);
+
+
+println(rb);
+
+for(num i=1; i<=10; i=i+1) {
+    X ${"x_"+i};
+    Y ${"y_"+i};
+    
+    SAVE(${"x_"+i});
+    SAVE(${"y_"+i});
+
+	AND(rb, ${"x_"+i} BEFORE ${"x_"+i});
+}
+
+
+println(rb);

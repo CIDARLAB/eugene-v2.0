@@ -104,7 +104,7 @@ public class EndToEndTestSuite {
 //		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-export02");
 //
 		// HIEARCHIES
-		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-hierarchy-export");
+//		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-hierarchy-export");
 
 		// SEQUENCES
 //		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-sequence-hierarchy-export");
@@ -132,13 +132,13 @@ public class EndToEndTestSuite {
 //		new EndToEndTestSuite().test("./tests/hierarchical-composition");
 
 		// RULES
-		new EndToEndTestSuite().test("./tests/rules/faulty-rules");
+//		new EndToEndTestSuite().test("./tests/rules/faulty-rules");
 //		new EndToEndTestSuite().test("./tests/rules/valid-rules");
 //		new EndToEndTestSuite().test("./tests/rules/product-and-rules");
-		new EndToEndTestSuite().test("./tests/rules/conjunction");
-		new EndToEndTestSuite().test("./tests/rules/logical-or");
-		new EndToEndTestSuite().test("./tests/rules/logical-or-02");
-		new EndToEndTestSuite().test("./tests/rules/indexed-rules");
+//		new EndToEndTestSuite().test("./tests/rules/conjunction");
+//		new EndToEndTestSuite().test("./tests/rules/logical-or");
+//		new EndToEndTestSuite().test("./tests/rules/logical-or-02");
+//		new EndToEndTestSuite().test("./tests/rules/indexed-rules");
 
 //		new EndToEndTestSuite().test("./tests/rules/represses-txt");
 
@@ -195,7 +195,7 @@ public class EndToEndTestSuite {
 		
 //		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-01"); 
 //		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-02");
-		new EndToEndTestSuite().test("./tests/rules/expression/string-rules-01");
+//		new EndToEndTestSuite().test("./tests/rules/expression/string-rules-01");
 //		new EndToEndTestSuite().test("./tests/rules/expression/string-regexp-01");
 //		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-declaration");
 //		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-or");		
@@ -242,6 +242,14 @@ public class EndToEndTestSuite {
 //		new EndToEndTestSuite().test("./tests/rules/oriented-tus");
 //		new EndToEndTestSuite().test("./tests/rules/dnf/dnf-oriented-tus");
 //		new EndToEndTestSuite().test("./tests/rules/dnf/dnf-contains");
+		
+		/*----
+		 * RuleBuilder
+		 *----*/
+		new EndToEndTestSuite().test("./tests/rules/rule-builder/rule-builder-instantiation");
+		new EndToEndTestSuite().test("./tests/rules/rule-builder/rule-builder-AND");
+		new EndToEndTestSuite().test("./tests/rules/rule-builder/rule-builder-AND-02");
+		
 	}
 	
 	
@@ -262,6 +270,13 @@ public class EndToEndTestSuite {
 		// SCOPING
 		new EndToEndTestSuite().testAll("./tests/imperative/scoping");
 
+	}
+	
+	private static void testGrammars()
+			throws EugeneException {
+		
+		new EndToEndTestSuite().test("./tests/grammars/hierarchical-composition-01");
+		
 	}
 	
 	/*---------------------------------------------
@@ -334,12 +349,13 @@ public class EndToEndTestSuite {
 //		testBasics();
 //		testImperativeFeatures();
 //		testEugeneLabTutorials();		
-		testDataExchange();
+//		testDataExchange();
 
 //		testInteractWithLMS();
 
 		// TODOs:
-//		testRules();
+		testRules();
+//		testGrammars();
 //		testRealWorldExamples();
 
 //		testEC327FunWithEugene();
