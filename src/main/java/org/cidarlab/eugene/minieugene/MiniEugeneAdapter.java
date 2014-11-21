@@ -10,6 +10,7 @@ import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.interaction.Interaction;
 import org.cidarlab.eugene.dom.rules.Rule;
 import org.cidarlab.eugene.exception.EugeneException;
+import org.cidarlab.eugene.grammar.EugeneGrammar;
 import org.cidarlab.eugene.interp.SymbolTable;
 import org.cidarlab.eugene.interp.Interp;
 import org.cidarlab.minieugene.MiniEugene;
@@ -27,6 +28,11 @@ public class MiniEugeneAdapter {
 	 * an instance of MiniEugene
 	 */
 	private MiniEugene me;
+	
+	/*
+	 * a reference to the Eugene grammar
+	 */
+	private EugeneGrammar eg;
 	
 	/*
 	 * a reference to the Interpreter
@@ -103,16 +109,24 @@ public class MiniEugeneAdapter {
 			throws EugeneException {
 		
 		/*
-		 * STEP 1: ANALYSIS of the given Device d
+		 * STEP 1: enumerate all devices if the Device is
+		 *         composed hierarchically
 		 */
+		if(null == eg) {
+			this.eg = new EugeneGrammar();
+		}
+		if(eg.isComposed(d)) {
+			System.out.println("HIERARCHICAL COMPOSITION!");
+		}
 		
+		System.exit(1);
 		
 		/*
 		 * STEP 2: COMPILATION to miniEugene script
 		 */
 		String meScript = this.compiler.compile(d, rule, components, interactions);
 		
-		System.out.println(meScript);
+//		System.out.println(meScript);
 //		System.exit(1);
 		
 		/*

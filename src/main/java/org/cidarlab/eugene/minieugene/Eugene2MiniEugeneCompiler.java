@@ -122,6 +122,8 @@ public class Eugene2MiniEugeneCompiler {
 				System.out.println(s+" -> "+this.sequences.get(s));
 			}
 		}
+		////////////////////////////
+		
 		
 		/*
 		 * N = n .
@@ -516,9 +518,24 @@ public class Eugene2MiniEugeneCompiler {
 
 				} else if(p instanceof LogicalOr) {
 
-					if(((LogicalOr)p).getConstraints().get(0) instanceof ArrangementConstraint) {
-						sb.append(p).append(".");
+					int or_size = ((LogicalOr)p).getConstraints().size();
+					for(Predicate pred : ((LogicalOr)p).getConstraints()) {
+						
+						if(pred instanceof ArrangementConstraint) {
+							sb.append(pred); 
+						} else if(pred instanceof LogicalNot) {
+							if(((LogicalNot)pred).getPredicate() instanceof ArrangementConstraint) {
+								sb.append(pred);
+							}
+						}
+
+						or_size --;
+						if(or_size >= 1) {
+							sb.append(" OR ");
+						}
 					}
+					sb.append(".");
+					
 					
 				} else if(p instanceof LogicalNot) {
 

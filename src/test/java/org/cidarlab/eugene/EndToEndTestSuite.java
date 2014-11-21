@@ -354,8 +354,8 @@ public class EndToEndTestSuite {
 //		testInteractWithLMS();
 
 		// TODOs:
-		testRules();
-//		testGrammars();
+//		testRules();
+		testGrammars();
 //		testRealWorldExamples();
 
 //		testEC327FunWithEugene();
