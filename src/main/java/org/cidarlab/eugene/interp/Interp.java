@@ -703,7 +703,7 @@ public class Interp {
 			throw new EugeneException(ee.getLocalizedMessage());
 		}
 
-		System.out.println(sod.size());
+//		System.out.println(sod.size());
 //		System.exit(1);
 		
 		/*

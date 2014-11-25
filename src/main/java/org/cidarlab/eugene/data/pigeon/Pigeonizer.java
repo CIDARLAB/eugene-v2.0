@@ -345,24 +345,35 @@ public class Pigeonizer {
 	private String toPigeon(Part part, Orientation o) {
 
 		StringBuilder sb = new StringBuilder();
+		
+		//------------------------------------------
+		// Pre-defined Pigeon statement
+		//------------------------------------------
+		
 		if(null != part.getPropertyValue(PIGEON_PROPERTY) && 
 			!part.getPropertyValue(PIGEON_PROPERTY).getTxt().isEmpty()) {
 
 			String pigeon = part.getPropertyValue(PIGEON_PROPERTY).getTxt();
 			
-			// reverse invertase site
-			if(Orientation.REVERSE == o && pigeon.startsWith(">")) {
-				pigeon.replace('>', '<');
-				sb.append(pigeon);		
-			// reverse oriented known part type
-			} else if(Orientation.REVERSE == o) {
-				sb.append("<").append(pigeon);
+			// reverse oriented part
+			if(Orientation.REVERSE == o) {
+				if(pigeon.startsWith(">")) {
+					pigeon.replace('>', '<');
+				} else if(!pigeon.startsWith("?")) {
+					sb.append("<").append(pigeon);
+				} else {
+					sb.append(pigeon);
+				}
 			} else {
 				sb.append(pigeon);
 			}
 			
 			return sb.toString();
 		}
+		
+		//------------------------------------------
+		// automatically generated Pigeon statement
+		//------------------------------------------
 		
 		// first, let's get the Pigeon letter
 		// corresponding to the component's type
@@ -371,16 +382,16 @@ public class Pigeonizer {
 									PredefinedTypes.toPartType(
 											part.getType().getName())));
 
-		// reverse invertase site
-		if(Orientation.REVERSE == o && letter == '>') {
-			sb.append("<");		
-		// reverse oriented known part type
-		} else if(Orientation.REVERSE == o) {
+		// reverse oriented part
+		if(Orientation.REVERSE == o) {
+			if(letter == '>') {
+				sb.append("<");
+			} else if(letter == '?') {
+				sb.append("?");
+			} else {
 				sb.append("<").append(letter);
-		// unknown part type => orientation irrelevant
-		} else if(letter == '?') {
-			sb.append("?");			
-		// forward oriented known part type	
+			}
+		// forward oriented part	
 		} else {
 			sb.append(letter);
 		}

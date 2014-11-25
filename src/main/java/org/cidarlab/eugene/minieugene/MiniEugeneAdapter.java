@@ -112,21 +112,18 @@ public class MiniEugeneAdapter {
 		 * STEP 1: enumerate all devices if the Device is
 		 *         composed hierarchically
 		 */
-		if(null == eg) {
-			this.eg = new EugeneGrammar();
-		}
-		if(eg.isComposed(d)) {
-			System.out.println("HIERARCHICAL COMPOSITION!");
-		}
-		
-		System.exit(1);
-		
+//		if(null == eg) {
+//			this.eg = new EugeneGrammar();
+//		}
+//		
+//		List<Device> lod = eg.enumerateAll(d, components);
+//		
 		/*
 		 * STEP 2: COMPILATION to miniEugene script
 		 */
 		String meScript = this.compiler.compile(d, rule, components, interactions);
 		
-//		System.out.println(meScript);
+		System.out.println(meScript);
 //		System.exit(1);
 		
 		/*

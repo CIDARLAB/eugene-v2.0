@@ -324,12 +324,13 @@ public class Device
 				sb.append("[");
 				for(int j=0; j<this.getComponents().get(i).size(); j++) {
 					
-					if(this.getOrientations().get(i).get(j) == Orientation.FORWARD) {
-						sb.append("+");
-					} else if(this.getOrientations().get(i).get(j) == Orientation.REVERSE) {
-						sb.append("-");
-					}
-						
+					if(null != this.getOrientations() && !this.getOrientations().isEmpty()) {
+						if(this.getOrientations().get(i).get(j) == Orientation.FORWARD) {
+							sb.append("+");
+						} else if(this.getOrientations().get(i).get(j) == Orientation.REVERSE) {
+							sb.append("-");
+						}
+					}						
 					sb.append(this.getComponents().get(i).get(j)/*.getName()*/);
 					
 					if(j < this.getComponents().get(i).size() - 1) {
@@ -338,13 +339,13 @@ public class Device
 				}
 				sb.append("]");
 			} else {
-
-				if(this.getOrientations().get(i).get(0) == Orientation.FORWARD) {
-					sb.append("+");
-				} else if(this.getOrientations().get(i).get(0) == Orientation.REVERSE) {
-					sb.append("-");
+				if(null != this.getOrientations() && !this.getOrientations().isEmpty()) {
+					if(this.getOrientations().get(i).get(0) == Orientation.FORWARD) {
+						sb.append("+");
+					} else if(this.getOrientations().get(i).get(0) == Orientation.REVERSE) {
+						sb.append("-");
+					}
 				}
-					
 				sb.append(this.getComponentList().get(i)/*.getName()*/);
 			}
 			

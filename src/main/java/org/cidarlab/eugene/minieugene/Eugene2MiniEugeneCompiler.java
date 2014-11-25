@@ -115,14 +115,14 @@ public class Eugene2MiniEugeneCompiler {
 		
 		StringBuilder sb = new StringBuilder();
 
-		// WORK-IN-PROGRESS
-		this.toMiniEugeneSequence(d);
-		if(null != this.sequences) {
-			for(String s:this.sequences.keySet()) {
-				System.out.println(s+" -> "+this.sequences.get(s));
-			}
-		}
-		////////////////////////////
+//		// WORK-IN-PROGRESS
+//		this.toMiniEugeneSequence(d);
+//		if(null != this.sequences) {
+//			for(String s:this.sequences.keySet()) {
+//				System.out.println(s+" -> "+this.sequences.get(s));
+//			}
+//		}
+//		////////////////////////////
 		
 		
 		/*
@@ -196,18 +196,18 @@ public class Eugene2MiniEugeneCompiler {
 	 */
 	private int getDeviceSize(Device d) {
 		
-//		return d.getComponents().size();
+		return d.getComponents().size();
 
-		/** NEW VERSION: [under development] **/
-		int size = 0;
-		for(NamedElement e : d.getComponentList()) {
-			if(e instanceof Device) {
-				size += this.getDeviceSize((Device)e);
-			} else {
-				size ++;
-			}
-		}
-		return size; 
+//		/** NEW VERSION: [under development] **/
+//		int size = 0;
+//		for(NamedElement e : d.getComponentList()) {
+//			if(e instanceof Device) {
+//				size += this.getDeviceSize((Device)e);
+//			} else {
+//				size ++;
+//			}
+//		}
+//		return size; 
 	}
 	
 	/**
