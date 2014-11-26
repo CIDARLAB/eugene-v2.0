@@ -34,6 +34,13 @@
                 <descriptorRefs>
                     <descriptorRef>jar-with-dependencies</descriptorRef>
                 </descriptorRefs>
+                <archive>
+		            <manifest>
+		                <addClasspath>true</addClasspath>
+		                <classpathPrefix>lib/</classpathPrefix>
+		                <mainClass>org.cidarlab.eugene.Eugene</mainClass>
+		            </manifest>
+		        </archive>
             </configuration>
         </plugin>
         
@@ -46,7 +53,7 @@
 		            <manifest>
 		                <addClasspath>true</addClasspath>
 		                <classpathPrefix>lib/</classpathPrefix>
-		                <mainClass>theMainClass</mainClass>
+		                <mainClass>org.cidarlab.eugene.Eugene</mainClass>
 		            </manifest>
 		        </archive>
 		    </configuration>

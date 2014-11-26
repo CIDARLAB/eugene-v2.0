@@ -24,7 +24,9 @@ package org.cidarlab.eugene.data.sbol;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Arrays;
 
+import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.data.sbol.mapping.Eugene2SBOL;
 import org.cidarlab.eugene.dom.NamedElement;
@@ -140,7 +142,9 @@ public class SBOLExporter {
 	
 	/**
 	 * The serializeSBOL/2 method persists a given SBOLDocument object 
-	 * into a given file.
+	 * into a given file. 
+	 * The path of the file starts at the Eugene ROOT_DIRECTORY, which is 
+	 * set to '.' per default.
 	 * 
 	 * @param document  ... the SBOLDocument object
 	 * @param file  ... the desired name of the file (evtl. including path information)
@@ -151,6 +155,8 @@ public class SBOLExporter {
 			throws EugeneException {
 
 		try {
+			SBOLExporter.createDirectories(file);
+			
 			// open a file stream
 			FileOutputStream fos;
 			File f = new File(file);
@@ -171,5 +177,39 @@ public class SBOLExporter {
 			throw new EugeneException(e.toString());
 		}
 	}
+	
+	/**
+	 * The createDirectories/1 method creates all directories for 
+	 * a given file. 
+	 * Example: if the file is "./path/to/my.sbol" then the 
+	 * createDirectories/1 method creates the "./path/to" directories.
+	 * 
+	 * The path is relative to Eugene's ROOT_DIRECTORY, which is '.' 
+	 * per default.
+	 * 
+	 * @param file  ... the file name for that the directories should be created
+	 * 
+	 * @throws EugeneException
+	 */
+	private static void createDirectories(String file) 
+			throws EugeneException {
+		
+		// first, we start at the Eugene ROOT_DIRECTORY
+		file = Eugene.ROOT_DIRECTORY+"/"+file;
+		
+		// then, we search for the last / in the file string
+		// there should be at least one due to the concatenation 
+		// of the previous step
+		int idx = file.lastIndexOf('/');
 
+		// then, we create the directories (using File.mkdirs()) 
+		// if they do not exist.
+		String dirs = file.substring(0, idx);
+		File fDirs = new File(dirs);
+		if(!fDirs.exists()) {
+			fDirs.mkdirs();
+		}
+		
+	}
+ 
 }

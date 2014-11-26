@@ -163,6 +163,7 @@ public class Pigeonizer {
     			Eugene.ROOT_DIRECTORY + "/" + 
     			Eugene.IMAGES_DIRECTORY + "/" +
     					UUID.randomUUID() + ".png";
+    	
     	try {
     		// then, we serialize the RenderedImage object 
     		// into a PNG file
@@ -275,7 +276,7 @@ public class Pigeonizer {
 				if(ne instanceof Part) {
 					sb.append(toPigeon((Part)ne, loo.get(k++))).append("\r\n");
 				} else if(ne instanceof Device) {
-					sb.append(toPigeon((Device)ne)).append("\r\n");
+					sb.append(toPigeon((Device)ne))/*.append("\r\n")*/;
 				}
 			}
 		}

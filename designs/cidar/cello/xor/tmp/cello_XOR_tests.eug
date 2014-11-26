@@ -3,6 +3,11 @@
 
 SBOL.import("./designs/cidar/cello/xor/import_cello_XOR.sbol.xml");
 
+
+include "./designs/cidar/cello/xor/pTac-pTet-AmtR.eug"
+
+
+/*****
 Device xor_template( [input_pTac__input_pTet__AmtR_ |
                       input_pTet__pAmtRjs__LitR_ |
                       input_pTac__pAmtRjs__PhlF_ |
@@ -45,3 +50,4 @@ for(num i=0; i<SIZEOF(designs); i=i+1) {
 }
 
 SBOL.export( designs, "./designs/cidar/cello/xor/export_cello_XOR.sbol.xml" );
+*****/

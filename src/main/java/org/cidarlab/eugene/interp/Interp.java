@@ -699,13 +699,9 @@ public class Interp {
 //			System.out.println("[Interp.product] devices -> "+sod);
 //			System.out.println("***************************");
 		} catch(Exception ee) {
-			ee.printStackTrace();
 			throw new EugeneException(ee.getLocalizedMessage());
 		}
 
-//		System.out.println(sod.size());
-//		System.exit(1);
-		
 		/*
 		 * STEP 3: ``Pruning''
 		 *  

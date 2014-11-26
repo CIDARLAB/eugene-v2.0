@@ -64,8 +64,6 @@ public class MiniEugeneAdapter {
 			Set<Interaction> interactions) 
 		throws EugeneException {
 
-//		System.out.println("[product] -> " + interactions);
-		
 		/*
 		 * let's do some error checking
 		 */
@@ -123,9 +121,7 @@ public class MiniEugeneAdapter {
 		 */
 		String meScript = this.compiler.compile(d, rule, components, interactions);
 		
-		System.out.println(meScript);
-//		System.exit(1);
-		
+	
 		/*
 		 * STEP 3: EXECUTE miniEugene script
 		 *         i.e. constraint solving

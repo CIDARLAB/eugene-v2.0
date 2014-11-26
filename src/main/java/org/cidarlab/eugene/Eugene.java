@@ -29,9 +29,9 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.Collection;
 import java.util.logging.LogManager;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 //import org.apache.log4j.Logger;
@@ -179,7 +179,15 @@ public class Eugene {
 		} else {
 			this.writer = writer;
 		}
-
+		
+		// create directors if they don't exists
+    	// we need to create the directories if they 
+    	// don't exist
+    	File fDirs = new File(Eugene.ROOT_DIRECTORY + "/" + Eugene.IMAGES_DIRECTORY);
+    	if(!fDirs.exists()) {
+    		fDirs.mkdirs();
+    	}
+    	
 	}
 	
 	/**

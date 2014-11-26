@@ -24,7 +24,7 @@
                     <DnaComponent ns2:about="http://cellocad.org/F-scar:1">
                         <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
                         <displayId>F-scar:1</displayId>
-                        <name>F-scar</name>
+                        <name>F_scar</name>
                         <description>{
 	type:scar
 	}</description>
@@ -194,7 +194,7 @@
                     <DnaComponent ns2:about="http://cellocad.org/E-scar:8">
                         <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
                         <displayId>E-scar:8</displayId>
-                        <name>E-scar</name>
+                        <name>E_scar</name>
                         <description>{
 	type:scar
 	}</description>
@@ -364,7 +364,7 @@
                     <DnaComponent ns2:about="http://cellocad.org/D-scar:15">
                         <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
                         <displayId>D-scar:15</displayId>
-                        <name>D-scar</name>
+                        <name>D_scar</name>
                         <description>{
 	type:scar
 	}</description>
@@ -534,7 +534,7 @@
                     <DnaComponent ns2:about="http://cellocad.org/C-scar:22">
                         <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000316"/>
                         <displayId>C-scar:22</displayId>
-                        <name>C-scar</name>
+                        <name>C_scar</name>
                         <description>{
 	type:scar
 	}</description>
