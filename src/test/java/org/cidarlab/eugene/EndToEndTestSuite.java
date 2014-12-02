@@ -364,11 +364,11 @@ public class EndToEndTestSuite {
 	public static void main(String[] args) 
 			throws EugeneException {
 
-//		testBasics();
-//		testImperativeFeatures();
-//		testBuiltInFunctions();
-//		testEugeneLabTutorials();		
-//		testDataExchange();
+		testBasics();
+		testImperativeFeatures();
+		testBuiltInFunctions();
+		testEugeneLabTutorials();		
+		testDataExchange();
 
 //		testInteractWithLMS();
 

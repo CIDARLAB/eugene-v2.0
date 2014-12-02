@@ -2465,11 +2465,18 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
                 $element = this.interp.doMinPlusOp($e.p, $element, $op.text);
             }
             $p = null;            
-        } else {        
+        } else {
+            NamedElement ne = null;        
             if(null != $e.element) {
-                this.interp.doMinPlusOp($e.element, $p, $op.text);
+                ne = this.interp.doMinPlusOp($e.element, $p, $op.text);
             } else {
-                this.interp.doMinPlusOp($e.p, $p, $op.text); 
+                ne = this.interp.doMinPlusOp($e.p, $p, $op.text); 
+            }
+            
+            if(null != ne && ne instanceof Variable) {
+                $p = (Variable)ne;
+            } else {
+                printError("Invalid " + $op.text + " operation!");
             }
             $element = null;
         }

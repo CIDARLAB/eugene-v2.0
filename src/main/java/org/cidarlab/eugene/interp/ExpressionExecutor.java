@@ -38,12 +38,18 @@ public class ExpressionExecutor {
     	}
     	
     	try {
-	        if(RHS instanceof PropertyValue && LHS instanceof PropertyValue) {
+    			// PROPERTY VALUE (+|-) PROPERTY VALUE
+    		if(RHS instanceof PropertyValue && LHS instanceof PropertyValue) {
 	            return this.doMinPlusOp((PropertyValue)RHS, (PropertyValue)LHS, op);
+	            
+	        	// VARIABLE (+|-) PROPERTY VALUE
 	        } else if(RHS instanceof PropertyValue && LHS instanceof Variable) {
 	        	return this.doMinPlusOp((PropertyValue)RHS, (Variable)LHS, op);
+	        	// PROPERTY VALUE (+|-) VARIABLE
 	        } else if(RHS instanceof Variable && LHS instanceof PropertyValue) {
 	        	return this.doMinPlusOp((Variable)RHS, (PropertyValue)LHS, op);
+	        	
+	        	// VARIABLE (+|-) VARIABLE
 	        } else if(RHS instanceof Variable && LHS instanceof Variable) {
 	        	return this.doMinPlusOp((Variable)RHS, (Variable)LHS, op);
 
@@ -66,7 +72,7 @@ public class ExpressionExecutor {
     }
 	
     // PropertyValue + PropertyValue -> PropertyValue
-	public NamedElement doMinPlusOp(PropertyValue source, PropertyValue destination, String op) 
+	private NamedElement doMinPlusOp(PropertyValue source, PropertyValue destination, String op) 
 			throws EugeneException {
 		
 		return this.doMinPlusOp(
@@ -77,7 +83,7 @@ public class ExpressionExecutor {
 	}
 	
 	// PropertyValue + Variable -> Variable
-	public NamedElement doMinPlusOp(PropertyValue source, Variable destination, String op) 
+	private NamedElement doMinPlusOp(PropertyValue source, Variable destination, String op) 
 			throws EugeneException {
 		
 		return this.doMinPlusOp(
@@ -87,7 +93,7 @@ public class ExpressionExecutor {
 	}
 	
 	// PropertyValue + Variable -> Variable
-	public NamedElement doMinPlusOp(Variable source, PropertyValue destination, String op) 
+	private NamedElement doMinPlusOp(Variable source, PropertyValue destination, String op) 
 			throws EugeneException {
 		
 		return this.doMinPlusOp(
@@ -97,46 +103,56 @@ public class ExpressionExecutor {
 	}
 
 	//does addition or subtraction on a primitive, used by grammar rule expr
-	public NamedElement doMinPlusOp(Variable source, Variable destination, String op) 
+	private NamedElement doMinPlusOp(Variable source, Variable destination, String op) 
 			throws EugeneException {
 
+		Variable result = null;
+		
 		if ("+".equals(op)) {
 			if (EugeneConstants.NUM.equals(source.getType())) {
 				
 				// NUM + NUM -> NUM
 				if(EugeneConstants.NUM.equals(destination.getType())) {
-					destination.num += source.num;
-					destination.type = EugeneConstants.NUM;
+			
+					
+					result = new Variable(null, EugeneConstants.NUM);
+					result.num = destination.num + source.num;
 					
 				// NUM + TXT -> TXT
 				} else if(EugeneConstants.TXT.equals(destination.getType())) {
 
+					result = new Variable(null, EugeneConstants.TXT);
+					result.txt = new String(destination.txt);
 					if(source.num % 1 == 0) {
-						destination.txt += (int)source.num;
+						result.txt += (int)source.num;
 					} else {
-						destination.txt += source.num;
+						result.txt += source.num;
 					}
-					destination.type = EugeneConstants.TXT;
 					
 				// NUM + NUM[] -> NUM[]
 				} else if(EugeneConstants.NUMLIST.equals(destination.getType())) {
 
-					if(null == destination.getNumList()) {
+					result = new Variable(null, EugeneConstants.NUMLIST);
+					
+					if(null == destination.getNumList() || destination.getNumList().isEmpty()) {
 						destination.numList =  new ArrayList<Double>();
+					} else {
+						result.numList.addAll(destination.numList);
 					}
-					destination.numList.add(source.getNum());
-					destination.type = EugeneConstants.NUMLIST;
+					
+					result.numList.add(source.getNum());
 					
 				// NUM + TXT[] -> TXT[]	
 				} else if(EugeneConstants.TXTLIST.equals(destination.getType())) {
+
+					result = new Variable(null, EugeneConstants.TXTLIST);
+					result.txtList = destination.txtList;
 					
 					if(source.num % 1 == 0) {
-						destination.txtList.add(String.valueOf((int)source.num));
+						result.txtList.add(String.valueOf((int)source.num));
 					} else {
-						destination.txtList.add(String.valueOf(source.num));
+						result.txtList.add(String.valueOf(source.num));
 					}
-					
-					destination.type = EugeneConstants.TXTLIST;
 					
 				} else {
 					throw new EugeneException("Cannot perform the + operation! " + source.getType()+" + "+destination.getType());
@@ -144,40 +160,50 @@ public class ExpressionExecutor {
 				
 			} else if (EugeneConstants.NUMLIST.equals(source.getType())) {
 				
+				result = new Variable(null, EugeneConstants.NUMLIST);
+				
+				// NUM[] + NUM -> NUM[]
 				if(EugeneConstants.NUM.equals(destination.getType())) {
-					destination.numList.add(destination.num);
-					destination.numList.addAll(source.numList);
-					destination.type = EugeneConstants.NUMLIST;
+					
+					result.numList.add(destination.num);
+					result.numList.addAll(source.numList);
+					
+				// NUM[] + NUM[] -> NUM[]
 				} else if (EugeneConstants.NUMLIST.equals(destination.getType())) {
-					destination.numList.addAll(source.numList);
-					destination.type = EugeneConstants.NUMLIST;
+					
+					result.numList = new ArrayList<Double>(destination.numList);
+					result.numList.addAll(source.numList);
+					
 				} else {
 					throw new EugeneException("Cannot perform the + operation! " + source.getType()+" + "+destination.getType());
 				}
+				
 			} else if (EugeneConstants.TXTLIST.equals(source.getType())) {
+				
+				result = new Variable(null, EugeneConstants.TXTLIST);
 				
 				// TXT[] + TXT[] -> TXT[]
 				if(EugeneConstants.TXTLIST.equals(destination.getType())) {
-					destination.txtList.addAll(source.txtList);
-					destination.type = EugeneConstants.TXTLIST;
+					result.txtList = new ArrayList<String>(destination.txtList);
+					result.txtList.addAll(source.txtList);
 					
 				// TXT[] + TXT -> TXT[]	
 				} else if(EugeneConstants.TXT.equals(destination.getType())) {
-					destination.txtList = new ArrayList<String>();
-					destination.txtList.add(destination.txt);
-					destination.txtList.addAll(source.txtList);
-					destination.type = EugeneConstants.TXTLIST;
+					
+					result.txtList = new ArrayList<String>();
+					result.txtList.add(destination.txt);
+					result.txtList.addAll(source.txtList);
 					
 				// TXT[] + NUM -> TXT[]	
 				} else if(EugeneConstants.NUM.equals(destination.getType())) {
-					destination.txtList = new ArrayList<String>();
+					result.txtList = new ArrayList<String>();
 					if(destination.num % 1 == 0) {
-						destination.txtList.add(String.valueOf((int)destination.num));
+						result.txtList.add(String.valueOf((int)destination.num));
 					} else {
-						destination.txtList.add(String.valueOf(destination.num));
+						result.txtList.add(String.valueOf(destination.num));
 					}
-					destination.txtList.addAll(source.txtList);
-					destination.type = EugeneConstants.TXTLIST;
+					result.txtList.addAll(source.txtList);
+
 				} else {
 					throw new EugeneException("Cannot perform the + operation! " + source.getType()+" + "+destination.getType());
 				}
@@ -185,26 +211,35 @@ public class ExpressionExecutor {
 				
 				// TXT + NUM -> TXT
 				if(EugeneConstants.NUM.equals(destination.getType())) {
+					
+					result = new Variable(null, EugeneConstants.TXT);
+					
 					if(destination.num % 1 == 0) {
-						destination.txt = String.valueOf((int)destination.num);
+						result.txt = String.valueOf((int)destination.num);
 					} else {
-						destination.txt = String.valueOf(destination.num);
+						result.txt = String.valueOf(destination.num);
 					}
-					destination.txt += source.txt;
-					destination.type = EugeneConstants.TXT;
+					result.txt += new String(source.txt);
 					
 				// TXT + TXT -> TXT
 				} else if(EugeneConstants.TXT.equals(destination.getType())) {
-					destination.txt += source.txt;
-					destination.type = EugeneConstants.TXT;
+					
+					result = new Variable(null, EugeneConstants.TXT);
+					result.txt = destination.txt + source.txt;
 					
 				// TXT + TXT[] -> TXT[]
 				} else if(EugeneConstants.TXTLIST.equals(destination.getType())) {
+					
+					result = new Variable(null, EugeneConstants.TXTLIST);
+					
 					if(null == destination.txtList) {
-						destination.txtList = new ArrayList<String>();
-					} 
-					destination.txtList.add(source.txt);
-					destination.type = EugeneConstants.TXTLIST;
+						result.txtList = new ArrayList<String>();
+					} else {
+						result.txtList = new ArrayList<String>(destination.getTxtList());
+					}
+					
+					result.txtList.add(source.txt);
+					
 				} else {
 					throw new EugeneException("Cannot perform the + operation! " + source+" + "+destination.getType());
 				}
@@ -213,26 +248,29 @@ public class ExpressionExecutor {
 					throw new EugeneException("Cannot perform the + operation!");
 				}
 				
-				destination.bool = source.bool && destination.bool;
+				result = new Variable(null, EugeneConstants.BOOLEAN);
+				result.bool = source.bool && destination.bool;
 			}
 			
 		} else if ("-".equals(op)) {
 			if (EugeneConstants.NUM.equals(source.getType())) {
-				destination.num -= source.num;
-				destination.type = EugeneConstants.NUM;
+				
+				result = new Variable(null, EugeneConstants.NUM);
+				result.num = destination.num - source.num;
+
 			} else {
 				throw new EugeneException("Cannot perform the - operation on non-numerical types!");
 			}
 		}
 		
-		return destination;
+		return result;
 	}
 	
 	
 	/*----------------------------------------------
 	 * EugeneContainer (+|-) EugeneContainer
 	 *----------------------------------------------*/
-	public NamedElement doMinPlusOp(EugeneContainer RHS, EugeneContainer LHS, String op) 
+	private NamedElement doMinPlusOp(EugeneContainer RHS, EugeneContainer LHS, String op) 
 			throws EugeneException {
 		
 		EugeneContainer ec = null;
@@ -368,7 +406,7 @@ public class ExpressionExecutor {
 	}
 	
 	
-	public Variable doMultDivOp(Variable lhs, Variable rhs, String op) 
+	private Variable doMultDivOp(Variable lhs, Variable rhs, String op) 
 			throws EugeneException {
         
 		// NUM * NUM --> NUM

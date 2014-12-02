@@ -121,7 +121,7 @@ public class MiniEugeneAdapter {
 		 */
 		String meScript = this.compiler.compile(d, rule, components, interactions);
 		
-		System.out.println(meScript);
+//		System.out.println(meScript);
 		
 		/*
 		 * STEP 3: EXECUTE miniEugene script

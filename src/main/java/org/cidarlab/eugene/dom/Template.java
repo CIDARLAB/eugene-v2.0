@@ -7,7 +7,6 @@ import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.exception.EugeneException;
 
 /**
- * 
  * A Device is a Composite Component.
  * Since we offer the Selection operator for defining devices, 
  * a device contains a list of lists of components.
