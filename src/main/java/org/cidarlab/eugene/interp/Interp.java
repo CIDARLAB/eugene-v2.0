@@ -616,8 +616,32 @@ public class Interp {
         if(!(ne instanceof Device)) {
             throw new EugeneException(name+" is not a Device.");
         }
-        Device d = (Device)ne;
         
+        return this.product((Device)ne);
+	}
+	
+	/**
+	 * The private product/1 method takes as input a Eugene Device 
+	 * and enumerates all rule-compliant instances of it.
+	 * 
+	 * It follows a three-step design exploration process:
+	 * 1. Querying/Selecting Parts from the LMS  (Sparrow)
+	 * 2. Architectural Composition Constraints  (miniEugene)
+	 * 3. Pruning of Part compositions regarding Querying constraints
+	 *                                           (Sparrow)
+	 * 
+	 * Both, the product(String) and permute(String) methods invoke 
+	 * this product(Device) method. 
+	 * 
+	 * @param d  ... the Device to be permuted
+	 * @return   ... an Eugene Array containing all rule-compliant 
+	 *               instances of the Device
+	 *               
+	 * @throws EugeneException
+	 */
+	private EugeneArray product(Device d)
+			throws EugeneException {
+		
 		if(null == spAdapter) {
 			spAdapter = new SparrowAdapter(this.sparrow);
 		}
@@ -881,7 +905,43 @@ public class Interp {
             throw new EugeneException(name+" is not a Device.");
         }
         
-		return new EugeneArray(null);
+        /*
+         * now, we permute the device
+         */
+        
+        
+        // now, we prepare the Device for permute:
+        // Device D ([e11|e12], e21, [e31|e32]) 
+        // -->
+        // Device D ([e11|e12 | e21 | e31|e32], 
+        //			 [e11|e12 | e21 | e31|e32],
+        //			 [e11|e12 | e21 | e31|e32]);
+        Device tmp = new Device(ne.getName());
+        for(int i=0; i<((Device)ne).getComponents().size(); i++) {
+        	List<NamedElement> els = new ArrayList<NamedElement>();
+        	for(List<NamedElement> loe : ((Device)ne).getComponents()) {
+        		els.addAll(loe);
+        	}
+        	tmp.getComponents().add(els);
+        }
+        
+//        System.out.println("[Interp.permute] -> permuting: " + tmp);
+        return this.product(tmp);
+        
+//        System.out.println(ea.getElements().size() + " solutions!");
+//        for(NamedElement e : ea.getElements()) {
+//        	if(e instanceof Device) {
+//        		System.out.print("Device " + e.getName()+": ");
+//        		int i=0;
+//        		for(NamedElement ee : ((Device)e).getComponentList()) {
+//        			System.out.print(((Device)e).getOrientations(i) +""+ee.getName()+"  ");
+//        			i++;
+//        		}
+//        		System.out.println();
+//        	}
+//        }
+        
+//        return new EugeneArray(null);
 	}
 
 	/**

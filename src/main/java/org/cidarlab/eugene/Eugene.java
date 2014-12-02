@@ -258,7 +258,6 @@ public class Eugene {
 		 * PHASE 1:
 		 * COLLECTING FUNCTIONS
 		 */
-//		System.out.println("*** PHASE I ***");
 		EugeneParser parser = this.initParser(script, ParsingPhase.PRE_PROCESSING);
 		try {
 			parser.prog(true);
@@ -267,13 +266,10 @@ public class Eugene {
 			throw new EugeneException(e.toString());
 		}
 		
-//		parser.printFunctions();
-		
 		/*
 		 * PHASE II:
 		 * INTERPRETATION
 		 */
-//		System.out.println("*** PHASE II ***");		
 		parser = this.initParser(script, ParsingPhase.INTERPRETING);
 
 		try {
@@ -307,6 +303,14 @@ public class Eugene {
 		return lib;
 	}
 
+	/**
+	 * The getLibrary/0 method returns all components 
+	 * stored in the library.
+	 * 
+	 * @return a collection of components that represents the library
+	 * 
+	 * @throws EugeneException
+	 */
 	public Collection<Component> getLibrary() 
 			throws EugeneException {
 		try {
@@ -316,6 +320,21 @@ public class Eugene {
 		}
 	}
 	
+	/**
+	 * The private initParser/2 initializes the Eugene parser depending 
+	 * on the ParsingPhase. 
+	 * 
+	 * In the first parsing phase (``Preprocessing'') we collect all functions 
+	 * whereas in the second parsing phase (``Interpretation'') we execute 
+	 * the Eugene script.
+	 * 
+	 * @param script   ... the script the be parsed
+	 * @param phase    ... the parsing phase
+	 * 
+	 * @return the initialized EugeneParser object
+	 * 
+	 * @throws EugeneException
+	 */
 	private EugeneParser initParser(String script, ParsingPhase phase) 
 			throws EugeneException {
 		
@@ -355,6 +374,17 @@ public class Eugene {
 		return parser;
 	}
 
+	/**
+	 * The MAIN function.
+	 * 
+	 * It serves to execute Eugene from the command line via 
+	 * java -jar 
+	 * It requires one input parameter, i.e. the Eugene script 
+	 * to be executed.
+	 * 
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String[] args) 
 			throws Exception {
 		if(args.length!=1) {

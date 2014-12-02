@@ -25,4 +25,4 @@ include "./designs/cidar/cello/xor/xor-gates.eug"
 /*----------------------
  * SBOL EXPORT
  *----------------------*/
-SBOL.export(lo_xor_gates, "./designs/cidar/cello/x/y/z/exported_XOR_gates.sbol.xml");
+SBOL.export(lo_xor_gates, "./designs/cidar/cello/exported_XOR_gates.sbol.xml");

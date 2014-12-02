@@ -1,0 +1,99 @@
+PartType Promoter;
+PartType RBS;
+PartType CDS;
+PartType Terminator;
+
+Promoter p1a(.pigeon("p p1a 1"));
+Promoter p1b(.pigeon("p p1b 1"));
+Promoter p2a(.pigeon("p p2a 2"));
+Promoter p2b(.pigeon("p p2b 2"));
+Promoter p3a(.pigeon("p p3a 3"));
+Promoter p3b(.pigeon("p p3b 3"));
+Promoter p4a(.pigeon("p p4a 4"));
+Promoter p4b(.pigeon("p p4b 4"));
+
+RBS r1(.pigeon("r r1 1"));
+RBS r2(.pigeon("r r2 2"));
+RBS r3(.pigeon("r r3 3"));
+RBS r4(.pigeon("r r4 4"));
+
+CDS c1(.pigeon("g c1 1")); 
+CDS c2(.pigeon("g c2 2")); 
+CDS c3(.pigeon("g c3 3")); 
+CDS c4(.pigeon("g c4 4")); 
+
+Terminator t1(.pigeon("t t1 1"));
+Terminator t2(.pigeon("t t2 2"));
+Terminator t3(.pigeon("t t3 3"));
+Terminator t4(.pigeon("t t4 4"));
+
+
+ 
+Array parts (
+    p1a, p2a, p3a, p4a, p4b,
+    r1, r2, r3, r4,
+    c1, c2, c3, c4,
+    t1, t2, t3, t4
+);
+
+Device gate (
+    [Promoter|Terminator], [Promoter|CDS], RBS, [Promoter|CDS], [Promoter|Terminator]
+);
+println(gate);
+
+Rule rb_1(ON gate: 
+	p1a exactly 1 /\ p1b exactly 1 /\ r1 exactly 1 /\ c1 exactly 1 /\ t1 exactly 1 
+	/\ 
+	p1a nextto p1b /\ r1 nextto c1 /\ c1 nextto t1 
+	/\ 
+	p1a same_orientation p1b /\  p1b same_orientation r1 /\ r1 same_orientation c1 /\ c1 same_orientation t1
+	/\ 
+	not forward p1a \/ r1 after p1a /\ not reverse p1a \/ r1 before p1a
+);
+
+Rule rb_2(ON gate: 
+	p2a exactly 1 /\ p2b exactly 1 /\ r2 exactly 1 /\ c2 exactly 1 /\ t2 exactly 1 
+	/\ 
+	p2a nextto p2b /\ r2 nextto c2 /\ c2 nextto t2 
+	/\ 
+	p2a same_orientation p2b /\  p2b same_orientation r2 /\ r2 same_orientation c2 /\ c2 same_orientation t2
+	/\ 
+	not forward p2a \/ r2 after p2a /\ not reverse p2a \/ r2 before p2a
+);
+
+Rule rb_3(ON gate: 
+	p3a exactly 1 /\ p3b exactly 1 /\ r3 exactly 1 /\ c3 exactly 1 /\ t3 exactly 1 
+	/\ 
+	p3a nextto p3b /\ r3 nextto c3 /\ c3 nextto t3 
+	/\ 
+	p3a same_orientation p3b /\  p3b same_orientation r3 /\ r3 same_orientation c3 /\ c3 same_orientation t3
+	/\ 
+	not forward p3a \/ r3 after p3a /\ not reverse p3a \/ r3 before p3a
+);
+
+Rule rb_4(ON gate: 
+	p4a exactly 1 /\ p4b exactly 1 /\ r4 exactly 1 /\ c4 exactly 1 /\ t4 exactly 1 
+	/\ 
+	p4a nextto p4b /\ r4 nextto c4 /\ c4 nextto t4 
+	/\ 
+	p4a same_orientation p4b /\  p4b same_orientation r4 /\ r4 same_orientation c4 /\ c4 same_orientation t4
+	/\ 
+	not forward p4a \/ r4 after p4a /\ not reverse p4a \/ r4 before p4a
+);
+
+lod = product(gate);
+
+/*****
+p1a,r1,t1 same_orientation c1
+p2a,r2,t2 same_orientation c2
+p3a,r3,t3 same_orientation c3
+p4a,p4b,r4,t4 same_orientation c4
+ *****/
+
+/*****
+within_sequence: forward p* implies p* before c
+within_sequence: reverse p* implies p* after c
+ *****/
+
+SBOL.visualize(lod);
+ 

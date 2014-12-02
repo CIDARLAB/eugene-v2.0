@@ -1,0 +1,132 @@
+//println(input_pTac__pAmtRjs__PhlF_);
+//println(input_pTac__input_pTet__AmtR_);
+//println(input_pTet__pAmtRjs__LitR_);
+
+/*
+ *   All three devices are organized either
+ *   +Scar, +Promoter, +Promoter, +Insulator, +RBS, +CDS, +Terminator
+ *   or
+ *   +Scar, -Terminator, -CDS, -RBS, -Insulator, -Promoter, -Promoter
+ *
+ *   '+' denotes forward orientation
+ *   '-' denotes reverse orientation
+ */
+ 
+// first, let's define a DeviceTemplate
+Device ppc(
+	CDS, // currently scars are represented as CDSs   
+	
+	[Promoter|Terminator], 
+	[Promoter|CDS], 
+	[Insulator|RBS], 
+	[Insulator|RBS], 
+	[Promoter|CDS], 
+	[Promoter|Terminator]);
+	
+
+// and we also use a Eugene RuleBuilder 
+// to generate conjugated rules dynamically
+
+// first, we derive rules from the imported devices and 
+// specify them using Eugene RuleBuilders
+
+//-----------------------------------
+// input_pTac__pAmtRjs__PhlF_ device
+//-----------------------------------
+Rule pTac_pAmtR_PhlF(ON ppc: STARTSWITH D_scar AND FORWARD D_scar AND D_scar EXACTLY 1);
+for(num i=1; i<SIZEOF(input_pTac__pAmtRjs__PhlF_); i=i+1) {
+    p_i_minus_1 = input_pTac__pAmtRjs__PhlF_[i-1].Name;
+    p_i = input_pTac__pAmtRjs__PhlF_[i].Name;  
+
+    // ``pairing'' constraints
+    AND(pTac_pAmtR_PhlF, ${p_i_minus_1} WITH ${p_i});
+
+    if(i >= 2) {  // we don't need to specify it for the D_scar again!
+    
+	    // ``position'' constraints implied by ``orientation''
+        AND(pTac_pAmtR_PhlF, NOT FORWARD ${p_i_minus_1} OR ${p_i_minus_1} BEFORE ${p_i});
+        AND(pTac_pAmtR_PhlF, NOT REVERSE ${p_i_minus_1} OR ${p_i_minus_1} AFTER ${p_i});
+        
+	    // ``orientation'' constraints
+    	AND(pTac_pAmtR_PhlF, ${p_i_minus_1} SAME_ORIENTATION ${p_i});
+    
+    }
+} 
+
+// UNCOMMENT the following two lines for testing/debugging
+//lod = product(ppc);
+//println(SIZEOF(lod), " number of designs");
+
+
+//-----------------------------------
+// input_pTac__input_pTet__AmtR_ device
+//-----------------------------------
+Rule pTac_pTet_AmtR(ON ppc: STARTSWITH F_scar AND FORWARD F_scar AND F_scar EXACTLY 1);
+for(num i=1; i<SIZEOF(input_pTac__input_pTet__AmtR_); i=i+1) {
+    p_i_minus_1 = input_pTac__input_pTet__AmtR_[i-1].Name;
+    p_i = input_pTac__input_pTet__AmtR_[i].Name;  
+
+    // ``pairing'' constraints
+    //AND(pTac_pTet_AmtR, ${p_i} EXACTLY 1);
+    AND(pTac_pTet_AmtR, ${p_i_minus_1} WITH ${p_i});
+
+    if(i >= 2) {  // we don't need to specify it for the D_scar again!
+    
+	    // ``position'' constraints implied by ``orientation''
+        AND(pTac_pTet_AmtR, NOT FORWARD ${p_i_minus_1} OR ${p_i_minus_1} BEFORE ${p_i});
+        AND(pTac_pTet_AmtR, NOT REVERSE ${p_i_minus_1} OR ${p_i_minus_1} AFTER ${p_i});
+
+	    // ``orientation'' constraints
+    	AND(pTac_pTet_AmtR, ${p_i_minus_1} SAME_ORIENTATION ${p_i});    
+    }
+} 
+
+// UNCOMMENT the following two lines for testing/debugging
+//lod = product(ppc);
+//println(SIZEOF(lod), " number of designs");
+
+
+//-----------------------------------
+// input_pTet__pAmtRjs__LitR_ device
+//-----------------------------------
+Rule pTet_pAmtR_LitR(ON ppc: STARTSWITH E_scar AND FORWARD E_scar AND E_scar EXACTLY 1);
+for(num i=1; i<SIZEOF(input_pTet__pAmtRjs__LitR_); i=i+1) {
+    p_i_minus_1 = input_pTet__pAmtRjs__LitR_[i-1].Name;
+    p_i = input_pTet__pAmtRjs__LitR_[i].Name;  
+
+    // ``pairing'' constraints
+    AND(pTet_pAmtR_LitR, ${p_i_minus_1} WITH ${p_i});
+
+    if(i >= 2) {  // we don't need to specify it for the D_scar again!
+    
+	    // ``position'' constraints implied by ``orientation''
+        AND(pTet_pAmtR_LitR, NOT FORWARD ${p_i_minus_1} OR ${p_i_minus_1} BEFORE ${p_i});
+        AND(pTet_pAmtR_LitR, NOT REVERSE ${p_i_minus_1} OR ${p_i_minus_1} AFTER ${p_i});
+
+	    // ``orientation'' constraints
+    	AND(pTet_pAmtR_LitR, ${p_i_minus_1} SAME_ORIENTATION ${p_i});    
+    }
+} 
+
+
+/*
+ * ENUMERATION of rule-compliant designs
+ */
+// Eugene supports the Disjunctive Normalform, making 
+// it possible to specify rules for each imported device as an
+// individual rule. Then, those rules willbe logically ORed 
+// in order to find all 6 desired designs
+ 
+lo_input_devices = product(ppc);
+println(SIZEOF(lo_input_devices), " input gates.");
+
+// lastly, 
+// - we visualize the enumerated designs of the single gates, and
+SBOL.visualize(lo_input_devices);
+
+// - export them to SBOL
+SBOL.export(lo_input_devices, "./designs/cidar/cello/xor/sbol/xor_input_gates.sbol.xml");
+
+
+
+

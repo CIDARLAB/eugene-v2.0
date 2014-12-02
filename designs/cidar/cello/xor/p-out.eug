@@ -1,0 +1,57 @@
+
+//println(pPhlF__pLitRjs__output_YFP_);
+
+
+/*
+ *   All ``output'' devices are organized either as
+ *   +Scar, +Promoter, +Promoter, +CDS
+ *   or as
+ *   +Scar, -CDS, -Promoter, -Promoter
+ *
+ *   '+' denotes forward orientation
+ *   '-' denotes reverse orientation
+ */
+ 
+// first, let's define a DeviceTemplate
+// Eugene DeviceTemplates represent miniEugene ``Templating Constraints''
+Device p_out(
+	CDS, // currently scars are represented as CDSs   
+	
+	[Promoter|CDS], 
+	[Promoter], 
+	[Promoter|CDS]
+);
+
+// Then, let's derive Eugene rules from the imported device
+// using Eugene RuleBuilders and Loops
+
+Rule pPhlF_pLitR_YFP(ON p_out: STARTSWITH C_scar AND C_scar EXACTLY 1 AND FORWARD C_scar);
+
+for(num i=1; i<SIZEOF(pPhlF__pLitRjs__output_YFP_); i=i+1) {
+    p_i_minus_1 = pPhlF__pLitRjs__output_YFP_[i-1].Name;
+    p_i = pPhlF__pLitRjs__output_YFP_[i].Name;
+    
+    // ``pairing'' constraints
+    AND(pPhlF_pLitR_YFP, ${p_i_minus_1} WITH ${p_i});
+    
+    if(i >= 2) {
+        // ``orientation''
+    	AND(pPhlF_pLitR_YFP, ${p_i_minus_1} SAME_ORIENTATION ${p_i});
+    	
+    	// ``positioning'' implied by ``orientation''
+    	AND(pPhlF_pLitR_YFP, NOT FORWARD ${p_i_minus_1} OR ${p_i_minus_1} BEFORE ${p_i});
+    	AND(pPhlF_pLitR_YFP, NOT REVERSE ${p_i_minus_1} OR ${p_i_minus_1} AFTER ${p_i});
+    }
+}
+
+// Enumerate all rule-compliant designs
+lo_output_devices = product(p_out);
+
+
+println(SIZEOF(lo_output_devices), " output gates.");
+
+// SBOL Visual compliant representation (using Pigeon)
+SBOL.visualize(lo_output_devices);
+
+// Finally, we also export the designs to SBOL
+SBOL.export(lo_output_devices, "./designs/cidar/cello/xor/sbol/xor_output_gates.sbol.xml");

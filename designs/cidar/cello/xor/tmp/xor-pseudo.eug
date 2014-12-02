@@ -1,0 +1,31 @@
+exactly 1   p1a, r1, c1, t1,
+			p2a, r2, c2, t2,
+			p2a, r2, c2, t2,
+			p3a, r3, c3, t3,
+			p4a, p4b, r4, c4, t4
+
+
+sequence p1a,r1,c1,t1 or sequence t1,c1,r1,p1a
+
+sequence p2a,r2,c2,t2 or sequence t2,c2,r2,p2a
+
+sequence p3a,r3,c3,t3 or sequence t3,c3,r3,p3a
+
+sequence p4a,p4b,r4,c4,t4 or sequence t4,c4,r4,p4b,p4a
+
+
+p1a,r1,t1 same_orientation c1
+
+p2a,r2,t2 same_orientation c2
+
+p3a,r3,t3 same_orientation c3
+
+p4a,p4b,r4,t4 same_orientation c4
+
+
+within_sequence: forward p* implies p* before c
+
+within_sequence: reverse p* implies p* after c
+
+
+not t* nextto p* (this rule is for alternating orientations)

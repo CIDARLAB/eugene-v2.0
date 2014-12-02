@@ -143,6 +143,7 @@ public class EndToEndTestSuite {
 //		new EndToEndTestSuite().test("./tests/rules/represses-txt");
 
 		
+		
 		/**************************************************************
 		 * ARCHITECTURAL CONSTRAINTS
 		 * 
@@ -330,6 +331,23 @@ public class EndToEndTestSuite {
 		new EndToEndTestSuite().test("./tests/eugene-fun/rhombus");
 	}
 	
+	/**
+	 * here we test Eugene's built-in functions:
+	 * - SIZEOF
+	 * - PRODUCT
+	 * - PERMUTE
+	 * 
+	 * @throws EugeneException
+	 */
+	public static void testBuiltInFunctions() 
+			throws EugeneException {
+		
+//		new EndToEndTestSuite().test("./tests/built-in-functions/sizeof");
+//		new EndToEndTestSuite().test("./tests/built-in-functions/product");
+		
+		new EndToEndTestSuite().test("./tests/built-in-functions/permute");
+	}
+	
 	public static void testInteractWithLMS()
 			throws EugeneException {
 		
@@ -348,6 +366,7 @@ public class EndToEndTestSuite {
 
 //		testBasics();
 //		testImperativeFeatures();
+		testBuiltInFunctions();
 //		testEugeneLabTutorials();		
 //		testDataExchange();
 
@@ -355,7 +374,7 @@ public class EndToEndTestSuite {
 
 		// TODOs:
 //		testRules();
-		testGrammars();
+//		testGrammars();
 //		testRealWorldExamples();
 
 //		testEC327FunWithEugene();

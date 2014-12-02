@@ -1,0 +1,177 @@
+/***
+println(input_pTac__pAmtRjs__PhlF_);
+println(SIZEOF(input_pTac__pAmtRjs__PhlF_));
+ ***/
+ 
+/****
+println(D_scar);             // CDS
+
+
+println(input_pTac);         // Promoter
+println(pAmtRjs);            // Promoter
+println(RiboJ53);            // Insulator
+println(an1_phlf);           // RBS
+println(PhlF);               // CDS
+println(ECK120033737);       // Terminator
+ ****/
+ 
+/*
+ *   The input_pTac__pAmtRjs__PhlF_ device is organized as follows:
+ *   D_scar, input_pTac, pAmtRjs, RiboJ53, an1_phlf, Phlf, ECK120033737
+ */
+ 
+// first, let's define a DeviceTemplate
+Device pTac_pAmtR_PhlF(
+	CDS,
+	
+	[Promoter|Terminator], 
+	[Promoter|CDS], 
+	[Insulator|RBS], 
+	[Insulator|RBS], 
+	[Promoter|CDS], 
+	[Promoter|Terminator]);
+
+// and we also use a Eugene RuleBuilder 
+// to generate conjugated rules dynamically
+Rule Rule_pTac_pAmtR_PhlF(ON pTac_pAmtR_PhlF: STARTSWITH D_scar AND FORWARD D_scar AND D_scar EXACTLY 1);
+	    // we specify rules regarding the scars here.
+
+/*-----------------------------------------------
+ * let's ``derive'' some rules from the imported 
+ * input_pTac__pAmtRjs__PhlF_ device
+ *-----------------------------------------------*/
+ 
+// 1. Rules regarding the occurrence of parts
+for(num i=1; i<SIZEOF(input_pTac__pAmtRjs__PhlF_); i=i+1) {
+    p = input_pTac__pAmtRjs__PhlF_[i].Name;
+    AND(Rule_pTac_pAmtR_PhlF, ${p} EXACTLY 1);
+} 
+println(Rule_pTac_pAmtR_PhlF);
+
+lod = product(pTac_pAmtR_PhlF);
+println(SIZEOF(lod), " pTac_pAmtR_PhlF devices.");
+
+// 2. Rules regarding the orientation of the parts
+for(num i=2; i<SIZEOF(input_pTac__pAmtRjs__PhlF_); i=i+1) {
+    p =  input_pTac__pAmtRjs__PhlF_[i-1].Name;
+    p_i = input_pTac__pAmtRjs__PhlF_[i].Name;
+    AND(Rule_pTac_pAmtR_PhlF, ${p_i} SAME_ORIENTATION ${p});
+} 
+println(Rule_pTac_pAmtR_PhlF);
+
+lod = product(pTac_pAmtR_PhlF);
+println(SIZEOF(lod), " pTac_pAmtR_PhlF devices.");
+
+// 3. Rules regarding the positioning
+for(num i=2; i<SIZEOF(input_pTac__pAmtRjs__PhlF_); i=i+1) {
+
+    p =  input_pTac__pAmtRjs__PhlF_[i-1].Name;
+    p_i = input_pTac__pAmtRjs__PhlF_[i].Name;
+    
+    AND(Rule_pTac_pAmtR_PhlF, NOT FORWARD ${p} OR ${p} BEFORE ${p_i});
+    AND(Rule_pTac_pAmtR_PhlF, NOT REVERSE ${p} OR ${p} AFTER ${p_i});
+} 
+println(Rule_pTac_pAmtR_PhlF);
+
+lod = product(pTac_pAmtR_PhlF);
+println(SIZEOF(lod), " pTac_pAmtR_PhlF devices.");
+
+for(num i=0; i<SIZEOF(lod); i=i+1) {
+    println(lod[i]);
+}
+
+SBOL.visualize(lod);
+
+
+
+/******
+Rule rAmtR(ON xor_1: 
+// COUNTING
+D_scar EXACTLY 1
+AND
+input_pTac EXACTLY 1
+
+AND
+pAmtRjs EXACTLY 1
+
+AND
+RiboJ53 EXACTLY 1
+
+AND
+an1_phlf EXACTLY 1
+
+AND
+PhlF EXACTLY 1
+
+AND
+ECK120033737 EXACTLY 1
+
+AND
+
+// ORIENTATION
+		D_scar SAME_ORIENTATION input_pTac
+AND
+		input_pTac SAME_ORIENTATION pAmtRjs
+AND
+		pAmtRjs SAME_ORIENTATION RiboJ53
+AND
+		RiboJ53 SAME_ORIENTATION an1_phlf
+AND
+		an1_phlf SAME_ORIENTATION PhlF
+AND
+		PhlF SAME_ORIENTATION ECK120033737
+		
+AND
+
+// POSITIONING
+
+// FORWARD ORIENTATION
+not FORWARD D_scar OR D_scar BEFORE input_pTac
+AND
+not FORWARD D_scar OR input_pTac BEFORE pAmtRjs
+AND
+not FORWARD D_scar OR pAmtRjs BEFORE RiboJ53
+AND
+not FORWARD D_scar OR RiboJ53 BEFORE an1_phlf
+AND
+not FORWARD D_scar OR an1_phlf BEFORE PhlF
+AND
+not FORWARD D_scar OR PhlF BEFORE ECK120033737
+
+AND
+
+// REVERSE ORIENTATION
+not REVERSE D_scar OR D_scar AFTER input_pTac
+AND
+not REVERSE D_scar OR input_pTac AFTER pAmtRjs
+AND
+not REVERSE D_scar OR pAmtRjs AFTER RiboJ53
+AND
+not REVERSE D_scar OR RiboJ53 AFTER an1_phlf
+AND
+not REVERSE D_scar OR an1_phlf AFTER PhlF
+AND
+not REVERSE D_scar OR PhlF AFTER ECK120033737
+
+);
+
+
+lod = product(xor_1);
+println(lod);
+
+SBOL.visualize(lod);
+****/
+/*****
+miniEugene-Constraints for the input_pTac__input_pTet__AmtR_ device:
+
+not forward p_input_pTac or sequence D_scar, p_input_pTac, pAmtRjs, RiboJ53, r_an1_phlf, gPhlF, t_ECK120033737
+not reverse p_input_pTac or sequence t_ECK120033737, gPhlF, r_an1_phlf, RiboJ53, pAmtRjs, p_input_pTac, D_scar
+
+D_scar same_orientation p_input_pTac
+p_input_pTac same_orientation pAmtRjs
+pAmtRjs same_orientation RiboJ53
+RiboJ53 same_orientation r_an1_phlf
+r_an1_phlf same_orientation gPhlF
+gPhlF same_orientation t_ECK120033737
+
+****/

@@ -10,10 +10,10 @@ import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.interaction.Interaction;
 import org.cidarlab.eugene.dom.rules.Rule;
 import org.cidarlab.eugene.exception.EugeneException;
-import org.cidarlab.eugene.grammar.EugeneGrammar;
-import org.cidarlab.eugene.interp.SymbolTable;
+//import org.cidarlab.eugene.interp.SymbolTable;
 import org.cidarlab.eugene.interp.Interp;
 import org.cidarlab.minieugene.MiniEugene;
+//import org.cidarlab.minieugene.grammars.EugeneGrammar;
 
 public class MiniEugeneAdapter {
 
@@ -29,10 +29,10 @@ public class MiniEugeneAdapter {
 	 */
 	private MiniEugene me;
 	
-	/*
-	 * a reference to the Eugene grammar
-	 */
-	private EugeneGrammar eg;
+//	/*
+//	 * a reference to the Eugene grammar
+//	 */
+//	private EugeneGrammar eg;
 	
 	/*
 	 * a reference to the Interpreter

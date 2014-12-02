@@ -1,0 +1,50 @@
+
+// we have 8 devices:
+// - two for output
+//println(lo_output_devices);
+// - six for ``input''
+//println(lo_input_devices);
+
+// and we need to compose them 
+// into semantically equivalent XOR gates
+
+/*
+ *   first, we need to save all devices into our ``global'' 
+ *   library management system (LMS) 
+ */
+for(num i=0; i<SIZEOF(lo_output_devices); i=i+1) {
+    SAVE(lo_output_devices[i]);
+} 
+for(num i=0; i<SIZEOF(lo_input_devices); i=i+1) {
+    SAVE(lo_input_devices[i]);
+} 
+
+// then, we specify a Eugene DeviceTemplate 
+// for a constraint composition of the input and output devices
+Device XOR(
+	[ppc_1|ppc_2|ppc_3|ppc_4|ppc_5|ppc_6],  
+	[ppc_1|ppc_2|ppc_3|ppc_4|ppc_5|ppc_6],
+	[ppc_1|ppc_2|ppc_3|ppc_4|ppc_5|ppc_6],
+	
+	[p_out_1|p_out_2]
+);
+
+// let's specify some rules
+// THIS SET OF RULES IS NOT FULLY CORRECT AND WORKING THOUGH!
+Rule xor_gate_1(ON XOR:
+    alternate_orientation AND
+    ppc_1 WITH ppc_3 AND ppc_3 WITH ppc_5 AND ppc_5 WITH p_out_1
+);
+Rule xor_gate_2(ON XOR:
+    alternate_orientation AND
+    ppc_2 WITH ppc_4 AND ppc_4 WITH ppc_6 AND ppc_6 WITH p_out_2
+);
+
+// enumerate all designs
+lo_xor_gates = product(XOR);
+println(SIZEOF(lo_xor_gates), " XOR gates.");
+
+// visualize them
+SBOL.visualize(lo_xor_gates);
+
+

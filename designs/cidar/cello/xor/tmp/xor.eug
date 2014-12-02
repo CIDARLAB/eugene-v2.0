@@ -1,0 +1,169 @@
+PartType Promoter;
+PartType RBS;
+PartType CDS;
+PartType Terminator;
+
+Promoter p1a;
+Promoter p1b;
+Promoter p2a;
+Promoter p2b;
+Promoter p3a;
+Promoter p3b;
+Promoter p4a;
+Promoter p4b;
+
+RBS r1;
+RBS r2;
+RBS r3;
+RBS r4;
+
+CDS c1; 
+CDS c2; 
+CDS c3; 
+CDS c4; 
+
+Terminator t1;
+Terminator t2;
+Terminator t3;
+Terminator t4;
+
+
+ 
+Array parts (
+    p1a, p1b, p2a, p2b, p3a, p3b, p4a, p4b,
+    r1, r2, r3, r4,
+    c1, c2, c3, c4,
+    t1, t2, t3, t4
+);
+
+/**
+Device dev (
+    [Promoter|Terminator], [Promoter|Terminator|RBS|CDS], [Promoter|Terminator|RBS|CDS], [Promoter|Terminator|RBS|CDS], 
+    [Promoter|Terminator|RBS|CDS], [Promoter|Terminator|RBS|CDS], [Promoter|Terminator|RBS|CDS], 
+    [Promoter|Terminator|RBS|CDS], [Promoter|Terminator|RBS|CDS], [Promoter|Terminator|RBS|CDS], 
+    [Promoter|Terminator|RBS|CDS], [Promoter|Terminator|RBS|CDS], [Promoter|Terminator|RBS|CDS],
+    [Promoter|Terminator|RBS|CDS], [Promoter|Terminator|RBS|CDS], [Promoter|Terminator|RBS|CDS],
+    
+    [Promoter|Terminator]
+);
+ **/
+
+Device fwdNOT1(p1a, r1, c1, t1);
+Device revNOT1(t1, c1, r1, p1a);
+
+Device fwdNOT2(p2a, r2, c2, t2);
+
+Device fwdNOT3(p3a, r3, c3, t3);
+
+Rule rComp(fwdNOT1 exactly 1 \/ revNOT1 exactly 1 /\ fwdNOT2 exactly 1 /\ fwdNOT2 exactly 1 /\ all_forward);
+
+
+Device NOT_gates([fwdNOT1 | revNOT1], fwdNOT2, fwdNOT3 );
+Rule rNOTgates(ON NOT_gates: alternate_orientation);
+loNOT = permute(NOT_gates);
+
+
+// --> Device comp([fwdNOT1|fwdNOT2|fwdNOT3], [fwdNOT1|fwdNOT2|fwdNOT3], [fwdNOT1|fwdNOT2|fwdNOT3]);
+//     loc = product(comp);
+
+// println(loc);
+ 
+
+Device dev (
+    [Promoter], [Promoter], [RBS], [CDS], [Terminator], 
+    
+    [Promoter], [Promoter], [RBS], [CDS], [Terminator],
+     
+    [Promoter], [Promoter], [RBS], [CDS], [Terminator],
+     
+    [Promoter], [Promoter], [RBS], [CDS], [Terminator] 
+);
+
+
+println(dev);
+ 
+RuleBuilder rb(ON dev);
+
+/*****
+    exactly 1   p1a, r1, c1, t1,
+	            p2a, r2, c2, t2,
+                //?? p2a, r2, c2, t2, ??//
+                p3a, r3, c3, t3,
+                p4a, p4b, r4, c4, t4
+ *****/
+for(num i=1; i<=4; i=i+1) {
+     // every Promoter must appear exactly once
+     AND(rb, ${"p"+i+"a"} EXACTLY 1);
+     AND(rb, ${"p"+i+"b"} EXACTLY 1);
+
+     // every RBS must appear exactly once
+     AND(rb, ${"r"+i} EXACTLY 1);
+     // every CDS must appear exactly once
+     AND(rb, ${"c"+i} EXACTLY 1);
+     // every Terminator must appear exactly once
+     AND(rb, ${"t"+i} EXACTLY 1);
+}
+
+
+
+/*****
+p1a,r1,t1 same_orientation c1
+p2a,r2,t2 same_orientation c2
+p3a,r3,t3 same_orientation c3
+p4a,p4b,r4,t4 same_orientation c4
+ *****/
+/**
+for(num i=1; i<=4; i=i+1) {
+    AND(rb, ${"p"+i+"a"} SAME_ORIENTATION ${"c"+i});
+    AND(rb, ${"r"+i} SAME_ORIENTATION ${"c"+i});
+    AND(rb, ${"t"+i} SAME_ORIENTATION ${"c"+i});
+}
+AND(rb, p4b SAME_ORIENTATION c4);
+println(rb);
+ **/
+ 
+AND(rb, ALL_FORWARD);
+
+/*****
+within_sequence: forward p* implies p* before c
+within_sequence: reverse p* implies p* after c
+ *****/
+AND(rb, p1a NEXTTO p1b);
+AND(rb, p1b NEXTTO r1);
+AND(rb, r1 NEXTTO c1);
+AND(rb, c1 NEXTTO t1);
+
+AND(rb, p2a NEXTTO p2b);
+AND(rb, p2b NEXTTO r2);
+AND(rb, r2 NEXTTO c2);
+AND(rb, c2 NEXTTO t2);
+
+AND(rb, p3a NEXTTO p3b);
+AND(rb, p3b NEXTTO r3);
+AND(rb, r3 NEXTTO c3);
+AND(rb, c3 NEXTTO t3);
+
+AND(rb, p4a NEXTTO p4b);
+AND(rb, p4b NEXTTO r4);
+AND(rb, r4 NEXTTO c4);
+AND(rb, c4 NEXTTO t4);
+
+/**
+for(num i=1; i<=4; i=i+1) {
+    AND(rb, NOT FORWARD ${"p"+i+"a"} OR  ${"p"+i+"a"} BEFORE ${"c"+i});
+    AND(rb, NOT REVERSE ${"p"+i+"a"} OR  ${"p"+i+"a"} AFTER ${"c"+i});
+}
+AND(rb, NOT FORWARD p4b OR  p4b BEFORE c4);
+AND(rb, NOT REVERSE p4b OR  p4b AFTER c4);
+ **/
+
+AND(rb, NOT Terminator NEXTTO Terminator);
+println(rb);
+
+lod = product(dev);
+
+println(SIZEOF(lod), " designs.");
+//println(lod);
+
+//SBOL.visualize(lod[0]);
+ 

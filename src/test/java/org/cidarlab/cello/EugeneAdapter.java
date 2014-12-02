@@ -9,9 +9,9 @@ public class EugeneAdapter {
 	public static void main(String[] args) 
 			throws Exception {
 //		new Eugene().executeFile(new File("./designs/cidar/cello/xor/cello_XOR-one.eug"));
-		new Eugene().executeFile(new File("./designs/cidar/cello/xor/cello_XOR.eug"));
+//		new Eugene().executeFile(new File("./designs/cidar/cello/xor/cello_XOR.eug"));
 //		new Eugene().executeFile(new File("./designs/cidar/cello/xor/one-gate.eug"));
-//		new Eugene().executeFile(new File("./designs/cidar/cello/xor/xor.eug"));
+		new Eugene().executeFile(new File("./designs/cidar/cello/xor/tmp/xor.eug"));
 	}
 
 }

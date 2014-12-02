@@ -1,0 +1,104 @@
+println(input_pTac__pAmtRjs__PhlF_);
+println(SIZEOF(input_pTac__pAmtRjs__PhlF_));
+
+println(D_scar);             // CDS
+println(input_pTac);         // Promoter
+println(pAmtRjs);            // Promoter
+println(RiboJ53);            // Insulator
+println(an1_phlf);           // RBS
+println(PhlF);               // CDS
+println(ECK120033737);       // Terminator
+
+
+Device xor_1([CDS|Terminator], [Promoter|CDS], [Promoter|RBS], Insulator, [Promoter|RBS], [Promoter|CDS], [CDS|Terminator]);
+
+Rule rAmtR(ON xor_1: 
+// COUNTING
+D_scar EXACTLY 1
+AND
+input_pTac EXACTLY 1
+
+AND
+pAmtRjs EXACTLY 1
+
+AND
+RiboJ53 EXACTLY 1
+
+AND
+an1_phlf EXACTLY 1
+
+AND
+PhlF EXACTLY 1
+
+AND
+ECK120033737 EXACTLY 1
+
+AND
+
+// ORIENTATION
+		D_scar SAME_ORIENTATION input_pTac
+AND
+		input_pTac SAME_ORIENTATION pAmtRjs
+AND
+		pAmtRjs SAME_ORIENTATION RiboJ53
+AND
+		RiboJ53 SAME_ORIENTATION an1_phlf
+AND
+		an1_phlf SAME_ORIENTATION PhlF
+AND
+		PhlF SAME_ORIENTATION ECK120033737
+		
+AND
+
+// POSITIONING
+
+// FORWARD ORIENTATION
+not FORWARD D_scar OR D_scar BEFORE input_pTac
+AND
+not FORWARD D_scar OR input_pTac BEFORE pAmtRjs
+AND
+not FORWARD D_scar OR pAmtRjs BEFORE RiboJ53
+AND
+not FORWARD D_scar OR RiboJ53 BEFORE an1_phlf
+AND
+not FORWARD D_scar OR an1_phlf BEFORE PhlF
+AND
+not FORWARD D_scar OR PhlF BEFORE ECK120033737
+
+AND
+
+// REVERSE ORIENTATION
+not REVERSE D_scar OR D_scar AFTER input_pTac
+AND
+not REVERSE D_scar OR input_pTac AFTER pAmtRjs
+AND
+not REVERSE D_scar OR pAmtRjs AFTER RiboJ53
+AND
+not REVERSE D_scar OR RiboJ53 AFTER an1_phlf
+AND
+not REVERSE D_scar OR an1_phlf AFTER PhlF
+AND
+not REVERSE D_scar OR PhlF AFTER ECK120033737
+
+);
+
+
+lod = product(xor_1);
+println(lod);
+
+SBOL.visualize(lod);
+
+/*****
+miniEugene-Constraints for the input_pTac__input_pTet__AmtR_ device:
+
+not forward p_input_pTac or sequence D_scar, p_input_pTac, pAmtRjs, RiboJ53, r_an1_phlf, gPhlF, t_ECK120033737
+not reverse p_input_pTac or sequence t_ECK120033737, gPhlF, r_an1_phlf, RiboJ53, pAmtRjs, p_input_pTac, D_scar
+
+D_scar same_orientation p_input_pTac
+p_input_pTac same_orientation pAmtRjs
+pAmtRjs same_orientation RiboJ53
+RiboJ53 same_orientation r_an1_phlf
+r_an1_phlf same_orientation gPhlF
+gPhlF same_orientation t_ECK120033737
+
+****/
