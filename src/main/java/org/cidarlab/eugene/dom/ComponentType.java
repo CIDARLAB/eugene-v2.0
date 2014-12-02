@@ -5,6 +5,14 @@ import java.util.List;
 
 import org.cidarlab.eugene.exception.EugeneException;
 
+/**
+ * A ComponentType represents an abstract genetic component, such as part type. 
+ * In Eugene, every Component has a ComponentType. A ComponentType has a list of 
+ * properties that the Component instantiates (so-called Property Values).
+ *  
+ * @author Ernst Oberortner
+ *
+ */
 public class ComponentType 
 	extends NamedElement {
 
@@ -15,24 +23,49 @@ public class ComponentType
 	 */
 	protected List<Property> properties; 
 	
+	/**
+	 * Constructor w/ name
+	 * 
+	 * @param name   ... the name of the ComponentType
+	 */
 	public ComponentType(String name) {
 		super(name);
 		this.properties = new ArrayList<Property>();
 	}
 	
+	/**
+	 * Constructor w/ name and properties
+	 * 
+	 * @param name   ... the name of the ComponentType
+	 * @param properties ... a list of properties of the type
+	 */
 	public ComponentType(String name, List<Property> properties) {
 		super(name);
 		this.properties = properties;
 	}
 	
+	
+	/**
+	 * The getProperties() method returns the list of properties 
+	 * of the ComponentType
+	 * 
+	 * @return  the of the ComponentType's properties
+	 */
 	public List<Property> getProperties() {
 		return this.properties;
 	}
 
-	public Property getProperty(String sPropertyName) {
-
+	/**
+	 * The getProperty(String) method returns a property of 
+	 * a given name. If the property does not exist, then 
+	 * it returns NULL.
+	 *  
+	 * @param name   ... the name of the desired Property
+	 * @return   ... the Property if it exists, NULL otherwise
+	 */
+	public Property getProperty(String name) {
 		for (Property p : this.getProperties()) {
-			if (p.getName().equals(sPropertyName)) {
+			if (p.getName().equals(name)) {
 				return p;
 			}
 		}

@@ -29,9 +29,8 @@ public abstract class StackElement
 	private static final long serialVersionUID = -5593349465159567676L;
 	private SymbolTable symbols;
 	
-
 	public StackElement() {
-		super(UUID.randomUUID().toString());
+		super(null);
 		
 		this.symbols = new SymbolTable();
 	}

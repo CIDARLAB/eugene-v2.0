@@ -181,33 +181,77 @@ public class Eugene2MiniEugeneCompiler {
 		
 		// call the getDeviceSize/1 method to determine 
 		// the Device's size
-		sb.append("N=").append(getDeviceSize(d)).append(".");
+		sb.append("N=").append(this.determineDeviceSize(d)).append(".");
 		
 		return sb;
 	}
 	
 	/**
-	 * The getDeviceSize/1 method recursively traverses the 
+	 * The determineDeviceSize/1 method recursively traverses the 
 	 * given Device object and sums up its size which 
 	 * will be returned.
 	 * 
 	 * @param d  ... The Device of that the size needs to be determined
 	 * @return   ... The size of the Device.
 	 */
-	private int getDeviceSize(Device d) {
+	private int determineDeviceSize(Device d) {
 		
-		return d.getComponents().size();
+//		return d.getComponents().size();
 
 //		/** NEW VERSION: [under development] **/
-//		int size = 0;
-//		for(NamedElement e : d.getComponentList()) {
-//			if(e instanceof Device) {
-//				size += this.getDeviceSize((Device)e);
-//			} else {
-//				size ++;
-//			}
-//		}
-//		return size; 
+		int size = 0;
+		for(NamedElement e : d.getComponentList()) {
+			if(e instanceof Device) {
+				
+				if(this.isTemplate((Device)e)) {
+					size += this.determineDeviceSize((Device)e);
+				} else {
+					size ++;
+				}
+			} else {
+				size ++;
+			}
+		}
+		return size; 
+	}
+	
+	/**
+	 * The isTemplate(Device) method evaluates if a given device 
+	 * is a Template.
+	 * 
+	 * A Device is a Template iff it (including its sub-devices) contains 
+	 * at least one PartType.
+	 *  
+	 * @param d   ... the Device under evaluation
+	 * 
+	 * @return   true ... if the Device is a Template
+	 *          false ... otherwise
+	 */
+	private boolean isTemplate(Device d) {
+		
+		// we iterate over all elements
+		for(List<NamedElement> loe : d.getComponents()) {
+			if(loe.size() > 1) {
+				// then we iterate over the elements
+				for(NamedElement ne : loe) {
+					if(ne instanceof ComponentType) {
+						return true;
+					} else if(ne instanceof Device) {
+						boolean b = this.isTemplate((Device)ne);
+						if(b) return true;
+					}
+				}
+			} else {
+				if(loe.get(0) instanceof ComponentType) {
+					return true;
+				} else if(loe.get(0) instanceof ComponentType) {
+					boolean b = this.isTemplate((Device)loe.get(0));
+					if(b) return true;
+				}
+			}
+		}
+		
+		return false;
 	}
 	
 	/**
@@ -302,7 +346,6 @@ public class Eugene2MiniEugeneCompiler {
 		StringBuilder sb = new StringBuilder();
 		sb.append("TEMPLATE ");
 		for(int c=0; c<d.getComponents().size(); c++) {
-			
 			
 			if(d.getComponents().get(c).size() > 1) {
 				sb.append(

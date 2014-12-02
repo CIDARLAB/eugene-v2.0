@@ -1,9 +1,23 @@
 package org.cidarlab.eugene.dom;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import org.cidarlab.eugene.exception.EugeneException;
 
+/**
+ * The NamedElement class represents the top-most base class 
+ * of the inheritance tree of Eugene's data model. Hence, NamedElement 
+ * is an abstract class.
+ * 
+ * Every object in Eugene MUST have a unique name throughout the 
+ * scope of an Eugene script. Automatically we also generate a 
+ * non-negative integer ID for the NamedElement object which is being used
+ * in particular for the Constraint Solving process. 
+ * 
+ * @author Ernst Oberortner
+ *
+ */
 public abstract class NamedElement 
 		implements Serializable {
 
@@ -19,16 +33,31 @@ public abstract class NamedElement
 	 */
 	private String name;
 	
+	/**
+	 * Constructor
+	 * 
+	 * If a NamedElement has a NULL name, then it is treated as Anonymous variable.
+	 * If a NamedElement has an empty name, then an IllegalArgumentException is thrown.
+	 * Otherwise, the NamedElement gets the specified name
+	 * 
+	 * @param name  the name of the NamedElement object
+	 */
 	public NamedElement(String name) {
 
-		if(null == name) {
-			this.setName(String.valueOf(System.nanoTime()));
+		// error checking
+		if(null == name) {   // ANONYMOUS 
+			this.setName(UUID.randomUUID().toString());
+			
+		} else if(name.isEmpty()) {   // an empty name is invalid!
+			throw new IllegalArgumentException("Invalid name!");
+			
 		} else {
+			// set the name
 			this.setName(name);
 		}
-
+		
+		// ID
 		this.id = this.hashName();
-
 	}
 	
 	/**
@@ -45,6 +74,14 @@ public abstract class NamedElement
 		this.name = name;
 	}
 	
+	
+	/**
+	 * The private hashName() method hashes the name into 
+	 * a non-negative integer that represents the ID of 
+	 * the NamedElement object
+	 * 
+	 * @return a non-negative integer representing the ID of the NamedElement object
+	 */
 	private int hashName() {
 		if(null != this.getName()) {
 			int hash = this.getName().hashCode();
@@ -56,15 +93,33 @@ public abstract class NamedElement
 		return 0;
 	}
 	
+	
+	/*-----------------------------
+	 * GETTERS
+	 *-----------------------------*/
+	
+	/**
+	 * The getID() method returns the automatically generated 
+	 * ID of the NamedElement object.
+	 * 
+	 * @return  the ID of the NamedElement object
+	 */
 	public int getID() {
 		return this.id;
 	}
 	
+	/**
+	 * The getName() method returns the name of the 
+	 * NamedElement object.
+	 * 
+	 * @return  the name of the NamedElement object
+	 */
 	public String getName() {
 		return this.name;
 	}
 	
-	/*
+	
+	/*-----------------------------
 	 * ABSTRACT METHODS
 	 * 
 	 * for retrieving sub-elements of
@@ -73,7 +128,7 @@ public abstract class NamedElement
 	 * 
 	 * all primitive NamedElement sub-classes (Part, Type, Property etc) 
 	 * will throw an EugeneException since they do not have sub-elements
-	 */
+	 *-----------------------------*/
 	
 	/**
 	 * The getElement/1 method returns the element named with name. 

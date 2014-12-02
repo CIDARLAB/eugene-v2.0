@@ -37,9 +37,11 @@ import org.cidarlab.sparrow.exception.DOMException;
 /**
  * In Eugene, Components are a super-type of genetic elements (such as parts).
  * A Component has three predefined characteristics:
- * - a sequence,
- * - an orientation, and
- * - a type (instance of ComponentType)
+ * - a sequence (represented as String),
+ * - an orientation (Orientation enum), 
+ * - a type (reference to a ComponentType instance)
+ * - an additional list of properties, and
+ * - a set of property values
  * 
  * Besides, components can have user-defined characteristics, which are 
  * in Eugene terminology, Properties.

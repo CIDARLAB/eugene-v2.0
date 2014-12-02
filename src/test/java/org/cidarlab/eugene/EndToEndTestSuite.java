@@ -85,7 +85,7 @@ public class EndToEndTestSuite {
 		
 		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/";
 
-//		new EndToEndTestSuite().testAll("./tests/data-exchange");
+		new EndToEndTestSuite().testAll("./tests/data-exchange");
 
 //		//---- INDIVIDUAL TESTS ----
 //		// INCLUDE
@@ -366,7 +366,7 @@ public class EndToEndTestSuite {
 
 //		testBasics();
 //		testImperativeFeatures();
-		testBuiltInFunctions();
+//		testBuiltInFunctions();
 //		testEugeneLabTutorials();		
 //		testDataExchange();
 

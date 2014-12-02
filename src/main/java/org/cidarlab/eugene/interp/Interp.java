@@ -723,7 +723,8 @@ public class Interp {
 //			System.out.println("[Interp.product] devices -> "+sod);
 //			System.out.println("***************************");
 		} catch(Exception ee) {
-			throw new EugeneException(ee.getLocalizedMessage());
+			ee.printStackTrace();
+			throw new EugeneException(ee.getMessage());
 		}
 
 		/*
@@ -777,7 +778,7 @@ public class Interp {
 			throw new EugeneException("Undeterministic size!");
 		}
 		
-    	Variable v = new Variable(EugeneConstants.ANONYMOUS_VARIABLE, EugeneConstants.NUM);
+    	Variable v = new Variable(null, EugeneConstants.NUM);
 		
     	if(el instanceof Variable) {
     		if(EugeneConstants.NUM.equals(((Variable)el).getType()) ||
@@ -861,7 +862,7 @@ public class Interp {
 	public Variable getRandom(Variable sor, Variable eor) 
 			throws EugeneException {
 
-		Variable v = new Variable(EugeneConstants.ANONYMOUS_VARIABLE, EugeneConstants.NUM);
+		Variable v = new Variable(null, EugeneConstants.NUM);
 		v.num = new Random().nextInt(((int)eor.getNum() - (int)sor.getNum()) + 1) + (int)sor.getNum();
 		return v;
 	}
@@ -1088,7 +1089,6 @@ public class Interp {
 		// hence, we duplicate the RHS, assign it the LHS name and 
 		// store it in the symbol tables
 		} else {
-			
 			el_lhs = this.cloner.deepClone(el_rhs);
 			el_lhs.setName(lhs);
 			this.put(el_lhs);

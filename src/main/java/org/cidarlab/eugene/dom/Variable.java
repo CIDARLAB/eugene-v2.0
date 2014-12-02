@@ -7,6 +7,10 @@ import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.exception.EugeneException;
 
 /**
+ * The Variable class represents Eugene primitives of num, txt, and bool.
+ * Furthermore it represents Eugene arrays of primitives, i.e. num[] and txt[]. 
+ * 
+ * The Variable class is a ``Wrapper'' of Java primitives and Lists.
  * 
  * @author Ernst Oberortner
  *
@@ -16,17 +20,30 @@ public class Variable
 
 	private static final long serialVersionUID = 7419972196934330805L;
 	
+	// the type of the variable
 	public String type;
+	
+	// placeholder for bool variable
 	public boolean bool;
+	
+	// placeholder for txt variable
     public String txt;
+    
+    // placeholder for num variable
 	public double num;
-	public ArrayList<Double> numList;
-	public ArrayList<String> txtList;
+	
+	// placeholder for num[] array
+	public List<Double> numList;
+	
+	// placeholder for txt[] array
+	public List<String> txtList;
     public int index;
 
+    /**
+     * Constructor
+     */
 	public Variable() {
-		super("");
-//		this.internal_name = "";
+		super(null);
         type = "";
 		txt = "";
 		num = 0.0;
@@ -35,10 +52,25 @@ public class Variable
         index = -1;
 	}
 
-	public Variable(String n, String t) {
+	/**
+	 * Constructor w/ name and type
+	 * i.e. type name
+	 * 
+	 * @param n  ... the name of the variable
+	 * @param t  ... the type of the variable
+	 */
+	public Variable(String n, String t) 
+			throws IllegalArgumentException {
+
 		super(n);
 		
-//		this.internal_name = n;
+		if(null != t && !t.isEmpty() &&
+				!(EugeneConstants.NUM.equals(t) || EugeneConstants.NUMLIST.equals(t) ||
+				  EugeneConstants.TXT.equals(t) || EugeneConstants.TXTLIST.equals(t) ||
+				  EugeneConstants.BOOLEAN.equals(t))) {
+			throw new IllegalArgumentException("Invalid type of variable!");
+		}
+		
 		type = t;
 		txt = "";
 		num = 0.0;

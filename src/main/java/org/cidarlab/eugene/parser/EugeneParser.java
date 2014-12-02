@@ -12711,7 +12711,8 @@ public class EugeneParser extends Parser {
 					        }
 
 					    } catch(Exception ee) {
-					        printError(ee.getLocalizedMessage());
+					    	ee.printStackTrace();
+					        printError(ee.getMessage());
 					    }
 					}	
 						

@@ -114,7 +114,7 @@ public class EugeneArray
 	
 	@Override
 	public int hashCode() {
-		int hash = this.getName().hashCode();
+		int hash = this.getID();
 		
 		if(null != this.getElements() && !(this.getElements().isEmpty())) {
 			for(NamedElement el : this.getElements()) {

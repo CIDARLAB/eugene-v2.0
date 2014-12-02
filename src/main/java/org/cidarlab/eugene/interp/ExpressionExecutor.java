@@ -47,6 +47,10 @@ public class ExpressionExecutor {
 	        } else if(RHS instanceof Variable && LHS instanceof Variable) {
 	        	return this.doMinPlusOp((Variable)RHS, (Variable)LHS, op);
 
+	        	// CONTAINER (+|-) CONTAINER
+	        } else if(LHS instanceof EugeneContainer && RHS instanceof EugeneContainer) {
+	        	return this.doMinPlusOp((EugeneContainer)RHS, (EugeneContainer)LHS, op);
+	        	
 	        	// adding/removing elements to/from containers
 	        } else if(LHS instanceof EugeneContainer) {
 	        	return this.doMinPlusOp((EugeneContainer)LHS, RHS, op);
@@ -232,57 +236,67 @@ public class ExpressionExecutor {
 			throws EugeneException {
 		
 		EugeneContainer ec = null;
+		
 		if(RHS instanceof EugeneCollection) {
-			// EugeneCollection <- EugeneCollection + EugeneCollection
 			if(LHS instanceof EugeneCollection) {
-				ec = new EugeneCollection(EugeneConstants.ANONYMOUS_VARIABLE);
+				ec = new EugeneCollection(null);
 				
+				// EugeneCollection <- EugeneCollection + EugeneCollection
 				if("+".equals(op)) {
-					
 					ec.getElements().addAll(((EugeneCollection)LHS).getElements());
 					ec.getElements().addAll(((EugeneCollection)RHS).getElements());
-					/**
-					for(NamedElement el : ((EugeneCollection)RHS).getElements()) {
-						System.out.println("el -> " + el);
-						if(ec.getElements().contains(el)) {
-							System.out.println("CONTAINS -> " + el);
-						} else {
-							ec.getElements().add(el);
-						}
-					}
-					**/
+
+				// EugeneCollection <- EugeneCollection \ EugeneCollection
 				} else if("-".equals(op)) {
 					ec.getElements().addAll(((EugeneCollection)LHS).getElements());
-					ec.getElements().retainAll(((EugeneCollection)LHS).getElements());
+					ec.getElements().retainAll(((EugeneCollection)RHS).getElements());
 				}
 				
 				return ec;
 				
-			// EugeneArray <- EugeneArray + EugeneCollection
 			} else if(LHS instanceof EugeneArray) {
-				ec = new EugeneArray(EugeneConstants.ANONYMOUS_VARIABLE);
+				ec = new EugeneArray(null);
 
-				ec.getElements().addAll(((EugeneArray)LHS).getElements());
-				ec.getElements().addAll(((EugeneCollection)RHS).getElements());
-				
+				// EugeneArray <- EugeneArray + EugeneCollection				
+				if("+".equals(op)) {
+					ec.getElements().addAll(((EugeneArray)LHS).getElements());
+					ec.getElements().addAll(((EugeneCollection)RHS).getElements());
+					
+				// EugeneArray <- EugeneArray - EugeneCollection									
+				} else if("-".equals(op)) {
+					ec.getElements().addAll(((EugeneArray)LHS).getElements());
+					ec.getElements().retainAll(((EugeneCollection)RHS).getElements());
+				}				
 				return ec;
 			}
 		} else if(RHS instanceof EugeneArray) {
-			// EugeneCollection <- EugeneCollection + EugeneArray
 			if(LHS instanceof EugeneCollection) {
-				ec = new EugeneCollection(EugeneConstants.ANONYMOUS_VARIABLE);
-				
-				ec.getElements().addAll(((EugeneCollection)LHS).getElements());
-				ec.getElements().addAll(((EugeneArray)RHS).getElements());
-				
-				return ec;
-			// EugeneArray <- EugeneArray + EugeneArray
-			} else if(LHS instanceof EugeneArray) {
-				ec = new EugeneArray(EugeneConstants.ANONYMOUS_VARIABLE);
+				ec = new EugeneCollection(null);
 
-				ec.getElements().addAll(((EugeneArray)LHS).getElements());
-				ec.getElements().addAll(((EugeneArray)RHS).getElements());
+				// EugeneCollection <- EugeneCollection + EugeneArray
+				if("+".equals(op)) {
+					ec.getElements().addAll(((EugeneCollection)LHS).getElements());
+					ec.getElements().addAll(((EugeneArray)RHS).getElements());
+				// EugeneCollection <- EugeneCollection - EugeneArray
+				} else if("-".equals(op)) {
+					ec.getElements().addAll(((EugeneCollection)LHS).getElements());
+					ec.getElements().retainAll(((EugeneArray)RHS).getElements());
+				}
+				return ec;
+
+			} else if(LHS instanceof EugeneArray) {
+				ec = new EugeneArray(null);
 				
+				// EugeneArray <- EugeneArray + EugeneArray
+				if("+".equals(op)) {
+					ec.getElements().addAll(((EugeneArray)LHS).getElements());
+					ec.getElements().addAll(((EugeneArray)RHS).getElements());
+
+				// EugeneArray <- EugeneArray - EugeneArray
+				} else if("-".equals(op)) {
+					ec.getElements().addAll(((EugeneArray)LHS).getElements());
+					ec.getElements().retainAll(((EugeneArray)RHS).getElements());
+				}				
 				return ec;
 			}
 		}

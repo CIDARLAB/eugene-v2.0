@@ -121,7 +121,8 @@ public class MiniEugeneAdapter {
 		 */
 		String meScript = this.compiler.compile(d, rule, components, interactions);
 		
-	
+		System.out.println(meScript);
+		
 		/*
 		 * STEP 3: EXECUTE miniEugene script
 		 *         i.e. constraint solving
@@ -132,6 +133,7 @@ public class MiniEugeneAdapter {
 		try {		
 			me.solve(meScript, MAX_NR_OF_SOLUTIONS);		
 		} catch(Exception ee) {
+			ee.printStackTrace();
 			throw new EugeneException(ee.getMessage());
 		}
 		

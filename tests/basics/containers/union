@@ -28,31 +28,35 @@ Array txtListArray (
  * union of collections
  */
 U_col = numCol + txtCol;
-println(U_col);
+if(SIZEOF(U_col) != 4) {exit;}
 
 U_col2 = U_col + numCol + txtCol;
-println(U_col2);
+if(SIZEOF(U_col2) != 4) {exit;}
 
 
 /*
  * union of arrays
  */
 U_arr = numListArray + txtListArray;
-println(U_arr);
+if(SIZEOF(U_arr) != 4) {exit;}
+
+U_arr2 = U_arr + numListArray + txtListArray;
+if(SIZEOF(U_arr2) != 8) {exit;}
 
 /*
  * union of array and collection
  */
 U_num_arr = numListArray + numCol;  // should result in an array
+if(SIZEOF(U_num_arr) != 4) {exit;}
+
 U_txt_arr = txtListArray + txtCol;  // should result in an array
+if(SIZEOF(U_txt_arr) != 4) {exit;}
 
 U_num_col = numCol + numListArray;  // should result in a collection
-U_txt_col = txtCol + txtListArray;  // should result in a collection
+if(SIZEOF(U_num_col) != 4) {exit;}
 
-println(U_num_arr);
-println(U_txt_arr);
-println(U_num_col);
-println(U_txt_col);
+U_txt_col = txtCol + txtListArray;  // should result in a collection
+if(SIZEOF(U_txt_col) != 4) {exit;}
 
 
 /*
