@@ -1,0 +1,39 @@
+/*
+ *  In this example, we define N coding sequences (CDS) 
+ *  with random sequences of 1000 base pairs.
+ *
+ *  This example was inspired by the following publication:
+ *  Church et al. 
+ *  ASK EVAN FOR FURTHER DETAILS
+ */
+ 
+include "./data-exchange/commons.h"
+
+// the length of the generated sequences
+num LENGTH = 1000;
+
+for(num i = 1; i <= N; i = i + 1) {
+
+    // generated a random sequence of 
+    // the random length
+    txt random_sequence = "";
+    for(num l = 1; l<=LENGTH; l = l + 1) {
+
+        // get a random number
+        num r = RANDOM(0, 3);
+        
+        // append the r-th nucleotide to 
+        // the sequence
+        random_sequence = random_sequence + nucleotides[r];
+    }
+
+    // DYNAMIC NAMING OF PART
+    CDS ${"CDS" + i} (.seq(random_sequence));
+    
+    // we also store the part in the library
+    SAVE(${"CDS" + i});
+} 
+
+
+
+

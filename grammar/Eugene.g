@@ -356,7 +356,7 @@ public void init(Interp interp, BufferedWriter writer, ParsingPhase PARSING_PHAS
 
 /**
  *  The cleanUp/0 method cleans up all the mess that
- *  Eugene has caused.
+ *  Eugene (i.e. Ernst) has caused.
  */
 public void cleanUp() {
     // clean up the mess of the interpreter
@@ -366,13 +366,23 @@ public void cleanUp() {
     }
 }
 
+
+/**
+ * The getAllElements() method returns a EugeneCollection
+ * that consists all NamedElement objects utilized in the 
+ * Eugene script.
+ */
 public EugeneCollection getAllElements() 
         throws EugeneException {
     try {
-        return this.interp.getAllElements();
+        if(null != this.interp) {
+            return this.interp.getAllElements();
+        }
     } catch(EugeneException ee) {
         throw new EugeneException(ee.getMessage());
     }
+
+    return null;
 }
 
 public void setFilename(String filename) {

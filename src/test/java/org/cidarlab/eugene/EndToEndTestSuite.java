@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Collection;
 
 import org.cidarlab.eugene.dom.Component;
+import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.EugeneException;
 
 public class EndToEndTestSuite {
@@ -364,11 +365,11 @@ public class EndToEndTestSuite {
 	public static void main(String[] args) 
 			throws EugeneException {
 
-		testBasics();
-		testImperativeFeatures();
+//		testBasics();
+//		testImperativeFeatures();
 		testBuiltInFunctions();
-		testEugeneLabTutorials();		
-		testDataExchange();
+//		testEugeneLabTutorials();		
+//		testDataExchange();
 
 //		testInteractWithLMS();
 
@@ -392,8 +393,7 @@ public class EndToEndTestSuite {
 			
 			Eugene e= new Eugene();
 			e.setRootDirectory(ROOT_DIRECTORY);
-			Collection<Component> coc = e.executeFile(
-											new File(file));
+			EugeneCollection ec = e.executeFile(new File(file));
 
 			long tProcessing = System.nanoTime() - t1;
 			

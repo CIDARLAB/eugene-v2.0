@@ -1,0 +1,74 @@
+// first, we create N random sequences of length M
+// of the alphabet NUCLEOTIDES
+
+// N ... number of sequences
+num N = 10;
+
+// M ... length of the sequences
+num M = 20;
+
+// the alphabet of DNA sequences
+txt[] NUCLEOTIDES = ["A", "T", "C", "G"];
+num alphabet_size = SIZEOF(NUCLEOTIDES);
+
+// in the sequences array we store 
+// the generated sequences
+txt[] sequences;
+
+// we generate N sequences
+for(num i=0; i<N; i=i+1) {
+    
+    // the sequence txt string will contain 
+    // the generated sequence
+    txt sequence;
+
+    // each sequence is of length M
+    for(num j=0; j<M; j=j+1) {
+
+        // we pick a letter from the DNA sequence 
+        // alphabet randomly
+    	num r = RANDOM(0, alphabet_size-1);
+
+        // then, we append the random DNA letter 
+        // to the sequence
+    	sequence[j] = NUCLEOTIDES[r];        
+    }
+
+    // we store each sequence in our sequence array
+    sequences[i] = sequence;
+}
+
+
+// second, we compare each sequence with all other sequences
+// and calculate their homology based on the Hamming Distance.
+//---------------------
+// Definition: The Hamming Distance DIST is the number of positions 
+// on that two sequences (of equivalent size) differ.
+//---------------------
+// Formulae for Homology: ( 1 / M ) * DIST
+// M    ... Length of the Sequence
+// DIST ... the Hamming Distance
+
+for(num i=0; i<N; i=i+1) {
+    
+    for(num j=0; j<N; j=j+1) {
+        txt seq1 = sequences[i];
+        txt seq2 = sequences[j];
+        
+        num dist = 0;
+        for(num k=0; k<M; k=k+1) {
+            if(seq1[k] != seq2[k]) {
+            	dist = dist + 1;
+            }
+        }    
+        
+        num homology = ( 1 / M ) * dist;
+        println("Homology between ", seq1, " and ", seq2, ": ", homology);
+    }
+}
+
+// Efficiency of our algorithm:
+// N ... number of desired sequences
+// M ... length of a sequence
+// Runtime: O(N * N * M)
+// Memory:  O(N * N)

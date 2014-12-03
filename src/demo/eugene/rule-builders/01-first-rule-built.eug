@@ -1,0 +1,48 @@
+
+// declare a part type
+PartType PT;
+
+// specify a device template telling that 
+// the designs consist of 10 parts of type PT
+Device D(PT, PT, PT, PT, PT, PT, PT, PT, PT, PT);
+
+// specify a rule that all 
+// parts must be forward oriented
+Rule rb(ON D: all_forward);
+
+// output the current rule
+println(rb);
+
+// create instances of the part type PT
+// and 
+// ensure that the instances appear correctly
+// in the ultimate design
+for(num i=1; i<=SIZEOF(D); i=i+1) {
+
+    // create a part of the PT part type
+	// using Eugene's dynamic naming feature
+    PT ${"p_"+i}(.pigeon("p p " + i + " nl"));
+    
+	// store the part in the library
+    SAVE(${"p_"+i});
+
+    // ensure that the created part appears 
+	// in the design
+	AND(rb, ${"p_"+i} EXACTLY 1);
+	if(i >= 2) 
+	{
+	    // also ensure that the created part appears
+		// after the previously created part
+	    AND(rb, ${"p_"+(i-1)} BEFORE ${"p_"+i});
+	}
+}
+
+// output the rule
+println(rb);
+
+// generate all rule-compliant designs 
+// of the device template D
+lod = product(D);
+
+// visualize only the first design instance
+SBOL.visualize(lod[0]);

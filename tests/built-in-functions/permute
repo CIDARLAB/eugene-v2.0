@@ -3,48 +3,41 @@ PartType RBS;
 PartType CDS;
 PartType Terminator;
 
-Promoter p1a;
-Promoter p1b;
-Promoter p2a;
-Promoter p2b;
-Promoter p3a;
-Promoter p3b;
-Promoter p4a;
-Promoter p4b;
+Promoter p1a(.PIGEON("p p1a 1"));
+Promoter p2a(.PIGEON("p p2a 2"));
+Promoter p3a(.PIGEON("p p3a 3"));
+Promoter p4a(.PIGEON("p p4a 4"));
 
-RBS r1;
-RBS r2;
-RBS r3;
-RBS r4;
+RBS r1(.PIGEON("r r1 1"));
+RBS r2(.PIGEON("r r2 2"));
+RBS r3(.PIGEON("r r3 3"));
+RBS r4(.PIGEON("r r4 4"));
 
-CDS c1; 
-CDS c2; 
-CDS c3; 
-CDS c4; 
+CDS c1(.PIGEON("g g1 1")); 
+CDS c2(.PIGEON("g g2 2")); 
+CDS c3(.PIGEON("g g3 3")); 
+CDS c4(.PIGEON("g g4 4")); 
 
-Terminator t1;
-Terminator t2;
-Terminator t3;
-Terminator t4;
+Terminator t1(.PIGEON("t t1 1"));
+Terminator t2(.PIGEON("t t1 2"));
+Terminator t3(.PIGEON("t t1 3"));
+Terminator t4(.PIGEON("t t1 4"));
 
 
- 
-Array parts (
-    p1a, p1b, p2a, p2b, p3a, p3b, p4a, p4b,
-    r1, r2, r3, r4,
-    c1, c2, c3, c4,
-    t1, t2, t3, t4
-);
-
-Device fwdNOT1(p1a, r1, c1, t1);
-Device revNOT1(t1, c1, r1, p1a);
+/*-------------------
+ *   1 NOT GATE
+ *-------------------*/ 
+Device fwdNOT1(+p1a, +r1, +c1, +t1);
+Device revNOT1(-t1, -c1, -r1, -p1a);
 
 Device one_NOT_gate([fwdNOT1 | revNOT1]);
 loNOT = permute(one_NOT_gate);
 
-
-Device fwdNOT2(p2a, r2, c2, t2);
-Device revNOT2(t2, c2, r2, p2a);
+/*-------------------
+ *   2 NOT GATEs
+ *-------------------*/ 
+Device fwdNOT2(+p2a, +r2, +c2, +t2);
+Device revNOT2(-t2, -c2, -r2, -p2a);
 Device two_NOT_gates([fwdNOT1 | revNOT1], [fwdNOT2 | revNOT2]);
 
 Rule rTwoNOTs(ON two_NOT_gates:
@@ -54,18 +47,76 @@ Rule rTwoNOTs(ON two_NOT_gates:
 
 loNOT = permute(two_NOT_gates);
 
-
-Device fwdNOT3(p3a, r3, c3, t3);
-Device revNOT3(t3, c3, r3, p3a);
+/*-------------------
+ *   3 NOT GATEs
+ *-------------------*/ 
+Device fwdNOT3(+p3a, +r3, +c3, +t3);
+Device revNOT3(-t3, -c3, -r3, -p3a);
 Device three_NOT_gates([fwdNOT1 | revNOT1], [fwdNOT2 | revNOT2], [fwdNOT3 | revNOT3]);
 
+/**
 Rule rThreeNOTs(ON three_NOT_gates:
 	fwdNOT1 exactly 1 \/ revNOT1 exactly 1 
 	/\ 
 	fwdNOT2 exactly 1 \/ revNOT2 exactly 1
 	/\ 
-	fwdNOT3 exactly 1 \/ revNOT3 exactly 1 
+	fwdNOT3 exactly 1 \/ revNOT3 exactly 1);
+**/
+
+Rule rule_fwd_1_2_3(
+	[0] equals fwdNOT1 /\ [1] equals revNOT2 /\ [2] equals fwdNOT3
 	/\ all_forward);
+Rule rule_rev_1_2_3(
+	[0] equals revNOT1 /\ [1] equals fwdNOT2 /\ [2] equals revNOT3
+	/\ all_forward);
+
+Rule rule_fwd_1_3_2(
+	[0] equals fwdNOT1 /\ [1] equals revNOT3 /\ [2] equals fwdNOT2
+	/\ all_forward);
+Rule rule_rev_1_3_2(
+	[0] equals revNOT1 /\ [1] equals fwdNOT3 /\ [2] equals revNOT2
+	/\ all_forward);
+
+Rule rule_fwd_2_1_3(
+	[0] equals fwdNOT2 /\ [1] equals revNOT1 /\ [2] equals fwdNOT3
+	/\ all_forward);
+Rule rule_rev_2_1_3(
+	[0] equals revNOT2 /\ [1] equals fwdNOT1 /\ [2] equals revNOT3
+	/\ all_forward);
+
+Rule rule_fwd_2_3_1(
+	[0] equals fwdNOT2 /\ [1] equals revNOT3 /\ [2] equals fwdNOT1
+	/\ all_forward);
+Rule rule_rev_2_3_1(
+	[0] equals revNOT2 /\ [1] equals fwdNOT3 /\ [2] equals revNOT1
+	/\ all_forward);
+
+
+Rule rule_fwd_3_1_2(
+	[0] equals fwdNOT3 /\ [1] equals revNOT1 /\ [2] equals fwdNOT2
+	/\ all_forward);
+Rule rule_rev_3_1_2(
+	[0] equals revNOT3 /\ [1] equals fwdNOT1 /\ [2] equals revNOT2
+	/\ all_forward);
+
+Rule rule_fwd_3_2_1(
+	[0] equals fwdNOT3 /\ [1] equals revNOT2 /\ [2] equals fwdNOT1
+	/\ all_forward);
+Rule rule_rev_3_2_1(
+	[0] equals revNOT3 /\ [1] equals fwdNOT2 /\ [2] equals revNOT1
+	/\ all_forward);
+
 
 loNOT = permute(three_NOT_gates);
 println(SIZEOF(loNOT), " three NOT gates.");
+
+// print the permuted gates
+//for(num i=0; i<sizeof(loNOT); i=i+1) {
+//    println(loNOT[i]); 
+//}
+
+// visualize some permuted gates
+SBOL.visualize(loNOT); 
+
+SAVE(loNOT);
+

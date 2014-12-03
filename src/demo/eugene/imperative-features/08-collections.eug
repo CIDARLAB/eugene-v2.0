@@ -1,0 +1,79 @@
+/*------------------------------------
+ * Empty Collections
+ *------------------------------------*/
+Collection empty1; 
+Collection empty2 ();
+
+/*------------------------------------
+ * Collection of Primitives
+ *------------------------------------*/
+Collection vars01 (
+	num zero = 0,
+	num one = 1,
+	num two = 2,
+	num pi = 3.1415926,
+	num[] num_array = [0, 1, 2, 3],
+	txt hello = "Hello",
+	txt world = "world",
+	txt[] txt_array = ["A", "T", "C", "G"],
+	boolean t = true,
+	boolean f = false
+);
+println(vars01);
+
+/*------------------------------------
+ * Collections of Biological Components
+ *------------------------------------*/
+Collection col1 (
+    Property seq(txt),
+    PartType PT(seq),
+    PT p1(.seq("ATCG")),
+    PT p2(.seq("TCGA"))    
+);  
+println(col1);
+
+Collection col2 (
+    Property seq(txt),
+    PartType PT(seq),
+    PT p2(.seq("TCGA")),
+    PT p3(.seq("CGAT"))    
+);  
+println(col2);
+
+/*------------------------------------
+ * Nested Collections
+ *------------------------------------*/
+Collection nc01 (
+	
+	Property prop1(txt),
+	
+	Collection nc02 (
+	
+		PartType PT (prop1),
+		
+		Collection nc03 (
+			//PartType PT;   // this PT should overwrite the PT of nc02
+			
+			PT p1("p1"),
+			PT p2("p2"),
+			PT p3("p3")
+		)
+	)
+);
+println(nc01);
+
+// union two collections into one
+Collection nc02(
+    col1, 
+    col2
+);
+println(nc02);
+
+Collection nc03(
+    nc01,
+    nc02,
+    col1,
+    col2,
+    nc01.prop1
+);
+println(nc03);

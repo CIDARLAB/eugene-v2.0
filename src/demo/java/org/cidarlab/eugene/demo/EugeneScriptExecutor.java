@@ -1,22 +1,22 @@
-package org.cidarlab.cello;
+package org.cidarlab.eugene.demo;
 
 import java.io.File;
 
-/*
- * Eugene imports
- */
+
+// Eugene imports
 import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 
 /**
- * The EugeneAdapter class demonstrates the programmatic 
- * utilization of Eugene. 
+ * The EugeneScriptExecutor demonstrates the programmatic 
+ * utilization of Eugene. Especially how to execute a Eugene script 
+ * and how to process the results. 
  * 
  * @author Ernst Oberortner
  *
  */
-public class EugeneAdapter {
+public class EugeneScriptExecutor {
 
 	public static void main(String[] args) 
 			throws Exception {
@@ -27,11 +27,15 @@ public class EugeneAdapter {
 		 */
 		Eugene e = new Eugene();
 		
+		// optionally, Eugene provides the configuration of 
+		// its ROOT_DIRECTORY.
+		Eugene.ROOT_DIRECTORY = "./demos";
+		
 		/*
 		 * STEP II:
 		 * Executing a Eugene script
 		 */
-		EugeneCollection ec = e.executeFile(new File("/path/to/my.eug"));
+		EugeneCollection ec = e.executeFile(new File("imperative-features/01-hello-world.eug"));
 		
 		/*
 		 * STEP III:

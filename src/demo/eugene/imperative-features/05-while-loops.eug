@@ -1,0 +1,15 @@
+// initialization of the while-loop's
+// iteration variable
+num i = 0;
+
+// we iterate from 0 to 9
+while(i < 10) {
+
+    // we print the while-loop's
+    // iteration variable
+    println(i);
+
+    // don't forget to increment 
+    // the loops iteration variable
+    i = i + 1;
+}

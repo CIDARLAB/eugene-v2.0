@@ -1,0 +1,15 @@
+num ten = 10;
+
+println("ascending: ");
+// ascending order
+for(num i=0; i<=ten; i = i + 1)
+{
+  println(i);
+}
+
+println("descending: ");
+// decesending order
+for(num i=ten; i>=0; i = i - 1)
+{
+  println(i);
+}

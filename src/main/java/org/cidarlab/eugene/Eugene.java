@@ -27,16 +27,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.util.Collection;
 import java.util.logging.LogManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
-//import org.apache.log4j.Logger;
 import org.cidarlab.eugene.constants.EugeneConstants.ParsingPhase;
-import org.cidarlab.eugene.dom.Component;
+import org.cidarlab.eugene.dom.NamedElement;
+import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.eugene.interp.Interp;
 import org.cidarlab.eugene.parser.EugeneLexer;
@@ -57,6 +56,11 @@ public class Eugene {
 	 * library management software
 	 */
 	private Sparrow sparrow;
+	
+	/*
+	 * the parser
+	 */
+	private EugeneParser parser;
 	
 	/*
 	 * the interpreter
@@ -218,10 +222,8 @@ public class Eugene {
 	 * @param f
 	 * @throws EugeneException
 	 */
-	public Collection<Component> executeFile(File file) 
+	public EugeneCollection executeFile(File file) 
 			throws EugeneException {
-		
-		this.logger.debug("hello");
 		
 		/*
 		 * first, we read the file
@@ -229,7 +231,8 @@ public class Eugene {
 		 */
 		String script = null; 
 		try {
-			script = EugeneUtil.readFile(file);
+			script = EugeneUtil.readFile(
+					new File(ROOT_DIRECTORY + "/" + file));
 		} catch(IOException ioe) {
 			throw new EugeneException(ioe.toString());
 		}
@@ -251,14 +254,20 @@ public class Eugene {
 	 * @param script  ... The Eugene script (as String)
 	 * @throws EugeneException
 	 */
-	public Collection<Component> executeScript(String script) 
+	public EugeneCollection executeScript(String script) 
 		throws EugeneException {
 
+		// clean up everything from an eventual 
+		// earlier run
+		if(null != this.parser) {
+			this.parser.cleanUp();
+		}
+		
 		/*
 		 * PHASE 1:
 		 * COLLECTING FUNCTIONS
 		 */
-		EugeneParser parser = this.initParser(script, ParsingPhase.PRE_PROCESSING);
+		this.initParser(script, ParsingPhase.PRE_PROCESSING);
 		try {
 			parser.prog(true);
 		} catch(Exception e) {
@@ -270,7 +279,7 @@ public class Eugene {
 		 * PHASE II:
 		 * INTERPRETATION
 		 */
-		parser = this.initParser(script, ParsingPhase.INTERPRETING);
+		this.initParser(script, ParsingPhase.INTERPRETING);
 
 		try {
 			parser.prog(false);
@@ -292,34 +301,9 @@ public class Eugene {
 		// we will return a collection
 		// of all Component objects in the 
 		// working memory
-		Collection<Component> lib = this.getLibrary();
-		
-		// but we first have to clean up the 
-		// parser and all its mess
-		parser.cleanUp();
-		
-		// and then we return the collection 
-		// of components
-		return lib;
+		return this.parser.getAllElements();
 	}
 
-	/**
-	 * The getLibrary/0 method returns all components 
-	 * stored in the library.
-	 * 
-	 * @return a collection of components that represents the library
-	 * 
-	 * @throws EugeneException
-	 */
-	public Collection<Component> getLibrary() 
-			throws EugeneException {
-		try {
-			return this.sparrow.getFacts();
-		} catch(SparrowException spe) {
-			throw new EugeneException(spe.getMessage());
-		}
-	}
-	
 	/**
 	 * The private initParser/2 initializes the Eugene parser depending 
 	 * on the ParsingPhase. 
@@ -335,13 +319,13 @@ public class Eugene {
 	 * 
 	 * @throws EugeneException
 	 */
-	private EugeneParser initParser(String script, ParsingPhase phase) 
+	private void initParser(String script, ParsingPhase phase) 
 			throws EugeneException {
 		
 		EugeneLexer lexer = new EugeneLexer(new ANTLRStringStream(script));
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 
-		EugeneParser parser = new EugeneParser(tokens);
+		this.parser = new EugeneParser(tokens);
 
 		/*
 		 * instantiate the library
@@ -366,14 +350,43 @@ public class Eugene {
 		 * to the library (i.e. Java Drools in our case)
 		 * and the writer for writing the outputs
 		 */		
-		parser.init(
+		this.parser.init(
 				this.interp, 
 				this.writer, 
 				phase);
 		
-		return parser;
 	}
 
+	/**
+	 * The get(String) method retrieves the NamedElement object of 
+	 * the provided name. This method enables to retrieve  
+	 * individual results of executing a Eugene script.
+	 * 
+	 * Example:
+	 *********** 
+	 * - my.eug:  
+	 * ...
+	 * list_of_devices = product(my_device);
+	 * ...
+	 * 
+	 * - Java: 
+	 * Eugene e = new Eugene();
+	 * e.executeFile(new File("my.eug"));
+	 * NamedElement list = e.get("list_of_devices");  
+	 * 
+	 * @param name ... the name of the required NamedElement object.
+	 * 
+	 * @return  the NamedElement of the specified name. NULL if the element
+	 * does not exist.
+	 */
+	public NamedElement get(String name) {
+		try {
+			return this.sparrow.getFact(name);
+		} catch(SparrowException spe) {
+			return null;
+		}
+	}
+	
 	/**
 	 * The MAIN function.
 	 * 

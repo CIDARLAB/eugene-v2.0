@@ -1,0 +1,42 @@
+/*-------------------
+ *   PART LIBRARY
+ *-------------------*/
+Property seq(txt);
+
+PartType Promoter(seq);
+
+Promoter p1(.seq("ATCG"));
+Promoter p2(.seq("ATCG"));
+
+/*---------------------
+ *   DESIGN TEMPLATE
+ *---------------------*/
+Device TandemPromoters(Promoter, Promoter);
+
+
+/*-----------------------
+ *   RULES/CONSTRAINTS
+ *         in
+ * DISJUNCTIVE NORMALFORM
+ *-----------------------*/
+Rule forward_oriented (
+	ON TandemPromoters:
+		p1 with p2
+		and
+		all_forward 
+		and
+    	p1 before p2
+);
+Rule reverse_oriented (
+	ON TandemPromoters:
+		p1 with p2
+		and
+		all_reverse 
+		and
+    	p1 after p2
+);
+
+/*-----------------------
+ *   ENUMERATION
+ *-----------------------*/    
+product(TandemPromoters);

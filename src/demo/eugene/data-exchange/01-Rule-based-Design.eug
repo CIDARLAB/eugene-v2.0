@@ -1,0 +1,56 @@
+/*
+ *  INCLUDE statements
+ */
+include "./data-exchange/commons.h" 
+include "./data-exchange/02-TetR-regulated-Promoter-Library.eug"
+include "./data-exchange/03-RBS-library-specification.eug"
+include "./data-exchange/04-random-CDS-sequences.eug"
+include "./data-exchange/05-Terminator-SBOL-import.eug"
+
+/*
+ *  DESIGN of transcriptional units
+ */
+Device TU([Promoter|RBS|CDS|Terminator], [Promoter|RBS|CDS|Terminator], [Promoter|RBS|CDS|Terminator], [Promoter|RBS|CDS|Terminator]);
+
+// Rules on the transcriptional units
+// - forward oriented parts and promoter before cds
+Rule forwardDevice(ON TU:
+	all_forward and
+	Promoter WITH RBS and RBS WITH CDS and CDS WITH Terminator and 
+	Promoter BEFORE RBS and RBS BEFORE CDS and CDS BEFORE Terminator);
+	
+// - reverse oriented parts and promoter after cds
+Rule reverseDevice(ON TU:
+	all_reverse and
+	Promoter WITH RBS and RBS WITH CDS and CDS WITH Terminator and
+	Promoter AFTER RBS and RBS AFTER CDS and CDS AFTER Terminator);
+
+// Generate all rule-compliant designs	
+lod = product(TU);
+
+/*---------------------
+ *  PROCESSING OF THE 
+ *  GENERATED DESIGNS
+ *---------------------*/
+
+// determining the number of generated designs
+num nr_of_designs = SIZEOF(lod);
+println("There are ", nr_of_designs, " rule-compliant designs.");
+
+
+// saving the designs into the library management system (LMS)
+for(num i=0; i<nr_of_designs; i=i+1) {
+    SAVE(lod[i]);
+}
+
+// visualizing 10 of the designs
+Array[] sub;
+for(num i=0; i<10; i=i+1) {
+    sub = sub + lod[i];
+}
+SBOL.visualize(sub);
+
+// exporting all designs to SBOL
+SBOL.export(lod, "./exports/sbol/my-library.sbol.xml");
+
+
