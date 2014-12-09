@@ -74,17 +74,17 @@ import org.cidarlab.eugene.dom.rules.LogicalOr;
 import org.cidarlab.eugene.dom.rules.Predicate;
 import org.cidarlab.eugene.dom.rules.Rule;
 import org.cidarlab.eugene.dom.rules.exp.ExpressionConstraint;
+import org.cidarlab.eugene.exception.DOMException;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.eugene.minieugene.MiniEugeneAdapter;
 import org.cidarlab.eugene.parser.EugeneLexer;
 import org.cidarlab.eugene.parser.EugeneParser;
 import org.cidarlab.eugene.sparrow.SparrowAdapter;
-import org.cidarlab.eugene.util.EugeneUtil;
+import org.cidarlab.eugene.util.FileUtils;
 import org.cidarlab.minieugene.data.pigeon.WeyekinPoster;
 import org.cidarlab.sparrow.Sparrow;
 import org.cidarlab.sparrow.constants.Repository;
 import org.cidarlab.sparrow.constants.SparrowConstants;
-import org.cidarlab.sparrow.exception.DOMException;
 import org.cidarlab.sparrow.exception.SparrowException;
 
 import com.rits.cloning.Cloner;
@@ -2564,7 +2564,7 @@ public class Interp {
 		
 		String script = null; 
 		try {
-			script = EugeneUtil.readFile(new File(file));
+			script = FileUtils.readFile(new File(file));
 		} catch(IOException ioe) {
 			throw new EugeneException("I cannot read the file " + file);
 		}

@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.Set;
 import java.util.logging.LogManager;
 
 import org.slf4j.Logger;
@@ -34,13 +35,14 @@ import org.slf4j.LoggerFactory;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.cidarlab.eugene.constants.EugeneConstants.ParsingPhase;
+import org.cidarlab.eugene.dom.Component;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.eugene.interp.Interp;
 import org.cidarlab.eugene.parser.EugeneLexer;
 import org.cidarlab.eugene.parser.EugeneParser;
-import org.cidarlab.eugene.util.EugeneUtil;
+import org.cidarlab.eugene.util.FileUtils;
 import org.cidarlab.sparrow.Sparrow;
 import org.cidarlab.sparrow.exception.SparrowException;
 
@@ -225,14 +227,17 @@ public class Eugene {
 	public EugeneCollection executeFile(File file) 
 			throws EugeneException {
 		
+		File f = file;
+//		if(!".".equals(ROOT_DIRECTORY)) {
+//			f = new File(ROOT_DIRECTORY + "/" + file);
+//		}
 		/*
 		 * first, we read the file
 		 * utilizing our EugeneUtil helpers 
 		 */
 		String script = null; 
 		try {
-			script = EugeneUtil.readFile(
-					new File(ROOT_DIRECTORY + "/" + file));
+			script = FileUtils.readFile(f);
 		} catch(IOException ioe) {
 			throw new EugeneException(ioe.toString());
 		}
@@ -385,6 +390,26 @@ public class Eugene {
 		} catch(SparrowException spe) {
 			return null;
 		}
+	}
+	
+	/**
+	 * The getLibrary() method returns a set of components 
+	 * that have been stored into the library. This set of 
+	 * components consists of basic and composite parts.
+	 * 
+	 * @return  a set of components generated through the execution of Eugene scripts.
+	 * @throws EugeneException
+	 */
+	public Set<Component> getLibrary() 
+			throws EugeneException {
+		if(null != this.sparrow) {
+			try {
+				return this.sparrow.getFacts();
+			} catch(Exception e) {
+				throw new EugeneException(e.getMessage());
+			}
+		}
+		return null;
 	}
 	
 	/**

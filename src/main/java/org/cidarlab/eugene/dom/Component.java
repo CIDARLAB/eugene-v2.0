@@ -31,8 +31,8 @@ import java.util.Map;
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.dom.NamedElement;
+import org.cidarlab.eugene.exception.DOMException;
 import org.cidarlab.eugene.exception.EugeneException;
-import org.cidarlab.sparrow.exception.DOMException;
 
 /**
  * In Eugene, Components are a super-type of genetic elements (such as parts).

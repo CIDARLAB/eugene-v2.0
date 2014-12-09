@@ -51,8 +51,6 @@ public class ExpressionTest {
 			NamedElement ne = this.exp.doMinPlusOp(v2, v1, "+");
 			if(ne instanceof Variable) {
 				double sum = v1.getNum()+v2.getNum();
-
-				System.out.println(((Variable)ne).getNum() + " vs " + sum);
 				
 				assertTrue(EugeneConstants.NUM.equalsIgnoreCase(((Variable)ne).getType()) &&
 						((Variable)ne).getNum() == sum);

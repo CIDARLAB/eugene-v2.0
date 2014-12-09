@@ -1,6 +1,7 @@
 package org.cidarlab.eugene;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.util.Collection;
 
 import org.cidarlab.eugene.dom.Component;
@@ -296,10 +297,9 @@ public class EndToEndTestSuite {
 	 *---------------------------------------------*/	
 	private static void testEugeneLabTutorials()
 			throws EugeneException {
-		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/tests/EugeneLab";
-//		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/EugeneLab_Home/home/no_name_user/";
+		ROOT_DIRECTORY = "./src/demo/eugene";
 		// TESTING ALL FILES
-//		new EndToEndTestSuite().testAll(ROOT_DIRECTORY);
+		new EndToEndTestSuite().testAll(ROOT_DIRECTORY);
 
 		// TESTING INDIVIDUAL FILES
 //		new EndToEndTestSuite().test("./tests/EugeneLab/data-exchange/01-Rule-based-Design.eug");
@@ -367,11 +367,11 @@ public class EndToEndTestSuite {
 
 //		testBasics();
 //		testImperativeFeatures();
-		testBuiltInFunctions();
+//		testBuiltInFunctions();
 //		testEugeneLabTutorials();		
 //		testDataExchange();
 
-//		testInteractWithLMS();
+		testInteractWithLMS();
 
 		// TODOs:
 //		testRules();
@@ -391,8 +391,13 @@ public class EndToEndTestSuite {
 		try {
 			long t1 = System.nanoTime();
 			
-			Eugene e= new Eugene();
-			e.setRootDirectory(ROOT_DIRECTORY);
+			// set Eugene's ROOT directory
+			Eugene.ROOT_DIRECTORY = ROOT_DIRECTORY;
+			
+			// instantiate Eugene
+			Eugene e = new Eugene();
+			
+			// execute the file
 			EugeneCollection ec = e.executeFile(new File(file));
 
 			long tProcessing = System.nanoTime() - t1;
@@ -417,15 +422,19 @@ public class EndToEndTestSuite {
 		if(!root.exists()) {
 			throw new EugeneException("Path does not exist! " + path);
 		}
-	    File[] list = root.listFiles();
+	    File[] list = root.listFiles(new FilenameFilter() {
+	        public boolean accept(File dir, String name) {
+	            return name.toLowerCase().endsWith(".eug") || !(name.contains("."));
+	        }
+	    });
 
 		for ( File f : list ) {
 			if ( f.isDirectory() ) {
 				testAll( f.getAbsolutePath() );
 			} else {
 				try {
-					this.test(f.getAbsoluteFile().toString());
-				} catch (EugeneException ee) {
+					this.test(path+"/"+f.getName());
+				} catch (Exception ee) {
 					throw new EugeneException(ee.getLocalizedMessage());
 				}
 			}

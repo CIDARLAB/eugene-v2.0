@@ -26,8 +26,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.cidarlab.eugene.exception.DOMException;
 import org.cidarlab.sparrow.constants.SparrowConstants;
-import org.cidarlab.sparrow.exception.DOMException;
 import org.cidarlab.sparrow.exception.SparrowException;
 
 public class SparrowBuilder {
