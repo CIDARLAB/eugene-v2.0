@@ -20,7 +20,7 @@ NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES,
 ENHANCEMENTS, OR MODIFICATIONS.
  */
 
-package org.cidarlab.sparrow.exception;
+package org.cidarlab.eugene.exception;
 
 /**
  * @author Ernst Oberortner

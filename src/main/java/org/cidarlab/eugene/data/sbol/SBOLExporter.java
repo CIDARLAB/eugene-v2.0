@@ -155,6 +155,7 @@ public class SBOLExporter {
 			throws EugeneException {
 
 		try {
+			System.out.println("file: " + file);
 			SBOLExporter.createDirectories(file);
 			
 			// open a file stream
@@ -194,8 +195,12 @@ public class SBOLExporter {
 	private static void createDirectories(String file) 
 			throws EugeneException {
 		
-		// first, we start at the Eugene ROOT_DIRECTORY
-		file = Eugene.ROOT_DIRECTORY+"/"+file;
+		if(!file.startsWith("/")) {
+			// relative path			
+			if(!file.startsWith(Eugene.ROOT_DIRECTORY)) {
+				file = Eugene.ROOT_DIRECTORY + "/" + file;
+			}
+		}
 		
 		// then, we search for the last / in the file string
 		// there should be at least one due to the concatenation 
@@ -204,6 +209,7 @@ public class SBOLExporter {
 
 		// then, we create the directories (using File.mkdirs()) 
 		// if they do not exist.
+		
 		String dirs = file.substring(0, idx);
 		File fDirs = new File(dirs);
 		if(!fDirs.exists()) {

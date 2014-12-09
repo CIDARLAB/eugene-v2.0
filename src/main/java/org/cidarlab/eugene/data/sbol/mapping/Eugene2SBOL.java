@@ -36,6 +36,8 @@ import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.dom.*;
 import org.cidarlab.eugene.dom.imp.container.EugeneContainer;
 import org.cidarlab.eugene.exception.EugeneException;
+import org.cidarlab.eugene.util.DeviceUtils;
+import org.cidarlab.eugene.util.SequenceUtils;
 import org.sbolstandard.core.Collection;
 import org.sbolstandard.core.DnaComponent;
 import org.sbolstandard.core.DnaSequence;
@@ -259,7 +261,7 @@ public class Eugene2SBOL {
 			 * we flip it. see the flip/1 method for further documentation. 
 			 */
 			if(c instanceof Device && objDevice.getOrientations().get(n-1).get(0) == Orientation.REVERSE) {
-				c = Eugene2SBOL.flip((Device)c);
+				c = DeviceUtils.flipAndInvert((Device)c);
 			}
 
 			/*
@@ -339,8 +341,9 @@ public class Eugene2SBOL {
 						
 						try {
 							
-							// we call the reverse_complement/1 method
-							String rev_comp = Eugene2SBOL.reverse_complement(
+							// we reverse complement the sequence 
+							// from the Eugene SequenceUtils class
+							String rev_comp = SequenceUtils.reverseComplement(
 									sa.getSubComponent().getDnaSequence().getNucleotides().toString());
 							
 							// and assign the reverse complemented DNA sequence 
@@ -422,78 +425,7 @@ public class Eugene2SBOL {
 		return dc;
 	}
 	
-	/**
-	 * The reverse_complement/1 method reverse complements a given string 
-	 * of DNA sequence.
-	 * 
-	 * The reverse_complement/1 method uses BioJava.
-	 * see http://biojava.org/wiki/BioJava:Cookbook:Sequence:Reverse
-	 * 
-	 * @param seq   ... the sequence to be reverse complemented
-	 * @return      ... the reserve complemented sequence
-	 * 
-	 * @throws EugeneException
-	 */
-	private static String reverse_complement(String seq) 
-			throws EugeneException {
-		try {
-			return DNATools.reverseComplement(
-						DNATools.createDNA(seq)).seqString();
-		} catch(Exception e) {
-			throw new EugeneException(e.getMessage());
-		}
-	}
 	
-	/**
-	 * The flip/1 method reverses the elements in a given 
-	 * device. The flip/1 method returns a duplicate object 
-	 * containing the original device's elements in reverse
-	 * order.
-	 * 
-	 * Example:
-	 * Device D(+a, +b, +c); --> Device D(-c, -b, -a);
-	 * Device D(-c, -b, -a); --> Device D(+a, +b, +c); 
-	 * 
-	 * @param d  ... the device whose elements must be reverse
-	 * 
-	 * @return
-	 */
-	private static Device flip(Device d) {
-		
-		if(null == d.getComponents() || d.getComponents().isEmpty()) {
-			return d;
-		}
-		
-		Device fd = new Device(d.getName());
-		List<Orientation> loo = null;
-		int size = d.getComponents().size();
-		for(int i=size-1; i>=0; i--) {
-			
-			try {
-				// components
-				fd.getComponents().add(d.getComponents(i));
-				
-				// orientations
-				loo = d.getOrientations(i);
-				for(int j=0; j<loo.size(); j++) {
-					if(loo.get(j) == Orientation.FORWARD) {
-						loo.set(j, Orientation.REVERSE);
-					} else {
-						loo.set(j, Orientation.FORWARD);
-					}
-				}
-				
-				fd.getOrientations().add(loo);
-				// reverse the orientations
-				
-			} catch(EugeneException ee) {
-				ee.printStackTrace();
-			}
-			
-		}
-		
-		return fd;
-	}
 	
 //	/**
 //	 * The deviceSequence/1 method recursively generates the DNA sequence 

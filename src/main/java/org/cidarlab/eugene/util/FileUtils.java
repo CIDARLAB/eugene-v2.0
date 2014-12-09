@@ -29,7 +29,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class EugeneUtil {
+public class FileUtils {
 
 	public static String readFile(File f) throws java.io.IOException {
 		StringBuffer fileData = new StringBuffer(1000);

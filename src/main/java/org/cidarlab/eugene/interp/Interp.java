@@ -455,7 +455,7 @@ public class Interp {
 			throws EugeneException {
 		
 		// create the part object
-		Component c = new Component(ct, name);
+		Component c = Component.instantiate(ct, name);
 		
 		// Property values		
 		if(properties != null && !properties.isEmpty()) {

@@ -84,7 +84,7 @@ public class Component
 	 */
 	private HashMap<String, PropertyValue> hmPropertiesValues;
 
-	public Component(String name) {
+	protected Component(String name) {
 		super(name);
 		this.type = null;
 		this.sequence = new String();
@@ -93,7 +93,7 @@ public class Component
 		this.hmPropertiesValues = new HashMap<String, PropertyValue>();
 	}
 	
-	public Component(ComponentType type, String name) {
+	protected Component(ComponentType type, String name) {
 		super(name);
 		this.type = type;
 		this.sequence = new String();
@@ -102,7 +102,7 @@ public class Component
 		this.hmPropertiesValues = new HashMap<String, PropertyValue>();
 	}
 	
-	public Component(String sName, List<Property> properties) {
+	protected Component(String sName, List<Property> properties) {
 		super(sName);
 		this.properties = properties;
 		this.sequence = new String();
@@ -306,5 +306,9 @@ public class Component
 	public NamedElement getElement(int idx) 
 			throws EugeneException {
 		throw new EugeneException("This is not supported!");
+	}
+	
+	public static Component instantiate(ComponentType type, String name) {
+		return new Component(type, name);
 	}
 }
