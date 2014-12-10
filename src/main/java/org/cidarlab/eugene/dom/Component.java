@@ -33,6 +33,7 @@ import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.exception.DOMException;
 import org.cidarlab.eugene.exception.EugeneException;
+import org.cidarlab.eugene.util.EugeneDeveloperUtils;
 
 /**
  * In Eugene, Components are a super-type of genetic elements (such as parts).
@@ -62,12 +63,12 @@ public class Component
 	/*
 	 * SEQUENCE
 	 */
-	private String sequence;
+	protected String sequence;
 	
 	/*
 	 * ORIENTATION
 	 */
-	private Orientation orientation;
+	protected Orientation orientation;
 	
 	/*
 	 * LIST OF PROPERTIES
@@ -90,7 +91,10 @@ public class Component
 		this.sequence = new String();
 		this.properties = new ArrayList<Property>();
 		this.orientation = Orientation.UNDEFINED;
-		this.hmPropertiesValues = new HashMap<String, PropertyValue>();
+		
+		// lastly, we initialize the hashmap that holds
+		// all property values
+		this.initPropertyValues();
 	}
 	
 	protected Component(ComponentType type, String name) {
@@ -99,7 +103,10 @@ public class Component
 		this.sequence = new String();
 		this.properties = new ArrayList<Property>();
 		this.orientation = Orientation.UNDEFINED;
-		this.hmPropertiesValues = new HashMap<String, PropertyValue>();
+
+		// lastly, we initialize the hashmap that holds
+		// all property values
+		this.initPropertyValues();
 	}
 	
 	protected Component(String sName, List<Property> properties) {
@@ -107,12 +114,44 @@ public class Component
 		this.properties = properties;
 		this.sequence = new String();
 		this.orientation = Orientation.UNDEFINED;
+	
+		// lastly, we initialize the hashmap that holds
+		// all property values
+		this.initPropertyValues();
+	}
+	
+	private void initPropertyValues() {
+
 		this.hmPropertiesValues = new HashMap<String, PropertyValue>();
+		
+		/*
+		 * SEQUENCE property
+		 */
+		Property seqProp = EugeneDeveloperUtils.createSequenceProperty();
+		PropertyValue seq = new PropertyValue(seqProp);
+		seq.setTxt("");
+		try {
+			this.setPropertyValue(seqProp, seq);
+		} catch(DOMException d) {
+			// should never happen here
+		}
+		
+		/*
+		 * PIGEON property
+		 */
+		Property pigProp = EugeneDeveloperUtils.createPigeonProperty();
+		PropertyValue pig = new PropertyValue(pigProp);
+		pig.setTxt("");
+		try {
+			this.setPropertyValue(pigProp, pig);
+		} catch(DOMException d) {
+			// should never happen here
+		}
 	}
 
-	public String getSequence() {
-		return this.sequence;
-	}
+//	public String getSequence() {
+//		return this.sequence;
+//	}
 	
 	public String getTypeAsString() {
 		if(null != this.getType()) {
@@ -178,20 +217,60 @@ public class Component
 		return (Property) null;
 	}
 	
-	/*
-	 * SEQUENCE
+	/*--------------------------
+	 * SEQUENCE-related methods
+	 *--------------------------*/
+	
+	/**
+	 * The setSequence(String) method serves for
+	 * manually setting the sequence of a component
+	 * 
+	 * @param sequence  ... the component's sequence
 	 */
-	public void setSequence(String sequence) {
+	public void setSequence(String sequence) 
+			throws EugeneException {
 		this.sequence = sequence;
 	}
-	
-	public String toSequence() {
-		return this.sequence;
+
+	/**
+	 * The getSequence() method returns the 
+	 * sequence of the component if the sequence 
+	 * is not empty and not null.
+	 * 
+	 * @return this component's sequence
+	 * 
+	 * @throws EugeneException
+	 */
+	public String getSequence() 
+			throws EugeneException {
+		
+		if(this.hasSequence()) {
+			return this.sequence;
+		}
+		
+		throw new EugeneException("The component " + this.getName() +" has no DNA sequence!");
 	}
 	
-	/*
-	 * PROPERTY VALUES
+	/**
+	 * The hasSequence() method returns true if 
+	 * the component has a non-empty and non-null 
+	 * sequence.
+	 * 
+	 * @return true ... if the sequence is non-empty and non-null
+	 *        false ... otherwise
+	 *        
+	 * @throws EugeneException
 	 */
+	public boolean hasSequence() 
+			throws EugeneException {
+		return (null != this.sequence && !this.sequence.isEmpty());
+	}
+
+	
+	
+	/*---------------------------------
+	 * PROPERTY VALUES-related methods
+	 *---------------------------------*/
 	public Map<String, PropertyValue> getPropertyValues() {
 //		System.out.println("[Component.getPropertyValues] -> "+this.hmPropertiesValues);
 		return this.hmPropertiesValues;
@@ -311,4 +390,5 @@ public class Component
 	public static Component instantiate(ComponentType type, String name) {
 		return new Component(type, name);
 	}
+	
 }

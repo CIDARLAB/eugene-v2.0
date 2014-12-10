@@ -11,6 +11,8 @@ import org.cidarlab.eugene.dom.PropertyValue;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.DOMException;
 import org.cidarlab.eugene.exception.EugeneException;
+import org.cidarlab.eugene.util.EugeneDeveloperUtils;
+import org.cidarlab.eugene.util.SequenceUtils;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -353,35 +355,81 @@ public class DeclarationsTest {
 
 			// pt_p1.pt_p1_num
 			assert(ec.get("pt_p1") instanceof Part);
-			assert(((Part)ec.get("pt_p1")).getPropertyValue("pt_p1_num") != null);
+			
+			assert(((Part)ec.get("pt_p1")).getPropertyValue("num_prop") != null);
 			assert(EugeneConstants.NUM.equals(
-					((Part)ec.get("pt_p1")).getPropertyValue("pt_p1_num").getType()));
-			assert(1 == ((Part)ec.get("pt_p1")).getPropertyValue("pt_p1_num").getNum());
+					((Part)ec.get("pt_p1")).getPropertyValue("num_prop").getType()));
+			assert(1 == ((Part)ec.get("pt_p1")).getPropertyValue("num_prop").getNum());
 			
 			// pt_p1.pt_p1_txt
 			assert(ec.get("pt_p1") instanceof Part);
-			assert(((Part)ec.get("pt_p1")).getPropertyValue("pt_p1_txt") != null);
+			assert(((Part)ec.get("pt_p1")).getPropertyValue("txt_prop") != null);
 			assert(EugeneConstants.TXT.equals(
-					((Part)ec.get("pt_p1")).getPropertyValue("pt_p1_txt").getType()));
-			assert(1 == ((Part)ec.get("pt_p1")).getPropertyValue("pt_p1_txt").getNum());
+					((Part)ec.get("pt_p1")).getPropertyValue("txt_prop").getType()));
+			assert("one".equals(((Part)ec.get("pt_p1")).getPropertyValue("txt_prop").getTxt()));
 
 			// pt_p2.pt_p2_num
 			assert(ec.get("pt_p2") instanceof Part);
-			assert(((Part)ec.get("pt_p2")).getPropertyValue("pt_p2_num") != null);
+			assert(((Part)ec.get("pt_p2")).getPropertyValue("num_prop") != null);
 			assert(EugeneConstants.NUM.equals(
-					((Part)ec.get("pt_p2")).getPropertyValue("pt_p2_num").getType()));
-			assert(2 == ((Part)ec.get("pt_p2")).getPropertyValue("pt_p2_num").getNum());
+					((Part)ec.get("pt_p2")).getPropertyValue("num_prop").getType()));
+			assert(2 == ((Part)ec.get("pt_p2")).getPropertyValue("num_prop").getNum());
 
 			// pt_p2.pt_p2_txt
 			assert(ec.get("pt_p2") instanceof Part);
-			assert(((Part)ec.get("pt_p2")).getPropertyValue("pt_p2_txt") != null);
+			assert(((Part)ec.get("pt_p2")).getPropertyValue("txt_prop") != null);
 			assert(EugeneConstants.TXT.equals(
-					((Part)ec.get("pt_p2")).getPropertyValue("pt_p2_txt").getType()));
-			assert(2 == ((Part)ec.get("pt_p2")).getPropertyValue("pt_p2_txt").getNum());
+					((Part)ec.get("pt_p2")).getPropertyValue("txt_prop").getType()));
+			assert("two".equals(((Part)ec.get("pt_p2")).getPropertyValue("txt_prop").getTxt()));
 
 		} catch(EugeneException ee) {
 			assertTrue(false);
 		}
+	}
+	
+	@Test
+	public void testPartSequenceProperty() {
+
+		String seq = "ATCG";
+		
+		PartType PT = new PartType("PT");
+		Part p1 = new Part(PT, "p1");
+		p1.setSequence(seq);
+		
+		try {
+			
+			assert(seq.equals(p1.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY).getTxt()));
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
+	}
+	
+	@Test
+	public void testPartPigeonProperty() {
+
+		String pig = "p p1 1 nl";
+		
+		PartType PT = new PartType("PT");
+		Part p1 = new Part(PT, "p1");
+		
+		Property pigProp = EugeneDeveloperUtils.createPigeonProperty();
+		PropertyValue pigVal = new PropertyValue(pigProp);
+		pigVal.setTxt(pig);
+		
+		try {
+			
+			p1.setPropertyValue(pigProp, pigVal);
+			
+			assert(pig.equals(p1.getPropertyValue(EugeneConstants.PIGEON_PROPERTY).getTxt()));
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			assertTrue(false);
+		}
+		
+		
 	}
 
 }

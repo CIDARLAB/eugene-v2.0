@@ -1,11 +1,15 @@
 package org.cidarlab.eugene.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.dom.Component;
 import org.cidarlab.eugene.dom.Device;
+import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.exception.EugeneException;
+
+import com.rits.cloning.Cloner;
 
 /**
  * The DeviceUtils class provides a set of static methods 
@@ -19,7 +23,16 @@ import org.cidarlab.eugene.exception.EugeneException;
  */
 public class DeviceUtils {
 	
-	
+	/**
+	 * The flipAndInvert(Device) method takes as input a device, reverses the 
+	 * order of its components (``flip'') and inverts the components' orientation.
+	 * 
+	 * @param d  ... the device to be flipped and inverted
+	 * 
+	 * @return a new device with reverse ordered components and inverted orientations
+	 * 
+	 * @throws EugeneException
+	 */
 	public static Device flipAndInvert(Device d) 
 			throws EugeneException {
 		
@@ -41,27 +54,36 @@ public class DeviceUtils {
 		// same name as the given device
 		Device fd = new Device(d.getName());
 		
-		List<Orientation> loo = null;		
+		List<Orientation> loo = null;	
+		List<NamedElement> loe = null;
+		
 		int size = d.getComponents().size();
-		for(int i=size-1; i>=0; i--) {
+		for(int i=0; i<size; i++) {
 
+			// copy the elements
+			loe = d.getComponents().get(i);
+			fd.getComponents().add(loe);
+			
 			try {
+
 				// orientations
-				loo = d.getOrientations(i);
+				loo = new ArrayList<Orientation>(d.getOrientations(i));
+			
+				for(int j=0; j<loo.size(); j++) {
+					if(loo.get(j) == Orientation.FORWARD) {
+						loo.set(j, Orientation.REVERSE);
+					} else {
+						loo.set(j, Orientation.FORWARD);
+					}
+				}
+				
+				fd.getOrientations().add(loo);
 			} catch(EugeneException ee) {
 				throw new EugeneException(ee.getMessage());
 			}
-
-			for(int j=0; j<loo.size(); j++) {
-				if(loo.get(j) == Orientation.FORWARD) {
-					loo.set(j, Orientation.REVERSE);
-				} else {
-					loo.set(j, Orientation.FORWARD);
-				}
-			}
 			
-			fd.getOrientations().add(loo);
 		}
+		
 		
 		return fd;
 	}
@@ -92,18 +114,11 @@ public class DeviceUtils {
 		int size = d.getComponents().size();
 		for(int i=size-1; i>=0; i--) {
 			
-			try {
 				// components
-				fd.getComponents().add(d.getComponents(i));
+				fd.getComponents().add(new ArrayList<NamedElement>(d.getComponents().get(i)));
 				
-				
-				fd.getOrientations().add(d.getOrientations(i));
-				// reverse the orientations
-				
-			} catch(EugeneException ee) {
-				throw new EugeneException(ee.getMessage());
-			}
-			
+				// orientations
+				fd.getOrientations().add(new ArrayList<Orientation>(d.getOrientations().get(i)));
 		}
 		
 		return fd;

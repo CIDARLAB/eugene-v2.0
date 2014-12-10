@@ -1,6 +1,9 @@
 package org.cidarlab.eugene.util;
 
 import org.biojava.bio.seq.DNATools;
+import org.cidarlab.eugene.constants.EugeneConstants;
+import org.cidarlab.eugene.dom.Component;
+import org.cidarlab.eugene.dom.Property;
 import org.cidarlab.eugene.exception.EugeneException;
 
 /**
@@ -17,6 +20,18 @@ import org.cidarlab.eugene.exception.EugeneException;
  *
  */
 public class SequenceUtils {
+	
+	
+
+	public static String toSequence(Component c) {
+		/*
+		 * first, we verify if the component has a sequence
+		 */
+		
+		StringBuilder sb = new StringBuilder();
+		
+		return sb.toString();
+	}
 	
 	/**
 	 * The reverseComplement(String) method reverse complements a given string 

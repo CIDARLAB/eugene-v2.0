@@ -34,34 +34,12 @@ public class Part
 	
 	public Part(PartType pt, String name) {
 		super(pt, name);
-		
-		this.predefinedProperties();
 	}
 
 	public Part(String sName, PartType pt) {
 		super(pt, sName);
-		
-		this.predefinedProperties();
 	}
 
-	/**
-	 * every part has two pre-defined properties:
-	 * - SEQUENCE
-	 * - PIGEON
-	 * 
-	 * both are of type txt
-	 */
-	private void predefinedProperties() {
-		if(this.getProperty(EugeneConstants.SEQUENCE_PROPERTY) == null) {
-			this.properties.add(new Property(EugeneConstants.SEQUENCE_PROPERTY, EugeneConstants.TXT));
-			this.getType().properties.add(new Property(EugeneConstants.SEQUENCE_PROPERTY, EugeneConstants.TXT));
-		}
-		
-		if(this.getProperty(EugeneConstants.PIGEON_PROPERTY) == null) {
-			this.properties.add(new Property(EugeneConstants.PIGEON_PROPERTY, EugeneConstants.TXT));
-			this.getType().properties.add(new Property(EugeneConstants.PIGEON_PROPERTY, EugeneConstants.TXT));
-		}
-	}
 
 	/**
 	 * In case of a part, we need to check if the part's part type 
@@ -79,6 +57,7 @@ public class Part
 	
 	@Override
 	public void setSequence(String seq) {
+		// let's check if the part has a sequence property
 		this.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY).setTxt(seq);
 	}
 
@@ -186,6 +165,37 @@ public class Part
 		}
 		
 		return this.hashCode() == ((Part)o).hashCode();
+	}
+
+	/**
+	 * The hasSequence() method returns true if 
+	 * the Part has a non-empty and non-null 
+	 * sequence.
+	 * 
+	 * @return true ... if the sequence is non-empty and non-null
+	 *        false ... otherwise
+	 *        
+	 * @throws EugeneException
+	 */
+	@Override
+	public boolean hasSequence() 
+			throws EugeneException {
+		return (null != this.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY) && 
+				!this.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY).getTxt().isEmpty());
+	}
+
+	@Override
+	public String getSequence() {
+		// first, we get the value of the sequence property
+		PropertyValue seq = this.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY);
+		
+		// if the value is not null and not empty
+		if(null != seq && seq.getTxt() != null && !seq.getTxt().isEmpty()) {
+			// then, we return the value
+			return seq.getTxt();
+		}
+		// otherwise, we return NULL
+		return null;
 	}
 
 }

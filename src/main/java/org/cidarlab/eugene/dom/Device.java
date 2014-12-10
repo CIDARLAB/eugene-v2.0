@@ -6,6 +6,7 @@ import java.util.List;
 import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.EugeneException;
+import org.cidarlab.eugene.util.EugeneDeveloperUtils;
 
 /**
  * 
@@ -315,11 +316,16 @@ public class Device
 	
 	@Override
 	public String toString() {
+
 		StringBuilder sb = new StringBuilder();
 		sb.append("Device ").append(this.getName()).append("(");
 
 		for(int i = 0; i<this.getComponents().size(); i++) {
+			
+			sb.append(EugeneDeveloperUtils.NEWLINE);
+			
 			if(this.getComponents().get(i).size() > 1) {
+				
 				// SELECTION
 				sb.append("[");
 				for(int j=0; j<this.getComponents().get(i).size(); j++) {
@@ -338,7 +344,9 @@ public class Device
 					}
 				}
 				sb.append("]");
+				
 			} else {
+				
 				if(null != this.getOrientations() && !this.getOrientations().isEmpty()) {
 					if(this.getOrientations().get(i).get(0) == Orientation.FORWARD) {
 						sb.append("+");
@@ -349,12 +357,12 @@ public class Device
 				sb.append(this.getComponentList().get(i)/*.getName()*/);
 			}
 			
-			if(i < this.getComponents().size() - 1) {
-				sb.append(", ");
-			}
+//			if(i < this.getComponents().size() - 1) {
+//				sb.append(", ");
+//			}
 			
 		}
-		sb.append(");");
+		sb.append(");").append(EugeneDeveloperUtils.NEWLINE);
 		return sb.toString();
 	}
 
@@ -388,5 +396,54 @@ public class Device
 		}
 	}
 	
+	
+	/**
+	 * The setSequence(String) method of the Device class
+	 * throws an exception since the sequence of a Device 
+	 * is automatically generated based on the Device's 
+	 * components. 
+	 * 
+	 * @param sequence  ... a sequence
+	 */
+	@Override
+	public void setSequence(String sequence) 
+			throws EugeneException {
+		throw new EugeneException("A device's sequence will be generated based on its components.");
+	}
+
+	/**
+	 * The getSequence() method returns the 
+	 * sequence of the component if the sequence 
+	 * is not empty and not null.
+	 * 
+	 * @return this component's sequence
+	 * 
+	 * @throws EugeneException
+	 */
+	@Override
+	public String getSequence() 
+			throws EugeneException {
 		
+		if(this.hasSequence()) {
+			return this.sequence;
+		}
+		
+		throw new EugeneException("The component " + this.getName() +" has no DNA sequence!");
+	}
+	
+	/**
+	 * The hasSequence() method returns true if 
+	 * the component has a non-empty and non-null 
+	 * sequence.
+	 * 
+	 * @return true ... if the sequence is non-empty and non-null
+	 *        false ... otherwise
+	 *        
+	 * @throws EugeneException
+	 */
+	@Override
+	public boolean hasSequence() 
+			throws EugeneException {
+		return (null != this.sequence && !this.sequence.isEmpty());
+	}
 }
