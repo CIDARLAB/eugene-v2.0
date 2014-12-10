@@ -15,7 +15,9 @@
     </resources>
     <plugins>
 
-	<plugin>
+
+<!--  
+		<plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jar-plugin</artifactId>
             <configuration>
@@ -27,9 +29,11 @@
                 </archive>
             </configuration>
         </plugin>
-
+-->
         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
+            <version>2.5</version>
             <configuration>
                 <descriptorRefs>
                     <descriptorRef>jar-with-dependencies</descriptorRef>
@@ -48,6 +52,7 @@
 		<plugin>
 		    <groupId>org.apache.maven.plugins</groupId>
 		    <artifactId>maven-jar-plugin</artifactId>
+            <version>2.5</version>
 		    <configuration>
 		        <archive>
 		            <manifest>
@@ -60,6 +65,7 @@
 		</plugin>
 				
 	    <plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
 	        <artifactId>maven-compiler-plugin</artifactId>
 	        <version>3.1</version>
 	        <configuration>

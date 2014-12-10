@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.TestUtils;
 import org.cidarlab.eugene.constants.Orientation;
+import org.cidarlab.eugene.dom.Part;
 import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.PartType;
 import org.cidarlab.eugene.dom.NamedElement;
@@ -228,7 +229,13 @@ public class UtilitiesTest {
 			
 			String result = EugeneUtils.prettyPrint(D);
 			
-			String expected = "Device D ("+EugeneDeveloperUtils.NEWLINE+"    PT1 p1(.SEQUENCE(), .PIGEON())"+EugeneDeveloperUtils.NEWLINE+")";
+			String expected = 
+					"Device D ("			+ EugeneDeveloperUtils.NEWLINE +
+					"    PT1 p1 (" 			+ EugeneDeveloperUtils.NEWLINE +
+					"        .SEQUENCE()," 	+ EugeneDeveloperUtils.NEWLINE +
+					"        .PIGEON()" 	+ EugeneDeveloperUtils.NEWLINE +
+					"    )" 				+ EugeneDeveloperUtils.NEWLINE +
+					")";
 
 			assert(expected.equals(result));
 		} catch(EugeneException ee) {
@@ -238,7 +245,40 @@ public class UtilitiesTest {
 	}
 
 	@Test
-	public void testEugeneUtilsPrettyPrintHierachicalDevice() {
+	public void testEugeneUtilsPrettyPrintPartsDevice() {
+		String script = "PartType PT1(); PT1 p11; PT1 p12; PT1 p13; Device D(p11, p12, p13);";
+		try {
+			EugeneCollection col = new Eugene().executeScript(script);
+			Device D = (Device)col.get("D");
+			
+			String result = EugeneUtils.prettyPrint(D);
+			
+			String expected = 
+					"Device D ("			+ EugeneDeveloperUtils.NEWLINE +
+					"    PT1 p11 ("			+ EugeneDeveloperUtils.NEWLINE +
+					"        .SEQUENCE(),"	+ EugeneDeveloperUtils.NEWLINE +
+					"        .PIGEON()"		+ EugeneDeveloperUtils.NEWLINE +
+					"    )," 				+ EugeneDeveloperUtils.NEWLINE +
+					"    PT1 p12 ("			+ EugeneDeveloperUtils.NEWLINE +
+					"        .SEQUENCE(),"	+ EugeneDeveloperUtils.NEWLINE +
+					"        .PIGEON()"		+ EugeneDeveloperUtils.NEWLINE +
+					"    )," 				+ EugeneDeveloperUtils.NEWLINE +
+					"    PT1 p13 ("			+ EugeneDeveloperUtils.NEWLINE +
+					"        .SEQUENCE(),"	+ EugeneDeveloperUtils.NEWLINE +
+					"        .PIGEON()"		+ EugeneDeveloperUtils.NEWLINE +
+					"    )"					+ EugeneDeveloperUtils.NEWLINE +
+					")";
+
+			assert(expected.equals(result));
+			
+		} catch(EugeneException ee) {
+			ee.printStackTrace();
+			assertTrue(false);
+		}
+	}
+
+	@Test
+	public void testEugeneUtilsPrettyPrintTwoLevelHierachicalDevice() {
 		String script = "PartType PT1(); PartType PT2(); Device subD1(PT1); Device subD2(PT2); Device supD(subD1, subD2);";
 		try {
 			EugeneCollection col = new Eugene().executeScript(script);
@@ -246,9 +286,79 @@ public class UtilitiesTest {
 			
 			String result = EugeneUtils.prettyPrint(supD);
 			
-			String expected = "Device supD ("+EugeneDeveloperUtils.NEWLINE+"    Device subD1 ("+EugeneDeveloperUtils.NEWLINE+"        PT1"+EugeneDeveloperUtils.NEWLINE+"    )"+EugeneDeveloperUtils.NEWLINE+"    Device subD2 ("+EugeneDeveloperUtils.NEWLINE+"        PT2"+EugeneDeveloperUtils.NEWLINE+"    )"+EugeneDeveloperUtils.NEWLINE+")";
+			String expected = 
+					"Device supD ("			+ EugeneDeveloperUtils.NEWLINE +
+					"    Device subD1 ("	+ EugeneDeveloperUtils.NEWLINE +
+					"        PT1"			+ EugeneDeveloperUtils.NEWLINE +
+					"    ),"				+ EugeneDeveloperUtils.NEWLINE + 
+					"    Device subD2 ("	+ EugeneDeveloperUtils.NEWLINE + 
+					"        PT2"			+ EugeneDeveloperUtils.NEWLINE +
+					"    )"					+ EugeneDeveloperUtils.NEWLINE +
+					")";
 
 			assert(expected.equals(result));
+		} catch(EugeneException ee) {
+			ee.printStackTrace();
+			assertTrue(false);
+		}
+	}
+	
+	@Test
+	public void testEugeneUtilsPrettyPrintThreeLevelHierachicalDevice() {
+		String script = 
+				"PartType PT1(); PartType PT2(); "+
+				"Device subsubD1(PT1, PT2); Device subsubD2(PT2, PT1); "+
+				"Device subD1(subsubD1, subsubD2); Device subD2(subsubD2, subsubD1); "+
+				"Device supD(subD1, subD2);";
+		try {
+			EugeneCollection col = new Eugene().executeScript(script);
+			Device supD = (Device)col.get("supD");
+			
+			EugeneUtils.prettyPrint(supD);
+		} catch(EugeneException ee) {
+			ee.printStackTrace();
+			assertTrue(false);
+		}
+	}
+
+	@Test
+	public void testEugeneUtilsPrettyPrintThreeLevelHierachicalDeviceWithParts() {
+		String script = 
+				"Property num_prop(num); Property txt_prop(txt); " +
+				"Property num_list_prop(num[]); Property txt_list_prop(txt[]);" +
+				"PartType PT1(num_prop, txt_prop);" +
+				"PartType PT2(num_list_prop, txt_list_prop); "+
+				"PT1 p1(1, \"one\");"+
+				"PT1 p2(2, \"two\");"+
+				"Device subsubPT(PT1, PT2); Device subsubP(p1, p2); "+
+				"Device subD1(subsubPT, subsubP); Device subD2(subsubPT, subsubP); "+
+				"Device supD(subD1, subD2);";
+		try {
+			EugeneCollection col = new Eugene().executeScript(script);
+			Device supD = (Device)col.get("supD");
+			
+			EugeneUtils.prettyPrint(supD);
+		} catch(EugeneException ee) {
+			ee.printStackTrace();
+			assertTrue(false);
+		}
+	}
+
+	@Test
+	public void testEugeneUtilsPrettyPrintPart() {
+		String script = "Property txt_prop(txt); Property num_prop(num); " +
+				"PartType PT(txt_prop, num_prop); " +
+				"PT p1(.txt_prop(\"one\"), .num_prop(1));";
+		try {
+			EugeneCollection col = new Eugene().executeScript(script);
+			Part p1 = (Part)col.get("p1");
+			
+			String result = EugeneUtils.prettyPrint(p1);
+
+//			System.out.println(result);
+//			String expected = "PT p1 ("+EugeneDeveloperUtils.NEWLINE+"    .txt_prop ("+EugeneDeveloperUtils.NEWLINE+"        PT1"+EugeneDeveloperUtils.NEWLINE+"    )"+EugeneDeveloperUtils.NEWLINE+"    Device subD2 ("+EugeneDeveloperUtils.NEWLINE+"        PT2"+EugeneDeveloperUtils.NEWLINE+"    )"+EugeneDeveloperUtils.NEWLINE+")";
+//
+//			assert(expected.equals(result));
 		} catch(EugeneException ee) {
 			ee.printStackTrace();
 			assertTrue(false);
