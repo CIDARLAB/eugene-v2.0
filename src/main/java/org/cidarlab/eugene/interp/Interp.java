@@ -1076,13 +1076,13 @@ public class Interp {
 				el_lhs = this.cloner.deepClone(el_rhs);
 				el_lhs.setName(lhs);
 				
-				if(el_lhs instanceof EugeneCollection) {
-					for(NamedElement e : ((EugeneCollection)el_lhs).getElements()) {
-						if(e instanceof Device) {
-							System.out.println(e.getName()+" -> "+((Device)e).getComponentList());
-						}
-					}
-				}
+//				if(el_lhs instanceof EugeneCollection) {
+//					for(NamedElement e : ((EugeneCollection)el_lhs).getElements()) {
+//						if(e instanceof Device) {
+//							System.out.println(e.getName()+" -> "+((Device)e).getComponentList());
+//						}
+//					}
+//				}
 				
 				this.put(el_lhs);
 

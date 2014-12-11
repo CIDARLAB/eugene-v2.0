@@ -244,7 +244,7 @@ public class PropertyValue
 			}
 			sb.append("]");
 		} else if(EugeneConstants.TXT.equals(this.getType())) {
-			sb.append("\"").append(this.getValue()).append("\"");
+			sb.append("\"").append(this.getTxt()).append("\"");
 		} else if(EugeneConstants.TXTLIST.equalsIgnoreCase(this.getType())) {
 			sb.append("[");
 			for(int i=0; i<this.getTxtList().size(); i++) {

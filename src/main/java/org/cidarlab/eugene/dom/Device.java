@@ -7,6 +7,7 @@ import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.eugene.util.DeviceUtils;
+import org.cidarlab.eugene.util.EugeneDeveloperUtils;
 import org.cidarlab.eugene.util.EugeneUtils;
 import org.cidarlab.eugene.util.SequenceUtils;
 
@@ -313,71 +314,105 @@ public class Device
 	@Override
 	public String toString() {
 		
-		try {
-			return EugeneUtils.prettyPrint(this);
-		} catch(EugeneException ee) {
-			ee.printStackTrace();
-		}
-		return null;
-
-//		StringBuilder sb = new StringBuilder();
-//		sb.append("Device ").append(this.getName()).append("(");
-//
-//		for(int i = 0; i<this.getComponents().size(); i++) {
-//			
-//			sb.append(EugeneDeveloperUtils.NEWLINE);
-//			
-//			if(this.getComponents().get(i).size() > 1) {
-//				
-//				// SELECTION
-//				sb.append("[");
-//				for(int j=0; j<this.getComponents().get(i).size(); j++) {
-//					
-//					if(null != this.getOrientations() && !this.getOrientations().isEmpty()) {
-//						if(this.getOrientations().get(i).get(j) == Orientation.FORWARD) {
-//							sb.append("+");
-//						} else if(this.getOrientations().get(i).get(j) == Orientation.REVERSE) {
-//							sb.append("-");
-//						}
-//					}						
-//					sb.append(this.getComponents().get(i).get(j)/*.getName()*/);
-//					
-//					if(j < this.getComponents().get(i).size() - 1) {
-//						sb.append("|");
-//					}
-//				}
-//				sb.append("]");
-//				
-//			} else {
-//				
-//				// indentation
-//				sb.append("    ");
-//				if(null != this.getOrientations() && !this.getOrientations().isEmpty()) {
-//					if(this.getOrientations().get(i).get(0) == Orientation.FORWARD) {
-//						sb.append("+");
-//					} else if(this.getOrientations().get(i).get(0) == Orientation.REVERSE) {
-//						sb.append("-");
-//					}
-//				}
-//				
-//				if(this.getComponentList().get(i) instanceof Device &&
-//						this.getOrientations().get(i).get(0) == Orientation.REVERSE) {
-//					try {
-//						sb.append(EugeneUtils.flipAndInvert((Device)this.getComponentList().get(i)).toString());
-//					} catch(Exception e) {}
-//				} else {
-//					sb.append(this.getComponentList().get(i)/*.getName()*/);
-//				}
-//			}
-//			
-////			if(i < this.getComponents().size() - 1) {
-////				sb.append(", ");
-////			}
-//			
+//		try {
+//			return EugeneUtils.prettyPrint(this);
+//		} catch(EugeneException ee) {
+//			ee.printStackTrace();
 //		}
-//		
-//		sb.append(");").append(EugeneDeveloperUtils.NEWLINE);
-//		return sb.toString();
+//		return null;
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("Device ").append(this.getName()).append("(");
+		
+		if(this.getComponents().size() == 0) {
+			sb.append(")");
+			return sb.toString();
+		}
+		
+		sb.append(EugeneDeveloperUtils.NEWLINE);
+
+		for(int i = 0; i<this.getComponents().size(); i++) {
+			
+			boolean bDevice = false;
+			
+			sb.append("    ");
+			if(this.getComponents().get(i).size() > 1) {
+				
+				// SELECTION
+				sb.append("[");
+				for(int j=0; j<this.getComponents().get(i).size(); j++) {
+					
+					if(null != this.getOrientations() && !this.getOrientations().isEmpty()) {
+						if(this.getOrientations().get(i).get(j) == Orientation.FORWARD) {
+							sb.append("+");
+						} else if(this.getOrientations().get(i).get(j) == Orientation.REVERSE) {
+							sb.append("-");
+						}
+					}						
+					sb.append(this.getComponents().get(i).get(j)/*.getName()*/);
+					
+					if(j < this.getComponents().get(i).size() - 1) {
+						sb.append("|");
+					}
+				}
+				sb.append("]");
+				
+				// and this is readable for the real people
+				// i.e. Computer Scientists
+				if(i < this.getComponents().size() - 1) {
+					sb.append(", ");
+				} else {
+					sb.append(")");
+				}
+				
+			} else {
+
+				if(null != this.getOrientations() && !this.getOrientations().isEmpty()) {
+					if(this.getOrientations().get(i).get(0) == Orientation.FORWARD) {
+						sb.append("+");
+					} else if(this.getOrientations().get(i).get(0) == Orientation.REVERSE) {
+						sb.append("-");
+					}
+				}
+				
+				if(this.getComponentList().get(i) instanceof Device &&
+						this.getOrientations().get(i).get(0) == Orientation.REVERSE) {
+					try {
+						sb.append(EugeneUtils.flipAndInvert((Device)this.getComponentList().get(i)).toString());
+					} catch(Exception e) {}
+				} else {
+					sb.append(this.getComponentList().get(i)/*.getName()*/);
+					
+				}
+
+				if(this.getComponentList().get(i) instanceof Device) {
+					// remove the two NEWLINE characters from the embedded device
+					sb.setLength(sb.length() - 2);
+					bDevice = true;
+				}
+
+				// this behavior is very particular to devices
+				// i.e. non templates
+				// should enhance readability for biologists ?!?
+				if(i < this.getComponents().size() - 1) {
+	
+					sb.append(", ");
+					
+					// this adding newlines for printing devices is really driving nuts!
+					if(bDevice) {
+						// only add two NEWLINE characters if the sub-component was a device
+						sb.append(EugeneDeveloperUtils.NEWLINE).append(EugeneDeveloperUtils.NEWLINE);
+					} else {
+						sb.append(EugeneDeveloperUtils.NEWLINE);
+					}
+				} else {
+					sb.append(")").append(EugeneDeveloperUtils.NEWLINE);
+				}
+			}
+			
+		}
+		
+		return sb.toString();
 	}
 
 	@Override

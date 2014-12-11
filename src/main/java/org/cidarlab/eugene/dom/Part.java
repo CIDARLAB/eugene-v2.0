@@ -66,43 +66,43 @@ public class Part
 	@Override
 	public String toString() {
 		
-		try {
-			return EugeneUtils.prettyPrint(this);
-		} catch(EugeneException ee) {
-			ee.printStackTrace();
-		}
-		return null;
+//		try {
+//			return EugeneUtils.prettyPrint(this);
+//		} catch(EugeneException ee) {
+//			ee.printStackTrace();
+//		}
+//		return null;
 		
-//		StringBuilder sb = new StringBuilder();
-//
-//		if (this.getType() != null) {
-//			sb.append(this.getType().getName()).append(" ");
-//		} else {
-//			sb.append("Part ");
-//		}
-//
-//		sb.append(this.getName()).append(" (");
-//
-//		if (null != this.getPropertyValues() && !this.getPropertyValues().isEmpty()) {
-//			Iterator<String> it = this.getPropertyValues().keySet().iterator();
-//			while (it.hasNext()) {
-//				String sPropertyName = it.next();
-//				PropertyValue objValue = this.getPropertyValues().get(sPropertyName);
-//				sb.append(".").append(sPropertyName).append("(");
-//
-//				if (objValue != null) {
-//					sb.append(objValue.toString());
-//				}
-//				sb.append(")");
-//
-//				if (it.hasNext()) {
-//					sb.append(",");
-//				}
-//			}
-//		}
-//
-//		sb.append(");");
-//		return sb.toString();
+		StringBuilder sb = new StringBuilder();
+
+		if (this.getType() != null) {
+			sb.append(this.getType().getName()).append(" ");
+		} else {
+			sb.append("Part ");
+		}
+
+		sb.append(this.getName()).append(" (");
+
+		if (null != this.getPropertyValues() && !this.getPropertyValues().isEmpty()) {
+			Iterator<String> it = this.getPropertyValues().keySet().iterator();
+			while (it.hasNext()) {
+				String sPropertyName = it.next();
+				PropertyValue objValue = this.getPropertyValues().get(sPropertyName);
+				sb.append(".").append(sPropertyName).append("(");
+
+				if (objValue != null) {
+					sb.append(objValue.toString());
+				}
+				sb.append(")");
+
+				if (it.hasNext()) {
+					sb.append(",");
+				}
+			}
+		}
+
+		sb.append(")");
+		return sb.toString();
 	}
 
 	/*

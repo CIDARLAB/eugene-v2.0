@@ -356,7 +356,7 @@ public class Eugene2SBOL {
 							device_seq.append(rev_comp);
 							
 						} catch(Exception e) {
-							
+							e.printStackTrace();
 							throw new EugeneException("Invalid DNA sequence!");
 						}
 					} else {
@@ -526,8 +526,8 @@ public class Eugene2SBOL {
 		 * description
 		 */
 		PropertyValue description =  objPart.getPropertyValue(EugeneConstants.DESCRIPTION_PROPERTY);
-		if(null != description && !description.getValue().isEmpty()) {
-			c.setDescription(objPart.getPropertyValue(EugeneConstants.DESCRIPTION_PROPERTY).getValue());
+		if(null != description && !description.getTxt().isEmpty()) {
+			c.setDescription(objPart.getPropertyValue(EugeneConstants.DESCRIPTION_PROPERTY).getTxt());
 		} else {
 			c.setDescription(objPart.getType().getName());
 		}
@@ -537,8 +537,8 @@ public class Eugene2SBOL {
 		 */
 		String uuid = UUID.randomUUID().toString();
 		PropertyValue displayId = objPart.getPropertyValue(EugeneConstants.DISPLAY_ID_PROPERTY);
-		if(null != displayId && !displayId.getValue().isEmpty()) {
-			c.setDisplayId(objPart.getPropertyValue(EugeneConstants.DISPLAY_ID_PROPERTY).getValue() + "/" + uuid);
+		if(null != displayId && !displayId.getTxt().isEmpty()) {
+			c.setDisplayId(objPart.getPropertyValue(EugeneConstants.DISPLAY_ID_PROPERTY).getTxt() + "/" + uuid);
 		} else {
 			if(null != parent) {
 				c.setDisplayId(parent.getDisplayId() + "_" + "pos_" + pos + "_" + objPart.getName());
@@ -556,11 +556,11 @@ public class Eugene2SBOL {
 		}
 
 		PropertyValue uri = objPart.getPropertyValue(EugeneConstants.URI_PROPERTY);
-		if(null != uri && !uri.getValue().isEmpty()) {
+		if(null != uri && !uri.getTxt().isEmpty()) {
 			if(null != parent && pos != -1) {
-				partURI = URI.create(objPart.getPropertyValue(EugeneConstants.URI_PROPERTY).getValue() + "/" + uuid);
+				partURI = URI.create(objPart.getPropertyValue(EugeneConstants.URI_PROPERTY).getTxt() + "/" + uuid);
 			} else {
-				partURI = URI.create(objPart.getPropertyValue(EugeneConstants.URI_PROPERTY).getValue());
+				partURI = URI.create(objPart.getPropertyValue(EugeneConstants.URI_PROPERTY).getTxt());
 			}
 		}
 		c.setURI(partURI);
@@ -575,7 +575,7 @@ public class Eugene2SBOL {
 			seq.setURI(URI.create(partURI+"_sequence"));
 			addURI(URI.create(partURI+"_sequence").toASCIIString());
 			
-			seq.setNucleotides(objPart.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY).getValue().toLowerCase());
+			seq.setNucleotides(objPart.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY).getTxt().toLowerCase());
 			c.setDnaSequence(seq);
 		}
 		return c;

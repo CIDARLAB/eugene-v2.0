@@ -54,12 +54,52 @@ public class SequenceUtils {
 	 */
 	public static String reverseComplement(String seq) 
 			throws EugeneException {
+		
+		if(null==seq || seq.isEmpty()) {
+			throw new EugeneException("Invalid DNA sequence!");
+		}
+		
+		String tmpSeq = new String(seq);
+		if(seq.startsWith("\"") && seq.endsWith("\"")) {
+			tmpSeq = seq.substring(1, seq.length()-1);
+		}
+		
+		// The BioJava library somehow converts a DNA sequence 
+		// into a lower case sequence. Hence, we 
+		// check if the original sequence is in upper case		
+		boolean bUpper = SequenceUtils.isUpperCase(seq);
+		
 		try {
-			return DNATools.reverseComplement(
-						DNATools.createDNA(seq)).seqString();
+			String revComp = DNATools.reverseComplement(
+									DNATools.createDNA(tmpSeq)).seqString();
+			
+			// rebuild old DNA sequence w/ upper case characters
+			if(bUpper) {
+				return revComp.toUpperCase();
+			}
+			
+			return revComp;
 		} catch(Exception e) {
+			e.printStackTrace();
 			throw new EugeneException(e.getMessage());
 		}
+	}
+	
+	/**
+	 * The isUpperCase(String) method evaluates if a given 
+	 * String contains only upper case characters.
+	 * 
+	 * @param str   ... the String to be evaluated 
+	 * @return true ... if the String contains only upper case characters
+	 *        false ... otherwise
+	 */
+	public static boolean isUpperCase(String str) {
+		for (char c : str.toCharArray()) {
+		    if (!Character.isUpperCase(c)) {
+		    	return false;
+		    }
+		}
+		return true;
 	}
 	
 	

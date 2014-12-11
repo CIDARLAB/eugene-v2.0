@@ -24,7 +24,6 @@ package org.cidarlab.eugene.data.sbol;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.Arrays;
 
 import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.EugeneConstants;
@@ -155,7 +154,6 @@ public class SBOLExporter {
 			throws EugeneException {
 
 		try {
-			System.out.println("file: " + file);
 			SBOLExporter.createDirectories(file);
 			
 			// open a file stream
