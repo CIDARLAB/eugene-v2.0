@@ -565,7 +565,6 @@ public class UtilitiesTest {
 			
 			String result = EugeneUtils.prettyPrint(p1);
 
-			System.out.println(result);
 			String expected = 
 					"PT p1 (" 					+ EugeneDeveloperUtils.NEWLINE +
 					"    .num_prop(1),"			+ EugeneDeveloperUtils.NEWLINE +
