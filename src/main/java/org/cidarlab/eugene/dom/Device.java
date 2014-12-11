@@ -6,22 +6,17 @@ import java.util.List;
 import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.EugeneException;
-import org.cidarlab.eugene.util.EugeneDeveloperUtils;
+import org.cidarlab.eugene.util.DeviceUtils;
+import org.cidarlab.eugene.util.EugeneUtils;
+import org.cidarlab.eugene.util.SequenceUtils;
 
 /**
  * 
- * A Device is a Composite Component.
- * Since we offer the Selection operator for defining devices, 
- * a device contains a list of lists of components.
+ * A Device is a Composite Component. It can be composed of 
+ * Devices, Types, and Parts.
  * 
  * @author Ernst Oberortner
  * 
- * TODO: improve the public methods 
- * currently, we need to manually keep the size of the components list and the size of the
- * orientations list in sync. (see addComponents and addOrientations)
- * => only allow that the user can add components in conjunction with orientations
- * => don't offer too many getters/setters
- *
  */
 public class Device 
 		extends Component {
@@ -31,7 +26,8 @@ public class Device
 	/*
 	 * LIST OF (SUB)COMPONENTS
 	 * 
-	 * here, we need a list of list of components, due to the Selection operator
+	 * Since we offer the Selection operator for defining devices, 
+	 * a device contains a list of lists of components.
 	 *
 	 * in an ``enumerated'' device (produced by the product/permute methods), 
 	 * every list element consists of a list of only one component.
@@ -316,54 +312,72 @@ public class Device
 	
 	@Override
 	public String toString() {
-
-		StringBuilder sb = new StringBuilder();
-		sb.append("Device ").append(this.getName()).append("(");
-
-		for(int i = 0; i<this.getComponents().size(); i++) {
-			
-			sb.append(EugeneDeveloperUtils.NEWLINE);
-			
-			if(this.getComponents().get(i).size() > 1) {
-				
-				// SELECTION
-				sb.append("[");
-				for(int j=0; j<this.getComponents().get(i).size(); j++) {
-					
-					if(null != this.getOrientations() && !this.getOrientations().isEmpty()) {
-						if(this.getOrientations().get(i).get(j) == Orientation.FORWARD) {
-							sb.append("+");
-						} else if(this.getOrientations().get(i).get(j) == Orientation.REVERSE) {
-							sb.append("-");
-						}
-					}						
-					sb.append(this.getComponents().get(i).get(j)/*.getName()*/);
-					
-					if(j < this.getComponents().get(i).size() - 1) {
-						sb.append("|");
-					}
-				}
-				sb.append("]");
-				
-			} else {
-				
-				if(null != this.getOrientations() && !this.getOrientations().isEmpty()) {
-					if(this.getOrientations().get(i).get(0) == Orientation.FORWARD) {
-						sb.append("+");
-					} else if(this.getOrientations().get(i).get(0) == Orientation.REVERSE) {
-						sb.append("-");
-					}
-				}
-				sb.append(this.getComponentList().get(i)/*.getName()*/);
-			}
-			
-//			if(i < this.getComponents().size() - 1) {
-//				sb.append(", ");
-//			}
-			
+		
+		try {
+			return EugeneUtils.prettyPrint(this);
+		} catch(EugeneException ee) {
+			ee.printStackTrace();
 		}
-		sb.append(");").append(EugeneDeveloperUtils.NEWLINE);
-		return sb.toString();
+		return null;
+
+//		StringBuilder sb = new StringBuilder();
+//		sb.append("Device ").append(this.getName()).append("(");
+//
+//		for(int i = 0; i<this.getComponents().size(); i++) {
+//			
+//			sb.append(EugeneDeveloperUtils.NEWLINE);
+//			
+//			if(this.getComponents().get(i).size() > 1) {
+//				
+//				// SELECTION
+//				sb.append("[");
+//				for(int j=0; j<this.getComponents().get(i).size(); j++) {
+//					
+//					if(null != this.getOrientations() && !this.getOrientations().isEmpty()) {
+//						if(this.getOrientations().get(i).get(j) == Orientation.FORWARD) {
+//							sb.append("+");
+//						} else if(this.getOrientations().get(i).get(j) == Orientation.REVERSE) {
+//							sb.append("-");
+//						}
+//					}						
+//					sb.append(this.getComponents().get(i).get(j)/*.getName()*/);
+//					
+//					if(j < this.getComponents().get(i).size() - 1) {
+//						sb.append("|");
+//					}
+//				}
+//				sb.append("]");
+//				
+//			} else {
+//				
+//				// indentation
+//				sb.append("    ");
+//				if(null != this.getOrientations() && !this.getOrientations().isEmpty()) {
+//					if(this.getOrientations().get(i).get(0) == Orientation.FORWARD) {
+//						sb.append("+");
+//					} else if(this.getOrientations().get(i).get(0) == Orientation.REVERSE) {
+//						sb.append("-");
+//					}
+//				}
+//				
+//				if(this.getComponentList().get(i) instanceof Device &&
+//						this.getOrientations().get(i).get(0) == Orientation.REVERSE) {
+//					try {
+//						sb.append(EugeneUtils.flipAndInvert((Device)this.getComponentList().get(i)).toString());
+//					} catch(Exception e) {}
+//				} else {
+//					sb.append(this.getComponentList().get(i)/*.getName()*/);
+//				}
+//			}
+//			
+////			if(i < this.getComponents().size() - 1) {
+////				sb.append(", ");
+////			}
+//			
+//		}
+//		
+//		sb.append(");").append(EugeneDeveloperUtils.NEWLINE);
+//		return sb.toString();
 	}
 
 	@Override
@@ -425,16 +439,41 @@ public class Device
 			throws EugeneException {
 		
 		if(this.hasSequence()) {
-			return this.sequence;
+			StringBuilder sb = new StringBuilder();
+			
+			int i=0;
+			for(List<NamedElement> loe : this.getComponents()) {
+				
+				NamedElement e = loe.get(0);
+				if(e instanceof Part) {
+					if(this.getOrientations().get(i).get(0) == Orientation.REVERSE) {
+						sb.append(SequenceUtils.reverseComplement(((Part)e).getSequence()));
+					} else {
+						sb.append(((Part)e).getSequence());
+					}
+				} else if(e instanceof Device) {
+					if(this.getOrientations().get(i).get(0) == Orientation.REVERSE) {
+						// flip the device
+						Device d = DeviceUtils.flipAndInvert((Device)e);
+						sb.append(d.getSequence());
+					} else {
+						sb.append(((Device)e).getSequence());
+					}
+				}
+				
+				i++;
+			}
+			return sb.toString();
 		}
 		
 		throw new EugeneException("The component " + this.getName() +" has no DNA sequence!");
 	}
 	
 	/**
-	 * The hasSequence() method returns true if 
-	 * the component has a non-empty and non-null 
-	 * sequence.
+	 * The hasSequence() method checks if the Device has 
+	 * a sequence. That is, if
+	 * - the Device contains only Parts and
+	 * - each Part has a sequence
 	 * 
 	 * @return true ... if the sequence is non-empty and non-null
 	 *        false ... otherwise
@@ -444,6 +483,22 @@ public class Device
 	@Override
 	public boolean hasSequence() 
 			throws EugeneException {
-		return (null != this.sequence && !this.sequence.isEmpty());
+
+		// we iterate over all elements of the device
+		for(List<NamedElement> loe : this.getComponents()) {
+			
+			// no ``selection'' operator
+			if(loe.size() != 1) {
+				return false;
+			}
+			
+			// the element must be a Part and 
+			// the Part must have a sequence
+			if(loe.get(0) instanceof Part && !((Part)loe.get(0)).hasSequence()) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 }

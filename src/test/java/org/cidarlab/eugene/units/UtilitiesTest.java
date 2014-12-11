@@ -185,6 +185,216 @@ public class UtilitiesTest {
 	}
 	
 	@Test
+	public void testSequenceUtilsReverseComplementHierarchicalDevice() {
+		String script = "PartType Promoter;" +
+				"Promoter pA(.SEQUENCE(\"A\"));" +
+				"Promoter pT(.SEQUENCE(\"T\"));" +
+				"Promoter pC(.SEQUENCE(\"C\"));" +
+				"Promoter pG(.SEQUENCE(\"G\"));" +
+				"Device D(pA, pT, pC, pG); ";
+		
+		try {
+			EugeneCollection ec = new Eugene().executeScript(script);
+			
+			if(null != ec && !ec.getElements().isEmpty()) {
+				Device D = (Device)ec.get("D");
+				
+				assert("ATCG".equalsIgnoreCase(D.getSequence()));
+				assert("CGAT".equalsIgnoreCase(SequenceUtils.reverseComplement(D.getSequence())));
+			} else {
+				// something went wrong!
+				assertTrue(false);
+			}
+		} catch(EugeneException ee) {
+			// something went wrong!
+			assertTrue(false);
+		}
+	}
+
+	@Test
+	public void testSequenceUtilsReverseComplementPartsDevice02() {
+		String script = "PartType Promoter;" +
+				"Promoter p1(.SEQUENCE(\"ATCG\"));" +
+				"Promoter p2(.SEQUENCE(\"ATCG\"));" +
+				"Device D01(-p1, +p2); " +
+				"Device D02(-p1, -p2); " +
+				"Device D03(+p1, +p2); " +
+				"Device D04(+p1, -p2); ";
+		
+		try {
+			EugeneCollection ec = new Eugene().executeScript(script);
+			
+			if(null != ec && !ec.getElements().isEmpty()) {
+				Device D01 = (Device)ec.get("D01");
+				assert("CGATATCG".equalsIgnoreCase(D01.getSequence()));
+
+				Device D02 = (Device)ec.get("D02");
+				assert("CGATCGAT".equalsIgnoreCase(D02.getSequence()));
+
+				Device D03 = (Device)ec.get("D03");
+				assert("ATCGATCG".equalsIgnoreCase(D03.getSequence()));
+
+				Device D04 = (Device)ec.get("D04");
+				assert("ATCGCGAT".equalsIgnoreCase(D04.getSequence()));
+
+			} else {
+				// something went wrong!
+				assertTrue(false);
+			}
+		} catch(EugeneException ee) {
+			// something went wrong!
+			assertTrue(false);
+		}
+	}
+
+	@Test
+	public void testSequenceUtilsReverseComplementHierarchicalDevice02() {
+		String script = "PartType Promoter;" +
+				"Promoter p1(.SEQUENCE(\"AAAA\"));" +
+				"Promoter p2(.SEQUENCE(\"TTTT\"));" +
+				"Device D01(-p1, +p2); " +
+				"Device D02(-p1, -p2); " +
+				"Device D03(+p1, +p2); " +
+				"Device D04(+p1, -p2); " +
+				"Device D05(+D01);" +
+				"Device D06(-D01);" +
+				"Device D07(-D01, -D02);" +
+				"Device D08(-D01, +D02);" +
+				"Device D09(+D01, -D02);" +
+				"Device D10(+D01, +D02);" +
+				"Device D11(+D01, +D02, +D03, +D04);" +
+				"Device D12(+D01, +D02, +D03, -D04);";
+		
+		try {
+			EugeneCollection ec = new Eugene().executeScript(script);
+			
+			if(null != ec && !ec.getElements().isEmpty()) {
+				// Device D01(-p1, +p2);
+				Device D01 = (Device)ec.get("D01");
+				String expected_D01 =
+						SequenceUtils.reverseComplement(((Part)ec.get("p1")).getSequence()) +
+						((Part)ec.get("p2")).getSequence();
+				assert(expected_D01.equalsIgnoreCase(D01.getSequence()));
+
+				// Device D02(-p1, -p2);
+				Device D02 = (Device)ec.get("D02");
+				String expected_D02 =
+						SequenceUtils.reverseComplement(((Part)ec.get("p1")).getSequence()) +
+						SequenceUtils.reverseComplement(((Part)ec.get("p2")).getSequence());
+				assert(expected_D02.equalsIgnoreCase(D02.getSequence()));
+
+				// Device D03(+p1, +p2);
+				Device D03 = (Device)ec.get("D03");
+				String expected_D03 =
+						((Part)ec.get("p1")).getSequence() +
+						((Part)ec.get("p2")).getSequence();
+				assert(expected_D03.equalsIgnoreCase(D03.getSequence()));
+
+				// Device D04(+p1, -p2);
+				Device D04 = (Device)ec.get("D04");
+				String expected_D04 =
+						((Part)ec.get("p1")).getSequence() +
+						SequenceUtils.reverseComplement(((Part)ec.get("p2")).getSequence());
+				assert(expected_D04.equalsIgnoreCase(D04.getSequence()));
+
+				// Device D05(+D01);
+				//            -p1, +p2
+				Device D05 = (Device)ec.get("D05");
+				String expected_D05 = D01.getSequence();
+				assert(expected_D05.equalsIgnoreCase(D05.getSequence()));
+
+
+				// Device D06(-D01);
+				//            -D01   --> -p2, +p1
+				Device D06 = (Device)ec.get("D06");
+				String expected_D06 =
+						SequenceUtils.reverseComplement(((Part)ec.get("p2")).getSequence()) +
+						((Part)ec.get("p1")).getSequence();
+				assert(expected_D06.equalsIgnoreCase(D06.getSequence()));
+
+				// Device D07(-D01, -D02);
+				Device D07 = (Device)ec.get("D07");
+//				String expected_D07 =
+//						(EugeneUtils.flipAndInvert(D01)).getSequence() +
+//						(EugeneUtils.flipAndInvert(D02)).getSequence();
+				String expected_D07 =
+						SequenceUtils.reverseComplement(((Part)ec.get("p2")).getSequence()) +
+						((Part)ec.get("p1")).getSequence() +
+						((Part)ec.get("p2")).getSequence() +
+						((Part)ec.get("p1")).getSequence();
+				assert(expected_D07.equalsIgnoreCase(D07.getSequence()));
+				
+
+				// Device D08(-D01, +D02);
+				Device D08 = (Device)ec.get("D08");
+//				String expected_D08 =
+//						(EugeneUtils.flipAndInvert(D01)).getSequence() +
+//						D02.getSequence();
+				String expected_D08 =
+						SequenceUtils.reverseComplement(((Part)ec.get("p2")).getSequence()) +
+						((Part)ec.get("p1")).getSequence() +
+						SequenceUtils.reverseComplement(((Part)ec.get("p1")).getSequence()) +
+						SequenceUtils.reverseComplement(((Part)ec.get("p2")).getSequence());
+				assert(expected_D08.equalsIgnoreCase(D08.getSequence()));
+
+				// Device D09(+D01, -D02);
+				Device D09 = (Device)ec.get("D09");
+//				String expected_D09 =
+//						D01.getSequence() +
+//						(EugeneUtils.flipAndInvert(D02)).getSequence();
+				String expected_D09 =
+						SequenceUtils.reverseComplement(((Part)ec.get("p1")).getSequence()) +
+						((Part)ec.get("p2")).getSequence() +
+						((Part)ec.get("p2")).getSequence() +
+						((Part)ec.get("p1")).getSequence();
+				assert(expected_D09.equalsIgnoreCase(D09.getSequence()));
+
+				// Device D10(+D01, +D02);
+				Device D10 = (Device)ec.get("D10");
+//				String expected_D10 =
+//						D01.getSequence() +
+//						D02.getSequence();
+				String expected_D10 =
+						SequenceUtils.reverseComplement(((Part)ec.get("p1")).getSequence()) +
+						((Part)ec.get("p2")).getSequence() +
+						SequenceUtils.reverseComplement(((Part)ec.get("p1")).getSequence()) +
+						SequenceUtils.reverseComplement(((Part)ec.get("p2")).getSequence());
+						
+				assert(expected_D10.equalsIgnoreCase(D10.getSequence()));
+
+				Device D11 = (Device)ec.get("D11");
+				String expected_D11 = 
+						D01.getSequence() +
+						D02.getSequence() +
+						D03.getSequence() +
+						D04.getSequence(); 
+				assert(expected_D11.equalsIgnoreCase(D11.getSequence()));
+
+				Device D12 = (Device)ec.get("D12");
+				
+				// -p1, +p2, -p1, -p2, +p1, +p2, +p2, -p1
+				String expected_D12 = 
+						SequenceUtils.reverseComplement(((Part)ec.get("p1")).getSequence()) +
+						((Part)ec.get("p2")).getSequence() +
+						SequenceUtils.reverseComplement(((Part)ec.get("p1")).getSequence()) +
+						SequenceUtils.reverseComplement(((Part)ec.get("p2")).getSequence()) +
+						((Part)ec.get("p1")).getSequence() +
+						((Part)ec.get("p2")).getSequence() +
+						((Part)ec.get("p2")).getSequence() +
+						SequenceUtils.reverseComplement(((Part)ec.get("p1")).getSequence());
+				assert(expected_D12.equalsIgnoreCase(D12.getSequence()));
+
+			} else {
+				// something went wrong!
+				assertTrue(false);
+			}
+		} catch(EugeneException ee) {
+			// something went wrong!
+			assertTrue(false);
+		}
+	}
+
+	@Test
 	public void testEugeneUtilsPrettyPrintEmptyDevice() {
 		String script = "Device D;";
 		try {
@@ -230,11 +440,11 @@ public class UtilitiesTest {
 			String result = EugeneUtils.prettyPrint(D);
 			
 			String expected = 
-					"Device D ("			+ EugeneDeveloperUtils.NEWLINE +
-					"    PT1 p1 (" 			+ EugeneDeveloperUtils.NEWLINE +
-					"        .SEQUENCE()," 	+ EugeneDeveloperUtils.NEWLINE +
-					"        .PIGEON()" 	+ EugeneDeveloperUtils.NEWLINE +
-					"    )" 				+ EugeneDeveloperUtils.NEWLINE +
+					"Device D ("				+ EugeneDeveloperUtils.NEWLINE +
+					"    PT1 p1 (" 				+ EugeneDeveloperUtils.NEWLINE +
+					"        .SEQUENCE(\"\")," 	+ EugeneDeveloperUtils.NEWLINE +
+					"        .PIGEON(\"\")" 	+ EugeneDeveloperUtils.NEWLINE +
+					"    )" 					+ EugeneDeveloperUtils.NEWLINE +
 					")";
 
 			assert(expected.equals(result));
@@ -254,19 +464,19 @@ public class UtilitiesTest {
 			String result = EugeneUtils.prettyPrint(D);
 			
 			String expected = 
-					"Device D ("			+ EugeneDeveloperUtils.NEWLINE +
-					"    PT1 p11 ("			+ EugeneDeveloperUtils.NEWLINE +
-					"        .SEQUENCE(),"	+ EugeneDeveloperUtils.NEWLINE +
-					"        .PIGEON()"		+ EugeneDeveloperUtils.NEWLINE +
-					"    )," 				+ EugeneDeveloperUtils.NEWLINE +
-					"    PT1 p12 ("			+ EugeneDeveloperUtils.NEWLINE +
-					"        .SEQUENCE(),"	+ EugeneDeveloperUtils.NEWLINE +
-					"        .PIGEON()"		+ EugeneDeveloperUtils.NEWLINE +
-					"    )," 				+ EugeneDeveloperUtils.NEWLINE +
-					"    PT1 p13 ("			+ EugeneDeveloperUtils.NEWLINE +
-					"        .SEQUENCE(),"	+ EugeneDeveloperUtils.NEWLINE +
-					"        .PIGEON()"		+ EugeneDeveloperUtils.NEWLINE +
-					"    )"					+ EugeneDeveloperUtils.NEWLINE +
+					"Device D ("				+ EugeneDeveloperUtils.NEWLINE +
+					"    PT1 p11 ("				+ EugeneDeveloperUtils.NEWLINE +
+					"        .SEQUENCE(\"\"),"	+ EugeneDeveloperUtils.NEWLINE +
+					"        .PIGEON(\"\")"		+ EugeneDeveloperUtils.NEWLINE +
+					"    )," 					+ EugeneDeveloperUtils.NEWLINE +
+					"    PT1 p12 ("				+ EugeneDeveloperUtils.NEWLINE +
+					"        .SEQUENCE(\"\"),"	+ EugeneDeveloperUtils.NEWLINE +
+					"        .PIGEON(\"\")"		+ EugeneDeveloperUtils.NEWLINE +
+					"    )," 					+ EugeneDeveloperUtils.NEWLINE +
+					"    PT1 p13 ("				+ EugeneDeveloperUtils.NEWLINE +
+					"        .SEQUENCE(\"\"),"	+ EugeneDeveloperUtils.NEWLINE +
+					"        .PIGEON(\"\")"		+ EugeneDeveloperUtils.NEWLINE +
+					"    )"						+ EugeneDeveloperUtils.NEWLINE +
 					")";
 
 			assert(expected.equals(result));
@@ -355,10 +565,16 @@ public class UtilitiesTest {
 			
 			String result = EugeneUtils.prettyPrint(p1);
 
-//			System.out.println(result);
-//			String expected = "PT p1 ("+EugeneDeveloperUtils.NEWLINE+"    .txt_prop ("+EugeneDeveloperUtils.NEWLINE+"        PT1"+EugeneDeveloperUtils.NEWLINE+"    )"+EugeneDeveloperUtils.NEWLINE+"    Device subD2 ("+EugeneDeveloperUtils.NEWLINE+"        PT2"+EugeneDeveloperUtils.NEWLINE+"    )"+EugeneDeveloperUtils.NEWLINE+")";
-//
-//			assert(expected.equals(result));
+			System.out.println(result);
+			String expected = 
+					"PT p1 (" 					+ EugeneDeveloperUtils.NEWLINE +
+					"    .num_prop(1),"			+ EugeneDeveloperUtils.NEWLINE +
+					"    .SEQUENCE(\"\")," 		+ EugeneDeveloperUtils.NEWLINE +
+					"    .PIGEON(\"\")," 		+ EugeneDeveloperUtils.NEWLINE +
+					"    .txt_prop(\"one\")" 	+ EugeneDeveloperUtils.NEWLINE +
+					")";
+
+			assert(expected.equals(result));
 		} catch(EugeneException ee) {
 			ee.printStackTrace();
 			assertTrue(false);

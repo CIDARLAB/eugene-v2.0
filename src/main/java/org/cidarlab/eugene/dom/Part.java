@@ -26,6 +26,7 @@ import java.util.Iterator;
 
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.exception.EugeneException;
+import org.cidarlab.eugene.util.EugeneUtils;
 
 public class Part 
 	extends Component {
@@ -64,36 +65,44 @@ public class Part
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-
-		if (this.getType() != null) {
-			sb.append(this.getType().getName()).append(" ");
-		} else {
-			sb.append("Part ");
+		
+		try {
+			return EugeneUtils.prettyPrint(this);
+		} catch(EugeneException ee) {
+			ee.printStackTrace();
 		}
-
-		sb.append(this.getName()).append(" (");
-
-		if (null != this.getPropertyValues() && !this.getPropertyValues().isEmpty()) {
-			Iterator<String> it = this.getPropertyValues().keySet().iterator();
-			while (it.hasNext()) {
-				String sPropertyName = it.next();
-				PropertyValue objValue = this.getPropertyValues().get(sPropertyName);
-				sb.append(".").append(sPropertyName).append("(");
-
-				if (objValue != null) {
-					sb.append(objValue.toString());
-				}
-				sb.append(")");
-
-				if (it.hasNext()) {
-					sb.append(",");
-				}
-			}
-		}
-
-		sb.append(");");
-		return sb.toString();
+		return null;
+		
+//		StringBuilder sb = new StringBuilder();
+//
+//		if (this.getType() != null) {
+//			sb.append(this.getType().getName()).append(" ");
+//		} else {
+//			sb.append("Part ");
+//		}
+//
+//		sb.append(this.getName()).append(" (");
+//
+//		if (null != this.getPropertyValues() && !this.getPropertyValues().isEmpty()) {
+//			Iterator<String> it = this.getPropertyValues().keySet().iterator();
+//			while (it.hasNext()) {
+//				String sPropertyName = it.next();
+//				PropertyValue objValue = this.getPropertyValues().get(sPropertyName);
+//				sb.append(".").append(sPropertyName).append("(");
+//
+//				if (objValue != null) {
+//					sb.append(objValue.toString());
+//				}
+//				sb.append(")");
+//
+//				if (it.hasNext()) {
+//					sb.append(",");
+//				}
+//			}
+//		}
+//
+//		sb.append(");");
+//		return sb.toString();
 	}
 
 	/*

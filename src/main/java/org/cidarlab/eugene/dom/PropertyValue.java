@@ -201,7 +201,15 @@ public class PropertyValue
 	    } else if (EugeneConstants.NUMLIST.equals(this.type)) {
 			return this.numList.toString();
 		} else if (EugeneConstants.TXT.equals(this.type)) {
+			
+			// if there are now double-quotes at the beginning 
+			// and end of the TXT value, then we add them
+			if(!this.txt.startsWith("\"") && !this.txt.endsWith("\"")) {
+				return "\""+this.txt+"\"";
+			}
+			
 			return this.txt;
+			
 		} else if (EugeneConstants.TXTLIST.equals(this.type)) {
 			return this.txtList.toString();
 		} else if (EugeneConstants.BOOLEAN.equals(this.type)) {

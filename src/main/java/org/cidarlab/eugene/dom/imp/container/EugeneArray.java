@@ -37,7 +37,7 @@ public class EugeneArray
 		StringBuilder sb = new StringBuilder();
 		sb.append("Array[] ").append(this.getName()).append(" (").append(NEWLINE);
 		for(NamedElement ne : this.getElements()) {
-			sb.append(ne.getName()).append(NEWLINE);
+			sb.append(ne/*.getName()*/).append(NEWLINE);
 		}
 		sb.append(");");
 		return sb.toString();

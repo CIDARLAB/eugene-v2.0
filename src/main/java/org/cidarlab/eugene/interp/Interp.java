@@ -80,6 +80,7 @@ import org.cidarlab.eugene.minieugene.MiniEugeneAdapter;
 import org.cidarlab.eugene.parser.EugeneLexer;
 import org.cidarlab.eugene.parser.EugeneParser;
 import org.cidarlab.eugene.sparrow.SparrowAdapter;
+import org.cidarlab.eugene.util.EugeneDeveloperUtils;
 import org.cidarlab.eugene.util.FileUtils;
 import org.cidarlab.minieugene.data.pigeon.WeyekinPoster;
 import org.cidarlab.sparrow.Sparrow;
@@ -397,9 +398,11 @@ public class Interp {
 				
 				// pre-defined properties of parts
 				if(EugeneConstants.PIGEON_PROPERTY.equals(property.toUpperCase())) {
-					prop = pt.getProperty(EugeneConstants.PIGEON_PROPERTY);
+					prop = EugeneDeveloperUtils.createPigeonProperty();
+					//prop = pt.getProperty(EugeneConstants.PIGEON_PROPERTY);
 				} else if (EugeneConstants.SEQUENCE_PROPERTY.equals(property.toUpperCase())) {
-					prop = pt.getProperty(EugeneConstants.SEQUENCE_PROPERTY);
+					prop = EugeneDeveloperUtils.createSequenceProperty();
+//					prop = pt.getProperty(EugeneConstants.SEQUENCE_PROPERTY);
 				} else if(null == (prop = pt.getProperty(property))) {
 					throw new EugeneException("Parts of part type "+pt.getName()+" do not have "+property+" property.");
 				}

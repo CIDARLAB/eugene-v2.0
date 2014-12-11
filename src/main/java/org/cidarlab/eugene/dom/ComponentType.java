@@ -64,12 +64,13 @@ public class ComponentType
 	 * @return   ... the Property if it exists, NULL otherwise
 	 */
 	public Property getProperty(String name) {
+		
 		for (Property p : this.getProperties()) {
 			if (p.getName().equals(name)) {
 				return p;
 			}
 		}
-		
+
 		return (Property) null;
 	}
 

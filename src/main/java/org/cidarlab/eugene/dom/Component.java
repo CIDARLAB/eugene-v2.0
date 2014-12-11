@@ -60,10 +60,10 @@ public class Component
 	 */
 	private static final long serialVersionUID = -7841606660339005799L;
 
-	/*
-	 * SEQUENCE
-	 */
-	protected String sequence;
+//	/*
+//	 * SEQUENCE
+//	 */
+//	protected String sequence;
 	
 	/*
 	 * ORIENTATION
@@ -88,7 +88,7 @@ public class Component
 	protected Component(String name) {
 		super(name);
 		this.type = null;
-		this.sequence = new String();
+//		this.sequence = new String();
 		this.properties = new ArrayList<Property>();
 		this.orientation = Orientation.UNDEFINED;
 		
@@ -100,7 +100,7 @@ public class Component
 	protected Component(ComponentType type, String name) {
 		super(name);
 		this.type = type;
-		this.sequence = new String();
+//		this.sequence = new String();
 		this.properties = new ArrayList<Property>();
 		this.orientation = Orientation.UNDEFINED;
 
@@ -112,7 +112,7 @@ public class Component
 	protected Component(String sName, List<Property> properties) {
 		super(sName);
 		this.properties = properties;
-		this.sequence = new String();
+//		this.sequence = new String();
 		this.orientation = Orientation.UNDEFINED;
 	
 		// lastly, we initialize the hashmap that holds
@@ -229,7 +229,22 @@ public class Component
 	 */
 	public void setSequence(String sequence) 
 			throws EugeneException {
-		this.sequence = sequence;
+		
+		// first, we convert the String sequence into 
+		// a Eugene PropertyValue
+		PropertyValue seq = this.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY);
+		seq.setTxt(sequence);
+		
+		try {
+			// then, we set the SEQUENCE property 
+			// of this part with the Eugene PropertyValue
+			this.setPropertyValue(
+					this.getProperty(EugeneConstants.SEQUENCE_PROPERTY), 
+					seq);
+		} catch(DOMException d) {
+			// should never happen here
+		}
+		
 	}
 
 	/**
@@ -244,17 +259,24 @@ public class Component
 	public String getSequence() 
 			throws EugeneException {
 		
+		// first, we check if the SEQUENCE property is set
 		if(this.hasSequence()) {
-			return this.sequence;
+			// if it is set, then we return its TXT value
+			// since the SEQUENCE property is of type TXT
+			return this.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY).getTxt();
 		}
 		
+		// if the SEQUENCE property is not set, 
+		// then we throw an exception
 		throw new EugeneException("The component " + this.getName() +" has no DNA sequence!");
 	}
 	
 	/**
-	 * The hasSequence() method returns true if 
-	 * the component has a non-empty and non-null 
-	 * sequence.
+	 * The hasSequence() method checks if a Part has a sequence.
+	 * That is, it returns true if the following conditions are satisfied: 
+	 * - the part has a SEQUENCE property, 
+	 * - the part has a value for the SEQUENCE property, and
+	 * - the part's value of the SEQUENCE property is not empty.
 	 * 
 	 * @return true ... if the sequence is non-empty and non-null
 	 *        false ... otherwise
@@ -263,7 +285,11 @@ public class Component
 	 */
 	public boolean hasSequence() 
 			throws EugeneException {
-		return (null != this.sequence && !this.sequence.isEmpty());
+
+		// here, we only check the conditions
+		return (null != this.getProperty(EugeneConstants.SEQUENCE_PROPERTY) &&
+				null != this.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY) && 
+				!this.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY).getTxt().isEmpty());
 	}
 
 	
@@ -320,6 +346,18 @@ public class Component
 				pv);
 	}
 
+	/**
+	 * The setPropertyValue(Property, Variable) method sets the 
+	 * value of a given Property to the content of the Variable.
+	 * 
+	 * It throws a DOMException if the types of the given 
+	 * Property and the Variable do not match.
+	 * 
+	 * @param property  ... the property to be set
+	 * @param v         ... the desired value of the property
+	 * 
+	 * @throws DOMException
+	 */
 	public void setPropertyValue(Property property, Variable v) 
 			throws DOMException {
 		
