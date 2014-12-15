@@ -217,8 +217,6 @@ public class Eugene2SBOL {
 		dc.setURI(URI.create(sURI));
 		addURI(sURI);
 		
-//		System.out.println("DNAComponent: " + dc.getURI());
-		
 		/*
 		 * n is a counter over the device's sub components
 		 */
@@ -258,7 +256,8 @@ public class Eugene2SBOL {
 			
 			/*
 			 * if the device's sub-component is a device, then
-			 * we flip it. see the flip/1 method for further documentation. 
+			 * we flip it and inverse the orientation of each component. 
+			 * See the DeviceUtils.flipAndInvert(Device) method for further documentation. 
 			 */
 			if(c instanceof Device && objDevice.getOrientations().get(n-1).get(0) == Orientation.REVERSE) {
 				c = DeviceUtils.flipAndInvert((Device)c);
@@ -305,12 +304,11 @@ public class Eugene2SBOL {
 			// SequenceAnnotation
 			sa.setSubComponent(subComponent);
 
-
 			/*
 			 *  Sequence of the sub-component
 			 */ 
 			if(null != subComponent.getDnaSequence() &&
-					subComponent.getDnaSequence().getNucleotides().length() > 0) {
+				subComponent.getDnaSequence().getNucleotides().length() > 0) {
 			
 				/*
 				 * START and END (bioStart, bioEnd)
@@ -410,10 +408,8 @@ public class Eugene2SBOL {
 		 */
 		dc.getTypes().add(soMapping("Device"));
 
-//		String seq = device_seq.toString(); //Eugene2SBOL.deviceSequence(objDevice);
-//		System.out.println(objDevice.getName()+" -> " +device_seq);
 		if (null != device_seq.toString() && !device_seq.toString().isEmpty()) {
-			DnaSequence dnaSeq = new DnaSequenceImpl();
+			DnaSequence dnaSeq = SBOLFactory.createDnaSequence();
 			dnaSeq.setURI(URI.create(dc.getURI() + "_sequence"));
 			addURI(URI.create(dc.getURI() + "_sequence").toASCIIString());
 			
@@ -456,8 +452,6 @@ public class Eugene2SBOL {
 //		return sb.toString();
 //	}
 	
-	/*
-	 */
 	/**
 	 * The toDnaComponent(PartType, DnaComponent) method compiles a Eugene Part Type into 
 	 * an SBOL DNAComponent w/o SequenceAnnotations and w/o DNASequence.
@@ -505,12 +499,11 @@ public class Eugene2SBOL {
 	}
 	
 	/*
-	 * Part --> basic DnaComponent
+	 * Part --> basic DnaComponent w/ DnaSequence (if set)
 	 */
 	public static DnaComponent toDnaComponent(Part objPart, DnaComponent parent, int pos) {
 		
 		DnaComponent c = SBOLFactory.createDnaComponent();
-//		System.out.println("[toDnaComponent(Part)] -> " + objPart);
 
 		/*
 		 * Part Type
@@ -566,24 +559,33 @@ public class Eugene2SBOL {
 		c.setURI(partURI);
 		addURI(partURI.toASCIIString());
 		
+		
 		/*
-		 *  SEQUENCE information			
+		 *  SEQUENCE information
+		 *  
+		 * there must be a non-empty SEQUENCE property for the part
 		 */
-//		System.out.println("[Eugene2SBOL] -> " + objPart.getName()+" -> "+objPart.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY));
-		if(null != objPart.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY)) {
+		if(null != objPart.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY) &&
+				null != objPart.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY).getTxt() &&
+				!(objPart.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY).getTxt().isEmpty())) {
+
+			// SBOL DnaSequence object
 			DnaSequence seq = SBOLFactory.createDnaSequence();
+			// URI of the DnaSequence
 			seq.setURI(URI.create(partURI+"_sequence"));
-			addURI(URI.create(partURI+"_sequence").toASCIIString());
-			
+			// the nucleotides of the DNA sequence 
 			seq.setNucleotides(objPart.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY).getTxt().toLowerCase());
 			c.setDnaSequence(seq);
+			
+			// keep track of the URIs
+			addURI(URI.create(partURI+"_sequence").toASCIIString());
 		}
 		return c;
 	}
 	
 	
 	/*
-	 * Part --> basic DnaComponent
+	 * PartType --> basic DnaComponent w/o DnaSequence
 	 */
 	public static DnaComponent toDnaComponent(PartType objType, DnaComponent parent, int pos) {
 		

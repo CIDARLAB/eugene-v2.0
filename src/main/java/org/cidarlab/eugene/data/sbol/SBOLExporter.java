@@ -38,6 +38,8 @@ import org.sbolstandard.core.SBOLFactory;
 
 
 /**
+ * The SBOLExporter class provides methods to serialize Eugene objects 
+ * into an SBOL-compliant file format.
  * 
  * @author Ernst Oberortner
  */
@@ -66,6 +68,8 @@ public class SBOLExporter {
 
 		try {
 
+			// EugeneContainer
+			// either EugeneArray or EugeneCollection
 			if(ne instanceof EugeneContainer) {
 				org.sbolstandard.core.Collection sbolCollection = 
 						Eugene2SBOL.convert(
@@ -75,6 +79,8 @@ public class SBOLExporter {
 				// add the DnaComponent to this document
 				document.addContent(sbolCollection);
 
+			// Eugene Component
+			// either primitive (Part) or composite (Device)
 			} else if(ne instanceof Component) {
 				DnaComponent dnaComponent = 
 						Eugene2SBOL.convert((Component)ne, null, 0);
@@ -82,15 +88,15 @@ public class SBOLExporter {
 				// add the DnaComponent to this document
 				document.addContent(dnaComponent);
 
+			// Invalid
+			// e.g. Eugene Variable or Eugene PropertyValue
 			} else {
 				throw new EugeneException("Cannot serialize " + ne.getName() + " to SBOL!");
 			}
 			
-			
 			return document;
 			
 		} catch(Exception e) {
-			e.printStackTrace();
 			throw new EugeneException(e.getLocalizedMessage());
 		}
 	}
@@ -154,18 +160,20 @@ public class SBOLExporter {
 			throws EugeneException {
 
 		try {
+			// creating the directories
 			SBOLExporter.createDirectories(file);
 			
-			// open a file stream
-			FileOutputStream fos;
+			// creating the file
 			File f = new File(file);
 			if (!f.exists()) {
 				f.createNewFile();
 			}
-			fos = new FileOutputStream(f);
+			
+			// open a file stream
+			FileOutputStream fos = new FileOutputStream(f);
 	
-			// write the document to the file stream
-			// using the SBOLFactory
+			// write the SBOLDocument in-memory object onto 
+			// the file stream using the SBOLFactory
 			SBOLFactory.write(document, fos);
 	
 			// flush and close the stream
