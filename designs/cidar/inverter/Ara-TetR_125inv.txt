@@ -1,0 +1,29 @@
+// INVERTER ``TOPOLOGY''
+template pConst, [rB0030m|rB0031m|rB0032m|rB0033m|rB0034m], cAraC, term, pAraBAD1, [rB0030m|rB0031m|rB0032m|rB0033m|rB0034m], cTetR, term, pAraBAD2, [rB0030m|rB0031m|rB0032m|rB0033m|rB0034m], cGFP, term, pTetR, [rB0030m|rB0031m|rB0032m|rB0033m|rB0034m], cRFP, term
+
+all_forward
+
+not rB0030m nextto cGFP or rB0030m nextto cTetR
+not cGFP nextto rB0030m or cTetR nextto rB0030m
+not rB0030m nextto cTetR or rB0030m nextto cGFP
+not cTetR nextto rB0030m or cGFP nextto rB0030m
+
+not rB0031m nextto cGFP or rB0031m nextto cTetR
+not cGFP nextto rB0031m or cTetR nextto rB0031m
+not rB0031m nextto cTetR or rB0031m nextto cGFP  
+not cTetR nextto rB0031m or cGFP nextto rB0031m
+
+not rB0032m nextto cGFP or rB0032m nextto cTetR
+not cGFP nextto rB0032m or cTetR nextto rB0032m
+not rB0032m nextto cTetR or rB0032m nextto cGFP  
+not cTetR nextto rB0032m or cGFP nextto rB0032m
+
+not rB0033m nextto cGFP or rB0033m nextto cTetR
+not cGFP nextto rB0033m or cTetR nextto rB0033m
+not rB0033m nextto cTetR or rB0033m nextto cGFP  
+not cTetR nextto rB0033m or cGFP nextto rB0033m
+
+not rB0034m nextto cGFP or rB0034m nextto cTetR
+not cGFP nextto rB0034m or cTetR nextto rB0034m
+not rB0034m nextto cTetR or rB0034m nextto cGFP
+not cTetR nextto rB0034m or cGFP nextto rB0034m

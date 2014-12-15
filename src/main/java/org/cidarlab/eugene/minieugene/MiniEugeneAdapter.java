@@ -162,6 +162,8 @@ public class MiniEugeneAdapter {
 				org.cidarlab.eugene.dom.Component c = null;
 				
 				try {
+//					System.out.println(this.interp.get(solution[k].getName()));
+					
 					c = (org.cidarlab.eugene.dom.Component)this.interp.get(solution[k].getName());
 				} catch(EugeneException ee) {
 					ee.printStackTrace();

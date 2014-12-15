@@ -28,6 +28,7 @@ import java.io.FileOutputStream;
 import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.data.sbol.mapping.Eugene2SBOL;
+import org.cidarlab.eugene.dom.ComponentType;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.Component;
 import org.cidarlab.eugene.dom.imp.container.EugeneContainer;
@@ -88,6 +89,16 @@ public class SBOLExporter {
 				// add the DnaComponent to this document
 				document.addContent(dnaComponent);
 
+			// Eugene ComponentType
+			// in Eugene v2.0 --> only PartType
+			} else if(ne instanceof ComponentType) {
+
+				DnaComponent dnaComponent = 
+						Eugene2SBOL.convert((ComponentType)ne, null, 0);
+
+				// add the DnaComponent to this document
+				document.addContent(dnaComponent);
+				
 			// Invalid
 			// e.g. Eugene Variable or Eugene PropertyValue
 			} else {

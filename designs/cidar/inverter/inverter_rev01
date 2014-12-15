@@ -1,0 +1,100 @@
+/*------------
+ * PART TYPES
+ *------------*/
+PartType ConstPromoter();
+PartType RepPromoter();
+
+PartType RBS();
+
+PartType CDS();
+PartType Reporter();
+
+PartType Terminator();
+
+/*-------
+ * PARTS
+ *------*/
+ConstPromoter J23100(.SEQUENCE("ATAT"), .PIGEON("p J23100 14 nl"));
+
+RepPromoter pBAD1(.SEQUENCE("ATCG"), .PIGEON("p pBAD 14"));
+RepPromoter pBAD2(.SEQUENCE("ATCG"), .PIGEON("p pBAD 14"));
+RepPromoter pTet(.SEQUENCE("ATCG"), .PIGEON("p pTet 14"));
+
+RBS B0030m(.SEQUENCE("ATCG"), .PIGEON("r B0030m 14"));
+RBS B0031m(.SEQUENCE("ATCG"), .PIGEON("r B0031m 14"));
+RBS B0032m(.SEQUENCE("ATCG"), .PIGEON("r B0032m 14"));
+RBS B0033m(.SEQUENCE("ATCG"), .PIGEON("r B0033m 14"));
+RBS B0034m1(.SEQUENCE("ATCG"), .PIGEON("r B0034m1 14"));
+
+CDS AraC(.SEQUENCE("ATCG"), .PIGEON("c AraC 2"));
+CDS TetR(.SEQUENCE("ATCG"), .PIGEON("c TetR 9"));
+
+Reporter GFP(.SEQUENCE("ATCG"), .PIGEON("c GFP 4"));
+Reporter RFP(.SEQUENCE("ATCG"), .PIGEON("c RFP 6"));
+
+Terminator term(.SEQUENCE("ATCG"), .PIGEON("t Term 14 nl"));
+
+/*---------------------------------
+ * Inverter Topology
+ * using a Eugene Device Template
+ *---------------------------------*/
+Device Inverter(
+	ConstPromoter, RBS, CDS, Terminator,
+	RepPromoter, RBS, CDS, Terminator,
+	RepPromoter, RBS, Reporter, Terminator,
+	RepPromoter, RBS, Reporter, Terminator
+	); 
+
+/****
+// INVERTER ``TOPOLOGY''
+template 
+	pConst, [rB0030m|rB0031m|rB0032m|rB0033m|rB0034m], cAraC, term, 
+	pAraBAD1, [rB0030m|rB0031m|rB0032m|rB0033m|rB0034m], cTetR, term, 
+	pAraBAD2, [rB0030m|rB0031m|rB0032m|rB0033m|rB0034m], cGFP, term, 
+	pTetR, [rB0030m|rB0031m|rB0032m|rB0033m|rB0034m], cRFP, term
+***/
+
+Rule validInverters(ON Inverter:
+
+	GFP with RFP AND
+	GFP before RFP AND
+	
+	AraC with pBAD1 AND
+	AraC with pBAD2 AND
+	TetR with pTet AND
+
+	pBAD1 drives GFP AND
+	pBAD2 drives TetR AND
+	pTet drives RFP AND
+
+	all_forward AND
+
+	// IF B0030m THEN nextto GFP and TetR
+	not B0030m nextto GFP or B0030m nextto TetR AND
+	not GFP nextto B0030m or TetR nextto B0030m AND
+	not B0030m nextto TetR or B0030m nextto GFP AND
+	not TetR nextto B0030m or GFP nextto B0030m AND
+
+	not B0031m nextto GFP or B0031m nextto TetR AND
+	not GFP nextto B0031m or TetR nextto B0031m AND
+	not B0031m nextto TetR or B0031m nextto GFP AND
+	not TetR nextto B0031m or GFP nextto B0031m AND
+
+	not B0032m nextto GFP or B0032m nextto TetR AND
+	not GFP nextto B0032m or TetR nextto B0032m AND
+	not B0032m nextto TetR or B0032m nextto GFP AND  
+	not TetR nextto B0032m or GFP nextto B0032m AND
+
+	not B0033m nextto GFP or B0033m nextto TetR AND
+	not GFP nextto B0033m or TetR nextto B0033m AND
+	not B0033m nextto TetR or B0033m nextto GFP AND  
+	not TetR nextto B0033m or GFP nextto B0033m AND
+
+	not B0034m1 nextto GFP or B0034m1 nextto TetR AND
+	not GFP nextto B0034m1 or TetR nextto B0034m1 AND
+	not B0034m1 nextto TetR or B0034m1 nextto GFP AND
+	not TetR nextto B0034m1 or GFP nextto B0034m1);
+
+inverters = product(Inverter);
+
+
