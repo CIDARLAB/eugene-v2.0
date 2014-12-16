@@ -26,11 +26,9 @@ package org.cidarlab.eugene.data.sbol.mapping;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.biojava.bio.seq.DNATools;
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.dom.*;
@@ -44,16 +42,15 @@ import org.sbolstandard.core.DnaSequence;
 import org.sbolstandard.core.SBOLFactory;
 import org.sbolstandard.core.SequenceAnnotation;
 import org.sbolstandard.core.StrandType;
-import org.sbolstandard.core.impl.DnaSequenceImpl;
 import org.sbolstandard.core.util.SequenceOntology;
 
 
 /**
  * The Eugene2SBOL class provides static methods for compiling 
- * a Eugene component or container into an SBOL equivalent.
+ * instances of the Eugene Date Object Model (DOM) 
+ * into SBOL equivalents.
  *  
- * The Eugene2SBOL compiler is based on the 
- * following mapping table:
+ * The Eugene2SBOL compiler is based on the following mapping table:
  *       Eugene        |                         SBOL
  * --------------------+--------------------------------------------------
  *      Container      |   Collection
@@ -93,16 +90,35 @@ public class Eugene2SBOL {
 //		reusedComponents = new HashMap<String, URI>();
 		
 		Collection sbolCollection = SBOLFactory.createCollection();
+
+		/*
+		 * NAME
+		 */
+		sbolCollection.setName(objContainer.getName());
+		
+		/*
+		 * DESCRIPTION
+		 */
 		sbolCollection.setDescription(objContainer.getName());
+		
+		/*
+		 * DISPLAY-ID
+		 */
 		sbolCollection.setDisplayId(objContainer.getName());
 
 		try {
+			/*
+			 * URI
+			 */
 			sbolCollection.setURI(URI.create(DEFAULT_URI + "/" + objContainer.getName()));
 			addURI(URI.create(DEFAULT_URI + "/" + objContainer.getName()).toASCIIString());
 		} catch (Exception e) {
 			throw new EugeneException(e.toString());
 		}
 
+		/*
+		 * ELEMENTS of the COLLECTION
+		 */
 		for(NamedElement element : objContainer.getElements()) {
 			if(element instanceof Component) {
 				sbolCollection.addComponent(

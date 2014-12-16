@@ -301,7 +301,8 @@ public void includeFile(String name) {
         setCharStream(new ANTLRFileStream(name));
         reset();
     } catch (Exception fnf) {
-        fnf.printStackTrace();
+        throw new IllegalArgumentException(fnf.getMessage());
+        //fnf.printStackTrace();
     }
 }
 }
@@ -396,7 +397,28 @@ public void printFunctions() {
 
 @Override
 public void reportError(RecognitionException re) {
-    printError(re.getLocalizedMessage());
+    printError(
+        this.getErrorMessage(re, this.getTokenNames()));
+}
+
+public String getErrorMessage(RecognitionException e,
+                              String[] tokenNames) {
+    List stack = getRuleInvocationStack(e, this.getClass().getName());
+    String msg = null;
+    if ( e instanceof NoViableAltException ) {
+        NoViableAltException nvae = (NoViableAltException)e;
+        msg = " no viable alt; token="+e.token+
+        " (decision="+nvae.decisionNumber+
+        " state "+nvae.stateNumber+")"+
+        " decision=<<"+nvae.grammarDecisionDescription+">>";
+    } else {
+        msg = super.getErrorMessage(e, tokenNames);
+    }
+    return stack+" "+msg;
+}
+
+public String getTokenErrorDisplay(Token t) {
+    return t.toString();
 }
 
 //method used to collect individual members in declaration, used by grammar rule list

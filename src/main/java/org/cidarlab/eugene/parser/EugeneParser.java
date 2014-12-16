@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g 2014-12-03 11:48:24
+// $ANTLR 3.5.1 /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g 2014-12-15 20:14:07
 
 /*
 Copyright (c) 2012 Boston University.
@@ -446,7 +446,28 @@ public class EugeneParser extends Parser {
 
 	@Override
 	public void reportError(RecognitionException re) {
-	    printError(re.getLocalizedMessage());
+	    printError(
+	        this.getErrorMessage(re, this.getTokenNames()));
+	}
+
+	public String getErrorMessage(RecognitionException e,
+	                              String[] tokenNames) {
+	    List stack = getRuleInvocationStack(e, this.getClass().getName());
+	    String msg = null;
+	    if ( e instanceof NoViableAltException ) {
+	        NoViableAltException nvae = (NoViableAltException)e;
+	        msg = " no viable alt; token="+e.token+
+	        " (decision="+nvae.decisionNumber+
+	        " state "+nvae.stateNumber+")"+
+	        " decision=<<"+nvae.grammarDecisionDescription+">>";
+	    } else {
+	        msg = super.getErrorMessage(e, tokenNames);
+	    }
+	    return stack+" "+msg;
+	}
+
+	public String getTokenErrorDisplay(Token t) {
+	    return t.toString();
 	}
 
 	//method used to collect individual members in declaration, used by grammar rule list
@@ -913,7 +934,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "prog"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:867:1: prog[boolean defer] : ( statement[defer] | function_definition[true] )* EOF ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:889:1: prog[boolean defer] : ( statement[defer] | function_definition[true] )* EOF ;
 	public final EugeneParser.prog_return prog(boolean defer) throws RecognitionException, EugeneReturnException {
 		EugeneParser.prog_return retval = new EugeneParser.prog_return();
 		retval.start = input.LT(1);
@@ -927,13 +948,13 @@ public class EugeneParser extends Parser {
 		Object EOF3_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:874:2: ( ( statement[defer] | function_definition[true] )* EOF )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:874:4: ( statement[defer] | function_definition[true] )* EOF
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:896:2: ( ( statement[defer] | function_definition[true] )* EOF )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:896:4: ( statement[defer] | function_definition[true] )* EOF
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:874:4: ( statement[defer] | function_definition[true] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:896:4: ( statement[defer] | function_definition[true] )*
 			loop1:
 			while (true) {
 				int alt1=3;
@@ -1138,7 +1159,7 @@ public class EugeneParser extends Parser {
 				}
 				switch (alt1) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:874:5: statement[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:896:5: statement[defer]
 					{
 					pushFollow(FOLLOW_statement_in_prog1078);
 					statement1=statement(defer);
@@ -1149,7 +1170,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:874:24: function_definition[true]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:896:24: function_definition[true]
 					{
 					pushFollow(FOLLOW_function_definition_in_prog1083);
 					function_definition2=function_definition(true);
@@ -1199,7 +1220,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "statement"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:878:1: statement[boolean defer] returns [NamedElement objReturnValue] : ( includeStatement[defer] ( SEMIC )? | declarationStatement[defer] SEMIC | printStatement[defer] SEMIC | assignment[defer] SEMIC |de= dataExchange[defer] SEMIC | imperativeStatements[defer] | function_call[defer] SEMIC |bif= built_in_function[defer] SEMIC | stand_alone_function[defer] SEMIC | return_statement[defer] SEMIC );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:900:1: statement[boolean defer] returns [NamedElement objReturnValue] : ( includeStatement[defer] ( SEMIC )? | declarationStatement[defer] SEMIC | printStatement[defer] SEMIC | assignment[defer] SEMIC |de= dataExchange[defer] SEMIC | imperativeStatements[defer] | function_call[defer] SEMIC |bif= built_in_function[defer] SEMIC | stand_alone_function[defer] SEMIC | return_statement[defer] SEMIC );
 	public final EugeneParser.statement_return statement(boolean defer) throws RecognitionException, EugeneReturnException {
 		EugeneParser.statement_return retval = new EugeneParser.statement_return();
 		retval.start = input.LT(1);
@@ -1237,7 +1258,7 @@ public class EugeneParser extends Parser {
 		Object SEMIC20_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:881:2: ( includeStatement[defer] ( SEMIC )? | declarationStatement[defer] SEMIC | printStatement[defer] SEMIC | assignment[defer] SEMIC |de= dataExchange[defer] SEMIC | imperativeStatements[defer] | function_call[defer] SEMIC |bif= built_in_function[defer] SEMIC | stand_alone_function[defer] SEMIC | return_statement[defer] SEMIC )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:903:2: ( includeStatement[defer] ( SEMIC )? | declarationStatement[defer] SEMIC | printStatement[defer] SEMIC | assignment[defer] SEMIC |de= dataExchange[defer] SEMIC | imperativeStatements[defer] | function_call[defer] SEMIC |bif= built_in_function[defer] SEMIC | stand_alone_function[defer] SEMIC | return_statement[defer] SEMIC )
 			int alt3=10;
 			switch ( input.LA(1) ) {
 			case HASHMARK:
@@ -1372,7 +1393,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt3) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:882:3: includeStatement[defer] ( SEMIC )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:904:3: includeStatement[defer] ( SEMIC )?
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1383,7 +1404,7 @@ public class EugeneParser extends Parser {
 
 					adaptor.addChild(root_0, includeStatement4.getTree());
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:882:27: ( SEMIC )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:904:27: ( SEMIC )?
 					int alt2=2;
 					int LA2_0 = input.LA(1);
 					if ( (LA2_0==SEMIC) ) {
@@ -1391,7 +1412,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt2) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:882:28: SEMIC
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:904:28: SEMIC
 							{
 							SEMIC5=(Token)match(input,SEMIC,FOLLOW_SEMIC_in_statement1119); 
 							SEMIC5_tree = (Object)adaptor.create(SEMIC5);
@@ -1405,7 +1426,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:883:4: declarationStatement[defer] SEMIC
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:905:4: declarationStatement[defer] SEMIC
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1423,7 +1444,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:884:4: printStatement[defer] SEMIC
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:906:4: printStatement[defer] SEMIC
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1441,7 +1462,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 4 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:885:4: assignment[defer] SEMIC
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:907:4: assignment[defer] SEMIC
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1459,7 +1480,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 5 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:886:4: de= dataExchange[defer] SEMIC
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:908:4: de= dataExchange[defer] SEMIC
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1491,7 +1512,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 6 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:900:4: imperativeStatements[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:922:4: imperativeStatements[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1505,7 +1526,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 7 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:901:4: function_call[defer] SEMIC
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:923:4: function_call[defer] SEMIC
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1523,7 +1544,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 8 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:902:4: bif= built_in_function[defer] SEMIC
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:924:4: bif= built_in_function[defer] SEMIC
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1576,7 +1597,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 9 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:938:4: stand_alone_function[defer] SEMIC
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:960:4: stand_alone_function[defer] SEMIC
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1594,7 +1615,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 10 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:939:4: return_statement[defer] SEMIC
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:961:4: return_statement[defer] SEMIC
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1641,7 +1662,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "declarationStatement"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:948:1: declarationStatement[boolean defer] returns [String name] : (v= variableDeclaration[defer] | containerDeclaration[defer] | propertyDeclaration[defer] | typeDeclaration[defer] | instantiation[defer] | interactionDeclaration[defer] | deviceDeclaration[defer] | ruleDeclaration[defer] | rulebuilderDeclaration[defer] | grammarDeclaration[defer] );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:970:1: declarationStatement[boolean defer] returns [String name] : (v= variableDeclaration[defer] | containerDeclaration[defer] | propertyDeclaration[defer] | typeDeclaration[defer] | instantiation[defer] | interactionDeclaration[defer] | deviceDeclaration[defer] | ruleDeclaration[defer] | rulebuilderDeclaration[defer] | grammarDeclaration[defer] );
 	public final EugeneParser.declarationStatement_return declarationStatement(boolean defer) throws RecognitionException {
 		EugeneParser.declarationStatement_return retval = new EugeneParser.declarationStatement_return();
 		retval.start = input.LT(1);
@@ -1661,7 +1682,7 @@ public class EugeneParser extends Parser {
 
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:950:2: (v= variableDeclaration[defer] | containerDeclaration[defer] | propertyDeclaration[defer] | typeDeclaration[defer] | instantiation[defer] | interactionDeclaration[defer] | deviceDeclaration[defer] | ruleDeclaration[defer] | rulebuilderDeclaration[defer] | grammarDeclaration[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:972:2: (v= variableDeclaration[defer] | containerDeclaration[defer] | propertyDeclaration[defer] | typeDeclaration[defer] | instantiation[defer] | interactionDeclaration[defer] | deviceDeclaration[defer] | ruleDeclaration[defer] | rulebuilderDeclaration[defer] | grammarDeclaration[defer] )
 			int alt4=10;
 			switch ( input.LA(1) ) {
 			case BOOL:
@@ -1746,7 +1767,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt4) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:950:4: v= variableDeclaration[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:972:4: v= variableDeclaration[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1765,7 +1786,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:955:4: containerDeclaration[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:977:4: containerDeclaration[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1779,7 +1800,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:956:4: propertyDeclaration[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:978:4: propertyDeclaration[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1793,7 +1814,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 4 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:957:4: typeDeclaration[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:979:4: typeDeclaration[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1807,7 +1828,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 5 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:958:4: instantiation[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:980:4: instantiation[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1821,7 +1842,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 6 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:959:4: interactionDeclaration[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:981:4: interactionDeclaration[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1835,7 +1856,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 7 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:960:4: deviceDeclaration[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:982:4: deviceDeclaration[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1849,7 +1870,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 8 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:961:4: ruleDeclaration[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:983:4: ruleDeclaration[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1863,7 +1884,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 9 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:962:4: rulebuilderDeclaration[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:984:4: rulebuilderDeclaration[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1877,7 +1898,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 10 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:963:4: grammarDeclaration[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:985:4: grammarDeclaration[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -1920,7 +1941,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "variableDeclaration"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:966:1: variableDeclaration[boolean defer] returns [String varname] : ( NUM n= numdecl[defer] | TXT t= txtdecl[defer] | TXT LEFTSBR RIGHTSBR tl= txtlistdecl[defer] | NUM LEFTSBR RIGHTSBR nl= numlistdecl[defer] | ( BOOLEAN | BOOL ) b= booldecl[defer] );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:988:1: variableDeclaration[boolean defer] returns [String varname] : ( NUM n= numdecl[defer] | TXT t= txtdecl[defer] | TXT LEFTSBR RIGHTSBR tl= txtlistdecl[defer] | NUM LEFTSBR RIGHTSBR nl= numlistdecl[defer] | ( BOOLEAN | BOOL ) b= booldecl[defer] );
 	public final EugeneParser.variableDeclaration_return variableDeclaration(boolean defer) throws RecognitionException {
 		EugeneParser.variableDeclaration_return retval = new EugeneParser.variableDeclaration_return();
 		retval.start = input.LT(1);
@@ -1953,7 +1974,7 @@ public class EugeneParser extends Parser {
 		Object set38_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:968:2: ( NUM n= numdecl[defer] | TXT t= txtdecl[defer] | TXT LEFTSBR RIGHTSBR tl= txtlistdecl[defer] | NUM LEFTSBR RIGHTSBR nl= numlistdecl[defer] | ( BOOLEAN | BOOL ) b= booldecl[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:990:2: ( NUM n= numdecl[defer] | TXT t= txtdecl[defer] | TXT LEFTSBR RIGHTSBR tl= txtlistdecl[defer] | NUM LEFTSBR RIGHTSBR nl= numlistdecl[defer] | ( BOOLEAN | BOOL ) b= booldecl[defer] )
 			int alt5=5;
 			switch ( input.LA(1) ) {
 			case NUM:
@@ -2017,7 +2038,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt5) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:968:4: NUM n= numdecl[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:990:4: NUM n= numdecl[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -2040,7 +2061,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:973:4: TXT t= txtdecl[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:995:4: TXT t= txtdecl[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -2063,7 +2084,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:978:4: TXT LEFTSBR RIGHTSBR tl= txtlistdecl[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1000:4: TXT LEFTSBR RIGHTSBR tl= txtlistdecl[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -2094,7 +2115,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 4 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:983:4: NUM LEFTSBR RIGHTSBR nl= numlistdecl[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1005:4: NUM LEFTSBR RIGHTSBR nl= numlistdecl[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -2125,7 +2146,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 5 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:988:4: ( BOOLEAN | BOOL ) b= booldecl[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1010:4: ( BOOLEAN | BOOL ) b= booldecl[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -2183,7 +2204,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "numdecl"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:995:1: numdecl[boolean defer] returns [String varname] : ( ID ( COMMA numdecl[defer] )? | ID EQUALS (ex= expr[defer] ) ( COMMA numdecl[defer] )? );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1017:1: numdecl[boolean defer] returns [String varname] : ( ID ( COMMA numdecl[defer] )? | ID EQUALS (ex= expr[defer] ) ( COMMA numdecl[defer] )? );
 	public final EugeneParser.numdecl_return numdecl(boolean defer) throws RecognitionException {
 		EugeneParser.numdecl_return retval = new EugeneParser.numdecl_return();
 		retval.start = input.LT(1);
@@ -2206,7 +2227,7 @@ public class EugeneParser extends Parser {
 		Object COMMA44_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:997:2: ( ID ( COMMA numdecl[defer] )? | ID EQUALS (ex= expr[defer] ) ( COMMA numdecl[defer] )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1019:2: ( ID ( COMMA numdecl[defer] )? | ID EQUALS (ex= expr[defer] ) ( COMMA numdecl[defer] )? )
 			int alt8=2;
 			int LA8_0 = input.LA(1);
 			if ( (LA8_0==ID) ) {
@@ -2240,7 +2261,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt8) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:997:4: ID ( COMMA numdecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1019:4: ID ( COMMA numdecl[defer] )?
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -2255,7 +2276,7 @@ public class EugeneParser extends Parser {
 					    retval.varname = (ID39!=null?ID39.getText():null);
 					}
 						
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1002:5: ( COMMA numdecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1024:5: ( COMMA numdecl[defer] )?
 					int alt6=2;
 					int LA6_0 = input.LA(1);
 					if ( (LA6_0==COMMA) ) {
@@ -2266,7 +2287,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt6) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1002:6: COMMA numdecl[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1024:6: COMMA numdecl[defer]
 							{
 							COMMA40=(Token)match(input,COMMA,FOLLOW_COMMA_in_numdecl1404); 
 							COMMA40_tree = (Object)adaptor.create(COMMA40);
@@ -2286,7 +2307,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1003:4: ID EQUALS (ex= expr[defer] ) ( COMMA numdecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1025:4: ID EQUALS (ex= expr[defer] ) ( COMMA numdecl[defer] )?
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -2299,8 +2320,8 @@ public class EugeneParser extends Parser {
 					EQUALS43_tree = (Object)adaptor.create(EQUALS43);
 					adaptor.addChild(root_0, EQUALS43_tree);
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1003:14: (ex= expr[defer] )
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1003:15: ex= expr[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1025:14: (ex= expr[defer] )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1025:15: ex= expr[defer]
 					{
 					pushFollow(FOLLOW_expr_in_numdecl1421);
 					ex=expr(defer);
@@ -2316,7 +2337,7 @@ public class EugeneParser extends Parser {
 					    retval.varname = (ID42!=null?ID42.getText():null);
 					}
 						
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1008:5: ( COMMA numdecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1030:5: ( COMMA numdecl[defer] )?
 					int alt7=2;
 					int LA7_0 = input.LA(1);
 					if ( (LA7_0==COMMA) ) {
@@ -2327,7 +2348,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt7) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1008:6: COMMA numdecl[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1030:6: COMMA numdecl[defer]
 							{
 							COMMA44=(Token)match(input,COMMA,FOLLOW_COMMA_in_numdecl1429); 
 							COMMA44_tree = (Object)adaptor.create(COMMA44);
@@ -2376,7 +2397,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "txtdecl"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1011:1: txtdecl[boolean defer] returns [String varname] : ( ID ( COMMA txtdecl[defer] )? |var= ID EQUALS let= expr[defer] ( COMMA txtdecl[defer] )? );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1033:1: txtdecl[boolean defer] returns [String varname] : ( ID ( COMMA txtdecl[defer] )? |var= ID EQUALS let= expr[defer] ( COMMA txtdecl[defer] )? );
 	public final EugeneParser.txtdecl_return txtdecl(boolean defer) throws RecognitionException {
 		EugeneParser.txtdecl_return retval = new EugeneParser.txtdecl_return();
 		retval.start = input.LT(1);
@@ -2399,7 +2420,7 @@ public class EugeneParser extends Parser {
 		Object COMMA50_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1013:2: ( ID ( COMMA txtdecl[defer] )? |var= ID EQUALS let= expr[defer] ( COMMA txtdecl[defer] )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1035:2: ( ID ( COMMA txtdecl[defer] )? |var= ID EQUALS let= expr[defer] ( COMMA txtdecl[defer] )? )
 			int alt11=2;
 			int LA11_0 = input.LA(1);
 			if ( (LA11_0==ID) ) {
@@ -2433,7 +2454,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt11) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1013:4: ID ( COMMA txtdecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1035:4: ID ( COMMA txtdecl[defer] )?
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -2448,7 +2469,7 @@ public class EugeneParser extends Parser {
 								retval.varname = (ID46!=null?ID46.getText():null);
 							}
 							
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1019:5: ( COMMA txtdecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1041:5: ( COMMA txtdecl[defer] )?
 					int alt9=2;
 					int LA9_0 = input.LA(1);
 					if ( (LA9_0==COMMA) ) {
@@ -2459,7 +2480,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt9) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1019:6: COMMA txtdecl[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1041:6: COMMA txtdecl[defer]
 							{
 							COMMA47=(Token)match(input,COMMA,FOLLOW_COMMA_in_txtdecl1458); 
 							COMMA47_tree = (Object)adaptor.create(COMMA47);
@@ -2479,7 +2500,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1021:4: var= ID EQUALS let= expr[defer] ( COMMA txtdecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1043:4: var= ID EQUALS let= expr[defer] ( COMMA txtdecl[defer] )?
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -2504,7 +2525,7 @@ public class EugeneParser extends Parser {
 								retval.varname = (var!=null?var.getText():null);
 							}
 							
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1027:5: ( COMMA txtdecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1049:5: ( COMMA txtdecl[defer] )?
 					int alt10=2;
 					int LA10_0 = input.LA(1);
 					if ( (LA10_0==COMMA) ) {
@@ -2515,7 +2536,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt10) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1027:6: COMMA txtdecl[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1049:6: COMMA txtdecl[defer]
 							{
 							COMMA50=(Token)match(input,COMMA,FOLLOW_COMMA_in_txtdecl1485); 
 							COMMA50_tree = (Object)adaptor.create(COMMA50);
@@ -2564,7 +2585,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "txtlistdecl"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1030:1: txtlistdecl[boolean defer] returns [String varname] : ( ID ( COMMA txtlistdecl[defer] )? |var= ID EQUALS let= expr[defer] ( COMMA txtlistdecl[defer] )? );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1052:1: txtlistdecl[boolean defer] returns [String varname] : ( ID ( COMMA txtlistdecl[defer] )? |var= ID EQUALS let= expr[defer] ( COMMA txtlistdecl[defer] )? );
 	public final EugeneParser.txtlistdecl_return txtlistdecl(boolean defer) throws RecognitionException {
 		EugeneParser.txtlistdecl_return retval = new EugeneParser.txtlistdecl_return();
 		retval.start = input.LT(1);
@@ -2587,7 +2608,7 @@ public class EugeneParser extends Parser {
 		Object COMMA56_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1032:2: ( ID ( COMMA txtlistdecl[defer] )? |var= ID EQUALS let= expr[defer] ( COMMA txtlistdecl[defer] )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1054:2: ( ID ( COMMA txtlistdecl[defer] )? |var= ID EQUALS let= expr[defer] ( COMMA txtlistdecl[defer] )? )
 			int alt14=2;
 			int LA14_0 = input.LA(1);
 			if ( (LA14_0==ID) ) {
@@ -2621,7 +2642,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt14) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1032:4: ID ( COMMA txtlistdecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1054:4: ID ( COMMA txtlistdecl[defer] )?
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -2636,7 +2657,7 @@ public class EugeneParser extends Parser {
 								retval.varname = (ID52!=null?ID52.getText():null);
 							}
 							
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1038:5: ( COMMA txtlistdecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1060:5: ( COMMA txtlistdecl[defer] )?
 					int alt12=2;
 					int LA12_0 = input.LA(1);
 					if ( (LA12_0==COMMA) ) {
@@ -2647,7 +2668,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt12) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1038:6: COMMA txtlistdecl[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1060:6: COMMA txtlistdecl[defer]
 							{
 							COMMA53=(Token)match(input,COMMA,FOLLOW_COMMA_in_txtlistdecl1514); 
 							COMMA53_tree = (Object)adaptor.create(COMMA53);
@@ -2667,7 +2688,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1039:4: var= ID EQUALS let= expr[defer] ( COMMA txtlistdecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1061:4: var= ID EQUALS let= expr[defer] ( COMMA txtlistdecl[defer] )?
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -2693,7 +2714,7 @@ public class EugeneParser extends Parser {
 								retval.varname = (var!=null?var.getText():null);
 							}
 							
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1045:5: ( COMMA txtlistdecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1067:5: ( COMMA txtlistdecl[defer] )?
 					int alt13=2;
 					int LA13_0 = input.LA(1);
 					if ( (LA13_0==COMMA) ) {
@@ -2704,7 +2725,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt13) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1045:6: COMMA txtlistdecl[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1067:6: COMMA txtlistdecl[defer]
 							{
 							COMMA56=(Token)match(input,COMMA,FOLLOW_COMMA_in_txtlistdecl1542); 
 							COMMA56_tree = (Object)adaptor.create(COMMA56);
@@ -2753,7 +2774,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "numlistdecl"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1048:1: numlistdecl[boolean defer] returns [String varname] : ( ID ( COMMA numlistdecl[defer] )? |var= ID EQUALS let= expr[defer] ( COMMA numlistdecl[defer] )? );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1070:1: numlistdecl[boolean defer] returns [String varname] : ( ID ( COMMA numlistdecl[defer] )? |var= ID EQUALS let= expr[defer] ( COMMA numlistdecl[defer] )? );
 	public final EugeneParser.numlistdecl_return numlistdecl(boolean defer) throws RecognitionException {
 		EugeneParser.numlistdecl_return retval = new EugeneParser.numlistdecl_return();
 		retval.start = input.LT(1);
@@ -2776,7 +2797,7 @@ public class EugeneParser extends Parser {
 		Object COMMA62_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1050:2: ( ID ( COMMA numlistdecl[defer] )? |var= ID EQUALS let= expr[defer] ( COMMA numlistdecl[defer] )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1072:2: ( ID ( COMMA numlistdecl[defer] )? |var= ID EQUALS let= expr[defer] ( COMMA numlistdecl[defer] )? )
 			int alt17=2;
 			int LA17_0 = input.LA(1);
 			if ( (LA17_0==ID) ) {
@@ -2810,7 +2831,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt17) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1050:4: ID ( COMMA numlistdecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1072:4: ID ( COMMA numlistdecl[defer] )?
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -2825,7 +2846,7 @@ public class EugeneParser extends Parser {
 								retval.varname = (ID58!=null?ID58.getText():null);
 							}
 							
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1056:5: ( COMMA numlistdecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1078:5: ( COMMA numlistdecl[defer] )?
 					int alt15=2;
 					int LA15_0 = input.LA(1);
 					if ( (LA15_0==COMMA) ) {
@@ -2836,7 +2857,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt15) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1056:6: COMMA numlistdecl[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1078:6: COMMA numlistdecl[defer]
 							{
 							COMMA59=(Token)match(input,COMMA,FOLLOW_COMMA_in_numlistdecl1571); 
 							COMMA59_tree = (Object)adaptor.create(COMMA59);
@@ -2856,7 +2877,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1057:4: var= ID EQUALS let= expr[defer] ( COMMA numlistdecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1079:4: var= ID EQUALS let= expr[defer] ( COMMA numlistdecl[defer] )?
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -2882,7 +2903,7 @@ public class EugeneParser extends Parser {
 								retval.varname = (var!=null?var.getText():null);
 							}
 							
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1063:5: ( COMMA numlistdecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1085:5: ( COMMA numlistdecl[defer] )?
 					int alt16=2;
 					int LA16_0 = input.LA(1);
 					if ( (LA16_0==COMMA) ) {
@@ -2893,7 +2914,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt16) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1063:6: COMMA numlistdecl[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1085:6: COMMA numlistdecl[defer]
 							{
 							COMMA62=(Token)match(input,COMMA,FOLLOW_COMMA_in_numlistdecl1598); 
 							COMMA62_tree = (Object)adaptor.create(COMMA62);
@@ -2942,7 +2963,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "booldecl"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1066:1: booldecl[boolean defer] returns [String varname] : ( ID ( COMMA booldecl[defer] )? |var= ID EQUALS let= expr[defer] );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1088:1: booldecl[boolean defer] returns [String varname] : ( ID ( COMMA booldecl[defer] )? |var= ID EQUALS let= expr[defer] );
 	public final EugeneParser.booldecl_return booldecl(boolean defer) throws RecognitionException {
 		EugeneParser.booldecl_return retval = new EugeneParser.booldecl_return();
 		retval.start = input.LT(1);
@@ -2962,7 +2983,7 @@ public class EugeneParser extends Parser {
 		Object EQUALS67_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1068:2: ( ID ( COMMA booldecl[defer] )? |var= ID EQUALS let= expr[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1090:2: ( ID ( COMMA booldecl[defer] )? |var= ID EQUALS let= expr[defer] )
 			int alt19=2;
 			int LA19_0 = input.LA(1);
 			if ( (LA19_0==ID) ) {
@@ -2996,7 +3017,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt19) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1068:4: ID ( COMMA booldecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1090:4: ID ( COMMA booldecl[defer] )?
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -3011,7 +3032,7 @@ public class EugeneParser extends Parser {
 								retval.varname = (ID64!=null?ID64.getText():null);
 							}
 							
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1074:5: ( COMMA booldecl[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1096:5: ( COMMA booldecl[defer] )?
 					int alt18=2;
 					int LA18_0 = input.LA(1);
 					if ( (LA18_0==COMMA) ) {
@@ -3022,7 +3043,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt18) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1074:6: COMMA booldecl[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1096:6: COMMA booldecl[defer]
 							{
 							COMMA65=(Token)match(input,COMMA,FOLLOW_COMMA_in_booldecl1627); 
 							COMMA65_tree = (Object)adaptor.create(COMMA65);
@@ -3042,7 +3063,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1075:4: var= ID EQUALS let= expr[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1097:4: var= ID EQUALS let= expr[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -3098,7 +3119,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "propertyDeclaration"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1084:1: propertyDeclaration[boolean defer] : PROPERTY nameToken= ID LEFTP typeToken= propertyType RIGHTP ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1106:1: propertyDeclaration[boolean defer] : PROPERTY nameToken= ID LEFTP typeToken= propertyType RIGHTP ;
 	public final EugeneParser.propertyDeclaration_return propertyDeclaration(boolean defer) throws RecognitionException {
 		EugeneParser.propertyDeclaration_return retval = new EugeneParser.propertyDeclaration_return();
 		retval.start = input.LT(1);
@@ -3117,8 +3138,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTP70_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1085:2: ( PROPERTY nameToken= ID LEFTP typeToken= propertyType RIGHTP )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1085:4: PROPERTY nameToken= ID LEFTP typeToken= propertyType RIGHTP
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1107:2: ( PROPERTY nameToken= ID LEFTP typeToken= propertyType RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1107:4: PROPERTY nameToken= ID LEFTP typeToken= propertyType RIGHTP
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -3186,7 +3207,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "propertyType"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1098:1: propertyType returns [String type] : ( TXT | TXT LEFTSBR RIGHTSBR | NUM | NUM LEFTSBR RIGHTSBR | ( BOOLEAN | BOOL ) );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1120:1: propertyType returns [String type] : ( TXT | TXT LEFTSBR RIGHTSBR | NUM | NUM LEFTSBR RIGHTSBR | ( BOOLEAN | BOOL ) );
 	public final EugeneParser.propertyType_return propertyType() throws RecognitionException {
 		EugeneParser.propertyType_return retval = new EugeneParser.propertyType_return();
 		retval.start = input.LT(1);
@@ -3214,7 +3235,7 @@ public class EugeneParser extends Parser {
 		Object set79_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1100:2: ( TXT | TXT LEFTSBR RIGHTSBR | NUM | NUM LEFTSBR RIGHTSBR | ( BOOLEAN | BOOL ) )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1122:2: ( TXT | TXT LEFTSBR RIGHTSBR | NUM | NUM LEFTSBR RIGHTSBR | ( BOOLEAN | BOOL ) )
 			int alt20=5;
 			switch ( input.LA(1) ) {
 			case TXT:
@@ -3278,7 +3299,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt20) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1100:4: TXT
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1122:4: TXT
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -3293,7 +3314,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1103:4: TXT LEFTSBR RIGHTSBR
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1125:4: TXT LEFTSBR RIGHTSBR
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -3316,7 +3337,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1106:4: NUM
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1128:4: NUM
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -3331,7 +3352,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 4 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1109:4: NUM LEFTSBR RIGHTSBR
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1131:4: NUM LEFTSBR RIGHTSBR
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -3354,7 +3375,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 5 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1112:4: ( BOOLEAN | BOOL )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1134:4: ( BOOLEAN | BOOL )
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -3403,7 +3424,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "typeDeclaration"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1121:1: typeDeclaration[boolean defer] : ( partTypeDeclaration[defer] | ( TYPE ) nameToken= ID ( LEFTP (lstToken= listOfIDs[defer] )? RIGHTP )? );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1143:1: typeDeclaration[boolean defer] : ( partTypeDeclaration[defer] | ( TYPE ) nameToken= ID ( LEFTP (lstToken= listOfIDs[defer] )? RIGHTP )? );
 	public final EugeneParser.typeDeclaration_return typeDeclaration(boolean defer) throws RecognitionException {
 		EugeneParser.typeDeclaration_return retval = new EugeneParser.typeDeclaration_return();
 		retval.start = input.LT(1);
@@ -3423,7 +3444,7 @@ public class EugeneParser extends Parser {
 		Object RIGHTP83_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1122:2: ( partTypeDeclaration[defer] | ( TYPE ) nameToken= ID ( LEFTP (lstToken= listOfIDs[defer] )? RIGHTP )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1144:2: ( partTypeDeclaration[defer] | ( TYPE ) nameToken= ID ( LEFTP (lstToken= listOfIDs[defer] )? RIGHTP )? )
 			int alt23=2;
 			int LA23_0 = input.LA(1);
 			if ( ((LA23_0 >= PART && LA23_0 <= PART_TYPE)) ) {
@@ -3441,7 +3462,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt23) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1122:4: partTypeDeclaration[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1144:4: partTypeDeclaration[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -3455,13 +3476,13 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1123:4: ( TYPE ) nameToken= ID ( LEFTP (lstToken= listOfIDs[defer] )? RIGHTP )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1145:4: ( TYPE ) nameToken= ID ( LEFTP (lstToken= listOfIDs[defer] )? RIGHTP )?
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1123:4: ( TYPE )
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1123:5: TYPE
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1145:4: ( TYPE )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1145:5: TYPE
 					{
 					TYPE81=(Token)match(input,TYPE,FOLLOW_TYPE_in_typeDeclaration1760); 
 					TYPE81_tree = (Object)adaptor.create(TYPE81);
@@ -3473,7 +3494,7 @@ public class EugeneParser extends Parser {
 					nameToken_tree = (Object)adaptor.create(nameToken);
 					adaptor.addChild(root_0, nameToken_tree);
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1123:24: ( LEFTP (lstToken= listOfIDs[defer] )? RIGHTP )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1145:24: ( LEFTP (lstToken= listOfIDs[defer] )? RIGHTP )?
 					int alt22=2;
 					int LA22_0 = input.LA(1);
 					if ( (LA22_0==LEFTP) ) {
@@ -3481,13 +3502,13 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt22) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1123:25: LEFTP (lstToken= listOfIDs[defer] )? RIGHTP
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1145:25: LEFTP (lstToken= listOfIDs[defer] )? RIGHTP
 							{
 							LEFTP82=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_typeDeclaration1768); 
 							LEFTP82_tree = (Object)adaptor.create(LEFTP82);
 							adaptor.addChild(root_0, LEFTP82_tree);
 
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1123:31: (lstToken= listOfIDs[defer] )?
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1145:31: (lstToken= listOfIDs[defer] )?
 							int alt21=2;
 							int LA21_0 = input.LA(1);
 							if ( (LA21_0==ID) ) {
@@ -3495,7 +3516,7 @@ public class EugeneParser extends Parser {
 							}
 							switch (alt21) {
 								case 1 :
-									// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1123:32: lstToken= listOfIDs[defer]
+									// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1145:32: lstToken= listOfIDs[defer]
 									{
 									pushFollow(FOLLOW_listOfIDs_in_typeDeclaration1773);
 									lstToken=listOfIDs(defer);
@@ -3559,7 +3580,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "partTypeDeclaration"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1136:1: partTypeDeclaration[boolean defer] : ( PART | PART_TYPE ) nameToken= ID ( LEFTP (lstToken= listOfIDs[defer] )? RIGHTP )? ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1158:1: partTypeDeclaration[boolean defer] : ( PART | PART_TYPE ) nameToken= ID ( LEFTP (lstToken= listOfIDs[defer] )? RIGHTP )? ;
 	public final EugeneParser.partTypeDeclaration_return partTypeDeclaration(boolean defer) throws RecognitionException {
 		EugeneParser.partTypeDeclaration_return retval = new EugeneParser.partTypeDeclaration_return();
 		retval.start = input.LT(1);
@@ -3578,8 +3599,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTP86_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1137:2: ( ( PART | PART_TYPE ) nameToken= ID ( LEFTP (lstToken= listOfIDs[defer] )? RIGHTP )? )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1137:4: ( PART | PART_TYPE ) nameToken= ID ( LEFTP (lstToken= listOfIDs[defer] )? RIGHTP )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1159:2: ( ( PART | PART_TYPE ) nameToken= ID ( LEFTP (lstToken= listOfIDs[defer] )? RIGHTP )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1159:4: ( PART | PART_TYPE ) nameToken= ID ( LEFTP (lstToken= listOfIDs[defer] )? RIGHTP )?
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -3598,7 +3619,7 @@ public class EugeneParser extends Parser {
 			nameToken_tree = (Object)adaptor.create(nameToken);
 			adaptor.addChild(root_0, nameToken_tree);
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1137:35: ( LEFTP (lstToken= listOfIDs[defer] )? RIGHTP )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1159:35: ( LEFTP (lstToken= listOfIDs[defer] )? RIGHTP )?
 			int alt25=2;
 			int LA25_0 = input.LA(1);
 			if ( (LA25_0==LEFTP) ) {
@@ -3606,13 +3627,13 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt25) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1137:36: LEFTP (lstToken= listOfIDs[defer] )? RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1159:36: LEFTP (lstToken= listOfIDs[defer] )? RIGHTP
 					{
 					LEFTP85=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_partTypeDeclaration1809); 
 					LEFTP85_tree = (Object)adaptor.create(LEFTP85);
 					adaptor.addChild(root_0, LEFTP85_tree);
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1137:42: (lstToken= listOfIDs[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1159:42: (lstToken= listOfIDs[defer] )?
 					int alt24=2;
 					int LA24_0 = input.LA(1);
 					if ( (LA24_0==ID) ) {
@@ -3620,7 +3641,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt24) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1137:43: lstToken= listOfIDs[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1159:43: lstToken= listOfIDs[defer]
 							{
 							pushFollow(FOLLOW_listOfIDs_in_partTypeDeclaration1814);
 							lstToken=listOfIDs(defer);
@@ -3683,7 +3704,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "containerDeclaration"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1153:1: containerDeclaration[boolean defer] returns [NamedElement ne] : (c= COLLECTION | (a= ARRAY ( LEFTSBR RIGHTSBR )? ) ) name= ID ( LEFTP ( list_of_declarations[defer] )? RIGHTP )? ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1175:1: containerDeclaration[boolean defer] returns [NamedElement ne] : (c= COLLECTION | (a= ARRAY ( LEFTSBR RIGHTSBR )? ) ) name= ID ( LEFTP ( list_of_declarations[defer] )? RIGHTP )? ;
 	public final EugeneParser.containerDeclaration_return containerDeclaration(boolean defer) throws RecognitionException {
 		EugeneParser.containerDeclaration_return retval = new EugeneParser.containerDeclaration_return();
 		retval.start = input.LT(1);
@@ -3708,13 +3729,13 @@ public class EugeneParser extends Parser {
 		Object RIGHTP91_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1155:2: ( (c= COLLECTION | (a= ARRAY ( LEFTSBR RIGHTSBR )? ) ) name= ID ( LEFTP ( list_of_declarations[defer] )? RIGHTP )? )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1155:4: (c= COLLECTION | (a= ARRAY ( LEFTSBR RIGHTSBR )? ) ) name= ID ( LEFTP ( list_of_declarations[defer] )? RIGHTP )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1177:2: ( (c= COLLECTION | (a= ARRAY ( LEFTSBR RIGHTSBR )? ) ) name= ID ( LEFTP ( list_of_declarations[defer] )? RIGHTP )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1177:4: (c= COLLECTION | (a= ARRAY ( LEFTSBR RIGHTSBR )? ) ) name= ID ( LEFTP ( list_of_declarations[defer] )? RIGHTP )?
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1155:4: (c= COLLECTION | (a= ARRAY ( LEFTSBR RIGHTSBR )? ) )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1177:4: (c= COLLECTION | (a= ARRAY ( LEFTSBR RIGHTSBR )? ) )
 			int alt27=2;
 			int LA27_0 = input.LA(1);
 			if ( (LA27_0==COLLECTION) ) {
@@ -3732,7 +3753,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt27) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1155:5: c= COLLECTION
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1177:5: c= COLLECTION
 					{
 					c=(Token)match(input,COLLECTION,FOLLOW_COLLECTION_in_containerDeclaration1846); 
 					c_tree = (Object)adaptor.create(c);
@@ -3741,16 +3762,16 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1155:20: (a= ARRAY ( LEFTSBR RIGHTSBR )? )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1177:20: (a= ARRAY ( LEFTSBR RIGHTSBR )? )
 					{
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1155:20: (a= ARRAY ( LEFTSBR RIGHTSBR )? )
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1155:21: a= ARRAY ( LEFTSBR RIGHTSBR )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1177:20: (a= ARRAY ( LEFTSBR RIGHTSBR )? )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1177:21: a= ARRAY ( LEFTSBR RIGHTSBR )?
 					{
 					a=(Token)match(input,ARRAY,FOLLOW_ARRAY_in_containerDeclaration1853); 
 					a_tree = (Object)adaptor.create(a);
 					adaptor.addChild(root_0, a_tree);
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1155:29: ( LEFTSBR RIGHTSBR )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1177:29: ( LEFTSBR RIGHTSBR )?
 					int alt26=2;
 					int LA26_0 = input.LA(1);
 					if ( (LA26_0==LEFTSBR) ) {
@@ -3758,7 +3779,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt26) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1155:30: LEFTSBR RIGHTSBR
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1177:30: LEFTSBR RIGHTSBR
 							{
 							LEFTSBR87=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_containerDeclaration1856); 
 							LEFTSBR87_tree = (Object)adaptor.create(LEFTSBR87);
@@ -3799,7 +3820,7 @@ public class EugeneParser extends Parser {
 			    
 			}	
 				
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1169:4: ( LEFTP ( list_of_declarations[defer] )? RIGHTP )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1191:4: ( LEFTP ( list_of_declarations[defer] )? RIGHTP )?
 			int alt29=2;
 			int LA29_0 = input.LA(1);
 			if ( (LA29_0==LEFTP) ) {
@@ -3807,13 +3828,13 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt29) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1169:5: LEFTP ( list_of_declarations[defer] )? RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1191:5: LEFTP ( list_of_declarations[defer] )? RIGHTP
 					{
 					LEFTP89=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_containerDeclaration1871); 
 					LEFTP89_tree = (Object)adaptor.create(LEFTP89);
 					adaptor.addChild(root_0, LEFTP89_tree);
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1169:11: ( list_of_declarations[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1191:11: ( list_of_declarations[defer] )?
 					int alt28=2;
 					int LA28_0 = input.LA(1);
 					if ( (LA28_0==ARRAY||(LA28_0 >= BOOL && LA28_0 <= COLLECTION)||LA28_0==DEVICE||LA28_0==DOLLAR||(LA28_0 >= FALSE_LC && LA28_0 <= FALSE_UC)||LA28_0==GRAMMAR||LA28_0==ID||LA28_0==INTERACTION||(LA28_0 >= LEFTP && LA28_0 <= LEFTSBR)||LA28_0==MINUS||(LA28_0 >= NUM && LA28_0 <= NUMBER)||(LA28_0 >= PART && LA28_0 <= PERMUTE)||(LA28_0 >= PRODUCT && LA28_0 <= RANDOM_UC)||LA28_0==REAL||(LA28_0 >= RULE && LA28_0 <= RULE_BUILDER)||(LA28_0 >= SIZEOF_LC && LA28_0 <= SIZE_UC)||(LA28_0 >= STRING && LA28_0 <= TYPE)) ) {
@@ -3821,7 +3842,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt28) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1169:12: list_of_declarations[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1191:12: list_of_declarations[defer]
 							{
 							pushFollow(FOLLOW_list_of_declarations_in_containerDeclaration1874);
 							list_of_declarations90=list_of_declarations(defer);
@@ -3886,7 +3907,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "list_of_declarations"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1184:1: list_of_declarations[boolean defer] returns [List<NamedElement> elements] : (ds= declarationStatement[defer] |exp= expr[defer] ) ( COMMA lod= list_of_declarations[defer] )? ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1206:1: list_of_declarations[boolean defer] returns [List<NamedElement> elements] : (ds= declarationStatement[defer] |exp= expr[defer] ) ( COMMA lod= list_of_declarations[defer] )? ;
 	public final EugeneParser.list_of_declarations_return list_of_declarations(boolean defer) throws RecognitionException {
 		EugeneParser.list_of_declarations_return retval = new EugeneParser.list_of_declarations_return();
 		retval.start = input.LT(1);
@@ -3901,13 +3922,13 @@ public class EugeneParser extends Parser {
 		Object COMMA92_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1186:2: ( (ds= declarationStatement[defer] |exp= expr[defer] ) ( COMMA lod= list_of_declarations[defer] )? )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1186:4: (ds= declarationStatement[defer] |exp= expr[defer] ) ( COMMA lod= list_of_declarations[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1208:2: ( (ds= declarationStatement[defer] |exp= expr[defer] ) ( COMMA lod= list_of_declarations[defer] )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1208:4: (ds= declarationStatement[defer] |exp= expr[defer] ) ( COMMA lod= list_of_declarations[defer] )?
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1186:4: (ds= declarationStatement[defer] |exp= expr[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1208:4: (ds= declarationStatement[defer] |exp= expr[defer] )
 			int alt30=2;
 			switch ( input.LA(1) ) {
 			case ARRAY:
@@ -3983,7 +4004,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt30) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1186:6: ds= declarationStatement[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1208:6: ds= declarationStatement[defer]
 					{
 					pushFollow(FOLLOW_declarationStatement_in_list_of_declarations1912);
 					ds=declarationStatement(defer);
@@ -3994,7 +4015,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1186:39: exp= expr[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1208:39: exp= expr[defer]
 					{
 					pushFollow(FOLLOW_expr_in_list_of_declarations1919);
 					exp=expr(defer);
@@ -4022,7 +4043,7 @@ public class EugeneParser extends Parser {
 
 			}
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1200:5: ( COMMA lod= list_of_declarations[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1222:5: ( COMMA lod= list_of_declarations[defer] )?
 			int alt31=2;
 			int LA31_0 = input.LA(1);
 			if ( (LA31_0==COMMA) ) {
@@ -4030,7 +4051,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt31) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1200:7: COMMA lod= list_of_declarations[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1222:7: COMMA lod= list_of_declarations[defer]
 					{
 					COMMA92=(Token)match(input,COMMA,FOLLOW_COMMA_in_list_of_declarations1927); 
 					COMMA92_tree = (Object)adaptor.create(COMMA92);
@@ -4076,7 +4097,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "instantiation"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1206:1: instantiation[boolean defer] : t= ID n= dynamic_naming[defer] ( LEFTP (dotToken= listOfDotValues[defer] |valueToken= listOfValues[defer, (ComponentType)type] )? RIGHTP )? ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1228:1: instantiation[boolean defer] : t= ID n= dynamic_naming[defer] ( LEFTP (dotToken= listOfDotValues[defer] |valueToken= listOfValues[defer, (ComponentType)type] )? RIGHTP )? ;
 	public final EugeneParser.instantiation_return instantiation(boolean defer) throws RecognitionException {
 		EugeneParser.instantiation_return retval = new EugeneParser.instantiation_return();
 		retval.start = input.LT(1);
@@ -4099,8 +4120,8 @@ public class EugeneParser extends Parser {
 		String instance_name = null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1211:2: (t= ID n= dynamic_naming[defer] ( LEFTP (dotToken= listOfDotValues[defer] |valueToken= listOfValues[defer, (ComponentType)type] )? RIGHTP )? )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1211:4: t= ID n= dynamic_naming[defer] ( LEFTP (dotToken= listOfDotValues[defer] |valueToken= listOfValues[defer, (ComponentType)type] )? RIGHTP )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1233:2: (t= ID n= dynamic_naming[defer] ( LEFTP (dotToken= listOfDotValues[defer] |valueToken= listOfValues[defer, (ComponentType)type] )? RIGHTP )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1233:4: t= ID n= dynamic_naming[defer] ( LEFTP (dotToken= listOfDotValues[defer] |valueToken= listOfValues[defer, (ComponentType)type] )? RIGHTP )?
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -4137,7 +4158,7 @@ public class EugeneParser extends Parser {
 			    instance_name = (n!=null?((EugeneParser.dynamic_naming_return)n).name:null);	
 			}
 				
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1231:4: ( LEFTP (dotToken= listOfDotValues[defer] |valueToken= listOfValues[defer, (ComponentType)type] )? RIGHTP )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1253:4: ( LEFTP (dotToken= listOfDotValues[defer] |valueToken= listOfValues[defer, (ComponentType)type] )? RIGHTP )?
 			int alt33=2;
 			int LA33_0 = input.LA(1);
 			if ( (LA33_0==LEFTP) ) {
@@ -4145,13 +4166,13 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt33) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1231:6: LEFTP (dotToken= listOfDotValues[defer] |valueToken= listOfValues[defer, (ComponentType)type] )? RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1253:6: LEFTP (dotToken= listOfDotValues[defer] |valueToken= listOfValues[defer, (ComponentType)type] )? RIGHTP
 					{
 					LEFTP93=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_instantiation1972); 
 					LEFTP93_tree = (Object)adaptor.create(LEFTP93);
 					adaptor.addChild(root_0, LEFTP93_tree);
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1231:12: (dotToken= listOfDotValues[defer] |valueToken= listOfValues[defer, (ComponentType)type] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1253:12: (dotToken= listOfDotValues[defer] |valueToken= listOfValues[defer, (ComponentType)type] )?
 					int alt32=3;
 					int LA32_0 = input.LA(1);
 					if ( (LA32_0==DOT) ) {
@@ -4162,7 +4183,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt32) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1231:13: dotToken= listOfDotValues[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1253:13: dotToken= listOfDotValues[defer]
 							{
 							pushFollow(FOLLOW_listOfDotValues_in_instantiation1977);
 							dotToken=listOfDotValues(defer);
@@ -4173,7 +4194,7 @@ public class EugeneParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1231:45: valueToken= listOfValues[defer, (ComponentType)type]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1253:45: valueToken= listOfValues[defer, (ComponentType)type]
 							{
 							pushFollow(FOLLOW_listOfValues_in_instantiation1982);
 							valueToken=listOfValues(defer, (ComponentType)type);
@@ -4252,7 +4273,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "listOfDotValues"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1265:1: listOfDotValues[boolean defer] : DOT prop= ID LEFTP v1= expr[defer] RIGHTP ( COMMA DOT p= ID LEFTP v2= expr[defer] RIGHTP )* ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1287:1: listOfDotValues[boolean defer] : DOT prop= ID LEFTP v1= expr[defer] RIGHTP ( COMMA DOT p= ID LEFTP v2= expr[defer] RIGHTP )* ;
 	public final EugeneParser.listOfDotValues_return listOfDotValues(boolean defer) throws RecognitionException {
 		EugeneParser.listOfDotValues_return retval = new EugeneParser.listOfDotValues_return();
 		retval.start = input.LT(1);
@@ -4282,8 +4303,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTP101_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1266:2: ( DOT prop= ID LEFTP v1= expr[defer] RIGHTP ( COMMA DOT p= ID LEFTP v2= expr[defer] RIGHTP )* )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1266:4: DOT prop= ID LEFTP v1= expr[defer] RIGHTP ( COMMA DOT p= ID LEFTP v2= expr[defer] RIGHTP )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1288:2: ( DOT prop= ID LEFTP v1= expr[defer] RIGHTP ( COMMA DOT p= ID LEFTP v2= expr[defer] RIGHTP )* )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1288:4: DOT prop= ID LEFTP v1= expr[defer] RIGHTP ( COMMA DOT p= ID LEFTP v2= expr[defer] RIGHTP )*
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -4328,7 +4349,7 @@ public class EugeneParser extends Parser {
 			RIGHTP97_tree = (Object)adaptor.create(RIGHTP97);
 			adaptor.addChild(root_0, RIGHTP97_tree);
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1283:2: ( COMMA DOT p= ID LEFTP v2= expr[defer] RIGHTP )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1305:2: ( COMMA DOT p= ID LEFTP v2= expr[defer] RIGHTP )*
 			loop34:
 			while (true) {
 				int alt34=2;
@@ -4339,7 +4360,7 @@ public class EugeneParser extends Parser {
 
 				switch (alt34) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1283:3: COMMA DOT p= ID LEFTP v2= expr[defer] RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1305:3: COMMA DOT p= ID LEFTP v2= expr[defer] RIGHTP
 					{
 					COMMA98=(Token)match(input,COMMA,FOLLOW_COMMA_in_listOfDotValues2032); 
 					COMMA98_tree = (Object)adaptor.create(COMMA98);
@@ -4422,7 +4443,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "listOfValues"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1302:1: listOfValues[boolean defer, ComponentType pt] :val1= expr[defer] ( COMMA val2= expr[defer] )* ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1324:1: listOfValues[boolean defer, ComponentType pt] :val1= expr[defer] ( COMMA val2= expr[defer] )* ;
 	public final EugeneParser.listOfValues_return listOfValues(boolean defer, ComponentType pt) throws RecognitionException {
 		EugeneParser.listOfValues_return retval = new EugeneParser.listOfValues_return();
 		retval.start = input.LT(1);
@@ -4436,8 +4457,8 @@ public class EugeneParser extends Parser {
 		Object COMMA102_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1303:2: (val1= expr[defer] ( COMMA val2= expr[defer] )* )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1304:3: val1= expr[defer] ( COMMA val2= expr[defer] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1325:2: (val1= expr[defer] ( COMMA val2= expr[defer] )* )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1326:3: val1= expr[defer] ( COMMA val2= expr[defer] )*
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -4474,7 +4495,7 @@ public class EugeneParser extends Parser {
 			    propertyValuesHolder.add((val1!=null?((EugeneParser.expr_return)val1).p:null));
 			}				
 						
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1328:6: ( COMMA val2= expr[defer] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1350:6: ( COMMA val2= expr[defer] )*
 			loop35:
 			while (true) {
 				int alt35=2;
@@ -4485,7 +4506,7 @@ public class EugeneParser extends Parser {
 
 				switch (alt35) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1328:7: COMMA val2= expr[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1350:7: COMMA val2= expr[defer]
 					{
 					COMMA102=(Token)match(input,COMMA,FOLLOW_COMMA_in_listOfValues2078); 
 					COMMA102_tree = (Object)adaptor.create(COMMA102);
@@ -4563,7 +4584,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "deviceDeclaration"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1361:1: deviceDeclaration[boolean defer] : DEVICE n= ID ( LEFTP (dcs= deviceComponents[defer] )? RIGHTP )? ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1383:1: deviceDeclaration[boolean defer] : DEVICE n= ID ( LEFTP (dcs= deviceComponents[defer] )? RIGHTP )? ;
 	public final EugeneParser.deviceDeclaration_return deviceDeclaration(boolean defer) throws RecognitionException {
 		EugeneParser.deviceDeclaration_return retval = new EugeneParser.deviceDeclaration_return();
 		retval.start = input.LT(1);
@@ -4582,8 +4603,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTP105_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1362:2: ( DEVICE n= ID ( LEFTP (dcs= deviceComponents[defer] )? RIGHTP )? )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1362:4: DEVICE n= ID ( LEFTP (dcs= deviceComponents[defer] )? RIGHTP )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1384:2: ( DEVICE n= ID ( LEFTP (dcs= deviceComponents[defer] )? RIGHTP )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1384:4: DEVICE n= ID ( LEFTP (dcs= deviceComponents[defer] )? RIGHTP )?
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -4596,7 +4617,7 @@ public class EugeneParser extends Parser {
 			n_tree = (Object)adaptor.create(n);
 			adaptor.addChild(root_0, n_tree);
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1362:16: ( LEFTP (dcs= deviceComponents[defer] )? RIGHTP )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1384:16: ( LEFTP (dcs= deviceComponents[defer] )? RIGHTP )?
 			int alt37=2;
 			int LA37_0 = input.LA(1);
 			if ( (LA37_0==LEFTP) ) {
@@ -4604,13 +4625,13 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt37) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1362:17: LEFTP (dcs= deviceComponents[defer] )? RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1384:17: LEFTP (dcs= deviceComponents[defer] )? RIGHTP
 					{
 					LEFTP104=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_deviceDeclaration2114); 
 					LEFTP104_tree = (Object)adaptor.create(LEFTP104);
 					adaptor.addChild(root_0, LEFTP104_tree);
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1362:23: (dcs= deviceComponents[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1384:23: (dcs= deviceComponents[defer] )?
 					int alt36=2;
 					int LA36_0 = input.LA(1);
 					if ( (LA36_0==ID||LA36_0==LEFTSBR||LA36_0==MINUS||LA36_0==PLUS) ) {
@@ -4618,7 +4639,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt36) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1362:24: dcs= deviceComponents[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1384:24: dcs= deviceComponents[defer]
 							{
 							pushFollow(FOLLOW_deviceComponents_in_deviceDeclaration2119);
 							dcs=deviceComponents(defer);
@@ -4683,7 +4704,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "deviceComponents"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1376:1: deviceComponents[boolean defer] returns [List<List<NamedElement>> lstComponents, List<List<Orientation>> lstOrientations] : s= selection[defer] ( ',' dcs= deviceComponents[defer] )? ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1398:1: deviceComponents[boolean defer] returns [List<List<NamedElement>> lstComponents, List<List<Orientation>> lstOrientations] : s= selection[defer] ( ',' dcs= deviceComponents[defer] )? ;
 	public final EugeneParser.deviceComponents_return deviceComponents(boolean defer) throws RecognitionException {
 		EugeneParser.deviceComponents_return retval = new EugeneParser.deviceComponents_return();
 		retval.start = input.LT(1);
@@ -4701,8 +4722,8 @@ public class EugeneParser extends Parser {
 		retval.lstOrientations = new ArrayList<List<Orientation>>();
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1382:2: (s= selection[defer] ( ',' dcs= deviceComponents[defer] )? )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1382:4: s= selection[defer] ( ',' dcs= deviceComponents[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1404:2: (s= selection[defer] ( ',' dcs= deviceComponents[defer] )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1404:4: s= selection[defer] ( ',' dcs= deviceComponents[defer] )?
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -4719,7 +4740,7 @@ public class EugeneParser extends Parser {
 			    retval.lstOrientations.add((s!=null?((EugeneParser.selection_return)s).orientations:null));
 			}	
 				
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1387:4: ( ',' dcs= deviceComponents[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1409:4: ( ',' dcs= deviceComponents[defer] )?
 			int alt38=2;
 			int LA38_0 = input.LA(1);
 			if ( (LA38_0==COMMA) ) {
@@ -4727,7 +4748,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt38) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1387:5: ',' dcs= deviceComponents[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1409:5: ',' dcs= deviceComponents[defer]
 					{
 					char_literal106=(Token)match(input,COMMA,FOLLOW_COMMA_in_deviceComponents2161); 
 					char_literal106_tree = (Object)adaptor.create(char_literal106);
@@ -4781,7 +4802,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "selection"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1398:1: selection[boolean defer] returns [List<NamedElement> components, List<Orientation> orientations] : ( LEFTSBR sl= selection_list[defer] RIGHTSBR |dc= device_component[defer] );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1420:1: selection[boolean defer] returns [List<NamedElement> components, List<Orientation> orientations] : ( LEFTSBR sl= selection_list[defer] RIGHTSBR |dc= device_component[defer] );
 	public final EugeneParser.selection_return selection(boolean defer) throws RecognitionException {
 		EugeneParser.selection_return retval = new EugeneParser.selection_return();
 		retval.start = input.LT(1);
@@ -4797,7 +4818,7 @@ public class EugeneParser extends Parser {
 		Object RIGHTSBR108_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1400:2: ( LEFTSBR sl= selection_list[defer] RIGHTSBR |dc= device_component[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1422:2: ( LEFTSBR sl= selection_list[defer] RIGHTSBR |dc= device_component[defer] )
 			int alt39=2;
 			int LA39_0 = input.LA(1);
 			if ( (LA39_0==LEFTSBR) ) {
@@ -4815,7 +4836,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt39) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1400:4: LEFTSBR sl= selection_list[defer] RIGHTSBR
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1422:4: LEFTSBR sl= selection_list[defer] RIGHTSBR
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -4843,7 +4864,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1406:4: dc= device_component[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1428:4: dc= device_component[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -4896,7 +4917,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "selection_list"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1417:1: selection_list[boolean defer] returns [List<NamedElement> components, List<Orientation> orientations] : dc= device_component[defer] ( PIPE sl= selection_list[defer] )? ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1439:1: selection_list[boolean defer] returns [List<NamedElement> components, List<Orientation> orientations] : dc= device_component[defer] ( PIPE sl= selection_list[defer] )? ;
 	public final EugeneParser.selection_list_return selection_list(boolean defer) throws RecognitionException {
 		EugeneParser.selection_list_return retval = new EugeneParser.selection_list_return();
 		retval.start = input.LT(1);
@@ -4914,8 +4935,8 @@ public class EugeneParser extends Parser {
 		retval.orientations = new ArrayList<Orientation>();
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1423:2: (dc= device_component[defer] ( PIPE sl= selection_list[defer] )? )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1423:4: dc= device_component[defer] ( PIPE sl= selection_list[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1445:2: (dc= device_component[defer] ( PIPE sl= selection_list[defer] )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1445:4: dc= device_component[defer] ( PIPE sl= selection_list[defer] )?
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -4932,7 +4953,7 @@ public class EugeneParser extends Parser {
 			    retval.orientations.add((dc!=null?((EugeneParser.device_component_return)dc).orientation:null));
 			}	
 				
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1428:4: ( PIPE sl= selection_list[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1450:4: ( PIPE sl= selection_list[defer] )?
 			int alt40=2;
 			int LA40_0 = input.LA(1);
 			if ( (LA40_0==PIPE) ) {
@@ -4940,7 +4961,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt40) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1428:5: PIPE sl= selection_list[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1450:5: PIPE sl= selection_list[defer]
 					{
 					PIPE109=(Token)match(input,PIPE,FOLLOW_PIPE_in_selection_list2245); 
 					PIPE109_tree = (Object)adaptor.create(PIPE109);
@@ -4994,7 +5015,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "device_component"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1436:1: device_component[boolean defer] returns [NamedElement component, Orientation orientation] : (directionToken= ( MINUS | PLUS ) )? idToken= ID ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1458:1: device_component[boolean defer] returns [NamedElement component, Orientation orientation] : (directionToken= ( MINUS | PLUS ) )? idToken= ID ;
 	public final EugeneParser.device_component_return device_component(boolean defer) throws RecognitionException {
 		EugeneParser.device_component_return retval = new EugeneParser.device_component_return();
 		retval.start = input.LT(1);
@@ -5008,13 +5029,13 @@ public class EugeneParser extends Parser {
 		Object idToken_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1438:2: ( (directionToken= ( MINUS | PLUS ) )? idToken= ID )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1438:4: (directionToken= ( MINUS | PLUS ) )? idToken= ID
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1460:2: ( (directionToken= ( MINUS | PLUS ) )? idToken= ID )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1460:4: (directionToken= ( MINUS | PLUS ) )? idToken= ID
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1438:4: (directionToken= ( MINUS | PLUS ) )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1460:4: (directionToken= ( MINUS | PLUS ) )?
 			int alt41=2;
 			int LA41_0 = input.LA(1);
 			if ( (LA41_0==MINUS||LA41_0==PLUS) ) {
@@ -5022,7 +5043,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt41) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1438:5: directionToken= ( MINUS | PLUS )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1460:5: directionToken= ( MINUS | PLUS )
 					{
 					directionToken=input.LT(1);
 					if ( input.LA(1)==MINUS||input.LA(1)==PLUS ) {
@@ -5102,7 +5123,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "assignment"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1486:1: assignment[boolean defer] : lhs= lhs_assignment[defer] EQUALS (a= AMP )? rhs= rhs_assignment[defer] ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1508:1: assignment[boolean defer] : lhs= lhs_assignment[defer] EQUALS (a= AMP )? rhs= rhs_assignment[defer] ;
 	public final EugeneParser.assignment_return assignment(boolean defer) throws RecognitionException {
 		EugeneParser.assignment_return retval = new EugeneParser.assignment_return();
 		retval.start = input.LT(1);
@@ -5118,8 +5139,8 @@ public class EugeneParser extends Parser {
 		Object EQUALS110_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1487:2: (lhs= lhs_assignment[defer] EQUALS (a= AMP )? rhs= rhs_assignment[defer] )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1487:4: lhs= lhs_assignment[defer] EQUALS (a= AMP )? rhs= rhs_assignment[defer]
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1509:2: (lhs= lhs_assignment[defer] EQUALS (a= AMP )? rhs= rhs_assignment[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1509:4: lhs= lhs_assignment[defer] EQUALS (a= AMP )? rhs= rhs_assignment[defer]
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -5134,7 +5155,7 @@ public class EugeneParser extends Parser {
 			EQUALS110_tree = (Object)adaptor.create(EQUALS110);
 			adaptor.addChild(root_0, EQUALS110_tree);
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1487:37: (a= AMP )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1509:37: (a= AMP )?
 			int alt42=2;
 			int LA42_0 = input.LA(1);
 			if ( (LA42_0==AMP) ) {
@@ -5142,7 +5163,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt42) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1487:38: a= AMP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1509:38: a= AMP
 					{
 					a=(Token)match(input,AMP,FOLLOW_AMP_in_assignment2313); 
 					a_tree = (Object)adaptor.create(a);
@@ -5215,7 +5236,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "lhs_assignment"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1516:1: lhs_assignment[boolean defer] : ID lhs_access[defer] ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1538:1: lhs_assignment[boolean defer] : ID lhs_access[defer] ;
 	public final EugeneParser.lhs_assignment_return lhs_assignment(boolean defer) throws RecognitionException {
 		EugeneParser.lhs_assignment_return retval = new EugeneParser.lhs_assignment_return();
 		retval.start = input.LT(1);
@@ -5228,8 +5249,8 @@ public class EugeneParser extends Parser {
 		Object ID111_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1517:2: ( ID lhs_access[defer] )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1517:4: ID lhs_access[defer]
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1539:2: ( ID lhs_access[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1539:4: ID lhs_access[defer]
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -5273,7 +5294,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "lhs_access"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1520:1: lhs_access[boolean defer] : (| ( DOT i= ID | LEFTSBR ( ID | NUMBER ) RIGHTSBR ) lhs_access[defer] );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1542:1: lhs_access[boolean defer] : (| ( DOT i= ID | LEFTSBR ( ID | NUMBER ) RIGHTSBR ) lhs_access[defer] );
 	public final EugeneParser.lhs_access_return lhs_access(boolean defer) throws RecognitionException {
 		EugeneParser.lhs_access_return retval = new EugeneParser.lhs_access_return();
 		retval.start = input.LT(1);
@@ -5294,7 +5315,7 @@ public class EugeneParser extends Parser {
 		Object RIGHTSBR116_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1521:2: (| ( DOT i= ID | LEFTSBR ( ID | NUMBER ) RIGHTSBR ) lhs_access[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1543:2: (| ( DOT i= ID | LEFTSBR ( ID | NUMBER ) RIGHTSBR ) lhs_access[defer] )
 			int alt44=2;
 			int LA44_0 = input.LA(1);
 			if ( (LA44_0==EQUALS) ) {
@@ -5312,7 +5333,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt44) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1522:2: 
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1544:2: 
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -5320,12 +5341,12 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1522:4: ( DOT i= ID | LEFTSBR ( ID | NUMBER ) RIGHTSBR ) lhs_access[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1544:4: ( DOT i= ID | LEFTSBR ( ID | NUMBER ) RIGHTSBR ) lhs_access[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1522:4: ( DOT i= ID | LEFTSBR ( ID | NUMBER ) RIGHTSBR )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1544:4: ( DOT i= ID | LEFTSBR ( ID | NUMBER ) RIGHTSBR )
 					int alt43=2;
 					int LA43_0 = input.LA(1);
 					if ( (LA43_0==DOT) ) {
@@ -5343,7 +5364,7 @@ public class EugeneParser extends Parser {
 
 					switch (alt43) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1522:5: DOT i= ID
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1544:5: DOT i= ID
 							{
 							DOT113=(Token)match(input,DOT,FOLLOW_DOT_in_lhs_access2356); 
 							DOT113_tree = (Object)adaptor.create(DOT113);
@@ -5356,7 +5377,7 @@ public class EugeneParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1522:16: LEFTSBR ( ID | NUMBER ) RIGHTSBR
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1544:16: LEFTSBR ( ID | NUMBER ) RIGHTSBR
 							{
 							LEFTSBR114=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_lhs_access2364); 
 							LEFTSBR114_tree = (Object)adaptor.create(LEFTSBR114);
@@ -5419,7 +5440,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "rhs_assignment"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1533:1: rhs_assignment[boolean defer] returns [NamedElement e] : (de= dataExchange[defer] |exp= expr[defer] );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1555:1: rhs_assignment[boolean defer] returns [NamedElement e] : (de= dataExchange[defer] |exp= expr[defer] );
 	public final EugeneParser.rhs_assignment_return rhs_assignment(boolean defer) throws RecognitionException {
 		EugeneParser.rhs_assignment_return retval = new EugeneParser.rhs_assignment_return();
 		retval.start = input.LT(1);
@@ -5431,7 +5452,7 @@ public class EugeneParser extends Parser {
 
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1535:2: (de= dataExchange[defer] |exp= expr[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1557:2: (de= dataExchange[defer] |exp= expr[defer] )
 			int alt45=2;
 			int LA45_0 = input.LA(1);
 			if ( (LA45_0==GENBANK||(LA45_0 >= IMPORT_LC && LA45_0 <= IMPORT_UC)||LA45_0==REGISTRY||LA45_0==SBOL) ) {
@@ -5449,7 +5470,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt45) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1535:4: de= dataExchange[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1557:4: de= dataExchange[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -5468,7 +5489,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1540:4: exp= expr[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1562:4: exp= expr[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -5520,7 +5541,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "listOfIDs"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1551:1: listOfIDs[boolean defer] returns [List<NamedElement> lstElements] : idToken= ID ( ',' lstToken= listOfIDs[defer] )? ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1573:1: listOfIDs[boolean defer] returns [List<NamedElement> lstElements] : idToken= ID ( ',' lstToken= listOfIDs[defer] )? ;
 	public final EugeneParser.listOfIDs_return listOfIDs(boolean defer) throws RecognitionException {
 		EugeneParser.listOfIDs_return retval = new EugeneParser.listOfIDs_return();
 		retval.start = input.LT(1);
@@ -5538,8 +5559,8 @@ public class EugeneParser extends Parser {
 		retval.lstElements =new ArrayList<NamedElement>();
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1556:2: (idToken= ID ( ',' lstToken= listOfIDs[defer] )? )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1556:4: idToken= ID ( ',' lstToken= listOfIDs[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1578:2: (idToken= ID ( ',' lstToken= listOfIDs[defer] )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1578:4: idToken= ID ( ',' lstToken= listOfIDs[defer] )?
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -5560,7 +5581,7 @@ public class EugeneParser extends Parser {
 			        printError(ee.getMessage());
 			    }
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1568:4: ( ',' lstToken= listOfIDs[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1590:4: ( ',' lstToken= listOfIDs[defer] )?
 			int alt46=2;
 			int LA46_0 = input.LA(1);
 			if ( (LA46_0==COMMA) ) {
@@ -5568,7 +5589,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt46) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1568:5: ',' lstToken= listOfIDs[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1590:5: ',' lstToken= listOfIDs[defer]
 					{
 					char_literal118=(Token)match(input,COMMA,FOLLOW_COMMA_in_listOfIDs2449); 
 					char_literal118_tree = (Object)adaptor.create(char_literal118);
@@ -5619,7 +5640,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "rulebuilderDeclaration"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1578:1: rulebuilderDeclaration[boolean defer] : RULE_BUILDER i= ID ( LEFTP ( ( LC_ON | UC_ON ) d= ID )? RIGHTP )? ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1600:1: rulebuilderDeclaration[boolean defer] : RULE_BUILDER i= ID ( LEFTP ( ( LC_ON | UC_ON ) d= ID )? RIGHTP )? ;
 	public final EugeneParser.rulebuilderDeclaration_return rulebuilderDeclaration(boolean defer) throws RecognitionException {
 		EugeneParser.rulebuilderDeclaration_return retval = new EugeneParser.rulebuilderDeclaration_return();
 		retval.start = input.LT(1);
@@ -5641,8 +5662,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTP122_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1579:2: ( RULE_BUILDER i= ID ( LEFTP ( ( LC_ON | UC_ON ) d= ID )? RIGHTP )? )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1579:4: RULE_BUILDER i= ID ( LEFTP ( ( LC_ON | UC_ON ) d= ID )? RIGHTP )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1601:2: ( RULE_BUILDER i= ID ( LEFTP ( ( LC_ON | UC_ON ) d= ID )? RIGHTP )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1601:4: RULE_BUILDER i= ID ( LEFTP ( ( LC_ON | UC_ON ) d= ID )? RIGHTP )?
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -5655,7 +5676,7 @@ public class EugeneParser extends Parser {
 			i_tree = (Object)adaptor.create(i);
 			adaptor.addChild(root_0, i_tree);
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1579:22: ( LEFTP ( ( LC_ON | UC_ON ) d= ID )? RIGHTP )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1601:22: ( LEFTP ( ( LC_ON | UC_ON ) d= ID )? RIGHTP )?
 			int alt48=2;
 			int LA48_0 = input.LA(1);
 			if ( (LA48_0==LEFTP) ) {
@@ -5663,13 +5684,13 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt48) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1579:23: LEFTP ( ( LC_ON | UC_ON ) d= ID )? RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1601:23: LEFTP ( ( LC_ON | UC_ON ) d= ID )? RIGHTP
 					{
 					LEFTP120=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_rulebuilderDeclaration2485); 
 					LEFTP120_tree = (Object)adaptor.create(LEFTP120);
 					adaptor.addChild(root_0, LEFTP120_tree);
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1579:29: ( ( LC_ON | UC_ON ) d= ID )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1601:29: ( ( LC_ON | UC_ON ) d= ID )?
 					int alt47=2;
 					int LA47_0 = input.LA(1);
 					if ( (LA47_0==LC_ON||LA47_0==UC_ON) ) {
@@ -5677,7 +5698,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt47) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1579:30: ( LC_ON | UC_ON ) d= ID
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1601:30: ( LC_ON | UC_ON ) d= ID
 							{
 							set121=input.LT(1);
 							if ( input.LA(1)==LC_ON||input.LA(1)==UC_ON ) {
@@ -5747,7 +5768,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "ruleDeclaration"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1594:1: ruleDeclaration[boolean defer] returns [Rule rule] : RULE name= ID LEFTP ( ( ( LC_ON | UC_ON ) device= ID COLON )? cnf= cnf_rule[defer] ) RIGHTP ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1616:1: ruleDeclaration[boolean defer] returns [Rule rule] : RULE name= ID LEFTP ( ( ( LC_ON | UC_ON ) device= ID COLON )? cnf= cnf_rule[defer] ) RIGHTP ;
 	public final EugeneParser.ruleDeclaration_return ruleDeclaration(boolean defer) throws RecognitionException {
 		EugeneParser.ruleDeclaration_return retval = new EugeneParser.ruleDeclaration_return();
 		retval.start = input.LT(1);
@@ -5772,8 +5793,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTP127_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1596:2: ( RULE name= ID LEFTP ( ( ( LC_ON | UC_ON ) device= ID COLON )? cnf= cnf_rule[defer] ) RIGHTP )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1596:4: RULE name= ID LEFTP ( ( ( LC_ON | UC_ON ) device= ID COLON )? cnf= cnf_rule[defer] ) RIGHTP
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1618:2: ( RULE name= ID LEFTP ( ( ( LC_ON | UC_ON ) device= ID COLON )? cnf= cnf_rule[defer] ) RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1618:4: RULE name= ID LEFTP ( ( ( LC_ON | UC_ON ) device= ID COLON )? cnf= cnf_rule[defer] ) RIGHTP
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -5790,10 +5811,10 @@ public class EugeneParser extends Parser {
 			LEFTP124_tree = (Object)adaptor.create(LEFTP124);
 			adaptor.addChild(root_0, LEFTP124_tree);
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1596:23: ( ( ( LC_ON | UC_ON ) device= ID COLON )? cnf= cnf_rule[defer] )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1596:25: ( ( LC_ON | UC_ON ) device= ID COLON )? cnf= cnf_rule[defer]
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1618:23: ( ( ( LC_ON | UC_ON ) device= ID COLON )? cnf= cnf_rule[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1618:25: ( ( LC_ON | UC_ON ) device= ID COLON )? cnf= cnf_rule[defer]
 			{
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1596:25: ( ( LC_ON | UC_ON ) device= ID COLON )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1618:25: ( ( LC_ON | UC_ON ) device= ID COLON )?
 			int alt49=2;
 			int LA49_0 = input.LA(1);
 			if ( (LA49_0==LC_ON||LA49_0==UC_ON) ) {
@@ -5801,7 +5822,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt49) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1596:26: ( LC_ON | UC_ON ) device= ID COLON
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1618:26: ( LC_ON | UC_ON ) device= ID COLON
 					{
 					set125=input.LT(1);
 					if ( input.LA(1)==LC_ON||input.LA(1)==UC_ON ) {
@@ -5890,7 +5911,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "ruleOperator"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1620:1: ruleOperator[boolean defer] : ruleOperators ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1642:1: ruleOperator[boolean defer] : ruleOperators ;
 	public final EugeneParser.ruleOperator_return ruleOperator(boolean defer) throws RecognitionException {
 		EugeneParser.ruleOperator_return retval = new EugeneParser.ruleOperator_return();
 		retval.start = input.LT(1);
@@ -5901,8 +5922,8 @@ public class EugeneParser extends Parser {
 
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1621:2: ( ruleOperators )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1621:4: ruleOperators
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1643:2: ( ruleOperators )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1643:4: ruleOperators
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -5942,7 +5963,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "ruleOperators"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1625:1: ruleOperators : ( ( 'CONTAINS' | 'contains' ) | ( 'EXACTLY' | 'exactly' ) | ( 'MORETHAN' | 'morethan' ) | ( 'SAME_COUNT' | 'same_count' ) | ( 'WITH' | 'with' ) | ( 'THEN' | 'then' ) | ( 'STARTSWITH' | 'startswith' ) | ( 'ENDSWITH' | 'endswith' ) | ( 'BEFORE' | 'before' ) | ( 'ALL_BEFORE' | 'all_before' ) | ( 'SOME_BEFORE' | 'some_before' ) | ( 'AFTER' | 'after' ) | ( 'ALL_AFTER' | 'all_after' ) | ( 'SOME_AFTER' | 'some_after' ) | ( 'NEXTTO' | 'nextto' ) | ( 'ALL_NEXTTO' | 'all_nextto' ) | ( 'SOME_NEXTTO' | 'some_nextto' ) | ( 'ALWAYS_NEXTTO' | 'always_nextto' ) | ( 'EQUALS' | 'equals' ) | ( 'MATCHES' | 'matches' ) | ( 'FORWARD' | 'forward' ) | ( 'ALL_FORWARD' | 'all_forward' ) | ( 'SOME_FORWARD' | 'some_forward' ) | ( 'REVERSE' | 'reverse' ) | ( 'ALL_REVERSE' | 'all_reverse' ) | ( 'SOME_REVERSE' | 'some_reverse' ) | ( 'SAME_ORIENTATION' | 'same_orientation' ) | ( 'ALL_SAME_ORIENTATION' | 'all_same_orientation' ) | ( 'SOME_SAME_ORIENTATION' | 'some_same_orientation' ) | ( 'REPRESSES' | 'represses' ) | ( 'INDUCES' | 'induces' ) | ( 'DRIVES' | 'drives' ) | ( 'ALTERNATE_ORIENTATION' | 'alternate_orientation' ) | ( 'NOTCONTAINS' | 'notcontains' ) | ( 'NOTEXACTLY' | 'notexactly' ) | ( 'NOTMORETHAN' | 'notmorethan' ) | ( 'NOTWITH' | 'notwith' ) | ( 'NOTTHEN' | 'notthen' ) | ( 'NOTEQUALS' | 'notequals' ) | ( 'NOTMATCHES' | 'notmatches' ) );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1647:1: ruleOperators : ( ( 'CONTAINS' | 'contains' ) | ( 'EXACTLY' | 'exactly' ) | ( 'MORETHAN' | 'morethan' ) | ( 'SAME_COUNT' | 'same_count' ) | ( 'WITH' | 'with' ) | ( 'THEN' | 'then' ) | ( 'STARTSWITH' | 'startswith' ) | ( 'ENDSWITH' | 'endswith' ) | ( 'BEFORE' | 'before' ) | ( 'ALL_BEFORE' | 'all_before' ) | ( 'SOME_BEFORE' | 'some_before' ) | ( 'AFTER' | 'after' ) | ( 'ALL_AFTER' | 'all_after' ) | ( 'SOME_AFTER' | 'some_after' ) | ( 'NEXTTO' | 'nextto' ) | ( 'ALL_NEXTTO' | 'all_nextto' ) | ( 'SOME_NEXTTO' | 'some_nextto' ) | ( 'ALWAYS_NEXTTO' | 'always_nextto' ) | ( 'EQUALS' | 'equals' ) | ( 'MATCHES' | 'matches' ) | ( 'FORWARD' | 'forward' ) | ( 'ALL_FORWARD' | 'all_forward' ) | ( 'SOME_FORWARD' | 'some_forward' ) | ( 'REVERSE' | 'reverse' ) | ( 'ALL_REVERSE' | 'all_reverse' ) | ( 'SOME_REVERSE' | 'some_reverse' ) | ( 'SAME_ORIENTATION' | 'same_orientation' ) | ( 'ALL_SAME_ORIENTATION' | 'all_same_orientation' ) | ( 'SOME_SAME_ORIENTATION' | 'some_same_orientation' ) | ( 'REPRESSES' | 'represses' ) | ( 'INDUCES' | 'induces' ) | ( 'DRIVES' | 'drives' ) | ( 'ALTERNATE_ORIENTATION' | 'alternate_orientation' ) | ( 'NOTCONTAINS' | 'notcontains' ) | ( 'NOTEXACTLY' | 'notexactly' ) | ( 'NOTMORETHAN' | 'notmorethan' ) | ( 'NOTWITH' | 'notwith' ) | ( 'NOTTHEN' | 'notthen' ) | ( 'NOTEQUALS' | 'notequals' ) | ( 'NOTMATCHES' | 'notmatches' ) );
 	public final EugeneParser.ruleOperators_return ruleOperators() throws RecognitionException {
 		EugeneParser.ruleOperators_return retval = new EugeneParser.ruleOperators_return();
 		retval.start = input.LT(1);
@@ -5954,7 +5975,7 @@ public class EugeneParser extends Parser {
 		Object set129_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1626:2: ( ( 'CONTAINS' | 'contains' ) | ( 'EXACTLY' | 'exactly' ) | ( 'MORETHAN' | 'morethan' ) | ( 'SAME_COUNT' | 'same_count' ) | ( 'WITH' | 'with' ) | ( 'THEN' | 'then' ) | ( 'STARTSWITH' | 'startswith' ) | ( 'ENDSWITH' | 'endswith' ) | ( 'BEFORE' | 'before' ) | ( 'ALL_BEFORE' | 'all_before' ) | ( 'SOME_BEFORE' | 'some_before' ) | ( 'AFTER' | 'after' ) | ( 'ALL_AFTER' | 'all_after' ) | ( 'SOME_AFTER' | 'some_after' ) | ( 'NEXTTO' | 'nextto' ) | ( 'ALL_NEXTTO' | 'all_nextto' ) | ( 'SOME_NEXTTO' | 'some_nextto' ) | ( 'ALWAYS_NEXTTO' | 'always_nextto' ) | ( 'EQUALS' | 'equals' ) | ( 'MATCHES' | 'matches' ) | ( 'FORWARD' | 'forward' ) | ( 'ALL_FORWARD' | 'all_forward' ) | ( 'SOME_FORWARD' | 'some_forward' ) | ( 'REVERSE' | 'reverse' ) | ( 'ALL_REVERSE' | 'all_reverse' ) | ( 'SOME_REVERSE' | 'some_reverse' ) | ( 'SAME_ORIENTATION' | 'same_orientation' ) | ( 'ALL_SAME_ORIENTATION' | 'all_same_orientation' ) | ( 'SOME_SAME_ORIENTATION' | 'some_same_orientation' ) | ( 'REPRESSES' | 'represses' ) | ( 'INDUCES' | 'induces' ) | ( 'DRIVES' | 'drives' ) | ( 'ALTERNATE_ORIENTATION' | 'alternate_orientation' ) | ( 'NOTCONTAINS' | 'notcontains' ) | ( 'NOTEXACTLY' | 'notexactly' ) | ( 'NOTMORETHAN' | 'notmorethan' ) | ( 'NOTWITH' | 'notwith' ) | ( 'NOTTHEN' | 'notthen' ) | ( 'NOTEQUALS' | 'notequals' ) | ( 'NOTMATCHES' | 'notmatches' ) )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1648:2: ( ( 'CONTAINS' | 'contains' ) | ( 'EXACTLY' | 'exactly' ) | ( 'MORETHAN' | 'morethan' ) | ( 'SAME_COUNT' | 'same_count' ) | ( 'WITH' | 'with' ) | ( 'THEN' | 'then' ) | ( 'STARTSWITH' | 'startswith' ) | ( 'ENDSWITH' | 'endswith' ) | ( 'BEFORE' | 'before' ) | ( 'ALL_BEFORE' | 'all_before' ) | ( 'SOME_BEFORE' | 'some_before' ) | ( 'AFTER' | 'after' ) | ( 'ALL_AFTER' | 'all_after' ) | ( 'SOME_AFTER' | 'some_after' ) | ( 'NEXTTO' | 'nextto' ) | ( 'ALL_NEXTTO' | 'all_nextto' ) | ( 'SOME_NEXTTO' | 'some_nextto' ) | ( 'ALWAYS_NEXTTO' | 'always_nextto' ) | ( 'EQUALS' | 'equals' ) | ( 'MATCHES' | 'matches' ) | ( 'FORWARD' | 'forward' ) | ( 'ALL_FORWARD' | 'all_forward' ) | ( 'SOME_FORWARD' | 'some_forward' ) | ( 'REVERSE' | 'reverse' ) | ( 'ALL_REVERSE' | 'all_reverse' ) | ( 'SOME_REVERSE' | 'some_reverse' ) | ( 'SAME_ORIENTATION' | 'same_orientation' ) | ( 'ALL_SAME_ORIENTATION' | 'all_same_orientation' ) | ( 'SOME_SAME_ORIENTATION' | 'some_same_orientation' ) | ( 'REPRESSES' | 'represses' ) | ( 'INDUCES' | 'induces' ) | ( 'DRIVES' | 'drives' ) | ( 'ALTERNATE_ORIENTATION' | 'alternate_orientation' ) | ( 'NOTCONTAINS' | 'notcontains' ) | ( 'NOTEXACTLY' | 'notexactly' ) | ( 'NOTMORETHAN' | 'notmorethan' ) | ( 'NOTWITH' | 'notwith' ) | ( 'NOTTHEN' | 'notthen' ) | ( 'NOTEQUALS' | 'notequals' ) | ( 'NOTMATCHES' | 'notmatches' ) )
 			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:
 			{
 			root_0 = (Object)adaptor.nil();
@@ -5999,7 +6020,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "relationalOperators"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1669:1: relationalOperators : ( EQUALS EQUALS | NEQUAL | LTHAN | GTHAN | LEQUAL | GEQUAL | ( 'CONTAINS' | 'contains' ) | ( 'NOTCONTAINS' | 'notcontains' ) | ( 'MATCHES' | 'matches' ) | ( 'NOTMATCHES' | 'notmatches' ) | ( 'STARTSWITH' | 'startswith' ) | ( 'ENDSWITH' | 'endswith' ) | ( 'EQUALS' | 'equals' ) | ( 'NOTEQUALS' | 'notequals' ) | ( 'SOUNDSLIKE' | 'soundslike' ) );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1691:1: relationalOperators : ( EQUALS EQUALS | NEQUAL | LTHAN | GTHAN | LEQUAL | GEQUAL | ( 'CONTAINS' | 'contains' ) | ( 'NOTCONTAINS' | 'notcontains' ) | ( 'MATCHES' | 'matches' ) | ( 'NOTMATCHES' | 'notmatches' ) | ( 'STARTSWITH' | 'startswith' ) | ( 'ENDSWITH' | 'endswith' ) | ( 'EQUALS' | 'equals' ) | ( 'NOTEQUALS' | 'notequals' ) | ( 'SOUNDSLIKE' | 'soundslike' ) );
 	public final EugeneParser.relationalOperators_return relationalOperators() throws RecognitionException {
 		EugeneParser.relationalOperators_return retval = new EugeneParser.relationalOperators_return();
 		retval.start = input.LT(1);
@@ -6041,7 +6062,7 @@ public class EugeneParser extends Parser {
 		Object set145_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1670:2: ( EQUALS EQUALS | NEQUAL | LTHAN | GTHAN | LEQUAL | GEQUAL | ( 'CONTAINS' | 'contains' ) | ( 'NOTCONTAINS' | 'notcontains' ) | ( 'MATCHES' | 'matches' ) | ( 'NOTMATCHES' | 'notmatches' ) | ( 'STARTSWITH' | 'startswith' ) | ( 'ENDSWITH' | 'endswith' ) | ( 'EQUALS' | 'equals' ) | ( 'NOTEQUALS' | 'notequals' ) | ( 'SOUNDSLIKE' | 'soundslike' ) )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1692:2: ( EQUALS EQUALS | NEQUAL | LTHAN | GTHAN | LEQUAL | GEQUAL | ( 'CONTAINS' | 'contains' ) | ( 'NOTCONTAINS' | 'notcontains' ) | ( 'MATCHES' | 'matches' ) | ( 'NOTMATCHES' | 'notmatches' ) | ( 'STARTSWITH' | 'startswith' ) | ( 'ENDSWITH' | 'endswith' ) | ( 'EQUALS' | 'equals' ) | ( 'NOTEQUALS' | 'notequals' ) | ( 'SOUNDSLIKE' | 'soundslike' ) )
 			int alt50=15;
 			switch ( input.LA(1) ) {
 			case EQUALS:
@@ -6135,7 +6156,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt50) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1670:4: EQUALS EQUALS
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1692:4: EQUALS EQUALS
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -6151,7 +6172,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1671:4: NEQUAL
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1693:4: NEQUAL
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -6163,7 +6184,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1672:4: LTHAN
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1694:4: LTHAN
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -6175,7 +6196,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 4 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1673:4: GTHAN
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1695:4: GTHAN
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -6187,7 +6208,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 5 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1674:4: LEQUAL
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1696:4: LEQUAL
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -6199,7 +6220,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 6 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1675:4: GEQUAL
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1697:4: GEQUAL
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -6211,7 +6232,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 7 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1676:4: ( 'CONTAINS' | 'contains' )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1698:4: ( 'CONTAINS' | 'contains' )
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -6229,7 +6250,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 8 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1677:4: ( 'NOTCONTAINS' | 'notcontains' )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1699:4: ( 'NOTCONTAINS' | 'notcontains' )
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -6247,7 +6268,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 9 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1678:4: ( 'MATCHES' | 'matches' )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1700:4: ( 'MATCHES' | 'matches' )
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -6265,7 +6286,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 10 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1679:4: ( 'NOTMATCHES' | 'notmatches' )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1701:4: ( 'NOTMATCHES' | 'notmatches' )
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -6283,7 +6304,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 11 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1680:4: ( 'STARTSWITH' | 'startswith' )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1702:4: ( 'STARTSWITH' | 'startswith' )
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -6301,7 +6322,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 12 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1681:4: ( 'ENDSWITH' | 'endswith' )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1703:4: ( 'ENDSWITH' | 'endswith' )
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -6319,7 +6340,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 13 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1682:4: ( 'EQUALS' | 'equals' )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1704:4: ( 'EQUALS' | 'equals' )
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -6337,7 +6358,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 14 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1683:4: ( 'NOTEQUALS' | 'notequals' )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1705:4: ( 'NOTEQUALS' | 'notequals' )
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -6355,7 +6376,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 15 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1684:4: ( 'SOUNDSLIKE' | 'soundslike' )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1706:4: ( 'SOUNDSLIKE' | 'soundslike' )
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -6402,7 +6423,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "cnf_rule"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1687:1: cnf_rule[boolean defer] returns [LogicalAnd lAnd] : (c= or_predicate[defer] ) ( ( LC_AND | UC_AND | LOG_AND ) cnf= cnf_rule[defer] )? ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1709:1: cnf_rule[boolean defer] returns [LogicalAnd lAnd] : (c= or_predicate[defer] ) ( ( LC_AND | UC_AND | LOG_AND ) cnf= cnf_rule[defer] )? ;
 	public final EugeneParser.cnf_rule_return cnf_rule(boolean defer) throws RecognitionException {
 		EugeneParser.cnf_rule_return retval = new EugeneParser.cnf_rule_return();
 		retval.start = input.LT(1);
@@ -6416,14 +6437,14 @@ public class EugeneParser extends Parser {
 		Object set146_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1689:2: ( (c= or_predicate[defer] ) ( ( LC_AND | UC_AND | LOG_AND ) cnf= cnf_rule[defer] )? )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1689:4: (c= or_predicate[defer] ) ( ( LC_AND | UC_AND | LOG_AND ) cnf= cnf_rule[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1711:2: ( (c= or_predicate[defer] ) ( ( LC_AND | UC_AND | LOG_AND ) cnf= cnf_rule[defer] )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1711:4: (c= or_predicate[defer] ) ( ( LC_AND | UC_AND | LOG_AND ) cnf= cnf_rule[defer] )?
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1689:4: (c= or_predicate[defer] )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1689:5: c= or_predicate[defer]
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1711:4: (c= or_predicate[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1711:5: c= or_predicate[defer]
 			{
 			pushFollow(FOLLOW_or_predicate_in_cnf_rule3082);
 			c=or_predicate(defer);
@@ -6442,7 +6463,7 @@ public class EugeneParser extends Parser {
 				
 			}
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1697:5: ( ( LC_AND | UC_AND | LOG_AND ) cnf= cnf_rule[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1719:5: ( ( LC_AND | UC_AND | LOG_AND ) cnf= cnf_rule[defer] )?
 			int alt51=2;
 			int LA51_0 = input.LA(1);
 			if ( (LA51_0==LC_AND||LA51_0==LOG_AND||LA51_0==UC_AND) ) {
@@ -6450,7 +6471,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt51) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1697:7: ( LC_AND | UC_AND | LOG_AND ) cnf= cnf_rule[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1719:7: ( LC_AND | UC_AND | LOG_AND ) cnf= cnf_rule[defer]
 					{
 					set146=input.LT(1);
 					if ( input.LA(1)==LC_AND||input.LA(1)==LOG_AND||input.LA(1)==UC_AND ) {
@@ -6508,7 +6529,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "or_predicate"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1704:1: or_predicate[boolean defer] returns [Predicate p] : n1= negated_predicate[defer] ( ( LC_OR | UC_OR | LOG_OR ) n2= negated_predicate[defer] )* ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1726:1: or_predicate[boolean defer] returns [Predicate p] : n1= negated_predicate[defer] ( ( LC_OR | UC_OR | LOG_OR ) n2= negated_predicate[defer] )* ;
 	public final EugeneParser.or_predicate_return or_predicate(boolean defer) throws RecognitionException {
 		EugeneParser.or_predicate_return retval = new EugeneParser.or_predicate_return();
 		retval.start = input.LT(1);
@@ -6525,8 +6546,8 @@ public class EugeneParser extends Parser {
 		LogicalOr lor = null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1709:2: (n1= negated_predicate[defer] ( ( LC_OR | UC_OR | LOG_OR ) n2= negated_predicate[defer] )* )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1709:4: n1= negated_predicate[defer] ( ( LC_OR | UC_OR | LOG_OR ) n2= negated_predicate[defer] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1731:2: (n1= negated_predicate[defer] ( ( LC_OR | UC_OR | LOG_OR ) n2= negated_predicate[defer] )* )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1731:4: n1= negated_predicate[defer] ( ( LC_OR | UC_OR | LOG_OR ) n2= negated_predicate[defer] )*
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -6542,7 +6563,7 @@ public class EugeneParser extends Parser {
 			    retval.p = (n1!=null?((EugeneParser.negated_predicate_return)n1).p:null);
 			}	
 				
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1713:4: ( ( LC_OR | UC_OR | LOG_OR ) n2= negated_predicate[defer] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1735:4: ( ( LC_OR | UC_OR | LOG_OR ) n2= negated_predicate[defer] )*
 			loop52:
 			while (true) {
 				int alt52=2;
@@ -6553,7 +6574,7 @@ public class EugeneParser extends Parser {
 
 				switch (alt52) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1713:5: ( LC_OR | UC_OR | LOG_OR ) n2= negated_predicate[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1735:5: ( LC_OR | UC_OR | LOG_OR ) n2= negated_predicate[defer]
 					{
 					set147=input.LT(1);
 					if ( input.LA(1)==LC_OR||input.LA(1)==LOG_OR||input.LA(1)==UC_OR ) {
@@ -6629,7 +6650,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "negated_predicate"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1734:1: negated_predicate[boolean defer] returns [Predicate p] : ( ( UC_NOT | LC_NOT | OP_NOT ) c= predicate[defer] |c= predicate[defer] ) ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1756:1: negated_predicate[boolean defer] returns [Predicate p] : ( ( UC_NOT | LC_NOT | OP_NOT ) c= predicate[defer] |c= predicate[defer] ) ;
 	public final EugeneParser.negated_predicate_return negated_predicate(boolean defer) throws RecognitionException {
 		EugeneParser.negated_predicate_return retval = new EugeneParser.negated_predicate_return();
 		retval.start = input.LT(1);
@@ -6642,13 +6663,13 @@ public class EugeneParser extends Parser {
 		Object set148_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1736:2: ( ( ( UC_NOT | LC_NOT | OP_NOT ) c= predicate[defer] |c= predicate[defer] ) )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1736:4: ( ( UC_NOT | LC_NOT | OP_NOT ) c= predicate[defer] |c= predicate[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1758:2: ( ( ( UC_NOT | LC_NOT | OP_NOT ) c= predicate[defer] |c= predicate[defer] ) )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1758:4: ( ( UC_NOT | LC_NOT | OP_NOT ) c= predicate[defer] |c= predicate[defer] )
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1736:4: ( ( UC_NOT | LC_NOT | OP_NOT ) c= predicate[defer] |c= predicate[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1758:4: ( ( UC_NOT | LC_NOT | OP_NOT ) c= predicate[defer] |c= predicate[defer] )
 			int alt53=2;
 			int LA53_0 = input.LA(1);
 			if ( (LA53_0==LC_NOT||LA53_0==OP_NOT||LA53_0==UC_NOT) ) {
@@ -6666,7 +6687,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt53) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1736:5: ( UC_NOT | LC_NOT | OP_NOT ) c= predicate[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1758:5: ( UC_NOT | LC_NOT | OP_NOT ) c= predicate[defer]
 					{
 					set148=input.LT(1);
 					if ( input.LA(1)==LC_NOT||input.LA(1)==OP_NOT||input.LA(1)==UC_NOT ) {
@@ -6696,7 +6717,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1745:4: c= predicate[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1767:4: c= predicate[defer]
 					{
 					pushFollow(FOLLOW_predicate_in_negated_predicate3194);
 					c=predicate(defer);
@@ -6744,7 +6765,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "predicate"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1752:1: predicate[boolean defer] returns [Predicate p] : ( (lhs= operand[defer] )? op= ruleOperator[defer] (rhs= operand[defer] )? |i= ID |exp= expressionRule[defer] );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1774:1: predicate[boolean defer] returns [Predicate p] : ( (lhs= operand[defer] )? op= ruleOperator[defer] (rhs= operand[defer] )? |i= ID |exp= expressionRule[defer] );
 	public final EugeneParser.predicate_return predicate(boolean defer) throws RecognitionException {
 		EugeneParser.predicate_return retval = new EugeneParser.predicate_return();
 		retval.start = input.LT(1);
@@ -6760,7 +6781,7 @@ public class EugeneParser extends Parser {
 		Object i_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1754:2: ( (lhs= operand[defer] )? op= ruleOperator[defer] (rhs= operand[defer] )? |i= ID |exp= expressionRule[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1776:2: ( (lhs= operand[defer] )? op= ruleOperator[defer] (rhs= operand[defer] )? |i= ID |exp= expressionRule[defer] )
 			int alt56=3;
 			switch ( input.LA(1) ) {
 			case ID:
@@ -7813,12 +7834,12 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt56) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1754:4: (lhs= operand[defer] )? op= ruleOperator[defer] (rhs= operand[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1776:4: (lhs= operand[defer] )? op= ruleOperator[defer] (rhs= operand[defer] )?
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1754:4: (lhs= operand[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1776:4: (lhs= operand[defer] )?
 					int alt54=2;
 					int LA54_0 = input.LA(1);
 					if ( (LA54_0==DOLLAR||LA54_0==ID||LA54_0==LEFTSBR||LA54_0==NUMBER) ) {
@@ -7826,7 +7847,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt54) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1754:5: lhs= operand[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1776:5: lhs= operand[defer]
 							{
 							pushFollow(FOLLOW_operand_in_predicate3221);
 							lhs=operand(defer);
@@ -7851,7 +7872,7 @@ public class EugeneParser extends Parser {
 
 					addToken((op!=null?input.toString(op.start,op.stop):null));	
 						
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1758:5: (rhs= operand[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1780:5: (rhs= operand[defer] )?
 					int alt55=2;
 					int LA55_0 = input.LA(1);
 					if ( (LA55_0==DOLLAR||LA55_0==ID||LA55_0==LEFTSBR||LA55_0==NUMBER) ) {
@@ -7859,7 +7880,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt55) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1758:6: rhs= operand[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1780:6: rhs= operand[defer]
 							{
 							pushFollow(FOLLOW_operand_in_predicate3240);
 							rhs=operand(defer);
@@ -7890,7 +7911,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1772:4: i= ID
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1794:4: i= ID
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -7919,7 +7940,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1789:4: exp= expressionRule[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1811:4: exp= expressionRule[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -7967,7 +7988,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "operand"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1796:1: operand[boolean defer] returns [ArrangementOperand o] : (i= ID |n= NUMBER | '[' n= NUMBER ']' |dn= dynamic_naming[defer] ) ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1818:1: operand[boolean defer] returns [ArrangementOperand o] : (i= ID |n= NUMBER | '[' n= NUMBER ']' |dn= dynamic_naming[defer] ) ;
 	public final EugeneParser.operand_return operand(boolean defer) throws RecognitionException {
 		EugeneParser.operand_return retval = new EugeneParser.operand_return();
 		retval.start = input.LT(1);
@@ -7991,13 +8012,13 @@ public class EugeneParser extends Parser {
 		int index = -1;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1803:2: ( (i= ID |n= NUMBER | '[' n= NUMBER ']' |dn= dynamic_naming[defer] ) )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1803:4: (i= ID |n= NUMBER | '[' n= NUMBER ']' |dn= dynamic_naming[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1825:2: ( (i= ID |n= NUMBER | '[' n= NUMBER ']' |dn= dynamic_naming[defer] ) )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1825:4: (i= ID |n= NUMBER | '[' n= NUMBER ']' |dn= dynamic_naming[defer] )
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1803:4: (i= ID |n= NUMBER | '[' n= NUMBER ']' |dn= dynamic_naming[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1825:4: (i= ID |n= NUMBER | '[' n= NUMBER ']' |dn= dynamic_naming[defer] )
 			int alt57=4;
 			switch ( input.LA(1) ) {
 			case ID:
@@ -8027,7 +8048,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt57) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1803:5: i= ID
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1825:5: i= ID
 					{
 					i=(Token)match(input,ID,FOLLOW_ID_in_operand3294); 
 					i_tree = (Object)adaptor.create(i);
@@ -8048,7 +8069,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1815:4: n= NUMBER
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1837:4: n= NUMBER
 					{
 					n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_operand3303); 
 					n_tree = (Object)adaptor.create(n);
@@ -8062,7 +8083,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1820:4: '[' n= NUMBER ']'
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1842:4: '[' n= NUMBER ']'
 					{
 					char_literal149=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_operand3310); 
 					char_literal149_tree = (Object)adaptor.create(char_literal149);
@@ -8084,7 +8105,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 4 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1824:5: dn= dynamic_naming[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1846:5: dn= dynamic_naming[defer]
 					{
 					pushFollow(FOLLOW_dynamic_naming_in_operand3323);
 					dn=dynamic_naming(defer);
@@ -8148,7 +8169,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "expressionRule"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1850:1: expressionRule[boolean defer] returns [Predicate p] : lhs= expression[defer] op= exp_op[defer] rhs= expression[defer] ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1872:1: expressionRule[boolean defer] returns [Predicate p] : lhs= expression[defer] op= exp_op[defer] rhs= expression[defer] ;
 	public final EugeneParser.expressionRule_return expressionRule(boolean defer) throws RecognitionException {
 		EugeneParser.expressionRule_return retval = new EugeneParser.expressionRule_return();
 		retval.start = input.LT(1);
@@ -8161,8 +8182,8 @@ public class EugeneParser extends Parser {
 
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1852:2: (lhs= expression[defer] op= exp_op[defer] rhs= expression[defer] )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1852:4: lhs= expression[defer] op= exp_op[defer] rhs= expression[defer]
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1874:2: (lhs= expression[defer] op= exp_op[defer] rhs= expression[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1874:4: lhs= expression[defer] op= exp_op[defer] rhs= expression[defer]
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -8224,7 +8245,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "expression"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1863:1: expression[boolean defer] returns [Expression exp] : (lhs= exp_operand[defer] (expop= exp_operator[defer] rhs= expression[defer] )? | LEFTP expression[defer] RIGHTP );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1885:1: expression[boolean defer] returns [Expression exp] : (lhs= exp_operand[defer] (expop= exp_operator[defer] rhs= expression[defer] )? | LEFTP expression[defer] RIGHTP );
 	public final EugeneParser.expression_return expression(boolean defer) throws RecognitionException {
 		EugeneParser.expression_return retval = new EugeneParser.expression_return();
 		retval.start = input.LT(1);
@@ -8242,7 +8263,7 @@ public class EugeneParser extends Parser {
 		Object RIGHTP153_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1865:2: (lhs= exp_operand[defer] (expop= exp_operator[defer] rhs= expression[defer] )? | LEFTP expression[defer] RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1887:2: (lhs= exp_operand[defer] (expop= exp_operator[defer] rhs= expression[defer] )? | LEFTP expression[defer] RIGHTP )
 			int alt59=2;
 			int LA59_0 = input.LA(1);
 			if ( (LA59_0==ID||LA59_0==MINUS||LA59_0==NUMBER||LA59_0==REAL||LA59_0==STRING) ) {
@@ -8260,7 +8281,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt59) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1865:4: lhs= exp_operand[defer] (expop= exp_operator[defer] rhs= expression[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1887:4: lhs= exp_operand[defer] (expop= exp_operator[defer] rhs= expression[defer] )?
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -8276,7 +8297,7 @@ public class EugeneParser extends Parser {
 					    retval.exp = new Expression((lhs!=null?((EugeneParser.exp_operand_return)lhs).eop:null), null, null);
 					}
 						
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1869:4: (expop= exp_operator[defer] rhs= expression[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1891:4: (expop= exp_operator[defer] rhs= expression[defer] )?
 					int alt58=2;
 					int LA58_0 = input.LA(1);
 					if ( (LA58_0==DIV||LA58_0==MINUS||LA58_0==MULT||LA58_0==PLUS) ) {
@@ -8284,7 +8305,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt58) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1869:6: expop= exp_operator[defer] rhs= expression[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1891:6: expop= exp_operator[defer] rhs= expression[defer]
 							{
 							pushFollow(FOLLOW_exp_operator_in_expression3393);
 							expop=exp_operator(defer);
@@ -8311,7 +8332,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1874:4: LEFTP expression[defer] RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1896:4: LEFTP expression[defer] RIGHTP
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -8367,7 +8388,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "exp_operator"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1881:1: exp_operator[boolean defer] returns [Expression.ExpOp op] : ( PLUS | MINUS | MULT | DIV );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1903:1: exp_operator[boolean defer] returns [Expression.ExpOp op] : ( PLUS | MINUS | MULT | DIV );
 	public final EugeneParser.exp_operator_return exp_operator(boolean defer) throws RecognitionException {
 		EugeneParser.exp_operator_return retval = new EugeneParser.exp_operator_return();
 		retval.start = input.LT(1);
@@ -8385,7 +8406,7 @@ public class EugeneParser extends Parser {
 		Object DIV157_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1883:2: ( PLUS | MINUS | MULT | DIV )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1905:2: ( PLUS | MINUS | MULT | DIV )
 			int alt60=4;
 			switch ( input.LA(1) ) {
 			case PLUS:
@@ -8415,7 +8436,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt60) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1883:4: PLUS
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1905:4: PLUS
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -8432,7 +8453,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1888:4: MINUS
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1910:4: MINUS
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -8449,7 +8470,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1893:4: MULT
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1915:4: MULT
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -8466,7 +8487,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 4 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1898:4: DIV
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1920:4: DIV
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -8512,7 +8533,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "exp_operand"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1905:1: exp_operand[boolean defer] returns [ExpressionOperand eop] : ( (i1= ID DOT )* (i2= ID ) ( LEFTSBR n= NUMBER RIGHTSBR )* |n= NUMBER | MINUS n= NUMBER |r= REAL | MINUS r= REAL |s= STRING );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1927:1: exp_operand[boolean defer] returns [ExpressionOperand eop] : ( (i1= ID DOT )* (i2= ID ) ( LEFTSBR n= NUMBER RIGHTSBR )* |n= NUMBER | MINUS n= NUMBER |r= REAL | MINUS r= REAL |s= STRING );
 	public final EugeneParser.exp_operand_return exp_operand(boolean defer) throws RecognitionException {
 		EugeneParser.exp_operand_return retval = new EugeneParser.exp_operand_return();
 		retval.start = input.LT(1);
@@ -8546,7 +8567,7 @@ public class EugeneParser extends Parser {
 		NamedElement ne = null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1911:2: ( (i1= ID DOT )* (i2= ID ) ( LEFTSBR n= NUMBER RIGHTSBR )* |n= NUMBER | MINUS n= NUMBER |r= REAL | MINUS r= REAL |s= STRING )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1933:2: ( (i1= ID DOT )* (i2= ID ) ( LEFTSBR n= NUMBER RIGHTSBR )* |n= NUMBER | MINUS n= NUMBER |r= REAL | MINUS r= REAL |s= STRING )
 			int alt63=6;
 			switch ( input.LA(1) ) {
 			case ID:
@@ -8600,12 +8621,12 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt63) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1911:4: (i1= ID DOT )* (i2= ID ) ( LEFTSBR n= NUMBER RIGHTSBR )*
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1933:4: (i1= ID DOT )* (i2= ID ) ( LEFTSBR n= NUMBER RIGHTSBR )*
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1911:4: (i1= ID DOT )*
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1933:4: (i1= ID DOT )*
 					loop61:
 					while (true) {
 						int alt61=2;
@@ -8620,7 +8641,7 @@ public class EugeneParser extends Parser {
 
 						switch (alt61) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1911:5: i1= ID DOT
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1933:5: i1= ID DOT
 							{
 							i1=(Token)match(input,ID,FOLLOW_ID_in_exp_operand3486); 
 							i1_tree = (Object)adaptor.create(i1);
@@ -8672,8 +8693,8 @@ public class EugeneParser extends Parser {
 						}
 					}
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1944:7: (i2= ID )
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1944:8: i2= ID
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1966:7: (i2= ID )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1966:8: i2= ID
 					{
 					i2=(Token)match(input,ID,FOLLOW_ID_in_exp_operand3498); 
 					i2_tree = (Object)adaptor.create(i2);
@@ -8717,7 +8738,7 @@ public class EugeneParser extends Parser {
 						
 					}
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1979:6: ( LEFTSBR n= NUMBER RIGHTSBR )*
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2001:6: ( LEFTSBR n= NUMBER RIGHTSBR )*
 					loop62:
 					while (true) {
 						int alt62=2;
@@ -8728,7 +8749,7 @@ public class EugeneParser extends Parser {
 
 						switch (alt62) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1979:7: LEFTSBR n= NUMBER RIGHTSBR
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2001:7: LEFTSBR n= NUMBER RIGHTSBR
 							{
 							LEFTSBR159=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_exp_operand3505); 
 							LEFTSBR159_tree = (Object)adaptor.create(LEFTSBR159);
@@ -8764,7 +8785,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1990:4: n= NUMBER
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2012:4: n= NUMBER
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -8783,7 +8804,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1997:4: MINUS n= NUMBER
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2019:4: MINUS n= NUMBER
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -8806,7 +8827,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 4 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2004:4: r= REAL
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2026:4: r= REAL
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -8825,7 +8846,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 5 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2011:4: MINUS r= REAL
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2033:4: MINUS r= REAL
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -8848,7 +8869,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 6 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2018:4: s= STRING
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2040:4: s= STRING
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -8895,7 +8916,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "regexp"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2028:1: regexp[boolean defer] :;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2050:1: regexp[boolean defer] :;
 	public final EugeneParser.regexp_return regexp(boolean defer) throws RecognitionException {
 		EugeneParser.regexp_return retval = new EugeneParser.regexp_return();
 		retval.start = input.LT(1);
@@ -8903,8 +8924,8 @@ public class EugeneParser extends Parser {
 		Object root_0 = null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2029:2: ()
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2030:2: 
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2051:2: ()
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2052:2: 
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -8933,7 +8954,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "exp_op"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2032:1: exp_op[boolean defer] : relationalOperators ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2054:1: exp_op[boolean defer] : relationalOperators ;
 	public final EugeneParser.exp_op_return exp_op(boolean defer) throws RecognitionException {
 		EugeneParser.exp_op_return retval = new EugeneParser.exp_op_return();
 		retval.start = input.LT(1);
@@ -8944,8 +8965,8 @@ public class EugeneParser extends Parser {
 
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2033:2: ( relationalOperators )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2033:4: relationalOperators
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2055:2: ( relationalOperators )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2055:4: relationalOperators
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -8985,7 +9006,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "grammarDeclaration"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2041:1: grammarDeclaration[boolean defer] : GRAMMAR n= ID LEFTP list_of_production_rules[defer] RIGHTP ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2063:1: grammarDeclaration[boolean defer] : GRAMMAR n= ID LEFTP list_of_production_rules[defer] RIGHTP ;
 	public final EugeneParser.grammarDeclaration_return grammarDeclaration(boolean defer) throws RecognitionException {
 		EugeneParser.grammarDeclaration_return retval = new EugeneParser.grammarDeclaration_return();
 		retval.start = input.LT(1);
@@ -9004,8 +9025,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTP167_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2042:2: ( GRAMMAR n= ID LEFTP list_of_production_rules[defer] RIGHTP )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2043:3: GRAMMAR n= ID LEFTP list_of_production_rules[defer] RIGHTP
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2064:2: ( GRAMMAR n= ID LEFTP list_of_production_rules[defer] RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2065:3: GRAMMAR n= ID LEFTP list_of_production_rules[defer] RIGHTP
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -9061,7 +9082,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "list_of_production_rules"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2046:1: list_of_production_rules[boolean defer] : production_rule[defer] SEMIC ( list_of_production_rules[defer] )? ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2068:1: list_of_production_rules[boolean defer] : production_rule[defer] SEMIC ( list_of_production_rules[defer] )? ;
 	public final EugeneParser.list_of_production_rules_return list_of_production_rules(boolean defer) throws RecognitionException {
 		EugeneParser.list_of_production_rules_return retval = new EugeneParser.list_of_production_rules_return();
 		retval.start = input.LT(1);
@@ -9075,8 +9096,8 @@ public class EugeneParser extends Parser {
 		Object SEMIC169_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2047:2: ( production_rule[defer] SEMIC ( list_of_production_rules[defer] )? )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2047:4: production_rule[defer] SEMIC ( list_of_production_rules[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2069:2: ( production_rule[defer] SEMIC ( list_of_production_rules[defer] )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2069:4: production_rule[defer] SEMIC ( list_of_production_rules[defer] )?
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -9091,7 +9112,7 @@ public class EugeneParser extends Parser {
 			SEMIC169_tree = (Object)adaptor.create(SEMIC169);
 			adaptor.addChild(root_0, SEMIC169_tree);
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2047:33: ( list_of_production_rules[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2069:33: ( list_of_production_rules[defer] )?
 			int alt64=2;
 			int LA64_0 = input.LA(1);
 			if ( (LA64_0==ID) ) {
@@ -9099,7 +9120,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt64) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2047:34: list_of_production_rules[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2069:34: list_of_production_rules[defer]
 					{
 					pushFollow(FOLLOW_list_of_production_rules_in_list_of_production_rules3638);
 					list_of_production_rules170=list_of_production_rules(defer);
@@ -9141,7 +9162,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "production_rule"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2050:1: production_rule[boolean defer] : lhs= ID ARROW right_hand_side[defer] ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2072:1: production_rule[boolean defer] : lhs= ID ARROW right_hand_side[defer] ;
 	public final EugeneParser.production_rule_return production_rule(boolean defer) throws RecognitionException {
 		EugeneParser.production_rule_return retval = new EugeneParser.production_rule_return();
 		retval.start = input.LT(1);
@@ -9156,8 +9177,8 @@ public class EugeneParser extends Parser {
 		Object ARROW171_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2051:2: (lhs= ID ARROW right_hand_side[defer] )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2051:4: lhs= ID ARROW right_hand_side[defer]
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2073:2: (lhs= ID ARROW right_hand_side[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2073:4: lhs= ID ARROW right_hand_side[defer]
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -9210,7 +9231,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "right_hand_side"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2058:1: right_hand_side[boolean defer] : (i= ID ( COMMA right_hand_side[defer] )? | interaction[defer, \"some_string\"] );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2080:1: right_hand_side[boolean defer] : (i= ID ( COMMA right_hand_side[defer] )? | interaction[defer, \"some_string\"] );
 	public final EugeneParser.right_hand_side_return right_hand_side(boolean defer) throws RecognitionException {
 		EugeneParser.right_hand_side_return retval = new EugeneParser.right_hand_side_return();
 		retval.start = input.LT(1);
@@ -9226,7 +9247,7 @@ public class EugeneParser extends Parser {
 		Object COMMA173_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2059:2: (i= ID ( COMMA right_hand_side[defer] )? | interaction[defer, \"some_string\"] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2081:2: (i= ID ( COMMA right_hand_side[defer] )? | interaction[defer, \"some_string\"] )
 			int alt66=2;
 			int LA66_0 = input.LA(1);
 			if ( (LA66_0==ID) ) {
@@ -9260,7 +9281,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt66) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2059:4: i= ID ( COMMA right_hand_side[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2081:4: i= ID ( COMMA right_hand_side[defer] )?
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -9275,7 +9296,7 @@ public class EugeneParser extends Parser {
 					    // or a non-terminal defined within the grammar
 					}	
 						
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2064:4: ( COMMA right_hand_side[defer] )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2086:4: ( COMMA right_hand_side[defer] )?
 					int alt65=2;
 					int LA65_0 = input.LA(1);
 					if ( (LA65_0==COMMA) ) {
@@ -9283,7 +9304,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt65) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2064:5: COMMA right_hand_side[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2086:5: COMMA right_hand_side[defer]
 							{
 							COMMA173=(Token)match(input,COMMA,FOLLOW_COMMA_in_right_hand_side3685); 
 							COMMA173_tree = (Object)adaptor.create(COMMA173);
@@ -9303,7 +9324,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2065:4: interaction[defer, \"some_string\"]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2087:4: interaction[defer, \"some_string\"]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -9346,7 +9367,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "interactionDeclaration"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2072:1: interactionDeclaration[boolean defer] returns [Interaction ia] : (i1= interaction[defer, null] | INTERACTION name= ID LEFTP i2= interaction[defer, $name.text] RIGHTP );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2094:1: interactionDeclaration[boolean defer] returns [Interaction ia] : (i1= interaction[defer, null] | INTERACTION name= ID LEFTP i2= interaction[defer, $name.text] RIGHTP );
 	public final EugeneParser.interactionDeclaration_return interactionDeclaration(boolean defer) throws RecognitionException {
 		EugeneParser.interactionDeclaration_return retval = new EugeneParser.interactionDeclaration_return();
 		retval.start = input.LT(1);
@@ -9366,7 +9387,7 @@ public class EugeneParser extends Parser {
 		Object RIGHTP178_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2074:2: (i1= interaction[defer, null] | INTERACTION name= ID LEFTP i2= interaction[defer, $name.text] RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2096:2: (i1= interaction[defer, null] | INTERACTION name= ID LEFTP i2= interaction[defer, $name.text] RIGHTP )
 			int alt67=2;
 			int LA67_0 = input.LA(1);
 			if ( (LA67_0==ID) ) {
@@ -9384,7 +9405,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt67) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2074:4: i1= interaction[defer, null]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2096:4: i1= interaction[defer, null]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -9403,7 +9424,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2079:4: INTERACTION name= ID LEFTP i2= interaction[defer, $name.text] RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2101:4: INTERACTION name= ID LEFTP i2= interaction[defer, $name.text] RIGHTP
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -9467,7 +9488,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "interaction"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2086:1: interaction[boolean defer, String name] returns [Interaction ia] : (lhs1= ID t1= interactionType[defer] rhs1= ID |lhs2= ID t2= interactionType[defer] LEFTP rhs2= interaction[defer, name] RIGHTP );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2108:1: interaction[boolean defer, String name] returns [Interaction ia] : (lhs1= ID t1= interactionType[defer] rhs1= ID |lhs2= ID t2= interactionType[defer] LEFTP rhs2= interaction[defer, name] RIGHTP );
 	public final EugeneParser.interaction_return interaction(boolean defer, String name) throws RecognitionException {
 		EugeneParser.interaction_return retval = new EugeneParser.interaction_return();
 		retval.start = input.LT(1);
@@ -9490,7 +9511,7 @@ public class EugeneParser extends Parser {
 		Object RIGHTP180_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2088:2: (lhs1= ID t1= interactionType[defer] rhs1= ID |lhs2= ID t2= interactionType[defer] LEFTP rhs2= interaction[defer, name] RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2110:2: (lhs1= ID t1= interactionType[defer] rhs1= ID |lhs2= ID t2= interactionType[defer] LEFTP rhs2= interaction[defer, name] RIGHTP )
 			int alt68=2;
 			int LA68_0 = input.LA(1);
 			if ( (LA68_0==ID) ) {
@@ -9566,7 +9587,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt68) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2088:4: lhs1= ID t1= interactionType[defer] rhs1= ID
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2110:4: lhs1= ID t1= interactionType[defer] rhs1= ID
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -9597,7 +9618,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2097:4: lhs2= ID t2= interactionType[defer] LEFTP rhs2= interaction[defer, name] RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2119:4: lhs2= ID t2= interactionType[defer] LEFTP rhs2= interaction[defer, name] RIGHTP
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -9667,7 +9688,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "interactionType"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2108:1: interactionType[boolean defer] returns [Interaction.InteractionType type] : ( ( UC_REPRESSES | LC_REPRESSES ) | ( UC_INDUCES | LC_INDUCES ) );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2130:1: interactionType[boolean defer] returns [Interaction.InteractionType type] : ( ( UC_REPRESSES | LC_REPRESSES ) | ( UC_INDUCES | LC_INDUCES ) );
 	public final EugeneParser.interactionType_return interactionType(boolean defer) throws RecognitionException {
 		EugeneParser.interactionType_return retval = new EugeneParser.interactionType_return();
 		retval.start = input.LT(1);
@@ -9681,7 +9702,7 @@ public class EugeneParser extends Parser {
 		Object set182_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2110:2: ( ( UC_REPRESSES | LC_REPRESSES ) | ( UC_INDUCES | LC_INDUCES ) )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2132:2: ( ( UC_REPRESSES | LC_REPRESSES ) | ( UC_INDUCES | LC_INDUCES ) )
 			int alt69=2;
 			int LA69_0 = input.LA(1);
 			if ( (LA69_0==LC_REPRESSES||LA69_0==UC_REPRESSES) ) {
@@ -9699,7 +9720,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt69) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2110:4: ( UC_REPRESSES | LC_REPRESSES )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2132:4: ( UC_REPRESSES | LC_REPRESSES )
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -9722,7 +9743,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2115:4: ( UC_INDUCES | LC_INDUCES )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2137:4: ( UC_INDUCES | LC_INDUCES )
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -9773,7 +9794,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "printStatement"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2127:1: printStatement[boolean defer] : ( ( PRINTLN_LC | PRINTLN_UC ) LEFTP tp= toPrint[defer] RIGHTP | ( PRINT_LC | PRINT_UC ) LEFTP tp= toPrint[defer] RIGHTP );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2149:1: printStatement[boolean defer] : ( ( PRINTLN_LC | PRINTLN_UC ) LEFTP tp= toPrint[defer] RIGHTP | ( PRINT_LC | PRINT_UC ) LEFTP tp= toPrint[defer] RIGHTP );
 	public final EugeneParser.printStatement_return printStatement(boolean defer) throws RecognitionException {
 		EugeneParser.printStatement_return retval = new EugeneParser.printStatement_return();
 		retval.start = input.LT(1);
@@ -9796,7 +9817,7 @@ public class EugeneParser extends Parser {
 		Object RIGHTP188_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2128:2: ( ( PRINTLN_LC | PRINTLN_UC ) LEFTP tp= toPrint[defer] RIGHTP | ( PRINT_LC | PRINT_UC ) LEFTP tp= toPrint[defer] RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2150:2: ( ( PRINTLN_LC | PRINTLN_UC ) LEFTP tp= toPrint[defer] RIGHTP | ( PRINT_LC | PRINT_UC ) LEFTP tp= toPrint[defer] RIGHTP )
 			int alt70=2;
 			int LA70_0 = input.LA(1);
 			if ( ((LA70_0 >= PRINTLN_LC && LA70_0 <= PRINTLN_UC)) ) {
@@ -9814,7 +9835,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt70) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2128:4: ( PRINTLN_LC | PRINTLN_UC ) LEFTP tp= toPrint[defer] RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2150:4: ( PRINTLN_LC | PRINTLN_UC ) LEFTP tp= toPrint[defer] RIGHTP
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -9859,7 +9880,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2141:4: ( PRINT_LC | PRINT_UC ) LEFTP tp= toPrint[defer] RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2163:4: ( PRINT_LC | PRINT_UC ) LEFTP tp= toPrint[defer] RIGHTP
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -9932,7 +9953,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "toPrint"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2155:1: toPrint[boolean defer] returns [StringBuilder sb] : exp= expr[defer] tpp= toPrint_prime[defer] ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2177:1: toPrint[boolean defer] returns [StringBuilder sb] : exp= expr[defer] tpp= toPrint_prime[defer] ;
 	public final EugeneParser.toPrint_return toPrint(boolean defer) throws RecognitionException {
 		EugeneParser.toPrint_return retval = new EugeneParser.toPrint_return();
 		retval.start = input.LT(1);
@@ -9944,8 +9965,8 @@ public class EugeneParser extends Parser {
 
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2157:2: (exp= expr[defer] tpp= toPrint_prime[defer] )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2157:4: exp= expr[defer] tpp= toPrint_prime[defer]
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2179:2: (exp= expr[defer] tpp= toPrint_prime[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2179:4: exp= expr[defer] tpp= toPrint_prime[defer]
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -10003,7 +10024,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "toPrint_prime"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2170:1: toPrint_prime[boolean defer] returns [StringBuilder sb] : (| COMMA tp= toPrint[defer] );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2192:1: toPrint_prime[boolean defer] returns [StringBuilder sb] : (| COMMA tp= toPrint[defer] );
 	public final EugeneParser.toPrint_prime_return toPrint_prime(boolean defer) throws RecognitionException {
 		EugeneParser.toPrint_prime_return retval = new EugeneParser.toPrint_prime_return();
 		retval.start = input.LT(1);
@@ -10016,7 +10037,7 @@ public class EugeneParser extends Parser {
 		Object COMMA189_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2172:2: (| COMMA tp= toPrint[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2194:2: (| COMMA tp= toPrint[defer] )
 			int alt71=2;
 			int LA71_0 = input.LA(1);
 			if ( (LA71_0==RIGHTP) ) {
@@ -10034,7 +10055,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt71) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2172:4: 
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2194:4: 
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -10047,7 +10068,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2177:4: COMMA tp= toPrint[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2199:4: COMMA tp= toPrint[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -10099,7 +10120,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "imperativeStatements"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2189:1: imperativeStatements[boolean defer] : ( if_elseif_else[defer] | forall_iterator[defer] | for_loop[defer] | while_loop[defer] );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2211:1: imperativeStatements[boolean defer] : ( if_elseif_else[defer] | forall_iterator[defer] | for_loop[defer] | while_loop[defer] );
 	public final EugeneParser.imperativeStatements_return imperativeStatements(boolean defer) throws RecognitionException, EugeneReturnException {
 		EugeneParser.imperativeStatements_return retval = new EugeneParser.imperativeStatements_return();
 		retval.start = input.LT(1);
@@ -10113,7 +10134,7 @@ public class EugeneParser extends Parser {
 
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2191:2: ( if_elseif_else[defer] | forall_iterator[defer] | for_loop[defer] | while_loop[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2213:2: ( if_elseif_else[defer] | forall_iterator[defer] | for_loop[defer] | while_loop[defer] )
 			int alt72=4;
 			switch ( input.LA(1) ) {
 			case LC_IF:
@@ -10147,7 +10168,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt72) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2191:4: if_elseif_else[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2213:4: if_elseif_else[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -10161,7 +10182,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2192:4: forall_iterator[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2214:4: forall_iterator[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -10175,7 +10196,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2193:4: for_loop[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2215:4: for_loop[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -10189,7 +10210,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 4 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2194:4: while_loop[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2216:4: while_loop[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -10231,7 +10252,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "if_elseif_else"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2197:1: if_elseif_else[boolean defer] : ( UC_IF | LC_IF ) LEFTP co= logical_condition[defer] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR ( ( UC_ELSEIF | LC_ELSEIF ) LEFTP co= logical_condition[defer] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR )* ( ( UC_ELSE | LC_ELSE ) LEFTCUR stmts= list_of_statements[true] RIGHTCUR )? ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2219:1: if_elseif_else[boolean defer] : ( UC_IF | LC_IF ) LEFTP co= logical_condition[defer] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR ( ( UC_ELSEIF | LC_ELSEIF ) LEFTP co= logical_condition[defer] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR )* ( ( UC_ELSE | LC_ELSE ) LEFTCUR stmts= list_of_statements[true] RIGHTCUR )? ;
 	public final EugeneParser.if_elseif_else_return if_elseif_else(boolean defer) throws RecognitionException, EugeneReturnException {
 		EugeneParser.if_elseif_else_return retval = new EugeneParser.if_elseif_else_return();
 		retval.start = input.LT(1);
@@ -10272,8 +10293,8 @@ public class EugeneParser extends Parser {
 		boolean bExecuted = false;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2203:2: ( ( UC_IF | LC_IF ) LEFTP co= logical_condition[defer] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR ( ( UC_ELSEIF | LC_ELSEIF ) LEFTP co= logical_condition[defer] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR )* ( ( UC_ELSE | LC_ELSE ) LEFTCUR stmts= list_of_statements[true] RIGHTCUR )? )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2207:3: ( UC_IF | LC_IF ) LEFTP co= logical_condition[defer] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR ( ( UC_ELSEIF | LC_ELSEIF ) LEFTP co= logical_condition[defer] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR )* ( ( UC_ELSE | LC_ELSE ) LEFTCUR stmts= list_of_statements[true] RIGHTCUR )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2225:2: ( ( UC_IF | LC_IF ) LEFTP co= logical_condition[defer] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR ( ( UC_ELSEIF | LC_ELSEIF ) LEFTP co= logical_condition[defer] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR )* ( ( UC_ELSE | LC_ELSE ) LEFTCUR stmts= list_of_statements[true] RIGHTCUR )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2229:3: ( UC_IF | LC_IF ) LEFTP co= logical_condition[defer] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR ( ( UC_ELSEIF | LC_ELSEIF ) LEFTP co= logical_condition[defer] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR )* ( ( UC_ELSE | LC_ELSE ) LEFTCUR stmts= list_of_statements[true] RIGHTCUR )?
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -10334,7 +10355,7 @@ public class EugeneParser extends Parser {
 			    }
 			}			
 					
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2230:3: ( ( UC_ELSEIF | LC_ELSEIF ) LEFTP co= logical_condition[defer] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2252:3: ( ( UC_ELSEIF | LC_ELSEIF ) LEFTP co= logical_condition[defer] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR )*
 			loop73:
 			while (true) {
 				int alt73=2;
@@ -10345,7 +10366,7 @@ public class EugeneParser extends Parser {
 
 				switch (alt73) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2230:5: ( UC_ELSEIF | LC_ELSEIF ) LEFTP co= logical_condition[defer] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2252:5: ( UC_ELSEIF | LC_ELSEIF ) LEFTP co= logical_condition[defer] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR
 					{
 					set199=input.LT(1);
 					if ( input.LA(1)==LC_ELSEIF||input.LA(1)==UC_ELSEIF ) {
@@ -10411,7 +10432,7 @@ public class EugeneParser extends Parser {
 				}
 			}
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2253:3: ( ( UC_ELSE | LC_ELSE ) LEFTCUR stmts= list_of_statements[true] RIGHTCUR )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2275:3: ( ( UC_ELSE | LC_ELSE ) LEFTCUR stmts= list_of_statements[true] RIGHTCUR )?
 			int alt74=2;
 			int LA74_0 = input.LA(1);
 			if ( (LA74_0==LC_ELSE||LA74_0==UC_ELSE) ) {
@@ -10419,7 +10440,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt74) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2253:4: ( UC_ELSE | LC_ELSE ) LEFTCUR stmts= list_of_statements[true] RIGHTCUR
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2275:4: ( UC_ELSE | LC_ELSE ) LEFTCUR stmts= list_of_statements[true] RIGHTCUR
 					{
 					set204=input.LT(1);
 					if ( input.LA(1)==LC_ELSE||input.LA(1)==UC_ELSE ) {
@@ -10492,7 +10513,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "forall_iterator"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2270:1: forall_iterator[boolean defer] : ( UC_FORALL | LC_FORALL ) (it= ID COLON )? i= ID LEFTCUR los= list_of_statements[defer] RIGHTCUR ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2292:1: forall_iterator[boolean defer] : ( UC_FORALL | LC_FORALL ) (it= ID COLON )? i= ID LEFTCUR los= list_of_statements[defer] RIGHTCUR ;
 	public final EugeneParser.forall_iterator_return forall_iterator(boolean defer) throws RecognitionException, EugeneReturnException {
 		EugeneParser.forall_iterator_return retval = new EugeneParser.forall_iterator_return();
 		retval.start = input.LT(1);
@@ -10515,8 +10536,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTCUR210_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2272:2: ( ( UC_FORALL | LC_FORALL ) (it= ID COLON )? i= ID LEFTCUR los= list_of_statements[defer] RIGHTCUR )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2272:4: ( UC_FORALL | LC_FORALL ) (it= ID COLON )? i= ID LEFTCUR los= list_of_statements[defer] RIGHTCUR
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2294:2: ( ( UC_FORALL | LC_FORALL ) (it= ID COLON )? i= ID LEFTCUR los= list_of_statements[defer] RIGHTCUR )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2294:4: ( UC_FORALL | LC_FORALL ) (it= ID COLON )? i= ID LEFTCUR los= list_of_statements[defer] RIGHTCUR
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -10531,7 +10552,7 @@ public class EugeneParser extends Parser {
 				MismatchedSetException mse = new MismatchedSetException(null,input);
 				throw mse;
 			}
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2272:26: (it= ID COLON )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2294:26: (it= ID COLON )?
 			int alt75=2;
 			int LA75_0 = input.LA(1);
 			if ( (LA75_0==ID) ) {
@@ -10542,7 +10563,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt75) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2272:27: it= ID COLON
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2294:27: it= ID COLON
 					{
 					it=(Token)match(input,ID,FOLLOW_ID_in_forall_iterator4150); 
 					it_tree = (Object)adaptor.create(it);
@@ -10615,7 +10636,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "for_loop"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2287:1: for_loop[boolean defer] : ( UC_FOR | LC_FOR ) LEFTP ds= variableDeclaration[true] SEMIC co= logical_condition[true] SEMIC (as= assignment[true] )? RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2309:1: for_loop[boolean defer] : ( UC_FOR | LC_FOR ) LEFTP ds= variableDeclaration[true] SEMIC co= logical_condition[true] SEMIC (as= assignment[true] )? RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR ;
 	public final EugeneParser.for_loop_return for_loop(boolean defer) throws RecognitionException, EugeneReturnException {
 		EugeneParser.for_loop_return retval = new EugeneParser.for_loop_return();
 		retval.start = input.LT(1);
@@ -10643,8 +10664,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTCUR217_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2289:2: ( ( UC_FOR | LC_FOR ) LEFTP ds= variableDeclaration[true] SEMIC co= logical_condition[true] SEMIC (as= assignment[true] )? RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2289:4: ( UC_FOR | LC_FOR ) LEFTP ds= variableDeclaration[true] SEMIC co= logical_condition[true] SEMIC (as= assignment[true] )? RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2311:2: ( ( UC_FOR | LC_FOR ) LEFTP ds= variableDeclaration[true] SEMIC co= logical_condition[true] SEMIC (as= assignment[true] )? RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2311:4: ( UC_FOR | LC_FOR ) LEFTP ds= variableDeclaration[true] SEMIC co= logical_condition[true] SEMIC (as= assignment[true] )? RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -10683,7 +10704,7 @@ public class EugeneParser extends Parser {
 			SEMIC214_tree = (Object)adaptor.create(SEMIC214);
 			adaptor.addChild(root_0, SEMIC214_tree);
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2289:94: (as= assignment[true] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2311:94: (as= assignment[true] )?
 			int alt76=2;
 			int LA76_0 = input.LA(1);
 			if ( (LA76_0==ID) ) {
@@ -10691,7 +10712,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt76) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2289:95: as= assignment[true]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2311:95: as= assignment[true]
 					{
 					pushFollow(FOLLOW_assignment_in_for_loop4216);
 					as=assignment(true);
@@ -10774,7 +10795,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "while_loop"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2316:1: while_loop[boolean defer] : ( UC_WHILE | LC_WHILE ) LEFTP co= logical_condition[true] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2338:1: while_loop[boolean defer] : ( UC_WHILE | LC_WHILE ) LEFTP co= logical_condition[true] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR ;
 	public final EugeneParser.while_loop_return while_loop(boolean defer) throws RecognitionException, EugeneReturnException {
 		EugeneParser.while_loop_return retval = new EugeneParser.while_loop_return();
 		retval.start = input.LT(1);
@@ -10796,8 +10817,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTCUR222_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2318:2: ( ( UC_WHILE | LC_WHILE ) LEFTP co= logical_condition[true] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2318:4: ( UC_WHILE | LC_WHILE ) LEFTP co= logical_condition[true] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2340:2: ( ( UC_WHILE | LC_WHILE ) LEFTP co= logical_condition[true] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2340:4: ( UC_WHILE | LC_WHILE ) LEFTP co= logical_condition[true] RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -10885,7 +10906,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "logical_condition"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2342:1: logical_condition[boolean defer] returns [boolean b] : loc= logical_or_condition[defer] ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2364:1: logical_condition[boolean defer] returns [boolean b] : loc= logical_or_condition[defer] ;
 	public final EugeneParser.logical_condition_return logical_condition(boolean defer) throws RecognitionException {
 		EugeneParser.logical_condition_return retval = new EugeneParser.logical_condition_return();
 		retval.start = input.LT(1);
@@ -10896,8 +10917,8 @@ public class EugeneParser extends Parser {
 
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2344:2: (loc= logical_or_condition[defer] )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2344:4: loc= logical_or_condition[defer]
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2366:2: (loc= logical_or_condition[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2366:4: loc= logical_or_condition[defer]
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -10943,7 +10964,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "logical_not_condition"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2351:1: logical_not_condition[boolean defer] returns [boolean b] : loc= logical_or_condition[defer] ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2373:1: logical_not_condition[boolean defer] returns [boolean b] : loc= logical_or_condition[defer] ;
 	public final EugeneParser.logical_not_condition_return logical_not_condition(boolean defer) throws RecognitionException {
 		EugeneParser.logical_not_condition_return retval = new EugeneParser.logical_not_condition_return();
 		retval.start = input.LT(1);
@@ -10954,8 +10975,8 @@ public class EugeneParser extends Parser {
 
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2353:2: (loc= logical_or_condition[defer] )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2353:4: loc= logical_or_condition[defer]
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2375:2: (loc= logical_or_condition[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2375:4: loc= logical_or_condition[defer]
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -11001,7 +11022,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "logical_or_condition"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2360:1: logical_or_condition[boolean defer] returns [boolean b] : lac= logical_and_condition[defer] ( ( LC_OR | UC_OR | LOG_OR | PIPE ( PIPE )? ) loc= logical_or_condition[defer] )* ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2382:1: logical_or_condition[boolean defer] returns [boolean b] : lac= logical_and_condition[defer] ( ( LC_OR | UC_OR | LOG_OR | PIPE ( PIPE )? ) loc= logical_or_condition[defer] )* ;
 	public final EugeneParser.logical_or_condition_return logical_or_condition(boolean defer) throws RecognitionException {
 		EugeneParser.logical_or_condition_return retval = new EugeneParser.logical_or_condition_return();
 		retval.start = input.LT(1);
@@ -11023,8 +11044,8 @@ public class EugeneParser extends Parser {
 		Object PIPE227_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2362:2: (lac= logical_and_condition[defer] ( ( LC_OR | UC_OR | LOG_OR | PIPE ( PIPE )? ) loc= logical_or_condition[defer] )* )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2362:4: lac= logical_and_condition[defer] ( ( LC_OR | UC_OR | LOG_OR | PIPE ( PIPE )? ) loc= logical_or_condition[defer] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2384:2: (lac= logical_and_condition[defer] ( ( LC_OR | UC_OR | LOG_OR | PIPE ( PIPE )? ) loc= logical_or_condition[defer] )* )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2384:4: lac= logical_and_condition[defer] ( ( LC_OR | UC_OR | LOG_OR | PIPE ( PIPE )? ) loc= logical_or_condition[defer] )*
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -11040,7 +11061,7 @@ public class EugeneParser extends Parser {
 			    retval.b = (lac!=null?((EugeneParser.logical_and_condition_return)lac).b:false);
 			}	
 				
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2366:4: ( ( LC_OR | UC_OR | LOG_OR | PIPE ( PIPE )? ) loc= logical_or_condition[defer] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2388:4: ( ( LC_OR | UC_OR | LOG_OR | PIPE ( PIPE )? ) loc= logical_or_condition[defer] )*
 			loop79:
 			while (true) {
 				int alt79=2;
@@ -11068,9 +11089,9 @@ public class EugeneParser extends Parser {
 				}
 				switch (alt79) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2366:5: ( LC_OR | UC_OR | LOG_OR | PIPE ( PIPE )? ) loc= logical_or_condition[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2388:5: ( LC_OR | UC_OR | LOG_OR | PIPE ( PIPE )? ) loc= logical_or_condition[defer]
 					{
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2366:5: ( LC_OR | UC_OR | LOG_OR | PIPE ( PIPE )? )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2388:5: ( LC_OR | UC_OR | LOG_OR | PIPE ( PIPE )? )
 					int alt78=4;
 					switch ( input.LA(1) ) {
 					case LC_OR:
@@ -11100,7 +11121,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt78) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2366:6: LC_OR
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2388:6: LC_OR
 							{
 							LC_OR223=(Token)match(input,LC_OR,FOLLOW_LC_OR_in_logical_or_condition4370); 
 							LC_OR223_tree = (Object)adaptor.create(LC_OR223);
@@ -11109,7 +11130,7 @@ public class EugeneParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2366:12: UC_OR
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2388:12: UC_OR
 							{
 							UC_OR224=(Token)match(input,UC_OR,FOLLOW_UC_OR_in_logical_or_condition4372); 
 							UC_OR224_tree = (Object)adaptor.create(UC_OR224);
@@ -11118,7 +11139,7 @@ public class EugeneParser extends Parser {
 							}
 							break;
 						case 3 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2366:18: LOG_OR
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2388:18: LOG_OR
 							{
 							LOG_OR225=(Token)match(input,LOG_OR,FOLLOW_LOG_OR_in_logical_or_condition4374); 
 							LOG_OR225_tree = (Object)adaptor.create(LOG_OR225);
@@ -11127,13 +11148,13 @@ public class EugeneParser extends Parser {
 							}
 							break;
 						case 4 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2366:25: PIPE ( PIPE )?
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2388:25: PIPE ( PIPE )?
 							{
 							PIPE226=(Token)match(input,PIPE,FOLLOW_PIPE_in_logical_or_condition4376); 
 							PIPE226_tree = (Object)adaptor.create(PIPE226);
 							adaptor.addChild(root_0, PIPE226_tree);
 
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2366:30: ( PIPE )?
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2388:30: ( PIPE )?
 							int alt77=2;
 							int LA77_0 = input.LA(1);
 							if ( (LA77_0==PIPE) ) {
@@ -11141,7 +11162,7 @@ public class EugeneParser extends Parser {
 							}
 							switch (alt77) {
 								case 1 :
-									// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2366:31: PIPE
+									// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2388:31: PIPE
 									{
 									PIPE227=(Token)match(input,PIPE,FOLLOW_PIPE_in_logical_or_condition4379); 
 									PIPE227_tree = (Object)adaptor.create(PIPE227);
@@ -11207,7 +11228,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "logical_and_condition"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2374:1: logical_and_condition[boolean defer] returns [boolean b] : ac= atomic_condition[defer] ( ( LC_AND | UC_AND | LOG_AND | AMP ( AMP )? ) lac= logical_and_condition[defer] )* ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2396:1: logical_and_condition[boolean defer] returns [boolean b] : ac= atomic_condition[defer] ( ( LC_AND | UC_AND | LOG_AND | AMP ( AMP )? ) lac= logical_and_condition[defer] )* ;
 	public final EugeneParser.logical_and_condition_return logical_and_condition(boolean defer) throws RecognitionException {
 		EugeneParser.logical_and_condition_return retval = new EugeneParser.logical_and_condition_return();
 		retval.start = input.LT(1);
@@ -11229,8 +11250,8 @@ public class EugeneParser extends Parser {
 		Object AMP232_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2376:2: (ac= atomic_condition[defer] ( ( LC_AND | UC_AND | LOG_AND | AMP ( AMP )? ) lac= logical_and_condition[defer] )* )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2376:4: ac= atomic_condition[defer] ( ( LC_AND | UC_AND | LOG_AND | AMP ( AMP )? ) lac= logical_and_condition[defer] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2398:2: (ac= atomic_condition[defer] ( ( LC_AND | UC_AND | LOG_AND | AMP ( AMP )? ) lac= logical_and_condition[defer] )* )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2398:4: ac= atomic_condition[defer] ( ( LC_AND | UC_AND | LOG_AND | AMP ( AMP )? ) lac= logical_and_condition[defer] )*
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -11246,7 +11267,7 @@ public class EugeneParser extends Parser {
 			    retval.b = (ac!=null?((EugeneParser.atomic_condition_return)ac).b:false);
 			}	
 				
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2380:4: ( ( LC_AND | UC_AND | LOG_AND | AMP ( AMP )? ) lac= logical_and_condition[defer] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2402:4: ( ( LC_AND | UC_AND | LOG_AND | AMP ( AMP )? ) lac= logical_and_condition[defer] )*
 			loop82:
 			while (true) {
 				int alt82=2;
@@ -11274,9 +11295,9 @@ public class EugeneParser extends Parser {
 				}
 				switch (alt82) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2380:5: ( LC_AND | UC_AND | LOG_AND | AMP ( AMP )? ) lac= logical_and_condition[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2402:5: ( LC_AND | UC_AND | LOG_AND | AMP ( AMP )? ) lac= logical_and_condition[defer]
 					{
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2380:5: ( LC_AND | UC_AND | LOG_AND | AMP ( AMP )? )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2402:5: ( LC_AND | UC_AND | LOG_AND | AMP ( AMP )? )
 					int alt81=4;
 					switch ( input.LA(1) ) {
 					case LC_AND:
@@ -11306,7 +11327,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt81) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2380:6: LC_AND
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2402:6: LC_AND
 							{
 							LC_AND228=(Token)match(input,LC_AND,FOLLOW_LC_AND_in_logical_and_condition4418); 
 							LC_AND228_tree = (Object)adaptor.create(LC_AND228);
@@ -11315,7 +11336,7 @@ public class EugeneParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2380:13: UC_AND
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2402:13: UC_AND
 							{
 							UC_AND229=(Token)match(input,UC_AND,FOLLOW_UC_AND_in_logical_and_condition4420); 
 							UC_AND229_tree = (Object)adaptor.create(UC_AND229);
@@ -11324,7 +11345,7 @@ public class EugeneParser extends Parser {
 							}
 							break;
 						case 3 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2380:20: LOG_AND
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2402:20: LOG_AND
 							{
 							LOG_AND230=(Token)match(input,LOG_AND,FOLLOW_LOG_AND_in_logical_and_condition4422); 
 							LOG_AND230_tree = (Object)adaptor.create(LOG_AND230);
@@ -11333,13 +11354,13 @@ public class EugeneParser extends Parser {
 							}
 							break;
 						case 4 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2380:28: AMP ( AMP )?
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2402:28: AMP ( AMP )?
 							{
 							AMP231=(Token)match(input,AMP,FOLLOW_AMP_in_logical_and_condition4424); 
 							AMP231_tree = (Object)adaptor.create(AMP231);
 							adaptor.addChild(root_0, AMP231_tree);
 
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2380:32: ( AMP )?
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2402:32: ( AMP )?
 							int alt80=2;
 							int LA80_0 = input.LA(1);
 							if ( (LA80_0==AMP) ) {
@@ -11347,7 +11368,7 @@ public class EugeneParser extends Parser {
 							}
 							switch (alt80) {
 								case 1 :
-									// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2380:33: AMP
+									// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2402:33: AMP
 									{
 									AMP232=(Token)match(input,AMP,FOLLOW_AMP_in_logical_and_condition4427); 
 									AMP232_tree = (Object)adaptor.create(AMP232);
@@ -11413,7 +11434,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "atomic_condition"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2388:1: atomic_condition[boolean defer] returns [boolean b] : (lhs= expr[defer] ro= relationalOperators rhs= expr[defer] | ( LC_NOT | UC_NOT | OP_NOT ) LEFTP lac= atomic_condition[defer] RIGHTP );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2410:1: atomic_condition[boolean defer] returns [boolean b] : (lhs= expr[defer] ro= relationalOperators rhs= expr[defer] | ( LC_NOT | UC_NOT | OP_NOT ) LEFTP lac= atomic_condition[defer] RIGHTP );
 	public final EugeneParser.atomic_condition_return atomic_condition(boolean defer) throws RecognitionException {
 		EugeneParser.atomic_condition_return retval = new EugeneParser.atomic_condition_return();
 		retval.start = input.LT(1);
@@ -11433,7 +11454,7 @@ public class EugeneParser extends Parser {
 		Object RIGHTP235_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2390:2: (lhs= expr[defer] ro= relationalOperators rhs= expr[defer] | ( LC_NOT | UC_NOT | OP_NOT ) LEFTP lac= atomic_condition[defer] RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2412:2: (lhs= expr[defer] ro= relationalOperators rhs= expr[defer] | ( LC_NOT | UC_NOT | OP_NOT ) LEFTP lac= atomic_condition[defer] RIGHTP )
 			int alt83=2;
 			int LA83_0 = input.LA(1);
 			if ( (LA83_0==DOLLAR||(LA83_0 >= FALSE_LC && LA83_0 <= FALSE_UC)||LA83_0==ID||(LA83_0 >= LEFTP && LA83_0 <= LEFTSBR)||LA83_0==MINUS||LA83_0==NUMBER||LA83_0==PERMUTE||LA83_0==PRODUCT||(LA83_0 >= RANDOM_LC && LA83_0 <= RANDOM_UC)||LA83_0==REAL||(LA83_0 >= SIZEOF_LC && LA83_0 <= SIZE_UC)||(LA83_0 >= STRING && LA83_0 <= TRUE_UC)) ) {
@@ -11451,7 +11472,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt83) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2390:4: lhs= expr[defer] ro= relationalOperators rhs= expr[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2412:4: lhs= expr[defer] ro= relationalOperators rhs= expr[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -11524,7 +11545,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2437:4: ( LC_NOT | UC_NOT | OP_NOT ) LEFTP lac= atomic_condition[defer] RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2459:4: ( LC_NOT | UC_NOT | OP_NOT ) LEFTP lac= atomic_condition[defer] RIGHTP
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -11595,7 +11616,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "expr"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2448:1: expr[boolean defer] returns [Variable p, String instance, int index, String listAddress, Variable primVariable, NamedElement element] : e= multExpr[defer] (op= ( PLUS | MINUS ) e= multExpr[defer] )* ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2470:1: expr[boolean defer] returns [Variable p, String instance, int index, String listAddress, Variable primVariable, NamedElement element] : e= multExpr[defer] (op= ( PLUS | MINUS ) e= multExpr[defer] )* ;
 	public final EugeneParser.expr_return expr(boolean defer) throws RecognitionException {
 		EugeneParser.expr_return retval = new EugeneParser.expr_return();
 		retval.start = input.LT(1);
@@ -11608,8 +11629,8 @@ public class EugeneParser extends Parser {
 		Object op_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2450:2: (e= multExpr[defer] (op= ( PLUS | MINUS ) e= multExpr[defer] )* )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2450:4: e= multExpr[defer] (op= ( PLUS | MINUS ) e= multExpr[defer] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2472:2: (e= multExpr[defer] (op= ( PLUS | MINUS ) e= multExpr[defer] )* )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2472:4: e= multExpr[defer] (op= ( PLUS | MINUS ) e= multExpr[defer] )*
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -11639,7 +11660,7 @@ public class EugeneParser extends Parser {
 			    }
 			}
 				
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2468:5: (op= ( PLUS | MINUS ) e= multExpr[defer] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2490:5: (op= ( PLUS | MINUS ) e= multExpr[defer] )*
 			loop84:
 			while (true) {
 				int alt84=2;
@@ -11650,7 +11671,7 @@ public class EugeneParser extends Parser {
 
 				switch (alt84) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2468:6: op= ( PLUS | MINUS ) e= multExpr[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2490:6: op= ( PLUS | MINUS ) e= multExpr[defer]
 					{
 					op=input.LT(1);
 					if ( input.LA(1)==MINUS||input.LA(1)==PLUS ) {
@@ -11741,7 +11762,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "multExpr"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2514:1: multExpr[boolean defer] returns [Variable p, String instance, int index, String listAddress, Variable primVariable, NamedElement element] : e= atom[defer] (op= ( MULT | DIV ) e= atom[defer] )* ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2536:1: multExpr[boolean defer] returns [Variable p, String instance, int index, String listAddress, Variable primVariable, NamedElement element] : e= atom[defer] (op= ( MULT | DIV ) e= atom[defer] )* ;
 	public final EugeneParser.multExpr_return multExpr(boolean defer) throws RecognitionException {
 		EugeneParser.multExpr_return retval = new EugeneParser.multExpr_return();
 		retval.start = input.LT(1);
@@ -11754,8 +11775,8 @@ public class EugeneParser extends Parser {
 		Object op_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2516:2: (e= atom[defer] (op= ( MULT | DIV ) e= atom[defer] )* )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2516:4: e= atom[defer] (op= ( MULT | DIV ) e= atom[defer] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2538:2: (e= atom[defer] (op= ( MULT | DIV ) e= atom[defer] )* )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2538:4: e= atom[defer] (op= ( MULT | DIV ) e= atom[defer] )*
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -11787,7 +11808,7 @@ public class EugeneParser extends Parser {
 			    }
 			}	
 				
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2536:5: (op= ( MULT | DIV ) e= atom[defer] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2558:5: (op= ( MULT | DIV ) e= atom[defer] )*
 			loop85:
 			while (true) {
 				int alt85=2;
@@ -11798,7 +11819,7 @@ public class EugeneParser extends Parser {
 
 				switch (alt85) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2536:7: op= ( MULT | DIV ) e= atom[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2558:7: op= ( MULT | DIV ) e= atom[defer]
 					{
 					op=input.LT(1);
 					if ( input.LA(1)==DIV||input.LA(1)==MULT ) {
@@ -11884,7 +11905,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "atom"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2563:1: atom[boolean defer] returns [Variable p = new Variable(), String instance, int index = -1, String listAddress, Variable primVariable, NamedElement element] : ( (n= NUMBER |n= REAL ) | MINUS (n= NUMBER |n= REAL ) | (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) ) |dn= dynamic_naming[defer] oc= object_access[defer, $element] | STRING | '(' expr[defer] ')' | LEFTSBR list[defer] RIGHTSBR |bif= built_in_function[defer] |fc= function_call[defer] );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2585:1: atom[boolean defer] returns [Variable p = new Variable(), String instance, int index = -1, String listAddress, Variable primVariable, NamedElement element] : ( (n= NUMBER |n= REAL ) | MINUS (n= NUMBER |n= REAL ) | (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) ) |dn= dynamic_naming[defer] oc= object_access[defer, $element] | STRING | '(' expr[defer] ')' | LEFTSBR list[defer] RIGHTSBR |bif= built_in_function[defer] |fc= function_call[defer] );
 	public final EugeneParser.atom_return atom(boolean defer) throws RecognitionException {
 		EugeneParser.atom_return retval = new EugeneParser.atom_return();
 		retval.start = input.LT(1);
@@ -11918,7 +11939,7 @@ public class EugeneParser extends Parser {
 		Object RIGHTSBR243_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2565:2: ( (n= NUMBER |n= REAL ) | MINUS (n= NUMBER |n= REAL ) | (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) ) |dn= dynamic_naming[defer] oc= object_access[defer, $element] | STRING | '(' expr[defer] ')' | LEFTSBR list[defer] RIGHTSBR |bif= built_in_function[defer] |fc= function_call[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2587:2: ( (n= NUMBER |n= REAL ) | MINUS (n= NUMBER |n= REAL ) | (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) ) |dn= dynamic_naming[defer] oc= object_access[defer, $element] | STRING | '(' expr[defer] ')' | LEFTSBR list[defer] RIGHTSBR |bif= built_in_function[defer] |fc= function_call[defer] )
 			int alt89=9;
 			switch ( input.LA(1) ) {
 			case NUMBER:
@@ -12003,12 +12024,12 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt89) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2565:4: (n= NUMBER |n= REAL )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2587:4: (n= NUMBER |n= REAL )
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2565:4: (n= NUMBER |n= REAL )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2587:4: (n= NUMBER |n= REAL )
 					int alt86=2;
 					int LA86_0 = input.LA(1);
 					if ( (LA86_0==NUMBER) ) {
@@ -12026,7 +12047,7 @@ public class EugeneParser extends Parser {
 
 					switch (alt86) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2565:5: n= NUMBER
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2587:5: n= NUMBER
 							{
 							n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_atom4613); 
 							n_tree = (Object)adaptor.create(n);
@@ -12035,7 +12056,7 @@ public class EugeneParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2565:16: n= REAL
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2587:16: n= REAL
 							{
 							n=(Token)match(input,REAL,FOLLOW_REAL_in_atom4619); 
 							n_tree = (Object)adaptor.create(n);
@@ -12057,7 +12078,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2574:4: MINUS (n= NUMBER |n= REAL )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2596:4: MINUS (n= NUMBER |n= REAL )
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -12066,7 +12087,7 @@ public class EugeneParser extends Parser {
 					MINUS236_tree = (Object)adaptor.create(MINUS236);
 					adaptor.addChild(root_0, MINUS236_tree);
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2574:10: (n= NUMBER |n= REAL )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2596:10: (n= NUMBER |n= REAL )
 					int alt87=2;
 					int LA87_0 = input.LA(1);
 					if ( (LA87_0==NUMBER) ) {
@@ -12084,7 +12105,7 @@ public class EugeneParser extends Parser {
 
 					switch (alt87) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2574:11: n= NUMBER
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2596:11: n= NUMBER
 							{
 							n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_atom4634); 
 							n_tree = (Object)adaptor.create(n);
@@ -12093,7 +12114,7 @@ public class EugeneParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2574:22: n= REAL
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2596:22: n= REAL
 							{
 							n=(Token)match(input,REAL,FOLLOW_REAL_in_atom4640); 
 							n_tree = (Object)adaptor.create(n);
@@ -12115,12 +12136,12 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2583:4: (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2605:4: (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) )
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2583:4: (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2605:4: (t= ( TRUE_LC | TRUE_UC ) |f= ( FALSE_LC | FALSE_UC ) )
 					int alt88=2;
 					int LA88_0 = input.LA(1);
 					if ( ((LA88_0 >= TRUE_LC && LA88_0 <= TRUE_UC)) ) {
@@ -12138,7 +12159,7 @@ public class EugeneParser extends Parser {
 
 					switch (alt88) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2583:5: t= ( TRUE_LC | TRUE_UC )
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2605:5: t= ( TRUE_LC | TRUE_UC )
 							{
 							t=input.LT(1);
 							if ( (input.LA(1) >= TRUE_LC && input.LA(1) <= TRUE_UC) ) {
@@ -12153,7 +12174,7 @@ public class EugeneParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2583:27: f= ( FALSE_LC | FALSE_UC )
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2605:27: f= ( FALSE_LC | FALSE_UC )
 							{
 							f=input.LT(1);
 							if ( (input.LA(1) >= FALSE_LC && input.LA(1) <= FALSE_UC) ) {
@@ -12185,7 +12206,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 4 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2596:4: dn= dynamic_naming[defer] oc= object_access[defer, $element]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2618:4: dn= dynamic_naming[defer] oc= object_access[defer, $element]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -12238,7 +12259,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 5 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2628:4: STRING
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2650:4: STRING
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -12258,7 +12279,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 6 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2637:4: '(' expr[defer] ')'
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2659:4: '(' expr[defer] ')'
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -12287,7 +12308,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 7 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2645:5: LEFTSBR list[defer] RIGHTSBR
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2667:5: LEFTSBR list[defer] RIGHTSBR
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -12316,7 +12337,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 8 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2653:4: bif= built_in_function[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2675:4: bif= built_in_function[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -12341,7 +12362,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 9 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2664:4: fc= function_call[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2686:4: fc= function_call[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -12395,7 +12416,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "list"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2677:1: list[boolean defer] returns [Variable listPrim] : str1= expr[defer] ( COMMA str2= expr[defer] )* ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2699:1: list[boolean defer] returns [Variable listPrim] : str1= expr[defer] ( COMMA str2= expr[defer] )* ;
 	public final EugeneParser.list_return list(boolean defer) throws RecognitionException {
 		EugeneParser.list_return retval = new EugeneParser.list_return();
 		retval.start = input.LT(1);
@@ -12409,8 +12430,8 @@ public class EugeneParser extends Parser {
 		Object COMMA244_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2679:2: (str1= expr[defer] ( COMMA str2= expr[defer] )* )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2679:4: str1= expr[defer] ( COMMA str2= expr[defer] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2701:2: (str1= expr[defer] ( COMMA str2= expr[defer] )* )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2701:4: str1= expr[defer] ( COMMA str2= expr[defer] )*
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -12441,7 +12462,7 @@ public class EugeneParser extends Parser {
 			    }
 			}
 				
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2698:5: ( COMMA str2= expr[defer] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2720:5: ( COMMA str2= expr[defer] )*
 			loop90:
 			while (true) {
 				int alt90=2;
@@ -12452,7 +12473,7 @@ public class EugeneParser extends Parser {
 
 				switch (alt90) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2698:6: COMMA str2= expr[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2720:6: COMMA str2= expr[defer]
 					{
 					COMMA244=(Token)match(input,COMMA,FOLLOW_COMMA_in_list4772); 
 					COMMA244_tree = (Object)adaptor.create(COMMA244);
@@ -12511,7 +12532,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "built_in_function"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2716:1: built_in_function[boolean defer] returns [NamedElement element] : ( ( SIZEOF_LC | SIZEOF_UC | SIZE_LC | SIZE_UC ) LEFTP e= expr[defer] RIGHTP | ( RANDOM_LC | RANDOM_UC ) LEFTP rg= range[defer] RIGHTP | (pr= PRODUCT |pe= PERMUTE ) LEFTP idToken= ID RIGHTP );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2738:1: built_in_function[boolean defer] returns [NamedElement element] : ( ( SIZEOF_LC | SIZEOF_UC | SIZE_LC | SIZE_UC ) LEFTP e= expr[defer] RIGHTP | ( RANDOM_LC | RANDOM_UC ) LEFTP rg= range[defer] RIGHTP | (pr= PRODUCT |pe= PERMUTE ) LEFTP idToken= ID RIGHTP );
 	public final EugeneParser.built_in_function_return built_in_function(boolean defer) throws RecognitionException {
 		EugeneParser.built_in_function_return retval = new EugeneParser.built_in_function_return();
 		retval.start = input.LT(1);
@@ -12545,7 +12566,7 @@ public class EugeneParser extends Parser {
 		Object RIGHTP252_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2718:2: ( ( SIZEOF_LC | SIZEOF_UC | SIZE_LC | SIZE_UC ) LEFTP e= expr[defer] RIGHTP | ( RANDOM_LC | RANDOM_UC ) LEFTP rg= range[defer] RIGHTP | (pr= PRODUCT |pe= PERMUTE ) LEFTP idToken= ID RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2740:2: ( ( SIZEOF_LC | SIZEOF_UC | SIZE_LC | SIZE_UC ) LEFTP e= expr[defer] RIGHTP | ( RANDOM_LC | RANDOM_UC ) LEFTP rg= range[defer] RIGHTP | (pr= PRODUCT |pe= PERMUTE ) LEFTP idToken= ID RIGHTP )
 			int alt92=3;
 			switch ( input.LA(1) ) {
 			case SIZEOF_LC:
@@ -12575,7 +12596,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt92) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2718:4: ( SIZEOF_LC | SIZEOF_UC | SIZE_LC | SIZE_UC ) LEFTP e= expr[defer] RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2740:4: ( SIZEOF_LC | SIZEOF_UC | SIZE_LC | SIZE_UC ) LEFTP e= expr[defer] RIGHTP
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -12620,7 +12641,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2731:4: ( RANDOM_LC | RANDOM_UC ) LEFTP rg= range[defer] RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2753:4: ( RANDOM_LC | RANDOM_UC ) LEFTP rg= range[defer] RIGHTP
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -12663,12 +12684,12 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2742:4: (pr= PRODUCT |pe= PERMUTE ) LEFTP idToken= ID RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2764:4: (pr= PRODUCT |pe= PERMUTE ) LEFTP idToken= ID RIGHTP
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2742:4: (pr= PRODUCT |pe= PERMUTE )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2764:4: (pr= PRODUCT |pe= PERMUTE )
 					int alt91=2;
 					int LA91_0 = input.LA(1);
 					if ( (LA91_0==PRODUCT) ) {
@@ -12686,7 +12707,7 @@ public class EugeneParser extends Parser {
 
 					switch (alt91) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2742:5: pr= PRODUCT
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2764:5: pr= PRODUCT
 							{
 							pr=(Token)match(input,PRODUCT,FOLLOW_PRODUCT_in_built_in_function4851); 
 							pr_tree = (Object)adaptor.create(pr);
@@ -12695,7 +12716,7 @@ public class EugeneParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2742:16: pe= PERMUTE
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2764:16: pe= PERMUTE
 							{
 							pe=(Token)match(input,PERMUTE,FOLLOW_PERMUTE_in_built_in_function4855); 
 							pe_tree = (Object)adaptor.create(pe);
@@ -12763,7 +12784,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "stand_alone_function"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2764:1: stand_alone_function[boolean defer] : ( ( SAVE_LC | SAVE_UC | STORE_LC | STORE_UC | CREATE_LC | CREATE_UC ) LEFTP e= expr[defer] RIGHTP | ( UC_AND | LC_AND ) LEFTP i= ID COMMA pred= or_predicate[defer] RIGHTP | ( EXIT_LC | EXIT_UC ) ( LEFTP p= toPrint[defer] RIGHTP )? );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2786:1: stand_alone_function[boolean defer] : ( ( SAVE_LC | SAVE_UC | STORE_LC | STORE_UC | CREATE_LC | CREATE_UC ) LEFTP e= expr[defer] RIGHTP | ( UC_AND | LC_AND ) LEFTP i= ID COMMA pred= or_predicate[defer] RIGHTP | ( EXIT_LC | EXIT_UC ) ( LEFTP p= toPrint[defer] RIGHTP )? );
 	public final EugeneParser.stand_alone_function_return stand_alone_function(boolean defer) throws RecognitionException {
 		EugeneParser.stand_alone_function_return retval = new EugeneParser.stand_alone_function_return();
 		retval.start = input.LT(1);
@@ -12798,7 +12819,7 @@ public class EugeneParser extends Parser {
 		Object RIGHTP262_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2765:2: ( ( SAVE_LC | SAVE_UC | STORE_LC | STORE_UC | CREATE_LC | CREATE_UC ) LEFTP e= expr[defer] RIGHTP | ( UC_AND | LC_AND ) LEFTP i= ID COMMA pred= or_predicate[defer] RIGHTP | ( EXIT_LC | EXIT_UC ) ( LEFTP p= toPrint[defer] RIGHTP )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2787:2: ( ( SAVE_LC | SAVE_UC | STORE_LC | STORE_UC | CREATE_LC | CREATE_UC ) LEFTP e= expr[defer] RIGHTP | ( UC_AND | LC_AND ) LEFTP i= ID COMMA pred= or_predicate[defer] RIGHTP | ( EXIT_LC | EXIT_UC ) ( LEFTP p= toPrint[defer] RIGHTP )? )
 			int alt94=3;
 			switch ( input.LA(1) ) {
 			case CREATE_LC:
@@ -12830,7 +12851,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt94) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2765:4: ( SAVE_LC | SAVE_UC | STORE_LC | STORE_UC | CREATE_LC | CREATE_UC ) LEFTP e= expr[defer] RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2787:4: ( SAVE_LC | SAVE_UC | STORE_LC | STORE_UC | CREATE_LC | CREATE_UC ) LEFTP e= expr[defer] RIGHTP
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -12875,7 +12896,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2778:4: ( UC_AND | LC_AND ) LEFTP i= ID COMMA pred= or_predicate[defer] RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2800:4: ( UC_AND | LC_AND ) LEFTP i= ID COMMA pred= or_predicate[defer] RIGHTP
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -12924,7 +12945,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2787:4: ( EXIT_LC | EXIT_UC ) ( LEFTP p= toPrint[defer] RIGHTP )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2809:4: ( EXIT_LC | EXIT_UC ) ( LEFTP p= toPrint[defer] RIGHTP )?
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -12939,7 +12960,7 @@ public class EugeneParser extends Parser {
 						MismatchedSetException mse = new MismatchedSetException(null,input);
 						throw mse;
 					}
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2787:24: ( LEFTP p= toPrint[defer] RIGHTP )?
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2809:24: ( LEFTP p= toPrint[defer] RIGHTP )?
 					int alt93=2;
 					int LA93_0 = input.LA(1);
 					if ( (LA93_0==LEFTP) ) {
@@ -12947,7 +12968,7 @@ public class EugeneParser extends Parser {
 					}
 					switch (alt93) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2787:25: LEFTP p= toPrint[defer] RIGHTP
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2809:25: LEFTP p= toPrint[defer] RIGHTP
 							{
 							LEFTP261=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_stand_alone_function4944); 
 							LEFTP261_tree = (Object)adaptor.create(LEFTP261);
@@ -13010,7 +13031,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "range"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2798:1: range[boolean defer] returns [Variable sor, Variable eor] : s= expr[defer] COMMA e= expr[defer] ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2820:1: range[boolean defer] returns [Variable sor, Variable eor] : s= expr[defer] COMMA e= expr[defer] ;
 	public final EugeneParser.range_return range(boolean defer) throws RecognitionException {
 		EugeneParser.range_return retval = new EugeneParser.range_return();
 		retval.start = input.LT(1);
@@ -13024,8 +13045,8 @@ public class EugeneParser extends Parser {
 		Object COMMA263_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2800:2: (s= expr[defer] COMMA e= expr[defer] )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2800:4: s= expr[defer] COMMA e= expr[defer]
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2822:2: (s= expr[defer] COMMA e= expr[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2822:4: s= expr[defer] COMMA e= expr[defer]
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -13105,7 +13126,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "object_access"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2853:1: object_access[boolean defer, NamedElement parent] returns [NamedElement child] : (| ( DOT (id= ID | ( SIZE_UC | SIZE_LC ) ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR ) o= object_access[defer, $child] );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2875:1: object_access[boolean defer, NamedElement parent] returns [NamedElement child] : (| ( DOT (id= ID | ( SIZE_UC | SIZE_LC ) ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR ) o= object_access[defer, $child] );
 	public final EugeneParser.object_access_return object_access(boolean defer, NamedElement parent) throws RecognitionException {
 		EugeneParser.object_access_return retval = new EugeneParser.object_access_return();
 		retval.start = input.LT(1);
@@ -13131,7 +13152,7 @@ public class EugeneParser extends Parser {
 		Object RIGHTSBR269_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2855:2: (| ( DOT (id= ID | ( SIZE_UC | SIZE_LC ) ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR ) o= object_access[defer, $child] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2877:2: (| ( DOT (id= ID | ( SIZE_UC | SIZE_LC ) ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR ) o= object_access[defer, $child] )
 			int alt98=2;
 			int LA98_0 = input.LA(1);
 			if ( (LA98_0==EOF||LA98_0==AMP||LA98_0==COMMA||LA98_0==DIV||LA98_0==EQUALS||LA98_0==GEQUAL||LA98_0==GTHAN||LA98_0==LC_AND||LA98_0==LC_OR||LA98_0==LEQUAL||(LA98_0 >= LOG_AND && LA98_0 <= MINUS)||(LA98_0 >= MULT && LA98_0 <= NEQUAL)||(LA98_0 >= PIPE && LA98_0 <= PLUS)||(LA98_0 >= RIGHTCUR && LA98_0 <= RIGHTSBR)||LA98_0==SEMIC||LA98_0==UC_AND||LA98_0==UC_OR||LA98_0==142||(LA98_0 >= 144 && LA98_0 <= 145)||LA98_0==148||(LA98_0 >= 151 && LA98_0 <= 152)||LA98_0==154||(LA98_0 >= 167 && LA98_0 <= 168)||LA98_0==181||(LA98_0 >= 183 && LA98_0 <= 184)||LA98_0==187||(LA98_0 >= 190 && LA98_0 <= 191)||LA98_0==193||(LA98_0 >= 206 && LA98_0 <= 207)) ) {
@@ -13149,7 +13170,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt98) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2856:2: 
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2878:2: 
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -13162,12 +13183,12 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2861:4: ( DOT (id= ID | ( SIZE_UC | SIZE_LC ) ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR ) o= object_access[defer, $child]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2883:4: ( DOT (id= ID | ( SIZE_UC | SIZE_LC ) ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR ) o= object_access[defer, $child]
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2861:4: ( DOT (id= ID | ( SIZE_UC | SIZE_LC ) ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2883:4: ( DOT (id= ID | ( SIZE_UC | SIZE_LC ) ( LEFTP RIGHTP )? ) | LEFTSBR (exp= expr[defer] ) RIGHTSBR )
 					int alt97=2;
 					int LA97_0 = input.LA(1);
 					if ( (LA97_0==DOT) ) {
@@ -13185,13 +13206,13 @@ public class EugeneParser extends Parser {
 
 					switch (alt97) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2861:5: DOT (id= ID | ( SIZE_UC | SIZE_LC ) ( LEFTP RIGHTP )? )
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2883:5: DOT (id= ID | ( SIZE_UC | SIZE_LC ) ( LEFTP RIGHTP )? )
 							{
 							DOT264=(Token)match(input,DOT,FOLLOW_DOT_in_object_access5018); 
 							DOT264_tree = (Object)adaptor.create(DOT264);
 							adaptor.addChild(root_0, DOT264_tree);
 
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2861:9: (id= ID | ( SIZE_UC | SIZE_LC ) ( LEFTP RIGHTP )? )
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2883:9: (id= ID | ( SIZE_UC | SIZE_LC ) ( LEFTP RIGHTP )? )
 							int alt96=2;
 							int LA96_0 = input.LA(1);
 							if ( (LA96_0==ID) ) {
@@ -13209,7 +13230,7 @@ public class EugeneParser extends Parser {
 
 							switch (alt96) {
 								case 1 :
-									// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2861:10: id= ID
+									// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2883:10: id= ID
 									{
 									id=(Token)match(input,ID,FOLLOW_ID_in_object_access5023); 
 									id_tree = (Object)adaptor.create(id);
@@ -13233,7 +13254,7 @@ public class EugeneParser extends Parser {
 									}
 									break;
 								case 2 :
-									// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2875:6: ( SIZE_UC | SIZE_LC ) ( LEFTP RIGHTP )?
+									// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2897:6: ( SIZE_UC | SIZE_LC ) ( LEFTP RIGHTP )?
 									{
 									set265=input.LT(1);
 									if ( (input.LA(1) >= SIZE_LC && input.LA(1) <= SIZE_UC) ) {
@@ -13245,7 +13266,7 @@ public class EugeneParser extends Parser {
 										MismatchedSetException mse = new MismatchedSetException(null,input);
 										throw mse;
 									}
-									// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2875:24: ( LEFTP RIGHTP )?
+									// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2897:24: ( LEFTP RIGHTP )?
 									int alt95=2;
 									int LA95_0 = input.LA(1);
 									if ( (LA95_0==LEFTP) ) {
@@ -13253,7 +13274,7 @@ public class EugeneParser extends Parser {
 									}
 									switch (alt95) {
 										case 1 :
-											// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2875:25: LEFTP RIGHTP
+											// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2897:25: LEFTP RIGHTP
 											{
 											LEFTP266=(Token)match(input,LEFTP,FOLLOW_LEFTP_in_object_access5036); 
 											LEFTP266_tree = (Object)adaptor.create(LEFTP266);
@@ -13285,14 +13306,14 @@ public class EugeneParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2884:4: LEFTSBR (exp= expr[defer] ) RIGHTSBR
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2906:4: LEFTSBR (exp= expr[defer] ) RIGHTSBR
 							{
 							LEFTSBR268=(Token)match(input,LEFTSBR,FOLLOW_LEFTSBR_in_object_access5048); 
 							LEFTSBR268_tree = (Object)adaptor.create(LEFTSBR268);
 							adaptor.addChild(root_0, LEFTSBR268_tree);
 
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2884:12: (exp= expr[defer] )
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2884:13: exp= expr[defer]
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2906:12: (exp= expr[defer] )
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2906:13: exp= expr[defer]
 							{
 							pushFollow(FOLLOW_expr_in_object_access5053);
 							exp=expr(defer);
@@ -13377,7 +13398,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "dynamic_naming"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2916:1: dynamic_naming[boolean defer] returns [String name] : (i= ID | DOLLAR LEFTCUR e= expr[defer] RIGHTCUR );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2938:1: dynamic_naming[boolean defer] returns [String name] : (i= ID | DOLLAR LEFTCUR e= expr[defer] RIGHTCUR );
 	public final EugeneParser.dynamic_naming_return dynamic_naming(boolean defer) throws RecognitionException {
 		EugeneParser.dynamic_naming_return retval = new EugeneParser.dynamic_naming_return();
 		retval.start = input.LT(1);
@@ -13396,7 +13417,7 @@ public class EugeneParser extends Parser {
 		Object RIGHTCUR272_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2918:2: (i= ID | DOLLAR LEFTCUR e= expr[defer] RIGHTCUR )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2940:2: (i= ID | DOLLAR LEFTCUR e= expr[defer] RIGHTCUR )
 			int alt99=2;
 			int LA99_0 = input.LA(1);
 			if ( (LA99_0==ID) ) {
@@ -13414,7 +13435,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt99) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2918:4: i= ID
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2940:4: i= ID
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -13431,7 +13452,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2923:4: DOLLAR LEFTCUR e= expr[defer] RIGHTCUR
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2945:4: DOLLAR LEFTCUR e= expr[defer] RIGHTCUR
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -13497,7 +13518,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "dataExchange"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2940:1: dataExchange[boolean defer] returns [NamedElement e] : (s= sbolStatement[defer] |i= importStatement[defer] |g= genbankStatement[defer] |r= registryStatement[defer] );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2962:1: dataExchange[boolean defer] returns [NamedElement e] : (s= sbolStatement[defer] |i= importStatement[defer] |g= genbankStatement[defer] |r= registryStatement[defer] );
 	public final EugeneParser.dataExchange_return dataExchange(boolean defer) throws RecognitionException {
 		EugeneParser.dataExchange_return retval = new EugeneParser.dataExchange_return();
 		retval.start = input.LT(1);
@@ -13511,7 +13532,7 @@ public class EugeneParser extends Parser {
 
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2942:2: (s= sbolStatement[defer] |i= importStatement[defer] |g= genbankStatement[defer] |r= registryStatement[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2964:2: (s= sbolStatement[defer] |i= importStatement[defer] |g= genbankStatement[defer] |r= registryStatement[defer] )
 			int alt100=4;
 			switch ( input.LA(1) ) {
 			case SBOL:
@@ -13542,7 +13563,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt100) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2942:4: s= sbolStatement[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2964:4: s= sbolStatement[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -13561,7 +13582,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2947:4: i= importStatement[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2969:4: i= importStatement[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -13580,7 +13601,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2952:4: g= genbankStatement[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2974:4: g= genbankStatement[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -13600,7 +13621,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 4 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2958:4: r= registryStatement[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2980:4: r= registryStatement[defer]
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -13647,7 +13668,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "includeStatement"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2966:1: includeStatement[boolean defer] : ( HASHMARK )? ( INCLUDE_LC | INCLUDE_UC ) file= STRING ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2988:1: includeStatement[boolean defer] : ( HASHMARK )? ( INCLUDE_LC | INCLUDE_UC ) file= STRING ;
 	public final EugeneParser.includeStatement_return includeStatement(boolean defer) throws RecognitionException {
 		EugeneParser.includeStatement_return retval = new EugeneParser.includeStatement_return();
 		retval.start = input.LT(1);
@@ -13663,13 +13684,13 @@ public class EugeneParser extends Parser {
 		Object set274_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2967:2: ( ( HASHMARK )? ( INCLUDE_LC | INCLUDE_UC ) file= STRING )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2967:4: ( HASHMARK )? ( INCLUDE_LC | INCLUDE_UC ) file= STRING
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2989:2: ( ( HASHMARK )? ( INCLUDE_LC | INCLUDE_UC ) file= STRING )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2989:4: ( HASHMARK )? ( INCLUDE_LC | INCLUDE_UC ) file= STRING
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2967:4: ( HASHMARK )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2989:4: ( HASHMARK )?
 			int alt101=2;
 			int LA101_0 = input.LA(1);
 			if ( (LA101_0==HASHMARK) ) {
@@ -13677,7 +13698,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt101) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2967:5: HASHMARK
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2989:5: HASHMARK
 					{
 					HASHMARK273=(Token)match(input,HASHMARK,FOLLOW_HASHMARK_in_includeStatement5179); 
 					HASHMARK273_tree = (Object)adaptor.create(HASHMARK273);
@@ -13747,7 +13768,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "importStatement"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2985:1: importStatement[boolean defer] returns [NamedElement e] : ( IMPORT_LC | IMPORT_UC ) LEFTP file= STRING RIGHTP ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3007:1: importStatement[boolean defer] returns [NamedElement e] : ( IMPORT_LC | IMPORT_UC ) LEFTP file= STRING RIGHTP ;
 	public final EugeneParser.importStatement_return importStatement(boolean defer) throws RecognitionException {
 		EugeneParser.importStatement_return retval = new EugeneParser.importStatement_return();
 		retval.start = input.LT(1);
@@ -13765,8 +13786,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTP277_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2987:2: ( ( IMPORT_LC | IMPORT_UC ) LEFTP file= STRING RIGHTP )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2987:4: ( IMPORT_LC | IMPORT_UC ) LEFTP file= STRING RIGHTP
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3009:2: ( ( IMPORT_LC | IMPORT_UC ) LEFTP file= STRING RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3009:4: ( IMPORT_LC | IMPORT_UC ) LEFTP file= STRING RIGHTP
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -13832,7 +13853,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "sbolStatement"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:2999:1: sbolStatement[boolean defer] returns [NamedElement e] : SBOL DOT ( sbolExportStatement[defer] |i= sbolImportStatement[defer] | sbolVisualStatement[defer] ) ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3021:1: sbolStatement[boolean defer] returns [NamedElement e] : SBOL DOT ( sbolExportStatement[defer] |i= sbolImportStatement[defer] | sbolVisualStatement[defer] ) ;
 	public final EugeneParser.sbolStatement_return sbolStatement(boolean defer) throws RecognitionException {
 		EugeneParser.sbolStatement_return retval = new EugeneParser.sbolStatement_return();
 		retval.start = input.LT(1);
@@ -13849,8 +13870,8 @@ public class EugeneParser extends Parser {
 		Object DOT279_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3001:2: ( SBOL DOT ( sbolExportStatement[defer] |i= sbolImportStatement[defer] | sbolVisualStatement[defer] ) )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3001:4: SBOL DOT ( sbolExportStatement[defer] |i= sbolImportStatement[defer] | sbolVisualStatement[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3023:2: ( SBOL DOT ( sbolExportStatement[defer] |i= sbolImportStatement[defer] | sbolVisualStatement[defer] ) )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3023:4: SBOL DOT ( sbolExportStatement[defer] |i= sbolImportStatement[defer] | sbolVisualStatement[defer] )
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -13863,7 +13884,7 @@ public class EugeneParser extends Parser {
 			DOT279_tree = (Object)adaptor.create(DOT279);
 			adaptor.addChild(root_0, DOT279_tree);
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3001:13: ( sbolExportStatement[defer] |i= sbolImportStatement[defer] | sbolVisualStatement[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3023:13: ( sbolExportStatement[defer] |i= sbolImportStatement[defer] | sbolVisualStatement[defer] )
 			int alt102=3;
 			switch ( input.LA(1) ) {
 			case EXPORT_LC:
@@ -13891,7 +13912,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt102) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3001:14: sbolExportStatement[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3023:14: sbolExportStatement[defer]
 					{
 					pushFollow(FOLLOW_sbolExportStatement_in_sbolStatement5253);
 					sbolExportStatement280=sbolExportStatement(defer);
@@ -13902,7 +13923,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3001:43: i= sbolImportStatement[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3023:43: i= sbolImportStatement[defer]
 					{
 					pushFollow(FOLLOW_sbolImportStatement_in_sbolStatement5260);
 					i=sbolImportStatement(defer);
@@ -13918,7 +13939,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3005:7: sbolVisualStatement[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3027:7: sbolVisualStatement[defer]
 					{
 					pushFollow(FOLLOW_sbolVisualStatement_in_sbolStatement5268);
 					sbolVisualStatement281=sbolVisualStatement(defer);
@@ -13963,7 +13984,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "sbolExportStatement"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3010:1: sbolExportStatement[boolean defer] : ( EXPORT_LC | EXPORT_UC ) LEFTP idToken= ID COMMA filenameToken= STRING RIGHTP ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3032:1: sbolExportStatement[boolean defer] : ( EXPORT_LC | EXPORT_UC ) LEFTP idToken= ID COMMA filenameToken= STRING RIGHTP ;
 	public final EugeneParser.sbolExportStatement_return sbolExportStatement(boolean defer) throws RecognitionException {
 		EugeneParser.sbolExportStatement_return retval = new EugeneParser.sbolExportStatement_return();
 		retval.start = input.LT(1);
@@ -13985,8 +14006,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTP285_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3011:2: ( ( EXPORT_LC | EXPORT_UC ) LEFTP idToken= ID COMMA filenameToken= STRING RIGHTP )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3011:4: ( EXPORT_LC | EXPORT_UC ) LEFTP idToken= ID COMMA filenameToken= STRING RIGHTP
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3033:2: ( ( EXPORT_LC | EXPORT_UC ) LEFTP idToken= ID COMMA filenameToken= STRING RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3033:4: ( EXPORT_LC | EXPORT_UC ) LEFTP idToken= ID COMMA filenameToken= STRING RIGHTP
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -14062,7 +14083,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "sbolImportStatement"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3024:1: sbolImportStatement[boolean defer] returns [NamedElement e] : ( IMPORT_LC | IMPORT_UC ) LEFTP fileToken= STRING RIGHTP ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3046:1: sbolImportStatement[boolean defer] returns [NamedElement e] : ( IMPORT_LC | IMPORT_UC ) LEFTP fileToken= STRING RIGHTP ;
 	public final EugeneParser.sbolImportStatement_return sbolImportStatement(boolean defer) throws RecognitionException {
 		EugeneParser.sbolImportStatement_return retval = new EugeneParser.sbolImportStatement_return();
 		retval.start = input.LT(1);
@@ -14080,8 +14101,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTP288_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3026:2: ( ( IMPORT_LC | IMPORT_UC ) LEFTP fileToken= STRING RIGHTP )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3026:4: ( IMPORT_LC | IMPORT_UC ) LEFTP fileToken= STRING RIGHTP
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3048:2: ( ( IMPORT_LC | IMPORT_UC ) LEFTP fileToken= STRING RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3048:4: ( IMPORT_LC | IMPORT_UC ) LEFTP fileToken= STRING RIGHTP
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -14146,7 +14167,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "sbolVisualStatement"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3037:1: sbolVisualStatement[boolean defer] : ( VISUALIZE_LC | VISUALIZE_UC ) LEFTP e= expr[defer] RIGHTP ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3059:1: sbolVisualStatement[boolean defer] : ( VISUALIZE_LC | VISUALIZE_UC ) LEFTP e= expr[defer] RIGHTP ;
 	public final EugeneParser.sbolVisualStatement_return sbolVisualStatement(boolean defer) throws RecognitionException {
 		EugeneParser.sbolVisualStatement_return retval = new EugeneParser.sbolVisualStatement_return();
 		retval.start = input.LT(1);
@@ -14163,8 +14184,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTP291_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3038:2: ( ( VISUALIZE_LC | VISUALIZE_UC ) LEFTP e= expr[defer] RIGHTP )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3038:4: ( VISUALIZE_LC | VISUALIZE_UC ) LEFTP e= expr[defer] RIGHTP
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3060:2: ( ( VISUALIZE_LC | VISUALIZE_UC ) LEFTP e= expr[defer] RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3060:4: ( VISUALIZE_LC | VISUALIZE_UC ) LEFTP e= expr[defer] RIGHTP
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -14232,7 +14253,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "genbankStatement"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3052:1: genbankStatement[boolean defer] returns [NamedElement e] : GENBANK DOT (i= genbankImportStatement[defer] | genbankExportStatement[defer] ) ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3074:1: genbankStatement[boolean defer] returns [NamedElement e] : GENBANK DOT (i= genbankImportStatement[defer] | genbankExportStatement[defer] ) ;
 	public final EugeneParser.genbankStatement_return genbankStatement(boolean defer) throws RecognitionException {
 		EugeneParser.genbankStatement_return retval = new EugeneParser.genbankStatement_return();
 		retval.start = input.LT(1);
@@ -14248,8 +14269,8 @@ public class EugeneParser extends Parser {
 		Object DOT293_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3054:2: ( GENBANK DOT (i= genbankImportStatement[defer] | genbankExportStatement[defer] ) )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3054:4: GENBANK DOT (i= genbankImportStatement[defer] | genbankExportStatement[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3076:2: ( GENBANK DOT (i= genbankImportStatement[defer] | genbankExportStatement[defer] ) )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3076:4: GENBANK DOT (i= genbankImportStatement[defer] | genbankExportStatement[defer] )
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -14262,7 +14283,7 @@ public class EugeneParser extends Parser {
 			DOT293_tree = (Object)adaptor.create(DOT293);
 			adaptor.addChild(root_0, DOT293_tree);
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3054:16: (i= genbankImportStatement[defer] | genbankExportStatement[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3076:16: (i= genbankImportStatement[defer] | genbankExportStatement[defer] )
 			int alt103=2;
 			int LA103_0 = input.LA(1);
 			if ( ((LA103_0 >= IMPORT_LC && LA103_0 <= IMPORT_UC)) ) {
@@ -14280,7 +14301,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt103) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3054:17: i= genbankImportStatement[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3076:17: i= genbankImportStatement[defer]
 					{
 					pushFollow(FOLLOW_genbankImportStatement_in_genbankStatement5399);
 					i=genbankImportStatement(defer);
@@ -14296,7 +14317,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3059:4: genbankExportStatement[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3081:4: genbankExportStatement[defer]
 					{
 					pushFollow(FOLLOW_genbankExportStatement_in_genbankStatement5407);
 					genbankExportStatement294=genbankExportStatement(defer);
@@ -14343,7 +14364,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "genbankExportStatement"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3066:1: genbankExportStatement[boolean defer] : ( EXPORT_UC | EXPORT_LC ) LEFTP RIGHTP ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3088:1: genbankExportStatement[boolean defer] : ( EXPORT_UC | EXPORT_LC ) LEFTP RIGHTP ;
 	public final EugeneParser.genbankExportStatement_return genbankExportStatement(boolean defer) throws RecognitionException {
 		EugeneParser.genbankExportStatement_return retval = new EugeneParser.genbankExportStatement_return();
 		retval.start = input.LT(1);
@@ -14359,8 +14380,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTP297_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3067:2: ( ( EXPORT_UC | EXPORT_LC ) LEFTP RIGHTP )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3067:4: ( EXPORT_UC | EXPORT_LC ) LEFTP RIGHTP
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3089:2: ( ( EXPORT_UC | EXPORT_LC ) LEFTP RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3089:4: ( EXPORT_UC | EXPORT_LC ) LEFTP RIGHTP
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -14413,7 +14434,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "genbankImportStatement"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3070:1: genbankImportStatement[boolean defer] returns [NamedElement e] : ( ( IMPORT_LC | IMPORT_UC ) LEFTP f= STRING RIGHTP | ( IMPORT_LC | IMPORT_UC ) LEFTP typeToken= ID COMMA partToken= STRING RIGHTP );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3092:1: genbankImportStatement[boolean defer] returns [NamedElement e] : ( ( IMPORT_LC | IMPORT_UC ) LEFTP f= STRING RIGHTP | ( IMPORT_LC | IMPORT_UC ) LEFTP typeToken= ID COMMA partToken= STRING RIGHTP );
 	public final EugeneParser.genbankImportStatement_return genbankImportStatement(boolean defer) throws RecognitionException {
 		EugeneParser.genbankImportStatement_return retval = new EugeneParser.genbankImportStatement_return();
 		retval.start = input.LT(1);
@@ -14443,7 +14464,7 @@ public class EugeneParser extends Parser {
 		Object RIGHTP304_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3072:2: ( ( IMPORT_LC | IMPORT_UC ) LEFTP f= STRING RIGHTP | ( IMPORT_LC | IMPORT_UC ) LEFTP typeToken= ID COMMA partToken= STRING RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3094:2: ( ( IMPORT_LC | IMPORT_UC ) LEFTP f= STRING RIGHTP | ( IMPORT_LC | IMPORT_UC ) LEFTP typeToken= ID COMMA partToken= STRING RIGHTP )
 			int alt104=2;
 			int LA104_0 = input.LA(1);
 			if ( ((LA104_0 >= IMPORT_LC && LA104_0 <= IMPORT_UC)) ) {
@@ -14495,7 +14516,7 @@ public class EugeneParser extends Parser {
 
 			switch (alt104) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3072:4: ( IMPORT_LC | IMPORT_UC ) LEFTP f= STRING RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3094:4: ( IMPORT_LC | IMPORT_UC ) LEFTP f= STRING RIGHTP
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -14534,7 +14555,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3081:4: ( IMPORT_LC | IMPORT_UC ) LEFTP typeToken= ID COMMA partToken= STRING RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3103:4: ( IMPORT_LC | IMPORT_UC ) LEFTP typeToken= ID COMMA partToken= STRING RIGHTP
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -14606,7 +14627,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "registryStatement"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3092:1: registryStatement[boolean defer] returns [NamedElement e] : REGISTRY DOT ( IMPORT_LC | IMPORT_UC ) LEFTP n= STRING RIGHTP ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3114:1: registryStatement[boolean defer] returns [NamedElement e] : REGISTRY DOT ( IMPORT_LC | IMPORT_UC ) LEFTP n= STRING RIGHTP ;
 	public final EugeneParser.registryStatement_return registryStatement(boolean defer) throws RecognitionException {
 		EugeneParser.registryStatement_return retval = new EugeneParser.registryStatement_return();
 		retval.start = input.LT(1);
@@ -14628,8 +14649,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTP309_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3094:2: ( REGISTRY DOT ( IMPORT_LC | IMPORT_UC ) LEFTP n= STRING RIGHTP )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3094:4: REGISTRY DOT ( IMPORT_LC | IMPORT_UC ) LEFTP n= STRING RIGHTP
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3116:2: ( REGISTRY DOT ( IMPORT_LC | IMPORT_UC ) LEFTP n= STRING RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3116:4: REGISTRY DOT ( IMPORT_LC | IMPORT_UC ) LEFTP n= STRING RIGHTP
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -14705,7 +14726,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "testStatements"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3109:1: testStatements[boolean defer] : (| ASSERT LEFTP id= ID DOT ( SIZE_UC | SIZE_LC ) LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP | NOTE LEFTP id= ID DOT ( SIZE_UC | SIZE_LC ) LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3131:1: testStatements[boolean defer] : (| ASSERT LEFTP id= ID DOT ( SIZE_UC | SIZE_LC ) LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP | NOTE LEFTP id= ID DOT ( SIZE_UC | SIZE_LC ) LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP );
 	public final EugeneParser.testStatements_return testStatements(boolean defer) throws RecognitionException {
 		EugeneParser.testStatements_return retval = new EugeneParser.testStatements_return();
 		retval.start = input.LT(1);
@@ -14755,7 +14776,7 @@ public class EugeneParser extends Parser {
 		Object RIGHTP327_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3110:2: (| ASSERT LEFTP id= ID DOT ( SIZE_UC | SIZE_LC ) LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP | NOTE LEFTP id= ID DOT ( SIZE_UC | SIZE_LC ) LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3132:2: (| ASSERT LEFTP id= ID DOT ( SIZE_UC | SIZE_LC ) LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP | NOTE LEFTP id= ID DOT ( SIZE_UC | SIZE_LC ) LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP )
 			int alt105=3;
 			switch ( input.LA(1) ) {
 			case EOF:
@@ -14780,7 +14801,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt105) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3110:5: 
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3132:5: 
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -14788,7 +14809,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3110:7: ASSERT LEFTP id= ID DOT ( SIZE_UC | SIZE_LC ) LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3132:7: ASSERT LEFTP id= ID DOT ( SIZE_UC | SIZE_LC ) LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -14862,7 +14883,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3126:5: NOTE LEFTP id= ID DOT ( SIZE_UC | SIZE_LC ) LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3148:5: NOTE LEFTP id= ID DOT ( SIZE_UC | SIZE_LC ) LEFTP RIGHTP EQUALS EQUALS n= NUMBER RIGHTP
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -14952,7 +14973,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "function_definition"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3135:1: function_definition[boolean defer] : (rt= type_specification[true] )? n= ID LEFTP (lop= list_of_parameters[true] )? RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3157:1: function_definition[boolean defer] : (rt= type_specification[true] )? n= ID LEFTP (lop= list_of_parameters[true] )? RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR ;
 	public final EugeneParser.function_definition_return function_definition(boolean defer) throws RecognitionException, EugeneReturnException {
 		EugeneParser.function_definition_return retval = new EugeneParser.function_definition_return();
 		retval.start = input.LT(1);
@@ -14975,13 +14996,13 @@ public class EugeneParser extends Parser {
 		Object RIGHTCUR331_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3137:2: ( (rt= type_specification[true] )? n= ID LEFTP (lop= list_of_parameters[true] )? RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3137:4: (rt= type_specification[true] )? n= ID LEFTP (lop= list_of_parameters[true] )? RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3159:2: ( (rt= type_specification[true] )? n= ID LEFTP (lop= list_of_parameters[true] )? RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3159:4: (rt= type_specification[true] )? n= ID LEFTP (lop= list_of_parameters[true] )? RIGHTP LEFTCUR stmts= list_of_statements[true] RIGHTCUR
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3137:4: (rt= type_specification[true] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3159:4: (rt= type_specification[true] )?
 			int alt106=2;
 			int LA106_0 = input.LA(1);
 			if ( ((LA106_0 >= BOOL && LA106_0 <= BOOLEAN)||LA106_0==NUM||LA106_0==TXT) ) {
@@ -14989,7 +15010,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt106) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3137:5: rt= type_specification[true]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3159:5: rt= type_specification[true]
 					{
 					pushFollow(FOLLOW_type_specification_in_function_definition5645);
 					rt=type_specification(true);
@@ -15010,7 +15031,7 @@ public class EugeneParser extends Parser {
 			LEFTP328_tree = (Object)adaptor.create(LEFTP328);
 			adaptor.addChild(root_0, LEFTP328_tree);
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3137:46: (lop= list_of_parameters[true] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3159:46: (lop= list_of_parameters[true] )?
 			int alt107=2;
 			int LA107_0 = input.LA(1);
 			if ( ((LA107_0 >= BOOL && LA107_0 <= BOOLEAN)||LA107_0==NUM||LA107_0==TXT) ) {
@@ -15018,7 +15039,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt107) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3137:47: lop= list_of_parameters[true]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3159:47: lop= list_of_parameters[true]
 					{
 					pushFollow(FOLLOW_list_of_parameters_in_function_definition5659);
 					lop=list_of_parameters(true);
@@ -15107,7 +15128,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "type_specification"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3169:1: type_specification[boolean defer] returns [String t] : ( NUM | TXT | NUM LEFTSBR RIGHTSBR | TXT LEFTSBR RIGHTSBR | ( BOOL | BOOLEAN ) );
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3191:1: type_specification[boolean defer] returns [String t] : ( NUM | TXT | NUM LEFTSBR RIGHTSBR | TXT LEFTSBR RIGHTSBR | ( BOOL | BOOLEAN ) );
 	public final EugeneParser.type_specification_return type_specification(boolean defer) throws RecognitionException {
 		EugeneParser.type_specification_return retval = new EugeneParser.type_specification_return();
 		retval.start = input.LT(1);
@@ -15135,7 +15156,7 @@ public class EugeneParser extends Parser {
 		Object set340_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3171:2: ( NUM | TXT | NUM LEFTSBR RIGHTSBR | TXT LEFTSBR RIGHTSBR | ( BOOL | BOOLEAN ) )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3193:2: ( NUM | TXT | NUM LEFTSBR RIGHTSBR | TXT LEFTSBR RIGHTSBR | ( BOOL | BOOLEAN ) )
 			int alt108=5;
 			switch ( input.LA(1) ) {
 			case NUM:
@@ -15199,7 +15220,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt108) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3171:4: NUM
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3193:4: NUM
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -15216,7 +15237,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3176:4: TXT
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3198:4: TXT
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -15233,7 +15254,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3181:4: NUM LEFTSBR RIGHTSBR
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3203:4: NUM LEFTSBR RIGHTSBR
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -15258,7 +15279,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 4 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3186:4: TXT LEFTSBR RIGHTSBR
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3208:4: TXT LEFTSBR RIGHTSBR
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -15283,7 +15304,7 @@ public class EugeneParser extends Parser {
 					}
 					break;
 				case 5 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3191:4: ( BOOL | BOOLEAN )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3213:4: ( BOOL | BOOLEAN )
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -15335,7 +15356,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "list_of_parameters"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3198:1: list_of_parameters[boolean defer] returns [List<NamedElement> parameters] : pt= type_specification[defer] n= ID ( COMMA lop= list_of_parameters[defer] )? ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3220:1: list_of_parameters[boolean defer] returns [List<NamedElement> parameters] : pt= type_specification[defer] n= ID ( COMMA lop= list_of_parameters[defer] )? ;
 	public final EugeneParser.list_of_parameters_return list_of_parameters(boolean defer) throws RecognitionException {
 		EugeneParser.list_of_parameters_return retval = new EugeneParser.list_of_parameters_return();
 		retval.start = input.LT(1);
@@ -15351,8 +15372,8 @@ public class EugeneParser extends Parser {
 		Object COMMA341_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3200:2: (pt= type_specification[defer] n= ID ( COMMA lop= list_of_parameters[defer] )? )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3200:4: pt= type_specification[defer] n= ID ( COMMA lop= list_of_parameters[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3222:2: (pt= type_specification[defer] n= ID ( COMMA lop= list_of_parameters[defer] )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3222:4: pt= type_specification[defer] n= ID ( COMMA lop= list_of_parameters[defer] )?
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -15383,7 +15404,7 @@ public class EugeneParser extends Parser {
 			    }
 			}	
 				
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3215:4: ( COMMA lop= list_of_parameters[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3237:4: ( COMMA lop= list_of_parameters[defer] )?
 			int alt109=2;
 			int LA109_0 = input.LA(1);
 			if ( (LA109_0==COMMA) ) {
@@ -15391,7 +15412,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt109) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3215:5: COMMA lop= list_of_parameters[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3237:5: COMMA lop= list_of_parameters[defer]
 					{
 					COMMA341=(Token)match(input,COMMA,FOLLOW_COMMA_in_list_of_parameters5772); 
 					COMMA341_tree = (Object)adaptor.create(COMMA341);
@@ -15442,7 +15463,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "list_of_statements"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3222:1: list_of_statements[boolean defer] : statement[defer] ( statement[defer] )* ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3244:1: list_of_statements[boolean defer] : statement[defer] ( statement[defer] )* ;
 	public final EugeneParser.list_of_statements_return list_of_statements(boolean defer) throws RecognitionException, EugeneReturnException {
 		EugeneParser.list_of_statements_return retval = new EugeneParser.list_of_statements_return();
 		retval.start = input.LT(1);
@@ -15454,8 +15475,8 @@ public class EugeneParser extends Parser {
 
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3224:2: ( statement[defer] ( statement[defer] )* )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3224:4: statement[defer] ( statement[defer] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3246:2: ( statement[defer] ( statement[defer] )* )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3246:4: statement[defer] ( statement[defer] )*
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -15466,7 +15487,7 @@ public class EugeneParser extends Parser {
 
 			adaptor.addChild(root_0, statement342.getTree());
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3224:21: ( statement[defer] )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3246:21: ( statement[defer] )*
 			loop110:
 			while (true) {
 				int alt110=2;
@@ -15477,7 +15498,7 @@ public class EugeneParser extends Parser {
 
 				switch (alt110) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3224:22: statement[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3246:22: statement[defer]
 					{
 					pushFollow(FOLLOW_statement_in_list_of_statements5804);
 					statement343=statement(defer);
@@ -15523,7 +15544,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "return_statement"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3227:1: return_statement[boolean defer] returns [NamedElement el] : ( RETURN_LC | RETURN_UC ) e= expr[defer] ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3249:1: return_statement[boolean defer] returns [NamedElement el] : ( RETURN_LC | RETURN_UC ) e= expr[defer] ;
 	public final EugeneParser.return_statement_return return_statement(boolean defer) throws RecognitionException, EugeneReturnException {
 		EugeneParser.return_statement_return retval = new EugeneParser.return_statement_return();
 		retval.start = input.LT(1);
@@ -15536,8 +15557,8 @@ public class EugeneParser extends Parser {
 		Object set344_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3230:2: ( ( RETURN_LC | RETURN_UC ) e= expr[defer] )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3230:4: ( RETURN_LC | RETURN_UC ) e= expr[defer]
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3252:2: ( ( RETURN_LC | RETURN_UC ) e= expr[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3252:4: ( RETURN_LC | RETURN_UC ) e= expr[defer]
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -15604,7 +15625,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "function_call"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3257:1: function_call[boolean defer] returns [NamedElement e] : udf= call_user_defined_function[defer] ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3279:1: function_call[boolean defer] returns [NamedElement e] : udf= call_user_defined_function[defer] ;
 	public final EugeneParser.function_call_return function_call(boolean defer) throws RecognitionException {
 		EugeneParser.function_call_return retval = new EugeneParser.function_call_return();
 		retval.start = input.LT(1);
@@ -15615,8 +15636,8 @@ public class EugeneParser extends Parser {
 
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3259:2: (udf= call_user_defined_function[defer] )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3259:4: udf= call_user_defined_function[defer]
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3281:2: (udf= call_user_defined_function[defer] )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3281:4: udf= call_user_defined_function[defer]
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -15662,7 +15683,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "call_user_defined_function"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3267:1: call_user_defined_function[boolean defer] returns [NamedElement e] : f= ID LEFTP (loe= list_of_expressions[defer] )? RIGHTP ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3289:1: call_user_defined_function[boolean defer] returns [NamedElement e] : f= ID LEFTP (loe= list_of_expressions[defer] )? RIGHTP ;
 	public final EugeneParser.call_user_defined_function_return call_user_defined_function(boolean defer) throws RecognitionException {
 		EugeneParser.call_user_defined_function_return retval = new EugeneParser.call_user_defined_function_return();
 		retval.start = input.LT(1);
@@ -15679,8 +15700,8 @@ public class EugeneParser extends Parser {
 		Object RIGHTP346_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3269:2: (f= ID LEFTP (loe= list_of_expressions[defer] )? RIGHTP )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3269:4: f= ID LEFTP (loe= list_of_expressions[defer] )? RIGHTP
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3291:2: (f= ID LEFTP (loe= list_of_expressions[defer] )? RIGHTP )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3291:4: f= ID LEFTP (loe= list_of_expressions[defer] )? RIGHTP
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -15693,7 +15714,7 @@ public class EugeneParser extends Parser {
 			LEFTP345_tree = (Object)adaptor.create(LEFTP345);
 			adaptor.addChild(root_0, LEFTP345_tree);
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3269:15: (loe= list_of_expressions[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3291:15: (loe= list_of_expressions[defer] )?
 			int alt111=2;
 			int LA111_0 = input.LA(1);
 			if ( (LA111_0==DOLLAR||(LA111_0 >= FALSE_LC && LA111_0 <= FALSE_UC)||LA111_0==ID||(LA111_0 >= LEFTP && LA111_0 <= LEFTSBR)||LA111_0==MINUS||LA111_0==NUMBER||LA111_0==PERMUTE||LA111_0==PRODUCT||(LA111_0 >= RANDOM_LC && LA111_0 <= RANDOM_UC)||LA111_0==REAL||(LA111_0 >= SIZEOF_LC && LA111_0 <= SIZE_UC)||(LA111_0 >= STRING && LA111_0 <= TRUE_UC)) ) {
@@ -15701,7 +15722,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt111) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3269:16: loe= list_of_expressions[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3291:16: loe= list_of_expressions[defer]
 					{
 					pushFollow(FOLLOW_list_of_expressions_in_call_user_defined_function5902);
 					loe=list_of_expressions(defer);
@@ -15757,7 +15778,7 @@ public class EugeneParser extends Parser {
 
 
 	// $ANTLR start "list_of_expressions"
-	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3280:1: list_of_expressions[boolean defer] returns [List<NamedElement> parameter_values] : e= expr[defer] ( COMMA loe= list_of_expressions[defer] )? ;
+	// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3302:1: list_of_expressions[boolean defer] returns [List<NamedElement> parameter_values] : e= expr[defer] ( COMMA loe= list_of_expressions[defer] )? ;
 	public final EugeneParser.list_of_expressions_return list_of_expressions(boolean defer) throws RecognitionException {
 		EugeneParser.list_of_expressions_return retval = new EugeneParser.list_of_expressions_return();
 		retval.start = input.LT(1);
@@ -15771,8 +15792,8 @@ public class EugeneParser extends Parser {
 		Object COMMA347_tree=null;
 
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3282:2: (e= expr[defer] ( COMMA loe= list_of_expressions[defer] )? )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3282:4: e= expr[defer] ( COMMA loe= list_of_expressions[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3304:2: (e= expr[defer] ( COMMA loe= list_of_expressions[defer] )? )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3304:4: e= expr[defer] ( COMMA loe= list_of_expressions[defer] )?
 			{
 			root_0 = (Object)adaptor.nil();
 
@@ -15797,7 +15818,7 @@ public class EugeneParser extends Parser {
 			    
 			}	
 				
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3295:5: ( COMMA loe= list_of_expressions[defer] )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3317:5: ( COMMA loe= list_of_expressions[defer] )?
 			int alt112=2;
 			int LA112_0 = input.LA(1);
 			if ( (LA112_0==COMMA) ) {
@@ -15805,7 +15826,7 @@ public class EugeneParser extends Parser {
 			}
 			switch (alt112) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3295:6: COMMA loe= list_of_expressions[defer]
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3317:6: COMMA loe= list_of_expressions[defer]
 					{
 					COMMA347=(Token)match(input,COMMA,FOLLOW_COMMA_in_list_of_expressions5936); 
 					COMMA347_tree = (Object)adaptor.create(COMMA347);

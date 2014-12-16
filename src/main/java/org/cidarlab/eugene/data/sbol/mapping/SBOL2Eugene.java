@@ -279,30 +279,6 @@ public class SBOL2Eugene {
 		return lstValues;
 	}
 	
-//	private static PartType buildPartType(
-//			org.sbolstandard.core.impl.DnaComponentImpl sbolDC)
-//					throws EugeneException {
-//		PartType pt = getPartType(sbolDC.getTypes());
-////		if(null != pt) {
-////			SymbolTables.put(pt);
-////		}
-//		return pt;
-//	}
-//	
-
-//	private static PartType getPartType(List<URI> types) 
-//		throws EugeneException {
-//		
-//		PartType pt = getPartType(types.get(0).toString());
-//		if(null != pt) {
-//			return pt;
-//		}
-//		
-//		/*
-//		 * we need to create the part type
-//		 */
-//		return getPartType(types.get(0).toString());
-//	}
 	
 	private static PartType getPartType(String type) 
 			throws EugeneException {
@@ -421,27 +397,6 @@ public class SBOL2Eugene {
 							EugeneConstants.SEQUENCE_PROPERTY, 
 							EugeneConstants.TXT));
 			
-			/*
-			 * put the properties into the symbol tables
-			 */
-//			for (Property objProperty : lstProperties) {
-//				if (!SymbolTables.contains(objProperty.getName())) {
-//					SymbolTables.put(objProperty);
-//				}
-//			}
-			
 		}
 	}
-
-//	private static Property getSequenceProperty() {
-//		// every part type should have a sequence property
-//		Property objSequenceProperty = (Property) SymbolTables
-//				.get(EugeneConstants.SEQUENCE_PROPERTY);
-//		if (null == objSequenceProperty) {
-//			objSequenceProperty = new Property(
-//					EugeneConstants.SEQUENCE_PROPERTY, EugeneConstants.TXT);
-//		}
-//		return objSequenceProperty;
-//	}
-
 }
