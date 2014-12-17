@@ -68,8 +68,6 @@ tokens {
 	TRUE_UC = 'TRUE';
 	FALSE_LC = 'false';
 	FALSE_UC = 'FALSE';
-	PERMUTE = 'permute';
-	PRODUCT = 'product';
 	STRICT = 'strict';
 	FLEXIBLE = 'flexible';
 	COLLECTION = 'Collection';
@@ -99,10 +97,15 @@ tokens {
 	RETURN_UC = 'RETURN';
 	RETURN_LC = 'return';
 	
-	/*  
+	/* ------------------------------------- 
 	 * RESERVED WORDS FOR BUILT-IN FUNCTIONS
-	 */
+	 * -------------------------------------*/
 	
+	UC_PERMUTE = 'PERMUTE';
+	LC_PERMUTE = 'permute';
+	UC_PRODUCT = 'PRODUCT';
+	LC_PRODUCT = 'product';
+
 	INCLUDE_LC = 'include';
 	INCLUDE_UC = 'INCLUDE';
 	
@@ -2761,15 +2764,27 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     }
 }	
 	}
-	|	(pr=PRODUCT|pe=PERMUTE) LEFTP idToken=ID RIGHTP {
+
+/* -----------------
+ * PERMUTE / permute
+ * ----------------- */	
+	|	(LC_PERMUTE|UC_PERMUTE) LEFTP idToken=ID RIGHTP {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
-        if(pr != null) {
-            $element = this.interp.product($idToken.text);
-        } else {
-            $element = this.interp.permute($idToken.text);
-        }
-
+        $element = this.interp.permute($idToken.text);
+    } catch(Exception ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}	
+	}
+	
+/* -----------------
+ * PRODUCT / product
+ * ----------------- */	
+	|	(LC_PRODUCT|UC_PRODUCT) LEFTP idToken=ID RIGHTP {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    try {
+        $element = this.interp.product($idToken.text);
     } catch(Exception ee) {
         printError(ee.getLocalizedMessage());
     }

@@ -12,27 +12,14 @@ import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.DOMException;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.eugene.util.EugeneDeveloperUtils;
-import org.cidarlab.eugene.util.SequenceUtils;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class DeclarationsTest {
 
 	private Eugene eugene;
 	
-	@BeforeClass
-	public static void setUpBeforeClass() 
-			throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() 
-			throws Exception {
-	}
-
 	@Before
 	public void setUp() 
 			throws Exception {
@@ -430,6 +417,28 @@ public class DeclarationsTest {
 		}
 		
 		
+	}
+	
+	@Test
+	public void testNotDeclared_device_product() {
+		String script = "Device D; product(X);";
+		
+		try {
+			new Eugene().executeScript(script);
+		} catch(EugeneException ee) {
+			assert(ee.getMessage().contains("X is not declared."));
+		}
+	}
+
+	@Test
+	public void testNotDevice_product() {
+		String script = "num i; Device D; product(i);";
+		
+		try {
+			new Eugene().executeScript(script);
+		} catch(EugeneException ee) {
+			assert(ee.getMessage().contains("i is not a Device."));
+		}
 	}
 
 }

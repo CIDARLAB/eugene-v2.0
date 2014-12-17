@@ -281,7 +281,7 @@ public class Interp {
 			throws EugeneException {
 		
 		if(this.checkIfDeclaredInScope(name)) {
-			throw new EugeneException("An element named "+name+" exists already!");
+			throw new EugeneException(name+" exists already.");
 		}
 		
 		ComponentType ct = new ComponentType(name);
@@ -290,7 +290,7 @@ public class Interp {
 			for(NamedElement ne : elements) {
 				
 				if(!(ne instanceof Property)) {
-					throw new EugeneException(ne.getName()+" is not a Property!");
+					throw new EugeneException(ne.getName()+" is not a Property.");
 				}
 				
 				ct.getProperties().add((Property)ne);
@@ -321,7 +321,7 @@ public class Interp {
 			for(NamedElement ne : elements) {
 				
 				if(!(ne instanceof Property)) {
-					throw new EugeneException(ne.getName()+" is not a Property!");
+					throw new EugeneException(ne.getName()+" is not a Property.");
 				}
 				
 				pt.getProperties().add((Property)ne);
@@ -551,7 +551,7 @@ public class Interp {
 		if(null == lhsElement) {
 			throw new EugeneException(lhs +" is not defined!");
 		} else if(!(lhsElement instanceof Component)) {
-			throw new EugeneException(lhsElement +" is not a genetic component!");
+			throw new EugeneException(lhsElement +" is not a genetic component.");
 		}
 		
 		/*
@@ -613,7 +613,7 @@ public class Interp {
 		
         NamedElement ne = this.get(name);
         if(ne == null) {
-            throw new EugeneException(name+" does not exists.");
+            throw new EugeneException(name+" is not declared.");
         }
         
         if(!(ne instanceof Device)) {
@@ -901,7 +901,7 @@ public class Interp {
 		
         NamedElement ne = this.get(name);
         if(ne == null) {
-            throw new EugeneException(name+" does not exists.");
+            throw new EugeneException(name+" is not declared.");
         }
         
         //Device d = null;
@@ -1211,7 +1211,7 @@ public class Interp {
 			}
 			// second, we check if s refers to a variable or property value
 			if(!(ne instanceof Variable) && !(ne instanceof PropertyValue)) {
-				throw new EugeneException(s + " is not a variable nor a property value!");
+				throw new EugeneException(s + " is not a Variable nor a Property Value.");
 			}
 			
 			// the type of the variable/property value must be numeric
@@ -1223,7 +1223,7 @@ public class Interp {
 				type = ((PropertyValue)ne).getType();
 			}
 			if(!EugeneConstants.NUM.equals(type)) {
-				throw new EugeneException(s +" is not a numeric value!");
+				throw new EugeneException(s +" is not a numeric value.");
 			}
 			
 			// finally, we retrieve the numeric index
@@ -1423,9 +1423,9 @@ public class Interp {
 		
 		NamedElement ne = this.get(name);
 		if(null == ne) { 
-			throw new EugeneException(name + " has not been declared!");
+			throw new EugeneException(name + " is not declared.");
 		} else if(!(ne instanceof Variable)) {
-			throw new EugeneException(name + " is not a Variable!");
+			throw new EugeneException(name + " is not a Variable.");
 		}
 		return (Variable)ne;
 	}
@@ -1640,12 +1640,12 @@ public class Interp {
 		NamedElement ne = null;
 		if(null != device) {
 			if(!this.contains(device)) {
-				throw new EugeneException("A device named "+device+" does not exist.");
+				throw new EugeneException(device+" is not declared.");
 			}
 			
 			ne = this.get(device);
 			if(!(ne instanceof Device)) {
-				throw new EugeneException(device+" is not a device.");
+				throw new EugeneException(device+" is not a Device.");
 			}
 		}
 
@@ -1693,13 +1693,13 @@ public class Interp {
 		if(null != device) {
 			// does an element with the device name exist?
 			if(!this.contains(device)) {
-				throw new EugeneException("A device named "+device+" does not exist.");
+				throw new EugeneException(device+" is not declared.");
 			}
 			
 			// is the device a device?
 			ne = this.get(device);
 			if(!(ne instanceof Device)) {
-				throw new EugeneException(device+" is not a device.");
+				throw new EugeneException(device+" is not a Device.");
 			}
 		}
 		
@@ -1757,10 +1757,10 @@ public class Interp {
 		// first, we retrieve the rule from the sybmol tables
 		NamedElement e = this.get(ruleName);
 		if(null == e) {
-			throw new EugeneException(ruleName + " does not exist!");
+			throw new EugeneException(ruleName + " is not declared.");
 		}
 		if(!(e instanceof Rule)) {
-			throw new EugeneException(ruleName +" is not a rule!");
+			throw new EugeneException(ruleName +" is not a Rule.");
 		}
 		
 		return (Rule)e;
