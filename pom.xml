@@ -1,70 +1,82 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.cidarlab</groupId>
-  <artifactId>eugene</artifactId>
-  <version>2.0.0-SNAPSHOT</version>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.cidarlab</groupId>
+	<artifactId>eugene</artifactId>
+	<version>2.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	
-  <build>
-    <resources>
-      <resource>
-        <directory>src/main/rules</directory>
-        <excludes>
-          <exclude>**/*.java</exclude>
-        </excludes>
-      </resource>
-    </resources>
-    <plugins>
+	<build>
+		<resources>
+		
+			<!-- Rule-files for JBoss Drools ``Sparrow'' -->
+			<resource>
+				<directory>src/main/rules</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
 
 
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <version>2.5</version>
-            <configuration>
-                <descriptorRefs>
-                    <descriptorRef>jar-with-dependencies</descriptorRef>
-                </descriptorRefs>
-                <archive>
-		            <manifest>
-		                <addClasspath>true</addClasspath>
-		                <classpathPrefix>lib/</classpathPrefix>
-		                <mainClass>org.cidarlab.eugene.Eugene</mainClass>
-		            </manifest>
-		        </archive>
-            </configuration>
-        </plugin>
+		<plugins>
+			
+			<!-- Packing Eugene v2.0 including all dependencies -->
+			<plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-assembly-plugin</artifactId>
+            	<version>2.5</version>
+            	<configuration>
+                	<descriptorRefs>
+                    	<descriptorRef>jar-with-dependencies</descriptorRef>
+                	</descriptorRefs>
+                	<archive>
+		            	<manifest>
+		                	<addClasspath>true</addClasspath>
+		                	<classpathPrefix>lib/</classpathPrefix>
+		                	<mainClass>org.cidarlab.eugene.Eugene</mainClass>
+		            	</manifest>
+		        	</archive>
+            	</configuration>
+        	</plugin>
         
 
-		<plugin>
-		    <groupId>org.apache.maven.plugins</groupId>
-		    <artifactId>maven-jar-plugin</artifactId>
-            <version>2.5</version>
-		    <configuration>
-		        <archive>
-		            <manifest>
-		                <addClasspath>true</addClasspath>
-		                <classpathPrefix>lib/</classpathPrefix>
-		                <mainClass>org.cidarlab.eugene.Eugene</mainClass>
-		            </manifest>
-		        </archive>
-		    </configuration>
-		</plugin>
-				
-	    <plugin>
-		    <groupId>org.apache.maven.plugins</groupId>
-	        <artifactId>maven-compiler-plugin</artifactId>
-	        <version>3.1</version>
-	        <configuration>
-	          	<source>1.7</source>
-	          	<target>1.7</target>
-	        </configuration>
-	  	</plugin>
+			<!-- Packaging Eugene v2.0 w/o dependencies -->
+			<plugin>
+		    	<groupId>org.apache.maven.plugins</groupId>
+		    	<artifactId>maven-jar-plugin</artifactId>
+            	<version>2.5</version>
+		    	<configuration>
+		        	<archive>
+		            	<manifest>
+		                	<addClasspath>true</addClasspath>
+		                	<classpathPrefix>lib/</classpathPrefix>
+		                	<mainClass>org.cidarlab.eugene.Eugene</mainClass>
+		            	</manifest>
+		        	</archive>
+		    	</configuration>
+			</plugin>
+			
+			<!-- Maven - Java compiler - Java7 -->	
+	    	<plugin>
+		    	<groupId>org.apache.maven.plugins</groupId>
+	        	<artifactId>maven-compiler-plugin</artifactId>
+	        	<version>3.1</version>
+	        	<configuration>
+	          		<source>1.7</source>
+	          		<target>1.7</target>
+	        	</configuration>
+	  		</plugin>
 	    
-	  </plugins>
-	  </build>
+		</plugins>
+	</build>
 	  
 	  
+    <!--  REPOSITORIES for downloading dependencies 
+    		on libSBOLj and BioJava
+      -->
 	<repositories>
         <repository>
             <id>Sonatype OSS Snapshot Repository</id>
@@ -79,6 +91,7 @@
     </repositories>
     
     
+    <!--  DEPENDENCIES -->
 	<dependencies>
   
   		<dependency>
