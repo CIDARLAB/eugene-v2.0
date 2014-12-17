@@ -2389,12 +2389,18 @@ public class Interp {
 	/*
 	 * SBOL VISUAL -- PIGEON
 	 */ 
-	public Collection<URI> visualSBOL(NamedElement element) 
+	public Collection<URI> visualizeSBOL(NamedElement element, Variable filename) 
 			throws EugeneException {
 		
 		if(null == element) {
 			throw new EugeneException("Invalid element to visualize!");
 		}
+		
+		
+		/*
+		 * interpret the filename
+		 */
+		String file = this.interpretFilename(filename);
 		
 		Collection<URI> ret_uris = new HashSet<URI>();
 		
@@ -2411,16 +2417,21 @@ public class Interp {
 		
 		URI uri = null;
 		if(element instanceof Device) {
+			List<URI> uris = new ArrayList<URI>(1);
 			uri = this.pigeon.pigeonizeSingle((Device)element, null);
 			
-			/*
-			 * for testing, open the URI
-			 */
 			if(null != uri) {
-				WeyekinPoster.launchPage(uri);
+				/*---------------------------
+				 * for testing, open the URI
+				 *---------------------------*/
+//				WeyekinPoster.launchPage(uri);
 				
-				ret_uris.add(uri);
+				uris.add(uri);
 			}
+			
+			ret_uris.add(
+					this.toSerializedImage(
+							uris, file));
 
 		} else if(element instanceof EugeneContainer) {
 			
@@ -2435,10 +2446,7 @@ public class Interp {
 						
 						ret_uris.add(
 								this.toSerializedImage(
-										uris, 
-										Eugene.ROOT_DIRECTORY+"/"+
-												Eugene.IMAGES_DIRECTORY+"/"+
-												UUID.randomUUID()+".png"));
+										uris, file));
 						uris.clear();
 
 					} else {
@@ -2457,15 +2465,57 @@ public class Interp {
 			if(!uris.isEmpty()) {
 				ret_uris.add(
 						this.toSerializedImage(
-								uris, 
-								Eugene.ROOT_DIRECTORY+"/"+
-								Eugene.IMAGES_DIRECTORY+"/"+
-										UUID.randomUUID()+".png"));
+								uris, file));
 			}
 			
 		}
 		
 		return ret_uris;
+	}
+	
+	/**
+	 * The interpretFilename(Variable) method gets as input 
+	 * a Variable object that ideally contains the filename
+	 * of the SBOL-Visual picture.
+	 * If the Variable object is NULL, then we generate 
+	 * a random filename --- ending with .PNG -- and 
+	 * store it in the ROOT_DIRECTORY + IMAGES_DIRECTORY.
+	 * If the Variable object is NOT NULL, then it must 
+	 * be a TXT variable with non-empty value. Otherwise 
+	 * an exception is thrown.
+	 * 
+	 * @param v  ... a Variable object representing the filename 
+	 * of the SBOL-Visual compliant picture
+	 * 
+	 * @return ... the filename
+	 * 
+	 * @throws EugeneException
+	 */
+	private String interpretFilename(Variable v)
+			throws EugeneException {
+		
+		// check if the Variable object is null
+		if(null == v) {
+			
+			// default filename:
+			// ROOT_DIRECTORY + IMAGES_DIRECTORY + randomly 
+			// generate filename with suffix .PNG
+			return Eugene.ROOT_DIRECTORY+"/"+
+					Eugene.IMAGES_DIRECTORY+"/"+
+					UUID.randomUUID()+".png";
+			
+		// if the Variable is not null, then it must 
+		// be of type TXT, and does not have an empty value
+		} else if(EugeneConstants.TXT.equals(v.getType()) &&
+				null != v.getTxt() &&
+				!v.getTxt().isEmpty()) {
+		
+			// return the TXT value
+			return v.getTxt();
+		}
+		
+		// throw an Exception
+		throw new EugeneException("Invalid filename specified.");
 	}
 	
 	/**

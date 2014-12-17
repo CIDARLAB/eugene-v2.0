@@ -8,16 +8,14 @@ import org.cidarlab.eugene.data.sbol.SBOLImporter;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.PartType;
 import org.cidarlab.eugene.dom.Part;
-import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.imp.container.EugeneArray;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.List;
-import java.util.ArrayList;
 
 /**
  * The DataExchangeTest class provides unit tests for Eugene v2.0's 
@@ -148,7 +146,27 @@ public class DataExchangeTest {
 			// something's wrong --> Test not passed.
 			assertTrue(false);
 		}
-		
+	}
+	
+	@Test
+	public void testSBOLVisual_Device() {
+		String script = "PartType PT();" +
+				"PT p1; PT p2; PT p3; PT p4;" +
+				"Device D(PT);" +
+				"result = product(D);" +
+				"SBOL.visualize(result, \"./tests/results/data-exchange/testSBOLVisual_Device.png\");";
+		try {
+			new Eugene().executeScript(script);
+			
+			// after executing the Eugene script, 
+			// the file must exists
+			File f = new File("./tests/results/data-exchange/testSBOLVisual_Device.png");
+			assert(f.exists());
+			
+		} catch(Exception ee) {
+			ee.printStackTrace();
+			assertTrue(false);
+		}		
 	}
 
 }

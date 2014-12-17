@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.cidarlab.eugene.constants.Orientation;
-import org.cidarlab.eugene.dom.Component;
 import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.exception.EugeneException;
-
-import com.rits.cloning.Cloner;
 
 /**
  * The DeviceUtils class provides a set of static methods 

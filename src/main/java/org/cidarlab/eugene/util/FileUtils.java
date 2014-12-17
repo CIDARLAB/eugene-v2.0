@@ -29,6 +29,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import org.cidarlab.eugene.Eugene;
+import org.cidarlab.eugene.exception.EugeneException;
+
 public class FileUtils {
 
 	public static String readFile(File f) throws java.io.IOException {
@@ -67,6 +70,45 @@ public class FileUtils {
 			}
 		}
 		return (path.delete());
+	}
+	
+	/**
+	 * The createDirectories/1 method creates all directories for 
+	 * a given file. 
+	 * Example: if the file is "./path/to/my.sbol" then the 
+	 * createDirectories/1 method creates the "./path/to" directories.
+	 * 
+	 * The path is relative to Eugene's ROOT_DIRECTORY, which is '.' 
+	 * per default.
+	 * 
+	 * @param file  ... the file name for that the directories should be created
+	 * 
+	 * @throws EugeneException
+	 */
+	public static void createDirectories(String file) 
+			throws EugeneException {
+		
+		if(!file.startsWith("/")) {
+			// relative path			
+			if(!file.startsWith(Eugene.ROOT_DIRECTORY)) {
+				file = Eugene.ROOT_DIRECTORY + "/" + file;
+			}
+		}
+		
+		// then, we search for the last / in the file string
+		// there should be at least one due to the concatenation 
+		// of the previous step
+		int idx = file.lastIndexOf('/');
+
+		// then, we create the directories (using File.mkdirs()) 
+		// if they do not exist.
+		
+		String dirs = file.substring(0, idx);
+		File fDirs = new File(dirs);
+		if(!fDirs.exists()) {
+			fDirs.mkdirs();
+		}
+		
 	}
 
 }

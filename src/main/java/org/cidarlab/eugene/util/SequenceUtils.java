@@ -1,11 +1,7 @@
 package org.cidarlab.eugene.util;
 
 import org.biojava.bio.seq.DNATools;
-import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.dom.Component;
-import org.cidarlab.eugene.dom.Device;
-import org.cidarlab.eugene.dom.Part;
-import org.cidarlab.eugene.dom.Property;
 import org.cidarlab.eugene.exception.EugeneException;
 
 /**

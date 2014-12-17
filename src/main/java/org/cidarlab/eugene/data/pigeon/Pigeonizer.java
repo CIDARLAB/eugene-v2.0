@@ -54,6 +54,7 @@ import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.Part;
 import org.cidarlab.eugene.exception.EugeneException;
+import org.cidarlab.eugene.util.FileUtils;
 import org.cidarlab.eugene.dom.imp.container.EugeneContainer;
 import org.cidarlab.minieugene.constants.PredefinedTypes;
 import org.cidarlab.minieugene.exception.MiniEugeneException;
@@ -188,6 +189,10 @@ public class Pigeonizer {
 	 */
 	public void serializeImage(RenderedImage img, String filename) 
 		throws EugeneException {
+		
+		// first, we check if the directories exist
+		FileUtils.createDirectories(filename);
+		
 		try {
             ImageIO.write(img, "PNG", new File(filename));
          } catch (IOException e) {

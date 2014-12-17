@@ -3072,10 +3072,21 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 	;	
 	
 sbolVisualStatement[boolean defer]
-	:	(VISUALIZE_LC|VISUALIZE_UC) LEFTP e=expr[defer] RIGHTP {
+	:	(VISUALIZE_LC|VISUALIZE_UC) LEFTP e=expr[defer] (COMMA f=expr[defer])? RIGHTP {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-    try {        
-        this.interp.visualSBOL($e.element);
+    try {
+        // we check if the user specified a filename
+        if(null == f) {        
+            // no filename provided
+            this.interp.visualizeSBOL($e.element, null);
+        } else {
+            // filename provided
+            if(null != $f.p) {
+                this.interp.visualizeSBOL($e.element, $f.p);
+            } else {
+                printError("Invalid filename.");
+            }
+        }
     } catch(EugeneException ee) {
         printError(ee.getMessage());
     }

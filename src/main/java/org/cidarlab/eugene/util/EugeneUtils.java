@@ -4,9 +4,6 @@ import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.Part;
-import org.cidarlab.eugene.dom.PartType;
-import org.cidarlab.eugene.dom.Property;
-import org.cidarlab.eugene.dom.PropertyValue;
 import org.cidarlab.eugene.exception.EugeneException;
 
 /**
