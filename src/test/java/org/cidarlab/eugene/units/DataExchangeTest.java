@@ -14,6 +14,7 @@ import org.cidarlab.eugene.exception.EugeneException;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -149,7 +150,7 @@ public class DataExchangeTest {
 	}
 	
 	@Test
-	public void testSBOLVisual_Device() {
+	public void testSBOLVisual_Device_with_filename() {
 		String script = "PartType PT();" +
 				"PT p1; PT p2; PT p3; PT p4;" +
 				"Device D(PT);" +
@@ -169,4 +170,42 @@ public class DataExchangeTest {
 		}		
 	}
 
+	@Test
+	public void testSBOLVisual_Device_without_filename() {
+		String script = "PartType PT();" +
+				"PT p1; PT p2; PT p3; PT p4;" +
+				"Device D(PT);" +
+				"result = product(D);" +
+				"SBOL.visualize(result);";
+		try {
+			Eugene e = new Eugene();
+			
+			// the name of the image is randomly generated.
+			// hence, we first get the number of .png files 
+			// in the default IMAGE_DIRECTORY
+			int NR_OF_BEFORE_IMAGES = this.getNrOfImages(); 
+			
+			e.executeScript(script);
+			
+			
+			// after executing the Eugene script, 
+			// there must be one more image
+			// in the IMAGES_DIRECTORY
+			assert(this.getNrOfImages() == NR_OF_BEFORE_IMAGES + 1); 
+			
+		} catch(Exception ee) {
+			ee.printStackTrace();
+			assertTrue(false);
+		}		
+	}
+	
+	private int getNrOfImages() {
+		File dir = new File(Eugene.ROOT_DIRECTORY+"/"+Eugene.IMAGES_DIRECTORY+"/");
+		File[] files = dir.listFiles(new FilenameFilter() {
+		    public boolean accept(File dir, String name) {
+		        return name.toLowerCase().endsWith(".png");
+		    }
+		});
+		return files.length;
+	}
 }
