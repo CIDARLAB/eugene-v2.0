@@ -1,7 +1,6 @@
 package org.cidarlab.eugene.interp;
 
 import org.cidarlab.eugene.dom.Device;
-import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.rules.LogicalAnd;
 import org.cidarlab.eugene.dom.rules.Predicate;
 import org.cidarlab.eugene.dom.rules.Rule;
@@ -11,26 +10,10 @@ import org.cidarlab.eugene.exception.EugeneException;
  * The RuleBuilder class serves to build Eugene rules.
  * A RuleBuilder is defined on a specific Device and it provides
  *  
- * three methods (besides the inherited ones from NamedElement):
- * - and
- * - or
- * - not
- *  
  * @author Ernst Oberortner
  */
 public class RuleBuilder {
 
-	private static final long serialVersionUID = 63259296094302448L;
-
-	/*
-	 * The data structure of the RuleBuilder:
-	 * TREE?
-	 */
-	
-	public RuleBuilder() {
-		
-	}
-	
 	/**
 	 * The instantiate/2 method takes as input the name of the 
 	 * rule and a Device object on that the rule is being specified.

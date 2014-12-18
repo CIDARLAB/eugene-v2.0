@@ -83,7 +83,6 @@ import org.cidarlab.eugene.sparrow.SparrowAdapter;
 import org.cidarlab.eugene.util.EugeneDeveloperUtils;
 import org.cidarlab.eugene.util.FileUtils;
 import org.cidarlab.eugene.util.SequenceUtils;
-import org.cidarlab.minieugene.data.pigeon.WeyekinPoster;
 import org.cidarlab.sparrow.Sparrow;
 import org.cidarlab.sparrow.constants.Repository;
 import org.cidarlab.sparrow.constants.SparrowConstants;
@@ -91,6 +90,13 @@ import org.cidarlab.sparrow.exception.SparrowException;
 
 import com.rits.cloning.Cloner;
 
+/**
+ * The Interp class is Eugene's Interpreter.
+ * It provides methods to (mainly) the Eugene Parser 
+ * for the execution of Eugene statements.
+ * 
+ * @author Ernst Oberortner
+ */
 public class Interp {
 
 	private Sparrow sparrow;
@@ -197,13 +203,6 @@ public class Interp {
 	}
 	
 	
-	/*----------------------------------------------------
-	 * IMPERATIVE LANGUAGE FEATURES
-	 *----------------------------------------------------*/
-	public void executeForLoop() {
-		
-	}
-
 	/**
 	 * 
 	 * @param sName ... the name of the property
@@ -727,7 +726,6 @@ public class Interp {
 //			System.out.println("[Interp.product] devices -> "+sod);
 //			System.out.println("***************************");
 		} catch(Exception ee) {
-			ee.printStackTrace();
 			throw new EugeneException(ee.getMessage());
 		}
 
