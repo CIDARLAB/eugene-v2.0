@@ -82,6 +82,7 @@ import org.cidarlab.eugene.parser.EugeneParser;
 import org.cidarlab.eugene.sparrow.SparrowAdapter;
 import org.cidarlab.eugene.util.EugeneDeveloperUtils;
 import org.cidarlab.eugene.util.FileUtils;
+import org.cidarlab.eugene.util.SequenceUtils;
 import org.cidarlab.minieugene.data.pigeon.WeyekinPoster;
 import org.cidarlab.sparrow.Sparrow;
 import org.cidarlab.sparrow.constants.Repository;
@@ -849,6 +850,43 @@ public class Interp {
     	}
     	
     	return v;
+	}
+	
+	/**
+	 * The getSequenceOf(NamedElement) function calculates 
+	 * the DNA sequence of the given NamedElement object
+	 * iff the object is either a Device or a Part. Otherwise
+	 * an exception is thrown.
+	 * 
+	 * @param el  ... the object of that the DNA sequence should
+	 * be calculated
+	 * 
+	 * @return ... a Variable of type TXT that contains the DNA sequence
+	 * 
+	 * @throws EugeneException ... if the DNA sequence cannot be determined
+	 */
+	public Variable getSequenceOf(NamedElement el) 
+			throws EugeneException {
+		
+		// NULL
+		if(null == el) {
+			throw new EugeneException("Undeterministic sequence.");
+		}
+
+		// we can only calculate the DNA sequence of a 
+		// Component, eiter basic (Part) or composite (Device).
+		if(!(el instanceof Component)) {
+			throw new EugeneException(el.getName() + " is neither a Part nor a Device.");
+		}
+		
+		// ``anonymous'' variable of type txt
+		Variable v = new Variable(null, EugeneConstants.TXT);
+		
+		// we utilize Eugene's Sequence Utilities 
+		// to calculate the sequence of the component
+		v.txt = SequenceUtils.toSequence((Component)el);
+		
+		return v;
 	}
 	
 	/**

@@ -122,6 +122,9 @@ tokens {
 
 	SIZEOF_LC = 'sizeof';
 	SIZEOF_UC = 'SIZEOF';
+	SIZE_OF_LC = 'size_of';
+	SIZE_OF_UC = 'SIZE_OF';
+	
 	SIZE_LC = 'size';
 	SIZE_UC = 'SIZE';
 	
@@ -135,6 +138,9 @@ tokens {
 	
 	VISUALIZE_LC = 'visualize';
 	VISUALIZE_UC = 'VISUALIZE';
+
+	LC_SEQUENCE_OF = 'sequence_of';
+	UC_SEQUENCE_OF = 'SEQUENCE_OF';
 
 	EXIT_UC = 'EXIT';
 	EXIT_LC = 'exit';
@@ -2740,7 +2746,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
  *------------------------------------------------------------------*/
 built_in_function[boolean defer]
 	returns [NamedElement element]
-	:	(SIZEOF_LC|SIZEOF_UC|SIZE_LC|SIZE_UC) LEFTP e=expr[defer] RIGHTP {
+	:	(SIZEOF_LC|SIZEOF_UC|SIZE_LC|SIZE_UC|SIZE_OF_LC|SIZE_OF_UC) LEFTP e=expr[defer] RIGHTP {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         if(null != $e.element) {
@@ -2753,6 +2759,19 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     }
 }	
 	}
+	|	(LC_SEQUENCE_OF|UC_SEQUENCE_OF) LEFTP e=expr[defer] RIGHTP {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    try {
+        if(null != $e.element) {
+            $element = this.interp.getSequenceOf($e.element);
+        } else if(null != $e.p) {
+            printError("Cannot determine the sequence of " + ($e.p).getName());
+        }
+    } catch(EugeneException ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}	
+	}	
 	|	(RANDOM_LC|RANDOM_UC) LEFTP rg=range[defer] RIGHTP {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {

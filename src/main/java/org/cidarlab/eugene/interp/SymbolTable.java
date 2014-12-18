@@ -270,12 +270,15 @@ public class SymbolTable {
 	
 	/**
 	 * The getAll/0 method returns all symbols contained 
-	 * in the symbol tables.
+	 * in the symbol tables (including Variables).
 	 * 
 	 * @return a collection of all elements
 	 */
 	public Collection<NamedElement> getAll() {
-		return this.symbols.values();
+		Collection<NamedElement> col = new HashSet<NamedElement>();
+		col.addAll(this.symbols.values());
+		col.addAll(this.variables.values());
+		return col;
 	}
 	
 	/**
