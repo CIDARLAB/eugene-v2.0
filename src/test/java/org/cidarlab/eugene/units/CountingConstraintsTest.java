@@ -16,7 +16,7 @@ import org.junit.Test;
  * Test Strategy:
  * --------------
  * We execute a Eugene script including Counting
- * contsraints and compare the number of returned 
+ * constraints and compare the number of returned 
  * solutions with the number of expected solutions.
  * 
  * @author Ernst Oberortner
@@ -30,6 +30,8 @@ public class CountingConstraintsTest {
 			"PartType PT; " +
 			"PT p1; PT p2; PT p3;";
 	
+	// that's the name of the EugeneArray that
+	// contains the results of the product() function
 	private static final String result = "result";
 	
 	/*-----------------
