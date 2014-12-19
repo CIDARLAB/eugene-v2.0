@@ -21,27 +21,7 @@ public class ExpressionConstraint
 	 * - a relational operator (!=, ==, >=, ...)
 	 * - a right-hand-side
 	 */
-//	private ExpressionOperand lhs;
-//	private String op;
-//	private ExpressionOperand rhs;
-//	
-//	public ExpressionConstraint(ExpressionOperand lhs, String op, ExpressionOperand rhs) {
-//		this.lhs = lhs;
-//		this.op = op;
-//		this.rhs = rhs;
-//	}
-//	
-//	public ExpressionOperand getLhs() {
-//		return this.lhs;
-//	}
-//	
-//	public ExpressionOperand getRhs() {
-//		return this.rhs;
-//	}
 
-	/*
-	 * NEW
-	 */
 	private Expression lhs;
 	private String rel_op;
 	private Expression rhs;
