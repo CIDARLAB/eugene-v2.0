@@ -106,14 +106,6 @@ public class DataExchangeTest {
 	}
 	
 	@Test
-	public void testSBOLExport_Device() {
-		// first we create a device
-		PartType pt = new PartType("PT");
-		
-		// TODO!
-	}
-
-	@Test
 	public void testSBOLExport_enumeratedDevice() {
 		String script = "PartType PT();" +
 				"PT p1; PT p2; PT p3; PT p4;" +

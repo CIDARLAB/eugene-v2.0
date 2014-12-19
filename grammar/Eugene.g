@@ -1978,34 +1978,54 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 	}	)* (i2=ID {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
-        NamedElement property = null;
+        NamedElement expOp = null;
 
         if(ne == null) {
-            property = this.interp.get($i2.text);
-            if(null == property) {
-                printError($i2.text+" is not defined.");
+            // if there are no preceding elements specified,    
+            // then we get the ID from the symbol tables
+            expOp = this.interp.get($i2.text);
+            
+            // is it declared?
+            if(null == expOp) {
+                printError($i2.text+" is not declared.");
             }
+            
+            // it must be a variable
+            if(!(expOp instanceof Variable)) {
+                printError($i2.text + " is not a Variable.");
+            }
+            
+            // if it's a Variable, then it's a valid expression rule operand
+            $eop = new ExpressionOperand((Variable)expOp);
+            
         } else {
+            // if there are preceding elements specified, 
+            // then the last preceding element must be either a 
+            // component (Device, Part) or a Type (PartType).
             if(!(ne instanceof Component) && !(ne instanceof ComponentType)) {
                 printError($i2.text+" is not a Device, Part, nor Part Type.");
             }
         
+            // in either case it must be a property
             if(ne instanceof ComponentType) {
-                property = ((ComponentType)ne).getProperty($i2.text);
+                expOp = ((ComponentType)ne).getProperty($i2.text);
             } else if(ne instanceof Component) {
-                property = ((Component)ne).getProperty($i2.text);
+                expOp = ((Component)ne).getProperty($i2.text);
             }
-            if(null == property) {
+            
+            // we also check if the preceding element contains the specified 
+            // property
+            if(null == expOp) {
                 printError(ne.getName()+" does not contain "+$i2.text+".");
             }
-        }
-
-        if(!(property instanceof Property)) {
-            printError($i2.text+" is not a Property.");
-        }     
+            // it must be a property!
+            if(!(expOp instanceof Property)) {
+                printError($i2.text+" is not a Property.");
+            }     
     
-        $eop = new ExpressionOperand(elements, (Property)property);
-
+            // valid operand for expression rule
+            $eop = new ExpressionOperand(elements, (Property)expOp);
+        }
     } catch(EugeneException ee) {
         printError(ee.getMessage());
     }

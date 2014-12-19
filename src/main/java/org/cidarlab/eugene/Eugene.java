@@ -30,8 +30,6 @@ import java.io.OutputStreamWriter;
 import java.util.Set;
 import java.util.logging.LogManager;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.cidarlab.eugene.constants.EugeneConstants.ParsingPhase;
@@ -74,11 +72,6 @@ public class Eugene {
 	 */
 	private BufferedWriter writer = null;
 
-	/*
-	 * a logger
-	 */
-	private Logger logger;
-	
 	public static String ROOT_DIRECTORY = ".";
 	public static String IMAGES_DIRECTORY = "./exports/pigeon/";
 	
@@ -114,8 +107,6 @@ public class Eugene {
 		this.init(sessionId, null);
 	}
 	
-	// constructor with sessionID and a writer to 
-	// that the Eugene output is being written
 	/**
 	 * The Eugene/2 constructor instantiates Eugene w/ the given 
 	 * output-writer and the given session-id. If such a session exists already, then 
@@ -155,7 +146,6 @@ public class Eugene {
 
 		// LOGGING
 		LogManager.getLogManager().reset();
-		this.logger = LoggerFactory.getLogger(Eugene.class);
 		
 		// SPARROW
 		// --- Eugene's session-based Library Management System (LMS) 
@@ -227,17 +217,13 @@ public class Eugene {
 	public EugeneCollection executeFile(File file) 
 			throws EugeneException {
 		
-		File f = file;
-//		if(!".".equals(ROOT_DIRECTORY)) {
-//			f = new File(ROOT_DIRECTORY + "/" + file);
-//		}
 		/*
 		 * first, we read the file
 		 * utilizing our EugeneUtil helpers 
 		 */
 		String script = null; 
 		try {
-			script = FileUtils.readFile(f);
+			script = FileUtils.readFile(file);
 		} catch(IOException ioe) {
 			throw new EugeneException(ioe.toString());
 		}

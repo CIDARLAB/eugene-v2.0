@@ -6,7 +6,6 @@ import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.Variable;
-import org.cidarlab.eugene.dom.imp.container.EugeneArray;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.junit.Test;
@@ -170,7 +169,7 @@ public class BuiltInFunctionsTest {
 	private static final String result = "result";
 
 	@Test
-	public void testQuery() {
+	public void testQuery_num_EQUALS_constant() {
 		StringBuilder script = new StringBuilder();
 		script.append(partLibrary)
 			.append(result).append(" = query(PT.np == 1);");
@@ -195,4 +194,32 @@ public class BuiltInFunctionsTest {
 		}
 	}
 	
+	@Test
+	public void testQuery_num_EQUALS_Variable() {
+		StringBuilder script = new StringBuilder();
+		script.append(partLibrary)
+			.append("num n = 1;")
+			.append(result).append(" = query(PT.np == n);");
+		
+		try {
+			Eugene e = new Eugene();
+			
+			EugeneCollection ec = e.executeScript(script.toString());
+			
+			assert(ec != null);
+			assert(ec.get(result) != null);
+			assert(ec.get(result) instanceof EugeneCollection);
+
+			assert(((EugeneCollection)ec.get(result)).getElements() != null);
+				// the query should return 1 part, namely p1
+			assert(((EugeneCollection)ec.get(result)).getElements().size() == 1);
+
+		} catch(EugeneException ee) {
+			
+			ee.printStackTrace();
+			
+			// no exception should be thrown.
+			assertTrue(false);
+		}
+	}
 }
