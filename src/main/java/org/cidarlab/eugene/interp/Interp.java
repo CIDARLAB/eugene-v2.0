@@ -69,10 +69,12 @@ import org.cidarlab.eugene.dom.imp.loops.Loop;
 import org.cidarlab.eugene.dom.interaction.Interaction;
 import org.cidarlab.eugene.dom.rules.ArrangementConstraint;
 import org.cidarlab.eugene.dom.rules.ArrangementOperand;
+import org.cidarlab.eugene.dom.rules.LogicalAnd;
 import org.cidarlab.eugene.dom.rules.LogicalNot;
 import org.cidarlab.eugene.dom.rules.LogicalOr;
 import org.cidarlab.eugene.dom.rules.Predicate;
 import org.cidarlab.eugene.dom.rules.Rule;
+import org.cidarlab.eugene.dom.rules.SelectionPredicate;
 import org.cidarlab.eugene.dom.rules.exp.ExpressionConstraint;
 import org.cidarlab.eugene.exception.DOMException;
 import org.cidarlab.eugene.exception.EugeneException;
@@ -645,6 +647,7 @@ public class Interp {
 	private EugeneArray product(Device d)
 			throws EugeneException {
 		
+		// Lazy Evaluation of the SparrowAdapter object
 		if(null == spAdapter) {
 			spAdapter = new SparrowAdapter(this.sparrow);
 		}
@@ -762,6 +765,58 @@ public class Interp {
 		// enumerated device since it should be the task 
 		// of the user what to do with those devices.
 		return ea; 
+	}
+	
+	/**
+	 * The query(Predicate) method gets as input a Predicate object
+	 * that represents an expression-constraint in Eugene. It 
+	 * returns a EugeneCollection which contains all parts compliant 
+	 * with the expression constraint.
+	 * 
+	 * Example:
+	 * PT.name != "p1" AND PT.id > 1 
+	 * 
+	 * Query all parts of type PT whose 
+	 * name does not equal to "p1" AND whose 
+	 * id is greater then 1 
+	 * 
+	 * @param p  ... a Eugene query
+	 * @return ... a
+	 * @throws EugeneException
+	 */
+	public EugeneCollection query(Predicate p)		
+			throws EugeneException {
+		
+		if(null != p && !(p instanceof SelectionPredicate)) {
+			throw new EugeneException("Invalid query.");
+		}
+		
+		// Lazy Evaluation of the SparrowAdapter object
+		if(null == spAdapter) {
+			spAdapter = new SparrowAdapter(this.sparrow);
+		}
+		
+		// first, we need to convert the 
+		// predicate into a rule.
+		Rule r = new Rule("r");
+		LogicalAnd la = new LogicalAnd();
+		la.getPredicates().add(p);
+		r.setLogicalAnd(la);
+		
+		EugeneCollection ec = new EugeneCollection(null);
+		try {
+			// then, we do the query on ``Sparrow''
+			Set<Part> sop = this.spAdapter.queryParts(r);
+		
+			// then we store the parts in a EugeneCollection
+			ec.getElements().addAll(sop);
+			
+		} catch(EugeneException ee) {
+			throw new EugeneException(ee.getMessage());
+		}
+		
+		// lastly we return the EugeneCollection object
+		return ec;
 	}
 	
 	/**

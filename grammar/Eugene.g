@@ -151,6 +151,9 @@ tokens {
 	CREATE_UC = 'CREATE';
 	CREATE_LC = 'create';
 	
+	QUERY_UC = 'QUERY';
+	QUERY_LC = 'query';
+	
 	READ_UC = 'READ';
 	READ_LC = 'read';
 	
@@ -2804,6 +2807,19 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         $element = this.interp.product($idToken.text);
+    } catch(Exception ee) {
+        printError(ee.getLocalizedMessage());
+    }
+}	
+	}
+
+/* --------------
+ * QUERY / query
+ * -------------- */	
+	|	(QUERY_LC|QUERY_UC) LEFTP er=expressionRule[defer] RIGHTP {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    try {
+        $element = this.interp.query($er.p);
     } catch(Exception ee) {
         printError(ee.getLocalizedMessage());
     }

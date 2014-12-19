@@ -6,6 +6,7 @@ import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.Variable;
+import org.cidarlab.eugene.dom.imp.container.EugeneArray;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.junit.Test;
@@ -148,4 +149,50 @@ public class BuiltInFunctionsTest {
 		} catch(EugeneException ee) {
 		}
 	}
+	
+	
+	// we define a part library of three parts
+	// each having the same part type
+	private static final String partLibrary =
+			"Property np(num); " +
+			"Property tp(txt); " +
+			"PartType PT(np, tp); " +
+			"PT p1(.np(1), .tp(\"one\")); " +
+			"PT p2(.np(2), .tp(\"two\")); " +
+			"PT p3(.np(3), .tp(\"three\")); " +
+			"PartType PT2(np, tp); " +
+			"PT2 p21(.np(1), .tp(\"one\")); " +
+			"PT2 p22(.np(2), .tp(\"two\")); " +
+			"PT2 p23(.np(3), .tp(\"three\")); ";
+	
+	// that's the name of the EugeneArray that
+	// contains the results of the product() function
+	private static final String result = "result";
+
+	@Test
+	public void testQuery() {
+		StringBuilder script = new StringBuilder();
+		script.append(partLibrary)
+			.append(result).append(" = query(PT.np == 1);");
+		
+		try {
+			Eugene e = new Eugene();
+			
+			EugeneCollection ec = e.executeScript(script.toString());
+			
+			assert(ec != null);
+			assert(ec.get(result) != null);
+			assert(ec.get(result) instanceof EugeneCollection);
+
+			assert(((EugeneCollection)ec.get(result)).getElements() != null);
+				// the query should return 1 part, namely p1
+			assert(((EugeneCollection)ec.get(result)).getElements().size() == 1);
+
+		} catch(EugeneException ee) {
+			
+			// no exception should be thrown.
+			assertTrue(false);
+		}
+	}
+	
 }

@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g 2014-12-17 20:16:17
+// $ANTLR 3.5.1 /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g 2014-12-19 11:06:18
 
 /*
 Copyright (c) 2012 Boston University.
@@ -33,8 +33,6 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class EugeneLexer extends Lexer {
 	public static final int EOF=-1;
-	public static final int T__138=138;
-	public static final int T__139=139;
 	public static final int T__140=140;
 	public static final int T__141=141;
 	public static final int T__142=142;
@@ -111,6 +109,8 @@ public class EugeneLexer extends Lexer {
 	public static final int T__213=213;
 	public static final int T__214=214;
 	public static final int T__215=215;
+	public static final int T__216=216;
+	public static final int T__217=217;
 	public static final int ADDPROPS=4;
 	public static final int AMP=5;
 	public static final int ARRAY=6;
@@ -192,59 +192,61 @@ public class EugeneLexer extends Lexer {
 	public static final int PRINT_LC=82;
 	public static final int PRINT_UC=83;
 	public static final int PROPERTY=84;
-	public static final int RANDOM_LC=85;
-	public static final int RANDOM_UC=86;
-	public static final int READ_LC=87;
-	public static final int READ_UC=88;
-	public static final int REAL=89;
-	public static final int REF=90;
-	public static final int REGISTRY=91;
-	public static final int RETURN_LC=92;
-	public static final int RETURN_UC=93;
-	public static final int RIGHTCUR=94;
-	public static final int RIGHTP=95;
-	public static final int RIGHTSBR=96;
-	public static final int RULE=97;
-	public static final int RULE_BUILDER=98;
-	public static final int SAVE_LC=99;
-	public static final int SAVE_UC=100;
-	public static final int SBOL=101;
-	public static final int SEMIC=102;
-	public static final int SIZEOF_LC=103;
-	public static final int SIZEOF_UC=104;
-	public static final int SIZE_LC=105;
-	public static final int SIZE_OF_LC=106;
-	public static final int SIZE_OF_UC=107;
-	public static final int SIZE_UC=108;
-	public static final int STORE_LC=109;
-	public static final int STORE_UC=110;
-	public static final int STRICT=111;
-	public static final int STRING=112;
-	public static final int TRUE_LC=113;
-	public static final int TRUE_UC=114;
-	public static final int TXT=115;
-	public static final int TYPE=116;
-	public static final int UC_AND=117;
-	public static final int UC_ELSE=118;
-	public static final int UC_ELSEIF=119;
-	public static final int UC_FOR=120;
-	public static final int UC_FORALL=121;
-	public static final int UC_IF=122;
-	public static final int UC_INDUCES=123;
-	public static final int UC_NOT=124;
-	public static final int UC_ON=125;
-	public static final int UC_OR=126;
-	public static final int UC_PERMUTE=127;
-	public static final int UC_PRODUCT=128;
-	public static final int UC_REPRESSES=129;
-	public static final int UC_SEQUENCE_OF=130;
-	public static final int UC_WHILE=131;
-	public static final int UNDERS=132;
-	public static final int UPDATE_LC=133;
-	public static final int UPDATE_UC=134;
-	public static final int VISUALIZE_LC=135;
-	public static final int VISUALIZE_UC=136;
-	public static final int WS=137;
+	public static final int QUERY_LC=85;
+	public static final int QUERY_UC=86;
+	public static final int RANDOM_LC=87;
+	public static final int RANDOM_UC=88;
+	public static final int READ_LC=89;
+	public static final int READ_UC=90;
+	public static final int REAL=91;
+	public static final int REF=92;
+	public static final int REGISTRY=93;
+	public static final int RETURN_LC=94;
+	public static final int RETURN_UC=95;
+	public static final int RIGHTCUR=96;
+	public static final int RIGHTP=97;
+	public static final int RIGHTSBR=98;
+	public static final int RULE=99;
+	public static final int RULE_BUILDER=100;
+	public static final int SAVE_LC=101;
+	public static final int SAVE_UC=102;
+	public static final int SBOL=103;
+	public static final int SEMIC=104;
+	public static final int SIZEOF_LC=105;
+	public static final int SIZEOF_UC=106;
+	public static final int SIZE_LC=107;
+	public static final int SIZE_OF_LC=108;
+	public static final int SIZE_OF_UC=109;
+	public static final int SIZE_UC=110;
+	public static final int STORE_LC=111;
+	public static final int STORE_UC=112;
+	public static final int STRICT=113;
+	public static final int STRING=114;
+	public static final int TRUE_LC=115;
+	public static final int TRUE_UC=116;
+	public static final int TXT=117;
+	public static final int TYPE=118;
+	public static final int UC_AND=119;
+	public static final int UC_ELSE=120;
+	public static final int UC_ELSEIF=121;
+	public static final int UC_FOR=122;
+	public static final int UC_FORALL=123;
+	public static final int UC_IF=124;
+	public static final int UC_INDUCES=125;
+	public static final int UC_NOT=126;
+	public static final int UC_ON=127;
+	public static final int UC_OR=128;
+	public static final int UC_PERMUTE=129;
+	public static final int UC_PRODUCT=130;
+	public static final int UC_REPRESSES=131;
+	public static final int UC_SEQUENCE_OF=132;
+	public static final int UC_WHILE=133;
+	public static final int UNDERS=134;
+	public static final int UPDATE_LC=135;
+	public static final int UPDATE_UC=136;
+	public static final int VISUALIZE_LC=137;
+	public static final int VISUALIZE_UC=138;
+	public static final int WS=139;
 
 	class SaveStruct {
 	    public CharStream input;
@@ -1869,13 +1871,55 @@ public class EugeneLexer extends Lexer {
 	}
 	// $ANTLR end "PROPERTY"
 
+	// $ANTLR start "QUERY_LC"
+	public final void mQUERY_LC() throws RecognitionException {
+		try {
+			int _type = QUERY_LC;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:159:10: ( 'query' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:159:12: 'query'
+			{
+			match("query"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "QUERY_LC"
+
+	// $ANTLR start "QUERY_UC"
+	public final void mQUERY_UC() throws RecognitionException {
+		try {
+			int _type = QUERY_UC;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:160:10: ( 'QUERY' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:160:12: 'QUERY'
+			{
+			match("QUERY"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "QUERY_UC"
+
 	// $ANTLR start "RANDOM_LC"
 	public final void mRANDOM_LC() throws RecognitionException {
 		try {
 			int _type = RANDOM_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:159:11: ( 'random' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:159:13: 'random'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:161:11: ( 'random' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:161:13: 'random'
 			{
 			match("random"); 
 
@@ -1895,8 +1939,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RANDOM_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:160:11: ( 'RANDOM' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:160:13: 'RANDOM'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:162:11: ( 'RANDOM' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:162:13: 'RANDOM'
 			{
 			match("RANDOM"); 
 
@@ -1916,8 +1960,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = READ_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:161:9: ( 'read' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:161:11: 'read'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:163:9: ( 'read' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:163:11: 'read'
 			{
 			match("read"); 
 
@@ -1937,8 +1981,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = READ_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:162:9: ( 'READ' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:162:11: 'READ'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:164:9: ( 'READ' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:164:11: 'READ'
 			{
 			match("READ"); 
 
@@ -1958,8 +2002,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = REF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:163:5: ( 'ref' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:163:7: 'ref'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:165:5: ( 'ref' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:165:7: 'ref'
 			{
 			match("ref"); 
 
@@ -1979,8 +2023,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = REGISTRY;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:164:10: ( 'Registry' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:164:12: 'Registry'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:166:10: ( 'Registry' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:166:12: 'Registry'
 			{
 			match("Registry"); 
 
@@ -2000,8 +2044,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RETURN_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:165:11: ( 'return' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:165:13: 'return'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:167:11: ( 'return' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:167:13: 'return'
 			{
 			match("return"); 
 
@@ -2021,8 +2065,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RETURN_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:166:11: ( 'RETURN' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:166:13: 'RETURN'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:168:11: ( 'RETURN' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:168:13: 'RETURN'
 			{
 			match("RETURN"); 
 
@@ -2042,8 +2086,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RIGHTCUR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:167:10: ( '}' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:167:12: '}'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:169:10: ( '}' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:169:12: '}'
 			{
 			match('}'); 
 			}
@@ -2062,8 +2106,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RIGHTP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:168:8: ( ')' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:168:10: ')'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:170:8: ( ')' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:170:10: ')'
 			{
 			match(')'); 
 			}
@@ -2082,8 +2126,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RIGHTSBR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:169:10: ( ']' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:169:12: ']'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:171:10: ( ']' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:171:12: ']'
 			{
 			match(']'); 
 			}
@@ -2102,8 +2146,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RULE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:170:6: ( 'Rule' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:170:8: 'Rule'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:172:6: ( 'Rule' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:172:8: 'Rule'
 			{
 			match("Rule"); 
 
@@ -2123,8 +2167,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RULE_BUILDER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:171:14: ( 'RuleBuilder' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:171:16: 'RuleBuilder'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:173:14: ( 'RuleBuilder' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:173:16: 'RuleBuilder'
 			{
 			match("RuleBuilder"); 
 
@@ -2144,8 +2188,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SAVE_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:172:9: ( 'save' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:172:11: 'save'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:174:9: ( 'save' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:174:11: 'save'
 			{
 			match("save"); 
 
@@ -2165,8 +2209,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SAVE_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:173:9: ( 'SAVE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:173:11: 'SAVE'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:175:9: ( 'SAVE' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:175:11: 'SAVE'
 			{
 			match("SAVE"); 
 
@@ -2186,8 +2230,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SBOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:174:6: ( 'SBOL' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:174:8: 'SBOL'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:176:6: ( 'SBOL' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:176:8: 'SBOL'
 			{
 			match("SBOL"); 
 
@@ -2207,8 +2251,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SEMIC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:175:7: ( ';' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:175:9: ';'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:177:7: ( ';' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:177:9: ';'
 			{
 			match(';'); 
 			}
@@ -2227,8 +2271,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SIZEOF_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:176:11: ( 'sizeof' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:176:13: 'sizeof'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:178:11: ( 'sizeof' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:178:13: 'sizeof'
 			{
 			match("sizeof"); 
 
@@ -2248,8 +2292,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SIZEOF_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:177:11: ( 'SIZEOF' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:177:13: 'SIZEOF'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:179:11: ( 'SIZEOF' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:179:13: 'SIZEOF'
 			{
 			match("SIZEOF"); 
 
@@ -2269,8 +2313,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SIZE_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:178:9: ( 'size' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:178:11: 'size'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:180:9: ( 'size' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:180:11: 'size'
 			{
 			match("size"); 
 
@@ -2290,8 +2334,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SIZE_OF_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:179:12: ( 'size_of' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:179:14: 'size_of'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:181:12: ( 'size_of' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:181:14: 'size_of'
 			{
 			match("size_of"); 
 
@@ -2311,8 +2355,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SIZE_OF_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:180:12: ( 'SIZE_OF' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:180:14: 'SIZE_OF'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:182:12: ( 'SIZE_OF' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:182:14: 'SIZE_OF'
 			{
 			match("SIZE_OF"); 
 
@@ -2332,8 +2376,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SIZE_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:181:9: ( 'SIZE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:181:11: 'SIZE'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:183:9: ( 'SIZE' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:183:11: 'SIZE'
 			{
 			match("SIZE"); 
 
@@ -2353,8 +2397,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = STORE_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:182:10: ( 'store' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:182:12: 'store'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:184:10: ( 'store' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:184:12: 'store'
 			{
 			match("store"); 
 
@@ -2374,8 +2418,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = STORE_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:183:10: ( 'STORE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:183:12: 'STORE'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:185:10: ( 'STORE' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:185:12: 'STORE'
 			{
 			match("STORE"); 
 
@@ -2395,8 +2439,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = STRICT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:184:8: ( 'strict' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:184:10: 'strict'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:186:8: ( 'strict' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:186:10: 'strict'
 			{
 			match("strict"); 
 
@@ -2416,8 +2460,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = TRUE_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:185:9: ( 'true' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:185:11: 'true'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:187:9: ( 'true' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:187:11: 'true'
 			{
 			match("true"); 
 
@@ -2437,8 +2481,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = TRUE_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:186:9: ( 'TRUE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:186:11: 'TRUE'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:188:9: ( 'TRUE' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:188:11: 'TRUE'
 			{
 			match("TRUE"); 
 
@@ -2458,8 +2502,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = TXT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:187:5: ( 'txt' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:187:7: 'txt'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:189:5: ( 'txt' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:189:7: 'txt'
 			{
 			match("txt"); 
 
@@ -2479,8 +2523,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = TYPE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:188:6: ( 'Type' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:188:8: 'Type'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:190:6: ( 'Type' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:190:8: 'Type'
 			{
 			match("Type"); 
 
@@ -2500,8 +2544,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_AND;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:189:8: ( 'AND' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:189:10: 'AND'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:191:8: ( 'AND' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:191:10: 'AND'
 			{
 			match("AND"); 
 
@@ -2521,8 +2565,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_ELSE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:190:9: ( 'ELSE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:190:11: 'ELSE'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:192:9: ( 'ELSE' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:192:11: 'ELSE'
 			{
 			match("ELSE"); 
 
@@ -2542,8 +2586,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_ELSEIF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:191:11: ( 'ELSEIF' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:191:13: 'ELSEIF'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:193:11: ( 'ELSEIF' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:193:13: 'ELSEIF'
 			{
 			match("ELSEIF"); 
 
@@ -2563,8 +2607,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_FOR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:192:8: ( 'FOR' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:192:10: 'FOR'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:194:8: ( 'FOR' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:194:10: 'FOR'
 			{
 			match("FOR"); 
 
@@ -2584,8 +2628,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_FORALL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:193:11: ( 'FORALL' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:193:13: 'FORALL'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:195:11: ( 'FORALL' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:195:13: 'FORALL'
 			{
 			match("FORALL"); 
 
@@ -2605,8 +2649,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_IF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:194:7: ( 'IF' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:194:9: 'IF'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:196:7: ( 'IF' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:196:9: 'IF'
 			{
 			match("IF"); 
 
@@ -2626,8 +2670,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_INDUCES;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:195:12: ( 'INDUCES' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:195:14: 'INDUCES'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:197:12: ( 'INDUCES' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:197:14: 'INDUCES'
 			{
 			match("INDUCES"); 
 
@@ -2647,8 +2691,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_NOT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:196:8: ( 'NOT' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:196:10: 'NOT'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:198:8: ( 'NOT' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:198:10: 'NOT'
 			{
 			match("NOT"); 
 
@@ -2668,8 +2712,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_ON;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:197:7: ( 'ON' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:197:9: 'ON'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:199:7: ( 'ON' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:199:9: 'ON'
 			{
 			match("ON"); 
 
@@ -2689,8 +2733,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_OR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:198:7: ( 'OR' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:198:9: 'OR'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:200:7: ( 'OR' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:200:9: 'OR'
 			{
 			match("OR"); 
 
@@ -2710,8 +2754,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_PERMUTE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:199:12: ( 'PERMUTE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:199:14: 'PERMUTE'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:201:12: ( 'PERMUTE' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:201:14: 'PERMUTE'
 			{
 			match("PERMUTE"); 
 
@@ -2731,8 +2775,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_PRODUCT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:200:12: ( 'PRODUCT' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:200:14: 'PRODUCT'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:202:12: ( 'PRODUCT' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:202:14: 'PRODUCT'
 			{
 			match("PRODUCT"); 
 
@@ -2752,8 +2796,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_REPRESSES;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:201:14: ( 'REPRESSES' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:201:16: 'REPRESSES'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:203:14: ( 'REPRESSES' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:203:16: 'REPRESSES'
 			{
 			match("REPRESSES"); 
 
@@ -2773,8 +2817,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_SEQUENCE_OF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:202:16: ( 'SEQUENCE_OF' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:202:18: 'SEQUENCE_OF'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:204:16: ( 'SEQUENCE_OF' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:204:18: 'SEQUENCE_OF'
 			{
 			match("SEQUENCE_OF"); 
 
@@ -2794,8 +2838,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_WHILE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:203:10: ( 'WHILE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:203:12: 'WHILE'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:205:10: ( 'WHILE' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:205:12: 'WHILE'
 			{
 			match("WHILE"); 
 
@@ -2815,8 +2859,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UNDERS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:204:8: ( '_' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:204:10: '_'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:206:8: ( '_' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:206:10: '_'
 			{
 			match('_'); 
 			}
@@ -2835,8 +2879,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UPDATE_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:205:11: ( 'update' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:205:13: 'update'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:207:11: ( 'update' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:207:13: 'update'
 			{
 			match("update"); 
 
@@ -2856,8 +2900,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UPDATE_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:206:11: ( 'UPDATE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:206:13: 'UPDATE'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:208:11: ( 'UPDATE' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:208:13: 'UPDATE'
 			{
 			match("UPDATE"); 
 
@@ -2877,8 +2921,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = VISUALIZE_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:207:14: ( 'visualize' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:207:16: 'visualize'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:209:14: ( 'visualize' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:209:16: 'visualize'
 			{
 			match("visualize"); 
 
@@ -2898,8 +2942,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = VISUALIZE_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:208:14: ( 'VISUALIZE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:208:16: 'VISUALIZE'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:210:14: ( 'VISUALIZE' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:210:16: 'VISUALIZE'
 			{
 			match("VISUALIZE"); 
 
@@ -2914,57 +2958,15 @@ public class EugeneLexer extends Lexer {
 	}
 	// $ANTLR end "VISUALIZE_UC"
 
-	// $ANTLR start "T__138"
-	public final void mT__138() throws RecognitionException {
-		try {
-			int _type = T__138;
-			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:209:8: ( 'AFTER' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:209:10: 'AFTER'
-			{
-			match("AFTER"); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "T__138"
-
-	// $ANTLR start "T__139"
-	public final void mT__139() throws RecognitionException {
-		try {
-			int _type = T__139;
-			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:210:8: ( 'ALL_AFTER' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:210:10: 'ALL_AFTER'
-			{
-			match("ALL_AFTER"); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "T__139"
-
 	// $ANTLR start "T__140"
 	public final void mT__140() throws RecognitionException {
 		try {
 			int _type = T__140;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:211:8: ( 'ALL_BEFORE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:211:10: 'ALL_BEFORE'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:211:8: ( 'AFTER' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:211:10: 'AFTER'
 			{
-			match("ALL_BEFORE"); 
+			match("AFTER"); 
 
 			}
 
@@ -2982,10 +2984,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__141;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:212:8: ( 'ALL_FORWARD' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:212:10: 'ALL_FORWARD'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:212:8: ( 'ALL_AFTER' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:212:10: 'ALL_AFTER'
 			{
-			match("ALL_FORWARD"); 
+			match("ALL_AFTER"); 
 
 			}
 
@@ -3003,10 +3005,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__142;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:213:8: ( 'ALL_NEXTTO' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:213:10: 'ALL_NEXTTO'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:213:8: ( 'ALL_BEFORE' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:213:10: 'ALL_BEFORE'
 			{
-			match("ALL_NEXTTO"); 
+			match("ALL_BEFORE"); 
 
 			}
 
@@ -3024,10 +3026,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__143;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:214:8: ( 'ALL_REVERSE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:214:10: 'ALL_REVERSE'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:214:8: ( 'ALL_FORWARD' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:214:10: 'ALL_FORWARD'
 			{
-			match("ALL_REVERSE"); 
+			match("ALL_FORWARD"); 
 
 			}
 
@@ -3045,10 +3047,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__144;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:215:8: ( 'ALL_SAME_ORIENTATION' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:215:10: 'ALL_SAME_ORIENTATION'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:215:8: ( 'ALL_NEXTTO' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:215:10: 'ALL_NEXTTO'
 			{
-			match("ALL_SAME_ORIENTATION"); 
+			match("ALL_NEXTTO"); 
 
 			}
 
@@ -3066,10 +3068,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__145;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:216:8: ( 'ALTERNATE_ORIENTATION' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:216:10: 'ALTERNATE_ORIENTATION'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:216:8: ( 'ALL_REVERSE' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:216:10: 'ALL_REVERSE'
 			{
-			match("ALTERNATE_ORIENTATION"); 
+			match("ALL_REVERSE"); 
 
 			}
 
@@ -3087,10 +3089,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__146;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:217:8: ( 'ALWAYS_NEXTTO' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:217:10: 'ALWAYS_NEXTTO'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:217:8: ( 'ALL_SAME_ORIENTATION' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:217:10: 'ALL_SAME_ORIENTATION'
 			{
-			match("ALWAYS_NEXTTO"); 
+			match("ALL_SAME_ORIENTATION"); 
 
 			}
 
@@ -3108,10 +3110,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__147;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:218:8: ( 'BEFORE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:218:10: 'BEFORE'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:218:8: ( 'ALTERNATE_ORIENTATION' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:218:10: 'ALTERNATE_ORIENTATION'
 			{
-			match("BEFORE"); 
+			match("ALTERNATE_ORIENTATION"); 
 
 			}
 
@@ -3129,10 +3131,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__148;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:219:8: ( 'CONTAINS' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:219:10: 'CONTAINS'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:219:8: ( 'ALWAYS_NEXTTO' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:219:10: 'ALWAYS_NEXTTO'
 			{
-			match("CONTAINS"); 
+			match("ALWAYS_NEXTTO"); 
 
 			}
 
@@ -3150,10 +3152,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__149;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:220:8: ( 'DRIVES' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:220:10: 'DRIVES'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:220:8: ( 'BEFORE' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:220:10: 'BEFORE'
 			{
-			match("DRIVES"); 
+			match("BEFORE"); 
 
 			}
 
@@ -3171,10 +3173,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__150;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:221:8: ( 'ENDSWITH' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:221:10: 'ENDSWITH'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:221:8: ( 'CONTAINS' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:221:10: 'CONTAINS'
 			{
-			match("ENDSWITH"); 
+			match("CONTAINS"); 
 
 			}
 
@@ -3192,10 +3194,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__151;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:222:8: ( 'EQUALS' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:222:10: 'EQUALS'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:222:8: ( 'DRIVES' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:222:10: 'DRIVES'
 			{
-			match("EQUALS"); 
+			match("DRIVES"); 
 
 			}
 
@@ -3213,10 +3215,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__152;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:223:8: ( 'EXACTLY' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:223:10: 'EXACTLY'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:223:8: ( 'ENDSWITH' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:223:10: 'ENDSWITH'
 			{
-			match("EXACTLY"); 
+			match("ENDSWITH"); 
 
 			}
 
@@ -3234,10 +3236,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__153;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:224:8: ( 'FORWARD' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:224:10: 'FORWARD'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:224:8: ( 'EQUALS' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:224:10: 'EQUALS'
 			{
-			match("FORWARD"); 
+			match("EQUALS"); 
 
 			}
 
@@ -3255,10 +3257,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__154;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:225:8: ( 'MATCHES' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:225:10: 'MATCHES'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:225:8: ( 'EXACTLY' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:225:10: 'EXACTLY'
 			{
-			match("MATCHES"); 
+			match("EXACTLY"); 
 
 			}
 
@@ -3276,10 +3278,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__155;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:226:8: ( 'MORETHAN' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:226:10: 'MORETHAN'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:226:8: ( 'FORWARD' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:226:10: 'FORWARD'
 			{
-			match("MORETHAN"); 
+			match("FORWARD"); 
 
 			}
 
@@ -3297,10 +3299,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__156;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:227:8: ( 'NEXTTO' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:227:10: 'NEXTTO'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:227:8: ( 'MATCHES' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:227:10: 'MATCHES'
 			{
-			match("NEXTTO"); 
+			match("MATCHES"); 
 
 			}
 
@@ -3318,10 +3320,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__157;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:228:8: ( 'NOTCONTAINS' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:228:10: 'NOTCONTAINS'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:228:8: ( 'MORETHAN' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:228:10: 'MORETHAN'
 			{
-			match("NOTCONTAINS"); 
+			match("MORETHAN"); 
 
 			}
 
@@ -3339,10 +3341,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__158;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:229:8: ( 'NOTEQUALS' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:229:10: 'NOTEQUALS'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:229:8: ( 'NEXTTO' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:229:10: 'NEXTTO'
 			{
-			match("NOTEQUALS"); 
+			match("NEXTTO"); 
 
 			}
 
@@ -3360,10 +3362,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__159;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:230:8: ( 'NOTEXACTLY' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:230:10: 'NOTEXACTLY'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:230:8: ( 'NOTCONTAINS' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:230:10: 'NOTCONTAINS'
 			{
-			match("NOTEXACTLY"); 
+			match("NOTCONTAINS"); 
 
 			}
 
@@ -3381,10 +3383,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__160;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:231:8: ( 'NOTMATCHES' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:231:10: 'NOTMATCHES'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:231:8: ( 'NOTEQUALS' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:231:10: 'NOTEQUALS'
 			{
-			match("NOTMATCHES"); 
+			match("NOTEQUALS"); 
 
 			}
 
@@ -3402,10 +3404,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__161;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:232:8: ( 'NOTMORETHAN' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:232:10: 'NOTMORETHAN'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:232:8: ( 'NOTEXACTLY' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:232:10: 'NOTEXACTLY'
 			{
-			match("NOTMORETHAN"); 
+			match("NOTEXACTLY"); 
 
 			}
 
@@ -3423,10 +3425,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__162;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:233:8: ( 'NOTTHEN' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:233:10: 'NOTTHEN'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:233:8: ( 'NOTMATCHES' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:233:10: 'NOTMATCHES'
 			{
-			match("NOTTHEN"); 
+			match("NOTMATCHES"); 
 
 			}
 
@@ -3444,10 +3446,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__163;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:234:8: ( 'NOTWITH' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:234:10: 'NOTWITH'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:234:8: ( 'NOTMORETHAN' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:234:10: 'NOTMORETHAN'
 			{
-			match("NOTWITH"); 
+			match("NOTMORETHAN"); 
 
 			}
 
@@ -3465,10 +3467,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__164;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:235:8: ( 'REVERSE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:235:10: 'REVERSE'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:235:8: ( 'NOTTHEN' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:235:10: 'NOTTHEN'
 			{
-			match("REVERSE"); 
+			match("NOTTHEN"); 
 
 			}
 
@@ -3486,10 +3488,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__165;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:236:8: ( 'SAME_COUNT' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:236:10: 'SAME_COUNT'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:236:8: ( 'NOTWITH' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:236:10: 'NOTWITH'
 			{
-			match("SAME_COUNT"); 
+			match("NOTWITH"); 
 
 			}
 
@@ -3507,10 +3509,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__166;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:237:8: ( 'SAME_ORIENTATION' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:237:10: 'SAME_ORIENTATION'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:237:8: ( 'REVERSE' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:237:10: 'REVERSE'
 			{
-			match("SAME_ORIENTATION"); 
+			match("REVERSE"); 
 
 			}
 
@@ -3528,10 +3530,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__167;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:238:8: ( 'SOME_AFTER' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:238:10: 'SOME_AFTER'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:238:8: ( 'SAME_COUNT' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:238:10: 'SAME_COUNT'
 			{
-			match("SOME_AFTER"); 
+			match("SAME_COUNT"); 
 
 			}
 
@@ -3549,10 +3551,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__168;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:239:8: ( 'SOME_BEFORE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:239:10: 'SOME_BEFORE'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:239:8: ( 'SAME_ORIENTATION' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:239:10: 'SAME_ORIENTATION'
 			{
-			match("SOME_BEFORE"); 
+			match("SAME_ORIENTATION"); 
 
 			}
 
@@ -3570,10 +3572,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__169;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:240:8: ( 'SOME_FORWARD' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:240:10: 'SOME_FORWARD'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:240:8: ( 'SOME_AFTER' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:240:10: 'SOME_AFTER'
 			{
-			match("SOME_FORWARD"); 
+			match("SOME_AFTER"); 
 
 			}
 
@@ -3591,10 +3593,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__170;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:241:8: ( 'SOME_NEXTTO' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:241:10: 'SOME_NEXTTO'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:241:8: ( 'SOME_BEFORE' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:241:10: 'SOME_BEFORE'
 			{
-			match("SOME_NEXTTO"); 
+			match("SOME_BEFORE"); 
 
 			}
 
@@ -3612,10 +3614,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__171;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:242:8: ( 'SOME_REVERSE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:242:10: 'SOME_REVERSE'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:242:8: ( 'SOME_FORWARD' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:242:10: 'SOME_FORWARD'
 			{
-			match("SOME_REVERSE"); 
+			match("SOME_FORWARD"); 
 
 			}
 
@@ -3633,10 +3635,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__172;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:243:8: ( 'SOME_SAME_ORIENTATION' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:243:10: 'SOME_SAME_ORIENTATION'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:243:8: ( 'SOME_NEXTTO' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:243:10: 'SOME_NEXTTO'
 			{
-			match("SOME_SAME_ORIENTATION"); 
+			match("SOME_NEXTTO"); 
 
 			}
 
@@ -3654,10 +3656,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__173;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:244:8: ( 'SOUNDSLIKE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:244:10: 'SOUNDSLIKE'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:244:8: ( 'SOME_REVERSE' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:244:10: 'SOME_REVERSE'
 			{
-			match("SOUNDSLIKE"); 
+			match("SOME_REVERSE"); 
 
 			}
 
@@ -3675,10 +3677,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__174;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:245:8: ( 'STARTSWITH' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:245:10: 'STARTSWITH'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:245:8: ( 'SOME_SAME_ORIENTATION' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:245:10: 'SOME_SAME_ORIENTATION'
 			{
-			match("STARTSWITH"); 
+			match("SOME_SAME_ORIENTATION"); 
 
 			}
 
@@ -3696,10 +3698,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__175;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:246:8: ( 'THEN' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:246:10: 'THEN'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:246:8: ( 'SOUNDSLIKE' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:246:10: 'SOUNDSLIKE'
 			{
-			match("THEN"); 
+			match("SOUNDSLIKE"); 
 
 			}
 
@@ -3717,10 +3719,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__176;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:247:8: ( 'WITH' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:247:10: 'WITH'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:247:8: ( 'STARTSWITH' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:247:10: 'STARTSWITH'
 			{
-			match("WITH"); 
+			match("STARTSWITH"); 
 
 			}
 
@@ -3738,10 +3740,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__177;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:248:8: ( 'after' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:248:10: 'after'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:248:8: ( 'THEN' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:248:10: 'THEN'
 			{
-			match("after"); 
+			match("THEN"); 
 
 			}
 
@@ -3759,10 +3761,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__178;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:249:8: ( 'all_after' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:249:10: 'all_after'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:249:8: ( 'WITH' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:249:10: 'WITH'
 			{
-			match("all_after"); 
+			match("WITH"); 
 
 			}
 
@@ -3780,10 +3782,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__179;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:250:8: ( 'all_before' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:250:10: 'all_before'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:250:8: ( 'after' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:250:10: 'after'
 			{
-			match("all_before"); 
+			match("after"); 
 
 			}
 
@@ -3801,10 +3803,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__180;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:251:8: ( 'all_forward' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:251:10: 'all_forward'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:251:8: ( 'all_after' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:251:10: 'all_after'
 			{
-			match("all_forward"); 
+			match("all_after"); 
 
 			}
 
@@ -3822,10 +3824,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__181;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:252:8: ( 'all_nextto' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:252:10: 'all_nextto'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:252:8: ( 'all_before' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:252:10: 'all_before'
 			{
-			match("all_nextto"); 
+			match("all_before"); 
 
 			}
 
@@ -3843,10 +3845,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__182;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:253:8: ( 'all_reverse' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:253:10: 'all_reverse'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:253:8: ( 'all_forward' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:253:10: 'all_forward'
 			{
-			match("all_reverse"); 
+			match("all_forward"); 
 
 			}
 
@@ -3864,10 +3866,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__183;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:254:8: ( 'all_same_orientation' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:254:10: 'all_same_orientation'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:254:8: ( 'all_nextto' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:254:10: 'all_nextto'
 			{
-			match("all_same_orientation"); 
+			match("all_nextto"); 
 
 			}
 
@@ -3885,10 +3887,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__184;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:255:8: ( 'alternate_orientation' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:255:10: 'alternate_orientation'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:255:8: ( 'all_reverse' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:255:10: 'all_reverse'
 			{
-			match("alternate_orientation"); 
+			match("all_reverse"); 
 
 			}
 
@@ -3906,10 +3908,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__185;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:256:8: ( 'always_nextto' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:256:10: 'always_nextto'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:256:8: ( 'all_same_orientation' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:256:10: 'all_same_orientation'
 			{
-			match("always_nextto"); 
+			match("all_same_orientation"); 
 
 			}
 
@@ -3927,10 +3929,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__186;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:257:8: ( 'before' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:257:10: 'before'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:257:8: ( 'alternate_orientation' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:257:10: 'alternate_orientation'
 			{
-			match("before"); 
+			match("alternate_orientation"); 
 
 			}
 
@@ -3948,10 +3950,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__187;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:258:8: ( 'contains' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:258:10: 'contains'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:258:8: ( 'always_nextto' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:258:10: 'always_nextto'
 			{
-			match("contains"); 
+			match("always_nextto"); 
 
 			}
 
@@ -3969,10 +3971,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__188;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:259:8: ( 'drives' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:259:10: 'drives'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:259:8: ( 'before' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:259:10: 'before'
 			{
-			match("drives"); 
+			match("before"); 
 
 			}
 
@@ -3990,10 +3992,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__189;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:260:8: ( 'endswith' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:260:10: 'endswith'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:260:8: ( 'contains' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:260:10: 'contains'
 			{
-			match("endswith"); 
+			match("contains"); 
 
 			}
 
@@ -4011,10 +4013,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__190;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:261:8: ( 'equals' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:261:10: 'equals'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:261:8: ( 'drives' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:261:10: 'drives'
 			{
-			match("equals"); 
+			match("drives"); 
 
 			}
 
@@ -4032,10 +4034,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__191;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:262:8: ( 'exactly' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:262:10: 'exactly'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:262:8: ( 'endswith' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:262:10: 'endswith'
 			{
-			match("exactly"); 
+			match("endswith"); 
 
 			}
 
@@ -4053,10 +4055,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__192;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:263:8: ( 'forward' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:263:10: 'forward'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:263:8: ( 'equals' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:263:10: 'equals'
 			{
-			match("forward"); 
+			match("equals"); 
 
 			}
 
@@ -4074,10 +4076,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__193;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:264:8: ( 'matches' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:264:10: 'matches'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:264:8: ( 'exactly' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:264:10: 'exactly'
 			{
-			match("matches"); 
+			match("exactly"); 
 
 			}
 
@@ -4095,10 +4097,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__194;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:265:8: ( 'morethan' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:265:10: 'morethan'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:265:8: ( 'forward' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:265:10: 'forward'
 			{
-			match("morethan"); 
+			match("forward"); 
 
 			}
 
@@ -4116,10 +4118,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__195;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:266:8: ( 'nextto' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:266:10: 'nextto'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:266:8: ( 'matches' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:266:10: 'matches'
 			{
-			match("nextto"); 
+			match("matches"); 
 
 			}
 
@@ -4137,10 +4139,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__196;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:267:8: ( 'notcontains' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:267:10: 'notcontains'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:267:8: ( 'morethan' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:267:10: 'morethan'
 			{
-			match("notcontains"); 
+			match("morethan"); 
 
 			}
 
@@ -4158,10 +4160,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__197;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:268:8: ( 'notequals' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:268:10: 'notequals'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:268:8: ( 'nextto' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:268:10: 'nextto'
 			{
-			match("notequals"); 
+			match("nextto"); 
 
 			}
 
@@ -4179,10 +4181,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__198;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:269:8: ( 'notexactly' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:269:10: 'notexactly'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:269:8: ( 'notcontains' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:269:10: 'notcontains'
 			{
-			match("notexactly"); 
+			match("notcontains"); 
 
 			}
 
@@ -4200,10 +4202,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__199;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:270:8: ( 'notmatches' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:270:10: 'notmatches'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:270:8: ( 'notequals' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:270:10: 'notequals'
 			{
-			match("notmatches"); 
+			match("notequals"); 
 
 			}
 
@@ -4221,10 +4223,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__200;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:271:8: ( 'notmorethan' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:271:10: 'notmorethan'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:271:8: ( 'notexactly' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:271:10: 'notexactly'
 			{
-			match("notmorethan"); 
+			match("notexactly"); 
 
 			}
 
@@ -4242,10 +4244,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__201;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:272:8: ( 'notthen' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:272:10: 'notthen'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:272:8: ( 'notmatches' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:272:10: 'notmatches'
 			{
-			match("notthen"); 
+			match("notmatches"); 
 
 			}
 
@@ -4263,10 +4265,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__202;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:273:8: ( 'notwith' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:273:10: 'notwith'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:273:8: ( 'notmorethan' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:273:10: 'notmorethan'
 			{
-			match("notwith"); 
+			match("notmorethan"); 
 
 			}
 
@@ -4284,10 +4286,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__203;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:274:8: ( 'reverse' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:274:10: 'reverse'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:274:8: ( 'notthen' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:274:10: 'notthen'
 			{
-			match("reverse"); 
+			match("notthen"); 
 
 			}
 
@@ -4305,10 +4307,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__204;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:275:8: ( 'same_count' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:275:10: 'same_count'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:275:8: ( 'notwith' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:275:10: 'notwith'
 			{
-			match("same_count"); 
+			match("notwith"); 
 
 			}
 
@@ -4326,10 +4328,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__205;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:276:8: ( 'same_orientation' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:276:10: 'same_orientation'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:276:8: ( 'reverse' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:276:10: 'reverse'
 			{
-			match("same_orientation"); 
+			match("reverse"); 
 
 			}
 
@@ -4347,10 +4349,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__206;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:277:8: ( 'some_after' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:277:10: 'some_after'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:277:8: ( 'same_count' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:277:10: 'same_count'
 			{
-			match("some_after"); 
+			match("same_count"); 
 
 			}
 
@@ -4368,10 +4370,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__207;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:278:8: ( 'some_before' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:278:10: 'some_before'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:278:8: ( 'same_orientation' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:278:10: 'same_orientation'
 			{
-			match("some_before"); 
+			match("same_orientation"); 
 
 			}
 
@@ -4389,10 +4391,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__208;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:279:8: ( 'some_forward' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:279:10: 'some_forward'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:279:8: ( 'some_after' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:279:10: 'some_after'
 			{
-			match("some_forward"); 
+			match("some_after"); 
 
 			}
 
@@ -4410,10 +4412,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__209;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:280:8: ( 'some_nextto' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:280:10: 'some_nextto'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:280:8: ( 'some_before' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:280:10: 'some_before'
 			{
-			match("some_nextto"); 
+			match("some_before"); 
 
 			}
 
@@ -4431,10 +4433,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__210;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:281:8: ( 'some_reverse' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:281:10: 'some_reverse'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:281:8: ( 'some_forward' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:281:10: 'some_forward'
 			{
-			match("some_reverse"); 
+			match("some_forward"); 
 
 			}
 
@@ -4452,10 +4454,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__211;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:282:8: ( 'some_same_orientation' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:282:10: 'some_same_orientation'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:282:8: ( 'some_nextto' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:282:10: 'some_nextto'
 			{
-			match("some_same_orientation"); 
+			match("some_nextto"); 
 
 			}
 
@@ -4473,10 +4475,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__212;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:283:8: ( 'soundslike' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:283:10: 'soundslike'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:283:8: ( 'some_reverse' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:283:10: 'some_reverse'
 			{
-			match("soundslike"); 
+			match("some_reverse"); 
 
 			}
 
@@ -4494,10 +4496,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__213;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:284:8: ( 'startswith' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:284:10: 'startswith'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:284:8: ( 'some_same_orientation' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:284:10: 'some_same_orientation'
 			{
-			match("startswith"); 
+			match("some_same_orientation"); 
 
 			}
 
@@ -4515,10 +4517,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__214;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:285:8: ( 'then' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:285:10: 'then'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:285:8: ( 'soundslike' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:285:10: 'soundslike'
 			{
-			match("then"); 
+			match("soundslike"); 
 
 			}
 
@@ -4536,10 +4538,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__215;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:286:8: ( 'with' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:286:10: 'with'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:286:8: ( 'startswith' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:286:10: 'startswith'
 			{
-			match("with"); 
+			match("startswith"); 
 
 			}
 
@@ -4552,15 +4554,57 @@ public class EugeneLexer extends Lexer {
 	}
 	// $ANTLR end "T__215"
 
+	// $ANTLR start "T__216"
+	public final void mT__216() throws RecognitionException {
+		try {
+			int _type = T__216;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:287:8: ( 'then' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:287:10: 'then'
+			{
+			match("then"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__216"
+
+	// $ANTLR start "T__217"
+	public final void mT__217() throws RecognitionException {
+		try {
+			int _type = T__217;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:288:8: ( 'with' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:288:10: 'with'
+			{
+			match("with"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__217"
+
 	// $ANTLR start "NUMBER"
 	public final void mNUMBER() throws RecognitionException {
 		try {
 			int _type = NUMBER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3378:2: ( ( DIGIT )+ )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3378:4: ( DIGIT )+
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3394:2: ( ( DIGIT )+ )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3394:4: ( DIGIT )+
 			{
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3378:4: ( DIGIT )+
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3394:4: ( DIGIT )+
 			int cnt1=0;
 			loop1:
 			while (true) {
@@ -4609,8 +4653,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = REAL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3382:2: ( NUMBER '.' NUMBER )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3382:4: NUMBER '.' NUMBER
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3398:2: ( NUMBER '.' NUMBER )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3398:4: NUMBER '.' NUMBER
 			{
 			mNUMBER(); 
 
@@ -4633,10 +4677,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3386:2: ( ( '\\t' | ' ' | '\\u000C' )+ )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3386:4: ( '\\t' | ' ' | '\\u000C' )+
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3402:2: ( ( '\\t' | ' ' | '\\u000C' )+ )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3402:4: ( '\\t' | ' ' | '\\u000C' )+
 			{
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3386:4: ( '\\t' | ' ' | '\\u000C' )+
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3402:4: ( '\\t' | ' ' | '\\u000C' )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -4686,10 +4730,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = NEWLINE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3390:2: ( ( '\\r' )? '\\n' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3390:4: ( '\\r' )? '\\n'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3406:2: ( ( '\\r' )? '\\n' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3406:4: ( '\\r' )? '\\n'
 			{
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3390:4: ( '\\r' )?
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3406:4: ( '\\r' )?
 			int alt3=2;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0=='\r') ) {
@@ -4697,7 +4741,7 @@ public class EugeneLexer extends Lexer {
 			}
 			switch (alt3) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3390:4: '\\r'
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3406:4: '\\r'
 					{
 					match('\r'); 
 					}
@@ -4723,16 +4767,16 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LINE_COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3394:2: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r\\n' | '\\r' | '\\n' ) | '//' (~ ( '\\n' | '\\r' ) )* )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3410:2: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r\\n' | '\\r' | '\\n' ) | '//' (~ ( '\\n' | '\\r' ) )* )
 			int alt7=2;
 			alt7 = dfa7.predict(input);
 			switch (alt7) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3394:4: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r\\n' | '\\r' | '\\n' )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3410:4: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r\\n' | '\\r' | '\\n' )
 					{
 					match("//"); 
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3394:9: (~ ( '\\n' | '\\r' ) )*
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3410:9: (~ ( '\\n' | '\\r' ) )*
 					loop4:
 					while (true) {
 						int alt4=2;
@@ -4761,7 +4805,7 @@ public class EugeneLexer extends Lexer {
 						}
 					}
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3394:24: ( '\\r\\n' | '\\r' | '\\n' )
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3410:24: ( '\\r\\n' | '\\r' | '\\n' )
 					int alt5=3;
 					int LA5_0 = input.LA(1);
 					if ( (LA5_0=='\r') ) {
@@ -4787,20 +4831,20 @@ public class EugeneLexer extends Lexer {
 
 					switch (alt5) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3394:25: '\\r\\n'
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3410:25: '\\r\\n'
 							{
 							match("\r\n"); 
 
 							}
 							break;
 						case 2 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3394:34: '\\r'
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3410:34: '\\r'
 							{
 							match('\r'); 
 							}
 							break;
 						case 3 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3394:41: '\\n'
+							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3410:41: '\\n'
 							{
 							match('\n'); 
 							}
@@ -4814,11 +4858,11 @@ public class EugeneLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3398:4: '//' (~ ( '\\n' | '\\r' ) )*
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3414:4: '//' (~ ( '\\n' | '\\r' ) )*
 					{
 					match("//"); 
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3398:9: (~ ( '\\n' | '\\r' ) )*
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3414:9: (~ ( '\\n' | '\\r' ) )*
 					loop6:
 					while (true) {
 						int alt6=2;
@@ -4868,12 +4912,12 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = ML_COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3405:2: ( '/*' ( options {greedy=false; } : . )* '*/' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3405:4: '/*' ( options {greedy=false; } : . )* '*/'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3421:2: ( '/*' ( options {greedy=false; } : . )* '*/' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3421:4: '/*' ( options {greedy=false; } : . )* '*/'
 			{
 			match("/*"); 
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3405:9: ( options {greedy=false; } : . )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3421:9: ( options {greedy=false; } : . )*
 			loop8:
 			while (true) {
 				int alt8=2;
@@ -4894,7 +4938,7 @@ public class EugeneLexer extends Lexer {
 
 				switch (alt8) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3405:36: .
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3421:36: .
 					{
 					matchAny(); 
 					}
@@ -4922,7 +4966,7 @@ public class EugeneLexer extends Lexer {
 	// $ANTLR start "DIGIT"
 	public final void mDIGIT() throws RecognitionException {
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3409:2: ( '0' .. '9' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3425:2: ( '0' .. '9' )
 			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -4947,8 +4991,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = ID;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3413:2: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3413:4: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3429:2: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3429:4: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -4958,7 +5002,7 @@ public class EugeneLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3413:27: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3429:27: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
 			loop9:
 			while (true) {
 				int alt9=2;
@@ -5003,11 +5047,11 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = STRING;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3417:2: ( '\"' ( options {greedy=false; } : . )* '\"' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3417:4: '\"' ( options {greedy=false; } : . )* '\"'
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3433:2: ( '\"' ( options {greedy=false; } : . )* '\"' )
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3433:4: '\"' ( options {greedy=false; } : . )* '\"'
 			{
 			match('\"'); 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3417:8: ( options {greedy=false; } : . )*
+			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3433:8: ( options {greedy=false; } : . )*
 			loop10:
 			while (true) {
 				int alt10=2;
@@ -5021,7 +5065,7 @@ public class EugeneLexer extends Lexer {
 
 				switch (alt10) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3417:35: .
+					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3433:35: .
 					{
 					matchAny(); 
 					}
@@ -5046,8 +5090,8 @@ public class EugeneLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:8: ( ADDPROPS | AMP | ARRAY | ARROW | ASSERT | BOOL | BOOLEAN | COLLECTION | COLON | COMMA | CREATE_LC | CREATE_UC | DELETE_LC | DELETE_UC | DEVICE | DIV | DOLLAR | DOT | DOTDOT | EQUALS | EXIT_LC | EXIT_UC | EXPORT_LC | EXPORT_UC | FALSE_LC | FALSE_UC | FLEXIBLE | GENBANK | GEQUAL | GRAMMAR | GTHAN | HASHMARK | IMAGE | IMPORT_LC | IMPORT_UC | INCLUDE_LC | INCLUDE_UC | INTERACTION | LC_AND | LC_ELSE | LC_ELSEIF | LC_FOR | LC_FORALL | LC_IF | LC_INDUCES | LC_NOT | LC_ON | LC_OR | LC_PERMUTE | LC_PRODUCT | LC_REPRESSES | LC_SEQUENCE_OF | LC_WHILE | LEFTCUR | LEFTP | LEFTSBR | LEQUAL | LOG_AND | LOG_OR | LTHAN | MINUS | MULT | NEQUAL | NOTE | NUM | OP_NOT | PART | PART_TYPE | PIPE | PLUS | PRINTLN_LC | PRINTLN_UC | PRINT_LC | PRINT_UC | PROPERTY | RANDOM_LC | RANDOM_UC | READ_LC | READ_UC | REF | REGISTRY | RETURN_LC | RETURN_UC | RIGHTCUR | RIGHTP | RIGHTSBR | RULE | RULE_BUILDER | SAVE_LC | SAVE_UC | SBOL | SEMIC | SIZEOF_LC | SIZEOF_UC | SIZE_LC | SIZE_OF_LC | SIZE_OF_UC | SIZE_UC | STORE_LC | STORE_UC | STRICT | TRUE_LC | TRUE_UC | TXT | TYPE | UC_AND | UC_ELSE | UC_ELSEIF | UC_FOR | UC_FORALL | UC_IF | UC_INDUCES | UC_NOT | UC_ON | UC_OR | UC_PERMUTE | UC_PRODUCT | UC_REPRESSES | UC_SEQUENCE_OF | UC_WHILE | UNDERS | UPDATE_LC | UPDATE_UC | VISUALIZE_LC | VISUALIZE_UC | T__138 | T__139 | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | T__170 | T__171 | T__172 | T__173 | T__174 | T__175 | T__176 | T__177 | T__178 | T__179 | T__180 | T__181 | T__182 | T__183 | T__184 | T__185 | T__186 | T__187 | T__188 | T__189 | T__190 | T__191 | T__192 | T__193 | T__194 | T__195 | T__196 | T__197 | T__198 | T__199 | T__200 | T__201 | T__202 | T__203 | T__204 | T__205 | T__206 | T__207 | T__208 | T__209 | T__210 | T__211 | T__212 | T__213 | T__214 | T__215 | NUMBER | REAL | WS | NEWLINE | LINE_COMMENT | ML_COMMENT | ID | STRING )
-		int alt11=211;
+		// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:8: ( ADDPROPS | AMP | ARRAY | ARROW | ASSERT | BOOL | BOOLEAN | COLLECTION | COLON | COMMA | CREATE_LC | CREATE_UC | DELETE_LC | DELETE_UC | DEVICE | DIV | DOLLAR | DOT | DOTDOT | EQUALS | EXIT_LC | EXIT_UC | EXPORT_LC | EXPORT_UC | FALSE_LC | FALSE_UC | FLEXIBLE | GENBANK | GEQUAL | GRAMMAR | GTHAN | HASHMARK | IMAGE | IMPORT_LC | IMPORT_UC | INCLUDE_LC | INCLUDE_UC | INTERACTION | LC_AND | LC_ELSE | LC_ELSEIF | LC_FOR | LC_FORALL | LC_IF | LC_INDUCES | LC_NOT | LC_ON | LC_OR | LC_PERMUTE | LC_PRODUCT | LC_REPRESSES | LC_SEQUENCE_OF | LC_WHILE | LEFTCUR | LEFTP | LEFTSBR | LEQUAL | LOG_AND | LOG_OR | LTHAN | MINUS | MULT | NEQUAL | NOTE | NUM | OP_NOT | PART | PART_TYPE | PIPE | PLUS | PRINTLN_LC | PRINTLN_UC | PRINT_LC | PRINT_UC | PROPERTY | QUERY_LC | QUERY_UC | RANDOM_LC | RANDOM_UC | READ_LC | READ_UC | REF | REGISTRY | RETURN_LC | RETURN_UC | RIGHTCUR | RIGHTP | RIGHTSBR | RULE | RULE_BUILDER | SAVE_LC | SAVE_UC | SBOL | SEMIC | SIZEOF_LC | SIZEOF_UC | SIZE_LC | SIZE_OF_LC | SIZE_OF_UC | SIZE_UC | STORE_LC | STORE_UC | STRICT | TRUE_LC | TRUE_UC | TXT | TYPE | UC_AND | UC_ELSE | UC_ELSEIF | UC_FOR | UC_FORALL | UC_IF | UC_INDUCES | UC_NOT | UC_ON | UC_OR | UC_PERMUTE | UC_PRODUCT | UC_REPRESSES | UC_SEQUENCE_OF | UC_WHILE | UNDERS | UPDATE_LC | UPDATE_UC | VISUALIZE_LC | VISUALIZE_UC | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | T__170 | T__171 | T__172 | T__173 | T__174 | T__175 | T__176 | T__177 | T__178 | T__179 | T__180 | T__181 | T__182 | T__183 | T__184 | T__185 | T__186 | T__187 | T__188 | T__189 | T__190 | T__191 | T__192 | T__193 | T__194 | T__195 | T__196 | T__197 | T__198 | T__199 | T__200 | T__201 | T__202 | T__203 | T__204 | T__205 | T__206 | T__207 | T__208 | T__209 | T__210 | T__211 | T__212 | T__213 | T__214 | T__215 | T__216 | T__217 | NUMBER | REAL | WS | NEWLINE | LINE_COMMENT | ML_COMMENT | ID | STRING )
+		int alt11=213;
 		alt11 = dfa11.predict(input);
 		switch (alt11) {
 			case 1 :
@@ -5576,952 +5620,966 @@ public class EugeneLexer extends Lexer {
 				}
 				break;
 			case 76 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:610: RANDOM_LC
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:610: QUERY_LC
+				{
+				mQUERY_LC(); 
+
+				}
+				break;
+			case 77 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:619: QUERY_UC
+				{
+				mQUERY_UC(); 
+
+				}
+				break;
+			case 78 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:628: RANDOM_LC
 				{
 				mRANDOM_LC(); 
 
 				}
 				break;
-			case 77 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:620: RANDOM_UC
+			case 79 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:638: RANDOM_UC
 				{
 				mRANDOM_UC(); 
 
 				}
 				break;
-			case 78 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:630: READ_LC
+			case 80 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:648: READ_LC
 				{
 				mREAD_LC(); 
 
 				}
 				break;
-			case 79 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:638: READ_UC
+			case 81 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:656: READ_UC
 				{
 				mREAD_UC(); 
 
 				}
 				break;
-			case 80 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:646: REF
+			case 82 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:664: REF
 				{
 				mREF(); 
 
 				}
 				break;
-			case 81 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:650: REGISTRY
+			case 83 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:668: REGISTRY
 				{
 				mREGISTRY(); 
 
 				}
 				break;
-			case 82 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:659: RETURN_LC
+			case 84 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:677: RETURN_LC
 				{
 				mRETURN_LC(); 
 
 				}
 				break;
-			case 83 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:669: RETURN_UC
+			case 85 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:687: RETURN_UC
 				{
 				mRETURN_UC(); 
 
 				}
 				break;
-			case 84 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:679: RIGHTCUR
+			case 86 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:697: RIGHTCUR
 				{
 				mRIGHTCUR(); 
 
 				}
 				break;
-			case 85 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:688: RIGHTP
+			case 87 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:706: RIGHTP
 				{
 				mRIGHTP(); 
 
 				}
 				break;
-			case 86 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:695: RIGHTSBR
+			case 88 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:713: RIGHTSBR
 				{
 				mRIGHTSBR(); 
 
 				}
 				break;
-			case 87 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:704: RULE
+			case 89 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:722: RULE
 				{
 				mRULE(); 
 
 				}
 				break;
-			case 88 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:709: RULE_BUILDER
+			case 90 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:727: RULE_BUILDER
 				{
 				mRULE_BUILDER(); 
 
 				}
 				break;
-			case 89 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:722: SAVE_LC
+			case 91 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:740: SAVE_LC
 				{
 				mSAVE_LC(); 
 
 				}
 				break;
-			case 90 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:730: SAVE_UC
+			case 92 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:748: SAVE_UC
 				{
 				mSAVE_UC(); 
 
 				}
 				break;
-			case 91 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:738: SBOL
+			case 93 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:756: SBOL
 				{
 				mSBOL(); 
 
 				}
 				break;
-			case 92 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:743: SEMIC
+			case 94 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:761: SEMIC
 				{
 				mSEMIC(); 
 
 				}
 				break;
-			case 93 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:749: SIZEOF_LC
+			case 95 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:767: SIZEOF_LC
 				{
 				mSIZEOF_LC(); 
 
 				}
 				break;
-			case 94 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:759: SIZEOF_UC
+			case 96 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:777: SIZEOF_UC
 				{
 				mSIZEOF_UC(); 
 
 				}
 				break;
-			case 95 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:769: SIZE_LC
+			case 97 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:787: SIZE_LC
 				{
 				mSIZE_LC(); 
 
 				}
 				break;
-			case 96 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:777: SIZE_OF_LC
+			case 98 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:795: SIZE_OF_LC
 				{
 				mSIZE_OF_LC(); 
 
 				}
 				break;
-			case 97 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:788: SIZE_OF_UC
+			case 99 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:806: SIZE_OF_UC
 				{
 				mSIZE_OF_UC(); 
 
 				}
 				break;
-			case 98 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:799: SIZE_UC
+			case 100 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:817: SIZE_UC
 				{
 				mSIZE_UC(); 
 
 				}
 				break;
-			case 99 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:807: STORE_LC
+			case 101 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:825: STORE_LC
 				{
 				mSTORE_LC(); 
 
 				}
 				break;
-			case 100 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:816: STORE_UC
+			case 102 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:834: STORE_UC
 				{
 				mSTORE_UC(); 
 
 				}
 				break;
-			case 101 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:825: STRICT
+			case 103 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:843: STRICT
 				{
 				mSTRICT(); 
 
 				}
 				break;
-			case 102 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:832: TRUE_LC
+			case 104 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:850: TRUE_LC
 				{
 				mTRUE_LC(); 
 
 				}
 				break;
-			case 103 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:840: TRUE_UC
+			case 105 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:858: TRUE_UC
 				{
 				mTRUE_UC(); 
 
 				}
 				break;
-			case 104 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:848: TXT
+			case 106 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:866: TXT
 				{
 				mTXT(); 
 
 				}
 				break;
-			case 105 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:852: TYPE
+			case 107 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:870: TYPE
 				{
 				mTYPE(); 
 
 				}
 				break;
-			case 106 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:857: UC_AND
+			case 108 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:875: UC_AND
 				{
 				mUC_AND(); 
 
 				}
 				break;
-			case 107 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:864: UC_ELSE
+			case 109 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:882: UC_ELSE
 				{
 				mUC_ELSE(); 
 
 				}
 				break;
-			case 108 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:872: UC_ELSEIF
+			case 110 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:890: UC_ELSEIF
 				{
 				mUC_ELSEIF(); 
 
 				}
 				break;
-			case 109 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:882: UC_FOR
+			case 111 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:900: UC_FOR
 				{
 				mUC_FOR(); 
 
 				}
 				break;
-			case 110 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:889: UC_FORALL
+			case 112 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:907: UC_FORALL
 				{
 				mUC_FORALL(); 
 
 				}
 				break;
-			case 111 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:899: UC_IF
+			case 113 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:917: UC_IF
 				{
 				mUC_IF(); 
 
 				}
 				break;
-			case 112 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:905: UC_INDUCES
+			case 114 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:923: UC_INDUCES
 				{
 				mUC_INDUCES(); 
 
 				}
 				break;
-			case 113 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:916: UC_NOT
+			case 115 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:934: UC_NOT
 				{
 				mUC_NOT(); 
 
 				}
 				break;
-			case 114 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:923: UC_ON
+			case 116 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:941: UC_ON
 				{
 				mUC_ON(); 
 
 				}
 				break;
-			case 115 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:929: UC_OR
+			case 117 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:947: UC_OR
 				{
 				mUC_OR(); 
 
 				}
 				break;
-			case 116 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:935: UC_PERMUTE
+			case 118 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:953: UC_PERMUTE
 				{
 				mUC_PERMUTE(); 
 
 				}
 				break;
-			case 117 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:946: UC_PRODUCT
+			case 119 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:964: UC_PRODUCT
 				{
 				mUC_PRODUCT(); 
 
 				}
 				break;
-			case 118 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:957: UC_REPRESSES
+			case 120 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:975: UC_REPRESSES
 				{
 				mUC_REPRESSES(); 
 
 				}
 				break;
-			case 119 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:970: UC_SEQUENCE_OF
+			case 121 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:988: UC_SEQUENCE_OF
 				{
 				mUC_SEQUENCE_OF(); 
 
 				}
 				break;
-			case 120 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:985: UC_WHILE
+			case 122 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1003: UC_WHILE
 				{
 				mUC_WHILE(); 
 
 				}
 				break;
-			case 121 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:994: UNDERS
+			case 123 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1012: UNDERS
 				{
 				mUNDERS(); 
 
 				}
 				break;
-			case 122 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1001: UPDATE_LC
+			case 124 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1019: UPDATE_LC
 				{
 				mUPDATE_LC(); 
 
 				}
 				break;
-			case 123 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1011: UPDATE_UC
+			case 125 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1029: UPDATE_UC
 				{
 				mUPDATE_UC(); 
 
 				}
 				break;
-			case 124 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1021: VISUALIZE_LC
+			case 126 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1039: VISUALIZE_LC
 				{
 				mVISUALIZE_LC(); 
 
 				}
 				break;
-			case 125 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1034: VISUALIZE_UC
+			case 127 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1052: VISUALIZE_UC
 				{
 				mVISUALIZE_UC(); 
 
 				}
 				break;
-			case 126 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1047: T__138
-				{
-				mT__138(); 
-
-				}
-				break;
-			case 127 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1054: T__139
-				{
-				mT__139(); 
-
-				}
-				break;
 			case 128 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1061: T__140
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1065: T__140
 				{
 				mT__140(); 
 
 				}
 				break;
 			case 129 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1068: T__141
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1072: T__141
 				{
 				mT__141(); 
 
 				}
 				break;
 			case 130 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1075: T__142
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1079: T__142
 				{
 				mT__142(); 
 
 				}
 				break;
 			case 131 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1082: T__143
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1086: T__143
 				{
 				mT__143(); 
 
 				}
 				break;
 			case 132 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1089: T__144
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1093: T__144
 				{
 				mT__144(); 
 
 				}
 				break;
 			case 133 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1096: T__145
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1100: T__145
 				{
 				mT__145(); 
 
 				}
 				break;
 			case 134 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1103: T__146
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1107: T__146
 				{
 				mT__146(); 
 
 				}
 				break;
 			case 135 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1110: T__147
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1114: T__147
 				{
 				mT__147(); 
 
 				}
 				break;
 			case 136 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1117: T__148
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1121: T__148
 				{
 				mT__148(); 
 
 				}
 				break;
 			case 137 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1124: T__149
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1128: T__149
 				{
 				mT__149(); 
 
 				}
 				break;
 			case 138 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1131: T__150
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1135: T__150
 				{
 				mT__150(); 
 
 				}
 				break;
 			case 139 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1138: T__151
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1142: T__151
 				{
 				mT__151(); 
 
 				}
 				break;
 			case 140 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1145: T__152
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1149: T__152
 				{
 				mT__152(); 
 
 				}
 				break;
 			case 141 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1152: T__153
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1156: T__153
 				{
 				mT__153(); 
 
 				}
 				break;
 			case 142 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1159: T__154
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1163: T__154
 				{
 				mT__154(); 
 
 				}
 				break;
 			case 143 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1166: T__155
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1170: T__155
 				{
 				mT__155(); 
 
 				}
 				break;
 			case 144 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1173: T__156
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1177: T__156
 				{
 				mT__156(); 
 
 				}
 				break;
 			case 145 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1180: T__157
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1184: T__157
 				{
 				mT__157(); 
 
 				}
 				break;
 			case 146 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1187: T__158
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1191: T__158
 				{
 				mT__158(); 
 
 				}
 				break;
 			case 147 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1194: T__159
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1198: T__159
 				{
 				mT__159(); 
 
 				}
 				break;
 			case 148 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1201: T__160
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1205: T__160
 				{
 				mT__160(); 
 
 				}
 				break;
 			case 149 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1208: T__161
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1212: T__161
 				{
 				mT__161(); 
 
 				}
 				break;
 			case 150 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1215: T__162
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1219: T__162
 				{
 				mT__162(); 
 
 				}
 				break;
 			case 151 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1222: T__163
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1226: T__163
 				{
 				mT__163(); 
 
 				}
 				break;
 			case 152 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1229: T__164
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1233: T__164
 				{
 				mT__164(); 
 
 				}
 				break;
 			case 153 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1236: T__165
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1240: T__165
 				{
 				mT__165(); 
 
 				}
 				break;
 			case 154 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1243: T__166
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1247: T__166
 				{
 				mT__166(); 
 
 				}
 				break;
 			case 155 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1250: T__167
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1254: T__167
 				{
 				mT__167(); 
 
 				}
 				break;
 			case 156 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1257: T__168
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1261: T__168
 				{
 				mT__168(); 
 
 				}
 				break;
 			case 157 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1264: T__169
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1268: T__169
 				{
 				mT__169(); 
 
 				}
 				break;
 			case 158 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1271: T__170
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1275: T__170
 				{
 				mT__170(); 
 
 				}
 				break;
 			case 159 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1278: T__171
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1282: T__171
 				{
 				mT__171(); 
 
 				}
 				break;
 			case 160 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1285: T__172
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1289: T__172
 				{
 				mT__172(); 
 
 				}
 				break;
 			case 161 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1292: T__173
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1296: T__173
 				{
 				mT__173(); 
 
 				}
 				break;
 			case 162 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1299: T__174
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1303: T__174
 				{
 				mT__174(); 
 
 				}
 				break;
 			case 163 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1306: T__175
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1310: T__175
 				{
 				mT__175(); 
 
 				}
 				break;
 			case 164 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1313: T__176
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1317: T__176
 				{
 				mT__176(); 
 
 				}
 				break;
 			case 165 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1320: T__177
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1324: T__177
 				{
 				mT__177(); 
 
 				}
 				break;
 			case 166 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1327: T__178
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1331: T__178
 				{
 				mT__178(); 
 
 				}
 				break;
 			case 167 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1334: T__179
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1338: T__179
 				{
 				mT__179(); 
 
 				}
 				break;
 			case 168 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1341: T__180
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1345: T__180
 				{
 				mT__180(); 
 
 				}
 				break;
 			case 169 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1348: T__181
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1352: T__181
 				{
 				mT__181(); 
 
 				}
 				break;
 			case 170 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1355: T__182
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1359: T__182
 				{
 				mT__182(); 
 
 				}
 				break;
 			case 171 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1362: T__183
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1366: T__183
 				{
 				mT__183(); 
 
 				}
 				break;
 			case 172 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1369: T__184
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1373: T__184
 				{
 				mT__184(); 
 
 				}
 				break;
 			case 173 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1376: T__185
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1380: T__185
 				{
 				mT__185(); 
 
 				}
 				break;
 			case 174 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1383: T__186
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1387: T__186
 				{
 				mT__186(); 
 
 				}
 				break;
 			case 175 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1390: T__187
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1394: T__187
 				{
 				mT__187(); 
 
 				}
 				break;
 			case 176 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1397: T__188
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1401: T__188
 				{
 				mT__188(); 
 
 				}
 				break;
 			case 177 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1404: T__189
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1408: T__189
 				{
 				mT__189(); 
 
 				}
 				break;
 			case 178 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1411: T__190
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1415: T__190
 				{
 				mT__190(); 
 
 				}
 				break;
 			case 179 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1418: T__191
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1422: T__191
 				{
 				mT__191(); 
 
 				}
 				break;
 			case 180 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1425: T__192
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1429: T__192
 				{
 				mT__192(); 
 
 				}
 				break;
 			case 181 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1432: T__193
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1436: T__193
 				{
 				mT__193(); 
 
 				}
 				break;
 			case 182 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1439: T__194
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1443: T__194
 				{
 				mT__194(); 
 
 				}
 				break;
 			case 183 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1446: T__195
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1450: T__195
 				{
 				mT__195(); 
 
 				}
 				break;
 			case 184 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1453: T__196
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1457: T__196
 				{
 				mT__196(); 
 
 				}
 				break;
 			case 185 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1460: T__197
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1464: T__197
 				{
 				mT__197(); 
 
 				}
 				break;
 			case 186 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1467: T__198
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1471: T__198
 				{
 				mT__198(); 
 
 				}
 				break;
 			case 187 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1474: T__199
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1478: T__199
 				{
 				mT__199(); 
 
 				}
 				break;
 			case 188 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1481: T__200
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1485: T__200
 				{
 				mT__200(); 
 
 				}
 				break;
 			case 189 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1488: T__201
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1492: T__201
 				{
 				mT__201(); 
 
 				}
 				break;
 			case 190 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1495: T__202
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1499: T__202
 				{
 				mT__202(); 
 
 				}
 				break;
 			case 191 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1502: T__203
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1506: T__203
 				{
 				mT__203(); 
 
 				}
 				break;
 			case 192 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1509: T__204
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1513: T__204
 				{
 				mT__204(); 
 
 				}
 				break;
 			case 193 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1516: T__205
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1520: T__205
 				{
 				mT__205(); 
 
 				}
 				break;
 			case 194 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1523: T__206
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1527: T__206
 				{
 				mT__206(); 
 
 				}
 				break;
 			case 195 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1530: T__207
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1534: T__207
 				{
 				mT__207(); 
 
 				}
 				break;
 			case 196 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1537: T__208
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1541: T__208
 				{
 				mT__208(); 
 
 				}
 				break;
 			case 197 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1544: T__209
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1548: T__209
 				{
 				mT__209(); 
 
 				}
 				break;
 			case 198 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1551: T__210
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1555: T__210
 				{
 				mT__210(); 
 
 				}
 				break;
 			case 199 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1558: T__211
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1562: T__211
 				{
 				mT__211(); 
 
 				}
 				break;
 			case 200 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1565: T__212
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1569: T__212
 				{
 				mT__212(); 
 
 				}
 				break;
 			case 201 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1572: T__213
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1576: T__213
 				{
 				mT__213(); 
 
 				}
 				break;
 			case 202 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1579: T__214
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1583: T__214
 				{
 				mT__214(); 
 
 				}
 				break;
 			case 203 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1586: T__215
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1590: T__215
 				{
 				mT__215(); 
 
 				}
 				break;
 			case 204 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1593: NUMBER
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1597: T__216
+				{
+				mT__216(); 
+
+				}
+				break;
+			case 205 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1604: T__217
+				{
+				mT__217(); 
+
+				}
+				break;
+			case 206 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1611: NUMBER
 				{
 				mNUMBER(); 
 
 				}
 				break;
-			case 205 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1600: REAL
+			case 207 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1618: REAL
 				{
 				mREAL(); 
 
 				}
 				break;
-			case 206 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1605: WS
+			case 208 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1623: WS
 				{
 				mWS(); 
 
 				}
 				break;
-			case 207 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1608: NEWLINE
+			case 209 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1626: NEWLINE
 				{
 				mNEWLINE(); 
 
 				}
 				break;
-			case 208 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1616: LINE_COMMENT
+			case 210 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1634: LINE_COMMENT
 				{
 				mLINE_COMMENT(); 
 
 				}
 				break;
-			case 209 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1629: ML_COMMENT
+			case 211 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1647: ML_COMMENT
 				{
 				mML_COMMENT(); 
 
 				}
 				break;
-			case 210 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1640: ID
+			case 212 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1658: ID
 				{
 				mID(); 
 
 				}
 				break;
-			case 211 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1643: STRING
+			case 213 :
+				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1661: STRING
 				{
 				mSTRING(); 
 
@@ -6586,7 +6644,7 @@ public class EugeneLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "3393:1: LINE_COMMENT : ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r\\n' | '\\r' | '\\n' ) | '//' (~ ( '\\n' | '\\r' ) )* );";
+			return "3409:1: LINE_COMMENT : ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r\\n' | '\\r' | '\\n' ) | '//' (~ ( '\\n' | '\\r' ) )* );";
 		}
 		@Override
 		public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
@@ -6619,374 +6677,376 @@ public class EugeneLexer extends Lexer {
 	}
 
 	static final String DFA11_eotS =
-		"\1\uffff\1\77\1\uffff\1\77\1\113\2\77\2\uffff\3\77\1\133\1\uffff\1\135"+
-		"\1\uffff\5\77\1\156\1\uffff\10\77\3\uffff\1\u0088\2\uffff\1\u008a\2\77"+
-		"\2\uffff\1\77\3\uffff\1\77\1\uffff\4\77\1\u00a6\7\77\1\u00b0\4\uffff\11"+
-		"\77\2\uffff\14\77\6\uffff\17\77\2\uffff\4\77\1\u00e3\2\77\1\u00e7\3\77"+
-		"\1\u00eb\1\u00ec\13\77\4\uffff\27\77\1\u011f\1\u0120\2\77\1\uffff\11\77"+
-		"\2\uffff\1\77\1\u012d\6\77\1\u0134\36\77\1\u0155\1\77\1\u0159\7\77\1\uffff"+
-		"\3\77\1\uffff\1\u0169\1\u016a\1\77\2\uffff\5\77\1\u0171\17\77\1\u0186"+
-		"\27\77\1\u019e\4\77\2\uffff\14\77\1\uffff\6\77\1\uffff\4\77\1\u01c4\13"+
-		"\77\1\u01d0\2\77\1\u01d4\2\77\1\u01d7\2\77\1\u01db\6\77\1\uffff\3\77\1"+
-		"\uffff\17\77\2\uffff\5\77\1\u01fb\1\uffff\4\77\1\u0200\1\77\1\u0204\6"+
-		"\77\1\u020b\1\u020c\5\77\1\uffff\1\77\1\u0216\5\77\1\u021c\4\77\1\u0222"+
-		"\1\u0223\1\77\1\u0225\1\u0228\5\77\1\u022e\1\uffff\1\u022f\1\u0230\1\u0231"+
-		"\1\u0232\1\77\1\u0234\12\77\1\u023f\10\77\1\u0248\1\77\1\u024a\11\77\1"+
-		"\uffff\13\77\1\uffff\3\77\1\uffff\2\77\1\uffff\3\77\1\uffff\2\77\1\u0269"+
-		"\3\77\1\u026d\4\77\1\u0272\21\77\1\u0285\1\77\1\uffff\4\77\1\uffff\3\77"+
-		"\1\uffff\1\u028f\4\77\1\u0299\2\uffff\11\77\1\uffff\1\u02a4\4\77\1\uffff"+
-		"\5\77\2\uffff\1\77\1\uffff\2\77\1\uffff\1\u02b2\4\77\5\uffff\1\u02bc\1"+
-		"\uffff\12\77\1\uffff\10\77\1\uffff\1\u02cf\1\uffff\11\77\1\u02d9\1\77"+
-		"\1\u02db\1\77\1\u02dd\1\77\1\u02df\1\u02e0\1\u02e1\1\u02e2\1\u02e3\1\u02e4"+
-		"\1\77\1\u02e6\1\77\1\u02e8\1\u02e9\1\77\1\u02eb\1\77\1\u02ed\1\uffff\1"+
-		"\77\1\u02ef\1\77\1\uffff\1\u02f1\3\77\1\uffff\1\u02f5\3\77\1\u02f9\11"+
-		"\77\1\u0303\3\77\1\uffff\1\77\1\u0308\1\77\1\u030a\3\77\1\u030e\1\77\1"+
-		"\uffff\1\u0310\10\77\1\uffff\7\77\1\u0320\2\77\1\uffff\3\77\1\u0326\1"+
-		"\u0327\6\77\1\u032e\1\77\1\uffff\11\77\1\uffff\1\u0339\1\u033a\2\77\1"+
-		"\u033d\15\77\1\uffff\10\77\1\u0353\1\uffff\1\77\1\uffff\1\77\1\uffff\1"+
-		"\77\6\uffff\1\u0357\1\uffff\1\77\2\uffff\1\u0359\1\uffff\1\77\1\uffff"+
-		"\1\77\1\uffff\1\u035c\1\uffff\1\u035d\1\u035e\1\u035f\1\uffff\1\u0360"+
-		"\1\u0361\1\77\1\uffff\1\u0363\1\u0364\5\77\1\u036a\1\u036b\1\uffff\1\u036c"+
-		"\1\u036d\1\u036e\1\77\1\uffff\1\u0370\1\uffff\3\77\1\uffff\1\u0374\1\uffff"+
-		"\15\77\1\u0382\1\u0383\1\uffff\1\77\1\u0385\1\u0386\1\77\1\u0388\2\uffff"+
-		"\1\77\1\u038a\4\77\1\uffff\1\u038f\11\77\2\uffff\2\77\1\uffff\1\u039b"+
-		"\1\77\1\u039d\22\77\1\uffff\1\77\1\u03b1\1\u03b2\1\uffff\1\u03b3\1\uffff"+
-		"\1\u03b4\1\u03b5\6\uffff\1\77\2\uffff\5\77\5\uffff\1\77\1\uffff\3\77\1"+
-		"\uffff\15\77\2\uffff\1\u03cd\2\uffff\1\u03ce\1\uffff\1\77\1\uffff\1\u03d0"+
-		"\3\77\1\uffff\13\77\1\uffff\1\u03df\1\uffff\1\u03e0\1\77\1\u03e2\7\77"+
-		"\1\u03ea\10\77\5\uffff\2\77\1\u03f5\3\77\1\u03f9\14\77\1\u0406\3\77\2"+
-		"\uffff\1\u040a\1\uffff\14\77\1\u0417\1\u0418\2\uffff\1\77\1\uffff\1\u041a"+
-		"\1\77\1\u041c\4\77\1\uffff\1\u0421\1\77\1\u0423\4\77\1\u0428\2\77\1\uffff"+
-		"\1\u042b\1\u042c\1\77\1\uffff\1\77\1\u042f\1\77\1\u0431\1\u0432\5\77\1"+
-		"\u0438\1\77\1\uffff\1\u043a\1\u043b\1\77\1\uffff\1\77\1\u043e\1\77\1\u0440"+
-		"\1\77\1\u0442\5\77\1\u0448\2\uffff\1\77\1\uffff\1\u044a\1\uffff\1\u044b"+
-		"\3\77\1\uffff\1\u044f\1\uffff\1\u0450\3\77\1\uffff\1\u0454\1\u0455\2\uffff"+
-		"\1\u0456\1\u0457\1\uffff\1\77\2\uffff\1\u0459\1\77\1\u045b\2\77\1\uffff"+
-		"\1\u045e\2\uffff\1\u045f\1\u0460\1\uffff\1\77\1\uffff\1\u0462\1\uffff"+
-		"\1\u0463\1\77\1\u0465\2\77\1\uffff\1\77\2\uffff\3\77\2\uffff\3\77\4\uffff"+
-		"\1\77\1\uffff\1\u0470\1\uffff\1\u0471\1\77\3\uffff\1\77\2\uffff\1\u0474"+
-		"\1\uffff\1\u0475\1\77\1\u0477\2\77\1\u047a\2\77\1\u047d\1\77\2\uffff\2"+
-		"\77\2\uffff\1\77\1\uffff\2\77\1\uffff\2\77\1\uffff\20\77\1\u0496\1\77"+
-		"\1\u0498\5\77\1\uffff\1\77\1\uffff\15\77\1\u04ac\1\77\1\u04ae\3\77\1\uffff"+
-		"\1\u04b2\1\uffff\1\u04b3\1\u04b4\1\u04b5\4\uffff";
+		"\1\uffff\1\101\1\uffff\1\101\1\115\2\101\2\uffff\3\101\1\135\1\uffff\1"+
+		"\137\1\uffff\5\101\1\160\1\uffff\10\101\3\uffff\1\u008a\2\uffff\1\u008c"+
+		"\2\101\2\uffff\3\101\3\uffff\1\101\1\uffff\4\101\1\u00aa\7\101\1\u00b4"+
+		"\4\uffff\11\101\2\uffff\14\101\6\uffff\17\101\2\uffff\4\101\1\u00e7\2"+
+		"\101\1\u00eb\3\101\1\u00ef\1\u00f0\13\101\4\uffff\31\101\1\u0125\1\u0126"+
+		"\2\101\1\uffff\11\101\2\uffff\1\101\1\u0133\6\101\1\u013a\36\101\1\u015b"+
+		"\1\101\1\u015f\7\101\1\uffff\3\101\1\uffff\1\u016f\1\u0170\1\101\2\uffff"+
+		"\5\101\1\u0177\17\101\1\u018c\31\101\1\u01a6\4\101\2\uffff\14\101\1\uffff"+
+		"\6\101\1\uffff\4\101\1\u01cc\13\101\1\u01d8\2\101\1\u01dc\2\101\1\u01df"+
+		"\2\101\1\u01e3\6\101\1\uffff\3\101\1\uffff\17\101\2\uffff\5\101\1\u0203"+
+		"\1\uffff\4\101\1\u0208\1\101\1\u020c\6\101\1\u0213\1\u0214\5\101\1\uffff"+
+		"\1\101\1\u021e\7\101\1\u0226\4\101\1\u022c\1\u022d\1\101\1\u022f\1\u0232"+
+		"\5\101\1\u0238\1\uffff\1\u0239\1\u023a\1\u023b\1\u023c\1\101\1\u023e\12"+
+		"\101\1\u0249\10\101\1\u0252\1\101\1\u0254\11\101\1\uffff\13\101\1\uffff"+
+		"\3\101\1\uffff\2\101\1\uffff\3\101\1\uffff\2\101\1\u0273\3\101\1\u0277"+
+		"\4\101\1\u027c\21\101\1\u028f\1\101\1\uffff\4\101\1\uffff\3\101\1\uffff"+
+		"\1\u0299\4\101\1\u02a3\2\uffff\11\101\1\uffff\1\u02ae\3\101\1\u02b2\1"+
+		"\u02b3\1\101\1\uffff\5\101\2\uffff\1\101\1\uffff\2\101\1\uffff\1\u02be"+
+		"\4\101\5\uffff\1\u02c8\1\uffff\12\101\1\uffff\10\101\1\uffff\1\u02db\1"+
+		"\uffff\11\101\1\u02e5\1\101\1\u02e7\1\101\1\u02e9\1\101\1\u02eb\1\u02ec"+
+		"\1\u02ed\1\u02ee\1\u02ef\1\u02f0\1\101\1\u02f2\1\101\1\u02f4\1\u02f5\1"+
+		"\101\1\u02f7\1\101\1\u02f9\1\uffff\1\101\1\u02fb\1\101\1\uffff\1\u02fd"+
+		"\3\101\1\uffff\1\u0301\3\101\1\u0305\11\101\1\u030f\3\101\1\uffff\1\101"+
+		"\1\u0314\1\101\1\u0316\3\101\1\u031a\1\101\1\uffff\1\u031c\10\101\1\uffff"+
+		"\7\101\1\u032c\2\101\1\uffff\3\101\2\uffff\1\u0332\1\u0333\6\101\1\u033a"+
+		"\1\101\1\uffff\11\101\1\uffff\1\u0345\1\u0346\2\101\1\u0349\15\101\1\uffff"+
+		"\10\101\1\u035f\1\uffff\1\101\1\uffff\1\101\1\uffff\1\101\6\uffff\1\u0363"+
+		"\1\uffff\1\101\2\uffff\1\u0365\1\uffff\1\101\1\uffff\1\101\1\uffff\1\u0368"+
+		"\1\uffff\1\u0369\1\u036a\1\u036b\1\uffff\1\u036c\1\u036d\1\101\1\uffff"+
+		"\1\u036f\1\u0370\5\101\1\u0376\1\u0377\1\uffff\1\u0378\1\u0379\1\u037a"+
+		"\1\101\1\uffff\1\u037c\1\uffff\3\101\1\uffff\1\u0380\1\uffff\15\101\1"+
+		"\u038e\1\u038f\1\uffff\1\101\1\u0391\1\u0392\1\101\1\u0394\2\uffff\1\101"+
+		"\1\u0396\4\101\1\uffff\1\u039b\11\101\2\uffff\2\101\1\uffff\1\u03a7\1"+
+		"\101\1\u03a9\22\101\1\uffff\1\101\1\u03bd\1\u03be\1\uffff\1\u03bf\1\uffff"+
+		"\1\u03c0\1\u03c1\6\uffff\1\101\2\uffff\5\101\5\uffff\1\101\1\uffff\3\101"+
+		"\1\uffff\15\101\2\uffff\1\u03d9\2\uffff\1\u03da\1\uffff\1\101\1\uffff"+
+		"\1\u03dc\3\101\1\uffff\13\101\1\uffff\1\u03eb\1\uffff\1\u03ec\1\101\1"+
+		"\u03ee\7\101\1\u03f6\10\101\5\uffff\2\101\1\u0401\3\101\1\u0405\14\101"+
+		"\1\u0412\3\101\2\uffff\1\u0416\1\uffff\14\101\1\u0423\1\u0424\2\uffff"+
+		"\1\101\1\uffff\1\u0426\1\101\1\u0428\4\101\1\uffff\1\u042d\1\101\1\u042f"+
+		"\4\101\1\u0434\2\101\1\uffff\1\u0437\1\u0438\1\101\1\uffff\1\101\1\u043b"+
+		"\1\101\1\u043d\1\u043e\5\101\1\u0444\1\101\1\uffff\1\u0446\1\u0447\1\101"+
+		"\1\uffff\1\101\1\u044a\1\101\1\u044c\1\101\1\u044e\5\101\1\u0454\2\uffff"+
+		"\1\101\1\uffff\1\u0456\1\uffff\1\u0457\3\101\1\uffff\1\u045b\1\uffff\1"+
+		"\u045c\3\101\1\uffff\1\u0460\1\u0461\2\uffff\1\u0462\1\u0463\1\uffff\1"+
+		"\101\2\uffff\1\u0465\1\101\1\u0467\2\101\1\uffff\1\u046a\2\uffff\1\u046b"+
+		"\1\u046c\1\uffff\1\101\1\uffff\1\u046e\1\uffff\1\u046f\1\101\1\u0471\2"+
+		"\101\1\uffff\1\101\2\uffff\3\101\2\uffff\3\101\4\uffff\1\101\1\uffff\1"+
+		"\u047c\1\uffff\1\u047d\1\101\3\uffff\1\101\2\uffff\1\u0480\1\uffff\1\u0481"+
+		"\1\101\1\u0483\2\101\1\u0486\2\101\1\u0489\1\101\2\uffff\2\101\2\uffff"+
+		"\1\101\1\uffff\2\101\1\uffff\2\101\1\uffff\20\101\1\u04a2\1\101\1\u04a4"+
+		"\5\101\1\uffff\1\101\1\uffff\15\101\1\u04b8\1\101\1\u04ba\3\101\1\uffff"+
+		"\1\u04be\1\uffff\1\u04bf\1\u04c0\1\u04c1\4\uffff";
 	static final String DFA11_eofS =
-		"\u04b6\uffff";
+		"\u04c2\uffff";
 	static final String DFA11_minS =
 		"\1\11\1\144\1\uffff\1\106\1\55\1\145\1\117\2\uffff\1\157\1\145\1\105\1"+
 		"\52\1\uffff\1\56\1\uffff\1\154\1\114\1\141\1\101\1\145\1\75\1\uffff\1"+
 		"\106\1\146\1\145\1\156\1\145\2\141\1\150\3\uffff\1\75\2\uffff\1\75\2\105"+
-		"\2\uffff\1\101\3\uffff\1\101\1\uffff\1\150\1\110\1\116\1\110\1\60\1\160"+
-		"\1\120\1\151\1\111\1\105\1\101\1\141\1\56\4\uffff\2\144\1\164\1\154\1"+
-		"\162\1\163\1\104\1\124\1\114\2\uffff\1\157\1\146\1\154\1\105\1\116\1\145"+
-		"\1\156\1\154\1\151\1\114\1\166\1\111\6\uffff\1\141\1\163\1\144\1\165\1"+
-		"\101\1\123\1\104\1\125\1\154\1\145\1\162\1\114\1\122\1\156\1\141\2\uffff"+
-		"\1\141\1\120\1\103\1\164\1\60\1\160\1\143\1\60\1\164\1\155\1\170\2\60"+
-		"\1\162\1\151\1\141\1\156\1\161\1\155\1\172\1\141\1\155\1\151\1\164\4\uffff"+
-		"\1\164\1\124\1\130\1\162\1\111\1\157\1\122\1\116\1\101\1\147\1\154\1\115"+
-		"\1\117\1\132\1\101\1\121\1\115\1\165\1\164\1\145\1\125\1\160\1\105\2\60"+
-		"\1\111\1\124\1\uffff\1\144\1\104\1\163\1\123\1\106\1\124\1\122\1\164\1"+
-		"\162\2\uffff\1\120\1\60\1\145\1\137\1\145\2\141\1\145\1\60\1\105\1\137"+
-		"\1\105\1\101\1\154\1\157\1\154\1\101\1\124\1\141\1\164\1\145\1\166\1\105"+
-		"\1\151\1\126\1\164\1\157\1\143\1\145\1\163\1\141\1\124\1\117\1\103\1\105"+
-		"\1\123\1\101\1\163\1\170\1\60\1\123\1\60\1\142\1\155\1\147\1\117\1\114"+
-		"\1\125\1\145\1\uffff\1\157\1\154\1\165\1\uffff\2\60\1\164\2\uffff\1\155"+
-		"\1\144\1\156\1\162\1\144\1\60\1\165\1\145\1\144\1\165\3\145\1\162\1\151"+
-		"\1\162\1\145\1\156\1\154\1\150\1\145\1\60\1\124\1\164\1\116\1\104\1\160"+
-		"\1\115\2\104\1\125\1\122\1\105\1\151\1\145\2\105\1\114\1\105\2\122\1\125"+
-		"\1\105\1\116\1\145\1\60\1\156\1\105\1\145\1\116\2\uffff\1\114\1\110\1"+
-		"\141\1\101\1\165\1\125\1\117\1\103\1\105\1\143\1\145\1\162\1\uffff\1\162"+
-		"\1\141\1\162\2\171\1\162\1\uffff\1\122\1\101\1\122\1\131\1\60\1\162\1"+
-		"\145\1\124\1\101\1\164\1\141\1\164\1\145\1\124\1\143\1\105\1\60\1\162"+
-		"\1\164\1\60\1\167\1\154\1\60\1\122\1\124\1\60\1\127\1\114\1\145\1\151"+
-		"\1\154\1\141\1\uffff\1\105\1\114\1\101\1\uffff\1\141\1\155\1\145\1\122"+
-		"\1\125\1\103\2\162\1\165\1\143\1\157\1\161\1\141\1\150\1\151\2\uffff\1"+
-		"\164\2\165\1\164\1\145\1\60\1\uffff\2\162\1\157\1\145\1\60\1\137\1\60"+
-		"\1\145\1\143\1\164\1\137\1\144\1\145\2\60\1\117\1\121\1\101\1\110\1\111"+
-		"\1\uffff\1\124\1\60\1\124\1\125\1\145\1\125\1\117\1\60\1\122\1\105\1\122"+
-		"\1\163\2\60\1\137\2\60\1\105\1\124\1\105\1\137\1\104\1\60\1\uffff\4\60"+
-		"\1\105\1\60\1\164\1\124\1\141\1\101\1\122\1\110\1\124\1\150\1\164\1\157"+
-		"\1\60\1\146\1\145\1\157\2\145\1\141\1\156\1\163\1\60\1\164\1\60\1\106"+
-		"\1\105\1\117\2\105\1\101\1\116\1\123\1\141\1\uffff\1\145\1\143\1\105\1"+
-		"\111\1\145\1\151\1\145\1\163\1\105\1\145\1\123\1\uffff\1\164\1\154\1\146"+
-		"\1\uffff\1\151\1\163\1\uffff\1\124\1\114\1\106\1\uffff\1\111\1\123\1\60"+
-		"\1\142\1\154\1\162\1\60\1\114\1\122\1\156\1\141\1\60\1\124\1\104\1\105"+
-		"\1\141\1\164\1\144\1\145\1\156\1\165\1\141\1\164\1\162\1\145\1\164\1\157"+
-		"\1\164\1\143\1\60\1\163\1\uffff\1\156\1\163\1\155\1\156\1\uffff\1\143"+
-		"\1\146\1\157\1\uffff\1\60\1\164\1\163\1\141\1\163\1\60\2\uffff\1\116\1"+
-		"\125\1\101\1\124\1\122\1\105\1\124\1\117\1\171\1\uffff\1\60\1\103\1\162"+
-		"\1\124\1\115\1\uffff\1\116\2\123\1\164\1\165\2\uffff\1\103\1\uffff\1\106"+
-		"\1\117\1\uffff\1\60\1\123\1\116\1\101\1\123\5\uffff\1\60\1\uffff\1\145"+
-		"\1\105\1\154\1\114\2\105\1\110\1\145\1\150\1\160\1\uffff\1\164\1\146\1"+
-		"\162\1\170\1\166\1\155\1\141\1\137\1\uffff\1\60\1\uffff\1\124\1\106\1"+
-		"\122\1\130\1\126\1\115\1\101\1\137\1\156\1\60\1\164\1\60\1\116\1\60\1"+
-		"\156\6\60\1\171\1\60\1\164\2\60\1\131\1\60\1\124\1\60\1\uffff\1\154\1"+
-		"\60\1\144\1\uffff\1\60\1\104\1\153\1\162\1\uffff\1\60\1\105\1\123\1\143"+
-		"\1\60\1\145\1\163\1\164\1\141\2\143\1\145\1\156\1\150\1\60\1\145\1\164"+
-		"\1\156\1\uffff\1\163\1\60\1\145\1\60\1\143\1\157\1\162\1\60\1\146\1\uffff"+
-		"\1\60\1\167\1\146\1\145\1\157\2\145\1\141\1\154\1\uffff\1\124\1\101\2"+
-		"\103\1\105\1\116\1\110\1\60\1\160\1\116\1\uffff\1\124\1\164\1\105\2\60"+
-		"\1\123\1\105\1\162\1\151\1\117\1\122\1\60\1\106\1\uffff\1\127\1\103\1"+
-		"\106\1\105\1\117\2\105\1\101\1\114\1\uffff\2\60\1\151\1\111\1\60\1\123"+
-		"\1\101\1\163\1\141\2\145\1\157\1\167\1\164\2\145\1\164\1\156\1\uffff\1"+
-		"\105\1\117\1\127\1\124\2\105\1\124\1\116\1\60\1\uffff\1\151\1\uffff\1"+
-		"\123\1\uffff\1\163\6\uffff\1\60\1\uffff\1\150\2\uffff\1\60\1\uffff\1\110"+
-		"\1\uffff\1\145\1\uffff\1\60\1\uffff\3\60\1\uffff\2\60\1\164\1\uffff\2"+
-		"\60\1\141\1\154\1\164\1\150\1\164\2\60\1\uffff\3\60\1\145\1\uffff\1\60"+
-		"\1\uffff\1\145\1\165\1\151\1\uffff\1\60\1\uffff\1\151\1\164\1\146\1\162"+
-		"\1\170\1\166\1\155\1\151\1\101\1\114\1\124\1\110\1\124\2\60\1\uffff\1"+
-		"\145\2\60\1\171\1\60\2\uffff\1\105\1\60\1\171\1\154\1\125\1\111\1\uffff"+
-		"\1\60\1\111\1\105\1\124\1\106\1\122\1\130\1\126\1\115\1\111\2\uffff\1"+
-		"\172\1\132\1\uffff\1\60\1\116\1\60\1\156\3\162\1\141\1\164\1\162\1\137"+
-		"\2\145\2\122\1\101\1\124\1\122\1\137\2\105\1\uffff\1\157\2\60\1\uffff"+
-		"\1\60\1\uffff\2\60\6\uffff\1\151\2\uffff\1\151\1\163\1\154\1\145\1\150"+
-		"\5\uffff\1\163\1\uffff\1\137\1\156\1\145\1\uffff\1\164\1\145\1\157\1\167"+
-		"\1\164\2\145\1\153\1\111\1\123\1\114\1\105\1\110\2\uffff\1\60\2\uffff"+
-		"\1\60\1\uffff\1\123\1\uffff\1\60\1\144\1\116\1\105\1\uffff\1\124\1\137"+
-		"\1\105\1\117\1\127\1\124\2\105\1\113\1\145\1\105\1\uffff\1\60\1\uffff"+
-		"\1\60\1\164\1\60\1\145\1\162\1\157\1\163\1\157\1\137\1\170\1\60\1\105"+
-		"\1\122\1\117\1\123\1\117\1\137\1\130\1\156\5\uffff\1\157\1\156\1\60\1"+
-		"\171\1\163\1\141\1\60\1\157\1\164\1\156\1\150\2\162\1\141\1\164\1\162"+
-		"\1\137\1\145\1\116\1\60\1\131\1\123\1\101\2\uffff\1\60\1\uffff\1\145\1"+
-		"\124\1\116\1\110\1\117\2\122\1\101\1\124\1\122\1\137\1\105\2\60\2\uffff"+
-		"\1\151\1\uffff\1\60\1\144\1\60\1\145\1\162\1\157\1\164\1\uffff\1\60\1"+
-		"\104\1\60\1\105\1\122\1\117\1\124\1\60\1\156\1\163\1\uffff\2\60\1\156"+
-		"\1\uffff\1\146\1\60\1\164\2\60\1\145\1\162\1\157\1\163\1\157\1\60\1\123"+
-		"\1\uffff\2\60\1\116\1\uffff\1\162\1\60\1\124\1\60\1\106\1\60\1\105\1\122"+
-		"\1\117\1\123\1\117\1\60\2\uffff\1\145\1\uffff\1\60\1\uffff\1\60\1\151"+
-		"\1\162\1\164\1\uffff\1\60\1\uffff\1\60\1\111\1\122\1\124\1\uffff\2\60"+
-		"\2\uffff\2\60\1\uffff\1\141\2\uffff\1\60\1\144\1\60\1\145\1\162\1\uffff"+
-		"\1\60\2\uffff\2\60\1\uffff\1\101\1\uffff\1\60\1\uffff\1\60\1\104\1\60"+
-		"\1\105\1\122\1\uffff\1\163\2\uffff\1\145\1\151\1\157\2\uffff\1\105\1\111"+
-		"\1\117\4\uffff\1\164\1\uffff\1\60\1\uffff\1\60\1\151\3\uffff\1\124\2\uffff"+
-		"\1\60\1\uffff\1\60\1\111\1\60\1\156\1\145\1\60\1\116\1\105\1\60\1\151"+
-		"\2\uffff\1\145\1\111\2\uffff\1\105\1\uffff\1\164\1\156\1\uffff\1\124\1"+
-		"\116\1\uffff\1\157\1\156\1\117\1\116\1\141\1\164\1\101\1\124\1\156\1\164"+
-		"\1\116\1\124\1\164\1\141\1\124\1\101\1\60\1\141\1\60\1\101\1\151\1\164"+
-		"\1\111\1\124\1\uffff\1\164\1\uffff\1\124\1\157\1\151\1\117\1\111\1\151"+
-		"\1\111\1\156\1\157\1\116\1\117\1\157\1\117\1\60\1\156\1\60\1\116\1\156"+
-		"\1\116\1\uffff\1\60\1\uffff\3\60\4\uffff";
+		"\2\uffff\1\165\1\125\1\101\3\uffff\1\101\1\uffff\1\150\1\110\1\116\1\110"+
+		"\1\60\1\160\1\120\1\151\1\111\1\105\1\101\1\141\1\56\4\uffff\2\144\1\164"+
+		"\1\154\1\162\1\163\1\104\1\124\1\114\2\uffff\1\157\1\146\1\154\1\105\1"+
+		"\116\1\145\1\156\1\154\1\151\1\114\1\166\1\111\6\uffff\1\141\1\163\1\144"+
+		"\1\165\1\101\1\123\1\104\1\125\1\154\1\145\1\162\1\114\1\122\1\156\1\141"+
+		"\2\uffff\1\141\1\120\1\103\1\164\1\60\1\160\1\143\1\60\1\164\1\155\1\170"+
+		"\2\60\1\162\1\151\1\141\1\156\1\161\1\155\1\172\1\141\1\155\1\151\1\164"+
+		"\4\uffff\1\164\1\124\1\130\1\162\1\111\1\157\1\122\1\145\1\105\1\116\1"+
+		"\101\1\147\1\154\1\115\1\117\1\132\1\101\1\121\1\115\1\165\1\164\1\145"+
+		"\1\125\1\160\1\105\2\60\1\111\1\124\1\uffff\1\144\1\104\1\163\1\123\1"+
+		"\106\1\124\1\122\1\164\1\162\2\uffff\1\120\1\60\1\145\1\137\1\145\2\141"+
+		"\1\145\1\60\1\105\1\137\1\105\1\101\1\154\1\157\1\154\1\101\1\124\1\141"+
+		"\1\164\1\145\1\166\1\105\1\151\1\126\1\164\1\157\1\143\1\145\1\163\1\141"+
+		"\1\124\1\117\1\103\1\105\1\123\1\101\1\163\1\170\1\60\1\123\1\60\1\142"+
+		"\1\155\1\147\1\117\1\114\1\125\1\145\1\uffff\1\157\1\154\1\165\1\uffff"+
+		"\2\60\1\164\2\uffff\1\155\1\144\1\156\1\162\1\144\1\60\1\165\1\145\1\144"+
+		"\1\165\3\145\1\162\1\151\1\162\1\145\1\156\1\154\1\150\1\145\1\60\1\124"+
+		"\1\164\1\116\1\104\1\160\1\115\1\162\1\122\2\104\1\125\1\122\1\105\1\151"+
+		"\1\145\2\105\1\114\1\105\2\122\1\125\1\105\1\116\1\145\1\60\1\156\1\105"+
+		"\1\145\1\116\2\uffff\1\114\1\110\1\141\1\101\1\165\1\125\1\117\1\103\1"+
+		"\105\1\143\1\145\1\162\1\uffff\1\162\1\141\1\162\2\171\1\162\1\uffff\1"+
+		"\122\1\101\1\122\1\131\1\60\1\162\1\145\1\124\1\101\1\164\1\141\1\164"+
+		"\1\145\1\124\1\143\1\105\1\60\1\162\1\164\1\60\1\167\1\154\1\60\1\122"+
+		"\1\124\1\60\1\127\1\114\1\145\1\151\1\154\1\141\1\uffff\1\105\1\114\1"+
+		"\101\1\uffff\1\141\1\155\1\145\1\122\1\125\1\103\2\162\1\165\1\143\1\157"+
+		"\1\161\1\141\1\150\1\151\2\uffff\1\164\2\165\1\164\1\145\1\60\1\uffff"+
+		"\2\162\1\157\1\145\1\60\1\137\1\60\1\145\1\143\1\164\1\137\1\144\1\145"+
+		"\2\60\1\117\1\121\1\101\1\110\1\111\1\uffff\1\124\1\60\1\124\1\125\1\145"+
+		"\1\125\1\171\1\131\1\117\1\60\1\122\1\105\1\122\1\163\2\60\1\137\2\60"+
+		"\1\105\1\124\1\105\1\137\1\104\1\60\1\uffff\4\60\1\105\1\60\1\164\1\124"+
+		"\1\141\1\101\1\122\1\110\1\124\1\150\1\164\1\157\1\60\1\146\1\145\1\157"+
+		"\2\145\1\141\1\156\1\163\1\60\1\164\1\60\1\106\1\105\1\117\2\105\1\101"+
+		"\1\116\1\123\1\141\1\uffff\1\145\1\143\1\105\1\111\1\145\1\151\1\145\1"+
+		"\163\1\105\1\145\1\123\1\uffff\1\164\1\154\1\146\1\uffff\1\151\1\163\1"+
+		"\uffff\1\124\1\114\1\106\1\uffff\1\111\1\123\1\60\1\142\1\154\1\162\1"+
+		"\60\1\114\1\122\1\156\1\141\1\60\1\124\1\104\1\105\1\141\1\164\1\144\1"+
+		"\145\1\156\1\165\1\141\1\164\1\162\1\145\1\164\1\157\1\164\1\143\1\60"+
+		"\1\163\1\uffff\1\156\1\163\1\155\1\156\1\uffff\1\143\1\146\1\157\1\uffff"+
+		"\1\60\1\164\1\163\1\141\1\163\1\60\2\uffff\1\116\1\125\1\101\1\124\1\122"+
+		"\1\105\1\124\1\117\1\171\1\uffff\1\60\1\103\1\162\1\124\2\60\1\115\1\uffff"+
+		"\1\116\2\123\1\164\1\165\2\uffff\1\103\1\uffff\1\106\1\117\1\uffff\1\60"+
+		"\1\123\1\116\1\101\1\123\5\uffff\1\60\1\uffff\1\145\1\105\1\154\1\114"+
+		"\2\105\1\110\1\145\1\150\1\160\1\uffff\1\164\1\146\1\162\1\170\1\166\1"+
+		"\155\1\141\1\137\1\uffff\1\60\1\uffff\1\124\1\106\1\122\1\130\1\126\1"+
+		"\115\1\101\1\137\1\156\1\60\1\164\1\60\1\116\1\60\1\156\6\60\1\171\1\60"+
+		"\1\164\2\60\1\131\1\60\1\124\1\60\1\uffff\1\154\1\60\1\144\1\uffff\1\60"+
+		"\1\104\1\153\1\162\1\uffff\1\60\1\105\1\123\1\143\1\60\1\145\1\163\1\164"+
+		"\1\141\2\143\1\145\1\156\1\150\1\60\1\145\1\164\1\156\1\uffff\1\163\1"+
+		"\60\1\145\1\60\1\143\1\157\1\162\1\60\1\146\1\uffff\1\60\1\167\1\146\1"+
+		"\145\1\157\2\145\1\141\1\154\1\uffff\1\124\1\101\2\103\1\105\1\116\1\110"+
+		"\1\60\1\160\1\116\1\uffff\1\124\1\164\1\105\2\uffff\2\60\1\123\1\105\1"+
+		"\162\1\151\1\117\1\122\1\60\1\106\1\uffff\1\127\1\103\1\106\1\105\1\117"+
+		"\2\105\1\101\1\114\1\uffff\2\60\1\151\1\111\1\60\1\123\1\101\1\163\1\141"+
+		"\2\145\1\157\1\167\1\164\2\145\1\164\1\156\1\uffff\1\105\1\117\1\127\1"+
+		"\124\2\105\1\124\1\116\1\60\1\uffff\1\151\1\uffff\1\123\1\uffff\1\163"+
+		"\6\uffff\1\60\1\uffff\1\150\2\uffff\1\60\1\uffff\1\110\1\uffff\1\145\1"+
+		"\uffff\1\60\1\uffff\3\60\1\uffff\2\60\1\164\1\uffff\2\60\1\141\1\154\1"+
+		"\164\1\150\1\164\2\60\1\uffff\3\60\1\145\1\uffff\1\60\1\uffff\1\145\1"+
+		"\165\1\151\1\uffff\1\60\1\uffff\1\151\1\164\1\146\1\162\1\170\1\166\1"+
+		"\155\1\151\1\101\1\114\1\124\1\110\1\124\2\60\1\uffff\1\145\2\60\1\171"+
+		"\1\60\2\uffff\1\105\1\60\1\171\1\154\1\125\1\111\1\uffff\1\60\1\111\1"+
+		"\105\1\124\1\106\1\122\1\130\1\126\1\115\1\111\2\uffff\1\172\1\132\1\uffff"+
+		"\1\60\1\116\1\60\1\156\3\162\1\141\1\164\1\162\1\137\2\145\2\122\1\101"+
+		"\1\124\1\122\1\137\2\105\1\uffff\1\157\2\60\1\uffff\1\60\1\uffff\2\60"+
+		"\6\uffff\1\151\2\uffff\1\151\1\163\1\154\1\145\1\150\5\uffff\1\163\1\uffff"+
+		"\1\137\1\156\1\145\1\uffff\1\164\1\145\1\157\1\167\1\164\2\145\1\153\1"+
+		"\111\1\123\1\114\1\105\1\110\2\uffff\1\60\2\uffff\1\60\1\uffff\1\123\1"+
+		"\uffff\1\60\1\144\1\116\1\105\1\uffff\1\124\1\137\1\105\1\117\1\127\1"+
+		"\124\2\105\1\113\1\145\1\105\1\uffff\1\60\1\uffff\1\60\1\164\1\60\1\145"+
+		"\1\162\1\157\1\163\1\157\1\137\1\170\1\60\1\105\1\122\1\117\1\123\1\117"+
+		"\1\137\1\130\1\156\5\uffff\1\157\1\156\1\60\1\171\1\163\1\141\1\60\1\157"+
+		"\1\164\1\156\1\150\2\162\1\141\1\164\1\162\1\137\1\145\1\116\1\60\1\131"+
+		"\1\123\1\101\2\uffff\1\60\1\uffff\1\145\1\124\1\116\1\110\1\117\2\122"+
+		"\1\101\1\124\1\122\1\137\1\105\2\60\2\uffff\1\151\1\uffff\1\60\1\144\1"+
+		"\60\1\145\1\162\1\157\1\164\1\uffff\1\60\1\104\1\60\1\105\1\122\1\117"+
+		"\1\124\1\60\1\156\1\163\1\uffff\2\60\1\156\1\uffff\1\146\1\60\1\164\2"+
+		"\60\1\145\1\162\1\157\1\163\1\157\1\60\1\123\1\uffff\2\60\1\116\1\uffff"+
+		"\1\162\1\60\1\124\1\60\1\106\1\60\1\105\1\122\1\117\1\123\1\117\1\60\2"+
+		"\uffff\1\145\1\uffff\1\60\1\uffff\1\60\1\151\1\162\1\164\1\uffff\1\60"+
+		"\1\uffff\1\60\1\111\1\122\1\124\1\uffff\2\60\2\uffff\2\60\1\uffff\1\141"+
+		"\2\uffff\1\60\1\144\1\60\1\145\1\162\1\uffff\1\60\2\uffff\2\60\1\uffff"+
+		"\1\101\1\uffff\1\60\1\uffff\1\60\1\104\1\60\1\105\1\122\1\uffff\1\163"+
+		"\2\uffff\1\145\1\151\1\157\2\uffff\1\105\1\111\1\117\4\uffff\1\164\1\uffff"+
+		"\1\60\1\uffff\1\60\1\151\3\uffff\1\124\2\uffff\1\60\1\uffff\1\60\1\111"+
+		"\1\60\1\156\1\145\1\60\1\116\1\105\1\60\1\151\2\uffff\1\145\1\111\2\uffff"+
+		"\1\105\1\uffff\1\164\1\156\1\uffff\1\124\1\116\1\uffff\1\157\1\156\1\117"+
+		"\1\116\1\141\1\164\1\101\1\124\1\156\1\164\1\116\1\124\1\164\1\141\1\124"+
+		"\1\101\1\60\1\141\1\60\1\101\1\151\1\164\1\111\1\124\1\uffff\1\164\1\uffff"+
+		"\1\124\1\157\1\151\1\117\1\111\1\151\1\111\1\156\1\157\1\116\1\117\1\157"+
+		"\1\117\1\60\1\156\1\60\1\116\1\156\1\116\1\uffff\1\60\1\uffff\3\60\4\uffff";
 	static final String DFA11_maxS =
 		"\1\175\1\156\1\uffff\1\163\1\55\2\157\2\uffff\2\162\1\145\1\134\1\uffff"+
 		"\1\56\1\uffff\1\170\1\130\1\157\1\117\1\162\1\75\1\uffff\2\156\1\165\2"+
 		"\162\1\145\1\164\1\151\3\uffff\1\75\2\uffff\1\75\1\157\1\162\2\uffff\1"+
-		"\165\3\uffff\1\124\1\uffff\1\170\1\171\1\122\1\111\1\172\1\160\1\120\1"+
-		"\151\1\111\1\105\1\117\1\157\1\71\4\uffff\2\144\1\164\1\167\1\162\1\163"+
-		"\1\104\1\124\1\127\2\uffff\1\157\1\146\1\154\1\105\1\116\1\145\1\156\1"+
-		"\154\1\151\1\114\1\166\1\111\6\uffff\1\160\1\163\1\144\1\165\1\120\1\123"+
-		"\1\104\1\125\1\154\1\145\1\162\1\114\1\122\1\156\1\141\2\uffff\1\141\1"+
-		"\120\1\104\1\164\1\172\1\160\1\144\1\172\1\164\1\155\1\170\2\172\1\162"+
-		"\1\157\1\166\1\156\1\161\1\166\1\172\1\162\1\165\1\151\1\164\4\uffff\1"+
-		"\164\1\124\1\130\1\162\1\117\1\157\1\122\1\116\1\126\1\147\1\154\1\126"+
-		"\1\117\1\132\1\117\1\121\1\125\1\165\1\164\1\145\1\125\1\160\1\105\2\172"+
-		"\1\111\1\124\1\uffff\1\144\1\104\1\163\1\123\1\106\1\124\1\122\1\164\1"+
-		"\162\2\uffff\1\120\1\172\1\145\1\137\1\145\2\141\1\145\1\172\1\105\1\137"+
-		"\1\105\1\101\1\154\1\157\1\154\1\101\1\124\1\141\1\164\1\145\1\166\1\105"+
-		"\1\151\1\126\1\164\1\157\1\143\1\145\1\163\1\141\1\124\1\117\1\103\1\105"+
-		"\1\123\1\101\1\163\1\170\1\172\1\123\1\172\1\142\1\155\1\147\1\117\1\114"+
-		"\1\125\1\145\1\uffff\1\157\1\154\1\165\1\uffff\2\172\1\164\2\uffff\1\155"+
-		"\1\144\1\156\1\162\1\144\1\172\1\165\1\145\1\144\1\165\3\145\1\162\1\151"+
-		"\1\162\1\145\1\156\1\154\1\150\1\145\1\172\1\124\1\164\1\116\1\104\1\160"+
-		"\1\115\2\104\1\125\1\122\1\105\1\151\1\145\2\105\1\114\1\105\2\122\1\125"+
-		"\1\105\1\116\1\145\1\172\1\156\1\105\1\145\1\116\2\uffff\1\114\1\110\1"+
-		"\141\1\101\1\165\1\125\1\117\1\103\1\105\1\143\1\145\1\162\1\uffff\1\162"+
-		"\1\163\1\162\2\171\1\162\1\uffff\1\122\1\123\1\122\1\131\1\172\1\162\1"+
-		"\145\1\124\1\101\1\164\1\141\1\164\1\145\1\124\1\143\1\105\1\172\1\162"+
-		"\1\164\1\172\1\167\1\154\1\172\1\122\1\124\1\172\1\127\1\114\1\145\1\151"+
-		"\1\154\1\141\1\uffff\1\105\1\114\1\101\1\uffff\1\141\1\155\1\145\1\122"+
-		"\1\125\1\103\2\162\1\165\1\143\1\157\1\170\1\157\1\150\1\151\2\uffff\1"+
-		"\164\2\165\1\164\1\145\1\172\1\uffff\2\162\1\157\1\145\1\172\1\137\1\172"+
-		"\1\145\1\143\1\164\1\137\1\144\1\145\2\172\1\117\1\130\1\117\1\110\1\111"+
-		"\1\uffff\1\124\1\172\1\124\1\125\1\145\1\125\1\117\1\172\1\122\1\105\1"+
-		"\122\1\163\2\172\1\137\2\172\1\105\1\124\1\105\1\137\1\104\1\172\1\uffff"+
-		"\4\172\1\105\1\172\1\164\1\124\1\141\1\101\1\122\1\110\1\124\1\150\1\164"+
-		"\1\157\1\172\1\146\1\145\1\157\2\145\1\141\1\156\1\163\1\172\1\164\1\172"+
-		"\1\106\1\105\1\117\2\105\1\101\1\116\1\123\1\141\1\uffff\1\145\1\143\1"+
-		"\105\1\111\1\145\1\151\1\145\1\163\1\105\1\145\1\123\1\uffff\1\164\1\154"+
-		"\1\146\1\uffff\1\151\1\163\1\uffff\1\124\1\114\1\106\1\uffff\1\111\1\123"+
-		"\1\172\1\142\1\154\1\162\1\172\1\114\1\122\1\156\1\141\1\172\1\124\1\104"+
-		"\1\105\1\141\1\164\1\144\1\145\1\156\1\165\1\141\1\164\1\162\1\145\1\164"+
-		"\1\157\1\164\1\143\1\172\1\163\1\uffff\1\156\1\163\1\155\1\156\1\uffff"+
-		"\1\157\1\146\1\157\1\uffff\1\172\1\164\3\163\1\172\2\uffff\1\116\1\125"+
-		"\1\101\1\124\1\122\1\105\1\124\1\117\1\171\1\uffff\1\172\1\103\1\162\1"+
-		"\124\1\115\1\uffff\1\116\2\123\1\164\1\165\2\uffff\1\117\1\uffff\1\106"+
-		"\1\117\1\uffff\1\172\1\123\1\116\2\123\5\uffff\1\172\1\uffff\1\145\1\105"+
-		"\1\154\1\114\2\105\1\110\1\145\1\150\1\160\1\uffff\1\164\1\146\1\162\1"+
-		"\170\1\166\1\155\1\141\1\137\1\uffff\1\172\1\uffff\1\124\1\106\1\122\1"+
-		"\130\1\126\1\115\1\101\1\137\1\156\1\172\1\164\1\172\1\116\1\172\1\156"+
-		"\6\172\1\171\1\172\1\164\2\172\1\131\1\172\1\124\1\172\1\uffff\1\154\1"+
-		"\172\1\144\1\uffff\1\172\1\104\1\153\1\162\1\uffff\1\172\1\105\1\123\1"+
-		"\143\1\172\1\145\1\163\1\164\1\141\2\143\1\145\1\156\1\150\1\172\1\145"+
-		"\1\164\1\156\1\uffff\1\163\1\172\1\145\1\172\1\143\1\157\1\162\1\172\1"+
-		"\146\1\uffff\1\172\1\167\1\146\1\145\1\157\2\145\1\141\1\154\1\uffff\1"+
-		"\124\1\101\2\103\1\105\1\116\1\110\1\172\1\160\1\116\1\uffff\1\124\1\164"+
-		"\1\105\2\172\1\123\1\105\1\162\1\151\1\117\1\122\1\172\1\106\1\uffff\1"+
-		"\127\1\103\1\106\1\105\1\117\2\105\1\101\1\114\1\uffff\2\172\1\151\1\111"+
-		"\1\172\1\123\1\101\1\163\1\141\2\145\1\157\1\167\1\164\2\145\1\164\1\156"+
-		"\1\uffff\1\105\1\117\1\127\1\124\2\105\1\124\1\116\1\172\1\uffff\1\151"+
-		"\1\uffff\1\123\1\uffff\1\163\6\uffff\1\172\1\uffff\1\150\2\uffff\1\172"+
-		"\1\uffff\1\110\1\uffff\1\145\1\uffff\1\172\1\uffff\3\172\1\uffff\2\172"+
-		"\1\164\1\uffff\2\172\1\141\1\154\1\164\1\150\1\164\2\172\1\uffff\3\172"+
-		"\1\145\1\uffff\1\172\1\uffff\1\145\1\165\1\151\1\uffff\1\172\1\uffff\1"+
-		"\151\1\164\1\146\1\162\1\170\1\166\1\155\1\151\1\101\1\114\1\124\1\110"+
-		"\1\124\2\172\1\uffff\1\145\2\172\1\171\1\172\2\uffff\1\105\1\172\1\171"+
-		"\1\154\1\125\1\111\1\uffff\1\172\1\111\1\105\1\124\1\106\1\122\1\130\1"+
-		"\126\1\115\1\111\2\uffff\1\172\1\132\1\uffff\1\172\1\116\1\172\1\156\3"+
-		"\162\1\141\1\164\1\162\1\137\2\145\2\122\1\101\1\124\1\122\1\137\2\105"+
-		"\1\uffff\1\157\2\172\1\uffff\1\172\1\uffff\2\172\6\uffff\1\151\2\uffff"+
-		"\1\151\1\163\1\154\1\145\1\150\5\uffff\1\163\1\uffff\1\137\1\156\1\145"+
-		"\1\uffff\1\164\1\145\1\157\1\167\1\164\2\145\1\153\1\111\1\123\1\114\1"+
-		"\105\1\110\2\uffff\1\172\2\uffff\1\172\1\uffff\1\123\1\uffff\1\172\1\144"+
-		"\1\116\1\105\1\uffff\1\124\1\137\1\105\1\117\1\127\1\124\2\105\1\113\1"+
-		"\145\1\105\1\uffff\1\172\1\uffff\1\172\1\164\1\172\1\145\1\162\1\157\1"+
-		"\163\1\157\1\137\1\170\1\172\1\105\1\122\1\117\1\123\1\117\1\137\1\130"+
-		"\1\156\5\uffff\1\157\1\156\1\172\1\171\1\163\1\141\1\172\1\157\1\164\1"+
-		"\156\1\150\2\162\1\141\1\164\1\162\1\137\1\145\1\116\1\172\1\131\1\123"+
-		"\1\101\2\uffff\1\172\1\uffff\1\145\1\124\1\116\1\110\1\117\2\122\1\101"+
-		"\1\124\1\122\1\137\1\105\2\172\2\uffff\1\151\1\uffff\1\172\1\144\1\172"+
-		"\1\145\1\162\1\157\1\164\1\uffff\1\172\1\104\1\172\1\105\1\122\1\117\1"+
-		"\124\1\172\1\156\1\163\1\uffff\2\172\1\156\1\uffff\1\146\1\172\1\164\2"+
-		"\172\1\145\1\162\1\157\1\163\1\157\1\172\1\123\1\uffff\2\172\1\116\1\uffff"+
-		"\1\162\1\172\1\124\1\172\1\106\1\172\1\105\1\122\1\117\1\123\1\117\1\172"+
-		"\2\uffff\1\145\1\uffff\1\172\1\uffff\1\172\1\151\1\162\1\164\1\uffff\1"+
-		"\172\1\uffff\1\172\1\111\1\122\1\124\1\uffff\2\172\2\uffff\2\172\1\uffff"+
-		"\1\141\2\uffff\1\172\1\144\1\172\1\145\1\162\1\uffff\1\172\2\uffff\2\172"+
-		"\1\uffff\1\101\1\uffff\1\172\1\uffff\1\172\1\104\1\172\1\105\1\122\1\uffff"+
-		"\1\163\2\uffff\1\145\1\151\1\157\2\uffff\1\105\1\111\1\117\4\uffff\1\164"+
-		"\1\uffff\1\172\1\uffff\1\172\1\151\3\uffff\1\124\2\uffff\1\172\1\uffff"+
-		"\1\172\1\111\1\172\1\156\1\145\1\172\1\116\1\105\1\172\1\151\2\uffff\1"+
-		"\145\1\111\2\uffff\1\105\1\uffff\1\164\1\156\1\uffff\1\124\1\116\1\uffff"+
-		"\1\157\1\156\1\117\1\116\1\141\1\164\1\101\1\124\1\156\1\164\1\116\1\124"+
-		"\1\164\1\141\1\124\1\101\1\172\1\141\1\172\1\101\1\151\1\164\1\111\1\124"+
-		"\1\uffff\1\164\1\uffff\1\124\1\157\1\151\1\117\1\111\1\151\1\111\1\156"+
-		"\1\157\1\116\1\117\1\157\1\117\1\172\1\156\1\172\1\116\1\156\1\116\1\uffff"+
-		"\1\172\1\uffff\3\172\4\uffff";
+		"\165\1\125\1\165\3\uffff\1\124\1\uffff\1\170\1\171\1\122\1\111\1\172\1"+
+		"\160\1\120\1\151\1\111\1\105\1\117\1\157\1\71\4\uffff\2\144\1\164\1\167"+
+		"\1\162\1\163\1\104\1\124\1\127\2\uffff\1\157\1\146\1\154\1\105\1\116\1"+
+		"\145\1\156\1\154\1\151\1\114\1\166\1\111\6\uffff\1\160\1\163\1\144\1\165"+
+		"\1\120\1\123\1\104\1\125\1\154\1\145\1\162\1\114\1\122\1\156\1\141\2\uffff"+
+		"\1\141\1\120\1\104\1\164\1\172\1\160\1\144\1\172\1\164\1\155\1\170\2\172"+
+		"\1\162\1\157\1\166\1\156\1\161\1\166\1\172\1\162\1\165\1\151\1\164\4\uffff"+
+		"\1\164\1\124\1\130\1\162\1\117\1\157\1\122\1\145\1\105\1\116\1\126\1\147"+
+		"\1\154\1\126\1\117\1\132\1\117\1\121\1\125\1\165\1\164\1\145\1\125\1\160"+
+		"\1\105\2\172\1\111\1\124\1\uffff\1\144\1\104\1\163\1\123\1\106\1\124\1"+
+		"\122\1\164\1\162\2\uffff\1\120\1\172\1\145\1\137\1\145\2\141\1\145\1\172"+
+		"\1\105\1\137\1\105\1\101\1\154\1\157\1\154\1\101\1\124\1\141\1\164\1\145"+
+		"\1\166\1\105\1\151\1\126\1\164\1\157\1\143\1\145\1\163\1\141\1\124\1\117"+
+		"\1\103\1\105\1\123\1\101\1\163\1\170\1\172\1\123\1\172\1\142\1\155\1\147"+
+		"\1\117\1\114\1\125\1\145\1\uffff\1\157\1\154\1\165\1\uffff\2\172\1\164"+
+		"\2\uffff\1\155\1\144\1\156\1\162\1\144\1\172\1\165\1\145\1\144\1\165\3"+
+		"\145\1\162\1\151\1\162\1\145\1\156\1\154\1\150\1\145\1\172\1\124\1\164"+
+		"\1\116\1\104\1\160\1\115\1\162\1\122\2\104\1\125\1\122\1\105\1\151\1\145"+
+		"\2\105\1\114\1\105\2\122\1\125\1\105\1\116\1\145\1\172\1\156\1\105\1\145"+
+		"\1\116\2\uffff\1\114\1\110\1\141\1\101\1\165\1\125\1\117\1\103\1\105\1"+
+		"\143\1\145\1\162\1\uffff\1\162\1\163\1\162\2\171\1\162\1\uffff\1\122\1"+
+		"\123\1\122\1\131\1\172\1\162\1\145\1\124\1\101\1\164\1\141\1\164\1\145"+
+		"\1\124\1\143\1\105\1\172\1\162\1\164\1\172\1\167\1\154\1\172\1\122\1\124"+
+		"\1\172\1\127\1\114\1\145\1\151\1\154\1\141\1\uffff\1\105\1\114\1\101\1"+
+		"\uffff\1\141\1\155\1\145\1\122\1\125\1\103\2\162\1\165\1\143\1\157\1\170"+
+		"\1\157\1\150\1\151\2\uffff\1\164\2\165\1\164\1\145\1\172\1\uffff\2\162"+
+		"\1\157\1\145\1\172\1\137\1\172\1\145\1\143\1\164\1\137\1\144\1\145\2\172"+
+		"\1\117\1\130\1\117\1\110\1\111\1\uffff\1\124\1\172\1\124\1\125\1\145\1"+
+		"\125\1\171\1\131\1\117\1\172\1\122\1\105\1\122\1\163\2\172\1\137\2\172"+
+		"\1\105\1\124\1\105\1\137\1\104\1\172\1\uffff\4\172\1\105\1\172\1\164\1"+
+		"\124\1\141\1\101\1\122\1\110\1\124\1\150\1\164\1\157\1\172\1\146\1\145"+
+		"\1\157\2\145\1\141\1\156\1\163\1\172\1\164\1\172\1\106\1\105\1\117\2\105"+
+		"\1\101\1\116\1\123\1\141\1\uffff\1\145\1\143\1\105\1\111\1\145\1\151\1"+
+		"\145\1\163\1\105\1\145\1\123\1\uffff\1\164\1\154\1\146\1\uffff\1\151\1"+
+		"\163\1\uffff\1\124\1\114\1\106\1\uffff\1\111\1\123\1\172\1\142\1\154\1"+
+		"\162\1\172\1\114\1\122\1\156\1\141\1\172\1\124\1\104\1\105\1\141\1\164"+
+		"\1\144\1\145\1\156\1\165\1\141\1\164\1\162\1\145\1\164\1\157\1\164\1\143"+
+		"\1\172\1\163\1\uffff\1\156\1\163\1\155\1\156\1\uffff\1\157\1\146\1\157"+
+		"\1\uffff\1\172\1\164\3\163\1\172\2\uffff\1\116\1\125\1\101\1\124\1\122"+
+		"\1\105\1\124\1\117\1\171\1\uffff\1\172\1\103\1\162\1\124\2\172\1\115\1"+
+		"\uffff\1\116\2\123\1\164\1\165\2\uffff\1\117\1\uffff\1\106\1\117\1\uffff"+
+		"\1\172\1\123\1\116\2\123\5\uffff\1\172\1\uffff\1\145\1\105\1\154\1\114"+
+		"\2\105\1\110\1\145\1\150\1\160\1\uffff\1\164\1\146\1\162\1\170\1\166\1"+
+		"\155\1\141\1\137\1\uffff\1\172\1\uffff\1\124\1\106\1\122\1\130\1\126\1"+
+		"\115\1\101\1\137\1\156\1\172\1\164\1\172\1\116\1\172\1\156\6\172\1\171"+
+		"\1\172\1\164\2\172\1\131\1\172\1\124\1\172\1\uffff\1\154\1\172\1\144\1"+
+		"\uffff\1\172\1\104\1\153\1\162\1\uffff\1\172\1\105\1\123\1\143\1\172\1"+
+		"\145\1\163\1\164\1\141\2\143\1\145\1\156\1\150\1\172\1\145\1\164\1\156"+
+		"\1\uffff\1\163\1\172\1\145\1\172\1\143\1\157\1\162\1\172\1\146\1\uffff"+
+		"\1\172\1\167\1\146\1\145\1\157\2\145\1\141\1\154\1\uffff\1\124\1\101\2"+
+		"\103\1\105\1\116\1\110\1\172\1\160\1\116\1\uffff\1\124\1\164\1\105\2\uffff"+
+		"\2\172\1\123\1\105\1\162\1\151\1\117\1\122\1\172\1\106\1\uffff\1\127\1"+
+		"\103\1\106\1\105\1\117\2\105\1\101\1\114\1\uffff\2\172\1\151\1\111\1\172"+
+		"\1\123\1\101\1\163\1\141\2\145\1\157\1\167\1\164\2\145\1\164\1\156\1\uffff"+
+		"\1\105\1\117\1\127\1\124\2\105\1\124\1\116\1\172\1\uffff\1\151\1\uffff"+
+		"\1\123\1\uffff\1\163\6\uffff\1\172\1\uffff\1\150\2\uffff\1\172\1\uffff"+
+		"\1\110\1\uffff\1\145\1\uffff\1\172\1\uffff\3\172\1\uffff\2\172\1\164\1"+
+		"\uffff\2\172\1\141\1\154\1\164\1\150\1\164\2\172\1\uffff\3\172\1\145\1"+
+		"\uffff\1\172\1\uffff\1\145\1\165\1\151\1\uffff\1\172\1\uffff\1\151\1\164"+
+		"\1\146\1\162\1\170\1\166\1\155\1\151\1\101\1\114\1\124\1\110\1\124\2\172"+
+		"\1\uffff\1\145\2\172\1\171\1\172\2\uffff\1\105\1\172\1\171\1\154\1\125"+
+		"\1\111\1\uffff\1\172\1\111\1\105\1\124\1\106\1\122\1\130\1\126\1\115\1"+
+		"\111\2\uffff\1\172\1\132\1\uffff\1\172\1\116\1\172\1\156\3\162\1\141\1"+
+		"\164\1\162\1\137\2\145\2\122\1\101\1\124\1\122\1\137\2\105\1\uffff\1\157"+
+		"\2\172\1\uffff\1\172\1\uffff\2\172\6\uffff\1\151\2\uffff\1\151\1\163\1"+
+		"\154\1\145\1\150\5\uffff\1\163\1\uffff\1\137\1\156\1\145\1\uffff\1\164"+
+		"\1\145\1\157\1\167\1\164\2\145\1\153\1\111\1\123\1\114\1\105\1\110\2\uffff"+
+		"\1\172\2\uffff\1\172\1\uffff\1\123\1\uffff\1\172\1\144\1\116\1\105\1\uffff"+
+		"\1\124\1\137\1\105\1\117\1\127\1\124\2\105\1\113\1\145\1\105\1\uffff\1"+
+		"\172\1\uffff\1\172\1\164\1\172\1\145\1\162\1\157\1\163\1\157\1\137\1\170"+
+		"\1\172\1\105\1\122\1\117\1\123\1\117\1\137\1\130\1\156\5\uffff\1\157\1"+
+		"\156\1\172\1\171\1\163\1\141\1\172\1\157\1\164\1\156\1\150\2\162\1\141"+
+		"\1\164\1\162\1\137\1\145\1\116\1\172\1\131\1\123\1\101\2\uffff\1\172\1"+
+		"\uffff\1\145\1\124\1\116\1\110\1\117\2\122\1\101\1\124\1\122\1\137\1\105"+
+		"\2\172\2\uffff\1\151\1\uffff\1\172\1\144\1\172\1\145\1\162\1\157\1\164"+
+		"\1\uffff\1\172\1\104\1\172\1\105\1\122\1\117\1\124\1\172\1\156\1\163\1"+
+		"\uffff\2\172\1\156\1\uffff\1\146\1\172\1\164\2\172\1\145\1\162\1\157\1"+
+		"\163\1\157\1\172\1\123\1\uffff\2\172\1\116\1\uffff\1\162\1\172\1\124\1"+
+		"\172\1\106\1\172\1\105\1\122\1\117\1\123\1\117\1\172\2\uffff\1\145\1\uffff"+
+		"\1\172\1\uffff\1\172\1\151\1\162\1\164\1\uffff\1\172\1\uffff\1\172\1\111"+
+		"\1\122\1\124\1\uffff\2\172\2\uffff\2\172\1\uffff\1\141\2\uffff\1\172\1"+
+		"\144\1\172\1\145\1\162\1\uffff\1\172\2\uffff\2\172\1\uffff\1\101\1\uffff"+
+		"\1\172\1\uffff\1\172\1\104\1\172\1\105\1\122\1\uffff\1\163\2\uffff\1\145"+
+		"\1\151\1\157\2\uffff\1\105\1\111\1\117\4\uffff\1\164\1\uffff\1\172\1\uffff"+
+		"\1\172\1\151\3\uffff\1\124\2\uffff\1\172\1\uffff\1\172\1\111\1\172\1\156"+
+		"\1\145\1\172\1\116\1\105\1\172\1\151\2\uffff\1\145\1\111\2\uffff\1\105"+
+		"\1\uffff\1\164\1\156\1\uffff\1\124\1\116\1\uffff\1\157\1\156\1\117\1\116"+
+		"\1\141\1\164\1\101\1\124\1\156\1\164\1\116\1\124\1\164\1\141\1\124\1\101"+
+		"\1\172\1\141\1\172\1\101\1\151\1\164\1\111\1\124\1\uffff\1\164\1\uffff"+
+		"\1\124\1\157\1\151\1\117\1\111\1\151\1\111\1\156\1\157\1\116\1\117\1\157"+
+		"\1\117\1\172\1\156\1\172\1\116\1\156\1\116\1\uffff\1\172\1\uffff\3\172"+
+		"\4\uffff";
 	static final String DFA11_acceptS =
 		"\2\uffff\1\2\4\uffff\1\11\1\12\4\uffff\1\21\1\uffff\1\24\6\uffff\1\40"+
-		"\10\uffff\1\66\1\67\1\70\1\uffff\1\73\1\76\3\uffff\1\105\1\106\1\uffff"+
-		"\1\124\1\125\1\126\1\uffff\1\134\15\uffff\1\u00ce\1\u00cf\1\u00d2\1\u00d3"+
-		"\11\uffff\1\4\1\75\14\uffff\1\72\1\u00d0\1\u00d1\1\20\1\23\1\22\17\uffff"+
-		"\1\35\1\37\30\uffff\1\71\1\74\1\77\1\102\33\uffff\1\171\11\uffff\1\u00cc"+
-		"\1\u00cd\61\uffff\1\157\3\uffff\1\54\3\uffff\1\57\1\60\62\uffff\1\162"+
-		"\1\163\14\uffff\1\47\6\uffff\1\152\40\uffff\1\52\3\uffff\1\155\17\uffff"+
-		"\1\56\1\101\6\uffff\1\120\24\uffff\1\161\27\uffff\1\150\45\uffff\1\6\13"+
-		"\uffff\1\25\3\uffff\1\50\2\uffff\1\26\3\uffff\1\153\37\uffff\1\116\4\uffff"+
-		"\1\131\3\uffff\1\137\6\uffff\1\u00cb\1\100\11\uffff\1\103\5\uffff\1\117"+
-		"\5\uffff\1\127\1\132\1\uffff\1\133\2\uffff\1\142\5\uffff\1\146\1\u00ca"+
-		"\1\147\1\151\1\u00a3\1\uffff\1\u00a4\12\uffff\1\u00a5\10\uffff\1\3\1\uffff"+
-		"\1\176\36\uffff\1\31\3\uffff\1\32\4\uffff\1\41\22\uffff\1\111\11\uffff"+
-		"\1\143\11\uffff\1\65\12\uffff\1\112\15\uffff\1\144\11\uffff\1\170\22\uffff"+
-		"\1\5\11\uffff\1\u00ae\1\uffff\1\14\1\uffff\1\13\1\uffff\1\15\1\u00b0\1"+
-		"\16\1\17\1\u0089\1\27\1\uffff\1\51\1\uffff\1\u00b2\1\30\1\uffff\1\154"+
-		"\1\uffff\1\u008b\1\uffff\1\53\1\uffff\1\156\3\uffff\1\43\3\uffff\1\42"+
-		"\11\uffff\1\u00b7\4\uffff\1\122\1\uffff\1\114\3\uffff\1\135\1\uffff\1"+
-		"\145\17\uffff\1\u0090\5\uffff\1\115\1\123\6\uffff\1\136\12\uffff\1\172"+
-		"\1\173\2\uffff\1\u0087\25\uffff\1\7\3\uffff\1\u00b3\1\uffff\1\u008c\2"+
-		"\uffff\1\u00b4\1\u008d\1\34\1\36\1\45\1\160\1\uffff\1\44\1\55\5\uffff"+
-		"\1\u00bd\1\u00be\1\61\1\62\1\107\1\uffff\1\u00bf\3\uffff\1\140\15\uffff"+
-		"\1\u0096\1\u0097\1\uffff\1\110\1\165\1\uffff\1\164\1\uffff\1\u0098\4\uffff"+
-		"\1\141\13\uffff\1\u008e\1\uffff\1\u00b5\23\uffff\1\u0088\1\u00af\1\u00b1"+
-		"\1\u008a\1\33\27\uffff\1\104\1\113\1\uffff\1\121\16\uffff\1\u008f\1\u00b6"+
-		"\1\uffff\1\u00a6\7\uffff\1\177\12\uffff\1\u00b9\3\uffff\1\63\14\uffff"+
-		"\1\u0092\3\uffff\1\166\14\uffff\1\174\1\175\1\uffff\1\u00a7\1\uffff\1"+
-		"\u00a9\4\uffff\1\u0080\1\uffff\1\u0082\4\uffff\1\10\2\uffff\1\u00ba\1"+
-		"\u00bb\2\uffff\1\u00c0\1\uffff\1\u00c9\1\u00c2\5\uffff\1\u00c8\1\uffff"+
-		"\1\u0093\1\u0094\2\uffff\1\u0099\1\uffff\1\u00a2\1\uffff\1\u009b\5\uffff"+
-		"\1\u00a1\1\uffff\1\u00a8\1\u00aa\3\uffff\1\u0081\1\u0083\3\uffff\1\46"+
-		"\1\u00b8\1\u00bc\1\64\1\uffff\1\u00c3\1\uffff\1\u00c5\2\uffff\1\u0091"+
-		"\1\u0095\1\130\1\uffff\1\167\1\u009c\1\uffff\1\u009e\12\uffff\1\u00c4"+
-		"\1\u00c6\2\uffff\1\u009d\1\u009f\1\uffff\1\1\2\uffff\1\u00ad\2\uffff\1"+
-		"\u0086\30\uffff\1\u00c1\1\uffff\1\u009a\23\uffff\1\u00ab\1\uffff\1\u0084"+
-		"\3\uffff\1\u00ac\1\u0085\1\u00c7\1\u00a0";
+		"\10\uffff\1\66\1\67\1\70\1\uffff\1\73\1\76\3\uffff\1\105\1\106\3\uffff"+
+		"\1\126\1\127\1\130\1\uffff\1\136\15\uffff\1\u00d0\1\u00d1\1\u00d4\1\u00d5"+
+		"\11\uffff\1\4\1\75\14\uffff\1\72\1\u00d2\1\u00d3\1\20\1\23\1\22\17\uffff"+
+		"\1\35\1\37\30\uffff\1\71\1\74\1\77\1\102\35\uffff\1\173\11\uffff\1\u00ce"+
+		"\1\u00cf\61\uffff\1\161\3\uffff\1\54\3\uffff\1\57\1\60\64\uffff\1\164"+
+		"\1\165\14\uffff\1\47\6\uffff\1\154\40\uffff\1\52\3\uffff\1\157\17\uffff"+
+		"\1\56\1\101\6\uffff\1\122\24\uffff\1\163\31\uffff\1\152\45\uffff\1\6\13"+
+		"\uffff\1\25\3\uffff\1\50\2\uffff\1\26\3\uffff\1\155\37\uffff\1\120\4\uffff"+
+		"\1\133\3\uffff\1\141\6\uffff\1\u00cd\1\100\11\uffff\1\103\7\uffff\1\121"+
+		"\5\uffff\1\131\1\134\1\uffff\1\135\2\uffff\1\144\5\uffff\1\150\1\u00cc"+
+		"\1\151\1\153\1\u00a5\1\uffff\1\u00a6\12\uffff\1\u00a7\10\uffff\1\3\1\uffff"+
+		"\1\u0080\36\uffff\1\31\3\uffff\1\32\4\uffff\1\41\22\uffff\1\111\11\uffff"+
+		"\1\145\11\uffff\1\65\12\uffff\1\112\3\uffff\1\114\1\115\12\uffff\1\146"+
+		"\11\uffff\1\172\22\uffff\1\5\11\uffff\1\u00b0\1\uffff\1\14\1\uffff\1\13"+
+		"\1\uffff\1\15\1\u00b2\1\16\1\17\1\u008b\1\27\1\uffff\1\51\1\uffff\1\u00b4"+
+		"\1\30\1\uffff\1\156\1\uffff\1\u008d\1\uffff\1\53\1\uffff\1\160\3\uffff"+
+		"\1\43\3\uffff\1\42\11\uffff\1\u00b9\4\uffff\1\124\1\uffff\1\116\3\uffff"+
+		"\1\137\1\uffff\1\147\17\uffff\1\u0092\5\uffff\1\117\1\125\6\uffff\1\140"+
+		"\12\uffff\1\174\1\175\2\uffff\1\u0089\25\uffff\1\7\3\uffff\1\u00b5\1\uffff"+
+		"\1\u008e\2\uffff\1\u00b6\1\u008f\1\34\1\36\1\45\1\162\1\uffff\1\44\1\55"+
+		"\5\uffff\1\u00bf\1\u00c0\1\61\1\62\1\107\1\uffff\1\u00c1\3\uffff\1\142"+
+		"\15\uffff\1\u0098\1\u0099\1\uffff\1\110\1\167\1\uffff\1\166\1\uffff\1"+
+		"\u009a\4\uffff\1\143\13\uffff\1\u0090\1\uffff\1\u00b7\23\uffff\1\u008a"+
+		"\1\u00b1\1\u00b3\1\u008c\1\33\27\uffff\1\104\1\113\1\uffff\1\123\16\uffff"+
+		"\1\u0091\1\u00b8\1\uffff\1\u00a8\7\uffff\1\u0081\12\uffff\1\u00bb\3\uffff"+
+		"\1\63\14\uffff\1\u0094\3\uffff\1\170\14\uffff\1\176\1\177\1\uffff\1\u00a9"+
+		"\1\uffff\1\u00ab\4\uffff\1\u0082\1\uffff\1\u0084\4\uffff\1\10\2\uffff"+
+		"\1\u00bc\1\u00bd\2\uffff\1\u00c2\1\uffff\1\u00cb\1\u00c4\5\uffff\1\u00ca"+
+		"\1\uffff\1\u0095\1\u0096\2\uffff\1\u009b\1\uffff\1\u00a4\1\uffff\1\u009d"+
+		"\5\uffff\1\u00a3\1\uffff\1\u00aa\1\u00ac\3\uffff\1\u0083\1\u0085\3\uffff"+
+		"\1\46\1\u00ba\1\u00be\1\64\1\uffff\1\u00c5\1\uffff\1\u00c7\2\uffff\1\u0093"+
+		"\1\u0097\1\132\1\uffff\1\171\1\u009e\1\uffff\1\u00a0\12\uffff\1\u00c6"+
+		"\1\u00c8\2\uffff\1\u009f\1\u00a1\1\uffff\1\1\2\uffff\1\u00af\2\uffff\1"+
+		"\u0088\30\uffff\1\u00c3\1\uffff\1\u009c\23\uffff\1\u00ad\1\uffff\1\u0086"+
+		"\3\uffff\1\u00ae\1\u0087\1\u00c9\1\u00a2";
 	static final String DFA11_specialS =
-		"\u04b6\uffff}>";
+		"\u04c2\uffff}>";
 	static final String[] DFA11_transitionS = {
-			"\1\75\1\76\1\uffff\1\75\1\76\22\uffff\1\75\1\45\1\100\1\26\1\15\1\uffff"+
-			"\1\2\1\uffff\1\40\1\54\1\44\1\51\1\10\1\4\1\16\1\14\12\74\1\7\1\57\1"+
-			"\42\1\17\1\25\2\uffff\1\3\1\71\1\6\1\13\1\21\1\23\1\24\1\77\1\27\3\77"+
-			"\1\72\1\46\1\62\1\47\1\77\1\52\1\56\1\61\1\66\1\70\1\63\3\77\1\41\1\43"+
-			"\1\55\1\uffff\1\64\1\uffff\1\1\1\5\1\11\1\12\1\20\1\22\2\77\1\30\3\77"+
-			"\1\73\1\31\1\32\1\33\1\77\1\34\1\35\1\60\1\65\1\67\1\36\3\77\1\37\1\50"+
-			"\1\53",
-			"\1\101\1\uffff\1\103\5\uffff\1\104\1\uffff\1\102",
+			"\1\77\1\100\1\uffff\1\77\1\100\22\uffff\1\77\1\45\1\102\1\26\1\15\1\uffff"+
+			"\1\2\1\uffff\1\40\1\56\1\44\1\51\1\10\1\4\1\16\1\14\12\76\1\7\1\61\1"+
+			"\42\1\17\1\25\2\uffff\1\3\1\73\1\6\1\13\1\21\1\23\1\24\1\101\1\27\3\101"+
+			"\1\74\1\46\1\64\1\47\1\53\1\54\1\60\1\63\1\70\1\72\1\65\3\101\1\41\1"+
+			"\43\1\57\1\uffff\1\66\1\uffff\1\1\1\5\1\11\1\12\1\20\1\22\2\101\1\30"+
+			"\3\101\1\75\1\31\1\32\1\33\1\52\1\34\1\35\1\62\1\67\1\71\1\36\3\101\1"+
+			"\37\1\50\1\55",
+			"\1\103\1\uffff\1\105\5\uffff\1\106\1\uffff\1\104",
 			"",
-			"\1\110\5\uffff\1\111\1\uffff\1\107\43\uffff\1\105\1\106",
-			"\1\112",
-			"\1\115\11\uffff\1\114",
-			"\1\120\2\uffff\1\117\34\uffff\1\116",
-			"",
-			"",
-			"\1\122\2\uffff\1\121",
-			"\1\123\14\uffff\1\124",
-			"\1\125\14\uffff\1\127\22\uffff\1\126",
-			"\1\132\4\uffff\1\131\54\uffff\1\130",
-			"",
-			"\1\134",
-			"",
-			"\1\137\1\uffff\1\140\2\uffff\1\141\6\uffff\1\136",
-			"\1\143\1\uffff\1\144\2\uffff\1\145\6\uffff\1\142",
-			"\1\146\12\uffff\1\147\2\uffff\1\150",
-			"\1\151\15\uffff\1\152",
-			"\1\153\14\uffff\1\154",
-			"\1\155",
-			"",
-			"\1\163\6\uffff\1\160\1\161\36\uffff\1\157\1\162",
-			"\1\166\6\uffff\1\164\1\165",
-			"\1\171\11\uffff\1\167\5\uffff\1\170",
-			"\1\172\3\uffff\1\173",
-			"\1\174\14\uffff\1\175",
-			"\1\177\3\uffff\1\176",
-			"\1\u0081\3\uffff\1\u0080\3\uffff\1\u0082\5\uffff\1\u0084\4\uffff\1\u0083",
-			"\1\u0085\1\u0086",
+			"\1\112\5\uffff\1\113\1\uffff\1\111\43\uffff\1\107\1\110",
+			"\1\114",
+			"\1\117\11\uffff\1\116",
+			"\1\122\2\uffff\1\121\34\uffff\1\120",
 			"",
 			"",
+			"\1\124\2\uffff\1\123",
+			"\1\125\14\uffff\1\126",
+			"\1\127\14\uffff\1\131\22\uffff\1\130",
+			"\1\134\4\uffff\1\133\54\uffff\1\132",
 			"",
-			"\1\u0087",
+			"\1\136",
+			"",
+			"\1\141\1\uffff\1\142\2\uffff\1\143\6\uffff\1\140",
+			"\1\145\1\uffff\1\146\2\uffff\1\147\6\uffff\1\144",
+			"\1\150\12\uffff\1\151\2\uffff\1\152",
+			"\1\153\15\uffff\1\154",
+			"\1\155\14\uffff\1\156",
+			"\1\157",
+			"",
+			"\1\165\6\uffff\1\162\1\163\36\uffff\1\161\1\164",
+			"\1\170\6\uffff\1\166\1\167",
+			"\1\173\11\uffff\1\171\5\uffff\1\172",
+			"\1\174\3\uffff\1\175",
+			"\1\176\14\uffff\1\177",
+			"\1\u0081\3\uffff\1\u0080",
+			"\1\u0083\3\uffff\1\u0082\3\uffff\1\u0084\5\uffff\1\u0086\4\uffff\1\u0085",
+			"\1\u0087\1\u0088",
+			"",
 			"",
 			"",
 			"\1\u0089",
-			"\1\u008d\11\uffff\1\u008c\37\uffff\1\u008b",
-			"\1\u0091\14\uffff\1\u008f\16\uffff\1\u008e\20\uffff\1\u0090",
 			"",
 			"",
-			"\1\u0092\3\uffff\1\u0093\37\uffff\1\u0094\17\uffff\1\u0095",
+			"\1\u008b",
+			"\1\u008f\11\uffff\1\u008e\37\uffff\1\u008d",
+			"\1\u0093\14\uffff\1\u0091\16\uffff\1\u0090\20\uffff\1\u0092",
+			"",
+			"",
+			"\1\u0094",
+			"\1\u0095",
+			"\1\u0096\3\uffff\1\u0097\37\uffff\1\u0098\17\uffff\1\u0099",
 			"",
 			"",
 			"",
-			"\1\u0096\1\u0097\2\uffff\1\u009a\3\uffff\1\u0098\5\uffff\1\u009b\4\uffff"+
-			"\1\u0099",
+			"\1\u009a\1\u009b\2\uffff\1\u009e\3\uffff\1\u009c\5\uffff\1\u009f\4\uffff"+
+			"\1\u009d",
 			"",
-			"\1\u009e\11\uffff\1\u009c\5\uffff\1\u009d",
-			"\1\u00a1\11\uffff\1\u009f\46\uffff\1\u00a0",
-			"\1\u00a2\3\uffff\1\u00a3",
-			"\1\u00a4\1\u00a5",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u00a7",
-			"\1\u00a8",
-			"\1\u00a9",
-			"\1\u00aa",
+			"\1\u00a2\11\uffff\1\u00a0\5\uffff\1\u00a1",
+			"\1\u00a5\11\uffff\1\u00a3\46\uffff\1\u00a4",
+			"\1\u00a6\3\uffff\1\u00a7",
+			"\1\u00a8\1\u00a9",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u00ab",
-			"\1\u00ac\15\uffff\1\u00ad",
-			"\1\u00ae\15\uffff\1\u00af",
-			"\1\u00b1\1\uffff\12\74",
+			"\1\u00ac",
+			"\1\u00ad",
+			"\1\u00ae",
+			"\1\u00af",
+			"\1\u00b0\15\uffff\1\u00b1",
+			"\1\u00b2\15\uffff\1\u00b3",
+			"\1\u00b5\1\uffff\12\76",
 			"",
 			"",
 			"",
 			"",
-			"\1\u00b2",
-			"\1\u00b3",
-			"\1\u00b4",
-			"\1\u00b5\7\uffff\1\u00b6\2\uffff\1\u00b7",
+			"\1\u00b6",
+			"\1\u00b7",
 			"\1\u00b8",
-			"\1\u00b9",
-			"\1\u00ba",
-			"\1\u00bb",
-			"\1\u00bc\7\uffff\1\u00bd\2\uffff\1\u00be",
-			"",
-			"",
+			"\1\u00b9\7\uffff\1\u00ba\2\uffff\1\u00bb",
+			"\1\u00bc",
+			"\1\u00bd",
+			"\1\u00be",
 			"\1\u00bf",
-			"\1\u00c0",
-			"\1\u00c1",
-			"\1\u00c2",
+			"\1\u00c0\7\uffff\1\u00c1\2\uffff\1\u00c2",
+			"",
+			"",
 			"\1\u00c3",
 			"\1\u00c4",
 			"\1\u00c5",
@@ -6995,112 +7055,112 @@ public class EugeneLexer extends Lexer {
 			"\1\u00c8",
 			"\1\u00c9",
 			"\1\u00ca",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"\1\u00cd\7\uffff\1\u00cb\6\uffff\1\u00cc",
+			"\1\u00cb",
+			"\1\u00cc",
+			"\1\u00cd",
 			"\1\u00ce",
-			"\1\u00cf",
-			"\1\u00d0",
-			"\1\u00d3\7\uffff\1\u00d1\6\uffff\1\u00d2",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"\1\u00d1\7\uffff\1\u00cf\6\uffff\1\u00d0",
+			"\1\u00d2",
+			"\1\u00d3",
 			"\1\u00d4",
-			"\1\u00d5",
-			"\1\u00d6",
-			"\1\u00d7",
+			"\1\u00d7\7\uffff\1\u00d5\6\uffff\1\u00d6",
 			"\1\u00d8",
 			"\1\u00d9",
 			"\1\u00da",
 			"\1\u00db",
 			"\1\u00dc",
 			"\1\u00dd",
-			"",
-			"",
 			"\1\u00de",
 			"\1\u00df",
-			"\1\u00e0\1\u00e1",
+			"\1\u00e0",
+			"\1\u00e1",
+			"",
+			"",
 			"\1\u00e2",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u00e4",
-			"\1\u00e5\1\u00e6",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u00e3",
+			"\1\u00e4\1\u00e5",
+			"\1\u00e6",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u00e8",
-			"\1\u00e9",
-			"\1\u00ea",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u00e9\1\u00ea",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u00ec",
 			"\1\u00ed",
-			"\1\u00ef\5\uffff\1\u00ee",
-			"\1\u00f1\4\uffff\1\u00f2\11\uffff\1\u00f0\3\uffff\1\u00f3\1\uffff\1"+
-			"\u00f4",
-			"\1\u00f5",
-			"\1\u00f6",
-			"\1\u00f8\10\uffff\1\u00f7",
+			"\1\u00ee",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u00f1",
+			"\1\u00f3\5\uffff\1\u00f2",
+			"\1\u00f5\4\uffff\1\u00f6\11\uffff\1\u00f4\3\uffff\1\u00f7\1\uffff\1"+
+			"\u00f8",
 			"\1\u00f9",
-			"\1\u00fc\15\uffff\1\u00fa\2\uffff\1\u00fb",
-			"\1\u00fd\7\uffff\1\u00fe",
-			"\1\u00ff",
-			"\1\u0100",
-			"",
-			"",
-			"",
-			"",
-			"\1\u0101",
-			"\1\u0102",
+			"\1\u00fa",
+			"\1\u00fc\10\uffff\1\u00fb",
+			"\1\u00fd",
+			"\1\u0100\15\uffff\1\u00fe\2\uffff\1\u00ff",
+			"\1\u0101\7\uffff\1\u0102",
 			"\1\u0103",
 			"\1\u0104",
-			"\1\u0105\5\uffff\1\u0106",
+			"",
+			"",
+			"",
+			"",
+			"\1\u0105",
+			"\1\u0106",
 			"\1\u0107",
 			"\1\u0108",
-			"\1\u0109",
-			"\1\u010a\16\uffff\1\u010c\3\uffff\1\u010b\1\uffff\1\u010d",
+			"\1\u0109\5\uffff\1\u010a",
+			"\1\u010b",
+			"\1\u010c",
+			"\1\u010d",
 			"\1\u010e",
 			"\1\u010f",
-			"\1\u0111\10\uffff\1\u0110",
-			"\1\u0112",
-			"\1\u0113",
-			"\1\u0115\15\uffff\1\u0114",
-			"\1\u0116",
-			"\1\u0117\7\uffff\1\u0118",
+			"\1\u0110\16\uffff\1\u0112\3\uffff\1\u0111\1\uffff\1\u0113",
+			"\1\u0114",
+			"\1\u0115",
+			"\1\u0117\10\uffff\1\u0116",
+			"\1\u0118",
 			"\1\u0119",
-			"\1\u011a",
-			"\1\u011b",
+			"\1\u011b\15\uffff\1\u011a",
 			"\1\u011c",
-			"\1\u011d",
-			"\1\u011e",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u011d\7\uffff\1\u011e",
+			"\1\u011f",
+			"\1\u0120",
 			"\1\u0121",
 			"\1\u0122",
-			"",
 			"\1\u0123",
 			"\1\u0124",
-			"\1\u0125",
-			"\1\u0126",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0127",
 			"\1\u0128",
+			"",
 			"\1\u0129",
 			"\1\u012a",
 			"\1\u012b",
-			"",
-			"",
 			"\1\u012c",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u012d",
 			"\1\u012e",
 			"\1\u012f",
 			"\1\u0130",
 			"\1\u0131",
+			"",
+			"",
 			"\1\u0132",
-			"\1\u0133",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u0134",
 			"\1\u0135",
 			"\1\u0136",
 			"\1\u0137",
 			"\1\u0138",
 			"\1\u0139",
-			"\1\u013a",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u013b",
 			"\1\u013c",
 			"\1\u013d",
@@ -7125,39 +7185,41 @@ public class EugeneLexer extends Lexer {
 			"\1\u0150",
 			"\1\u0151",
 			"\1\u0152",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\1\u0153\25\77\1\u0154\3\77",
+			"\1\u0153",
+			"\1\u0154",
+			"\1\u0155",
 			"\1\u0156",
-			"\12\77\7\uffff\1\u0157\25\77\1\u0158\3\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u015a",
-			"\1\u015b",
+			"\1\u0157",
+			"\1\u0158",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\1\u0159\25\101\1\u015a"+
+			"\3\101",
 			"\1\u015c",
-			"\1\u015d",
-			"\1\u015e",
-			"\1\u015f",
+			"\12\101\7\uffff\1\u015d\25\101\1\u015e\3\101\4\uffff\1\101\1\uffff\32"+
+			"\101",
 			"\1\u0160",
-			"",
 			"\1\u0161",
 			"\1\u0162",
 			"\1\u0163",
+			"\1\u0164",
+			"\1\u0165",
+			"\1\u0166",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\2\77\1\u0164\1\77\1\u0165"+
-			"\7\77\1\u0166\6\77\1\u0167\2\77\1\u0168\3\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u016b",
+			"\1\u0167",
+			"\1\u0168",
+			"\1\u0169",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\2\101\1\u016a\1\101\1\u016b"+
+			"\7\101\1\u016c\6\101\1\u016d\2\101\1\u016e\3\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u0171",
 			"",
 			"",
-			"\1\u016c",
-			"\1\u016d",
-			"\1\u016e",
-			"\1\u016f",
-			"\1\u0170",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
 			"\1\u0172",
 			"\1\u0173",
 			"\1\u0174",
 			"\1\u0175",
 			"\1\u0176",
-			"\1\u0177",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0178",
 			"\1\u0179",
 			"\1\u017a",
@@ -7167,14 +7229,14 @@ public class EugeneLexer extends Lexer {
 			"\1\u017e",
 			"\1\u017f",
 			"\1\u0180",
-			"\12\77\7\uffff\2\77\1\u0181\1\77\1\u0182\7\77\1\u0183\6\77\1\u0184\2"+
-			"\77\1\u0185\3\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u0187",
-			"\1\u0188",
-			"\1\u0189",
-			"\1\u018a",
-			"\1\u018b",
-			"\1\u018c",
+			"\1\u0181",
+			"\1\u0182",
+			"\1\u0183",
+			"\1\u0184",
+			"\1\u0185",
+			"\1\u0186",
+			"\12\101\7\uffff\2\101\1\u0187\1\101\1\u0188\7\101\1\u0189\6\101\1\u018a"+
+			"\2\101\1\u018b\3\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u018d",
 			"\1\u018e",
 			"\1\u018f",
@@ -7192,156 +7254,156 @@ public class EugeneLexer extends Lexer {
 			"\1\u019b",
 			"\1\u019c",
 			"\1\u019d",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u019e",
 			"\1\u019f",
 			"\1\u01a0",
 			"\1\u01a1",
 			"\1\u01a2",
-			"",
-			"",
 			"\1\u01a3",
 			"\1\u01a4",
 			"\1\u01a5",
-			"\1\u01a6",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u01a7",
 			"\1\u01a8",
 			"\1\u01a9",
 			"\1\u01aa",
+			"",
+			"",
 			"\1\u01ab",
 			"\1\u01ac",
 			"\1\u01ad",
 			"\1\u01ae",
-			"",
 			"\1\u01af",
-			"\1\u01b0\1\u01b1\3\uffff\1\u01b2\7\uffff\1\u01b3\3\uffff\1\u01b4\1\u01b5",
+			"\1\u01b0",
+			"\1\u01b1",
+			"\1\u01b2",
+			"\1\u01b3",
+			"\1\u01b4",
+			"\1\u01b5",
 			"\1\u01b6",
-			"\1\u01b7",
-			"\1\u01b8",
-			"\1\u01b9",
 			"",
-			"\1\u01ba",
-			"\1\u01bb\1\u01bc\3\uffff\1\u01bd\7\uffff\1\u01be\3\uffff\1\u01bf\1\u01c0",
+			"\1\u01b7",
+			"\1\u01b8\1\u01b9\3\uffff\1\u01ba\7\uffff\1\u01bb\3\uffff\1\u01bc\1\u01bd",
+			"\1\u01be",
+			"\1\u01bf",
+			"\1\u01c0",
 			"\1\u01c1",
+			"",
 			"\1\u01c2",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\4\77\1\u01c3\25\77",
-			"\1\u01c5",
-			"\1\u01c6",
-			"\1\u01c7",
-			"\1\u01c8",
+			"\1\u01c3\1\u01c4\3\uffff\1\u01c5\7\uffff\1\u01c6\3\uffff\1\u01c7\1\u01c8",
 			"\1\u01c9",
 			"\1\u01ca",
-			"\1\u01cb",
-			"\1\u01cc",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\4\101\1\u01cb\25\101",
 			"\1\u01cd",
 			"\1\u01ce",
 			"\1\u01cf",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u01d0",
 			"\1\u01d1",
 			"\1\u01d2",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\10\77\1\u01d3\21\77",
+			"\1\u01d3",
+			"\1\u01d4",
 			"\1\u01d5",
 			"\1\u01d6",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u01d8",
+			"\1\u01d7",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u01d9",
-			"\12\77\7\uffff\10\77\1\u01da\21\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u01dc",
+			"\1\u01da",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\10\101\1\u01db\21\101",
 			"\1\u01dd",
 			"\1\u01de",
-			"\1\u01df",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u01e0",
 			"\1\u01e1",
-			"",
-			"\1\u01e2",
-			"\1\u01e3",
+			"\12\101\7\uffff\10\101\1\u01e2\21\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u01e4",
-			"",
 			"\1\u01e5",
 			"\1\u01e6",
 			"\1\u01e7",
 			"\1\u01e8",
 			"\1\u01e9",
+			"",
 			"\1\u01ea",
 			"\1\u01eb",
 			"\1\u01ec",
+			"",
 			"\1\u01ed",
 			"\1\u01ee",
 			"\1\u01ef",
-			"\1\u01f0\6\uffff\1\u01f1",
-			"\1\u01f2\15\uffff\1\u01f3",
+			"\1\u01f0",
+			"\1\u01f1",
+			"\1\u01f2",
+			"\1\u01f3",
 			"\1\u01f4",
 			"\1\u01f5",
-			"",
-			"",
 			"\1\u01f6",
 			"\1\u01f7",
-			"\1\u01f8",
-			"\1\u01f9",
-			"\1\u01fa",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
+			"\1\u01f8\6\uffff\1\u01f9",
+			"\1\u01fa\15\uffff\1\u01fb",
 			"\1\u01fc",
 			"\1\u01fd",
+			"",
+			"",
 			"\1\u01fe",
 			"\1\u01ff",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0200",
 			"\1\u0201",
-			"\12\77\7\uffff\32\77\4\uffff\1\u0203\1\uffff\16\77\1\u0202\13\77",
+			"\1\u0202",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
+			"\1\u0204",
 			"\1\u0205",
 			"\1\u0206",
 			"\1\u0207",
-			"\1\u0208",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0209",
-			"\1\u020a",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\u020b\1\uffff\16\101\1\u020a\13\101",
 			"\1\u020d",
-			"\1\u020e\6\uffff\1\u020f",
-			"\1\u0210\15\uffff\1\u0211",
+			"\1\u020e",
+			"\1\u020f",
+			"\1\u0210",
+			"\1\u0211",
 			"\1\u0212",
-			"\1\u0213",
-			"",
-			"\1\u0214",
-			"\12\77\7\uffff\23\77\1\u0215\6\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u0217",
-			"\1\u0218",
-			"\1\u0219",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u0215",
+			"\1\u0216\6\uffff\1\u0217",
+			"\1\u0218\15\uffff\1\u0219",
 			"\1\u021a",
 			"\1\u021b",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u021d",
-			"\1\u021e",
+			"",
+			"\1\u021c",
+			"\12\101\7\uffff\23\101\1\u021d\6\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u021f",
 			"\1\u0220",
-			"\12\77\7\uffff\1\77\1\u0221\30\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0221",
+			"\1\u0222",
+			"\1\u0223",
 			"\1\u0224",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\16\77\1\u0226\13\77\4\uffff\1\u0227\1\uffff\32\77",
+			"\1\u0225",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u0227",
+			"\1\u0228",
 			"\1\u0229",
 			"\1\u022a",
-			"\1\u022b",
-			"\1\u022c",
-			"\1\u022d",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\1\101\1\u022b\30\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u022e",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\16\101\1\u0230\13\101\4\uffff\1\u0231\1\uffff\32\101",
 			"\1\u0233",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0234",
 			"\1\u0235",
 			"\1\u0236",
 			"\1\u0237",
-			"\1\u0238",
-			"\1\u0239",
-			"\1\u023a",
-			"\1\u023b",
-			"\1\u023c",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u023d",
-			"\1\u023e",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u023f",
 			"\1\u0240",
 			"\1\u0241",
 			"\1\u0242",
@@ -7350,9 +7412,9 @@ public class EugeneLexer extends Lexer {
 			"\1\u0245",
 			"\1\u0246",
 			"\1\u0247",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u0249",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0248",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u024a",
 			"\1\u024b",
 			"\1\u024c",
 			"\1\u024d",
@@ -7360,10 +7422,9 @@ public class EugeneLexer extends Lexer {
 			"\1\u024f",
 			"\1\u0250",
 			"\1\u0251",
-			"\1\u0252",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0253",
-			"",
-			"\1\u0254",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0255",
 			"\1\u0256",
 			"\1\u0257",
@@ -7373,41 +7434,42 @@ public class EugeneLexer extends Lexer {
 			"\1\u025b",
 			"\1\u025c",
 			"\1\u025d",
-			"\1\u025e",
 			"",
+			"\1\u025e",
 			"\1\u025f",
 			"\1\u0260",
 			"\1\u0261",
-			"",
 			"\1\u0262",
 			"\1\u0263",
-			"",
 			"\1\u0264",
 			"\1\u0265",
 			"\1\u0266",
-			"",
 			"\1\u0267",
 			"\1\u0268",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"",
+			"\1\u0269",
 			"\1\u026a",
 			"\1\u026b",
+			"",
 			"\1\u026c",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u026d",
+			"",
 			"\1\u026e",
 			"\1\u026f",
 			"\1\u0270",
+			"",
 			"\1\u0271",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u0273",
+			"\1\u0272",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0274",
 			"\1\u0275",
 			"\1\u0276",
-			"\1\u0277",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0278",
 			"\1\u0279",
 			"\1\u027a",
 			"\1\u027b",
-			"\1\u027c",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u027d",
 			"\1\u027e",
 			"\1\u027f",
@@ -7415,207 +7477,208 @@ public class EugeneLexer extends Lexer {
 			"\1\u0281",
 			"\1\u0282",
 			"\1\u0283",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\13\77\1\u0284\16\77",
+			"\1\u0284",
+			"\1\u0285",
 			"\1\u0286",
-			"",
 			"\1\u0287",
 			"\1\u0288",
 			"\1\u0289",
 			"\1\u028a",
-			"",
-			"\1\u028b\13\uffff\1\u028c",
+			"\1\u028b",
+			"\1\u028c",
 			"\1\u028d",
-			"\1\u028e",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\13\101\1\u028e\16\101",
 			"\1\u0290",
+			"",
 			"\1\u0291",
-			"\1\u0292\1\u0293\3\uffff\1\u0294\7\uffff\1\u0295\3\uffff\1\u0296\1\u0297",
+			"\1\u0292",
+			"\1\u0293",
+			"\1\u0294",
+			"",
+			"\1\u0295\13\uffff\1\u0296",
+			"\1\u0297",
 			"\1\u0298",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
 			"",
-			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u029a",
 			"\1\u029b",
-			"\1\u029c",
-			"\1\u029d",
-			"\1\u029e",
-			"\1\u029f",
-			"\1\u02a0",
-			"\1\u02a1",
+			"\1\u029c\1\u029d\3\uffff\1\u029e\7\uffff\1\u029f\3\uffff\1\u02a0\1\u02a1",
 			"\1\u02a2",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"",
-			"\12\77\7\uffff\13\77\1\u02a3\16\77\4\uffff\1\77\1\uffff\32\77",
+			"",
+			"\1\u02a4",
 			"\1\u02a5",
 			"\1\u02a6",
 			"\1\u02a7",
 			"\1\u02a8",
-			"",
 			"\1\u02a9",
 			"\1\u02aa",
 			"\1\u02ab",
 			"\1\u02ac",
-			"\1\u02ad",
 			"",
-			"",
-			"\1\u02ae\13\uffff\1\u02af",
-			"",
+			"\12\101\7\uffff\13\101\1\u02ad\16\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u02af",
 			"\1\u02b0",
 			"\1\u02b1",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u02b3",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u02b4",
-			"\1\u02b5\1\u02b6\3\uffff\1\u02b7\7\uffff\1\u02b8\3\uffff\1\u02b9\1\u02ba",
-			"\1\u02bb",
+			"",
+			"\1\u02b5",
+			"\1\u02b6",
+			"\1\u02b7",
+			"\1\u02b8",
+			"\1\u02b9",
 			"",
 			"",
+			"\1\u02ba\13\uffff\1\u02bb",
 			"",
-			"",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
+			"\1\u02bc",
 			"\1\u02bd",
-			"\1\u02be",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u02bf",
 			"\1\u02c0",
-			"\1\u02c1",
-			"\1\u02c2",
-			"\1\u02c3",
-			"\1\u02c4",
-			"\1\u02c5",
-			"\1\u02c6",
-			"",
+			"\1\u02c1\1\u02c2\3\uffff\1\u02c3\7\uffff\1\u02c4\3\uffff\1\u02c5\1\u02c6",
 			"\1\u02c7",
-			"\1\u02c8",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
 			"\1\u02c9",
 			"\1\u02ca",
 			"\1\u02cb",
 			"\1\u02cc",
 			"\1\u02cd",
 			"\1\u02ce",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
+			"\1\u02cf",
 			"\1\u02d0",
 			"\1\u02d1",
 			"\1\u02d2",
+			"",
 			"\1\u02d3",
 			"\1\u02d4",
 			"\1\u02d5",
 			"\1\u02d6",
 			"\1\u02d7",
 			"\1\u02d8",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u02d9",
 			"\1\u02da",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
 			"\1\u02dc",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u02dd",
 			"\1\u02de",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u02e5",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u02e7",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u02df",
+			"\1\u02e0",
+			"\1\u02e1",
+			"\1\u02e2",
+			"\1\u02e3",
+			"\1\u02e4",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u02e6",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u02e8",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u02ea",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u02ec",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
-			"\1\u02ee",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u02f0",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u02f2",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u02f1",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u02f3",
-			"\1\u02f4",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u02f6",
-			"\1\u02f7",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u02f8",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
 			"\1\u02fa",
-			"\1\u02fb",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u02fc",
-			"\1\u02fd",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u02fe",
 			"\1\u02ff",
 			"\1\u0300",
-			"\1\u0301",
-			"\1\u0302",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u0304",
-			"\1\u0305",
-			"\1\u0306",
 			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u0302",
+			"\1\u0303",
+			"\1\u0304",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u0306",
 			"\1\u0307",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0308",
 			"\1\u0309",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u030a",
 			"\1\u030b",
 			"\1\u030c",
 			"\1\u030d",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u030f",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u030e",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u0310",
 			"\1\u0311",
 			"\1\u0312",
+			"",
 			"\1\u0313",
-			"\1\u0314",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0315",
-			"\1\u0316",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0317",
 			"\1\u0318",
-			"",
 			"\1\u0319",
-			"\1\u031a",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u031b",
-			"\1\u031c",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u031d",
 			"\1\u031e",
 			"\1\u031f",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0320",
 			"\1\u0321",
 			"\1\u0322",
-			"",
 			"\1\u0323",
 			"\1\u0324",
+			"",
 			"\1\u0325",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0326",
+			"\1\u0327",
 			"\1\u0328",
 			"\1\u0329",
 			"\1\u032a",
 			"\1\u032b",
-			"\1\u032c",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u032d",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u032f",
+			"\1\u032e",
 			"",
+			"\1\u032f",
 			"\1\u0330",
 			"\1\u0331",
-			"\1\u0332",
-			"\1\u0333",
+			"",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0334",
 			"\1\u0335",
 			"\1\u0336",
 			"\1\u0337",
 			"\1\u0338",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0339",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u033b",
+			"",
 			"\1\u033c",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u033d",
 			"\1\u033e",
 			"\1\u033f",
 			"\1\u0340",
@@ -7623,13 +7686,13 @@ public class EugeneLexer extends Lexer {
 			"\1\u0342",
 			"\1\u0343",
 			"\1\u0344",
-			"\1\u0345",
-			"\1\u0346",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0347",
 			"\1\u0348",
-			"\1\u0349",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u034a",
-			"",
 			"\1\u034b",
 			"\1\u034c",
 			"\1\u034d",
@@ -7638,111 +7701,109 @@ public class EugeneLexer extends Lexer {
 			"\1\u0350",
 			"\1\u0351",
 			"\1\u0352",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
+			"\1\u0353",
 			"\1\u0354",
-			"",
 			"\1\u0355",
-			"",
 			"\1\u0356",
 			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
+			"\1\u0357",
 			"\1\u0358",
-			"",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
+			"\1\u0359",
 			"\1\u035a",
-			"",
 			"\1\u035b",
+			"\1\u035c",
+			"\1\u035d",
+			"\1\u035e",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0360",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0361",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
 			"\1\u0362",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u0365",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
+			"\1\u0364",
+			"",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
 			"\1\u0366",
+			"",
 			"\1\u0367",
-			"\1\u0368",
-			"\1\u0369",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u036f",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u036e",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0371",
 			"\1\u0372",
 			"\1\u0373",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
+			"\1\u0374",
 			"\1\u0375",
-			"\1\u0376",
-			"\1\u0377",
-			"\1\u0378",
-			"\1\u0379",
-			"\1\u037a",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u037b",
-			"\1\u037c",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
 			"\1\u037d",
 			"\1\u037e",
 			"\1\u037f",
-			"\1\u0380",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
 			"\1\u0381",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
+			"\1\u0382",
+			"\1\u0383",
 			"\1\u0384",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0385",
+			"\1\u0386",
 			"\1\u0387",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
-			"",
+			"\1\u0388",
 			"\1\u0389",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u038a",
 			"\1\u038b",
 			"\1\u038c",
 			"\1\u038d",
-			"\1\u038e",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
 			"\1\u0390",
-			"\1\u0391",
-			"\1\u0392",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0393",
-			"\1\u0394",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
+			"",
 			"\1\u0395",
-			"\1\u0396",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0397",
 			"\1\u0398",
-			"",
-			"",
 			"\1\u0399",
 			"\1\u039a",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u039c",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u039d",
 			"\1\u039e",
 			"\1\u039f",
 			"\1\u03a0",
@@ -7750,95 +7811,96 @@ public class EugeneLexer extends Lexer {
 			"\1\u03a2",
 			"\1\u03a3",
 			"\1\u03a4",
+			"",
+			"",
 			"\1\u03a5",
 			"\1\u03a6",
-			"\1\u03a7",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u03a8",
-			"\1\u03a9",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u03aa",
 			"\1\u03ab",
 			"\1\u03ac",
 			"\1\u03ad",
 			"\1\u03ae",
 			"\1\u03af",
-			"",
 			"\1\u03b0",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
+			"\1\u03b1",
+			"\1\u03b2",
+			"\1\u03b3",
+			"\1\u03b4",
+			"\1\u03b5",
 			"\1\u03b6",
-			"",
-			"",
 			"\1\u03b7",
 			"\1\u03b8",
 			"\1\u03b9",
 			"\1\u03ba",
 			"\1\u03bb",
 			"",
-			"",
-			"",
-			"",
-			"",
 			"\1\u03bc",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"",
-			"\1\u03bd",
-			"\1\u03be",
-			"\1\u03bf",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"",
-			"\1\u03c0",
-			"\1\u03c1",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
 			"\1\u03c2",
+			"",
+			"",
 			"\1\u03c3",
 			"\1\u03c4",
 			"\1\u03c5",
 			"\1\u03c6",
 			"\1\u03c7",
+			"",
+			"",
+			"",
+			"",
+			"",
 			"\1\u03c8",
+			"",
 			"\1\u03c9",
 			"\1\u03ca",
 			"\1\u03cb",
+			"",
 			"\1\u03cc",
-			"",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
+			"\1\u03cd",
+			"\1\u03ce",
 			"\1\u03cf",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u03d0",
 			"\1\u03d1",
 			"\1\u03d2",
 			"\1\u03d3",
-			"",
 			"\1\u03d4",
 			"\1\u03d5",
 			"\1\u03d6",
 			"\1\u03d7",
 			"\1\u03d8",
-			"\1\u03d9",
-			"\1\u03da",
+			"",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
 			"\1\u03db",
-			"\1\u03dc",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u03dd",
 			"\1\u03de",
+			"\1\u03df",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u03e0",
 			"\1\u03e1",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u03e2",
 			"\1\u03e3",
 			"\1\u03e4",
 			"\1\u03e5",
@@ -7846,47 +7908,46 @@ public class EugeneLexer extends Lexer {
 			"\1\u03e7",
 			"\1\u03e8",
 			"\1\u03e9",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u03eb",
-			"\1\u03ec",
+			"\1\u03ea",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u03ed",
-			"\1\u03ee",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u03ef",
 			"\1\u03f0",
 			"\1\u03f1",
 			"\1\u03f2",
-			"",
-			"",
-			"",
-			"",
-			"",
 			"\1\u03f3",
 			"\1\u03f4",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u03f6",
+			"\1\u03f5",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u03f7",
 			"\1\u03f8",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u03f9",
 			"\1\u03fa",
 			"\1\u03fb",
 			"\1\u03fc",
 			"\1\u03fd",
 			"\1\u03fe",
+			"",
+			"",
+			"",
+			"",
+			"",
 			"\1\u03ff",
 			"\1\u0400",
-			"\1\u0401",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0402",
 			"\1\u0403",
 			"\1\u0404",
-			"\1\u0405",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u0406",
 			"\1\u0407",
 			"\1\u0408",
 			"\1\u0409",
-			"",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
+			"\1\u040a",
 			"\1\u040b",
 			"\1\u040c",
 			"\1\u040d",
@@ -7894,224 +7955,239 @@ public class EugeneLexer extends Lexer {
 			"\1\u040f",
 			"\1\u0410",
 			"\1\u0411",
-			"\1\u0412",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0413",
 			"\1\u0414",
 			"\1\u0415",
-			"\1\u0416",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
 			"",
 			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
+			"\1\u0417",
+			"\1\u0418",
 			"\1\u0419",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u041a",
 			"\1\u041b",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u041c",
 			"\1\u041d",
 			"\1\u041e",
 			"\1\u041f",
 			"\1\u0420",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0421",
 			"\1\u0422",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u0424",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
+			"",
 			"\1\u0425",
-			"\1\u0426",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0427",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0429",
 			"\1\u042a",
+			"\1\u042b",
+			"\1\u042c",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u042d",
-			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u042e",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0430",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0431",
+			"\1\u0432",
 			"\1\u0433",
-			"\1\u0434",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0435",
 			"\1\u0436",
-			"\1\u0437",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0439",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u043a",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u043c",
-			"",
-			"\1\u043d",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u043f",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0440",
 			"\1\u0441",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0442",
 			"\1\u0443",
-			"\1\u0444",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0445",
-			"\1\u0446",
-			"\1\u0447",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
 			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u0448",
 			"",
 			"\1\u0449",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u044c",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u044b",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u044d",
-			"\1\u044e",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u044f",
+			"\1\u0450",
 			"\1\u0451",
 			"\1\u0452",
 			"\1\u0453",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0455",
 			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0458",
-			"",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0459",
 			"\1\u045a",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\1\u045c",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u045d",
+			"\1\u045e",
+			"\1\u045f",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"",
-			"\1\u0461",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
 			"\1\u0464",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0466",
-			"\1\u0467",
-			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0468",
-			"",
-			"",
 			"\1\u0469",
-			"\1\u046a",
-			"\1\u046b",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"",
 			"",
-			"\1\u046c",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
 			"\1\u046d",
-			"\1\u046e",
 			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"",
-			"",
-			"",
-			"\1\u046f",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u0470",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0472",
-			"",
-			"",
-			"",
 			"\1\u0473",
 			"",
+			"\1\u0474",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0475",
 			"\1\u0476",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0477",
+			"",
+			"",
 			"\1\u0478",
 			"\1\u0479",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u047a",
+			"",
+			"",
+			"",
+			"",
 			"\1\u047b",
-			"\1\u047c",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u047e",
 			"",
 			"",
+			"",
 			"\1\u047f",
-			"\1\u0480",
 			"",
 			"",
-			"\1\u0481",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0482",
-			"\1\u0483",
-			"",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0484",
 			"\1\u0485",
-			"",
-			"\1\u0486",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u0487",
 			"\1\u0488",
-			"\1\u0489",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u048a",
+			"",
+			"",
 			"\1\u048b",
 			"\1\u048c",
+			"",
+			"",
 			"\1\u048d",
+			"",
 			"\1\u048e",
 			"\1\u048f",
+			"",
 			"\1\u0490",
 			"\1\u0491",
+			"",
 			"\1\u0492",
 			"\1\u0493",
 			"\1\u0494",
 			"\1\u0495",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0496",
 			"\1\u0497",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u0498",
 			"\1\u0499",
 			"\1\u049a",
 			"\1\u049b",
 			"\1\u049c",
 			"\1\u049d",
-			"",
 			"\1\u049e",
-			"",
 			"\1\u049f",
 			"\1\u04a0",
 			"\1\u04a1",
-			"\1\u04a2",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u04a3",
-			"\1\u04a4",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"\1\u04a5",
 			"\1\u04a6",
 			"\1\u04a7",
 			"\1\u04a8",
 			"\1\u04a9",
+			"",
 			"\1\u04aa",
+			"",
 			"\1\u04ab",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u04ac",
 			"\1\u04ad",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\1\u04ae",
 			"\1\u04af",
 			"\1\u04b0",
 			"\1\u04b1",
+			"\1\u04b2",
+			"\1\u04b3",
+			"\1\u04b4",
+			"\1\u04b5",
+			"\1\u04b6",
+			"\1\u04b7",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u04b9",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\1\u04bb",
+			"\1\u04bc",
+			"\1\u04bd",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
-			"\12\77\7\uffff\32\77\4\uffff\1\77\1\uffff\32\77",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
+			"\12\101\7\uffff\32\101\4\uffff\1\101\1\uffff\32\101",
 			"",
 			"",
 			"",
@@ -8149,7 +8225,7 @@ public class EugeneLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "1:1: Tokens : ( ADDPROPS | AMP | ARRAY | ARROW | ASSERT | BOOL | BOOLEAN | COLLECTION | COLON | COMMA | CREATE_LC | CREATE_UC | DELETE_LC | DELETE_UC | DEVICE | DIV | DOLLAR | DOT | DOTDOT | EQUALS | EXIT_LC | EXIT_UC | EXPORT_LC | EXPORT_UC | FALSE_LC | FALSE_UC | FLEXIBLE | GENBANK | GEQUAL | GRAMMAR | GTHAN | HASHMARK | IMAGE | IMPORT_LC | IMPORT_UC | INCLUDE_LC | INCLUDE_UC | INTERACTION | LC_AND | LC_ELSE | LC_ELSEIF | LC_FOR | LC_FORALL | LC_IF | LC_INDUCES | LC_NOT | LC_ON | LC_OR | LC_PERMUTE | LC_PRODUCT | LC_REPRESSES | LC_SEQUENCE_OF | LC_WHILE | LEFTCUR | LEFTP | LEFTSBR | LEQUAL | LOG_AND | LOG_OR | LTHAN | MINUS | MULT | NEQUAL | NOTE | NUM | OP_NOT | PART | PART_TYPE | PIPE | PLUS | PRINTLN_LC | PRINTLN_UC | PRINT_LC | PRINT_UC | PROPERTY | RANDOM_LC | RANDOM_UC | READ_LC | READ_UC | REF | REGISTRY | RETURN_LC | RETURN_UC | RIGHTCUR | RIGHTP | RIGHTSBR | RULE | RULE_BUILDER | SAVE_LC | SAVE_UC | SBOL | SEMIC | SIZEOF_LC | SIZEOF_UC | SIZE_LC | SIZE_OF_LC | SIZE_OF_UC | SIZE_UC | STORE_LC | STORE_UC | STRICT | TRUE_LC | TRUE_UC | TXT | TYPE | UC_AND | UC_ELSE | UC_ELSEIF | UC_FOR | UC_FORALL | UC_IF | UC_INDUCES | UC_NOT | UC_ON | UC_OR | UC_PERMUTE | UC_PRODUCT | UC_REPRESSES | UC_SEQUENCE_OF | UC_WHILE | UNDERS | UPDATE_LC | UPDATE_UC | VISUALIZE_LC | VISUALIZE_UC | T__138 | T__139 | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | T__170 | T__171 | T__172 | T__173 | T__174 | T__175 | T__176 | T__177 | T__178 | T__179 | T__180 | T__181 | T__182 | T__183 | T__184 | T__185 | T__186 | T__187 | T__188 | T__189 | T__190 | T__191 | T__192 | T__193 | T__194 | T__195 | T__196 | T__197 | T__198 | T__199 | T__200 | T__201 | T__202 | T__203 | T__204 | T__205 | T__206 | T__207 | T__208 | T__209 | T__210 | T__211 | T__212 | T__213 | T__214 | T__215 | NUMBER | REAL | WS | NEWLINE | LINE_COMMENT | ML_COMMENT | ID | STRING );";
+			return "1:1: Tokens : ( ADDPROPS | AMP | ARRAY | ARROW | ASSERT | BOOL | BOOLEAN | COLLECTION | COLON | COMMA | CREATE_LC | CREATE_UC | DELETE_LC | DELETE_UC | DEVICE | DIV | DOLLAR | DOT | DOTDOT | EQUALS | EXIT_LC | EXIT_UC | EXPORT_LC | EXPORT_UC | FALSE_LC | FALSE_UC | FLEXIBLE | GENBANK | GEQUAL | GRAMMAR | GTHAN | HASHMARK | IMAGE | IMPORT_LC | IMPORT_UC | INCLUDE_LC | INCLUDE_UC | INTERACTION | LC_AND | LC_ELSE | LC_ELSEIF | LC_FOR | LC_FORALL | LC_IF | LC_INDUCES | LC_NOT | LC_ON | LC_OR | LC_PERMUTE | LC_PRODUCT | LC_REPRESSES | LC_SEQUENCE_OF | LC_WHILE | LEFTCUR | LEFTP | LEFTSBR | LEQUAL | LOG_AND | LOG_OR | LTHAN | MINUS | MULT | NEQUAL | NOTE | NUM | OP_NOT | PART | PART_TYPE | PIPE | PLUS | PRINTLN_LC | PRINTLN_UC | PRINT_LC | PRINT_UC | PROPERTY | QUERY_LC | QUERY_UC | RANDOM_LC | RANDOM_UC | READ_LC | READ_UC | REF | REGISTRY | RETURN_LC | RETURN_UC | RIGHTCUR | RIGHTP | RIGHTSBR | RULE | RULE_BUILDER | SAVE_LC | SAVE_UC | SBOL | SEMIC | SIZEOF_LC | SIZEOF_UC | SIZE_LC | SIZE_OF_LC | SIZE_OF_UC | SIZE_UC | STORE_LC | STORE_UC | STRICT | TRUE_LC | TRUE_UC | TXT | TYPE | UC_AND | UC_ELSE | UC_ELSEIF | UC_FOR | UC_FORALL | UC_IF | UC_INDUCES | UC_NOT | UC_ON | UC_OR | UC_PERMUTE | UC_PRODUCT | UC_REPRESSES | UC_SEQUENCE_OF | UC_WHILE | UNDERS | UPDATE_LC | UPDATE_UC | VISUALIZE_LC | VISUALIZE_UC | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | T__170 | T__171 | T__172 | T__173 | T__174 | T__175 | T__176 | T__177 | T__178 | T__179 | T__180 | T__181 | T__182 | T__183 | T__184 | T__185 | T__186 | T__187 | T__188 | T__189 | T__190 | T__191 | T__192 | T__193 | T__194 | T__195 | T__196 | T__197 | T__198 | T__199 | T__200 | T__201 | T__202 | T__203 | T__204 | T__205 | T__206 | T__207 | T__208 | T__209 | T__210 | T__211 | T__212 | T__213 | T__214 | T__215 | T__216 | T__217 | NUMBER | REAL | WS | NEWLINE | LINE_COMMENT | ML_COMMENT | ID | STRING );";
 		}
 	}
 
