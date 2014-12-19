@@ -2836,16 +2836,96 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 /* --------------
  * QUERY / query
  * -------------- */	
-	|	(QUERY_LC|QUERY_UC) LEFTP er=expressionRule[defer] RIGHTP {
+	|	(QUERY_LC|QUERY_UC) LEFTP q=cnf_query[defer] RIGHTP {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
-        $element = this.interp.query($er.p);
+        $element = this.interp.query($q.lAnd);
     } catch(Exception ee) {
         printError(ee.getLocalizedMessage());
     }
 }	
 	}
 	;
+	
+/* ----------------------------------------
+ * in Eugene v2.0:
+ * the specification of queries follows
+ * the Conjunctive Normalform (CNF)
+ * ---------------------------------------- */	
+cnf_query[boolean defer]
+	returns [LogicalAnd lAnd]
+	:	(c=or_query[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    if(null == $lAnd) {
+        $lAnd = new LogicalAnd();
+    }
+    
+    $lAnd.getPredicates().add($c.p);
+}	
+	}) ( (LC_AND|UC_AND|LOG_AND) cnf=cnf_query[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    $lAnd.union($cnf.lAnd);
+}	
+	})?
+	;
+
+or_query[boolean defer] 
+	returns [Predicate p]
+@init{
+LogicalOr lor = null;
+}	
+	:	n1=negated_query[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    $p = $n1.p;
+}	
+	}	((LC_OR|UC_OR|LOG_OR) n2=negated_query[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    try {
+        if(null == lor) {
+            lor = this.interp.logicalOr($n1.p, $n2.p);
+        } else {
+            lor = this.interp.logicalOr(lor, $n2.p); 
+        }
+    } catch(EugeneException ee) {
+        printError(ee.getMessage());
+    }
+}	
+	}	)*  {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    if(null != lor) {
+        $p = lor;
+    }
+}	
+	}
+	;
+	
+negated_query[boolean defer]
+	returns [Predicate p]
+	:	((UC_NOT|LC_NOT|OP_NOT) c=query[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    try {
+        $p = this.interp.negate($c.p);
+    } catch(Exception e) {
+        printError(e.getMessage());
+    }
+}
+	}
+	|	c=query[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    $p = $c.p;
+}	
+	}) 
+	;
+ 	
+query[boolean defer]
+	returns [Predicate p]
+	:	exp=expressionRule[defer] {
+if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
+    $p = $exp.p;
+}	
+	}
+	;
+
 
 /*------------------------------------------------------------------
  * STAND-ALONE FUNCTIONS

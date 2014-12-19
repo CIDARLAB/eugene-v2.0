@@ -26,7 +26,6 @@ import org.cidarlab.sparrow.rule.SparrowRule;
  * Eugene expression rules to JBoss Drools rules.
  * 
  * @author Ernst Oberortner
- *
  */
 public class Eugene2SparrowCompiler {
 

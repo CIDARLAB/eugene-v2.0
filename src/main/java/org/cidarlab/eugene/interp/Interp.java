@@ -784,10 +784,10 @@ public class Interp {
 	 * @return ... a
 	 * @throws EugeneException
 	 */
-	public EugeneCollection query(Predicate p)		
+	public EugeneCollection query(LogicalAnd query)		
 			throws EugeneException {
 		
-		if(null != p && !(p instanceof SelectionPredicate)) {
+		if(null == query) {
 			throw new EugeneException("Invalid query.");
 		}
 		
@@ -799,9 +799,7 @@ public class Interp {
 		// first, we need to convert the 
 		// predicate into a rule.
 		Rule r = new Rule("r");
-		LogicalAnd la = new LogicalAnd();
-		la.getPredicates().add(p);
-		r.setLogicalAnd(la);
+		r.setLogicalAnd(query);
 		
 		EugeneCollection ec = new EugeneCollection(null);
 		try {

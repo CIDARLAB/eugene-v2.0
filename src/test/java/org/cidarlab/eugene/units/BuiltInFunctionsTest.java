@@ -275,4 +275,101 @@ public class BuiltInFunctionsTest {
 			assertTrue(false);
 		}
 	}
+
+	@Test
+	public void testQuery_Promoter_txt_Strength() {
+		int NR_OF_PROMOTERS = 10;
+		StringBuilder script = new StringBuilder();
+		script.append("Property strength(txt);")
+			.append("PartType Promoter(strength);");
+		
+		// 10 strong/medium/weak promoters
+		for(int i=1; i<=NR_OF_PROMOTERS; i++) {
+			script.append("Promoter pstrong").append(i).append("(.strength(\"strong\"));");
+			script.append("Promoter pmedium").append(i).append("(.strength(\"medium\"));");
+			script.append("Promoter pweak").append(i).append("(.strength(\"weak\"));");
+		}
+		
+		script.append("strong_promoters = QUERY(Promoter.strength == \"strong\");");
+		script.append("medium_promoters = QUERY(Promoter.strength == \"medium\");");
+		script.append("weak_promoters = QUERY(Promoter.strength == \"weak\");");
+		
+		try {
+			Eugene e = new Eugene();
+			
+			EugeneCollection ec = e.executeScript(script.toString());
+			
+			assert(ec != null);
+			
+			assert(ec.get("strong_promoters") != null);
+			assert(ec.get("medium_promoters") != null);
+			assert(ec.get("weak_promoters") != null);
+			
+			assert(ec.get("strong_promoters") instanceof EugeneCollection);
+			assert(ec.get("medium_promoters") instanceof EugeneCollection);
+			assert(ec.get("weak_promoters") instanceof EugeneCollection);
+
+			assert(((EugeneCollection)ec.get("strong_promoters")).getElements() != null);
+			assert(((EugeneCollection)ec.get("medium_promoters")).getElements() != null);
+			assert(((EugeneCollection)ec.get("weak_promoters")).getElements() != null);
+
+				// the query should return 1 part, namely p1
+			assert(((EugeneCollection)ec.get("strong_promoters")).getElements().size() == NR_OF_PROMOTERS);
+			assert(((EugeneCollection)ec.get("medium_promoters")).getElements().size() == NR_OF_PROMOTERS);
+			assert(((EugeneCollection)ec.get("weak_promoters")).getElements().size() == NR_OF_PROMOTERS);
+
+		} catch(EugeneException ee) {
+			
+			// no exception should be thrown.
+			assertTrue(false);
+		}
+	}
+
+	@Test
+	public void testQuery_Promoter_num_Strength() {
+		int NR_OF_PROMOTERS = 300;
+		StringBuilder script = new StringBuilder();
+		script.append("Property strength(num);")
+			.append("PartType Promoter(strength);");
+		
+		// 10 strong/medium/weak promoters
+		for(int i=1; i<=NR_OF_PROMOTERS; i++) {
+			script.append("Promoter p").append(i).append("(.strength(").append(i).append("));");
+		}
+		
+		script.append("strong_promoters = QUERY(Promoter.strength > 200);");
+		script.append("medium_promoters = QUERY(Promoter.strength > 100 AND Promoter.strength <= 200);");
+		script.append("weak_promoters = QUERY(Promoter.strength <= 100);");
+		
+		try {
+			Eugene e = new Eugene();
+			
+			EugeneCollection ec = e.executeScript(script.toString());
+			
+			assert(ec != null);
+			
+			assert(ec.get("strong_promoters") != null);
+			assert(ec.get("medium_promoters") != null);
+			assert(ec.get("weak_promoters") != null);
+			
+			assert(ec.get("strong_promoters") instanceof EugeneCollection);
+			assert(ec.get("medium_promoters") instanceof EugeneCollection);
+			assert(ec.get("weak_promoters") instanceof EugeneCollection);
+
+			assert(((EugeneCollection)ec.get("strong_promoters")).getElements() != null);
+			assert(((EugeneCollection)ec.get("medium_promoters")).getElements() != null);
+			assert(((EugeneCollection)ec.get("weak_promoters")).getElements() != null);
+
+				// the query should return 1 part, namely p1
+			assert(((EugeneCollection)ec.get("strong_promoters")).getElements().size() == NR_OF_PROMOTERS / 3);
+			assert(((EugeneCollection)ec.get("medium_promoters")).getElements().size() == NR_OF_PROMOTERS / 3);
+			assert(((EugeneCollection)ec.get("weak_promoters")).getElements().size() == NR_OF_PROMOTERS / 3);
+
+		} catch(EugeneException ee) {
+			
+			ee.printStackTrace();
+			// no exception should be thrown.
+			assertTrue(false);
+		}
+	}
 }
