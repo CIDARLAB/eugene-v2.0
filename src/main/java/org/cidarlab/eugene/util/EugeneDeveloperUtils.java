@@ -34,4 +34,22 @@ public class EugeneDeveloperUtils {
 		return new Property(EugeneConstants.PIGEON_PROPERTY, EugeneConstants.TXT);
 	}
 	
+	/**
+	 * The addDoubleQuotesTo(String) method checks if a given 
+	 * String starts and ends with a double-quota ('"') character.
+	 * If yes, then it adds double-quotas around the original String.
+	 * Otherwise, it returns the original string. 
+	 * 
+	 * @param s  ... the string
+	 * @return  ... the string w/ double-quotes
+	 */
+	public static String addDoubleQuotesTo(String s) {
+		if(!s.startsWith("\"") && !s.endsWith("\"")) {
+			return "\"" + s + "\"";
+		}
+		
+		return s;
+	}
+
+	
 }

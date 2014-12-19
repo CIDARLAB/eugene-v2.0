@@ -222,4 +222,57 @@ public class BuiltInFunctionsTest {
 			assertTrue(false);
 		}
 	}
+	
+	@Test
+	public void testQuery_txt_EQUALS_constant() {
+		StringBuilder script = new StringBuilder();
+		script.append(partLibrary)
+			.append(result).append(" = query(PT.tp == \"one\");");
+		
+		try {
+			Eugene e = new Eugene();
+			
+			EugeneCollection ec = e.executeScript(script.toString());
+			
+			assert(ec != null);
+			assert(ec.get(result) != null);
+			assert(ec.get(result) instanceof EugeneCollection);
+
+			assert(((EugeneCollection)ec.get(result)).getElements() != null);
+				// the query should return 1 part, namely p1
+			assert(((EugeneCollection)ec.get(result)).getElements().size() == 1);
+
+		} catch(EugeneException ee) {
+			
+			// no exception should be thrown.
+			assertTrue(false);
+		}
+	}
+	
+	@Test
+	public void testQuery_txt_EQUALS_Variable() {
+		StringBuilder script = new StringBuilder();
+		script.append(partLibrary)
+			.append("txt one = \"one\";")
+			.append(result).append(" = query(PT.tp == one);");
+		
+		try {
+			Eugene e = new Eugene();
+			
+			EugeneCollection ec = e.executeScript(script.toString());
+			
+			assert(ec != null);
+			assert(ec.get(result) != null);
+			assert(ec.get(result) instanceof EugeneCollection);
+
+			assert(((EugeneCollection)ec.get(result)).getElements() != null);
+				// the query should return 1 part, namely p1
+			assert(((EugeneCollection)ec.get(result)).getElements().size() == 1);
+
+		} catch(EugeneException ee) {
+			
+			// no exception should be thrown.
+			assertTrue(false);
+		}
+	}
 }

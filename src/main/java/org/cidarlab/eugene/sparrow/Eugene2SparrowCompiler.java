@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.cidarlab.eugene.constants.EugeneConstants;
+import org.cidarlab.eugene.dom.Variable;
 import org.cidarlab.eugene.dom.rules.LogicalNot;
 import org.cidarlab.eugene.dom.rules.LogicalOr;
 import org.cidarlab.eugene.dom.rules.Predicate;
@@ -16,9 +17,17 @@ import org.cidarlab.eugene.dom.rules.exp.Expression;
 import org.cidarlab.eugene.dom.rules.exp.ExpressionConstraint;
 import org.cidarlab.eugene.dom.rules.exp.ExpressionOperand;
 import org.cidarlab.eugene.exception.EugeneException;
+import org.cidarlab.eugene.util.EugeneDeveloperUtils;
 import org.cidarlab.sparrow.rule.SparrowQuery;
 import org.cidarlab.sparrow.rule.SparrowRule;
 
+/**
+ * The Eugene2SparrowCompiler class provides methods to compile
+ * Eugene expression rules to JBoss Drools rules.
+ * 
+ * @author Ernst Oberortner
+ *
+ */
 public class Eugene2SparrowCompiler {
 
 	private static final String NEWLINE = System.getProperty("line.separator");
@@ -136,8 +145,7 @@ public class Eugene2SparrowCompiler {
 		}
 
 		this.clearGlobals();
-		
-//		System.out.println(sp_rule);
+
 		return sp_rule;		
 	}
 	
@@ -270,7 +278,7 @@ public class Eugene2SparrowCompiler {
 					this.tmp = new StringBuilder();
 				}
 				this.tmp.append(this.operandsMap.get(exp.getOp().toLowerCase())).append(" ")
-						.append(exp.getRhs().getLhs().getConstant().getValue());
+						.append(this.Constant2String(exp.getRhs().getLhs().getConstant()));
 
 				if(this.isRelationalOperator(this.operandsMap.get(exp.getOp().toLowerCase()))) {
 					this.sb_eval.append(" ").append(this.tmp);				
@@ -289,7 +297,6 @@ public class Eugene2SparrowCompiler {
 		 */
 		} else if(exp.getRhs().isConstant()) {
 
-			
 //			this.compileExpressionConstant(exp.getRhs());
 			if(EugeneConstants.NUMLIST.equals(exp.getLhs().getType()) || 
 					EugeneConstants.TXTLIST.equals(exp.getLhs().getType())) {
@@ -299,13 +306,10 @@ public class Eugene2SparrowCompiler {
 				}
 				
 				this.tmp.append(this.operandsMap.get(exp.getOp().toLowerCase())).append(" ")
-						.append(exp.getRhs().getLhs().getConstant().getValue());
+						.append(this.Constant2String(exp.getRhs().getLhs().getConstant()));
 
 				exp_op = this.compileExpression(exp.getLhs(), exp.isQuery());
 
-//				System.out.println(this.tmp);
-//				System.out.println("killing -> " + this.sb_eval);
-				
 				if(this.isRelationalOperator(this.operandsMap.get(exp.getOp().toLowerCase()))) {
 					this.sb_eval.append(" ").append(this.tmp);				
 				} else {
@@ -316,15 +320,9 @@ public class Eugene2SparrowCompiler {
 				
 				exp_op = this.compileExpression(exp.getLhs(), exp.isQuery());
 
-//				System.out.println("HERE!  " + exp_op + ", " +exp.getOp().toLowerCase());
-				
 				this.sb_eval.append(" ").append(this.operandsMap.get(exp.getOp().toLowerCase())).append(" ");		
 				
-//				System.out.println("HERE!  " + this.sb_eval);
-				
 				this.compileExpressionConstant(exp.getRhs());
-
-//				System.out.println("HERE!  " + this.sb_eval);
 			}
 			
 		/*
@@ -350,14 +348,12 @@ public class Eugene2SparrowCompiler {
 		 * <constant> <rel-op> <constant>	
 		 */
 		} else {
-			
-			System.out.println(exp.getLhs() + " " + exp.getOp() + " " + exp.getRhs());
+			// we just don't allow such constillations
+			throw new EugeneException(exp.getLhs() + " " + exp.getOp() + " " + exp.getRhs() + " is an invalid expression.");
 		}
 		
 		if(null != this.sb_eval) {
 			this.evaluations.add(this.sb_eval);
-			
-//			System.out.println(this.evaluations);
 		}
 		
 		return exp_op;
@@ -487,12 +483,10 @@ public class Eugene2SparrowCompiler {
 			sb_value.append(sb_indices);
 		}
 		
-		// TEST:
 		sb_component.append(sb_value).append(" )");
 
 		this.sb_eval.append(sb_property);
 
-//		System.out.println(this.sb_eval +" "+this.tmp);
 		if(!this.DO_QUERY) {
 			sb_component.append(" from $loc ");
 		}
@@ -522,23 +516,29 @@ public class Eugene2SparrowCompiler {
 		return null;
 	}
 	
-	private void compileExpressionConstant(Expression exp) {
+	/**
+	 * The compileExpressionConstant(Expression) compiles an expression's 
+	 * operand to a String representation if the operand is a constant or variable.
+	 * 
+	 * @param exp  ... the expression
+	 * 
+	 * @throws EugeneException
+	 */
+	private void compileExpressionConstant(Expression exp) 
+			throws EugeneException {
 		if(exp.getLhs().isConstant()) {
-			this.sb_eval.append(exp.getLhs().getConstant().getValue());
+			this.sb_eval.append(this.Constant2String(exp.getLhs().getConstant()));
 		} else if(exp.getRhs().isConstant()) {
-			this.sb_eval.append(exp.getRhs().getLhs().getConstant().getValue());
+			this.sb_eval.append(this.Constant2String(exp.getRhs().getLhs().getConstant()));
 		}
 	}
 	
 	private StringBuilder buildDroolsQuery() {
 		StringBuilder sb_query = new StringBuilder();
 
-//		System.out.println("[buildDroolsQuery] -> " + this.locd);
-		
 		/*
 		 * EVALUATIONS
 		 */
-
 		if(null != this.evaluations && !this.evaluations.isEmpty()) {
 			for(StringBuilder sb : this.evaluations) {
 				if(null != sb) {   
@@ -762,5 +762,64 @@ public class Eugene2SparrowCompiler {
 		this.sb_components = null;
 		this.sb_eval = null;
 	}
+	
+	/**
+	 * The Constant2String(Variable) method compiles 
+	 * a Eugene Variable object into a String. 
+	 * If the Variable is of type txt or txt[], then 
+	 * we must add double-quotes to them (if not specified).
+	 * Otherwise, we utilize the Variable.getValue() method.
+	 * 
+	 * @param v  ... the Variable to be compiled
+	 * @return ... a String representation of the Variable's value
+	 */
+	private String Constant2String(Variable v) 
+				throws EugeneException {
+		
+		// if the variable is of type num, num[], or bool,
+		// then we just return its value
+		if(EugeneConstants.NUM.equals(v.getType())) {
+
+			return String.valueOf(v.getNum());
+			
+		} else if(EugeneConstants.NUMLIST.equals(v.getType())) {
+			
+			return String.valueOf(v.getNumList());
+			
+		} else if(EugeneConstants.BOOLEAN.equals(v.getType())) {
+		
+			return String.valueOf(v.getBool());
+			
+		// if the variable is of type txt, then
+		// we add double-quotes if not existing
+		} else if(EugeneConstants.TXT.equals(v.getType())) {
+
+			return EugeneDeveloperUtils.addDoubleQuotesTo(v.getTxt());
+			
+		} else if(EugeneConstants.TXTLIST.equals(v.getType())) {
+			
+			StringBuilder sb = new StringBuilder();
+			sb.append("[");
+			int i = 0;
+			// we iterate over every element
+			for(String d : v.getTxtList()) {
+				
+				// and add double-quotes around every list element
+				sb.append(EugeneDeveloperUtils.addDoubleQuotesTo(d));
+				
+				
+				if(i < v.getTxtList().size() - 1) {
+					// comma separated list
+					sb.append(",");
+				}
+			}
+			sb.append("]");
+			
+			return sb.toString();
+		}
+		
+		throw new EugeneException("Invalid type of " + v);
+	}
+	
 
 }
