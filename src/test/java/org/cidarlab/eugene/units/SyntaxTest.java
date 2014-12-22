@@ -1,7 +1,5 @@
 package org.cidarlab.eugene.units;
 
-import static org.junit.Assert.*;
-
 import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.junit.Test;
