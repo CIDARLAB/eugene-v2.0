@@ -54,6 +54,7 @@ public class Eugene {
 	public static String ROOT_DIRECTORY = ".";
 	public static String IMAGES_DIRECTORY = "./exports/pigeon/";
 	
+
 	/*--------------------------------------
 	 * EUGENE CONSTRUCTORS
 	 *--------------------------------------*/
