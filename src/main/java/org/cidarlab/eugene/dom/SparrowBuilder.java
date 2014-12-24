@@ -22,10 +22,13 @@ ENHANCEMENTS, OR MODIFICATIONS.
 
 package org.cidarlab.eugene.dom;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.exception.DOMException;
 import org.cidarlab.sparrow.constants.SparrowConstants;
 import org.cidarlab.sparrow.exception.SparrowException;
@@ -229,16 +232,70 @@ public class SparrowBuilder {
 
 		return part;
 	}
-	
+
 	/**
-	 * sbolDC.getDisplayId(), lstDeviceElements, directions
-	 * @return
-	 * @throws SparrowException
+	 * The buildDevice method instantiates a Eugene Device w/ the given information.
+	 * 
+	 * @param displayId   ... the displayId represents the name of the Device
+	 * @param components  ... a list of the Device's components
+	 * @param directions  ... a list of the components' orientations
+	 * @return ... a Eugene Device object
+	 * 
+	 * @throws SparrowException ... iff the number of components does not match the number of orientations
 	 */
 	public static Device buildDevice(String displayId, List<Component> components, char[] directions) 
 			throws SparrowException {
 		
-		throw new UnsupportedOperationException("DOES NOT WORK (YET)!");
+		// instantiate a Device w/ 
+		// the provided displayId
+		Device d = new Device(displayId);
+		
+		// components of the Device
+		if(null != components && !components.isEmpty()) {
+			
+			// iterate over the given components
+			for(Component c : components) {
+				
+				// store the current component in a list
+				List<NamedElement> loc = new ArrayList<NamedElement>();
+
+				// add the given component to the list of elements
+				loc.add(c);
+				
+				// add the list of elements to the Device's list of elements
+				d.getComponents().add(loc);
+			}
+			
+		}
+		
+		if(null != directions) {
+			// the number of provided orientations must match w/ the number 
+			// of provided components
+			if(directions.length == components.size()) {
+				
+				// iterate over the given orientations
+				for(int i=0; i<directions.length; i++) {
+					
+					Orientation o = Orientation.FORWARD;
+					if('-' == directions[i]) {
+						o = Orientation.REVERSE;
+					}
+					
+					// store the current orientation in a list
+					List<Orientation> loo = new ArrayList<Orientation>();
+					loo.add(o);
+					
+					// add the list to the device's list of orientations
+					d.getOrientations().add(loo);
+				}
+			} else {
+				throw new SparrowException("The number of components does not match the number of directions provided.");
+			}
+			
+		}
+		
+		// lastly, we return the Eugene Device object
+		return d;
 	}
 
 }

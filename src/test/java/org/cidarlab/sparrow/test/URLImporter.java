@@ -1,18 +1,15 @@
-package org.cidarlab.sparrow.data;
+package org.cidarlab.sparrow.test;
 
 import java.net.URL;
 import java.util.Set;
 
 import org.cidarlab.eugene.dom.Component;
 import org.cidarlab.sparrow.Sparrow;
+import org.cidarlab.sparrow.exception.ImportException;
 import org.cidarlab.sparrow.exception.SparrowException;
 import org.cidarlab.sparrow.importers.SBOLImporter;
 
 /**
- * Here, we import facts directly from the iGEM partsregistry
- * using the SBOL converter ``service'' available at
- * http://convert.sbols.org/biobrick/
- *
  * 
  * and here's the mapping again:
  * SBOL DnaComponent (w/o SequenceAnnotations) --> Sparrow Part
@@ -21,48 +18,36 @@ import org.cidarlab.sparrow.importers.SBOLImporter;
  * 
  * @author Ernst Oberortner
  */
-public class BulkRegistryImporter {
+public class URLImporter {
 
 	private Sparrow sparrow;
 	private static final String URL_PREFIX = "http://convert.sbols.org/biobrick/";
 	
-	public BulkRegistryImporter() 
-			throws Exception {
+	public URLImporter() 
+			throws SparrowException {
 		try {
 			this.sparrow = new Sparrow();
 		} catch(SparrowException se) {
-			throw new Exception("Something went wrong while initializing Sparrow! "+se.getMessage());
+			throw new SparrowException(se.getMessage());
 		}
 	}
 	
-	public static void main(String[] args) 
-			throws Exception {
+	public void test() 
+			throws SparrowException, ImportException {
 		
-		BulkRegistryImporter it = new BulkRegistryImporter();
-
-		// importing the JCA constitutive promoters
-		for(int i=0; i<=99; i++) {
-			String part = "BBa_J231";
-			if(i<10) {
-				part += "0"+i;
-			} else {
-				part += i;
+		String[] parts = {"BBa_K780001", "BBa_K780002", "BBa_K780003", "BBa_I0500"};
+		
+		for(String part : parts) {
+			if(!this.importSBOL(part)) {
+				throw new ImportException("import of "+part+" failed.");
 			}
-			
-			it.importSBOL(part);
-		}
-				
-		
-		// import the USTC logic promoters
-		// BBa_I732200 ... BBa_I732452
-		for(int i=200; i<=452; i++) {
-			String part = "BBa_I732"+i;
-			
-			it.importSBOL(part);
 		}
 		
-		// finally, we dump the WM
-		it.printComponents();
+		
+		// compare the test results w/ the expected results
+		if(4 != this.sparrow.getFactCount()) {
+			throw new SparrowException("[URLImporter.test] FAILED!");
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -72,7 +57,7 @@ public class BulkRegistryImporter {
 			Object o = SBOLImporter.importSBOL(new URL(URL_PREFIX+part));
 			if(null != o) {
 				if(o instanceof Component) {                 // Part or Device
-					this.insert((Component)o);
+					this.sparrow.insertFact((Component)o);
 				} else if(o instanceof java.util.HashSet) {  // Collection
 					/*
 					 * here, we iterate over the collection
@@ -81,7 +66,7 @@ public class BulkRegistryImporter {
 					Set<Component> components = (java.util.Set<Component>)o;
 					if(!components.isEmpty()) {
 						for(Component c : components) {
-							this.insert(c);
+							this.sparrow.insertFact(c);
 						}
 					}
 					
@@ -94,15 +79,4 @@ public class BulkRegistryImporter {
 		return false;
 	}
 	
-	private void insert(Component c) 
-			throws SparrowException {
-		System.out.println("inserting "+c+" => "+c.hashCode());
-		sparrow.insertFact(c);
-	}
-	
-	public void printComponents() {
-		System.out.println(this.sparrow.getFactCount());
-		this.sparrow.printFacts();
-	}
-
 }

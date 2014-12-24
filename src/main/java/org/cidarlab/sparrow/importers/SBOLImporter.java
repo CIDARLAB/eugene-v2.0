@@ -22,22 +22,15 @@ ENHANCEMENTS, OR MODIFICATIONS.
 
 package org.cidarlab.sparrow.importers;
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URI;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 
+import org.cidarlab.eugene.data.sbol.mapping.SBOL2Eugene;
 import org.cidarlab.eugene.dom.Component;
-import org.cidarlab.eugene.dom.NamedElement;
+import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.sparrow.exception.ImportException;
-import org.cidarlab.sparrow.exception.SparrowException;
-import org.cidarlab.sparrow.importers.mapping.SBOL2Eugene;
 import org.sbolstandard.core.SBOLDocument;
 import org.sbolstandard.core.SBOLFactory;
 import org.sbolstandard.core.SBOLRootObject;
@@ -88,7 +81,7 @@ public class SBOLImporter {
 	}
 	
 	private static Object parseDocument(SBOLDocument document) 
-			throws SparrowException {
+			throws EugeneException {
 		
 		if (null != document && null != document.getContents() && 
 			!document.getContents().isEmpty()) {
