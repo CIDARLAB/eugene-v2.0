@@ -21,6 +21,7 @@ import org.cidarlab.eugene.dom.Part;
 import org.cidarlab.eugene.dom.PartType;
 import org.cidarlab.eugene.dom.interaction.Interaction;
 import org.cidarlab.eugene.dom.interaction.Interaction.InteractionType;
+import org.cidarlab.eugene.util.FileUtils;
 import org.cidarlab.sparrow.constants.Repository;
 import org.cidarlab.sparrow.constants.Standard;
 import org.cidarlab.sparrow.exception.SparrowException;
@@ -70,6 +71,8 @@ public class Sparrow
 	private KnowledgeBase kbase = null;
 	private StatefulKnowledgeSession ksession = null;
 	private String sessionId = null;
+	
+	private static final String SESSIONS_DIR = "./sessions/";
 	
 	public Sparrow() 
 			throws SparrowException {
@@ -330,11 +333,15 @@ public class Sparrow
 	
 	public void persist() 
 			throws SparrowException {
+		
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		Marshaller marshaller = MarshallerFactory.newMarshaller(kbase);
 		try {
+			
+			FileUtils.createDirectories(Sparrow.SESSIONS_DIR);
+			
 			FileOutputStream foStream = new FileOutputStream(
-					new File("./sessions/"+this.getSessionID()));
+					new File(Sparrow.SESSIONS_DIR+"/"+this.getSessionID()));
 			marshaller.marshall(baos, this.ksession);
 			baos.writeTo(foStream);
 			baos.close();
@@ -352,7 +359,7 @@ public class Sparrow
 		try {
 		
 			FileInputStream fileInputStream =
-					new FileInputStream("./sessions/" + this.getSessionID());
+					new FileInputStream(Sparrow.SESSIONS_DIR +"/" + this.getSessionID());
 	
 			Marshaller marshaller = MarshallerFactory.newMarshaller(kbase);	
 			this.ksession = marshaller.unmarshall(fileInputStream);
