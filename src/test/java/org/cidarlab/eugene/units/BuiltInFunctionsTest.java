@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.EugeneConstants;
+import org.cidarlab.eugene.constants.Orientation;
+import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.Variable;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
@@ -369,6 +371,93 @@ public class BuiltInFunctionsTest {
 			
 			ee.printStackTrace();
 			// no exception should be thrown.
+			assertTrue(false);
+		}
+	}
+	
+	@Test
+	public void testPermute() {
+
+		String script = 
+				"PartType Promoter(); " +
+				"Promoter I14018; " +
+				"Device proms(I14018, I14018); " +
+				"Device fproms(+I14018, +I14018); " +
+				"Device rproms(-I14018, -I14018); " +
+				"Device hierarchical(proms, +I14018); ";
+		
+		// FIX ME:
+		// permute(proms)
+		// permute(fproms)
+		// permute(rproms)
+		// permute(hproms)
+
+		try {
+			EugeneCollection ec = new Eugene().executeScript(script);
+			
+			assert(null != ec);
+			
+			/*-------
+			 * proms Device
+			 *-------*/
+			assert(null != ec.get("proms"));
+			assert(ec.get("proms") instanceof Device);			
+			Device proms = (Device)ec.get("proms");
+			assert(null != proms.getOrientations());
+			assert(proms.getOrientations().size() == 2);
+			assert(null != proms.getOrientations(0));
+			assert(proms.getOrientations(0).size() == 1);
+			assert(proms.getOrientations(0).get(0) == Orientation.UNDEFINED);
+			assert(null != proms.getOrientations(1));
+			assert(proms.getOrientations(1).size() == 1);
+			assert(proms.getOrientations(1).get(0) == Orientation.UNDEFINED);
+
+			/*-------
+			 * fproms Device
+			 *-------*/
+			assert(null != ec.get("fproms"));
+			assert(ec.get("fproms") instanceof Device);			
+			Device fproms = (Device)ec.get("fproms");
+			assert(null != fproms.getOrientations());
+			assert(fproms.getOrientations().size() == 2);
+			assert(null != fproms.getOrientations(0));
+			assert(fproms.getOrientations(0).size() == 1);
+			assert(fproms.getOrientations(0).get(0) == Orientation.FORWARD);
+			assert(null != fproms.getOrientations(1));
+			assert(fproms.getOrientations(1).size() == 1);
+			assert(fproms.getOrientations(1).get(0) == Orientation.FORWARD);
+
+			/*-------
+			 * rproms Device
+			 *-------*/
+			assert(null != ec.get("rproms"));
+			assert(ec.get("rproms") instanceof Device);			
+			Device rproms = (Device)ec.get("rproms");
+			assert(null != rproms.getOrientations());
+			assert(rproms.getOrientations().size() == 2);
+			assert(null != rproms.getOrientations(0));
+			assert(rproms.getOrientations(0).size() == 1);
+			assert(rproms.getOrientations(0).get(0) == Orientation.REVERSE);
+			assert(null != rproms.getOrientations(1));
+			assert(rproms.getOrientations(1).size() == 1);
+			assert(rproms.getOrientations(1).get(0) == Orientation.REVERSE);
+
+			/*-------
+			 * hierarchical Device
+			 *-------*/
+			assert(null != ec.get("hierarchical"));
+			assert(ec.get("hierarchical") instanceof Device);			
+			Device hierarchical = (Device)ec.get("hierarchical");
+			assert(null != hierarchical.getOrientations());
+			assert(hierarchical.getOrientations().size() == 2);
+			assert(null != hierarchical.getOrientations(0));
+			assert(hierarchical.getOrientations(0).size() == 1);
+			assert(hierarchical.getOrientations(0).get(0) == Orientation.UNDEFINED);
+			assert(null != hierarchical.getOrientations(1));
+			assert(hierarchical.getOrientations(1).size() == 1);
+			assert(hierarchical.getOrientations(1).get(0) == Orientation.FORWARD);
+		} catch(EugeneException ee) {
+			// no exception allowed here
 			assertTrue(false);
 		}
 	}
