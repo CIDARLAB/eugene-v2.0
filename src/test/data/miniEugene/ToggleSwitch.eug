@@ -1,0 +1,3 @@
+c2 REPRESSES p2;
+c1 REPRESSES p1;
+Device d1(-c1, -p2, p1, c2, cReporter);

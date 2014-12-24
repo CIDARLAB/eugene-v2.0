@@ -50,7 +50,7 @@ public class IntegrationTest {
 				"PartType Reporter(); Reporter cReporter(.SEQUENCE(\"ATCG\"));" +
 						
 				// INCLUDING miniEugene EXPORT				
-				"include \"./data/miniEugene/ToggleSwitch.eug\" " + 
+				"include \"./src/test/data/miniEugene/ToggleSwitch.eug\" " + 
 				"txt seq = SEQUENCE_OF(d1);";
 		try {
 			
