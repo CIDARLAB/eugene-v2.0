@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:RDF xmlns="http://sbols.org/v1#" xmlns:ns2="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27783">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27783</displayId>
+        <name>nasD_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27783/NA">
+                <nucleotides>gataaggagcggatcatctg</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27785">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27785</displayId>
+        <name>mtnE_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27785/NA">
+                <nucleotides>tttttagaaggtgagaatag</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27786">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27786</displayId>
+        <name>ydfJ_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27786/NA">
+                <nucleotides>tgtgttgaaaggagattatc</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27788">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27788</displayId>
+        <name>liaG_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27788/NA">
+                <nucleotides>atgagaaggatgaaaccga</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27789">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27789</displayId>
+        <name>treP_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27789/NA">
+                <nucleotides>cggatacggaggggttggc</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27790">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27790</displayId>
+        <name>fabL_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27790/NA">
+                <nucleotides>ctacaaggagatgaggaaaa</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27792">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27792</displayId>
+        <name>yhcV_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27792/NA">
+                <nucleotides>aaaggggtgctgaca</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27793">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27793</displayId>
+        <name>acoA_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27793/NA">
+                <nucleotides>aatagaaggaggcgcacaaa</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27795">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27795</displayId>
+        <name>ytrH_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27795/NA">
+                <nucleotides>ggtgaggtgataaag</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27796">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27796</displayId>
+        <name>ytlA_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27796/NA">
+                <nucleotides>gaaataaggaggttgtctat</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27798">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27798</displayId>
+        <name>sspK_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27798/NA">
+                <nucleotides>cgaacctagggggatatgac</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27800">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27800</displayId>
+        <name>yhcO_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27800/NA">
+                <nucleotides>cggctcagggagggagacgt</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27802">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27802</displayId>
+        <name>yjcZ_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27802/NA">
+                <nucleotides>agtaaaggaggtgcttatct</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27803">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27803</displayId>
+        <name>sspN_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27803/NA">
+                <nucleotides>aggagggataaac</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27804">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27804</displayId>
+        <name>sspM_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27804/NA">
+                <nucleotides>gaggaggtgccgt</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27805">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27805</displayId>
+        <name>antE_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27805/NA">
+                <nucleotides>ggagctcat</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27806">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27806</displayId>
+        <name>sspG_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27806/NA">
+                <nucleotides>aatagagaaaggatgatacc</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27807">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27807</displayId>
+        <name>sspJ_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27807/NA">
+                <nucleotides>ttttaaaagaggtgatacga</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27809">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27809</displayId>
+        <name>sspL_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27809/NA">
+                <nucleotides>aggtgaactaac</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27810">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27810</displayId>
+        <name>sda_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27810/NA">
+                <nucleotides>tttaaggaggtgcctctccc</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27812">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27812</displayId>
+        <name>yozQ_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27812/NA">
+                <nucleotides>aataatctggaggaagtaaa</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27814">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27814</displayId>
+        <name>yvaB_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27814/NA">
+                <nucleotides>aaacgaaagggctggtaaaa</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27815">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27815</displayId>
+        <name>opuBA_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27815/NA">
+                <nucleotides>taattttggaggtgcgatgt</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27817">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27817</displayId>
+        <name>araE_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27817/NA">
+                <nucleotides>acattcgggagggcagggaa</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27819">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27819</displayId>
+        <name>yyaC_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27819/NA">
+                <nucleotides>ataacaaggaagtgaaaccc</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27821">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27821</displayId>
+        <name>oxaAA_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27821/NA">
+                <nucleotides>aagattaattataggaggaa</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27823">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27823</displayId>
+        <name>yngJ_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27823/NA">
+                <nucleotides>atgtgaaggaggaaacgat</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27824">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27824</displayId>
+        <name>ykvI_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27824/NA">
+                <nucleotides>ggttcgttcggagggaagaa</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27826">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27826</displayId>
+        <name>yoaF_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27826/NA">
+                <nucleotides>gacataatggaggcatacac</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27828">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27828</displayId>
+        <name>pstS_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27828/NA">
+                <nucleotides>acgcagggggaattcaggaa</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27830">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27830</displayId>
+        <name>yvyD_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27830/NA">
+                <nucleotides>taaaagggaggcgttctttg</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27832">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27832</displayId>
+        <name>yvyF_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27832/NA">
+                <nucleotides>tctaataaggagaaaaaaag</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27834">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27834</displayId>
+        <name>lytD_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27834/NA">
+                <nucleotides>aataagaaagaggagaagga</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27836">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27836</displayId>
+        <name>tagA_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27836/NA">
+                <nucleotides>aggaaggaggagccagac</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27837">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27837</displayId>
+        <name>yqdB_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27837/NA">
+                <nucleotides>atatgaaaggaggtgaaatt</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27839">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27839</displayId>
+        <name>cydA_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27839/NA">
+                <nucleotides>ccggaaatggaggagaaagc</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27841">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27841</displayId>
+        <name>lcfB_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27841/NA">
+                <nucleotides>ttcacttaaggggtgggaga</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27842">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27842</displayId>
+        <name>clpP_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27842/NA">
+                <nucleotides>aaaggtgaaggaggagcatt</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27843">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27843</displayId>
+        <name>ftsH_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27843/NA">
+                <nucleotides>actgtgggaggaggtaagga</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27845">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27845</displayId>
+        <name>ywnJ_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27845/NA">
+                <nucleotides>gttataaaggaggttatgtc</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27847">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27847</displayId>
+        <name>groES_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27847/NA">
+                <nucleotides>ctattgaggaggttatttca</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27849">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27849</displayId>
+        <name>spoVFA_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27849/NA">
+                <nucleotides>aaagaaggtgaacgtttaga</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27851">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27851</displayId>
+        <name>rapB_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27851/NA">
+                <nucleotides>atagaaagggttggaggggc</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27853">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27853</displayId>
+        <name>spoIID_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27853/NA">
+                <nucleotides>cgagcaggaggcagctgaat</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27855">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27855</displayId>
+        <name>fadF_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27855/NA">
+                <nucleotides>agtaaaaagggggaattgga</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27857">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27857</displayId>
+        <name>pbpX_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27857/NA">
+                <nucleotides>attttgggaggaaaaaatga</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27859">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27859</displayId>
+        <name>mrgA_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27859/NA">
+                <nucleotides>cacaaggaggacgttatctt</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27861">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27861</displayId>
+        <name>trxA_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27861/NA">
+                <nucleotides>cacattggaggaattcaata</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27862">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27862</displayId>
+        <name>narK_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27862/NA">
+                <nucleotides>cattgaaaggggcaagccaa</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+    <DnaComponent ns2:about="http://bacillobricks.co.uk/part/BO_27864">
+        <ns2:type ns2:resource="http://purl.obolibrary.org/obo/SO_0000139"/>
+        <displayId>BO_27864</displayId>
+        <name>ysdB_RBS</name>
+        <description></description>
+        <dnaSequence>
+            <DnaSequence ns2:about="http://bacillobricks.co.uk/part/BO_27864/NA">
+                <nucleotides>aagggaggtgccttcacaca</nucleotides>
+            </DnaSequence>
+        </dnaSequence>
+    </DnaComponent>
+</ns2:RDF>

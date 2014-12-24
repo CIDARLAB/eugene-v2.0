@@ -31,22 +31,22 @@ public class LocalDataImportTest {
 	public void test() 
 			throws SparrowException {
 		
-		if(!this.importSBOL("./test_data/K780001.rdf")) {
+		if(!this.importSBOL("./src/test/data/K780001.rdf")) {
 			throw new SparrowException("K780001.rdf FAILED!");
 		}
-		if(!this.importSBOL("./test_data/K780002.rdf")) {
+		if(!this.importSBOL("./src/test/data/K780002.rdf")) {
 			throw new SparrowException("K780002.rdf FAILED!");
 		}
-		if(!this.importSBOL("./test_data/K780000.rdf")) {
+		if(!this.importSBOL("./src/test/data/K780000.rdf")) {
 			throw new SparrowException("K780000.rdf FAILED!");
 		}
-		if(!this.importSBOL("./test_data/partsLibrary.sbol.xml")) {
+		if(!this.importSBOL("./src/test/data/partsLibrary.sbol.xml")) {
 			throw new SparrowException("partsLibrary.sbol.xml FAILED!");
 		}
-		if(!this.importSBOL("./test_data/RBSs.sbol.xml")) {
+		if(!this.importSBOL("./src/test/data/RBSs.sbol.xml")) {
 			throw new SparrowException("RBSs.sbol.xml FAILED!");
 		}
-		if(!this.importSBOL("./test_data/Terminators.sbol.xml")) {
+		if(!this.importSBOL("./src/test/data/Terminators.sbol.xml")) {
 			throw new SparrowException("Terminators.sbol.xml FAILED!");
 		}
 		
