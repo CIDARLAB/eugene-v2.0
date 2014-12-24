@@ -16,11 +16,11 @@ public class DuplicateTest
 	private Sparrow sparrow;
 	
 	public DuplicateTest() 
-			throws Exception {
+			throws SparrowException {
 		try {
 			this.sparrow = new Sparrow();
 		} catch(SparrowException se) {
-			throw new Exception("Something went wrong while initializing Sparrow! "+se.getMessage());
+			throw new SparrowException("Something went wrong while initializing Sparrow! "+se.getMessage());
 		}
 	}
 	

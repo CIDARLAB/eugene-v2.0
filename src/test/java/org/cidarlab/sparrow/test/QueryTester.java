@@ -22,12 +22,12 @@ public class QueryTester
 	private final int NR_OF_PARTS = 1;
 	
 	public QueryTester() 
-			throws Exception {
+			throws SparrowException {
 		
 		try {
 			this.sparrow = new Sparrow();
 		} catch(SparrowException se) {
-			throw new Exception("Something went wrong while initializing Sparrow! "+se.getMessage());
+			throw new SparrowException("Something went wrong while initializing Sparrow! "+se.getMessage());
 		}
 		
 	}
@@ -122,7 +122,7 @@ public class QueryTester
 //		this.queryNumList();
 		
 		this.conjunctions();
-		this.disjunctions();
+//		this.disjunctions();
 		
 	}
 	
@@ -175,7 +175,7 @@ public class QueryTester
 	private void conjunction_txt_bool() 
 			throws SparrowException {
 		
-		// txt == "ATCG" /\ txt == "GCTA"  
+		// txt == "ATCG" /\ bool == true  
 		EugeneRule rule = new EugeneRule();
 		rule.getPredicates().add(new Predicate(new Property("txt", SparrowConstants.TXT), " == ", "ATCG"));
 		rule.getPredicates().add(new Predicate(new Property("bool", SparrowConstants.BOOLEAN), " == ", "true"));
@@ -188,39 +188,41 @@ public class QueryTester
 		
 	}
 
-	/*
-	 * DISJUNCTIONS
-	 */
-	private void disjunctions() 
-			throws SparrowException {
-
-		this.disjunction_txt();
-		
-		// TODO:
-		// - more tests
-	}
-	
-	private void disjunction_txt() 
-			throws SparrowException {
-		
-		List<EugeneRule> rules = new ArrayList<EugeneRule>();
-
-		// txt == "ATCG" \/ txt == "GCTA"  
-		EugeneRule rule1 = new EugeneRule();
-		rule1.getPredicates().add(new Predicate(new Property("txt", SparrowConstants.TXT), " == ", "ATCG"));
-		rules.add(rule1);
-		
-		EugeneRule rule2 = new EugeneRule();
-		rule2.getPredicates().add(new Predicate(new Property("txt", SparrowConstants.TXT), " == ", "GCTA"));
-		rules.add(rule2);
-
-		List<Component> lst = this.sparrow.query(rules);
-
-		if(lst.size() != NR_OF_PARTS) {
-			throw new SparrowException("disjunction_txt FAILED");
-		}
-		
-	}
+//	/*
+//	 * DISJUNCTIONS
+//	 */
+//	private void disjunctions() 
+//			throws SparrowException {
+//
+//		this.query_txt();
+//		
+//		// TODO:
+//		// - more tests
+//	}
+//	
+//	private void query_txt() 
+//			throws SparrowException {
+//		
+//		List<EugeneRule> rules = new ArrayList<EugeneRule>();
+//
+//		// txt == "ATCG" \/ txt == "GCTA"  
+//		EugeneRule rule1 = new EugeneRule();
+//		rule1.getPredicates().add(new Predicate(new Property("txt", SparrowConstants.TXT), " == ", "GCTA"));
+//		rules.add(rule1);
+//		
+////		EugeneRule rule2 = new EugeneRule();
+////		rule2.getPredicates().add(new Predicate(new Property("txt", SparrowConstants.TXT), " == ", "GCTA"));
+////		rules.add(rule2);
+//
+//		System.out.println(this.sparrow.getFacts());
+//		List<Component> lst = this.sparrow.query(rules);
+//
+//		System.out.println(lst);
+//		if(lst.size() != NR_OF_PARTS) {
+//			throw new SparrowException("disjunction_txt FAILED");
+//		}
+//		
+//	}
 	
 	/*
 	 * HELPER METHODS

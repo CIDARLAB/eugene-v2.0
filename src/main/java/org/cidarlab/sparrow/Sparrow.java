@@ -183,10 +183,27 @@ public class Sparrow
 	public List<Part> query(PartType pt) 
 			throws SparrowException {
 		
-		QueryResults results = ksession.getQueryResults( "get all", new Object[] {  pt.getName() } );
-//		System.out.println( "there are " + results.size() + " "+pt.getName()+"s" );
+		// we execute the getParts query w/ the PartType as parameter
+		// see eugene-queries.drl
+		QueryResults results = ksession.getQueryResults( "getParts", new Object[] {  pt } );
 		
-		return null;
+		// then, we process the query results
+		// by storing them into a list
+		List<Part> lop = new ArrayList<Part>();
+		if(null != results && results.size() > 0) {
+			
+			// we fetch every query result, which is id'd by $c
+			// see eugene-queries.drl
+			for(QueryResultsRow row : results) {
+				
+				// and store it in the list of parts
+				lop.add((Part)row.get("$c"));
+			}
+		}
+		
+		// lastly, we return the list of parts
+		// the list will be empty, if no parts of the given part type exist 
+		return lop;
 	}
 	
 
@@ -230,7 +247,6 @@ public class Sparrow
 				Sparrow.class.getClassLoader().getResourceAsStream("query-template.drt");
 
 		String drl = converter.compile( queries, templateStream );
-//		System.out.println(drl);
 		
 		/*
 		 * next, we open a new session to query all data 
@@ -239,7 +255,6 @@ public class Sparrow
 		Reader rdr = new StringReader( drl );
 		kbuilder.add( ResourceFactory.newReaderResource( rdr ), ResourceType.DRL );
 		if( kbuilder.hasErrors() ){
-//			System.out.println(kbuilder.getErrors());
 		    throw new IllegalStateException( "DRL errors: " + kbuilder.getErrors());
 		}
 		this.ksession.getKnowledgeBase().addKnowledgePackages( kbuilder.getKnowledgePackages() );			
@@ -274,10 +289,8 @@ public class Sparrow
 		 */
 		Collection<Eugene2Drools> col = new ArrayList<Eugene2Drools>();
 		
-//		String ruleName = null;
 		List<String> ruleNames = new ArrayList<String>();
 		for(EugeneRule rule : rules) {
-//			ruleName = rule.getName();
 			ruleNames.add(rule.getName());
 			col.add(new Eugene2Drools(rule));
 		}
@@ -287,7 +300,6 @@ public class Sparrow
 				Sparrow.class.getClassLoader().getResourceAsStream("rule-template.drt");
 
 		String drl = converter.compile( col, templateStream );
-//		System.out.println(drl);
 		
 		/*
 		 * next, we open a new session to query all data 
@@ -296,7 +308,6 @@ public class Sparrow
 		Reader rdr = new StringReader( drl );
 		kbuilder.add( ResourceFactory.newReaderResource( rdr ), ResourceType.DRL );
 		if( kbuilder.hasErrors() ){
-//			System.out.println(kbuilder.getErrors());
 		    throw new IllegalStateException( "DRL errors: " +  kbuilder.getErrors());
 		}
 		this.ksession.getKnowledgeBase().addKnowledgePackages( kbuilder.getKnowledgePackages() );			
@@ -307,7 +318,6 @@ public class Sparrow
 		List<Component> results = new ArrayList<Component>();
 		for(String ruleName : ruleNames) {
 			QueryResults qrs = ksession.getQueryResults( ruleName );
-			
 			if(null != qrs && qrs.size() > 0) {
 				for(QueryResultsRow row : qrs) {
 					results.add((Component)row.get("$p"));
@@ -465,7 +475,6 @@ public class Sparrow
 				Sparrow.class.getClassLoader().getResourceAsStream("rule-template-new.drt");
 
 		String drl = converter.compile( col, templateStream );
-//		System.out.println(drl);
 		
 		/*
 		 * next, we open a new session to query all data 
@@ -494,7 +503,13 @@ public class Sparrow
 
 	public void exportTo(List<Component> lst, Standard standard, String filename)
 			throws SparrowException {
-		// TODO Auto-generated method stub
+		
+		// Standard is an enum (see org.cidarlab.sparrow.constants.Standard)
+		// every enum element must have an exportData function that exports 
+		// a list of components to file compliant with the standard.
+		// Example: the Standard enum ``SBOL'' exports the list of components 
+		//          to the filename compliant with the SBOL standard.
+		standard.exportData(lst, filename);
 		
 	}
 

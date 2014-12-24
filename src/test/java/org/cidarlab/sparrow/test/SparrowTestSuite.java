@@ -3,14 +3,17 @@ package org.cidarlab.sparrow.test;
 import org.cidarlab.sparrow.exception.SparrowException;
 
 
-public class TestSuite {
+/**
+ * The SparrowTestSuite class provides 
+ * various tests for the Sparrow Library Management System (LMS).
+ * 
+ * @author Ernst Oberortner
+ */
+public class SparrowTestSuite {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) 
-			throws Exception {
-
+	public void testAll() 
+			throws SparrowException {
+		
 		// Test1: SessionID
 		new SessionIDTest(500);
 		
@@ -26,7 +29,7 @@ public class TestSuite {
 
 		} catch(SparrowException spe) {
 			spe.printStackTrace();
-			throw new Exception(spe.toString());
+			throw new SparrowException(spe.toString());
 		}
 
 //		// Test3: Resuming the paused session of Test2		
@@ -35,7 +38,7 @@ public class TestSuite {
 			slt.test();
 		} catch(SparrowException spe) {
 			spe.printStackTrace();
-			throw new Exception(spe.toString());
+			throw new SparrowException(spe.toString());
 		}
 //		
 //
@@ -58,10 +61,6 @@ public class TestSuite {
 //		
 //		// TEST: QUERYING
 		new QueryTester().test();
-//		
-//		
-//		
-		System.out.println("TESTS PASSED!");
 	}
 
 }
