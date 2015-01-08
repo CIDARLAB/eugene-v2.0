@@ -16,66 +16,66 @@ public class EndToEndTestSuite {
 		/*---------------------------------------------
 		 * BACKWARD COMPATIBILITY
 		 *---------------------------------------------*/
-//		new EndToEndTestSuite().test("./tests/basics/backward-comp/AllSyntaxExample.eug");
-//		new EndToEndTestSuite().test("./tests/basics/backward-comp/variable-declarations");
-		new EndToEndTestSuite().test("./tests/basics/backward-comp/hard-expression-test");
-//		new EndToEndTestSuite().test("./tests/basics/backward-comp/complex");    
+//		new EndToEndTestSuite().test("./src/test/eugene/basics/backward-comp/AllSyntaxExample.eug");
+//		new EndToEndTestSuite().test("./src/test/eugene/basics/backward-comp/variable-declarations");
+		new EndToEndTestSuite().test("./src/test/eugene/basics/backward-comp/hard-expression-test");
+//		new EndToEndTestSuite().test("./src/test/eugene/basics/backward-comp/complex");    
 		
 		/*---------------------------------------------
 		 * PRIMITIVE DATA TYPES AND MODIFICATIONS
 		 *---------------------------------------------*/
-		new EndToEndTestSuite().test("./tests/basics/primitives/primitives-assign");    
-		new EndToEndTestSuite().test("./tests/basics/primitives/part-property-assign");    
-		new EndToEndTestSuite().test("./tests/basics/primitives/array-manip");    
-		new EndToEndTestSuite().test("./tests/basics/primitives/plus-operator");    
+		new EndToEndTestSuite().test("./src/test/eugene/basics/primitives/primitives-assign");    
+		new EndToEndTestSuite().test("./src/test/eugene/basics/primitives/part-property-assign");    
+		new EndToEndTestSuite().test("./src/test/eugene/basics/primitives/array-manip");    
+		new EndToEndTestSuite().test("./src/test/eugene/basics/primitives/plus-operator");    
 
 		// EXPRESSIONS
-		new EndToEndTestSuite().test("./tests/basics/expressions/plus-sub-mult-div");
-		new EndToEndTestSuite().test("./tests/basics/expressions/loops-and-calculations");    
-		new EndToEndTestSuite().test("./tests/basics/expressions/expression01");    
+		new EndToEndTestSuite().test("./src/test/eugene/basics/expressions/plus-sub-mult-div");
+		new EndToEndTestSuite().test("./src/test/eugene/basics/expressions/loops-and-calculations");    
+		new EndToEndTestSuite().test("./src/test/eugene/basics/expressions/expression01");    
 		
 		// ASSIGNMENTS
-		new EndToEndTestSuite().test("./tests/basics/assignments");
+		new EndToEndTestSuite().test("./src/test/eugene/basics/assignments");
 
 		// ACCESS statements
-		new EndToEndTestSuite().test("./tests/basics/data-access");
+		new EndToEndTestSuite().test("./src/test/eugene/basics/data-access");
 
 		// PRINT
-		new EndToEndTestSuite().test("./tests/basics/print-statements");
+		new EndToEndTestSuite().test("./src/test/eugene/basics/print-statements");
 		
 
 		/*---------------------------------------------
 		 * BUILT-IN FUNCTIONS AND FEATURES
 		 *---------------------------------------------*/
-		new EndToEndTestSuite().test("./tests/basics/built-in/sizeof");    
-		new EndToEndTestSuite().test("./tests/basics/built-in/random");    
-		new EndToEndTestSuite().test("./tests/basics/built-in/store");    
+		new EndToEndTestSuite().test("./src/test/eugene/basics/built-in/sizeof");    
+		new EndToEndTestSuite().test("./src/test/eugene/basics/built-in/random");    
+		new EndToEndTestSuite().test("./src/test/eugene/basics/built-in/store");    
 		
 		/*---------------------------------------------
 		 * SEQUENCE SHENANIGANS
 		 *---------------------------------------------*/
-		new EndToEndTestSuite().test("./tests/basics/sequence/reverse-complement");    
-		new EndToEndTestSuite().test("./tests/basics/sequence/random-sequence");    
-		new EndToEndTestSuite().test("./tests/basics/sequence/sequence-homology");    
+		new EndToEndTestSuite().test("./src/test/eugene/basics/sequence/reverse-complement");    
+		new EndToEndTestSuite().test("./src/test/eugene/basics/sequence/random-sequence");    
+		new EndToEndTestSuite().test("./src/test/eugene/basics/sequence/sequence-homology");    
 		
 		/*---------------------------------------------
 		 * EUGENE + BIOLOGOY BASICS
 		 *---------------------------------------------*/
-		new EndToEndTestSuite().test("./tests/basics/biology/property-definitions");
-		new EndToEndTestSuite().test("./tests/basics/biology/part-type-definitions");
-		new EndToEndTestSuite().test("./tests/basics/biology/part-definitions");
-		new EndToEndTestSuite().test("./tests/basics/biology/device-definitions");
-		new EndToEndTestSuite().test("./tests/basics/biology/hierarchical-composition");
+		new EndToEndTestSuite().test("./src/test/eugene/basics/biology/property-definitions");
+		new EndToEndTestSuite().test("./src/test/eugene/basics/biology/part-type-definitions");
+		new EndToEndTestSuite().test("./src/test/eugene/basics/biology/part-definitions");
+		new EndToEndTestSuite().test("./src/test/eugene/basics/biology/device-definitions");
+		new EndToEndTestSuite().test("./src/test/eugene/basics/biology/hierarchical-composition");
 
 		/*---------------------------------------------
 		 * EUGENE CONTAINERS
 		 *---------------------------------------------*/
-		new EndToEndTestSuite().test("./tests/basics/containers/collections");
-		new EndToEndTestSuite().test("./tests/basics/containers/collection-access");
-		new EndToEndTestSuite().test("./tests/basics/containers/collection-operations");
-		new EndToEndTestSuite().test("./tests/basics/containers/union");
+		new EndToEndTestSuite().test("./src/test/eugene/basics/containers/collections");
+		new EndToEndTestSuite().test("./src/test/eugene/basics/containers/collection-access");
+		new EndToEndTestSuite().test("./src/test/eugene/basics/containers/collection-operations");
+		new EndToEndTestSuite().test("./src/test/eugene/basics/containers/union");
 			
-		new EndToEndTestSuite().test("./tests/basics/containers/arrays");
+		new EndToEndTestSuite().test("./src/test/eugene/basics/containers/arrays");
 
 	}
 	
@@ -87,39 +87,39 @@ public class EndToEndTestSuite {
 		
 		ROOT_DIRECTORY = "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/";
 
-		new EndToEndTestSuite().testAll("./tests/data-exchange");
+		new EndToEndTestSuite().testAll("./src/test/eugene/data-exchange");
 
 //		//---- INDIVIDUAL TESTS ----
 //		// INCLUDE
-//		new EndToEndTestSuite().test("./tests/data-exchange/include/include01");
+//		new EndToEndTestSuite().test("./src/test/eugene/data-exchange/include/include01");
 //
 //		// IMPORT
-//		new EndToEndTestSuite().test("./tests/data-exchange/import/import01");
+//		new EndToEndTestSuite().test("./src/test/eugene/data-exchange/import/import01");
 //		
 //		
 //		// SBOL -- IMPORT
-//		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-import01");
-//		new EndToEndTestSuite().test("./tests/data-exchange/sbol/import-from-cello-01");
+//		new EndToEndTestSuite().test("./src/test/eugene/data-exchange/sbol/sbol-import01");
+//		new EndToEndTestSuite().test("./src/test/eugene/data-exchange/sbol/import-from-cello-01");
 
 //		// SBOL -- EXPORT
-//		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-export01");
-//		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-export02");
+//		new EndToEndTestSuite().test("./src/test/eugene/data-exchange/sbol/sbol-export01");
+//		new EndToEndTestSuite().test("./src/test/eugene/data-exchange/sbol/sbol-export02");
 //
 		// HIEARCHIES
-//		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-hierarchy-export");
+//		new EndToEndTestSuite().test("./src/test/eugene/data-exchange/sbol/sbol-hierarchy-export");
 
 		// SEQUENCES
-//		new EndToEndTestSuite().test("./tests/data-exchange/sbol/sbol-sequence-hierarchy-export");
+//		new EndToEndTestSuite().test("./src/test/eugene/data-exchange/sbol/sbol-sequence-hierarchy-export");
 
-//		new EndToEndTestSuite().test("./tests/data-exchange/sbol/round-trip");
+//		new EndToEndTestSuite().test("./src/test/eugene/data-exchange/sbol/round-trip");
 //
 		// PIGEON
-//		new EndToEndTestSuite().test("./tests/data-exchange/pigeon");
+//		new EndToEndTestSuite().test("./src/test/eugene/data-exchange/pigeon");
 		
 		
 		// GENBANK
 		// - IMPORT
-		//new EndToEndTestSuite().test("./tests/data-exchange/genbank/genbank-import");
+		//new EndToEndTestSuite().test("./src/test/eugene/data-exchange/genbank/genbank-import");
 		
 		// - EXPORT
 		
@@ -131,18 +131,18 @@ public class EndToEndTestSuite {
 	private static void testRules() 
 			throws EugeneException {
 		// HIERARCHICAL COMPOSITION
-//		new EndToEndTestSuite().test("./tests/hierarchical-composition");
+//		new EndToEndTestSuite().test("./src/test/eugene/hierarchical-composition");
 
 		// RULES
-//		new EndToEndTestSuite().test("./tests/rules/faulty-rules");
-//		new EndToEndTestSuite().test("./tests/rules/valid-rules");
-//		new EndToEndTestSuite().test("./tests/rules/product-and-rules");
-//		new EndToEndTestSuite().test("./tests/rules/conjunction");
-//		new EndToEndTestSuite().test("./tests/rules/logical-or");
-//		new EndToEndTestSuite().test("./tests/rules/logical-or-02");
-//		new EndToEndTestSuite().test("./tests/rules/indexed-rules");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/faulty-rules");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/valid-rules");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/product-and-rules");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/conjunction");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/logical-or");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/logical-or-02");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/indexed-rules");
 
-//		new EndToEndTestSuite().test("./tests/rules/represses-txt");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/represses-txt");
 
 		
 		
@@ -175,36 +175,36 @@ public class EndToEndTestSuite {
 		/*----------------------------------------------------------
 		 * Eugene 2 Drools Compiler
 		 *----------------------------------------------------------*/
-//		new EndToEndTestSuite().test("./tests/rules/arrangement/counting");
-//		new EndToEndTestSuite().test("./tests/rules/arrangement/positioning");
-//		new EndToEndTestSuite().test("./tests/rules/arrangement/orientation");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/arrangement/counting");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/arrangement/positioning");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/arrangement/orientation");
 
 		// logical NOT
-//		new EndToEndTestSuite().test("./tests/rules/arrangement/counting-not");
-//		new EndToEndTestSuite().test("./tests/rules/arrangement/positioning-not");
-//		new EndToEndTestSuite().test("./tests/rules/arrangement/orientation-not");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/arrangement/counting-not");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/arrangement/positioning-not");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/arrangement/orientation-not");
 
 		// logical OR		
-//		new EndToEndTestSuite().test("./tests/rules/arrangement/distributive");
-//		new EndToEndTestSuite().test("./tests/rules/arrangement/counting-or");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/arrangement/distributive");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/arrangement/counting-or");
 		
-//		new EndToEndTestSuite().test("./tests/rules/multistep-rule-evaluation");
-//		new EndToEndTestSuite().test("./tests/rules/multistep-rule-evaluation02");
-//		new EndToEndTestSuite().test("./tests/rules/oriented-tus");
-//		new EndToEndTestSuite().test("./tests/rules/dnf/dnf-oriented-tus");
-//		new EndToEndTestSuite().test("./tests/rules/dnf/dnf-contains");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/multistep-rule-evaluation");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/multistep-rule-evaluation02");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/oriented-tus");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/dnf/dnf-oriented-tus");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/dnf/dnf-contains");
 		
-//		new EndToEndTestSuite().test("./tests/rules/type-as-txt");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/type-as-txt");
 		
-//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-01"); 
-//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-02");
-//		new EndToEndTestSuite().test("./tests/rules/expression/string-rules-01");
-//		new EndToEndTestSuite().test("./tests/rules/expression/string-regexp-01");
-//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-declaration");
-//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-or");		
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/expression-rules-01"); 
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/expression-rules-02");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/string-rules-01");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/string-regexp-01");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/expression-rules-declaration");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/expression-rules-or");		
 
-//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-arrays-01");
-//		new EndToEndTestSuite().test("./tests/rules/expression/string-rules-01");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/expression-rules-arrays-01");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/string-rules-01");
 		
 		/*
 		 * DISJUNCTIVE NORMAL FORM
@@ -213,7 +213,7 @@ public class EndToEndTestSuite {
 		/*---------------------------------------------
 		 * PRODUCT
 		 *---------------------------------------------*/
-//		new EndToEndTestSuite().test("./tests/product02");
+//		new EndToEndTestSuite().test("./src/test/eugene/product02");
 		
 		/*---------------------------------------------
 		 * MEETING 08/01
@@ -221,37 +221,37 @@ public class EndToEndTestSuite {
 		
 		// 1. EXPRESSION RULES
 		// a1 + a2 + ... + aN >= 10
-//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-01"); 
-//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-02");
-//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-03");  
-//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-04");  
-//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-05");  
-//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-or-01");		
-//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-or-02");		
-//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-NOT-01");		
-//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-NOT-02");		
-//		new EndToEndTestSuite().test("./tests/rules/expression/expression-rules-arrays-01");		
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/expression-rules-01"); 
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/expression-rules-02");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/expression-rules-03");  
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/expression-rules-04");  
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/expression-rules-05");  
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/expression-rules-or-01");		
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/expression-rules-or-02");		
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/expression-rules-NOT-01");		
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/expression-rules-NOT-02");		
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/expression/expression-rules-arrays-01");		
 
 		
 		/*---------------------------------------------
 		 * INTERACTIONS
 		 *---------------------------------------------*/
-//		new EndToEndTestSuite().test("./tests/interactions/interaction-specifications");
-//		new EndToEndTestSuite().test("./tests/interactions/cidar");
-//		new EndToEndTestSuite().test("./tests/interactions/interaction-visualization");
+//		new EndToEndTestSuite().test("./src/test/eugene/interactions/interaction-specifications");
+//		new EndToEndTestSuite().test("./src/test/eugene/interactions/cidar");
+//		new EndToEndTestSuite().test("./src/test/eugene/interactions/interaction-visualization");
 		
 		
 		// 2. Disjunctive Normal Form (DNF)   --- DONE
-//		new EndToEndTestSuite().test("./tests/rules/oriented-tus");
-//		new EndToEndTestSuite().test("./tests/rules/dnf/dnf-oriented-tus");
-//		new EndToEndTestSuite().test("./tests/rules/dnf/dnf-contains");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/oriented-tus");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/dnf/dnf-oriented-tus");
+//		new EndToEndTestSuite().test("./src/test/eugene/rules/dnf/dnf-contains");
 		
 		/*----
 		 * RuleBuilder
 		 *----*/
-		new EndToEndTestSuite().test("./tests/rules/rule-builder/rule-builder-instantiation");
-		new EndToEndTestSuite().test("./tests/rules/rule-builder/rule-builder-AND");
-		new EndToEndTestSuite().test("./tests/rules/rule-builder/rule-builder-AND-02");
+		new EndToEndTestSuite().test("./src/test/eugene/rules/rule-builder/rule-builder-instantiation");
+		new EndToEndTestSuite().test("./src/test/eugene/rules/rule-builder/rule-builder-AND");
+		new EndToEndTestSuite().test("./src/test/eugene/rules/rule-builder/rule-builder-AND-02");
 		
 	}
 	
@@ -262,23 +262,23 @@ public class EndToEndTestSuite {
 	private static void testImperativeFeatures() 
 			throws EugeneException {
 		// CONDITIONAL BRANCHES
-		new EndToEndTestSuite().testAll("./tests/imperative/branches");
+		new EndToEndTestSuite().testAll("./src/test/eugene/imperative/branches");
 
 		// FOR LOOPS
-		new EndToEndTestSuite().testAll("./tests/imperative/loops");
+		new EndToEndTestSuite().testAll("./src/test/eugene/imperative/loops");
 		
 		// FUNCTIONS
-		new EndToEndTestSuite().testAll("./tests/imperative/functions");
+		new EndToEndTestSuite().testAll("./src/test/eugene/imperative/functions");
 
 		// SCOPING
-		new EndToEndTestSuite().testAll("./tests/imperative/scoping");
+		new EndToEndTestSuite().testAll("./src/test/eugene/imperative/scoping");
 
 	}
 	
 	private static void testGrammars()
 			throws EugeneException {
 		
-		new EndToEndTestSuite().test("./tests/grammars/hierarchical-composition-01");
+		new EndToEndTestSuite().test("./src/test/eugene/grammars/hierarchical-composition-01");
 		
 	}
 	
@@ -302,18 +302,18 @@ public class EndToEndTestSuite {
 		new EndToEndTestSuite().testAll(ROOT_DIRECTORY);
 
 		// TESTING INDIVIDUAL FILES
-//		new EndToEndTestSuite().test("./tests/EugeneLab/data-exchange/01-Rule-based-Design.eug");
-//		new EndToEndTestSuite().test("./tests/EugeneLab/imperative-features/11-functions.eug");
-//		new EndToEndTestSuite().test("./tests/EugeneLab/imperative-features/12-functions-and-arrays.eug");
-//		new EndToEndTestSuite().test("./tests/EugeneLab/sequence-shenanigans/04-constraint-number-of-occurrences.eug");
+//		new EndToEndTestSuite().test("./src/test/eugene/EugeneLab/data-exchange/01-Rule-based-Design.eug");
+//		new EndToEndTestSuite().test("./src/test/eugene/EugeneLab/imperative-features/11-functions.eug");
+//		new EndToEndTestSuite().test("./src/test/eugene/EugeneLab/imperative-features/12-functions-and-arrays.eug");
+//		new EndToEndTestSuite().test("./src/test/eugene/EugeneLab/sequence-shenanigans/04-constraint-number-of-occurrences.eug");
 	}
 	
 	private static void testAll() {
 		
-		ROOT_DIRECTORY = "./tests/";
+		ROOT_DIRECTORY = "./src/test/eugene/";
 		
 		try {
-			new EndToEndTestSuite().testAll("./tests/");
+			new EndToEndTestSuite().testAll("./src/test/eugene/");
 		} catch(EugeneException ee) {
 			ee.printStackTrace();
 		}
@@ -326,10 +326,10 @@ public class EndToEndTestSuite {
 		/*---------------------------------------------
 		 * EUGENE FUN - INSPIRED BY EC327 :)
 		 *---------------------------------------------*/
-		new EndToEndTestSuite().test("./tests/eugene-fun/diagonals");
-		new EndToEndTestSuite().test("./tests/eugene-fun/no-duplicates");
-		new EndToEndTestSuite().test("./tests/eugene-fun/bubble-sort");		
-		new EndToEndTestSuite().test("./tests/eugene-fun/rhombus");
+		new EndToEndTestSuite().test("./src/test/eugene/eugene-fun/diagonals");
+		new EndToEndTestSuite().test("./src/test/eugene/eugene-fun/no-duplicates");
+		new EndToEndTestSuite().test("./src/test/eugene/eugene-fun/bubble-sort");		
+		new EndToEndTestSuite().test("./src/test/eugene/eugene-fun/rhombus");
 	}
 	
 	/**
@@ -343,16 +343,16 @@ public class EndToEndTestSuite {
 	public static void testBuiltInFunctions() 
 			throws EugeneException {
 		
-//		new EndToEndTestSuite().test("./tests/built-in-functions/sizeof");
-//		new EndToEndTestSuite().test("./tests/built-in-functions/product");
+//		new EndToEndTestSuite().test("./src/test/eugene/built-in-functions/sizeof");
+//		new EndToEndTestSuite().test("./src/test/eugene/built-in-functions/product");
 		
-		new EndToEndTestSuite().test("./tests/built-in-functions/permute");
+		new EndToEndTestSuite().test("./src/test/eugene/built-in-functions/permute");
 	}
 	
 	public static void testInteractWithLMS()
 			throws EugeneException {
 		
-		ROOT_DIRECTORY = "./tests/lms";
+		ROOT_DIRECTORY = "./src/test/eugene/lms";
 		new EndToEndTestSuite().testAll(ROOT_DIRECTORY);		
 	}
 	
@@ -369,9 +369,9 @@ public class EndToEndTestSuite {
 //		testImperativeFeatures();
 //		testBuiltInFunctions();
 //		testEugeneLabTutorials();		
-//		testDataExchange();
+		testDataExchange();
 
-		testInteractWithLMS();
+//		testInteractWithLMS();
 
 		// TODOs:
 //		testRules();

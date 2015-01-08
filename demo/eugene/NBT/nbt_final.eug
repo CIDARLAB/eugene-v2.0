@@ -1,10 +1,10 @@
 /*
  *  import the partially with DNA sequences annotated cassettes
  */
-Device pTAKLeftCassette = SBOL.import("./demos/sbol-nbt/import/SBOLDesigner/pTAKLeftCassette.rdf");
-Device pTAKRightCassette = SBOL.import("./demos/sbol-nbt/import/SBOLDesigner/pTAKRightCasette.rdf");
-Device pIKELeftCassette = SBOL.import("./demos/sbol-nbt/import/SBOLDesigner/pIKELeftCassette.rdf");
-Device pIKERightCassette = SBOL.import("./demos/sbol-nbt/import/SBOLDesigner/pIKERightCasette.rdf");
+Device pTAKLeftCassette = SBOL.import("./demo/eugene/NBT/import/SBOLDesigner/pTAKLeftCassette.rdf");
+Device pTAKRightCassette = SBOL.import("./demo/eugene/NBT/import/SBOLDesigner/pTAKRightCasette.rdf");
+Device pIKELeftCassette = SBOL.import("./demo/eugene/NBT/import/SBOLDesigner/pIKELeftCassette.rdf");
+Device pIKERightCassette = SBOL.import("./demo/eugene/NBT/import/SBOLDesigner/pIKERightCasette.rdf");
 
 println(pTAKLeftCassette);
 
@@ -15,12 +15,12 @@ println(pTAKLeftCassette);
  * and exported them to SBOL files.
  * In Eugene, we can now import the RBS data by reading the corresponding SBOL files 
  */
-SBOL.import("./demos/sbol-nbt/import/rbs/BBa_J61101.sbol");
-SBOL.import("./demos/sbol-nbt/import/rbs/BBa_J61104.sbol");
-SBOL.import("./demos/sbol-nbt/import/rbs/BBa_J61107.sbol");
-SBOL.import("./demos/sbol-nbt/import/rbs/BBa_J61115.sbol");
-SBOL.import("./demos/sbol-nbt/import/rbs/BBa_J61120.sbol");
-SBOL.import("./demos/sbol-nbt/import/rbs/BBa_J61130.sbol");
+SBOL.import("./demo/eugene/NBT/import/rbs/BBa_J61101.sbol");
+SBOL.import("./demo/eugene/NBT/import/rbs/BBa_J61104.sbol");
+SBOL.import("./demo/eugene/NBT/import/rbs/BBa_J61107.sbol");
+SBOL.import("./demo/eugene/NBT/import/rbs/BBa_J61115.sbol");
+SBOL.import("./demo/eugene/NBT/import/rbs/BBa_J61120.sbol");
+SBOL.import("./demo/eugene/NBT/import/rbs/BBa_J61130.sbol");
 
 /** Terminators **/
 
@@ -29,7 +29,7 @@ SBOL.import("./demos/sbol-nbt/import/rbs/BBa_J61130.sbol");
  * we imported the BBa_J61053 terminator from the Registry of Standard Biological Parts 
  * by using Clotho 
  */
-SBOL.import("./demos/sbol-nbt/import/terminators/BBa_J61053.sbol");
+SBOL.import("./demo/eugene/NBT/import/terminators/BBa_J61053.sbol");
 
 /*
  * we also specified manually various Terminator sequences
@@ -161,5 +161,5 @@ IKERightCassettes = product(pIKERightCassette);
  * to SBOL (using an SBOL Collection)
  */
 Device[] ToggleSwitchCassettes = TAKLeftCassettes + TAKRightCassettes + IKELeftCassettes + IKERightCassettes;
-SBOL.export(ToggleSwitchCassettes, "./demos/sbol-nbt/export/ToggleSwitchCassettes.sbol");
+SBOL.export(ToggleSwitchCassettes, "./demo/eugene/NBT/export/ToggleSwitchCassettes.sbol");
 
