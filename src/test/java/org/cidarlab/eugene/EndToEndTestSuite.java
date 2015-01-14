@@ -356,6 +356,13 @@ public class EndToEndTestSuite {
 		new EndToEndTestSuite().testAll(ROOT_DIRECTORY);		
 	}
 	
+	public static void testCelloDesigns() 
+			throws EugeneException {
+		
+		new EndToEndTestSuite().test("./designs/cidar/cello/or/or.eug");
+		
+	}
+	
 	/**
 	 * main()
 	 * 
@@ -369,7 +376,7 @@ public class EndToEndTestSuite {
 //		testImperativeFeatures();
 //		testBuiltInFunctions();
 //		testEugeneLabTutorials();		
-		testDataExchange();
+//		testDataExchange();
 
 //		testInteractWithLMS();
 
@@ -379,6 +386,9 @@ public class EndToEndTestSuite {
 //		testRealWorldExamples();
 
 //		testEC327FunWithEugene();
+		
+		testCelloDesigns();
+		
 //		testAll();	
 	}
 	

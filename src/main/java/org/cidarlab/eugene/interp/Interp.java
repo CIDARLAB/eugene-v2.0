@@ -729,6 +729,7 @@ public class Interp {
 //			System.out.println("[Interp.product] devices -> "+sod);
 //			System.out.println("***************************");
 		} catch(Exception ee) {
+//			ee.printStackTrace();
 			throw new EugeneException(ee.getMessage());
 		}
 
@@ -980,6 +981,8 @@ public class Interp {
 	}
 	
 
+	public static StringBuilder PERMUTE_STRING = null;
+	
 	/**
 	 * The permute/1 method permutes the elements of the given device.
 	 * @param d ... the device
@@ -998,11 +1001,6 @@ public class Interp {
             throw new EugeneException(name+" is not a Device.");
         }
         
-        /*
-         * now, we permute the device
-         */
-        
-        
         // now, we prepare the Device for permute:
         // Device D ([e11|e12], e21, [e31|e32]) 
         // -->
@@ -1010,31 +1008,70 @@ public class Interp {
         //			 [e11|e12 | e21 | e31|e32],
         //			 [e11|e12 | e21 | e31|e32]);
         Device tmp = new Device(ne.getName());
+        
+        PERMUTE_STRING = new StringBuilder();
+        
         for(int i=0; i<((Device)ne).getComponents().size(); i++) {
+        	
+        	// components
         	List<NamedElement> els = new ArrayList<NamedElement>();
         	for(List<NamedElement> loe : ((Device)ne).getComponents()) {
         		els.addAll(loe);
+        		
         	}
         	tmp.getComponents().add(els);
+        	
+        	// orientations
+        	List<Orientation> ors = new ArrayList<Orientation>();
+        	for(List<Orientation> loo : ((Device)ne).getOrientations()) {
+        		ors.addAll(loo);
+        	}
+        	tmp.getOrientations().add(ors);
+        	
+        	
+        	// for permutations, the permuted elements must be contained
+        	// in the solutions
+        	// Example:
+        	// Device D(P1, P2, P3) 
+        	// -->
+        	// [P1|P2|P3], [P1|P2|P3], [P1|P2|P3]
+        	// contains P1 and contains P2 and contains P3
+        	
+        	// CONTAINS constraints
+    		for(int k=0; k<((Device)ne).getComponents().get(i).size(); k++) {
+    			PERMUTE_STRING.append("CONTAINS ").append(((Device)ne).getComponents().get(i).get(k).getName());
+    			if(k < ((Device)ne).getComponents().get(i).size() - 1) {
+    				PERMUTE_STRING.append(" OR ");
+    			}
+    		}
+    		PERMUTE_STRING.append(".");
+    		
+        	// ORIENTATION constraints
+    		for(int k=0; k<((Device)ne).getOrientations().get(i).size(); k++) {
+    			
+    			if(Orientation.FORWARD == ((Device)ne).getOrientations().get(i).get(k)) {
+    				PERMUTE_STRING.append("FORWARD ").append(((Device)ne).getComponents().get(i).get(k).getName());
+    				if(k < ((Device)ne).getComponents().get(i).size() - 1) {
+    					PERMUTE_STRING.append(" OR ");
+    				}
+    			} else if (Orientation.REVERSE == ((Device)ne).getOrientations().get(i).get(k)) {
+    				PERMUTE_STRING.append("REVERSE ").append(((Device)ne).getComponents().get(i).get(k).getName());
+    			}
+    			
+				if(Orientation.UNDEFINED != ((Device)ne).getOrientations().get(i).get(k) && 
+						k < ((Device)ne).getComponents().get(i).size() - 1) {
+					PERMUTE_STRING.append(" OR ");
+				}
+    		}
+    		PERMUTE_STRING.append(".");
         }
         
-//        System.out.println("[Interp.permute] -> permuting: " + tmp);
-        return this.product(tmp);
+        EugeneArray ea = this.product(tmp);
         
-//        System.out.println(ea.getElements().size() + " solutions!");
-//        for(NamedElement e : ea.getElements()) {
-//        	if(e instanceof Device) {
-//        		System.out.print("Device " + e.getName()+": ");
-//        		int i=0;
-//        		for(NamedElement ee : ((Device)e).getComponentList()) {
-//        			System.out.print(((Device)e).getOrientations(i) +""+ee.getName()+"  ");
-//        			i++;
-//        		}
-//        		System.out.println();
-//        	}
-//        }
+        // reset the permutation string
+        PERMUTE_STRING = null;
         
-//        return new EugeneArray(null);
+        return ea;        
 	}
 
 	/**

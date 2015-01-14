@@ -13,7 +13,6 @@ import org.cidarlab.eugene.exception.EugeneException;
 //import org.cidarlab.eugene.interp.SymbolTable;
 import org.cidarlab.eugene.interp.Interp;
 import org.cidarlab.minieugene.MiniEugene;
-//import org.cidarlab.minieugene.grammars.EugeneGrammar;
 
 public class MiniEugeneAdapter {
 
@@ -28,11 +27,6 @@ public class MiniEugeneAdapter {
 	 * an instance of MiniEugene
 	 */
 	private MiniEugene me;
-	
-//	/*
-//	 * a reference to the Eugene grammar
-//	 */
-//	private EugeneGrammar eg;
 	
 	/*
 	 * a reference to the Interpreter
@@ -121,6 +115,14 @@ public class MiniEugeneAdapter {
 		 */
 		String meScript = this.compiler.compile(d, rule, components, interactions);
 		
+	
+		// if it's a permutation, then 
+		// we need to add the CONTAINS and ORIENTATION constraints
+		// into the miniEugene script.
+		if(null != Interp.PERMUTE_STRING) {
+			meScript += Interp.PERMUTE_STRING.toString();
+		}
+		
 //		System.out.println(meScript);
 		
 		/*
@@ -135,8 +137,6 @@ public class MiniEugeneAdapter {
 		} catch(Exception ee) {
 			throw new EugeneException(ee.getMessage());
 		}
-		
-//		me.getStatistics().print();
 		
 		return this.convertToEugene(d.getName(), me.getSolutions());
 	}
@@ -161,14 +161,10 @@ public class MiniEugeneAdapter {
 				org.cidarlab.eugene.dom.Component c = null;
 				
 				try {
-//					System.out.println(this.interp.get(solution[k].getName()));
-					
 					c = (org.cidarlab.eugene.dom.Component)this.interp.get(solution[k].getName());
 				} catch(EugeneException ee) {
 					ee.printStackTrace();
 				}
-				
-//						(org.cidarlab.eugene.dom.Component)this.symbols.get(solution[k].getName());
 				
 				/*
 				 * component
@@ -187,8 +183,6 @@ public class MiniEugeneAdapter {
 					orientations.add(Orientation.REVERSE);
 				}
 				d.getOrientations().add(orientations);
-				
-//				System.out.println("[MiniEugeneAdapter.convertToEugene] -> " + d.getName() + " -> " + d);
 			}
 			
 			/*
