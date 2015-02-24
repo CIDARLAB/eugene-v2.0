@@ -78,6 +78,7 @@ public class SparrowTestSuite {
 		}
 
 		// Test: Resuming the paused session of Test2		
+		System.out.println("A");
 		try {
 			SessionLoaderTest slt = new SessionLoaderTest(sessionId, factCount);
 			slt.test();
@@ -90,6 +91,7 @@ public class SparrowTestSuite {
 		// a duplicate is given, if there is already a fact in the knowledge base
 		// that has exactly the same property values
 		// duplicates do not focus on Object IDs...
+		System.out.println("A");
 		new DuplicateTest().test();
 		
 		
@@ -99,9 +101,11 @@ public class SparrowTestSuite {
 //		new RegistryImporterTest().test();
 		
 //		// Scalability Tester
+		System.out.println("A");
 		new ScalabilityTest(1000, 1000, 1000, 1000).test();
 		
 //		// TEST: QUERYING
+		System.out.println("A");
 		new QueryTester().test();
 	}
 

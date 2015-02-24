@@ -1,26 +1,33 @@
-// $ANTLR 3.5.1 /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g 2014-12-19 14:34:53
+// $ANTLR 3.5.1 /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g 2015-02-23 21:33:05
 
-/*
-Copyright (c) 2012 Boston University.
-All rights reserved.
-Permission is hereby granted, without written agreement and without
-license or royalty fees, to use, copy, modify, and distribute this
-software and its documentation for any purpose, provided that the above
-copyright notice and the following two paragraphs appear in all copies
-of this software.
-
-IN NO EVENT SHALL BOSTON UNIVERSITY BE LIABLE TO ANY PARTY
-FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES
-ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF
-BOSTON UNIVERSITY HAS BEEN ADVISED OF THcE POSSIBILITY OF SUCH DAMAGE.
-
-BOSTON UNIVERSITY SPECIFICALLY DISCLAIMS ANY WARRANTIES,
-INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE SOFTWARE
-PROVIDED HEREUNDER IS ON AN "AS IS" BASIS, AND BOSTON UNIVERSITY HAS
-NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES,
-ENHANCEMENTS, OR MODIFICATIONS.
-*/
+/* Copyright (c) 2015, Boston University
+ * 
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, 
+ * are permitted provided that the following conditions are met:
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this list 
+ * of conditions and the following disclaimer.
+ * 
+ * 2. Redistributions in binary form must reproduce the above copyright notice, this list 
+ * of conditions and the following disclaimer in the documentation and/or other materials 
+ * provided with the distribution.
+ * 
+ * 3. Neither the name of the copyright holder nor the names of its contributors may be 
+ * used to endorse or promote products derived from this software without specific prior 
+ * written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
+ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND 
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
+ * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+ * POSSIBILITY OF SUCH DAMAGE.
+ */
 
 package org.cidarlab.eugene.parser;
 
@@ -312,15 +319,15 @@ public class EugeneLexer extends Lexer {
 	public EugeneLexer(CharStream input, RecognizerSharedState state) {
 		super(input,state);
 	}
-	@Override public String getGrammarFileName() { return "/Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g"; }
+	@Override public String getGrammarFileName() { return "/Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g"; }
 
 	// $ANTLR start "ADDPROPS"
 	public final void mADDPROPS() throws RecognitionException {
 		try {
 			int _type = ADDPROPS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:84:10: ( 'addProperties' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:84:12: 'addProperties'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:91:10: ( 'addProperties' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:91:12: 'addProperties'
 			{
 			match("addProperties"); 
 
@@ -340,8 +347,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = AMP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:85:5: ( '&' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:85:7: '&'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:92:5: ( '&' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:92:7: '&'
 			{
 			match('&'); 
 			}
@@ -360,8 +367,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = ARRAY;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:86:7: ( 'Array' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:86:9: 'Array'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:93:7: ( 'Array' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:93:9: 'Array'
 			{
 			match("Array"); 
 
@@ -381,8 +388,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = ARROW;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:87:7: ( '-->' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:87:9: '-->'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:94:7: ( '-->' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:94:9: '-->'
 			{
 			match("-->"); 
 
@@ -402,8 +409,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = ASSERT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:88:8: ( 'Assert' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:88:10: 'Assert'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:95:8: ( 'Assert' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:95:10: 'Assert'
 			{
 			match("Assert"); 
 
@@ -423,8 +430,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = BOOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:89:6: ( 'bool' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:89:8: 'bool'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:96:6: ( 'bool' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:96:8: 'bool'
 			{
 			match("bool"); 
 
@@ -444,8 +451,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = BOOLEAN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:90:9: ( 'boolean' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:90:11: 'boolean'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:97:9: ( 'boolean' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:97:11: 'boolean'
 			{
 			match("boolean"); 
 
@@ -465,8 +472,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = COLLECTION;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:91:12: ( 'Collection' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:91:14: 'Collection'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:98:12: ( 'Collection' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:98:14: 'Collection'
 			{
 			match("Collection"); 
 
@@ -486,8 +493,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = COLON;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:92:7: ( ':' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:92:9: ':'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:99:7: ( ':' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:99:9: ':'
 			{
 			match(':'); 
 			}
@@ -506,8 +513,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = COMMA;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:93:7: ( ',' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:93:9: ','
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:100:7: ( ',' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:100:9: ','
 			{
 			match(','); 
 			}
@@ -526,8 +533,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = CREATE_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:94:11: ( 'create' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:94:13: 'create'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:101:11: ( 'create' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:101:13: 'create'
 			{
 			match("create"); 
 
@@ -547,8 +554,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = CREATE_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:95:11: ( 'CREATE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:95:13: 'CREATE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:102:11: ( 'CREATE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:102:13: 'CREATE'
 			{
 			match("CREATE"); 
 
@@ -568,8 +575,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = DELETE_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:96:11: ( 'delete' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:96:13: 'delete'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:103:11: ( 'delete' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:103:13: 'delete'
 			{
 			match("delete"); 
 
@@ -589,8 +596,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = DELETE_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:97:11: ( 'DELETE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:97:13: 'DELETE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:104:11: ( 'DELETE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:104:13: 'DELETE'
 			{
 			match("DELETE"); 
 
@@ -610,8 +617,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = DEVICE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:98:8: ( 'Device' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:98:10: 'Device'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:105:8: ( 'Device' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:105:10: 'Device'
 			{
 			match("Device"); 
 
@@ -631,8 +638,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = DIV;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:99:5: ( '/' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:99:7: '/'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:106:5: ( '/' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:106:7: '/'
 			{
 			match('/'); 
 			}
@@ -651,8 +658,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = DOLLAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:100:8: ( '$' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:100:10: '$'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:107:8: ( '$' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:107:10: '$'
 			{
 			match('$'); 
 			}
@@ -671,8 +678,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = DOT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:101:5: ( '.' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:101:7: '.'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:108:5: ( '.' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:108:7: '.'
 			{
 			match('.'); 
 			}
@@ -691,8 +698,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = DOTDOT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:102:8: ( '..' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:102:10: '..'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:109:8: ( '..' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:109:10: '..'
 			{
 			match(".."); 
 
@@ -712,8 +719,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = EQUALS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:103:8: ( '=' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:103:10: '='
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:110:8: ( '=' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:110:10: '='
 			{
 			match('='); 
 			}
@@ -732,8 +739,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = EXIT_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:104:9: ( 'exit' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:104:11: 'exit'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:111:9: ( 'exit' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:111:11: 'exit'
 			{
 			match("exit"); 
 
@@ -753,8 +760,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = EXIT_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:105:9: ( 'EXIT' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:105:11: 'EXIT'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:112:9: ( 'EXIT' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:112:11: 'EXIT'
 			{
 			match("EXIT"); 
 
@@ -774,8 +781,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = EXPORT_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:106:11: ( 'export' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:106:13: 'export'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:113:11: ( 'export' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:113:13: 'export'
 			{
 			match("export"); 
 
@@ -795,8 +802,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = EXPORT_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:107:11: ( 'EXPORT' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:107:13: 'EXPORT'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:114:11: ( 'EXPORT' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:114:13: 'EXPORT'
 			{
 			match("EXPORT"); 
 
@@ -816,8 +823,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = FALSE_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:108:10: ( 'false' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:108:12: 'false'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:115:10: ( 'false' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:115:12: 'false'
 			{
 			match("false"); 
 
@@ -837,8 +844,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = FALSE_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:109:10: ( 'FALSE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:109:12: 'FALSE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:116:10: ( 'FALSE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:116:12: 'FALSE'
 			{
 			match("FALSE"); 
 
@@ -858,8 +865,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = FLEXIBLE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:110:10: ( 'flexible' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:110:12: 'flexible'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:117:10: ( 'flexible' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:117:12: 'flexible'
 			{
 			match("flexible"); 
 
@@ -879,8 +886,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = GENBANK;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:111:9: ( 'Genbank' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:111:11: 'Genbank'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:118:9: ( 'Genbank' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:118:11: 'Genbank'
 			{
 			match("Genbank"); 
 
@@ -900,8 +907,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = GEQUAL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:112:8: ( '>=' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:112:10: '>='
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:119:8: ( '>=' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:119:10: '>='
 			{
 			match(">="); 
 
@@ -921,8 +928,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = GRAMMAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:113:9: ( 'Grammar' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:113:11: 'Grammar'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:120:9: ( 'Grammar' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:120:11: 'Grammar'
 			{
 			match("Grammar"); 
 
@@ -942,8 +949,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = GTHAN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:114:7: ( '>' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:114:9: '>'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:121:7: ( '>' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:121:9: '>'
 			{
 			match('>'); 
 			}
@@ -962,8 +969,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = HASHMARK;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:115:10: ( '#' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:115:12: '#'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:122:10: ( '#' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:122:12: '#'
 			{
 			match('#'); 
 			}
@@ -982,8 +989,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = IMAGE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:116:7: ( 'Image' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:116:9: 'Image'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:123:7: ( 'Image' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:123:9: 'Image'
 			{
 			match("Image"); 
 
@@ -1003,8 +1010,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = IMPORT_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:117:11: ( 'import' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:117:13: 'import'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:124:11: ( 'import' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:124:13: 'import'
 			{
 			match("import"); 
 
@@ -1024,8 +1031,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = IMPORT_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:118:11: ( 'IMPORT' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:118:13: 'IMPORT'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:125:11: ( 'IMPORT' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:125:13: 'IMPORT'
 			{
 			match("IMPORT"); 
 
@@ -1045,8 +1052,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = INCLUDE_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:119:12: ( 'include' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:119:14: 'include'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:126:12: ( 'include' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:126:14: 'include'
 			{
 			match("include"); 
 
@@ -1066,8 +1073,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = INCLUDE_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:120:12: ( 'INCLUDE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:120:14: 'INCLUDE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:127:12: ( 'INCLUDE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:127:14: 'INCLUDE'
 			{
 			match("INCLUDE"); 
 
@@ -1087,8 +1094,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = INTERACTION;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:121:13: ( 'Interaction' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:121:15: 'Interaction'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:128:13: ( 'Interaction' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:128:15: 'Interaction'
 			{
 			match("Interaction"); 
 
@@ -1108,8 +1115,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LC_AND;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:122:8: ( 'and' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:122:10: 'and'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:129:8: ( 'and' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:129:10: 'and'
 			{
 			match("and"); 
 
@@ -1129,8 +1136,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LC_ELSE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:123:9: ( 'else' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:123:11: 'else'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:130:9: ( 'else' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:130:11: 'else'
 			{
 			match("else"); 
 
@@ -1150,8 +1157,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LC_ELSEIF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:124:11: ( 'elseif' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:124:13: 'elseif'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:131:11: ( 'elseif' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:131:13: 'elseif'
 			{
 			match("elseif"); 
 
@@ -1171,8 +1178,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LC_FOR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:125:8: ( 'for' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:125:10: 'for'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:132:8: ( 'for' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:132:10: 'for'
 			{
 			match("for"); 
 
@@ -1192,8 +1199,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LC_FORALL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:126:11: ( 'forall' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:126:13: 'forall'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:133:11: ( 'forall' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:133:13: 'forall'
 			{
 			match("forall"); 
 
@@ -1213,8 +1220,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LC_IF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:127:7: ( 'if' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:127:9: 'if'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:134:7: ( 'if' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:134:9: 'if'
 			{
 			match("if"); 
 
@@ -1234,8 +1241,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LC_INDUCES;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:128:12: ( 'induces' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:128:14: 'induces'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:135:12: ( 'induces' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:135:14: 'induces'
 			{
 			match("induces"); 
 
@@ -1255,8 +1262,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LC_NOT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:129:8: ( 'not' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:129:10: 'not'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:136:8: ( 'not' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:136:10: 'not'
 			{
 			match("not"); 
 
@@ -1276,8 +1283,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LC_ON;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:130:7: ( 'on' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:130:9: 'on'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:137:7: ( 'on' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:137:9: 'on'
 			{
 			match("on"); 
 
@@ -1297,8 +1304,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LC_OR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:131:7: ( 'or' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:131:9: 'or'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:138:7: ( 'or' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:138:9: 'or'
 			{
 			match("or"); 
 
@@ -1318,8 +1325,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LC_PERMUTE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:132:12: ( 'permute' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:132:14: 'permute'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:139:12: ( 'permute' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:139:14: 'permute'
 			{
 			match("permute"); 
 
@@ -1339,8 +1346,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LC_PRODUCT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:133:12: ( 'product' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:133:14: 'product'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:140:12: ( 'product' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:140:14: 'product'
 			{
 			match("product"); 
 
@@ -1360,8 +1367,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LC_REPRESSES;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:134:14: ( 'represses' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:134:16: 'represses'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:141:14: ( 'represses' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:141:16: 'represses'
 			{
 			match("represses"); 
 
@@ -1381,8 +1388,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LC_SEQUENCE_OF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:135:16: ( 'sequence_of' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:135:18: 'sequence_of'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:142:16: ( 'sequence_of' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:142:18: 'sequence_of'
 			{
 			match("sequence_of"); 
 
@@ -1402,8 +1409,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LC_WHILE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:136:10: ( 'while' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:136:12: 'while'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:143:10: ( 'while' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:143:12: 'while'
 			{
 			match("while"); 
 
@@ -1423,8 +1430,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LEFTCUR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:137:9: ( '{' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:137:11: '{'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:144:9: ( '{' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:144:11: '{'
 			{
 			match('{'); 
 			}
@@ -1443,8 +1450,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LEFTP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:138:7: ( '(' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:138:9: '('
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:145:7: ( '(' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:145:9: '('
 			{
 			match('('); 
 			}
@@ -1463,8 +1470,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LEFTSBR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:139:9: ( '[' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:139:11: '['
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:146:9: ( '[' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:146:11: '['
 			{
 			match('['); 
 			}
@@ -1483,8 +1490,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LEQUAL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:140:8: ( '<=' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:140:10: '<='
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:147:8: ( '<=' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:147:10: '<='
 			{
 			match("<="); 
 
@@ -1504,8 +1511,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LOG_AND;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:141:9: ( '/\\\\' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:141:11: '/\\\\'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:148:9: ( '/\\\\' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:148:11: '/\\\\'
 			{
 			match("/\\"); 
 
@@ -1525,8 +1532,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LOG_OR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:142:8: ( '\\\\/' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:142:10: '\\\\/'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:149:8: ( '\\\\/' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:149:10: '\\\\/'
 			{
 			match("\\/"); 
 
@@ -1546,8 +1553,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LTHAN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:143:7: ( '<' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:143:9: '<'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:150:7: ( '<' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:150:9: '<'
 			{
 			match('<'); 
 			}
@@ -1566,8 +1573,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = MINUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:144:7: ( '-' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:144:9: '-'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:151:7: ( '-' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:151:9: '-'
 			{
 			match('-'); 
 			}
@@ -1586,8 +1593,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = MULT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:145:6: ( '*' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:145:8: '*'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:152:6: ( '*' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:152:8: '*'
 			{
 			match('*'); 
 			}
@@ -1606,8 +1613,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = NEQUAL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:146:8: ( '!=' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:146:10: '!='
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:153:8: ( '!=' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:153:10: '!='
 			{
 			match("!="); 
 
@@ -1627,8 +1634,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = NOTE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:147:6: ( 'Note' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:147:8: 'Note'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:154:6: ( 'Note' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:154:8: 'Note'
 			{
 			match("Note"); 
 
@@ -1648,8 +1655,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = NUM;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:148:5: ( 'num' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:148:7: 'num'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:155:5: ( 'num' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:155:7: 'num'
 			{
 			match("num"); 
 
@@ -1669,8 +1676,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = OP_NOT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:149:8: ( '!' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:149:10: '!'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:156:8: ( '!' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:156:10: '!'
 			{
 			match('!'); 
 			}
@@ -1689,8 +1696,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = PART;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:150:6: ( 'Part' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:150:8: 'Part'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:157:6: ( 'Part' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:157:8: 'Part'
 			{
 			match("Part"); 
 
@@ -1710,8 +1717,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = PART_TYPE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:151:11: ( 'PartType' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:151:13: 'PartType'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:158:11: ( 'PartType' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:158:13: 'PartType'
 			{
 			match("PartType"); 
 
@@ -1731,8 +1738,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = PIPE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:152:6: ( '|' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:152:8: '|'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:159:6: ( '|' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:159:8: '|'
 			{
 			match('|'); 
 			}
@@ -1751,8 +1758,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = PLUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:153:6: ( '+' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:153:8: '+'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:160:6: ( '+' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:160:8: '+'
 			{
 			match('+'); 
 			}
@@ -1771,8 +1778,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = PRINTLN_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:154:12: ( 'println' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:154:14: 'println'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:161:12: ( 'println' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:161:14: 'println'
 			{
 			match("println"); 
 
@@ -1792,8 +1799,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = PRINTLN_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:155:12: ( 'PRINTLN' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:155:14: 'PRINTLN'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:162:12: ( 'PRINTLN' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:162:14: 'PRINTLN'
 			{
 			match("PRINTLN"); 
 
@@ -1813,8 +1820,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = PRINT_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:156:10: ( 'print' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:156:12: 'print'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:163:10: ( 'print' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:163:12: 'print'
 			{
 			match("print"); 
 
@@ -1834,8 +1841,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = PRINT_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:157:10: ( 'PRINT' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:157:12: 'PRINT'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:164:10: ( 'PRINT' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:164:12: 'PRINT'
 			{
 			match("PRINT"); 
 
@@ -1855,8 +1862,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = PROPERTY;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:158:10: ( 'Property' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:158:12: 'Property'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:165:10: ( 'Property' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:165:12: 'Property'
 			{
 			match("Property"); 
 
@@ -1876,8 +1883,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = QUERY_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:159:10: ( 'query' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:159:12: 'query'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:166:10: ( 'query' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:166:12: 'query'
 			{
 			match("query"); 
 
@@ -1897,8 +1904,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = QUERY_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:160:10: ( 'QUERY' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:160:12: 'QUERY'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:167:10: ( 'QUERY' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:167:12: 'QUERY'
 			{
 			match("QUERY"); 
 
@@ -1918,8 +1925,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RANDOM_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:161:11: ( 'random' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:161:13: 'random'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:168:11: ( 'random' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:168:13: 'random'
 			{
 			match("random"); 
 
@@ -1939,8 +1946,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RANDOM_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:162:11: ( 'RANDOM' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:162:13: 'RANDOM'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:169:11: ( 'RANDOM' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:169:13: 'RANDOM'
 			{
 			match("RANDOM"); 
 
@@ -1960,8 +1967,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = READ_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:163:9: ( 'read' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:163:11: 'read'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:170:9: ( 'read' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:170:11: 'read'
 			{
 			match("read"); 
 
@@ -1981,8 +1988,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = READ_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:164:9: ( 'READ' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:164:11: 'READ'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:171:9: ( 'READ' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:171:11: 'READ'
 			{
 			match("READ"); 
 
@@ -2002,8 +2009,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = REF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:165:5: ( 'ref' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:165:7: 'ref'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:172:5: ( 'ref' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:172:7: 'ref'
 			{
 			match("ref"); 
 
@@ -2023,8 +2030,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = REGISTRY;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:166:10: ( 'Registry' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:166:12: 'Registry'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:173:10: ( 'Registry' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:173:12: 'Registry'
 			{
 			match("Registry"); 
 
@@ -2044,8 +2051,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RETURN_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:167:11: ( 'return' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:167:13: 'return'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:174:11: ( 'return' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:174:13: 'return'
 			{
 			match("return"); 
 
@@ -2065,8 +2072,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RETURN_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:168:11: ( 'RETURN' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:168:13: 'RETURN'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:175:11: ( 'RETURN' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:175:13: 'RETURN'
 			{
 			match("RETURN"); 
 
@@ -2086,8 +2093,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RIGHTCUR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:169:10: ( '}' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:169:12: '}'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:176:10: ( '}' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:176:12: '}'
 			{
 			match('}'); 
 			}
@@ -2106,8 +2113,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RIGHTP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:170:8: ( ')' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:170:10: ')'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:177:8: ( ')' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:177:10: ')'
 			{
 			match(')'); 
 			}
@@ -2126,8 +2133,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RIGHTSBR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:171:10: ( ']' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:171:12: ']'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:178:10: ( ']' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:178:12: ']'
 			{
 			match(']'); 
 			}
@@ -2146,8 +2153,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RULE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:172:6: ( 'Rule' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:172:8: 'Rule'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:179:6: ( 'Rule' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:179:8: 'Rule'
 			{
 			match("Rule"); 
 
@@ -2167,8 +2174,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = RULE_BUILDER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:173:14: ( 'RuleBuilder' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:173:16: 'RuleBuilder'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:180:14: ( 'RuleBuilder' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:180:16: 'RuleBuilder'
 			{
 			match("RuleBuilder"); 
 
@@ -2188,8 +2195,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SAVE_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:174:9: ( 'save' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:174:11: 'save'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:181:9: ( 'save' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:181:11: 'save'
 			{
 			match("save"); 
 
@@ -2209,8 +2216,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SAVE_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:175:9: ( 'SAVE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:175:11: 'SAVE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:182:9: ( 'SAVE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:182:11: 'SAVE'
 			{
 			match("SAVE"); 
 
@@ -2230,8 +2237,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SBOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:176:6: ( 'SBOL' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:176:8: 'SBOL'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:183:6: ( 'SBOL' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:183:8: 'SBOL'
 			{
 			match("SBOL"); 
 
@@ -2251,8 +2258,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SEMIC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:177:7: ( ';' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:177:9: ';'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:184:7: ( ';' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:184:9: ';'
 			{
 			match(';'); 
 			}
@@ -2271,8 +2278,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SIZEOF_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:178:11: ( 'sizeof' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:178:13: 'sizeof'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:185:11: ( 'sizeof' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:185:13: 'sizeof'
 			{
 			match("sizeof"); 
 
@@ -2292,8 +2299,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SIZEOF_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:179:11: ( 'SIZEOF' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:179:13: 'SIZEOF'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:186:11: ( 'SIZEOF' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:186:13: 'SIZEOF'
 			{
 			match("SIZEOF"); 
 
@@ -2313,8 +2320,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SIZE_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:180:9: ( 'size' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:180:11: 'size'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:187:9: ( 'size' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:187:11: 'size'
 			{
 			match("size"); 
 
@@ -2334,8 +2341,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SIZE_OF_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:181:12: ( 'size_of' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:181:14: 'size_of'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:188:12: ( 'size_of' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:188:14: 'size_of'
 			{
 			match("size_of"); 
 
@@ -2355,8 +2362,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SIZE_OF_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:182:12: ( 'SIZE_OF' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:182:14: 'SIZE_OF'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:189:12: ( 'SIZE_OF' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:189:14: 'SIZE_OF'
 			{
 			match("SIZE_OF"); 
 
@@ -2376,8 +2383,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = SIZE_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:183:9: ( 'SIZE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:183:11: 'SIZE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:190:9: ( 'SIZE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:190:11: 'SIZE'
 			{
 			match("SIZE"); 
 
@@ -2397,8 +2404,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = STORE_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:184:10: ( 'store' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:184:12: 'store'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:191:10: ( 'store' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:191:12: 'store'
 			{
 			match("store"); 
 
@@ -2418,8 +2425,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = STORE_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:185:10: ( 'STORE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:185:12: 'STORE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:192:10: ( 'STORE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:192:12: 'STORE'
 			{
 			match("STORE"); 
 
@@ -2439,8 +2446,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = STRICT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:186:8: ( 'strict' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:186:10: 'strict'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:193:8: ( 'strict' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:193:10: 'strict'
 			{
 			match("strict"); 
 
@@ -2460,8 +2467,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = TRUE_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:187:9: ( 'true' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:187:11: 'true'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:194:9: ( 'true' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:194:11: 'true'
 			{
 			match("true"); 
 
@@ -2481,8 +2488,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = TRUE_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:188:9: ( 'TRUE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:188:11: 'TRUE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:195:9: ( 'TRUE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:195:11: 'TRUE'
 			{
 			match("TRUE"); 
 
@@ -2502,8 +2509,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = TXT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:189:5: ( 'txt' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:189:7: 'txt'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:196:5: ( 'txt' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:196:7: 'txt'
 			{
 			match("txt"); 
 
@@ -2523,8 +2530,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = TYPE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:190:6: ( 'Type' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:190:8: 'Type'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:197:6: ( 'Type' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:197:8: 'Type'
 			{
 			match("Type"); 
 
@@ -2544,8 +2551,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_AND;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:191:8: ( 'AND' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:191:10: 'AND'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:198:8: ( 'AND' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:198:10: 'AND'
 			{
 			match("AND"); 
 
@@ -2565,8 +2572,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_ELSE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:192:9: ( 'ELSE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:192:11: 'ELSE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:199:9: ( 'ELSE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:199:11: 'ELSE'
 			{
 			match("ELSE"); 
 
@@ -2586,8 +2593,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_ELSEIF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:193:11: ( 'ELSEIF' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:193:13: 'ELSEIF'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:200:11: ( 'ELSEIF' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:200:13: 'ELSEIF'
 			{
 			match("ELSEIF"); 
 
@@ -2607,8 +2614,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_FOR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:194:8: ( 'FOR' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:194:10: 'FOR'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:201:8: ( 'FOR' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:201:10: 'FOR'
 			{
 			match("FOR"); 
 
@@ -2628,8 +2635,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_FORALL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:195:11: ( 'FORALL' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:195:13: 'FORALL'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:202:11: ( 'FORALL' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:202:13: 'FORALL'
 			{
 			match("FORALL"); 
 
@@ -2649,8 +2656,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_IF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:196:7: ( 'IF' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:196:9: 'IF'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:203:7: ( 'IF' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:203:9: 'IF'
 			{
 			match("IF"); 
 
@@ -2670,8 +2677,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_INDUCES;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:197:12: ( 'INDUCES' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:197:14: 'INDUCES'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:204:12: ( 'INDUCES' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:204:14: 'INDUCES'
 			{
 			match("INDUCES"); 
 
@@ -2691,8 +2698,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_NOT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:198:8: ( 'NOT' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:198:10: 'NOT'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:205:8: ( 'NOT' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:205:10: 'NOT'
 			{
 			match("NOT"); 
 
@@ -2712,8 +2719,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_ON;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:199:7: ( 'ON' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:199:9: 'ON'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:206:7: ( 'ON' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:206:9: 'ON'
 			{
 			match("ON"); 
 
@@ -2733,8 +2740,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_OR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:200:7: ( 'OR' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:200:9: 'OR'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:207:7: ( 'OR' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:207:9: 'OR'
 			{
 			match("OR"); 
 
@@ -2754,8 +2761,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_PERMUTE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:201:12: ( 'PERMUTE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:201:14: 'PERMUTE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:208:12: ( 'PERMUTE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:208:14: 'PERMUTE'
 			{
 			match("PERMUTE"); 
 
@@ -2775,8 +2782,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_PRODUCT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:202:12: ( 'PRODUCT' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:202:14: 'PRODUCT'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:209:12: ( 'PRODUCT' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:209:14: 'PRODUCT'
 			{
 			match("PRODUCT"); 
 
@@ -2796,8 +2803,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_REPRESSES;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:203:14: ( 'REPRESSES' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:203:16: 'REPRESSES'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:210:14: ( 'REPRESSES' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:210:16: 'REPRESSES'
 			{
 			match("REPRESSES"); 
 
@@ -2817,8 +2824,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_SEQUENCE_OF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:204:16: ( 'SEQUENCE_OF' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:204:18: 'SEQUENCE_OF'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:211:16: ( 'SEQUENCE_OF' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:211:18: 'SEQUENCE_OF'
 			{
 			match("SEQUENCE_OF"); 
 
@@ -2838,8 +2845,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UC_WHILE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:205:10: ( 'WHILE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:205:12: 'WHILE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:212:10: ( 'WHILE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:212:12: 'WHILE'
 			{
 			match("WHILE"); 
 
@@ -2859,8 +2866,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UNDERS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:206:8: ( '_' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:206:10: '_'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:213:8: ( '_' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:213:10: '_'
 			{
 			match('_'); 
 			}
@@ -2879,8 +2886,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UPDATE_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:207:11: ( 'update' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:207:13: 'update'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:214:11: ( 'update' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:214:13: 'update'
 			{
 			match("update"); 
 
@@ -2900,8 +2907,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = UPDATE_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:208:11: ( 'UPDATE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:208:13: 'UPDATE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:215:11: ( 'UPDATE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:215:13: 'UPDATE'
 			{
 			match("UPDATE"); 
 
@@ -2921,8 +2928,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = VISUALIZE_LC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:209:14: ( 'visualize' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:209:16: 'visualize'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:216:14: ( 'visualize' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:216:16: 'visualize'
 			{
 			match("visualize"); 
 
@@ -2942,8 +2949,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = VISUALIZE_UC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:210:14: ( 'VISUALIZE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:210:16: 'VISUALIZE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:217:14: ( 'VISUALIZE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:217:16: 'VISUALIZE'
 			{
 			match("VISUALIZE"); 
 
@@ -2963,8 +2970,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__140;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:211:8: ( 'AFTER' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:211:10: 'AFTER'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:218:8: ( 'AFTER' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:218:10: 'AFTER'
 			{
 			match("AFTER"); 
 
@@ -2984,8 +2991,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__141;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:212:8: ( 'ALL_AFTER' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:212:10: 'ALL_AFTER'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:219:8: ( 'ALL_AFTER' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:219:10: 'ALL_AFTER'
 			{
 			match("ALL_AFTER"); 
 
@@ -3005,8 +3012,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__142;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:213:8: ( 'ALL_BEFORE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:213:10: 'ALL_BEFORE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:220:8: ( 'ALL_BEFORE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:220:10: 'ALL_BEFORE'
 			{
 			match("ALL_BEFORE"); 
 
@@ -3026,8 +3033,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__143;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:214:8: ( 'ALL_FORWARD' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:214:10: 'ALL_FORWARD'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:221:8: ( 'ALL_FORWARD' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:221:10: 'ALL_FORWARD'
 			{
 			match("ALL_FORWARD"); 
 
@@ -3047,8 +3054,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__144;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:215:8: ( 'ALL_NEXTTO' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:215:10: 'ALL_NEXTTO'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:222:8: ( 'ALL_NEXTTO' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:222:10: 'ALL_NEXTTO'
 			{
 			match("ALL_NEXTTO"); 
 
@@ -3068,8 +3075,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__145;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:216:8: ( 'ALL_REVERSE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:216:10: 'ALL_REVERSE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:223:8: ( 'ALL_REVERSE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:223:10: 'ALL_REVERSE'
 			{
 			match("ALL_REVERSE"); 
 
@@ -3089,8 +3096,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__146;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:217:8: ( 'ALL_SAME_ORIENTATION' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:217:10: 'ALL_SAME_ORIENTATION'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:224:8: ( 'ALL_SAME_ORIENTATION' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:224:10: 'ALL_SAME_ORIENTATION'
 			{
 			match("ALL_SAME_ORIENTATION"); 
 
@@ -3110,8 +3117,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__147;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:218:8: ( 'ALTERNATE_ORIENTATION' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:218:10: 'ALTERNATE_ORIENTATION'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:225:8: ( 'ALTERNATE_ORIENTATION' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:225:10: 'ALTERNATE_ORIENTATION'
 			{
 			match("ALTERNATE_ORIENTATION"); 
 
@@ -3131,8 +3138,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__148;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:219:8: ( 'ALWAYS_NEXTTO' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:219:10: 'ALWAYS_NEXTTO'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:226:8: ( 'ALWAYS_NEXTTO' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:226:10: 'ALWAYS_NEXTTO'
 			{
 			match("ALWAYS_NEXTTO"); 
 
@@ -3152,8 +3159,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__149;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:220:8: ( 'BEFORE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:220:10: 'BEFORE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:227:8: ( 'BEFORE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:227:10: 'BEFORE'
 			{
 			match("BEFORE"); 
 
@@ -3173,8 +3180,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__150;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:221:8: ( 'CONTAINS' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:221:10: 'CONTAINS'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:228:8: ( 'CONTAINS' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:228:10: 'CONTAINS'
 			{
 			match("CONTAINS"); 
 
@@ -3194,8 +3201,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__151;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:222:8: ( 'DRIVES' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:222:10: 'DRIVES'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:229:8: ( 'DRIVES' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:229:10: 'DRIVES'
 			{
 			match("DRIVES"); 
 
@@ -3215,8 +3222,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__152;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:223:8: ( 'ENDSWITH' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:223:10: 'ENDSWITH'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:230:8: ( 'ENDSWITH' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:230:10: 'ENDSWITH'
 			{
 			match("ENDSWITH"); 
 
@@ -3236,8 +3243,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__153;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:224:8: ( 'EQUALS' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:224:10: 'EQUALS'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:231:8: ( 'EQUALS' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:231:10: 'EQUALS'
 			{
 			match("EQUALS"); 
 
@@ -3257,8 +3264,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__154;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:225:8: ( 'EXACTLY' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:225:10: 'EXACTLY'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:232:8: ( 'EXACTLY' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:232:10: 'EXACTLY'
 			{
 			match("EXACTLY"); 
 
@@ -3278,8 +3285,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__155;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:226:8: ( 'FORWARD' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:226:10: 'FORWARD'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:233:8: ( 'FORWARD' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:233:10: 'FORWARD'
 			{
 			match("FORWARD"); 
 
@@ -3299,8 +3306,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__156;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:227:8: ( 'MATCHES' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:227:10: 'MATCHES'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:234:8: ( 'MATCHES' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:234:10: 'MATCHES'
 			{
 			match("MATCHES"); 
 
@@ -3320,8 +3327,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__157;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:228:8: ( 'MORETHAN' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:228:10: 'MORETHAN'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:235:8: ( 'MORETHAN' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:235:10: 'MORETHAN'
 			{
 			match("MORETHAN"); 
 
@@ -3341,8 +3348,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__158;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:229:8: ( 'NEXTTO' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:229:10: 'NEXTTO'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:236:8: ( 'NEXTTO' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:236:10: 'NEXTTO'
 			{
 			match("NEXTTO"); 
 
@@ -3362,8 +3369,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__159;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:230:8: ( 'NOTCONTAINS' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:230:10: 'NOTCONTAINS'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:237:8: ( 'NOTCONTAINS' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:237:10: 'NOTCONTAINS'
 			{
 			match("NOTCONTAINS"); 
 
@@ -3383,8 +3390,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__160;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:231:8: ( 'NOTEQUALS' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:231:10: 'NOTEQUALS'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:238:8: ( 'NOTEQUALS' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:238:10: 'NOTEQUALS'
 			{
 			match("NOTEQUALS"); 
 
@@ -3404,8 +3411,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__161;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:232:8: ( 'NOTEXACTLY' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:232:10: 'NOTEXACTLY'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:239:8: ( 'NOTEXACTLY' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:239:10: 'NOTEXACTLY'
 			{
 			match("NOTEXACTLY"); 
 
@@ -3425,8 +3432,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__162;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:233:8: ( 'NOTMATCHES' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:233:10: 'NOTMATCHES'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:240:8: ( 'NOTMATCHES' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:240:10: 'NOTMATCHES'
 			{
 			match("NOTMATCHES"); 
 
@@ -3446,8 +3453,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__163;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:234:8: ( 'NOTMORETHAN' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:234:10: 'NOTMORETHAN'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:241:8: ( 'NOTMORETHAN' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:241:10: 'NOTMORETHAN'
 			{
 			match("NOTMORETHAN"); 
 
@@ -3467,8 +3474,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__164;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:235:8: ( 'NOTTHEN' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:235:10: 'NOTTHEN'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:242:8: ( 'NOTTHEN' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:242:10: 'NOTTHEN'
 			{
 			match("NOTTHEN"); 
 
@@ -3488,8 +3495,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__165;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:236:8: ( 'NOTWITH' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:236:10: 'NOTWITH'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:243:8: ( 'NOTWITH' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:243:10: 'NOTWITH'
 			{
 			match("NOTWITH"); 
 
@@ -3509,8 +3516,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__166;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:237:8: ( 'REVERSE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:237:10: 'REVERSE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:244:8: ( 'REVERSE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:244:10: 'REVERSE'
 			{
 			match("REVERSE"); 
 
@@ -3530,8 +3537,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__167;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:238:8: ( 'SAME_COUNT' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:238:10: 'SAME_COUNT'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:245:8: ( 'SAME_COUNT' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:245:10: 'SAME_COUNT'
 			{
 			match("SAME_COUNT"); 
 
@@ -3551,8 +3558,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__168;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:239:8: ( 'SAME_ORIENTATION' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:239:10: 'SAME_ORIENTATION'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:246:8: ( 'SAME_ORIENTATION' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:246:10: 'SAME_ORIENTATION'
 			{
 			match("SAME_ORIENTATION"); 
 
@@ -3572,8 +3579,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__169;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:240:8: ( 'SOME_AFTER' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:240:10: 'SOME_AFTER'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:247:8: ( 'SOME_AFTER' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:247:10: 'SOME_AFTER'
 			{
 			match("SOME_AFTER"); 
 
@@ -3593,8 +3600,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__170;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:241:8: ( 'SOME_BEFORE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:241:10: 'SOME_BEFORE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:248:8: ( 'SOME_BEFORE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:248:10: 'SOME_BEFORE'
 			{
 			match("SOME_BEFORE"); 
 
@@ -3614,8 +3621,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__171;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:242:8: ( 'SOME_FORWARD' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:242:10: 'SOME_FORWARD'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:249:8: ( 'SOME_FORWARD' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:249:10: 'SOME_FORWARD'
 			{
 			match("SOME_FORWARD"); 
 
@@ -3635,8 +3642,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__172;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:243:8: ( 'SOME_NEXTTO' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:243:10: 'SOME_NEXTTO'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:250:8: ( 'SOME_NEXTTO' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:250:10: 'SOME_NEXTTO'
 			{
 			match("SOME_NEXTTO"); 
 
@@ -3656,8 +3663,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__173;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:244:8: ( 'SOME_REVERSE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:244:10: 'SOME_REVERSE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:251:8: ( 'SOME_REVERSE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:251:10: 'SOME_REVERSE'
 			{
 			match("SOME_REVERSE"); 
 
@@ -3677,8 +3684,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__174;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:245:8: ( 'SOME_SAME_ORIENTATION' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:245:10: 'SOME_SAME_ORIENTATION'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:252:8: ( 'SOME_SAME_ORIENTATION' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:252:10: 'SOME_SAME_ORIENTATION'
 			{
 			match("SOME_SAME_ORIENTATION"); 
 
@@ -3698,8 +3705,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__175;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:246:8: ( 'SOUNDSLIKE' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:246:10: 'SOUNDSLIKE'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:253:8: ( 'SOUNDSLIKE' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:253:10: 'SOUNDSLIKE'
 			{
 			match("SOUNDSLIKE"); 
 
@@ -3719,8 +3726,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__176;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:247:8: ( 'STARTSWITH' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:247:10: 'STARTSWITH'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:254:8: ( 'STARTSWITH' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:254:10: 'STARTSWITH'
 			{
 			match("STARTSWITH"); 
 
@@ -3740,8 +3747,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__177;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:248:8: ( 'THEN' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:248:10: 'THEN'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:255:8: ( 'THEN' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:255:10: 'THEN'
 			{
 			match("THEN"); 
 
@@ -3761,8 +3768,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__178;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:249:8: ( 'WITH' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:249:10: 'WITH'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:256:8: ( 'WITH' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:256:10: 'WITH'
 			{
 			match("WITH"); 
 
@@ -3782,8 +3789,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__179;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:250:8: ( 'after' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:250:10: 'after'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:257:8: ( 'after' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:257:10: 'after'
 			{
 			match("after"); 
 
@@ -3803,8 +3810,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__180;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:251:8: ( 'all_after' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:251:10: 'all_after'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:258:8: ( 'all_after' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:258:10: 'all_after'
 			{
 			match("all_after"); 
 
@@ -3824,8 +3831,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__181;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:252:8: ( 'all_before' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:252:10: 'all_before'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:259:8: ( 'all_before' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:259:10: 'all_before'
 			{
 			match("all_before"); 
 
@@ -3845,8 +3852,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__182;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:253:8: ( 'all_forward' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:253:10: 'all_forward'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:260:8: ( 'all_forward' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:260:10: 'all_forward'
 			{
 			match("all_forward"); 
 
@@ -3866,8 +3873,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__183;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:254:8: ( 'all_nextto' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:254:10: 'all_nextto'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:261:8: ( 'all_nextto' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:261:10: 'all_nextto'
 			{
 			match("all_nextto"); 
 
@@ -3887,8 +3894,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__184;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:255:8: ( 'all_reverse' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:255:10: 'all_reverse'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:262:8: ( 'all_reverse' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:262:10: 'all_reverse'
 			{
 			match("all_reverse"); 
 
@@ -3908,8 +3915,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__185;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:256:8: ( 'all_same_orientation' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:256:10: 'all_same_orientation'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:263:8: ( 'all_same_orientation' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:263:10: 'all_same_orientation'
 			{
 			match("all_same_orientation"); 
 
@@ -3929,8 +3936,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__186;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:257:8: ( 'alternate_orientation' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:257:10: 'alternate_orientation'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:264:8: ( 'alternate_orientation' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:264:10: 'alternate_orientation'
 			{
 			match("alternate_orientation"); 
 
@@ -3950,8 +3957,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__187;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:258:8: ( 'always_nextto' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:258:10: 'always_nextto'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:265:8: ( 'always_nextto' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:265:10: 'always_nextto'
 			{
 			match("always_nextto"); 
 
@@ -3971,8 +3978,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__188;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:259:8: ( 'before' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:259:10: 'before'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:266:8: ( 'before' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:266:10: 'before'
 			{
 			match("before"); 
 
@@ -3992,8 +3999,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__189;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:260:8: ( 'contains' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:260:10: 'contains'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:267:8: ( 'contains' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:267:10: 'contains'
 			{
 			match("contains"); 
 
@@ -4013,8 +4020,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__190;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:261:8: ( 'drives' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:261:10: 'drives'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:268:8: ( 'drives' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:268:10: 'drives'
 			{
 			match("drives"); 
 
@@ -4034,8 +4041,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__191;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:262:8: ( 'endswith' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:262:10: 'endswith'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:269:8: ( 'endswith' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:269:10: 'endswith'
 			{
 			match("endswith"); 
 
@@ -4055,8 +4062,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__192;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:263:8: ( 'equals' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:263:10: 'equals'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:270:8: ( 'equals' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:270:10: 'equals'
 			{
 			match("equals"); 
 
@@ -4076,8 +4083,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__193;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:264:8: ( 'exactly' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:264:10: 'exactly'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:271:8: ( 'exactly' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:271:10: 'exactly'
 			{
 			match("exactly"); 
 
@@ -4097,8 +4104,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__194;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:265:8: ( 'forward' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:265:10: 'forward'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:272:8: ( 'forward' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:272:10: 'forward'
 			{
 			match("forward"); 
 
@@ -4118,8 +4125,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__195;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:266:8: ( 'matches' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:266:10: 'matches'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:273:8: ( 'matches' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:273:10: 'matches'
 			{
 			match("matches"); 
 
@@ -4139,8 +4146,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__196;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:267:8: ( 'morethan' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:267:10: 'morethan'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:274:8: ( 'morethan' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:274:10: 'morethan'
 			{
 			match("morethan"); 
 
@@ -4160,8 +4167,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__197;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:268:8: ( 'nextto' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:268:10: 'nextto'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:275:8: ( 'nextto' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:275:10: 'nextto'
 			{
 			match("nextto"); 
 
@@ -4181,8 +4188,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__198;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:269:8: ( 'notcontains' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:269:10: 'notcontains'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:276:8: ( 'notcontains' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:276:10: 'notcontains'
 			{
 			match("notcontains"); 
 
@@ -4202,8 +4209,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__199;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:270:8: ( 'notequals' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:270:10: 'notequals'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:277:8: ( 'notequals' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:277:10: 'notequals'
 			{
 			match("notequals"); 
 
@@ -4223,8 +4230,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__200;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:271:8: ( 'notexactly' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:271:10: 'notexactly'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:278:8: ( 'notexactly' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:278:10: 'notexactly'
 			{
 			match("notexactly"); 
 
@@ -4244,8 +4251,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__201;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:272:8: ( 'notmatches' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:272:10: 'notmatches'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:279:8: ( 'notmatches' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:279:10: 'notmatches'
 			{
 			match("notmatches"); 
 
@@ -4265,8 +4272,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__202;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:273:8: ( 'notmorethan' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:273:10: 'notmorethan'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:280:8: ( 'notmorethan' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:280:10: 'notmorethan'
 			{
 			match("notmorethan"); 
 
@@ -4286,8 +4293,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__203;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:274:8: ( 'notthen' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:274:10: 'notthen'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:281:8: ( 'notthen' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:281:10: 'notthen'
 			{
 			match("notthen"); 
 
@@ -4307,8 +4314,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__204;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:275:8: ( 'notwith' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:275:10: 'notwith'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:282:8: ( 'notwith' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:282:10: 'notwith'
 			{
 			match("notwith"); 
 
@@ -4328,8 +4335,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__205;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:276:8: ( 'reverse' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:276:10: 'reverse'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:283:8: ( 'reverse' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:283:10: 'reverse'
 			{
 			match("reverse"); 
 
@@ -4349,8 +4356,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__206;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:277:8: ( 'same_count' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:277:10: 'same_count'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:284:8: ( 'same_count' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:284:10: 'same_count'
 			{
 			match("same_count"); 
 
@@ -4370,8 +4377,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__207;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:278:8: ( 'same_orientation' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:278:10: 'same_orientation'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:285:8: ( 'same_orientation' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:285:10: 'same_orientation'
 			{
 			match("same_orientation"); 
 
@@ -4391,8 +4398,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__208;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:279:8: ( 'some_after' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:279:10: 'some_after'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:286:8: ( 'some_after' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:286:10: 'some_after'
 			{
 			match("some_after"); 
 
@@ -4412,8 +4419,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__209;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:280:8: ( 'some_before' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:280:10: 'some_before'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:287:8: ( 'some_before' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:287:10: 'some_before'
 			{
 			match("some_before"); 
 
@@ -4433,8 +4440,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__210;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:281:8: ( 'some_forward' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:281:10: 'some_forward'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:288:8: ( 'some_forward' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:288:10: 'some_forward'
 			{
 			match("some_forward"); 
 
@@ -4454,8 +4461,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__211;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:282:8: ( 'some_nextto' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:282:10: 'some_nextto'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:289:8: ( 'some_nextto' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:289:10: 'some_nextto'
 			{
 			match("some_nextto"); 
 
@@ -4475,8 +4482,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__212;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:283:8: ( 'some_reverse' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:283:10: 'some_reverse'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:290:8: ( 'some_reverse' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:290:10: 'some_reverse'
 			{
 			match("some_reverse"); 
 
@@ -4496,8 +4503,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__213;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:284:8: ( 'some_same_orientation' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:284:10: 'some_same_orientation'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:291:8: ( 'some_same_orientation' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:291:10: 'some_same_orientation'
 			{
 			match("some_same_orientation"); 
 
@@ -4517,8 +4524,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__214;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:285:8: ( 'soundslike' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:285:10: 'soundslike'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:292:8: ( 'soundslike' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:292:10: 'soundslike'
 			{
 			match("soundslike"); 
 
@@ -4538,8 +4545,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__215;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:286:8: ( 'startswith' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:286:10: 'startswith'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:293:8: ( 'startswith' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:293:10: 'startswith'
 			{
 			match("startswith"); 
 
@@ -4559,8 +4566,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__216;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:287:8: ( 'then' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:287:10: 'then'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:294:8: ( 'then' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:294:10: 'then'
 			{
 			match("then"); 
 
@@ -4580,8 +4587,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = T__217;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:288:8: ( 'with' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:288:10: 'with'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:295:8: ( 'with' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:295:10: 'with'
 			{
 			match("with"); 
 
@@ -4601,10 +4608,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = NUMBER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3494:2: ( ( DIGIT )+ )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3494:4: ( DIGIT )+
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3508:2: ( ( DIGIT )+ )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3508:4: ( DIGIT )+
 			{
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3494:4: ( DIGIT )+
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3508:4: ( DIGIT )+
 			int cnt1=0;
 			loop1:
 			while (true) {
@@ -4616,7 +4623,7 @@ public class EugeneLexer extends Lexer {
 
 				switch (alt1) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:
+					// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:
 					{
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 						input.consume();
@@ -4653,8 +4660,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = REAL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3498:2: ( NUMBER '.' NUMBER )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3498:4: NUMBER '.' NUMBER
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3512:2: ( NUMBER '.' NUMBER )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3512:4: NUMBER '.' NUMBER
 			{
 			mNUMBER(); 
 
@@ -4677,10 +4684,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3502:2: ( ( '\\t' | ' ' | '\\u000C' )+ )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3502:4: ( '\\t' | ' ' | '\\u000C' )+
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3516:2: ( ( '\\t' | ' ' | '\\u000C' )+ )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3516:4: ( '\\t' | ' ' | '\\u000C' )+
 			{
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3502:4: ( '\\t' | ' ' | '\\u000C' )+
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3516:4: ( '\\t' | ' ' | '\\u000C' )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -4692,7 +4699,7 @@ public class EugeneLexer extends Lexer {
 
 				switch (alt2) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:
+					// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:
 					{
 					if ( input.LA(1)=='\t'||input.LA(1)=='\f'||input.LA(1)==' ' ) {
 						input.consume();
@@ -4730,10 +4737,10 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = NEWLINE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3506:2: ( ( '\\r' )? '\\n' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3506:4: ( '\\r' )? '\\n'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3520:2: ( ( '\\r' )? '\\n' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3520:4: ( '\\r' )? '\\n'
 			{
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3506:4: ( '\\r' )?
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3520:4: ( '\\r' )?
 			int alt3=2;
 			int LA3_0 = input.LA(1);
 			if ( (LA3_0=='\r') ) {
@@ -4741,7 +4748,7 @@ public class EugeneLexer extends Lexer {
 			}
 			switch (alt3) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3506:4: '\\r'
+					// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3520:4: '\\r'
 					{
 					match('\r'); 
 					}
@@ -4767,16 +4774,16 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = LINE_COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3510:2: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r\\n' | '\\r' | '\\n' ) | '//' (~ ( '\\n' | '\\r' ) )* )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3524:2: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r\\n' | '\\r' | '\\n' ) | '//' (~ ( '\\n' | '\\r' ) )* )
 			int alt7=2;
 			alt7 = dfa7.predict(input);
 			switch (alt7) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3510:4: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r\\n' | '\\r' | '\\n' )
+					// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3524:4: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r\\n' | '\\r' | '\\n' )
 					{
 					match("//"); 
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3510:9: (~ ( '\\n' | '\\r' ) )*
+					// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3524:9: (~ ( '\\n' | '\\r' ) )*
 					loop4:
 					while (true) {
 						int alt4=2;
@@ -4787,7 +4794,7 @@ public class EugeneLexer extends Lexer {
 
 						switch (alt4) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:
+							// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:
 							{
 							if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '\uFFFF') ) {
 								input.consume();
@@ -4805,7 +4812,7 @@ public class EugeneLexer extends Lexer {
 						}
 					}
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3510:24: ( '\\r\\n' | '\\r' | '\\n' )
+					// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3524:24: ( '\\r\\n' | '\\r' | '\\n' )
 					int alt5=3;
 					int LA5_0 = input.LA(1);
 					if ( (LA5_0=='\r') ) {
@@ -4831,20 +4838,20 @@ public class EugeneLexer extends Lexer {
 
 					switch (alt5) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3510:25: '\\r\\n'
+							// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3524:25: '\\r\\n'
 							{
 							match("\r\n"); 
 
 							}
 							break;
 						case 2 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3510:34: '\\r'
+							// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3524:34: '\\r'
 							{
 							match('\r'); 
 							}
 							break;
 						case 3 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3510:41: '\\n'
+							// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3524:41: '\\n'
 							{
 							match('\n'); 
 							}
@@ -4858,11 +4865,11 @@ public class EugeneLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3514:4: '//' (~ ( '\\n' | '\\r' ) )*
+					// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3528:4: '//' (~ ( '\\n' | '\\r' ) )*
 					{
 					match("//"); 
 
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3514:9: (~ ( '\\n' | '\\r' ) )*
+					// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3528:9: (~ ( '\\n' | '\\r' ) )*
 					loop6:
 					while (true) {
 						int alt6=2;
@@ -4873,7 +4880,7 @@ public class EugeneLexer extends Lexer {
 
 						switch (alt6) {
 						case 1 :
-							// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:
+							// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:
 							{
 							if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '\uFFFF') ) {
 								input.consume();
@@ -4912,12 +4919,12 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = ML_COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3521:2: ( '/*' ( options {greedy=false; } : . )* '*/' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3521:4: '/*' ( options {greedy=false; } : . )* '*/'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3535:2: ( '/*' ( options {greedy=false; } : . )* '*/' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3535:4: '/*' ( options {greedy=false; } : . )* '*/'
 			{
 			match("/*"); 
 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3521:9: ( options {greedy=false; } : . )*
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3535:9: ( options {greedy=false; } : . )*
 			loop8:
 			while (true) {
 				int alt8=2;
@@ -4938,7 +4945,7 @@ public class EugeneLexer extends Lexer {
 
 				switch (alt8) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3521:36: .
+					// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3535:36: .
 					{
 					matchAny(); 
 					}
@@ -4966,8 +4973,8 @@ public class EugeneLexer extends Lexer {
 	// $ANTLR start "DIGIT"
 	public final void mDIGIT() throws RecognitionException {
 		try {
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3525:2: ( '0' .. '9' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3539:2: ( '0' .. '9' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 				input.consume();
@@ -4991,8 +4998,8 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = ID;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3529:2: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3529:4: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3543:2: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3543:4: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -5002,7 +5009,7 @@ public class EugeneLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3529:27: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3543:27: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
 			loop9:
 			while (true) {
 				int alt9=2;
@@ -5013,7 +5020,7 @@ public class EugeneLexer extends Lexer {
 
 				switch (alt9) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:
+					// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:
 					{
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 						input.consume();
@@ -5047,11 +5054,11 @@ public class EugeneLexer extends Lexer {
 		try {
 			int _type = STRING;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3533:2: ( '\"' ( options {greedy=false; } : . )* '\"' )
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3533:4: '\"' ( options {greedy=false; } : . )* '\"'
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3547:2: ( '\"' ( options {greedy=false; } : . )* '\"' )
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3547:4: '\"' ( options {greedy=false; } : . )* '\"'
 			{
 			match('\"'); 
-			// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3533:8: ( options {greedy=false; } : . )*
+			// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3547:8: ( options {greedy=false; } : . )*
 			loop10:
 			while (true) {
 				int alt10=2;
@@ -5065,7 +5072,7 @@ public class EugeneLexer extends Lexer {
 
 				switch (alt10) {
 				case 1 :
-					// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:3533:35: .
+					// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:3547:35: .
 					{
 					matchAny(); 
 					}
@@ -5090,1496 +5097,1496 @@ public class EugeneLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:8: ( ADDPROPS | AMP | ARRAY | ARROW | ASSERT | BOOL | BOOLEAN | COLLECTION | COLON | COMMA | CREATE_LC | CREATE_UC | DELETE_LC | DELETE_UC | DEVICE | DIV | DOLLAR | DOT | DOTDOT | EQUALS | EXIT_LC | EXIT_UC | EXPORT_LC | EXPORT_UC | FALSE_LC | FALSE_UC | FLEXIBLE | GENBANK | GEQUAL | GRAMMAR | GTHAN | HASHMARK | IMAGE | IMPORT_LC | IMPORT_UC | INCLUDE_LC | INCLUDE_UC | INTERACTION | LC_AND | LC_ELSE | LC_ELSEIF | LC_FOR | LC_FORALL | LC_IF | LC_INDUCES | LC_NOT | LC_ON | LC_OR | LC_PERMUTE | LC_PRODUCT | LC_REPRESSES | LC_SEQUENCE_OF | LC_WHILE | LEFTCUR | LEFTP | LEFTSBR | LEQUAL | LOG_AND | LOG_OR | LTHAN | MINUS | MULT | NEQUAL | NOTE | NUM | OP_NOT | PART | PART_TYPE | PIPE | PLUS | PRINTLN_LC | PRINTLN_UC | PRINT_LC | PRINT_UC | PROPERTY | QUERY_LC | QUERY_UC | RANDOM_LC | RANDOM_UC | READ_LC | READ_UC | REF | REGISTRY | RETURN_LC | RETURN_UC | RIGHTCUR | RIGHTP | RIGHTSBR | RULE | RULE_BUILDER | SAVE_LC | SAVE_UC | SBOL | SEMIC | SIZEOF_LC | SIZEOF_UC | SIZE_LC | SIZE_OF_LC | SIZE_OF_UC | SIZE_UC | STORE_LC | STORE_UC | STRICT | TRUE_LC | TRUE_UC | TXT | TYPE | UC_AND | UC_ELSE | UC_ELSEIF | UC_FOR | UC_FORALL | UC_IF | UC_INDUCES | UC_NOT | UC_ON | UC_OR | UC_PERMUTE | UC_PRODUCT | UC_REPRESSES | UC_SEQUENCE_OF | UC_WHILE | UNDERS | UPDATE_LC | UPDATE_UC | VISUALIZE_LC | VISUALIZE_UC | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | T__170 | T__171 | T__172 | T__173 | T__174 | T__175 | T__176 | T__177 | T__178 | T__179 | T__180 | T__181 | T__182 | T__183 | T__184 | T__185 | T__186 | T__187 | T__188 | T__189 | T__190 | T__191 | T__192 | T__193 | T__194 | T__195 | T__196 | T__197 | T__198 | T__199 | T__200 | T__201 | T__202 | T__203 | T__204 | T__205 | T__206 | T__207 | T__208 | T__209 | T__210 | T__211 | T__212 | T__213 | T__214 | T__215 | T__216 | T__217 | NUMBER | REAL | WS | NEWLINE | LINE_COMMENT | ML_COMMENT | ID | STRING )
+		// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:8: ( ADDPROPS | AMP | ARRAY | ARROW | ASSERT | BOOL | BOOLEAN | COLLECTION | COLON | COMMA | CREATE_LC | CREATE_UC | DELETE_LC | DELETE_UC | DEVICE | DIV | DOLLAR | DOT | DOTDOT | EQUALS | EXIT_LC | EXIT_UC | EXPORT_LC | EXPORT_UC | FALSE_LC | FALSE_UC | FLEXIBLE | GENBANK | GEQUAL | GRAMMAR | GTHAN | HASHMARK | IMAGE | IMPORT_LC | IMPORT_UC | INCLUDE_LC | INCLUDE_UC | INTERACTION | LC_AND | LC_ELSE | LC_ELSEIF | LC_FOR | LC_FORALL | LC_IF | LC_INDUCES | LC_NOT | LC_ON | LC_OR | LC_PERMUTE | LC_PRODUCT | LC_REPRESSES | LC_SEQUENCE_OF | LC_WHILE | LEFTCUR | LEFTP | LEFTSBR | LEQUAL | LOG_AND | LOG_OR | LTHAN | MINUS | MULT | NEQUAL | NOTE | NUM | OP_NOT | PART | PART_TYPE | PIPE | PLUS | PRINTLN_LC | PRINTLN_UC | PRINT_LC | PRINT_UC | PROPERTY | QUERY_LC | QUERY_UC | RANDOM_LC | RANDOM_UC | READ_LC | READ_UC | REF | REGISTRY | RETURN_LC | RETURN_UC | RIGHTCUR | RIGHTP | RIGHTSBR | RULE | RULE_BUILDER | SAVE_LC | SAVE_UC | SBOL | SEMIC | SIZEOF_LC | SIZEOF_UC | SIZE_LC | SIZE_OF_LC | SIZE_OF_UC | SIZE_UC | STORE_LC | STORE_UC | STRICT | TRUE_LC | TRUE_UC | TXT | TYPE | UC_AND | UC_ELSE | UC_ELSEIF | UC_FOR | UC_FORALL | UC_IF | UC_INDUCES | UC_NOT | UC_ON | UC_OR | UC_PERMUTE | UC_PRODUCT | UC_REPRESSES | UC_SEQUENCE_OF | UC_WHILE | UNDERS | UPDATE_LC | UPDATE_UC | VISUALIZE_LC | VISUALIZE_UC | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | T__170 | T__171 | T__172 | T__173 | T__174 | T__175 | T__176 | T__177 | T__178 | T__179 | T__180 | T__181 | T__182 | T__183 | T__184 | T__185 | T__186 | T__187 | T__188 | T__189 | T__190 | T__191 | T__192 | T__193 | T__194 | T__195 | T__196 | T__197 | T__198 | T__199 | T__200 | T__201 | T__202 | T__203 | T__204 | T__205 | T__206 | T__207 | T__208 | T__209 | T__210 | T__211 | T__212 | T__213 | T__214 | T__215 | T__216 | T__217 | NUMBER | REAL | WS | NEWLINE | LINE_COMMENT | ML_COMMENT | ID | STRING )
 		int alt11=213;
 		alt11 = dfa11.predict(input);
 		switch (alt11) {
 			case 1 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:10: ADDPROPS
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:10: ADDPROPS
 				{
 				mADDPROPS(); 
 
 				}
 				break;
 			case 2 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:19: AMP
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:19: AMP
 				{
 				mAMP(); 
 
 				}
 				break;
 			case 3 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:23: ARRAY
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:23: ARRAY
 				{
 				mARRAY(); 
 
 				}
 				break;
 			case 4 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:29: ARROW
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:29: ARROW
 				{
 				mARROW(); 
 
 				}
 				break;
 			case 5 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:35: ASSERT
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:35: ASSERT
 				{
 				mASSERT(); 
 
 				}
 				break;
 			case 6 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:42: BOOL
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:42: BOOL
 				{
 				mBOOL(); 
 
 				}
 				break;
 			case 7 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:47: BOOLEAN
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:47: BOOLEAN
 				{
 				mBOOLEAN(); 
 
 				}
 				break;
 			case 8 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:55: COLLECTION
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:55: COLLECTION
 				{
 				mCOLLECTION(); 
 
 				}
 				break;
 			case 9 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:66: COLON
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:66: COLON
 				{
 				mCOLON(); 
 
 				}
 				break;
 			case 10 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:72: COMMA
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:72: COMMA
 				{
 				mCOMMA(); 
 
 				}
 				break;
 			case 11 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:78: CREATE_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:78: CREATE_LC
 				{
 				mCREATE_LC(); 
 
 				}
 				break;
 			case 12 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:88: CREATE_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:88: CREATE_UC
 				{
 				mCREATE_UC(); 
 
 				}
 				break;
 			case 13 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:98: DELETE_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:98: DELETE_LC
 				{
 				mDELETE_LC(); 
 
 				}
 				break;
 			case 14 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:108: DELETE_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:108: DELETE_UC
 				{
 				mDELETE_UC(); 
 
 				}
 				break;
 			case 15 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:118: DEVICE
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:118: DEVICE
 				{
 				mDEVICE(); 
 
 				}
 				break;
 			case 16 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:125: DIV
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:125: DIV
 				{
 				mDIV(); 
 
 				}
 				break;
 			case 17 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:129: DOLLAR
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:129: DOLLAR
 				{
 				mDOLLAR(); 
 
 				}
 				break;
 			case 18 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:136: DOT
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:136: DOT
 				{
 				mDOT(); 
 
 				}
 				break;
 			case 19 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:140: DOTDOT
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:140: DOTDOT
 				{
 				mDOTDOT(); 
 
 				}
 				break;
 			case 20 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:147: EQUALS
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:147: EQUALS
 				{
 				mEQUALS(); 
 
 				}
 				break;
 			case 21 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:154: EXIT_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:154: EXIT_LC
 				{
 				mEXIT_LC(); 
 
 				}
 				break;
 			case 22 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:162: EXIT_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:162: EXIT_UC
 				{
 				mEXIT_UC(); 
 
 				}
 				break;
 			case 23 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:170: EXPORT_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:170: EXPORT_LC
 				{
 				mEXPORT_LC(); 
 
 				}
 				break;
 			case 24 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:180: EXPORT_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:180: EXPORT_UC
 				{
 				mEXPORT_UC(); 
 
 				}
 				break;
 			case 25 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:190: FALSE_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:190: FALSE_LC
 				{
 				mFALSE_LC(); 
 
 				}
 				break;
 			case 26 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:199: FALSE_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:199: FALSE_UC
 				{
 				mFALSE_UC(); 
 
 				}
 				break;
 			case 27 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:208: FLEXIBLE
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:208: FLEXIBLE
 				{
 				mFLEXIBLE(); 
 
 				}
 				break;
 			case 28 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:217: GENBANK
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:217: GENBANK
 				{
 				mGENBANK(); 
 
 				}
 				break;
 			case 29 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:225: GEQUAL
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:225: GEQUAL
 				{
 				mGEQUAL(); 
 
 				}
 				break;
 			case 30 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:232: GRAMMAR
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:232: GRAMMAR
 				{
 				mGRAMMAR(); 
 
 				}
 				break;
 			case 31 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:240: GTHAN
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:240: GTHAN
 				{
 				mGTHAN(); 
 
 				}
 				break;
 			case 32 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:246: HASHMARK
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:246: HASHMARK
 				{
 				mHASHMARK(); 
 
 				}
 				break;
 			case 33 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:255: IMAGE
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:255: IMAGE
 				{
 				mIMAGE(); 
 
 				}
 				break;
 			case 34 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:261: IMPORT_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:261: IMPORT_LC
 				{
 				mIMPORT_LC(); 
 
 				}
 				break;
 			case 35 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:271: IMPORT_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:271: IMPORT_UC
 				{
 				mIMPORT_UC(); 
 
 				}
 				break;
 			case 36 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:281: INCLUDE_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:281: INCLUDE_LC
 				{
 				mINCLUDE_LC(); 
 
 				}
 				break;
 			case 37 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:292: INCLUDE_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:292: INCLUDE_UC
 				{
 				mINCLUDE_UC(); 
 
 				}
 				break;
 			case 38 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:303: INTERACTION
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:303: INTERACTION
 				{
 				mINTERACTION(); 
 
 				}
 				break;
 			case 39 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:315: LC_AND
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:315: LC_AND
 				{
 				mLC_AND(); 
 
 				}
 				break;
 			case 40 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:322: LC_ELSE
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:322: LC_ELSE
 				{
 				mLC_ELSE(); 
 
 				}
 				break;
 			case 41 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:330: LC_ELSEIF
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:330: LC_ELSEIF
 				{
 				mLC_ELSEIF(); 
 
 				}
 				break;
 			case 42 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:340: LC_FOR
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:340: LC_FOR
 				{
 				mLC_FOR(); 
 
 				}
 				break;
 			case 43 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:347: LC_FORALL
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:347: LC_FORALL
 				{
 				mLC_FORALL(); 
 
 				}
 				break;
 			case 44 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:357: LC_IF
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:357: LC_IF
 				{
 				mLC_IF(); 
 
 				}
 				break;
 			case 45 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:363: LC_INDUCES
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:363: LC_INDUCES
 				{
 				mLC_INDUCES(); 
 
 				}
 				break;
 			case 46 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:374: LC_NOT
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:374: LC_NOT
 				{
 				mLC_NOT(); 
 
 				}
 				break;
 			case 47 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:381: LC_ON
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:381: LC_ON
 				{
 				mLC_ON(); 
 
 				}
 				break;
 			case 48 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:387: LC_OR
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:387: LC_OR
 				{
 				mLC_OR(); 
 
 				}
 				break;
 			case 49 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:393: LC_PERMUTE
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:393: LC_PERMUTE
 				{
 				mLC_PERMUTE(); 
 
 				}
 				break;
 			case 50 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:404: LC_PRODUCT
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:404: LC_PRODUCT
 				{
 				mLC_PRODUCT(); 
 
 				}
 				break;
 			case 51 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:415: LC_REPRESSES
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:415: LC_REPRESSES
 				{
 				mLC_REPRESSES(); 
 
 				}
 				break;
 			case 52 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:428: LC_SEQUENCE_OF
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:428: LC_SEQUENCE_OF
 				{
 				mLC_SEQUENCE_OF(); 
 
 				}
 				break;
 			case 53 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:443: LC_WHILE
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:443: LC_WHILE
 				{
 				mLC_WHILE(); 
 
 				}
 				break;
 			case 54 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:452: LEFTCUR
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:452: LEFTCUR
 				{
 				mLEFTCUR(); 
 
 				}
 				break;
 			case 55 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:460: LEFTP
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:460: LEFTP
 				{
 				mLEFTP(); 
 
 				}
 				break;
 			case 56 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:466: LEFTSBR
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:466: LEFTSBR
 				{
 				mLEFTSBR(); 
 
 				}
 				break;
 			case 57 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:474: LEQUAL
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:474: LEQUAL
 				{
 				mLEQUAL(); 
 
 				}
 				break;
 			case 58 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:481: LOG_AND
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:481: LOG_AND
 				{
 				mLOG_AND(); 
 
 				}
 				break;
 			case 59 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:489: LOG_OR
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:489: LOG_OR
 				{
 				mLOG_OR(); 
 
 				}
 				break;
 			case 60 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:496: LTHAN
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:496: LTHAN
 				{
 				mLTHAN(); 
 
 				}
 				break;
 			case 61 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:502: MINUS
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:502: MINUS
 				{
 				mMINUS(); 
 
 				}
 				break;
 			case 62 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:508: MULT
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:508: MULT
 				{
 				mMULT(); 
 
 				}
 				break;
 			case 63 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:513: NEQUAL
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:513: NEQUAL
 				{
 				mNEQUAL(); 
 
 				}
 				break;
 			case 64 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:520: NOTE
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:520: NOTE
 				{
 				mNOTE(); 
 
 				}
 				break;
 			case 65 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:525: NUM
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:525: NUM
 				{
 				mNUM(); 
 
 				}
 				break;
 			case 66 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:529: OP_NOT
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:529: OP_NOT
 				{
 				mOP_NOT(); 
 
 				}
 				break;
 			case 67 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:536: PART
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:536: PART
 				{
 				mPART(); 
 
 				}
 				break;
 			case 68 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:541: PART_TYPE
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:541: PART_TYPE
 				{
 				mPART_TYPE(); 
 
 				}
 				break;
 			case 69 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:551: PIPE
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:551: PIPE
 				{
 				mPIPE(); 
 
 				}
 				break;
 			case 70 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:556: PLUS
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:556: PLUS
 				{
 				mPLUS(); 
 
 				}
 				break;
 			case 71 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:561: PRINTLN_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:561: PRINTLN_LC
 				{
 				mPRINTLN_LC(); 
 
 				}
 				break;
 			case 72 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:572: PRINTLN_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:572: PRINTLN_UC
 				{
 				mPRINTLN_UC(); 
 
 				}
 				break;
 			case 73 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:583: PRINT_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:583: PRINT_LC
 				{
 				mPRINT_LC(); 
 
 				}
 				break;
 			case 74 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:592: PRINT_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:592: PRINT_UC
 				{
 				mPRINT_UC(); 
 
 				}
 				break;
 			case 75 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:601: PROPERTY
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:601: PROPERTY
 				{
 				mPROPERTY(); 
 
 				}
 				break;
 			case 76 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:610: QUERY_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:610: QUERY_LC
 				{
 				mQUERY_LC(); 
 
 				}
 				break;
 			case 77 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:619: QUERY_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:619: QUERY_UC
 				{
 				mQUERY_UC(); 
 
 				}
 				break;
 			case 78 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:628: RANDOM_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:628: RANDOM_LC
 				{
 				mRANDOM_LC(); 
 
 				}
 				break;
 			case 79 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:638: RANDOM_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:638: RANDOM_UC
 				{
 				mRANDOM_UC(); 
 
 				}
 				break;
 			case 80 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:648: READ_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:648: READ_LC
 				{
 				mREAD_LC(); 
 
 				}
 				break;
 			case 81 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:656: READ_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:656: READ_UC
 				{
 				mREAD_UC(); 
 
 				}
 				break;
 			case 82 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:664: REF
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:664: REF
 				{
 				mREF(); 
 
 				}
 				break;
 			case 83 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:668: REGISTRY
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:668: REGISTRY
 				{
 				mREGISTRY(); 
 
 				}
 				break;
 			case 84 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:677: RETURN_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:677: RETURN_LC
 				{
 				mRETURN_LC(); 
 
 				}
 				break;
 			case 85 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:687: RETURN_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:687: RETURN_UC
 				{
 				mRETURN_UC(); 
 
 				}
 				break;
 			case 86 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:697: RIGHTCUR
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:697: RIGHTCUR
 				{
 				mRIGHTCUR(); 
 
 				}
 				break;
 			case 87 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:706: RIGHTP
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:706: RIGHTP
 				{
 				mRIGHTP(); 
 
 				}
 				break;
 			case 88 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:713: RIGHTSBR
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:713: RIGHTSBR
 				{
 				mRIGHTSBR(); 
 
 				}
 				break;
 			case 89 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:722: RULE
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:722: RULE
 				{
 				mRULE(); 
 
 				}
 				break;
 			case 90 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:727: RULE_BUILDER
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:727: RULE_BUILDER
 				{
 				mRULE_BUILDER(); 
 
 				}
 				break;
 			case 91 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:740: SAVE_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:740: SAVE_LC
 				{
 				mSAVE_LC(); 
 
 				}
 				break;
 			case 92 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:748: SAVE_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:748: SAVE_UC
 				{
 				mSAVE_UC(); 
 
 				}
 				break;
 			case 93 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:756: SBOL
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:756: SBOL
 				{
 				mSBOL(); 
 
 				}
 				break;
 			case 94 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:761: SEMIC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:761: SEMIC
 				{
 				mSEMIC(); 
 
 				}
 				break;
 			case 95 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:767: SIZEOF_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:767: SIZEOF_LC
 				{
 				mSIZEOF_LC(); 
 
 				}
 				break;
 			case 96 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:777: SIZEOF_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:777: SIZEOF_UC
 				{
 				mSIZEOF_UC(); 
 
 				}
 				break;
 			case 97 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:787: SIZE_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:787: SIZE_LC
 				{
 				mSIZE_LC(); 
 
 				}
 				break;
 			case 98 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:795: SIZE_OF_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:795: SIZE_OF_LC
 				{
 				mSIZE_OF_LC(); 
 
 				}
 				break;
 			case 99 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:806: SIZE_OF_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:806: SIZE_OF_UC
 				{
 				mSIZE_OF_UC(); 
 
 				}
 				break;
 			case 100 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:817: SIZE_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:817: SIZE_UC
 				{
 				mSIZE_UC(); 
 
 				}
 				break;
 			case 101 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:825: STORE_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:825: STORE_LC
 				{
 				mSTORE_LC(); 
 
 				}
 				break;
 			case 102 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:834: STORE_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:834: STORE_UC
 				{
 				mSTORE_UC(); 
 
 				}
 				break;
 			case 103 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:843: STRICT
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:843: STRICT
 				{
 				mSTRICT(); 
 
 				}
 				break;
 			case 104 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:850: TRUE_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:850: TRUE_LC
 				{
 				mTRUE_LC(); 
 
 				}
 				break;
 			case 105 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:858: TRUE_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:858: TRUE_UC
 				{
 				mTRUE_UC(); 
 
 				}
 				break;
 			case 106 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:866: TXT
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:866: TXT
 				{
 				mTXT(); 
 
 				}
 				break;
 			case 107 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:870: TYPE
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:870: TYPE
 				{
 				mTYPE(); 
 
 				}
 				break;
 			case 108 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:875: UC_AND
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:875: UC_AND
 				{
 				mUC_AND(); 
 
 				}
 				break;
 			case 109 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:882: UC_ELSE
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:882: UC_ELSE
 				{
 				mUC_ELSE(); 
 
 				}
 				break;
 			case 110 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:890: UC_ELSEIF
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:890: UC_ELSEIF
 				{
 				mUC_ELSEIF(); 
 
 				}
 				break;
 			case 111 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:900: UC_FOR
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:900: UC_FOR
 				{
 				mUC_FOR(); 
 
 				}
 				break;
 			case 112 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:907: UC_FORALL
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:907: UC_FORALL
 				{
 				mUC_FORALL(); 
 
 				}
 				break;
 			case 113 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:917: UC_IF
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:917: UC_IF
 				{
 				mUC_IF(); 
 
 				}
 				break;
 			case 114 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:923: UC_INDUCES
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:923: UC_INDUCES
 				{
 				mUC_INDUCES(); 
 
 				}
 				break;
 			case 115 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:934: UC_NOT
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:934: UC_NOT
 				{
 				mUC_NOT(); 
 
 				}
 				break;
 			case 116 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:941: UC_ON
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:941: UC_ON
 				{
 				mUC_ON(); 
 
 				}
 				break;
 			case 117 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:947: UC_OR
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:947: UC_OR
 				{
 				mUC_OR(); 
 
 				}
 				break;
 			case 118 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:953: UC_PERMUTE
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:953: UC_PERMUTE
 				{
 				mUC_PERMUTE(); 
 
 				}
 				break;
 			case 119 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:964: UC_PRODUCT
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:964: UC_PRODUCT
 				{
 				mUC_PRODUCT(); 
 
 				}
 				break;
 			case 120 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:975: UC_REPRESSES
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:975: UC_REPRESSES
 				{
 				mUC_REPRESSES(); 
 
 				}
 				break;
 			case 121 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:988: UC_SEQUENCE_OF
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:988: UC_SEQUENCE_OF
 				{
 				mUC_SEQUENCE_OF(); 
 
 				}
 				break;
 			case 122 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1003: UC_WHILE
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1003: UC_WHILE
 				{
 				mUC_WHILE(); 
 
 				}
 				break;
 			case 123 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1012: UNDERS
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1012: UNDERS
 				{
 				mUNDERS(); 
 
 				}
 				break;
 			case 124 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1019: UPDATE_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1019: UPDATE_LC
 				{
 				mUPDATE_LC(); 
 
 				}
 				break;
 			case 125 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1029: UPDATE_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1029: UPDATE_UC
 				{
 				mUPDATE_UC(); 
 
 				}
 				break;
 			case 126 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1039: VISUALIZE_LC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1039: VISUALIZE_LC
 				{
 				mVISUALIZE_LC(); 
 
 				}
 				break;
 			case 127 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1052: VISUALIZE_UC
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1052: VISUALIZE_UC
 				{
 				mVISUALIZE_UC(); 
 
 				}
 				break;
 			case 128 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1065: T__140
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1065: T__140
 				{
 				mT__140(); 
 
 				}
 				break;
 			case 129 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1072: T__141
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1072: T__141
 				{
 				mT__141(); 
 
 				}
 				break;
 			case 130 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1079: T__142
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1079: T__142
 				{
 				mT__142(); 
 
 				}
 				break;
 			case 131 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1086: T__143
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1086: T__143
 				{
 				mT__143(); 
 
 				}
 				break;
 			case 132 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1093: T__144
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1093: T__144
 				{
 				mT__144(); 
 
 				}
 				break;
 			case 133 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1100: T__145
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1100: T__145
 				{
 				mT__145(); 
 
 				}
 				break;
 			case 134 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1107: T__146
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1107: T__146
 				{
 				mT__146(); 
 
 				}
 				break;
 			case 135 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1114: T__147
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1114: T__147
 				{
 				mT__147(); 
 
 				}
 				break;
 			case 136 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1121: T__148
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1121: T__148
 				{
 				mT__148(); 
 
 				}
 				break;
 			case 137 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1128: T__149
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1128: T__149
 				{
 				mT__149(); 
 
 				}
 				break;
 			case 138 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1135: T__150
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1135: T__150
 				{
 				mT__150(); 
 
 				}
 				break;
 			case 139 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1142: T__151
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1142: T__151
 				{
 				mT__151(); 
 
 				}
 				break;
 			case 140 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1149: T__152
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1149: T__152
 				{
 				mT__152(); 
 
 				}
 				break;
 			case 141 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1156: T__153
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1156: T__153
 				{
 				mT__153(); 
 
 				}
 				break;
 			case 142 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1163: T__154
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1163: T__154
 				{
 				mT__154(); 
 
 				}
 				break;
 			case 143 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1170: T__155
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1170: T__155
 				{
 				mT__155(); 
 
 				}
 				break;
 			case 144 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1177: T__156
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1177: T__156
 				{
 				mT__156(); 
 
 				}
 				break;
 			case 145 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1184: T__157
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1184: T__157
 				{
 				mT__157(); 
 
 				}
 				break;
 			case 146 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1191: T__158
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1191: T__158
 				{
 				mT__158(); 
 
 				}
 				break;
 			case 147 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1198: T__159
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1198: T__159
 				{
 				mT__159(); 
 
 				}
 				break;
 			case 148 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1205: T__160
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1205: T__160
 				{
 				mT__160(); 
 
 				}
 				break;
 			case 149 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1212: T__161
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1212: T__161
 				{
 				mT__161(); 
 
 				}
 				break;
 			case 150 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1219: T__162
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1219: T__162
 				{
 				mT__162(); 
 
 				}
 				break;
 			case 151 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1226: T__163
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1226: T__163
 				{
 				mT__163(); 
 
 				}
 				break;
 			case 152 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1233: T__164
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1233: T__164
 				{
 				mT__164(); 
 
 				}
 				break;
 			case 153 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1240: T__165
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1240: T__165
 				{
 				mT__165(); 
 
 				}
 				break;
 			case 154 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1247: T__166
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1247: T__166
 				{
 				mT__166(); 
 
 				}
 				break;
 			case 155 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1254: T__167
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1254: T__167
 				{
 				mT__167(); 
 
 				}
 				break;
 			case 156 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1261: T__168
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1261: T__168
 				{
 				mT__168(); 
 
 				}
 				break;
 			case 157 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1268: T__169
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1268: T__169
 				{
 				mT__169(); 
 
 				}
 				break;
 			case 158 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1275: T__170
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1275: T__170
 				{
 				mT__170(); 
 
 				}
 				break;
 			case 159 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1282: T__171
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1282: T__171
 				{
 				mT__171(); 
 
 				}
 				break;
 			case 160 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1289: T__172
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1289: T__172
 				{
 				mT__172(); 
 
 				}
 				break;
 			case 161 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1296: T__173
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1296: T__173
 				{
 				mT__173(); 
 
 				}
 				break;
 			case 162 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1303: T__174
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1303: T__174
 				{
 				mT__174(); 
 
 				}
 				break;
 			case 163 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1310: T__175
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1310: T__175
 				{
 				mT__175(); 
 
 				}
 				break;
 			case 164 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1317: T__176
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1317: T__176
 				{
 				mT__176(); 
 
 				}
 				break;
 			case 165 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1324: T__177
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1324: T__177
 				{
 				mT__177(); 
 
 				}
 				break;
 			case 166 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1331: T__178
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1331: T__178
 				{
 				mT__178(); 
 
 				}
 				break;
 			case 167 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1338: T__179
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1338: T__179
 				{
 				mT__179(); 
 
 				}
 				break;
 			case 168 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1345: T__180
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1345: T__180
 				{
 				mT__180(); 
 
 				}
 				break;
 			case 169 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1352: T__181
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1352: T__181
 				{
 				mT__181(); 
 
 				}
 				break;
 			case 170 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1359: T__182
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1359: T__182
 				{
 				mT__182(); 
 
 				}
 				break;
 			case 171 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1366: T__183
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1366: T__183
 				{
 				mT__183(); 
 
 				}
 				break;
 			case 172 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1373: T__184
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1373: T__184
 				{
 				mT__184(); 
 
 				}
 				break;
 			case 173 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1380: T__185
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1380: T__185
 				{
 				mT__185(); 
 
 				}
 				break;
 			case 174 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1387: T__186
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1387: T__186
 				{
 				mT__186(); 
 
 				}
 				break;
 			case 175 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1394: T__187
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1394: T__187
 				{
 				mT__187(); 
 
 				}
 				break;
 			case 176 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1401: T__188
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1401: T__188
 				{
 				mT__188(); 
 
 				}
 				break;
 			case 177 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1408: T__189
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1408: T__189
 				{
 				mT__189(); 
 
 				}
 				break;
 			case 178 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1415: T__190
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1415: T__190
 				{
 				mT__190(); 
 
 				}
 				break;
 			case 179 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1422: T__191
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1422: T__191
 				{
 				mT__191(); 
 
 				}
 				break;
 			case 180 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1429: T__192
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1429: T__192
 				{
 				mT__192(); 
 
 				}
 				break;
 			case 181 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1436: T__193
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1436: T__193
 				{
 				mT__193(); 
 
 				}
 				break;
 			case 182 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1443: T__194
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1443: T__194
 				{
 				mT__194(); 
 
 				}
 				break;
 			case 183 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1450: T__195
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1450: T__195
 				{
 				mT__195(); 
 
 				}
 				break;
 			case 184 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1457: T__196
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1457: T__196
 				{
 				mT__196(); 
 
 				}
 				break;
 			case 185 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1464: T__197
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1464: T__197
 				{
 				mT__197(); 
 
 				}
 				break;
 			case 186 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1471: T__198
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1471: T__198
 				{
 				mT__198(); 
 
 				}
 				break;
 			case 187 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1478: T__199
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1478: T__199
 				{
 				mT__199(); 
 
 				}
 				break;
 			case 188 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1485: T__200
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1485: T__200
 				{
 				mT__200(); 
 
 				}
 				break;
 			case 189 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1492: T__201
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1492: T__201
 				{
 				mT__201(); 
 
 				}
 				break;
 			case 190 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1499: T__202
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1499: T__202
 				{
 				mT__202(); 
 
 				}
 				break;
 			case 191 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1506: T__203
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1506: T__203
 				{
 				mT__203(); 
 
 				}
 				break;
 			case 192 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1513: T__204
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1513: T__204
 				{
 				mT__204(); 
 
 				}
 				break;
 			case 193 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1520: T__205
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1520: T__205
 				{
 				mT__205(); 
 
 				}
 				break;
 			case 194 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1527: T__206
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1527: T__206
 				{
 				mT__206(); 
 
 				}
 				break;
 			case 195 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1534: T__207
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1534: T__207
 				{
 				mT__207(); 
 
 				}
 				break;
 			case 196 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1541: T__208
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1541: T__208
 				{
 				mT__208(); 
 
 				}
 				break;
 			case 197 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1548: T__209
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1548: T__209
 				{
 				mT__209(); 
 
 				}
 				break;
 			case 198 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1555: T__210
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1555: T__210
 				{
 				mT__210(); 
 
 				}
 				break;
 			case 199 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1562: T__211
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1562: T__211
 				{
 				mT__211(); 
 
 				}
 				break;
 			case 200 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1569: T__212
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1569: T__212
 				{
 				mT__212(); 
 
 				}
 				break;
 			case 201 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1576: T__213
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1576: T__213
 				{
 				mT__213(); 
 
 				}
 				break;
 			case 202 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1583: T__214
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1583: T__214
 				{
 				mT__214(); 
 
 				}
 				break;
 			case 203 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1590: T__215
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1590: T__215
 				{
 				mT__215(); 
 
 				}
 				break;
 			case 204 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1597: T__216
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1597: T__216
 				{
 				mT__216(); 
 
 				}
 				break;
 			case 205 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1604: T__217
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1604: T__217
 				{
 				mT__217(); 
 
 				}
 				break;
 			case 206 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1611: NUMBER
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1611: NUMBER
 				{
 				mNUMBER(); 
 
 				}
 				break;
 			case 207 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1618: REAL
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1618: REAL
 				{
 				mREAL(); 
 
 				}
 				break;
 			case 208 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1623: WS
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1623: WS
 				{
 				mWS(); 
 
 				}
 				break;
 			case 209 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1626: NEWLINE
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1626: NEWLINE
 				{
 				mNEWLINE(); 
 
 				}
 				break;
 			case 210 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1634: LINE_COMMENT
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1634: LINE_COMMENT
 				{
 				mLINE_COMMENT(); 
 
 				}
 				break;
 			case 211 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1647: ML_COMMENT
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1647: ML_COMMENT
 				{
 				mML_COMMENT(); 
 
 				}
 				break;
 			case 212 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1658: ID
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1658: ID
 				{
 				mID(); 
 
 				}
 				break;
 			case 213 :
-				// /Users/ernstl/PostDoc/BU/Eugene/ecosystem/workspace/eugene-v2.0/grammar/Eugene.g:1:1661: STRING
+				// /Users/eoberortner/Projects/CIDAR/Eugene/git/eugene/grammar/Eugene.g:1:1661: STRING
 				{
 				mSTRING(); 
 
@@ -6644,7 +6651,7 @@ public class EugeneLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "3509:1: LINE_COMMENT : ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r\\n' | '\\r' | '\\n' ) | '//' (~ ( '\\n' | '\\r' ) )* );";
+			return "3523:1: LINE_COMMENT : ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r\\n' | '\\r' | '\\n' ) | '//' (~ ( '\\n' | '\\r' ) )* );";
 		}
 		@Override
 		public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
