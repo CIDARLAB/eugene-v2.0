@@ -29,8 +29,6 @@
 
 package org.cidarlab.eugene.dom.imp;
 
-import java.util.UUID;
-
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.eugene.interp.SymbolTable;

@@ -39,7 +39,6 @@ import org.cidarlab.eugene.dom.Part;
 import org.cidarlab.eugene.dom.PartType;
 import org.cidarlab.eugene.dom.Property;
 import org.cidarlab.eugene.dom.PropertyValue;
-import org.cidarlab.eugene.dom.Variable;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.DOMException;
 import org.cidarlab.eugene.exception.EugeneException;
@@ -575,10 +574,9 @@ public class DeclarationsTest {
 				"Promoter p1; Promoter p2; Promoter p3; " +
 				"r1 REPRESSES p1; r2 represses p2; r3 REPRESSES p3; ";
 		try {
-			EugeneCollection ec = new Eugene().executeScript(script);
+			new Eugene().executeScript(script);
 		} catch(EugeneException ee) {
 			ee.printStackTrace();
-			// no exception allowed here
 			assertTrue(false);
 		}
 	}

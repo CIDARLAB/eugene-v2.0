@@ -31,10 +31,7 @@ package org.cidarlab.eugene;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.util.Collection;
 
-import org.cidarlab.eugene.dom.Component;
-import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.EugeneException;
 
 public class EndToEndTestSuite {
@@ -337,18 +334,6 @@ public class EndToEndTestSuite {
 //		new EndToEndTestSuite().test("./src/test/eugene/EugeneLab/sequence-shenanigans/04-constraint-number-of-occurrences.eug");
 	}
 	
-	private static void testAll() {
-		
-		ROOT_DIRECTORY = "./src/test/eugene/";
-		
-		try {
-			new EndToEndTestSuite().testAll("./src/test/eugene/");
-		} catch(EugeneException ee) {
-			ee.printStackTrace();
-		}
-		
-	}
-	
 	public static void testEC327FunWithEugene()
 			throws EugeneException {
 		
@@ -401,20 +386,20 @@ public class EndToEndTestSuite {
 	public static void main(String[] args) 
 			throws EugeneException {
 
-//		testBasics();
-//		testImperativeFeatures();
-//		testBuiltInFunctions();
-//		testEugeneLabTutorials();		
-//		testDataExchange();
+		testBasics();
+		testImperativeFeatures();
+		testBuiltInFunctions();
+		testEugeneLabTutorials();		
+		testDataExchange();
 
-//		testInteractWithLMS();
+		testInteractWithLMS();
 
 		// TODOs:
-//		testRules();
-//		testGrammars();
-//		testRealWorldExamples();
+		testRules();
+		testGrammars();
+		testRealWorldExamples();
 
-//		testEC327FunWithEugene();
+		testEC327FunWithEugene();
 		
 		testCelloDesigns();
 		
@@ -437,11 +422,13 @@ public class EndToEndTestSuite {
 			Eugene e = new Eugene();
 			
 			// execute the file
-			EugeneCollection ec = e.executeFile(new File(file));
+			// and ignore the returned EugeneCollection
+			e.executeFile(new File(file));
 
 			long tProcessing = System.nanoTime() - t1;
 			
-			System.out.println("[TestSuite.test] full processing time: "+tProcessing*Math.pow(10, -9)+"sec");
+			System.out.println(
+					"[TestSuite.test] full processing time: "+tProcessing*Math.pow(10, -9)+"sec");
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new EugeneException(e.getMessage());

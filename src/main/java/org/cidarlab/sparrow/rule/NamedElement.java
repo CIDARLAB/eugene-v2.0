@@ -31,8 +31,6 @@ package org.cidarlab.sparrow.rule;
 
 import java.io.Serializable;
 
-import org.cidarlab.eugene.exception.EugeneException;
-
 public abstract class NamedElement 
 		implements Serializable {
 

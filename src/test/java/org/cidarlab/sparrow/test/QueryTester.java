@@ -155,13 +155,15 @@ public class QueryTester
 		
 	}
 	
-	private void queryNumList() 
+	public void queryNumList() 
 			throws SparrowException {
 		
 		List<EugeneRule> rules = new ArrayList<EugeneRule>();
 		
 		EugeneRule numListRule = new EugeneRule("numList");
-		numListRule.getPredicates().add(new Predicate(new Property("numList", SparrowConstants.NUMLIST), "[0] == ", "0"));
+		numListRule.getPredicates().add(
+			new Predicate(
+				new Property("numList", SparrowConstants.NUMLIST), "[0] == ", "0"));
 		rules.add(numListRule);
 		
 		List<Component> lst = this.sparrow.query(rules);

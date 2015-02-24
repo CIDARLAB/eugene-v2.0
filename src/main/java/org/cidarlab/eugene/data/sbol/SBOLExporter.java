@@ -32,7 +32,6 @@ package org.cidarlab.eugene.data.sbol;
 import java.io.File;
 import java.io.FileOutputStream;
 
-import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.data.sbol.mapping.Eugene2SBOL;
 import org.cidarlab.eugene.dom.ComponentType;

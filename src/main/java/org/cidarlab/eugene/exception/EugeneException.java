@@ -32,7 +32,10 @@ package org.cidarlab.eugene.exception;
 /**
  * @author Ernst Oberortner
  */
-public class EugeneException extends Exception {
+public class EugeneException 
+		extends Exception {
+
+	private static final long serialVersionUID = -4004978508672712246L;
 
 	public EugeneException(String sMessage) {
 		super(sMessage);

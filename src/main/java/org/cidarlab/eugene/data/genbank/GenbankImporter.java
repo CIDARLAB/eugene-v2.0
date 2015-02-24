@@ -61,9 +61,9 @@ public class GenbankImporter {
 		this.symbols = symbols;
 	}
 	
-	private String getGenBank(String sPartName) throws Exception {
-		URL url = new URL("http://cambridgeigem.org/gbdownload/BBa_"
-				+ sPartName + ".gb");
+	public String getGenBank(String sPartName) throws Exception {
+		URL url = new URL(
+				"http://cambridgeigem.org/gbdownload/BBa_"+ sPartName + ".gb");
 		BufferedReader in = new BufferedReader(new InputStreamReader(
 				url.openStream()));
 		String inputLine;
@@ -85,9 +85,10 @@ public class GenbankImporter {
 			for (DNASequence sequence : dnaSequences.values()) {
 				
 				if(sequence.getFeatures().size() > 1) {
-					Device d = this.toDevice(sequence.getFeatures());
+					return this.toDevice(sequence.getFeatures());
 				} else {
 			    	System.out.println( "IT'S A PART! " + sequence.getSequenceAsString() );
+			    	// TODO
 				}
 			}
 		} catch(Exception e) {

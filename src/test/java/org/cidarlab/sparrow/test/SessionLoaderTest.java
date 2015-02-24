@@ -29,21 +29,9 @@
 
 package org.cidarlab.sparrow.test;
 
-import java.net.URI;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-import org.cidarlab.eugene.dom.Component;
 import org.cidarlab.eugene.dom.PartType;
-import org.cidarlab.eugene.dom.Property;
 import org.cidarlab.sparrow.Sparrow;
-import org.cidarlab.sparrow.constants.SparrowConstants;
 import org.cidarlab.sparrow.exception.SparrowException;
-import org.cidarlab.sparrow.importers.SBOLImporter;
-import org.cidarlab.sparrow.rule.EugeneRule;
-import org.cidarlab.sparrow.rule.Predicate;
 
 /**
  * 

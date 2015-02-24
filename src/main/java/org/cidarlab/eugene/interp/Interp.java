@@ -81,7 +81,6 @@ import org.cidarlab.eugene.dom.rules.LogicalNot;
 import org.cidarlab.eugene.dom.rules.LogicalOr;
 import org.cidarlab.eugene.dom.rules.Predicate;
 import org.cidarlab.eugene.dom.rules.Rule;
-import org.cidarlab.eugene.dom.rules.SelectionPredicate;
 import org.cidarlab.eugene.dom.rules.exp.ExpressionConstraint;
 import org.cidarlab.eugene.exception.DOMException;
 import org.cidarlab.eugene.exception.EugeneException;

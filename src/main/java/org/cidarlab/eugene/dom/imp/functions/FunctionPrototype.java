@@ -36,7 +36,6 @@ import java.util.List;
 
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.dom.*;
-import org.cidarlab.eugene.dom.imp.ImperativeFeature;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.eugene.interp.SymbolTable;
 

@@ -32,7 +32,10 @@ package org.cidarlab.eugene.exception;
 /**
  * @author Ernst Oberortner
  */
-public class DOMException extends Exception {
+public class DOMException 
+		extends Exception {
+
+	private static final long serialVersionUID = -3857763762059678985L;
 
 	public DOMException(String sMessage) {
 		super(sMessage);

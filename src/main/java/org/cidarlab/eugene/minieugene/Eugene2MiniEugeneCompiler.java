@@ -370,7 +370,7 @@ public class Eugene2MiniEugeneCompiler {
 	 * @return
 	 * @throws EugeneException
 	 */
-	private void toMiniEugeneSequence(Device d) 
+	public void toMiniEugeneSequence(Device d) 
 			throws EugeneException {
 		
 		if(null == this.sequences) {

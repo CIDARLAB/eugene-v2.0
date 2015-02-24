@@ -29,7 +29,6 @@
 
 package org.cidarlab.sparrow.test;
 
-import java.net.URI;
 import java.net.URL;
 import java.util.Set;
 
