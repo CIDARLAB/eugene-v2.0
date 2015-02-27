@@ -30,7 +30,6 @@
 package org.cidarlab.eugene.constants;
 
 /**
- * 
  * @author Ernst Oberortner
  */
 public class EugeneConstants {

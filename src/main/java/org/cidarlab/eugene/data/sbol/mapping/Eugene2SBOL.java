@@ -93,9 +93,6 @@ public class Eugene2SBOL {
 			reusedComponents = new HashMap<String, URI>();
 		}
 
-//		lstURIs = new ArrayList<String>();
-//		reusedComponents = new HashMap<String, URI>();
-		
 		Collection sbolCollection = SBOLFactory.createCollection();
 
 		/*
@@ -152,10 +149,6 @@ public class Eugene2SBOL {
 			throw new EugeneException("I cannot export a NULL value to SBOL!");
 		}
 		
-//		if(null == lstURIs) {
-//			lstURIs = new ArrayList<String>();
-//		}
-
 		if (objComponent instanceof Device) {
 
 			/*
@@ -402,29 +395,6 @@ public class Eugene2SBOL {
 			pos++;
 		}
 
-//		/*
-//		 * complete the DNAComponent's displayId
-//		 */
-//		if(null != subComponentDisplayIds && parent != null) {
-//			
-//			String displayId = subComponentDisplayIds;
-//
-//			URI uri = null;
-//			if(reusedComponents.containsKey(displayId)) {
-//				uri = reusedComponents.get(displayId);
-//			} else {
-//				uri = URI.create("http://www.eugenecad.org/device/"+displayId);
-//				reusedComponents.put(displayId, uri);
-//			}
-//
-//			/*
-//			 * complete the DNAComponent's URI
-//			 */
-//			dc.setDisplayId(displayId);
-//			dc.setURI(uri);
-//			addURI(uri.toASCIIString());
-//		}
-
 		/*
 		 * map Eugene device onto the
 		 * SO ``engineered component'' term
@@ -444,36 +414,6 @@ public class Eugene2SBOL {
 		return dc;
 	}
 	
-	
-	
-//	/**
-//	 * The deviceSequence/1 method recursively generates the DNA sequence 
-//	 * of a device based on its sub-components.
-//	 * 
-//	 * @param d ... the Device object
-//	 * 
-//	 * @return a String that represents the DNA sequence of the Device object
-//	 */
-//	private static String deviceSequence(Device d) {
-//		
-////		System.out.println("[deviceSequence] -> " + d);
-//		StringBuffer sb = new StringBuffer();
-//		if(null != d.getComponentList() && !d.getComponentList().isEmpty()) {
-//			for(NamedElement e : d.getComponentList()) {
-////				System.out.println(e);
-//				if(e instanceof Device) {
-//					sb.append(Eugene2SBOL.deviceSequence((Device)e));
-//				} else if(e instanceof Part) {
-//					PropertyValue seq = ((Part)e).getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY);
-//					if(null != seq) {
-//						sb.append(seq.getTxt());
-//					}
-//				}
-//				
-//			}
-//		}
-//		return sb.toString();
-//	}
 	
 	/**
 	 * The toDnaComponent(PartType, DnaComponent) method compiles a Eugene Part Type into 
@@ -651,7 +591,19 @@ public class Eugene2SBOL {
 		return c;
 	}
 
+	/*----------------------------------
+	 *         HELPER METHODS
+	 *----------------------------------*/
 	
+	/**
+	 * mapping an SO term (encoded as string) to 
+	 * the SO term's URI
+	 * see: http://www.sequenceontology.org
+	 * 
+	 * @param s   ... the SO Term
+	 * 
+	 * @return  ... the URI of the SO term
+	 */
 	private static URI soMapping(String s) {
 
 		if ("Five_Prime_UTR".equals(s)) {
@@ -688,6 +640,13 @@ public class Eugene2SBOL {
 		return SequenceOntology.CDS;
 	}
 
+	/**
+	 * keeping track of utilized URIs
+	 * since all URIs throughout an SBOL document
+	 * must be unique
+	 * 
+	 * @param s
+	 */
 	public static void addURI(String s) {
 		if (null == lstURIs) {
 			lstURIs = new ArrayList<String>();
@@ -698,6 +657,13 @@ public class Eugene2SBOL {
 		}
 	}
 
+	/**
+	 * keeping track of the utilized displayIDs
+	 * since SBOL displayIDs must be unique throughout 
+	 * an SBOL document
+	 * 
+	 * @param s
+	 */
 	public static void addDisplayId(String s) {
 		if (null == lstURIs) {
 			lstURIs = new ArrayList<String>();

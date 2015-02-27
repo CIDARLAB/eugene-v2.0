@@ -50,6 +50,16 @@ import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.eugene.interp.SymbolTable;
 
 /**
+ * The GenbankImporter class provides methods to 
+ * import biological data from the GenBank format.
+ * 
+ * !!!! This class is not fully implemented yet !!!!
+ * 
+ * The GenbankImporter class supports 
+ * -- the import of a part from a web service that 
+ *    has been developed by the Cambridge iGEM team.
+ * -- the import of biological data (either device or part) 
+ *    from a GenBank file
  * 
  * @author Ernst Oberortner
  */
@@ -57,25 +67,65 @@ public class GenbankImporter {
 
 	private SymbolTable symbols;
 	
+	/**
+	 * Constructor
+	 * requires a reference to the symbol tables of the 
+	 * Eugene Interpreter
+	 * 
+	 * @param symbols
+	 */
 	public GenbankImporter(SymbolTable symbols) {
 		this.symbols = symbols;
 	}
 	
-	public String getGenBank(String sPartName) throws Exception {
-		URL url = new URL(
-				"http://cambridgeigem.org/gbdownload/BBa_"+ sPartName + ".gb");
-		BufferedReader in = new BufferedReader(new InputStreamReader(
-				url.openStream()));
-		String inputLine;
-		StringBuilder sb = new StringBuilder();
-		while ((inputLine = in.readLine()) != null) {
-			sb.append(inputLine).append(System.getProperty("line.separator"));
+	/**
+	 * The getGenBank(String) method reads a part from a web service 
+	 * developed by the Cambridge iGEM team.
+	 * URL: http://cambridgeigem.org/gbdownload/BBa_<PartName>.gb"
+	 * 
+	 * @param sPartName   ... the name of the part to be imported
+	 * 
+	 * @return The GenBank representation of the desired part from the web service
+	 * 
+	 * @throws EugeneException
+	 */
+	public String getGenBank(String sPartName) 
+			throws EugeneException {
+		try {
+			URL url = new URL(
+					"http://cambridgeigem.org/gbdownload/BBa_"+ sPartName + ".gb");
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					url.openStream()));
+			
+			// we read the URL line-by-line
+			String inputLine;
+			StringBuilder sb = new StringBuilder();
+			while ((inputLine = in.readLine()) != null) {
+				
+				// adding each line to a string buffer
+				sb.append(inputLine).append(System.getProperty("line.separator"));
+			}
+			in.close();
+	
+			// lastly, we return the string buffer as string
+			return sb.toString();
+			
+		} catch(Exception e) {
+			throw new EugeneException(e.getMessage());
 		}
-		in.close();
-
-		return sb.toString();
 	}
 
+	/**
+	 * The importGenbank(String) method reads the biological data 
+	 * from a GenBank file specified by the given filename.
+	 * To parse the GenBank file, Eugene utilizes the BioJava library.
+	 * 
+	 * @param filename   ... the filename of the GenBank file
+	 * @return ... a NamedElement object that represents the content of 
+	 * the GenBank file in the Eugene DOM
+	 * 
+	 * @throws EugeneException
+	 */
 	public NamedElement importGenbank(String filename) 
 			throws EugeneException {
 		File dnaFile = new File(filename);
@@ -98,15 +148,29 @@ public class GenbankImporter {
 		return null;
 	}
 	
+	/**
+	 * The private toDevice(List) method converts a list of features 
+	 * (i.e. a composite DNA) to a Eugene Device object.
+	 * 
+	 * @param lof  ... list of features (BioJava specific)
+	 * 
+	 * @return ... a Eugene Device object
+	 * @throws EugeneException
+	 */
 	private Device toDevice( List<FeatureInterface<AbstractSequence<NucleotideCompound>, NucleotideCompound>> lof) 
 			throws EugeneException {
-		// here, we return a Device
+
+		// iterate over the features
 	    Iterator<FeatureInterface<AbstractSequence<NucleotideCompound>, NucleotideCompound>> it = lof.iterator();
 	    while(it.hasNext()) {
 	    	FeatureInterface<AbstractSequence<NucleotideCompound>, NucleotideCompound> f = it.next();
 	    	
 	    	try {
+	    		
+	    		// check if there is a part type in the symbol tables
 	    		NamedElement e = this.symbols.get(f.getType());
+	    		
+	    		
 	    		PartType pt = null;
 	    		if(null != e) {
 	    			if(e instanceof PartType) {
@@ -115,7 +179,10 @@ public class GenbankImporter {
 	    				throw new EugeneException("Feature type of " + f.getType() +" is identical to "+e+"!");
 	    			}
 	    		} else {
+	    			// no part type yet,
+	    			// i.e. we create one
 	    			pt = new PartType(f.getType());
+	    			// and store it in the symbol tables
 	    			this.symbols.put(pt);
 	    		} 
 	    		

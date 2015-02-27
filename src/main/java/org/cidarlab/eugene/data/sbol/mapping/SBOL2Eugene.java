@@ -29,10 +29,6 @@
 
 package org.cidarlab.eugene.data.sbol.mapping;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URI;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,15 +50,16 @@ import org.sbolstandard.core.SequenceAnnotation;
 import org.sbolstandard.core.StrandType;
 import org.sbolstandard.core.util.SequenceOntology;
 
-/*
- *   Mapping:
+/**
+ * The SBOL2Eugene class provides static methods to compile in-memory 
+ * objects of the Eugene DOM into objects of the SBOL DOM 
+ * based on the following mapping:
+ * -- basic DNACompomonent (ie a DNAComponent without SequenceAnnotations)   <-->  Part
+ * -- composite DNAComponent (ie a DNAComponent with SequenceAnnotations)    <-->  Device
+ * -- Collection                                                             <-->  Device[], Collection
  *   
- *   basic DNACompomonent (ie a DNAComponent without SequenceAnnotations)   <-->  Part
- *   composite DNAComponent (ie a DNAComponent with SequenceAnnotations)    <-->  Device
- *   Collection                                                             <-->  Device[], Collection
- *
+ * @author Ernst Oberortner
  */
-
 public class SBOL2Eugene {
 
 	private static List<Property> lstProperties = null;
@@ -287,23 +284,23 @@ public class SBOL2Eugene {
 	}
 	
 	
+	/**
+	 * 
+	 * @param type
+	 * @return
+	 * @throws EugeneException
+	 */
 	private static PartType getPartType(String type) 
 			throws EugeneException {
 		String sPartTypeName = soMapping(type);
 
-		PartType objPartType = (PartType) null;
-//		NamedElement objTmp = SymbolTables.get(sPartTypeName);
-//		if (null != objTmp && objTmp instanceof PartType) {
-//			return (PartType) objTmp;
-//		} else {
-			objPartType = new PartType(
+		PartType objPartType = new PartType(
 					sPartTypeName,
 					lstProperties);
-//			SymbolTables.put(objPartType);
-//		}
 		return objPartType;
 	}
 
+	
 	private static String soMapping(String s) {
 
 		if (SequenceOntology.FIVE_PRIME_UTR.toString().equals(s)) {
@@ -337,18 +334,6 @@ public class SBOL2Eugene {
 
 		return EugeneConstants.SBOL_PART_TYPE;
 	}
-
-	public static void readURI(URI uri) throws Exception {
-		URL url = uri.toURL();
-		BufferedReader in = new BufferedReader(new InputStreamReader(
-				url.openStream()));
-
-		String inputLine;
-		while ((inputLine = in.readLine()) != null)
-			System.out.println(inputLine);
-		in.close();
-	}
-
 	
 	private static void createSBOLProperties() 
 			throws EugeneException {

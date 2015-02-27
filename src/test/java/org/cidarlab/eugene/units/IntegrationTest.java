@@ -59,7 +59,7 @@ public class IntegrationTest {
 		// seems that SBOL Converter service (http://convert.sbols.org/biobrick/)
 		// is down. For documentation see:
 		// http://www.sbolstandard.org/sbolstandard/extensions/sbol-semantic/converter
-/************
+/************/
 //		try {
 //			new SparrowTestSuite().testAll();
 //			
@@ -69,7 +69,7 @@ public class IntegrationTest {
 //			// there should be no exception thrown
 //			assertTrue(false);
 //		}
- ************/
+ /************/
 	}
 	
 	@Test

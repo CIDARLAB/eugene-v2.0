@@ -42,6 +42,8 @@ import org.sbolstandard.core.SBOLRootObject;
 
 
 /**
+ * The SBOLImport class provides static methods to 
+ * import biological data from a SBOL standard file.
  * 
  * @author Ernst Oberortner
  */
@@ -54,7 +56,7 @@ public class SBOLImporter {
 	 * which can be Collections or (primitive or composite) DnaComponents.
 	 * 
 	 * @param sFileName  ... the name of the SBOL file
-	 * @return  a set of Eugene NamedElements
+	 * @return  a set of Eugene NamedElements depending on the content of the SBOL file
 	 * 
 	 * @throws EugeneException
 	 */
@@ -92,10 +94,10 @@ public class SBOLImporter {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new EugeneException(e.getMessage());
 		}
 		
+		// lastly, return the imported data in-memory
 		return elements;
 	}
 }
