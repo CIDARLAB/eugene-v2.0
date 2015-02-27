@@ -223,6 +223,31 @@ public class Device
 	}
 	
 	/**
+	 * A Device is composite iff:
+	 * -- it contains at least one component that is a Device
+	 * -- there is not selection operator ('[]') being used. That is, 
+	 *    every element in the List<List<NamedElement>> is of size 1.
+	 *     
+	 * @return  true ... if this Device is a composite device
+	 *         false ... otherwise
+	 */
+	public boolean isComposite() {
+		
+		boolean bHasDevice = false;
+		for(List<NamedElement> loe : this.getComponents()) {
+			if(loe.size() > 1) {
+				return false;
+			}
+			
+			if(loe.get(0) instanceof Device) {
+				bHasDevice = true;
+			}
+		}
+		
+		return bHasDevice;
+	}
+	
+	/**
 	 * The addComponents method appends a given list of components 
 	 * to the device's list of list of components
 	 * @param components ... a list of components
@@ -404,20 +429,25 @@ public class Device
 					}
 				}
 				
-				if(this.getComponentList().get(i) instanceof Device &&
-						this.getOrientations().get(i).get(0) == Orientation.REVERSE) {
-					try {
-						sb.append(EugeneUtils.flipAndInvert((Device)this.getComponentList().get(i)).toString());
-					} catch(Exception e) {}
+				if(this.getComponentList().get(i) instanceof Device) {
+					
+					bDevice = true;
+//
+//					sb.append("Device ").append(this.getComponentList().get(i).getName()).append("(");
+					
+					if(this.getOrientations().get(i).get(0) == Orientation.REVERSE) {
+						try {
+							sb.append(EugeneUtils.flipAndInvert((Device)this.getComponentList().get(i)).toString());
+						} catch(Exception e) {}
+					} else {
+						sb.append(((Device)this.getComponentList().get(i)).toString());
+					}
+					
+					// remove the two NEWLINE characters from the embedded device
+					sb.setLength(sb.length() - 1);
+					
 				} else {
 					sb.append(this.getComponentList().get(i)/*.getName()*/);
-					
-				}
-
-				if(this.getComponentList().get(i) instanceof Device) {
-					// remove the two NEWLINE characters from the embedded device
-					sb.setLength(sb.length() - 2);
-					bDevice = true;
 				}
 
 				// this behavior is very particular to devices

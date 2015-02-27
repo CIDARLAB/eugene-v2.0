@@ -37,8 +37,10 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.Stack;
@@ -628,7 +630,80 @@ public class Interp {
             throw new EugeneException(name+" is not a Device.");
         }
         
-        return this.product((Device)ne);
+        Device d = (Device)ne;
+        
+		// Lazy Evaluation of the SparrowAdapter object
+		if(null == spAdapter) {
+			spAdapter = new SparrowAdapter(this.sparrow);
+		}
+
+		// let's check if the device contains devices
+        if(d.isComposite()) {
+        	return this.productCompositeDevice(d);
+        } 
+        
+        // it's a primitive device
+        return this.productPrimitiveDevice(d);
+	}
+	
+	/**
+	 * The productCompositeDevice(Device) method gets as input a 
+	 * composite device and enumerates all its rule-compliant 
+	 * instances.
+	 *  
+	 * @param d   ... a composite Device
+	 * 
+	 * @return  ... a EugeneArray containing all rule-compliant device instances 
+	 * 
+	 * @throws EugeneException
+	 */
+	private EugeneArray productCompositeDevice(Device d) 
+			throws EugeneException {
+		
+		EugeneArray ea = new EugeneArray(null);
+
+		
+		// in this hash-map, we keep track of all enumerate sub-devices
+		// key   ... the device
+		// value ... a EugeneArray containing all sub-devices
+		
+		Map<NamedElement, EugeneArray> mod = new HashMap<NamedElement, EugeneArray>();
+
+		//---------
+		// STEP 1: 
+		// enumerate all rule-compliant instances of the device's sub-devices
+		
+		// iterate over the device's components
+		for(NamedElement ne : d.getComponentList()) {
+			
+			if(ne instanceof Device) {
+				
+				// currently we don't support recursively composite devices
+				if(((Device)ne).isComposite()) {
+					throw new UnsupportedOperationException(
+							"Eugene does not support the enumeration of recursively composed devices!");
+				}
+
+				// enumerate all rule-compliant sub-devices
+				EugeneArray sub = this.productPrimitiveDevice((Device)ne);
+				
+				// and store them in the hash-map
+				mod.put((Device)ne, sub);
+			}
+		}
+		
+		System.out.println("--- > " + d);
+		
+//		// next, we enumerate all rule-compliant instances of the device
+//		// that is, we incorporate only rules specified on this device
+		EugeneArray instances = this.productPrimitiveDevice(d);
+		
+		throw new UnsupportedOperationException("WHERE DO WE FLATTEN THE DEVICE???");
+		
+//		
+//		System.out.println("instances --> " + instances);
+//		
+//		return ea; 
 	}
 	
 	/**
@@ -650,16 +725,8 @@ public class Interp {
 	 *               
 	 * @throws EugeneException
 	 */
-	private EugeneArray product(Device d)
+	private EugeneArray productPrimitiveDevice(Device d)
 			throws EugeneException {
-		
-		// Lazy Evaluation of the SparrowAdapter object
-		if(null == spAdapter) {
-			spAdapter = new SparrowAdapter(this.sparrow);
-		}
-
-		// ONLY FOR TESTING PURPOSE
-//		this.doQueryTests();
 		
 		/*
 		 * first, we query all rules from the symbol tables
@@ -675,7 +742,6 @@ public class Interp {
 		 * using expression rules which have one constant operand
 		 * e.g. promoter.strength == "strong"
 		 */
-//		System.out.println("*** STEP1: QUERY ***");		
 		Set<Component> sop = null;
 		if(null != rules && !rules.isEmpty()) {
 			/*
@@ -701,10 +767,6 @@ public class Interp {
 			throw new EugeneException("There are no components (e.g. parts) specified!");
 		}
 
-//		System.out.println("[Interp.product] parts -> "+sop);
-//		System.out.println("[Interp.product] parts -> "+sop.size());
-//		System.out.println("********************");
-
 		/*
 		 * retrieve all interactions
 		 */
@@ -714,9 +776,6 @@ public class Interp {
 		} catch(SparrowException spe) {
 			throw new EugeneException(spe.toString());
 		}
-		
-//		System.exit(1);
-
 		
 		if(null == meAdapter) {
 			meAdapter = new MiniEugeneAdapter(this);
@@ -730,12 +789,8 @@ public class Interp {
 		 */
 		List<Device> sod = null;
 		try {
-//			System.out.println("*** STEP2: ARCHITECTURE ***");
 			sod = this.meAdapter.product(d, rules, sop, soi);
-//			System.out.println("[Interp.product] devices -> "+sod);
-//			System.out.println("***************************");
 		} catch(Exception ee) {
-//			ee.printStackTrace();
 			throw new EugeneException(ee.getMessage());
 		}
 
@@ -745,10 +800,7 @@ public class Interp {
 		 * then, we execute all expression rules where both operands are not constants
 		 * e.g. repressor.represses == promoter.name 
 		 */
-//		System.out.println("*** STEP3: PRUNE ***");
 		sod = this.spAdapter.prune(sod, rules);
-//		System.out.println("[Interp.product] devices -> "+sod);
-//		System.out.println("********************");
 		
 		/*
 		 * then, we store all devices into a EugeneArray and 
@@ -1072,7 +1124,7 @@ public class Interp {
     		PERMUTE_STRING.append(".");
         }
         
-        EugeneArray ea = this.product(tmp);
+        EugeneArray ea = this.productPrimitiveDevice(tmp);
         
         // reset the permutation string
         PERMUTE_STRING = null;
