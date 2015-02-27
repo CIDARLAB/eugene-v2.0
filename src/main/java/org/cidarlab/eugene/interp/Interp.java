@@ -206,6 +206,12 @@ public class Interp {
 		 * ROOT DIRECTORY
 		 */
 		this.ROOT_DIRECTORY = ROOT_DIRECTORY;
+		
+		/*
+		 * PERMUTE CONSTRAINTS
+		 */
+		this.PERMUTE_CONSTRAINTS = null;
+		
 	}
 
 	private BufferedWriter getWriter() {
@@ -621,6 +627,7 @@ public class Interp {
 	public EugeneArray product(String name) 
 			throws EugeneException {
 		
+		
         NamedElement ne = this.get(name);
         if(ne == null) {
             throw new EugeneException(name+" is not declared.");
@@ -643,7 +650,15 @@ public class Interp {
         } 
         
         // it's a primitive device
-        return this.productPrimitiveDevice(d);
+        try {
+        	
+//        	EugeneA
+//            System.out.println("--> PRIMITIVE DEVICE " + d + "-->" + );
+        	return this.productPrimitiveDevice(d);
+        } catch(EugeneException ee) {
+//        	ee.printStackTrace();
+        	throw new EugeneException(ee.getMessage());
+        }
 	}
 	
 	/**
@@ -660,23 +675,21 @@ public class Interp {
 	private EugeneArray productCompositeDevice(Device d) 
 			throws EugeneException {
 		
-		EugeneArray ea = new EugeneArray(null);
-
 		
 		// in this hash-map, we keep track of all enumerate sub-devices
 		// key   ... the device
 		// value ... a EugeneArray containing all sub-devices
 		
-		Map<NamedElement, EugeneArray> mod = new HashMap<NamedElement, EugeneArray>();
+		Map<String, EugeneArray> mod = new HashMap<String, EugeneArray>();
 
 		//---------
-		// STEP 1: 
+		// STEP I: 
 		// enumerate all rule-compliant instances of the device's sub-devices
 		
 		// iterate over the device's components
 		for(NamedElement ne : d.getComponentList()) {
 			
-			if(ne instanceof Device) {
+			if(ne instanceof Device && !mod.containsKey(ne.getName())) {
 				
 				// currently we don't support recursively composite devices
 				if(((Device)ne).isComposite()) {
@@ -687,23 +700,97 @@ public class Interp {
 				// enumerate all rule-compliant sub-devices
 				EugeneArray sub = this.productPrimitiveDevice((Device)ne);
 				
+				// put all subs into the symbol tables
+				for(NamedElement subEl : sub.getElements()) {
+					this.symbols.put(subEl);
+				}
+				
 				// and store them in the hash-map
-				mod.put((Device)ne, sub);
+				mod.put(ne.getName(), sub);
 			}
 		}
 		
-		System.out.println("--- > " + d);
-		
-//		// next, we enumerate all rule-compliant instances of the device
-//		// that is, we incorporate only rules specified on this device
+		//---------
+		// STEP II: 
+		// enumerate all rule-compliant instances of the device
+		// w/o flattening the device
+		// that is, we incorporate only rules specified on this device
 		EugeneArray instances = this.productPrimitiveDevice(d);
+
+//		System.out.println("--> enumerated devices: " + instances);
 		
-		throw new UnsupportedOperationException("WHERE DO WE FLATTEN THE DEVICE???");
-		
-//		
-//		System.out.println("instances --> " + instances);
-//		
-//		return ea; 
+		//---------
+		// STEP 3: 
+		// replace every enumerated device's sub-devices (STEP II) 
+		// w/ its rule-compliant instances (STEP I)
+		List<List<NamedElement>> lolone = new ArrayList<List<NamedElement>>();
+		List<List<Orientation>> loloo = new ArrayList<List<Orientation>>();
+		for(NamedElement enumerated_solution : instances.getElements()) {
+			
+			if(!(enumerated_solution instanceof Device)) {
+				throw new EugeneException("Something serious went wrong!");
+			}
+			
+			Device enumerated_device = (Device)enumerated_solution;
+			int j = 0;
+			for(NamedElement subComponent : enumerated_device.getComponentList()) {
+				
+				if(subComponent instanceof Device) {
+					
+					// here, we can also perform appropriate actions (flip, invert) 
+					// of the devices depending on the orientation
+					List<NamedElement> lone = (mod.get(subComponent.getName())).getElements();					
+					lolone.add(lone);
+					
+					// orientations
+					// every instance should have the same orientation 
+					Orientation orient = enumerated_device.getOrientations(j).get(0);
+					List<Orientation> loo = new ArrayList<Orientation>(lone.size());
+					for(int i=0; i<lone.size(); i++) {
+						loo.add(orient);
+					}
+					loloo.add(loo);
+					
+				} else {
+					
+					// PART
+					List<NamedElement> lone = new ArrayList<NamedElement>();
+					lone.add(subComponent);					
+					lolone.add(lone);
+					
+					// orientation
+					List<Orientation> loo = new ArrayList<Orientation>(1);
+					loo.add(enumerated_device.getOrientations(j).get(0));
+					loloo.add(loo);
+				}
+				
+				j++;
+			}
+		}
+
+		// if everything went well, then the list of elements 
+		// has the same size as the list of orientations
+		assert(lolone.size() == loloo.size());
+
+		// create a temporary device
+		Device tmp = new Device(d.getName(), lolone, loloo);
+		try {
+			// build the cartesian product		
+			// first we need to constraint the upcoming Cartesian product 
+			// w/ permutation constraints
+			this.buildPermuteConstraints(tmp);
+
+			// then, we enumerate all rule-compliant instances of the parent
+			// device
+			EugeneArray solutions = this.productPrimitiveDevice(tmp);
+						
+			this.resetPermuteConstraints();
+
+			// and return the solutions
+			return solutions;
+		} catch(EugeneException ee) {
+			throw new EugeneException(ee.getMessage());
+		}
 	}
 	
 	/**
@@ -789,8 +876,10 @@ public class Interp {
 		 */
 		List<Device> sod = null;
 		try {
-			sod = this.meAdapter.product(d, rules, sop, soi);
+			sod = this.meAdapter.product(d, rules, sop, soi, 
+					(this.PERMUTE_CONSTRAINTS == null) ? null : this.PERMUTE_CONSTRAINTS.toString());
 		} catch(Exception ee) {
+//			ee.printStackTrace();
 			throw new EugeneException(ee.getMessage());
 		}
 
@@ -1039,7 +1128,7 @@ public class Interp {
 	}
 	
 
-	public static StringBuilder PERMUTE_STRING = null;
+	private StringBuilder PERMUTE_CONSTRAINTS;
 	
 	/**
 	 * The permute/1 method permutes the elements of the given device.
@@ -1065,15 +1154,68 @@ public class Interp {
         // Device D ([e11|e12 | e21 | e31|e32], 
         //			 [e11|e12 | e21 | e31|e32],
         //			 [e11|e12 | e21 | e31|e32]);
-        Device tmp = new Device(ne.getName());
         
-        PERMUTE_STRING = new StringBuilder();
+        return this.permute((Device)ne);
+	}
+
+	/**
+	 * The permute(Device) method permutes the element in a given device 
+	 * compliant with a set of constraints. Eugene's permute() functionality 
+	 * is based on the product() functionality since a permutation is 
+	 * a Cartesian product including order information. That is, the order 
+	 * information is specified as a set of constraints.
+	 * 
+	 * Eugene's permute() functionality is NOT propagated in hierarchically composed 
+	 * devices. That is, only the elements at the current hierarchy level will be 
+	 * permuted.
+	 * 
+	 * Example:    parent
+	 *           /        \ 
+	 *      child1       child2
+	 *     /  |   \     /   |  \
+	 *    p   o   t    p    o   t
+	 * permute(parent) --> {[child1, child2], [child2, child1]}
+	 * permute(child1) --> {[p,o,t], [p,t,o], [o,p,t], [o,t,p], [t,o,p], [t,p,o]}
+	 *  
+	 * @param d   ... the device whose elements should be permuted
+	 * 
+	 * @return ... an EugeneArray containing all permutations of the device's elements
+	 * 
+	 * @throws EugeneException
+	 */
+	private EugeneArray permute(Device d) 
+			throws EugeneException {
+		
+		// first we need to constraint the upcoming Cartesian product 
+		// w/ permutation constraints
+		this.buildPermuteConstraints(d);
+		
+		// then, we build the cartesian product
+        EugeneArray ea = this.productPrimitiveDevice(d);
         
-        for(int i=0; i<((Device)ne).getComponents().size(); i++) {
+        // reset the String that contains the permute constraints
+        this.resetPermuteConstraints();
+        
+        // return the results
+        return ea;        
+	}
+	
+	private void resetPermuteConstraints() {
+		// reset the permutation string
+        this.PERMUTE_CONSTRAINTS = null;
+    }
+	
+	private void buildPermuteConstraints(Device d) 
+			throws EugeneException {
+		
+        this.PERMUTE_CONSTRAINTS = new StringBuilder();
+        
+        Device tmp = new Device(d.getName());
+        for(int i=0; i<d.getComponents().size(); i++) {
         	
         	// components
         	List<NamedElement> els = new ArrayList<NamedElement>();
-        	for(List<NamedElement> loe : ((Device)ne).getComponents()) {
+        	for(List<NamedElement> loe : d.getComponents()) {
         		els.addAll(loe);
         		
         	}
@@ -1081,7 +1223,7 @@ public class Interp {
         	
         	// orientations
         	List<Orientation> ors = new ArrayList<Orientation>();
-        	for(List<Orientation> loo : ((Device)ne).getOrientations()) {
+        	for(List<Orientation> loo : d.getOrientations()) {
         		ors.addAll(loo);
         	}
         	tmp.getOrientations().add(ors);
@@ -1096,40 +1238,26 @@ public class Interp {
         	// contains P1 and contains P2 and contains P3
         	
         	// CONTAINS constraints
-    		for(int k=0; k<((Device)ne).getComponents().get(i).size(); k++) {
-    			PERMUTE_STRING.append("CONTAINS ").append(((Device)ne).getComponents().get(i).get(k).getName());
-    			if(k < ((Device)ne).getComponents().get(i).size() - 1) {
-    				PERMUTE_STRING.append(" OR ");
+    		for(int k=0; k<d.getComponents().get(i).size(); k++) {
+    			this.PERMUTE_CONSTRAINTS.append("CONTAINS ").append(d.getComponents().get(i).get(k).getName());
+    			if(k < d.getComponents().get(i).size() - 1) {
+    				this.PERMUTE_CONSTRAINTS.append(" OR ");
     			}
     		}
-    		PERMUTE_STRING.append(".");
+    		this.PERMUTE_CONSTRAINTS.append(".");
     		
         	// ORIENTATION constraints
-    		for(int k=0; k<((Device)ne).getOrientations().get(i).size(); k++) {
+    		for(int k=0; k<d.getOrientations().get(i).size(); k++) {
     			
-    			if(Orientation.FORWARD == ((Device)ne).getOrientations().get(i).get(k)) {
-    				PERMUTE_STRING.append("FORWARD ").append(((Device)ne).getComponents().get(i).get(k).getName());
-    				if(k < ((Device)ne).getComponents().get(i).size() - 1) {
-    					PERMUTE_STRING.append(" OR ");
-    				}
-    			} else if (Orientation.REVERSE == ((Device)ne).getOrientations().get(i).get(k)) {
-    				PERMUTE_STRING.append("REVERSE ").append(((Device)ne).getComponents().get(i).get(k).getName());
+    			if(Orientation.FORWARD == d.getOrientations().get(i).get(k)) {
+    				this.PERMUTE_CONSTRAINTS.append("FORWARD ").append(d.getComponents().get(i).get(k).getName());
+    			} else if (Orientation.REVERSE == d.getOrientations().get(i).get(k)) {
+    				this.PERMUTE_CONSTRAINTS.append("REVERSE ").append(d.getComponents().get(i).get(k).getName());
     			}
     			
-				if(Orientation.UNDEFINED != ((Device)ne).getOrientations().get(i).get(k) && 
-						k < ((Device)ne).getComponents().get(i).size() - 1) {
-					PERMUTE_STRING.append(" OR ");
-				}
+        		this.PERMUTE_CONSTRAINTS.append(".");
     		}
-    		PERMUTE_STRING.append(".");
         }
-        
-        EugeneArray ea = this.productPrimitiveDevice(tmp);
-        
-        // reset the permutation string
-        PERMUTE_STRING = null;
-        
-        return ea;        
 	}
 
 	/**

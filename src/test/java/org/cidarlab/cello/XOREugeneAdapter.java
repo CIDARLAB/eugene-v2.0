@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.net.URI;
 
+
 /*
  * Eugene relevant imports
  */
@@ -12,6 +13,7 @@ import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.data.pigeon.Pigeonizer;
 import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.NamedElement;
+import org.cidarlab.eugene.dom.Part;
 import org.cidarlab.eugene.dom.imp.container.EugeneArray;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.EugeneException;
@@ -190,7 +192,7 @@ public class XOREugeneAdapter {
 				System.out.println(ne.getName() + " --> " +
 						SequenceUtils.toSequence((Device)ne));
 				
-				
+								
 				// only for testing: 
 				// comparing both sequences
 				if(((Device)ne).getSequence().equals(

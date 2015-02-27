@@ -164,4 +164,5 @@ public class EugeneArray
 		
 		return this.hashCode() == ((EugeneArray)o).hashCode();
 	}
+	
 }

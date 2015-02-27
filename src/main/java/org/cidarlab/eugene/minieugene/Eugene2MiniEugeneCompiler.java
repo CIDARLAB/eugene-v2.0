@@ -193,23 +193,23 @@ public class Eugene2MiniEugeneCompiler {
 	 */
 	private int determineDeviceSize(Device d) {
 		
-//		return d.getComponents().size();
+		return d.getComponents().size();
 
-//		/** NEW VERSION: [under development] **/
-		int size = 0;
-		for(NamedElement e : d.getComponentList()) {
-			if(e instanceof Device) {
-				
-				if(this.isTemplate((Device)e)) {
-					size += this.determineDeviceSize((Device)e);
-				} else {
-					size ++;
-				}
-			} else {
-				size ++;
-			}
-		}
-		return size; 
+////		/** NEW VERSION: [under development] **/
+//		int size = 0;
+//		for(NamedElement e : d.getComponentList()) {
+//			if(e instanceof Device) {
+//				
+//				if(this.isTemplate((Device)e)) {
+//					size += this.determineDeviceSize((Device)e);
+//				} else {
+//					size ++;
+//				}
+//			} else {
+//				size ++;
+//			}
+//		}
+//		return size; 
 	}
 	
 	/**
@@ -487,24 +487,25 @@ public class Eugene2MiniEugeneCompiler {
 		// we need to traverse it
 		if(e instanceof Device) {
 			
-			int i = 0;
-			int size = ((Device)e).getComponents().size();
-			for(List<NamedElement> loe : ((Device)e).getComponents()) {
-				
-				if(loe.size() > 1) {
-					// the i-th element of the device is a "selection", 
-					// hence we need to compile it to a selection []
-					sb.append(this.selection(loe));
-				} else {
-					sb.append(this.traverse(loe.get(0)));
-				}
-				
-				i++;
-				
-				if(i < size) {
-					sb.append(", ");
-				}
-			}
+			sb.append(e.getName());
+//			int i = 0;
+//			int size = ((Device)e).getComponents().size();
+//			for(List<NamedElement> loe : ((Device)e).getComponents()) {
+//				
+//				if(loe.size() > 1) {
+//					// the i-th element of the device is a "selection", 
+//					// hence we need to compile it to a selection []
+//					sb.append(this.selection(loe));
+//				} else {
+//					sb.append(this.traverse(loe.get(0)));
+//				}
+//				
+//				i++;
+//				
+//				if(i < size) {
+//					sb.append(", ");
+//				}
+//			}
 
 		} else {
 			

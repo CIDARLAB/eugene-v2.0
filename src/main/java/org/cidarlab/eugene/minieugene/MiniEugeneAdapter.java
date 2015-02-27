@@ -84,7 +84,8 @@ public class MiniEugeneAdapter {
 			Device d, 
 			List<Rule> rules, 
 			Set<org.cidarlab.eugene.dom.Component> components,
-			Set<Interaction> interactions) 
+			Set<Interaction> interactions,
+			String PERMUTE_STRING) 
 		throws EugeneException {
 
 		/*
@@ -102,13 +103,13 @@ public class MiniEugeneAdapter {
 			 * and then union the results
 			 */
 			for(Rule rule : rules) {
-				Set<Device> sod = this.execute(d, rule, components, interactions);
+				Set<Device> sod = this.execute(d, rule, components, interactions, PERMUTE_STRING);
 				if(null != sod && !sod.isEmpty()) {
 					solutions.addAll(sod);
 				}
 			}
 		} else {
-			Set<Device> sod = this.execute(d, null, components, interactions);
+			Set<Device> sod = this.execute(d, null, components, interactions, PERMUTE_STRING);
 			if(null != sod && !sod.isEmpty()) {
 				solutions.addAll(sod);
 			}
@@ -126,36 +127,25 @@ public class MiniEugeneAdapter {
 			Device d, 
 			Rule rule, 
 			Set<org.cidarlab.eugene.dom.Component> components,
-			Set<Interaction> interactions) 
+			Set<Interaction> interactions,
+			String PERMUTE_STRING) 
 			throws EugeneException {
 		
 		/*
-		 * STEP 1: enumerate all devices if the Device is
-		 *         composed hierarchically
-		 */
-//		if(null == eg) {
-//			this.eg = new EugeneGrammar();
-//		}
-//		
-//		List<Device> lod = eg.enumerateAll(d, components);
-//		
-		/*
-		 * STEP 2: COMPILATION to miniEugene script
+		 * STEP I: COMPILATION into miniEugene script
 		 */
 		String meScript = this.compiler.compile(d, rule, components, interactions);
 		
-	
 		// if it's a permutation, then 
 		// we need to add the CONTAINS and ORIENTATION constraints
 		// into the miniEugene script.
-		if(null != Interp.PERMUTE_STRING) {
-			meScript += Interp.PERMUTE_STRING.toString();
+		
+		if(null != PERMUTE_STRING) {
+			meScript += PERMUTE_STRING;
 		}
 		
-//		System.out.println(meScript);
-		
 		/*
-		 * STEP 3: EXECUTE miniEugene script
+		 * STEP II: EXECUTION of miniEugene script
 		 *         i.e. constraint solving
 		 * 
 		 * for the time being, 
@@ -167,6 +157,10 @@ public class MiniEugeneAdapter {
 			throw new EugeneException(ee.getMessage());
 		}
 		
+		/*
+		 * STEP III:
+		 * CONVERSION of miniEugene solutions into Eugene solutions
+		 */
 		return this.convertToEugene(d.getName(), me.getSolutions());
 	}
 

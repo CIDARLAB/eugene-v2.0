@@ -368,13 +368,6 @@ public class Device
 	@Override
 	public String toString() {
 		
-//		try {
-//			return EugeneUtils.prettyPrint(this);
-//		} catch(EugeneException ee) {
-//			ee.printStackTrace();
-//		}
-//		return null;
-
 		StringBuilder sb = new StringBuilder();
 		sb.append("Device ").append(this.getName()).append("(");
 		
@@ -432,9 +425,7 @@ public class Device
 				if(this.getComponentList().get(i) instanceof Device) {
 					
 					bDevice = true;
-//
-//					sb.append("Device ").append(this.getComponentList().get(i).getName()).append("(");
-					
+
 					if(this.getOrientations().get(i).get(0) == Orientation.REVERSE) {
 						try {
 							sb.append(EugeneUtils.flipAndInvert((Device)this.getComponentList().get(i)).toString());

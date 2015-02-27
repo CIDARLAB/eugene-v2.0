@@ -186,7 +186,7 @@ public class DataExchangeTest {
 			assert(f.exists());
 			
 		} catch(Exception ee) {
-			ee.printStackTrace();
+//			ee.printStackTrace();
 			assertTrue(false);
 		}		
 	}
