@@ -72,6 +72,7 @@ import org.cidarlab.eugene.dom.imp.StackElement;
 import org.cidarlab.eugene.dom.imp.container.EugeneArray;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.dom.imp.container.EugeneContainer;
+import org.cidarlab.eugene.dom.imp.container.EugeneReturnCollection;
 import org.cidarlab.eugene.dom.imp.functions.FunctionInstance;
 import org.cidarlab.eugene.dom.imp.functions.FunctionPrototype;
 import org.cidarlab.eugene.dom.imp.loops.Loop;
@@ -119,6 +120,16 @@ public class Interp {
 	private GenbankImporter genbanker;
 	
 	private Cloner cloner;
+	
+	/*
+	 * a map that keeps track about all generated
+	 * SBOLv images 
+	 * (using the SBOL.visualize() Eugene command)
+	 * 
+	 * key   ... the Device name
+	 * value ... a list of URIs referring to Pigeon images 
+	 */
+	private Map<String, Collection<URI>> images;
 	
 	/*
 	 * an instance of the RuleBuilder
@@ -212,6 +223,11 @@ public class Interp {
 		 */
 		this.PERMUTE_CONSTRAINTS = null;
 		
+		/*
+		 * IMAGES MAP
+		 * is being lazy evaluated
+		 */
+		this.images = null;
 	}
 
 	private BufferedWriter getWriter() {
@@ -590,7 +606,7 @@ public class Interp {
 			
 			return ia;
 		} catch(Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			throw new EugeneException(e.toString());
 		}
 		
@@ -639,11 +655,6 @@ public class Interp {
         
         Device d = (Device)ne;
         
-		// Lazy Evaluation of the SparrowAdapter object
-		if(null == spAdapter) {
-			spAdapter = new SparrowAdapter(this.sparrow);
-		}
-
 		// let's check if the device contains devices
         if(d.isComposite()) {
         	return this.productCompositeDevice(d);
@@ -674,7 +685,6 @@ public class Interp {
 	 */
 	private EugeneArray productCompositeDevice(Device d) 
 			throws EugeneException {
-		
 		
 		// in this hash-map, we keep track of all enumerate sub-devices
 		// key   ... the device
@@ -715,21 +725,25 @@ public class Interp {
 		// enumerate all rule-compliant instances of the device
 		// w/o flattening the device
 		// that is, we incorporate only rules specified on this device
+		// build the grammar constraints -- miniEugene IS_A statements
 		EugeneArray instances = this.productPrimitiveDevice(d);
-
-//		System.out.println("--> enumerated devices: " + instances);
 		
+		// reset the grammar-specific constraints
+		this.GRAMMAR_CONSTRAINTS = null;
+
 		//---------
 		// STEP 3: 
 		// replace every enumerated device's sub-devices (STEP II) 
 		// w/ its rule-compliant instances (STEP I)
-		List<List<NamedElement>> lolone = new ArrayList<List<NamedElement>>();
-		List<List<Orientation>> loloo = new ArrayList<List<Orientation>>();
+		EugeneArray solutions = new EugeneArray(null);
 		for(NamedElement enumerated_solution : instances.getElements()) {
 			
 			if(!(enumerated_solution instanceof Device)) {
 				throw new EugeneException("Something serious went wrong!");
 			}
+			
+			List<List<NamedElement>> lolone = new ArrayList<List<NamedElement>>();
+			List<List<Orientation>> loloo = new ArrayList<List<Orientation>>();
 			
 			Device enumerated_device = (Device)enumerated_solution;
 			int j = 0;
@@ -739,17 +753,23 @@ public class Interp {
 					
 					// here, we can also perform appropriate actions (flip, invert) 
 					// of the devices depending on the orientation
-					List<NamedElement> lone = (mod.get(subComponent.getName())).getElements();					
-					lolone.add(lone);
+					try {
+						List<NamedElement> lone = (mod.get(
+								subComponent.getName()))
+									.getElements();					
+						lolone.add(lone);
 					
-					// orientations
-					// every instance should have the same orientation 
-					Orientation orient = enumerated_device.getOrientations(j).get(0);
-					List<Orientation> loo = new ArrayList<Orientation>(lone.size());
-					for(int i=0; i<lone.size(); i++) {
-						loo.add(orient);
+						// orientations
+						// every instance should have the same orientation 
+						Orientation orient = enumerated_device.getOrientations(j).get(0);
+						List<Orientation> loo = new ArrayList<Orientation>(lone.size());
+						for(int i=0; i<lone.size(); i++) {
+							loo.add(orient);
+						}
+						loloo.add(loo);
+					} catch(Exception ee) {
+						ee.printStackTrace();
 					}
-					loloo.add(loo);
 					
 				} else {
 					
@@ -763,34 +783,46 @@ public class Interp {
 					loo.add(enumerated_device.getOrientations(j).get(0));
 					loloo.add(loo);
 				}
+			}	
+
+			// create a temporary device
+			Device tmp = new Device(d.getName(), lolone, loloo);
+			
+			// if everything went well, then the list of elements 
+			// has the same size as the list of orientations
+			assert(tmp.getComponents().size() == tmp.getOrientations().size());
+	
+			this.GRAMMAR_CONSTRAINTS = new StringBuilder();
+			for(String deviceName : mod.keySet()) {
+				for(NamedElement deviceInstance : (mod.get(deviceName)).getElements()) {
+					GRAMMAR_CONSTRAINTS.append(deviceInstance.getName()).append(" IS_A ").append(deviceName).append(".");
+				}
+			}		
+
+			try {
+				// build the cartesian product		
+				// first we need to constraint the upcoming Cartesian product 
+				// w/ permutation constraints
+				this.buildPermuteConstraints(tmp);
+	
+				// then, we enumerate all rule-compliant instances of the parent
+				// device
+				solutions.getElements().add(this.productPrimitiveDevice(tmp));
 				
-				j++;
+				this.GRAMMAR_CONSTRAINTS = null;
+				this.PERMUTE_CONSTRAINTS = null;
+	
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+				throw new EugeneException(e.getMessage());
 			}
+			
+			j++;
 		}
 
-		// if everything went well, then the list of elements 
-		// has the same size as the list of orientations
-		assert(lolone.size() == loloo.size());
-
-		// create a temporary device
-		Device tmp = new Device(d.getName(), lolone, loloo);
-		try {
-			// build the cartesian product		
-			// first we need to constraint the upcoming Cartesian product 
-			// w/ permutation constraints
-			this.buildPermuteConstraints(tmp);
-
-			// then, we enumerate all rule-compliant instances of the parent
-			// device
-			EugeneArray solutions = this.productPrimitiveDevice(tmp);
-						
-			this.resetPermuteConstraints();
-
-			// and return the solutions
-			return solutions;
-		} catch(EugeneException ee) {
-			throw new EugeneException(ee.getMessage());
-		}
+		// and return the solutions
+		return solutions;
 	}
 	
 	/**
@@ -814,7 +846,12 @@ public class Interp {
 	 */
 	private EugeneArray productPrimitiveDevice(Device d)
 			throws EugeneException {
-		
+
+		// Lazy Evaluation of the SparrowAdapter object
+		if(null == spAdapter) {
+			spAdapter = new SparrowAdapter(this.sparrow);
+		}
+
 		/*
 		 * first, we query all rules from the symbol tables
 		 * that are defined on the given device.
@@ -845,7 +882,7 @@ public class Interp {
 			try {
 				sop = this.sparrow.getFacts();
 			} catch(SparrowException spe) {
-				spe.printStackTrace();
+//				spe.printStackTrace();
 				throw new EugeneException(spe.toString());
 			}
 		}
@@ -853,6 +890,11 @@ public class Interp {
 		if(sop == null || sop.isEmpty()) {
 			throw new EugeneException("There are no components (e.g. parts) specified!");
 		}
+		
+		/*
+		 * also, add all evtl. child-devices to the set of components
+		 */
+		
 
 		/*
 		 * retrieve all interactions
@@ -877,9 +919,10 @@ public class Interp {
 		List<Device> sod = null;
 		try {
 			sod = this.meAdapter.product(d, rules, sop, soi, 
-					(this.PERMUTE_CONSTRAINTS == null) ? null : this.PERMUTE_CONSTRAINTS.toString());
+					(this.PERMUTE_CONSTRAINTS == null) ? null : this.PERMUTE_CONSTRAINTS.toString(),
+					(this.GRAMMAR_CONSTRAINTS == null) ? null : this.GRAMMAR_CONSTRAINTS.toString());
 		} catch(Exception ee) {
-//			ee.printStackTrace();
+			ee.printStackTrace();
 			throw new EugeneException(ee.getMessage());
 		}
 
@@ -1129,6 +1172,7 @@ public class Interp {
 	
 
 	private StringBuilder PERMUTE_CONSTRAINTS;
+	private StringBuilder GRAMMAR_CONSTRAINTS;
 	
 	/**
 	 * The permute/1 method permutes the elements of the given device.
@@ -1185,31 +1229,29 @@ public class Interp {
 	 */
 	private EugeneArray permute(Device d) 
 			throws EugeneException {
-		
-		// first we need to constraint the upcoming Cartesian product 
-		// w/ permutation constraints
-		this.buildPermuteConstraints(d);
-		
-		// then, we build the cartesian product
-        EugeneArray ea = this.productPrimitiveDevice(d);
-        
-        // reset the String that contains the permute constraints
-        this.resetPermuteConstraints();
-        
-        // return the results
-        return ea;        
+		try {
+			// first we need to constraint the upcoming Cartesian product 
+			// w/ permutation constraints
+			this.PERMUTE_CONSTRAINTS = this.buildPermuteConstraints(d);
+			
+			// then, we build the cartesian product
+	        EugeneArray ea = this.productPrimitiveDevice(
+	        						buildPermuteDevice(d));
+	        
+	        // reset the String that contains the permute constraints
+	        this.PERMUTE_CONSTRAINTS = null;
+	        
+	        // return the results
+	        return ea;
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new EugeneException(e.getMessage());
+		}
 	}
 	
-	private void resetPermuteConstraints() {
-		// reset the permutation string
-        this.PERMUTE_CONSTRAINTS = null;
-    }
-	
-	private void buildPermuteConstraints(Device d) 
+	private Device buildPermuteDevice(Device d) 
 			throws EugeneException {
 		
-        this.PERMUTE_CONSTRAINTS = new StringBuilder();
-        
         Device tmp = new Device(d.getName());
         for(int i=0; i<d.getComponents().size(); i++) {
         	
@@ -1228,7 +1270,16 @@ public class Interp {
         	}
         	tmp.getOrientations().add(ors);
         	
-        	
+        }        
+        return tmp;
+	}
+
+	private StringBuilder buildPermuteConstraints(Device d) 
+			throws EugeneException {
+		
+        StringBuilder PERMUTE_CONSTRAINTS = new StringBuilder();
+        
+        for(int i=0; i<d.getComponents().size(); i++) {
         	// for permutations, the permuted elements must be contained
         	// in the solutions
         	// Example:
@@ -1239,25 +1290,25 @@ public class Interp {
         	
         	// CONTAINS constraints
     		for(int k=0; k<d.getComponents().get(i).size(); k++) {
-    			this.PERMUTE_CONSTRAINTS.append("CONTAINS ").append(d.getComponents().get(i).get(k).getName());
+    			PERMUTE_CONSTRAINTS.append("CONTAINS ").append(d.getComponents().get(i).get(k).getName());
     			if(k < d.getComponents().get(i).size() - 1) {
-    				this.PERMUTE_CONSTRAINTS.append(" OR ");
+    				PERMUTE_CONSTRAINTS.append(" OR ");
     			}
     		}
-    		this.PERMUTE_CONSTRAINTS.append(".");
+    		PERMUTE_CONSTRAINTS.append(".");
     		
         	// ORIENTATION constraints
     		for(int k=0; k<d.getOrientations().get(i).size(); k++) {
     			
     			if(Orientation.FORWARD == d.getOrientations().get(i).get(k)) {
-    				this.PERMUTE_CONSTRAINTS.append("FORWARD ").append(d.getComponents().get(i).get(k).getName());
+    				PERMUTE_CONSTRAINTS.append("FORWARD ").append(d.getComponents().get(i).get(k).getName()).append(".");
     			} else if (Orientation.REVERSE == d.getOrientations().get(i).get(k)) {
-    				this.PERMUTE_CONSTRAINTS.append("REVERSE ").append(d.getComponents().get(i).get(k).getName());
+    				PERMUTE_CONSTRAINTS.append("REVERSE ").append(d.getComponents().get(i).get(k).getName()).append(".");
     			}
-    			
-        		this.PERMUTE_CONSTRAINTS.append(".");
     		}
         }
+        
+        return PERMUTE_CONSTRAINTS;
 	}
 
 	/**
@@ -2159,7 +2210,7 @@ public class Interp {
 		try {
 			this.spAdapter.queryParts(rule);
 		} catch(Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 	}
 	
@@ -2198,9 +2249,18 @@ public class Interp {
 	public EugeneCollection getAllElements() 
 			throws EugeneException {
 		try {
-			EugeneCollection ec = new EugeneCollection(null);
+			// actually, we return a EugeneReturnCollection
+			// that also has information about all visualized 
+			// images and statistics (TODO)
+			// however, we'd like to be backward-compatible.
+			EugeneReturnCollection ec = new EugeneReturnCollection(null);
 			ec.getElements().addAll(this.sparrow.getFacts());
 			ec.getElements().addAll(this.symbols.getAll());
+			
+			// also, add all generated SBOLv images to the
+			// collection
+			ec.setImages(this.images);
+			
 			return ec;
 		} catch(SparrowException spe) {
 			throw new EugeneException(spe.getMessage());
@@ -2583,7 +2643,7 @@ public class Interp {
 				break;
 			}
 		} catch(Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			throw new EugeneException(e.getMessage());
 		}
 	}
@@ -2627,7 +2687,7 @@ public class Interp {
 		try {
 			parser.prog(false);
 		} catch(Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			throw new EugeneException(e.getMessage());
 		}
 		
@@ -2637,6 +2697,7 @@ public class Interp {
 		
 		EugeneCollection ec = parser.getAllElements();
 		this.put(ec);
+		
 		return ec;
 	}
 	
@@ -2701,13 +2762,12 @@ public class Interp {
 	/*
 	 * SBOL VISUAL -- PIGEON
 	 */ 
-	public Collection<URI> visualizeSBOL(NamedElement element, Variable filename) 
+	public void visualizeSBOL(NamedElement element, Variable filename) 
 			throws EugeneException {
 		
 		if(null == element) {
 			throw new EugeneException("Invalid element to visualize!");
 		}
-		
 		
 		/*
 		 * interpret the filename
@@ -2723,6 +2783,7 @@ public class Interp {
 			throw new EugeneException("I cannot visualize "+element+"!");
 		}
 
+		// lazy evaluation of the Pigeonizer
 		if(null == this.pigeon) {
 			this.pigeon = new Pigeonizer();
 		}
@@ -2782,7 +2843,20 @@ public class Interp {
 			
 		}
 		
-		return ret_uris;
+		
+		// finally, we put the generated images
+		// into the images map
+		if(null == this.images) {
+			this.images = new HashMap<String, Collection<URI>>();
+		}
+		this.images.put(element.getName(), ret_uris);
+		
+		/*
+		 * what happens if the same NamedElement is being visualized 
+		 * multiple times?
+		 * 
+		 * EO: only the last SBOL.visualize statement counts
+		 */
 	}
 	
 	/**

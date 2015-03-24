@@ -105,21 +105,12 @@ public class Eugene2MiniEugeneCompiler {
 		/*
 		 * for a more efficient search of parts and part types 
 		 * throughout the compilation process,
-		 * we set up a temporary hashmap to link 
+		 * we set up a temporary hash-map to link 
 		 * parts and their part type
 		 */
 		this.buildComponentsMap(components);
 		
 		StringBuilder sb = new StringBuilder();
-
-//		// WORK-IN-PROGRESS
-//		this.toMiniEugeneSequence(d);
-//		if(null != this.sequences) {
-//			for(String s:this.sequences.keySet()) {
-//				System.out.println(s+" -> "+this.sequences.get(s));
-//			}
-//		}
-//		////////////////////////////
 		
 		
 		/*
@@ -132,13 +123,12 @@ public class Eugene2MiniEugeneCompiler {
 		 */
 		try {
 			sb.append(this.buildMiniEugeneTemplate(d));
-			
 		} catch(EugeneException ee) {
 			throw new EugeneException(ee.getMessage());
 		}
 		
 		/*
-		 * [part] is_a [part-type] .
+		 * [part] is_a [part-type].
 		 */
 		sb.append(this.compileFacts());
 

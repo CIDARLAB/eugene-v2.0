@@ -85,7 +85,7 @@ public class MiniEugeneAdapter {
 			List<Rule> rules, 
 			Set<org.cidarlab.eugene.dom.Component> components,
 			Set<Interaction> interactions,
-			String PERMUTE_STRING) 
+			String PERMUTE_CONSTRAINTS, String GRAMMAR_CONSTRAINTS) 
 		throws EugeneException {
 
 		/*
@@ -103,13 +103,13 @@ public class MiniEugeneAdapter {
 			 * and then union the results
 			 */
 			for(Rule rule : rules) {
-				Set<Device> sod = this.execute(d, rule, components, interactions, PERMUTE_STRING);
+				Set<Device> sod = this.execute(d, rule, components, interactions, PERMUTE_CONSTRAINTS, GRAMMAR_CONSTRAINTS);
 				if(null != sod && !sod.isEmpty()) {
 					solutions.addAll(sod);
 				}
 			}
 		} else {
-			Set<Device> sod = this.execute(d, null, components, interactions, PERMUTE_STRING);
+			Set<Device> sod = this.execute(d, null, components, interactions, PERMUTE_CONSTRAINTS, GRAMMAR_CONSTRAINTS);
 			if(null != sod && !sod.isEmpty()) {
 				solutions.addAll(sod);
 			}
@@ -128,8 +128,8 @@ public class MiniEugeneAdapter {
 			Rule rule, 
 			Set<org.cidarlab.eugene.dom.Component> components,
 			Set<Interaction> interactions,
-			String PERMUTE_STRING) 
-			throws EugeneException {
+			String PERMUTE_CONSTRAINTS, String GRAMMAR_CONSTRAINTS) 
+					throws EugeneException {
 		
 		/*
 		 * STEP I: COMPILATION into miniEugene script
@@ -139,10 +139,19 @@ public class MiniEugeneAdapter {
 		// if it's a permutation, then 
 		// we need to add the CONTAINS and ORIENTATION constraints
 		// into the miniEugene script.
-		
-		if(null != PERMUTE_STRING) {
-			meScript += PERMUTE_STRING;
+		if(null != PERMUTE_CONSTRAINTS) {
+			meScript += PERMUTE_CONSTRAINTS;
 		}
+		
+		// if a template contains devices, then the device's instances
+		// are specified w/ the IS_A statement.
+		// those specifications are in the GRAMMAR_CONSTRAINTS string 
+		// which is mainly concatenated in the Interp.productCompositeDevice(Device) method		
+		if(null != GRAMMAR_CONSTRAINTS) {
+			meScript += GRAMMAR_CONSTRAINTS;
+		}
+		
+//		System.out.println(meScript);
 		
 		/*
 		 * STEP II: EXECUTION of miniEugene script
@@ -154,6 +163,7 @@ public class MiniEugeneAdapter {
 		try {		
 			me.solve(meScript, MAX_NR_OF_SOLUTIONS);		
 		} catch(Exception ee) {
+			ee.printStackTrace();
 			throw new EugeneException(ee.getMessage());
 		}
 		

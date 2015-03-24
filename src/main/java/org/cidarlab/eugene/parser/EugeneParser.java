@@ -441,7 +441,8 @@ public class EugeneParser extends Parser {
 	 */
 	public EugeneCollection getAllElements() 
 	        throws EugeneException {
-	    try {
+	    
+		try {
 	        if(null != this.interp) {
 	            return this.interp.getAllElements();
 	        }
