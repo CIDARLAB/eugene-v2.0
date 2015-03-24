@@ -163,7 +163,7 @@ public class MiniEugeneAdapter {
 		try {		
 			me.solve(meScript, MAX_NR_OF_SOLUTIONS);		
 		} catch(Exception ee) {
-			ee.printStackTrace();
+//			ee.printStackTrace();
 			throw new EugeneException(ee.getMessage());
 		}
 		

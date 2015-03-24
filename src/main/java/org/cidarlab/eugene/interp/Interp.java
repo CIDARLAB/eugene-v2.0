@@ -922,7 +922,7 @@ public class Interp {
 					(this.PERMUTE_CONSTRAINTS == null) ? null : this.PERMUTE_CONSTRAINTS.toString(),
 					(this.GRAMMAR_CONSTRAINTS == null) ? null : this.GRAMMAR_CONSTRAINTS.toString());
 		} catch(Exception ee) {
-			ee.printStackTrace();
+//			ee.printStackTrace();
 			throw new EugeneException(ee.getMessage());
 		}
 
