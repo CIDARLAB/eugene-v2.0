@@ -18,10 +18,12 @@ public class DougMoCloPaper {
 			Eugene eug = new Eugene();
 		
 			EugeneCollection ec = eug.executeFile(
-					new File("./designs/cidar/doug/moclo.eug"));
+//					new File("./designs/cidar/doug/moclo.eug"));			
+					new File("/Users/eoberortner/Projects/CIDAR/Eugene/EugeneLab/EugeneLab_home/no_name_user/Test.eug"));
 			
 			if(ec instanceof EugeneReturnCollection) {
 				System.out.println(((EugeneReturnCollection)ec).getImages());
+								
 			}
 		} catch(EugeneException ee) {
 			ee.printStackTrace();

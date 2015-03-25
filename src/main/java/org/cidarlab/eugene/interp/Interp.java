@@ -154,6 +154,8 @@ public class Interp {
     
     private String ROOT_DIRECTORY;
     
+    public static final int MAX_IMAGES = 25; 
+    
     // the ExpressionExecutor object provides method 
     // to interpret and perform mathematical expressions,
     // such as ((a + b) * c ) / d
@@ -2809,24 +2811,30 @@ public class Interp {
 		} else if(element instanceof EugeneContainer) {
 			
 			List<URI> uris = new ArrayList<URI>(50);
-			int i = 0; 
+			int i = 1; 
+			
 			for(NamedElement e : ((EugeneContainer)element).getElements()) {
 				
 				if(e instanceof Device) {
-					i++;
 					
-					if(i % 50 == 0) {
-						
-						ret_uris.add(
-								this.toSerializedImage(
-										uris, file));
-						uris.clear();
-
-					} else {
-						uris.add(
+					uris.add(
 							this.pigeon.pigeonizeSingle(
 									(Device)e, 
 									null));
+					
+					if(uris.size() % MAX_IMAGES == 0) {
+						
+						String fileName = 
+								file.substring(0, file.lastIndexOf(".")) +
+								"_" + i +
+								file.substring(file.lastIndexOf("."));
+						
+						ret_uris.add(
+								this.toSerializedImage(
+										uris, fileName));
+						i++;
+						
+						uris.clear();
 					}
 				}
 			}
@@ -2888,7 +2896,7 @@ public class Interp {
 			// generate filename with suffix .PNG
 			return Eugene.ROOT_DIRECTORY+"/"+
 					Eugene.IMAGES_DIRECTORY+"/"+
-					UUID.randomUUID()+".png";
+					UUID.randomUUID() + ".png";
 			
 		// if the Variable is not null, then it must 
 		// be of type TXT, and does not have an empty value

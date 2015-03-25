@@ -40,6 +40,7 @@ import org.cidarlab.eugene.dom.Part;
 import org.cidarlab.eugene.dom.imp.container.EugeneArray;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.EugeneException;
+import org.cidarlab.eugene.interp.Interp;
 import org.junit.Test;
 
 import java.io.File;
@@ -208,11 +209,19 @@ public class DataExchangeTest {
 			
 			e.executeScript(script);
 			
-			
 			// after executing the Eugene script, 
 			// there must be one more image
 			// in the IMAGES_DIRECTORY
-			assert(this.getNrOfImages() == NR_OF_BEFORE_IMAGES + 1); 
+			int nrOfExpectedDevices = 2 * 4;
+			
+			if(nrOfExpectedDevices <= Interp.MAX_IMAGES) {
+				assertTrue(this.getNrOfImages() == 
+						NR_OF_BEFORE_IMAGES + 1);
+			} else {
+				assertTrue(this.getNrOfImages() == 
+						NR_OF_BEFORE_IMAGES + (nrOfExpectedDevices / Interp.MAX_IMAGES));
+			}
+			
 			
 		} catch(Exception ee) {
 			ee.printStackTrace();

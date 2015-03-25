@@ -362,7 +362,7 @@ public class Pigeonizer {
 			if(Orientation.REVERSE == o) {
 				if(pigeon.startsWith(">")) {
 					pigeon.replace('>', '<');
-				} else if(!pigeon.startsWith("?")) {
+				} else if(!pigeon.startsWith("?") && !pigeon.startsWith("v")) {
 					sb.append("<").append(pigeon);
 				} else {
 					sb.append(pigeon);
@@ -385,12 +385,13 @@ public class Pigeonizer {
 									PredefinedTypes.toPartType(
 											part.getType().getName())));
 
-		// reverse oriented part
 		if(Orientation.REVERSE == o) {
 			if(letter == '>') {
 				sb.append("<");
 			} else if(letter == '?') {
 				sb.append("?");
+			} else if(letter == 'v') {
+				sb.append("v");
 			} else {
 				sb.append("<").append(letter);
 			}
