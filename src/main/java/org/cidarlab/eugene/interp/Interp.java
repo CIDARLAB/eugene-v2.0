@@ -2262,7 +2262,7 @@ public class Interp {
 			// also, add all generated SBOLv images to the
 			// collection
 			ec.setImages(this.images);
-			
+
 			return ec;
 		} catch(SparrowException spe) {
 			throw new EugeneException(spe.getMessage());

@@ -30,6 +30,7 @@
 package org.cidarlab.eugene.sparrow;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -202,7 +203,7 @@ public class Eugene2SparrowCompiler {
 				if(null != ec && !ec.isEmpty()) {
 					if(bExpression) {
 						if(((ExpressionConstraint)p).isQuery()) {
-							sbConstraints.append("|| ");
+							sbConstraints.append("&& ");
 						} else {
 							sbConstraints.append("&& ( ");
 						}
@@ -217,7 +218,6 @@ public class Eugene2SparrowCompiler {
 	
 					bExpression = true;
 				}
-
 				
 				this.evaluations.add(this.sb_eval);
 				this.sb_eval = new StringBuilder();
@@ -237,21 +237,75 @@ public class Eugene2SparrowCompiler {
 				 * must be of the same type --- either expression or arrangement
 				 */
 				Predicate subP = ((LogicalOr)p).getConstraints().get(0);
+				
+				//System.out.println("subP: " + ((LogicalOr)p).getConstraints());
+				
 				if(subP instanceof ExpressionConstraint && ((ExpressionConstraint)subP).isQuery()) {
+					//System.out.println("subP: " + ((LogicalOr)p).getConstraints());
 					sbConstraints.append("(");
 					
 					boolean bConstraint = false;
 					
 					for(int i=0; i<((LogicalOr)p).getConstraints().size(); i++) {
 						
+						//System.out.println("i: " + i );
+						
 						String ec = this.compileExpressionConstraint(
 								(ExpressionConstraint)((LogicalOr)p).getConstraints().get(i));
+
+						//System.out.println("ec: " + ec );
 
 						if(null != ec) {
 							if(bConstraint) {
 								sbConstraints.append(" || ");
 							}
 							sbConstraints.append(ec);
+							
+							if(this.DO_QUERY) {
+
+								/*------------
+								 * HACK!!!
+								 *------------*/
+								// 1. get the variable from the operands map
+								String variableName = ec.substring(
+										ec.indexOf("==") + "== ".length(),
+										ec.indexOf("."));
+								
+								StringBuilder sb = new StringBuilder();
+								if(this.components_binding.containsKey(variableName)) {
+									String variableDef = this.components_binding.get(variableName);
+									sb.append(
+											variableDef.substring(
+													0, 
+													variableDef.lastIndexOf(' ')));
+									
+									/*
+									 * figure out the binding name of the property value
+									 */
+									String propertyValuesBinding = 
+											variableDef.substring(
+													variableDef.lastIndexOf(',') + 2,
+													variableDef.lastIndexOf(':') - 1);
+									
+									// 2. add the constraint to the operands definition
+									ExpressionConstraint expConst = 
+											(ExpressionConstraint)((LogicalOr)p).getConstraints().get(i);
+									
+									sb.append(", ");
+									if(expConst.getRhs().isConstant()) {
+										sb.append(propertyValuesBinding).append(expConst.getOp()).append(expConst.getRhs());
+									} else {
+										sb.append(expConst.getLhs()).append(expConst.getOp()).append(propertyValuesBinding);
+									}
+									sb.append(")");
+	
+									// 3. replace the current definition w/ the new one 
+									this.components_binding.remove(variableName);
+									this.components_binding.put(variableName, sb.toString());
+								}
+							}
+
+							
 							bConstraint = true;
 						}
 						
@@ -267,8 +321,9 @@ public class Eugene2SparrowCompiler {
 					sbConstraints.append(") ");
 					
 				}
-				
 				bExpression = true;
+				
+				//System.out.println("sbConstraints --> " + sbConstraints);
 				
 				this.evaluations.add(this.sb_eval);
 				this.sb_eval = new StringBuilder();
@@ -294,6 +349,8 @@ public class Eugene2SparrowCompiler {
 			throws EugeneException {
 
 		String exp_op = null;
+		
+		//System.out.println("[compileExpressionConstraint] " + exp);
 		
 		/*
 		 * <constant> <rel-op> <expression> 
@@ -326,6 +383,7 @@ public class Eugene2SparrowCompiler {
 		} else if(exp.getRhs().isConstant()) {
 
 //			this.compileExpressionConstant(exp.getRhs());
+			
 			if(EugeneConstants.NUMLIST.equals(exp.getLhs().getType()) || 
 					EugeneConstants.TXTLIST.equals(exp.getLhs().getType())) {
 
@@ -348,9 +406,13 @@ public class Eugene2SparrowCompiler {
 				
 				exp_op = this.compileExpression(exp.getLhs(), exp.isQuery());
 
-				this.sb_eval.append(" ").append(this.operandsMap.get(exp.getOp().toLowerCase())).append(" ");		
+				this.sb_eval.append(" ").append(
+						this.operandsMap.get(exp.getOp().toLowerCase())).append(" ");		
 				
-				this.compileExpressionConstant(exp.getRhs());
+				String compExp = this.compileExpressionConstant(exp.getRhs());
+				if(null != compExp) {
+					
+				}
 			}
 			
 		/*
@@ -391,12 +453,14 @@ public class Eugene2SparrowCompiler {
 
 		String exp_op = null;
 		if(exp.getRhs() == null) {
+
 			/*
 			 * <lhs>
 			 */
 			if(!exp.getLhs().isConstant()) {
 				
 				exp_op = this.compileExpressionOperand(exp.getLhs(), isQuery);
+				
 				if(null != exp_op) {
 					this.locd.add(exp_op);
 				
@@ -406,6 +470,7 @@ public class Eugene2SparrowCompiler {
 				this.sb_eval.append(exp.getLhs());
 			}
 		} else {
+
 			/*
 			 * <lhs> <op> <rhs>
 			 */
@@ -434,7 +499,6 @@ public class Eugene2SparrowCompiler {
 		}
 		
 		return exp_op;
-
 	}
 	
 	private String compileExpressionOperand(ExpressionOperand eop, boolean isQuery) {
@@ -483,7 +547,7 @@ public class Eugene2SparrowCompiler {
 		 * need to be added to the Component(...) statement 
 		 * or to the eval() statement
 		 */
-		sb_property.append(eop.getProperty().getName());
+		sb_property.append(eop.getProperty().getName()).append(System.nanoTime());
 		
 		/*
 		 * if indices have been specified, then 
@@ -528,20 +592,27 @@ public class Eugene2SparrowCompiler {
 		}
 		sb_variable.append(System.nanoTime());
 		
-		boolean bExists = false;
-		for(String value : this.components_binding.values()) {
-			if(value.equals(sb_component.toString())) {
-				bExists = true;
+//		//System.out.println("[compileExpressionOperand] --> " + sb_variable);
+		
+		String componentDefinition = null;
+		for(String varName : this.components_binding.keySet()) {
+			
+			if(varName.equals(sb_variable.toString()) && 
+					this.components_binding.get(varName).equals(sb_component.toString())) {
+				
+				componentDefinition = sb_component.toString();
+				
 				break;
 			}
 		}
 
-		if(!bExists) {
+		if(null == componentDefinition) {
 			this.components_binding.put(sb_variable.toString(), sb_component.toString());
-			return sb_variable.toString();
 		}
 		
-		return null;
+		return sb_variable.toString();
+		
+//		return componentDefinition;
 	}
 	
 	/**
@@ -552,13 +623,20 @@ public class Eugene2SparrowCompiler {
 	 * 
 	 * @throws EugeneException
 	 */
-	private void compileExpressionConstant(Expression exp) 
+	private String compileExpressionConstant(Expression exp) 
 			throws EugeneException {
+		String s = null;
 		if(exp.getLhs().isConstant()) {
-			this.sb_eval.append(this.Constant2String(exp.getLhs().getConstant()));
+			s = this.Constant2String(exp.getLhs().getConstant());
 		} else if(exp.getRhs().isConstant()) {
-			this.sb_eval.append(this.Constant2String(exp.getRhs().getLhs().getConstant()));
+			s = this.Constant2String(exp.getRhs().getLhs().getConstant());
 		}
+		
+		if(null != s) {
+			this.sb_eval.append(s);
+		}
+		
+		return s;
 	}
 	
 	private StringBuilder buildDroolsQuery() {
@@ -572,7 +650,8 @@ public class Eugene2SparrowCompiler {
 				if(null != sb) {   
 
 					if(!(sb.toString().contains("+") || sb.toString().contains("-") || 
-					     sb.toString().contains("/") || sb.toString().contains("*"))) {
+					     sb.toString().contains("/") || sb.toString().contains("*") ||
+					     sb.toString().contains("||") || sb.toString().contains("&&"))) {
 					
 						String[] evalTokens = sb.toString().split(" ");
 						
@@ -642,7 +721,8 @@ public class Eugene2SparrowCompiler {
 			 */
 			sb_query.append("$ret : Component (");
 			if(!"( )".equals(sb_ret.toString())) {
-				sb_query.append(this.sb_ret);
+				sb_query.append(
+						this.sb_ret);
 			}
 			sb_query.append(")");
 //			if(null != this.components_binding && !this.components_binding.keySet().isEmpty()) {

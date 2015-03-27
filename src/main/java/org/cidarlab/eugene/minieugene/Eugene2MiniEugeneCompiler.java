@@ -549,23 +549,34 @@ public class Eugene2MiniEugeneCompiler {
 
 				} else if(p instanceof LogicalOr) {
 
+					
 					int or_size = ((LogicalOr)p).getConstraints().size();
+					StringBuilder orConstraints = new StringBuilder();
+					
 					for(Predicate pred : ((LogicalOr)p).getConstraints()) {
 						
 						if(pred instanceof ArrangementConstraint) {
-							sb.append(pred); 
+							orConstraints.append(pred);
+							
 						} else if(pred instanceof LogicalNot) {
 							if(((LogicalNot)pred).getPredicate() instanceof ArrangementConstraint) {
-								sb.append(pred);
+								orConstraints.append(pred);
 							}
 						}
 
 						or_size --;
-						if(or_size >= 1) {
-							sb.append(" OR ");
+						if(or_size >= 1 && !(orConstraints.toString().isEmpty())) {
+							orConstraints.append(" OR ");
 						}
 					}
-					sb.append(".");
+					
+					if(!orConstraints.toString().isEmpty()) {
+						String s = orConstraints.toString();
+						if(s.endsWith(" OR ")) {
+							s = s.substring(0, s.length() - 4);
+						}
+						sb.append(s).append(".");
+					}
 					
 					
 				} else if(p instanceof LogicalNot) {

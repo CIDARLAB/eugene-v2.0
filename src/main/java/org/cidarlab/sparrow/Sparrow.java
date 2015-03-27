@@ -280,13 +280,15 @@ public class Sparrow
 
 		String drl = converter.compile( queries, templateStream );
 		
+//		System.out.println("[Sparrow.query] " + drl);
+		
 		/*
 		 * next, we open a new session to query all data 
 		 * that complies to the given rules
 		 */
 		Reader rdr = new StringReader( drl );
 		kbuilder.add( ResourceFactory.newReaderResource( rdr ), ResourceType.DRL );
-		if( kbuilder.hasErrors() ){
+		if( kbuilder.hasErrors() ) {
 		    throw new IllegalStateException( "DRL errors: " + kbuilder.getErrors());
 		}
 		this.ksession.getKnowledgeBase().addKnowledgePackages( kbuilder.getKnowledgePackages() );			
@@ -305,6 +307,7 @@ public class Sparrow
 			}
 		}
 		
+//		System.out.println("[Sparrow.query] OK");
 		return results;
 	}
 	
@@ -511,6 +514,8 @@ public class Sparrow
 				Sparrow.class.getClassLoader().getResourceAsStream("rule-template-new.drt");
 
 		String drl = converter.compile( col, templateStream );
+		
+//		System.out.println("[Sparrow.prung] drl: " + drl);
 		
 		/*
 		 * next, we open a new session to query all data 

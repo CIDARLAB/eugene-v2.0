@@ -12915,6 +12915,7 @@ public class EugeneParser extends Parser {
 					    try {
 					        retval.element = this.interp.product((idToken!=null?idToken.getText():null));
 					    } catch(Exception ee) {
+//					    	ee.printStackTrace();
 					        printError(ee.getLocalizedMessage());
 					    }
 					}	

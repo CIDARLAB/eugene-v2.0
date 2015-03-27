@@ -112,6 +112,7 @@ public class SparrowAdapter {
 			
 			for(SparrowQuery query : queries) {
 				Set<Component> components = this.sparrow.query(query);
+//				System.out.println("[SparrowAdapter] components: " + components);
 				for(Component component : components) {
 					if(component instanceof Part) {
 						sop.add((Part)component);

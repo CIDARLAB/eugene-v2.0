@@ -29,7 +29,7 @@
 
 package org.cidarlab.eugene.units;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.EugeneConstants;
@@ -59,7 +59,7 @@ public class BuiltInFunctionsTest {
 		} catch(EugeneException ee) {
 
 				// see exception message in Interp.getSequenceOf 
-			assert(ee.getMessage().contains("PT is neither a Part nor a Device."));
+			assertTrue(ee.getMessage().contains("PT is neither a Part nor a Device."));
 		}
 	}
 
@@ -76,8 +76,8 @@ public class BuiltInFunctionsTest {
 			EugeneCollection ec = e.executeScript(script);
 			NamedElement seq = ec.get("seq");
 			
-			assert(null != seq);
-			assert(seq instanceof Variable);
+			assertTrue(null != seq);
+			assertTrue(seq instanceof Variable);
 			
 		} catch(EugeneException ee) {
 			ee.printStackTrace();
@@ -105,31 +105,31 @@ public class BuiltInFunctionsTest {
 
 
 			EugeneCollection ec = e.executeScript(script);
-			assert(null != ec);
+			assertTrue(null != ec);
 			
 			// seqD1
-			assert(null != ec.get("seqD1"));
-			assert(ec.get("seqD1") instanceof Variable);
-			assert(EugeneConstants.TXT.equals(((Variable)ec.get("seqD1")).getType()));
-			assert("ATCGCGAT".equals(((Variable)ec.get("seqD1")).getTxt()));
+			assertTrue(null != ec.get("seqD1"));
+			assertTrue(ec.get("seqD1") instanceof Variable);
+			assertTrue(EugeneConstants.TXT.equals(((Variable)ec.get("seqD1")).getType()));
+			assertTrue("ATCGCGAT".equals(((Variable)ec.get("seqD1")).getTxt()));
 			
 			// seqD2
-			assert(null != ec.get("seqD2"));
-			assert(ec.get("seqD2") instanceof Variable);
-			assert(EugeneConstants.TXT.equals(((Variable)ec.get("seqD2")).getType()));
-			assert("CGATATCG".equals(((Variable)ec.get("seqD2")).getTxt()));
+			assertTrue(null != ec.get("seqD2"));
+			assertTrue(ec.get("seqD2") instanceof Variable);
+			assertTrue(EugeneConstants.TXT.equals(((Variable)ec.get("seqD2")).getType()));
+			assertTrue("CGATATCG".equals(((Variable)ec.get("seqD2")).getTxt()));
 
 			// seqD3
-			assert(null != ec.get("seqD3"));
-			assert(ec.get("seqD3") instanceof Variable);
-			assert(EugeneConstants.TXT.equals(((Variable)ec.get("seqD3")).getType()));
-			assert("ATCGATCG".equals(((Variable)ec.get("seqD3")).getTxt()));
+			assertTrue(null != ec.get("seqD3"));
+			assertTrue(ec.get("seqD3") instanceof Variable);
+			assertTrue(EugeneConstants.TXT.equals(((Variable)ec.get("seqD3")).getType()));
+			assertTrue("ATCGATCG".equals(((Variable)ec.get("seqD3")).getTxt()));
 
 			// seqD4
-			assert(null != ec.get("seqD4"));
-			assert(ec.get("seqD4") instanceof Variable);
-			assert(EugeneConstants.TXT.equals(((Variable)ec.get("seqD4")).getType()));
-			assert("CGATCGAT".equals(((Variable)ec.get("seqD4")).getTxt()));
+			assertTrue(null != ec.get("seqD4"));
+			assertTrue(ec.get("seqD4") instanceof Variable);
+			assertTrue(EugeneConstants.TXT.equals(((Variable)ec.get("seqD4")).getType()));
+			assertTrue("CGATCGAT".equals(((Variable)ec.get("seqD4")).getTxt()));
 		} catch(EugeneException ee) {
 			
 			// there shouldn't be an exception
@@ -160,21 +160,21 @@ public class BuiltInFunctionsTest {
 					"txt seqD6 = sequence_of(D6);";
 
 			EugeneCollection ec = e.executeScript(script);
-			assert(null != ec);
+			assertTrue(null != ec);
 
 			// seqD5
-			assert(null != ec.get("seqD5"));
-			assert(ec.get("seqD5") instanceof Variable);
-			assert(EugeneConstants.TXT.equals(((Variable)ec.get("seqD5")).getType()));
-			assert("ATCGCGATCGATATCGATCGATCGCGATCGAT".equals(
+			assertTrue(null != ec.get("seqD5"));
+			assertTrue(ec.get("seqD5") instanceof Variable);
+			assertTrue(EugeneConstants.TXT.equals(((Variable)ec.get("seqD5")).getType()));
+			assertTrue("ATCGCGATCGATATCGATCGATCGCGATCGAT".equals(
 						((Variable)ec.get("seqD5")).getTxt()));
 
 			// seqD6
 			// D6 --> +p2, -p1, -p2, +p1, -p2, -p1, +p2, +p1
-			assert(null != ec.get("seqD6"));
-			assert(ec.get("seqD6") instanceof Variable);
-			assert(EugeneConstants.TXT.equals(((Variable)ec.get("seqD6")).getType()));
-			assert("ATCGCGATCGATATCGCGATCGATATCGATCG".equals(
+			assertTrue(null != ec.get("seqD6"));
+			assertTrue(ec.get("seqD6") instanceof Variable);
+			assertTrue(EugeneConstants.TXT.equals(((Variable)ec.get("seqD6")).getType()));
+			assertTrue("ATCGCGATCGATATCGCGATCGATATCGATCG".equals(
 						((Variable)ec.get("seqD6")).getTxt()));
 		} catch(EugeneException ee) {
 		}
@@ -210,13 +210,13 @@ public class BuiltInFunctionsTest {
 			
 			EugeneCollection ec = e.executeScript(script.toString());
 			
-			assert(ec != null);
-			assert(ec.get(result) != null);
-			assert(ec.get(result) instanceof EugeneCollection);
+			assertTrue(ec != null);
+			assertTrue(ec.get(result) != null);
+			assertTrue(ec.get(result) instanceof EugeneCollection);
 
-			assert(((EugeneCollection)ec.get(result)).getElements() != null);
+			assertTrue(((EugeneCollection)ec.get(result)).getElements() != null);
 				// the query should return 1 part, namely p1
-			assert(((EugeneCollection)ec.get(result)).getElements().size() == 1);
+			assertTrue(((EugeneCollection)ec.get(result)).getElements().size() == 1);
 
 		} catch(EugeneException ee) {
 			
@@ -237,13 +237,13 @@ public class BuiltInFunctionsTest {
 			
 			EugeneCollection ec = e.executeScript(script.toString());
 			
-			assert(ec != null);
-			assert(ec.get(result) != null);
-			assert(ec.get(result) instanceof EugeneCollection);
+			assertTrue(ec != null);
+			assertTrue(ec.get(result) != null);
+			assertTrue(ec.get(result) instanceof EugeneCollection);
 
-			assert(((EugeneCollection)ec.get(result)).getElements() != null);
+			assertTrue(((EugeneCollection)ec.get(result)).getElements() != null);
 				// the query should return 1 part, namely p1
-			assert(((EugeneCollection)ec.get(result)).getElements().size() == 1);
+			assertTrue(((EugeneCollection)ec.get(result)).getElements().size() == 1);
 
 		} catch(EugeneException ee) {
 			
@@ -265,13 +265,13 @@ public class BuiltInFunctionsTest {
 			
 			EugeneCollection ec = e.executeScript(script.toString());
 			
-			assert(ec != null);
-			assert(ec.get(result) != null);
-			assert(ec.get(result) instanceof EugeneCollection);
+			assertTrue(ec != null);
+			assertTrue(ec.get(result) != null);
+			assertTrue(ec.get(result) instanceof EugeneCollection);
 
-			assert(((EugeneCollection)ec.get(result)).getElements() != null);
+			assertTrue(((EugeneCollection)ec.get(result)).getElements() != null);
 				// the query should return 1 part, namely p1
-			assert(((EugeneCollection)ec.get(result)).getElements().size() == 1);
+			assertTrue(((EugeneCollection)ec.get(result)).getElements().size() == 1);
 
 		} catch(EugeneException ee) {
 			
@@ -292,13 +292,13 @@ public class BuiltInFunctionsTest {
 			
 			EugeneCollection ec = e.executeScript(script.toString());
 			
-			assert(ec != null);
-			assert(ec.get(result) != null);
-			assert(ec.get(result) instanceof EugeneCollection);
+			assertTrue(ec != null);
+			assertTrue(ec.get(result) != null);
+			assertTrue(ec.get(result) instanceof EugeneCollection);
 
-			assert(((EugeneCollection)ec.get(result)).getElements() != null);
+			assertTrue(((EugeneCollection)ec.get(result)).getElements() != null);
 				// the query should return 1 part, namely p1
-			assert(((EugeneCollection)ec.get(result)).getElements().size() == 1);
+			assertTrue(((EugeneCollection)ec.get(result)).getElements().size() == 1);
 
 		} catch(EugeneException ee) {
 			
@@ -330,24 +330,24 @@ public class BuiltInFunctionsTest {
 			
 			EugeneCollection ec = e.executeScript(script.toString());
 			
-			assert(ec != null);
+			assertTrue(ec != null);
 			
-			assert(ec.get("strong_promoters") != null);
-			assert(ec.get("medium_promoters") != null);
-			assert(ec.get("weak_promoters") != null);
+			assertTrue(ec.get("strong_promoters") != null);
+			assertTrue(ec.get("medium_promoters") != null);
+			assertTrue(ec.get("weak_promoters") != null);
 			
-			assert(ec.get("strong_promoters") instanceof EugeneCollection);
-			assert(ec.get("medium_promoters") instanceof EugeneCollection);
-			assert(ec.get("weak_promoters") instanceof EugeneCollection);
+			assertTrue(ec.get("strong_promoters") instanceof EugeneCollection);
+			assertTrue(ec.get("medium_promoters") instanceof EugeneCollection);
+			assertTrue(ec.get("weak_promoters") instanceof EugeneCollection);
 
-			assert(((EugeneCollection)ec.get("strong_promoters")).getElements() != null);
-			assert(((EugeneCollection)ec.get("medium_promoters")).getElements() != null);
-			assert(((EugeneCollection)ec.get("weak_promoters")).getElements() != null);
+			assertTrue(((EugeneCollection)ec.get("strong_promoters")).getElements() != null);
+			assertTrue(((EugeneCollection)ec.get("medium_promoters")).getElements() != null);
+			assertTrue(((EugeneCollection)ec.get("weak_promoters")).getElements() != null);
 
 				// the query should return 1 part, namely p1
-			assert(((EugeneCollection)ec.get("strong_promoters")).getElements().size() == NR_OF_PROMOTERS);
-			assert(((EugeneCollection)ec.get("medium_promoters")).getElements().size() == NR_OF_PROMOTERS);
-			assert(((EugeneCollection)ec.get("weak_promoters")).getElements().size() == NR_OF_PROMOTERS);
+			assertTrue(((EugeneCollection)ec.get("strong_promoters")).getElements().size() == NR_OF_PROMOTERS);
+			assertTrue(((EugeneCollection)ec.get("medium_promoters")).getElements().size() == NR_OF_PROMOTERS);
+			assertTrue(((EugeneCollection)ec.get("weak_promoters")).getElements().size() == NR_OF_PROMOTERS);
 
 		} catch(EugeneException ee) {
 			
@@ -377,24 +377,24 @@ public class BuiltInFunctionsTest {
 			
 			EugeneCollection ec = e.executeScript(script.toString());
 			
-			assert(ec != null);
+			assertTrue(ec != null);
 			
-			assert(ec.get("strong_promoters") != null);
-			assert(ec.get("medium_promoters") != null);
-			assert(ec.get("weak_promoters") != null);
+			assertTrue(ec.get("strong_promoters") != null);
+			assertTrue(ec.get("medium_promoters") != null);
+			assertTrue(ec.get("weak_promoters") != null);
 			
-			assert(ec.get("strong_promoters") instanceof EugeneCollection);
-			assert(ec.get("medium_promoters") instanceof EugeneCollection);
-			assert(ec.get("weak_promoters") instanceof EugeneCollection);
+			assertTrue(ec.get("strong_promoters") instanceof EugeneCollection);
+			assertTrue(ec.get("medium_promoters") instanceof EugeneCollection);
+			assertTrue(ec.get("weak_promoters") instanceof EugeneCollection);
 
-			assert(((EugeneCollection)ec.get("strong_promoters")).getElements() != null);
-			assert(((EugeneCollection)ec.get("medium_promoters")).getElements() != null);
-			assert(((EugeneCollection)ec.get("weak_promoters")).getElements() != null);
+			assertTrue(((EugeneCollection)ec.get("strong_promoters")).getElements() != null);
+			assertTrue(((EugeneCollection)ec.get("medium_promoters")).getElements() != null);
+			assertTrue(((EugeneCollection)ec.get("weak_promoters")).getElements() != null);
 
 				// the query should return 1 part, namely p1
-			assert(((EugeneCollection)ec.get("strong_promoters")).getElements().size() == NR_OF_PROMOTERS / 3);
-			assert(((EugeneCollection)ec.get("medium_promoters")).getElements().size() == NR_OF_PROMOTERS / 3);
-			assert(((EugeneCollection)ec.get("weak_promoters")).getElements().size() == NR_OF_PROMOTERS / 3);
+			assertTrue(((EugeneCollection)ec.get("strong_promoters")).getElements().size() == NR_OF_PROMOTERS / 3);
+			assertTrue(((EugeneCollection)ec.get("medium_promoters")).getElements().size() == NR_OF_PROMOTERS / 3);
+			assertTrue(((EugeneCollection)ec.get("weak_promoters")).getElements().size() == NR_OF_PROMOTERS / 3);
 
 		} catch(EugeneException ee) {
 			
@@ -424,67 +424,67 @@ public class BuiltInFunctionsTest {
 		try {
 			EugeneCollection ec = new Eugene().executeScript(script);
 			
-			assert(null != ec);
+			assertTrue(null != ec);
 			
 			/*-------
 			 * proms Device
 			 *-------*/
-			assert(null != ec.get("proms"));
-			assert(ec.get("proms") instanceof Device);			
+			assertTrue(null != ec.get("proms"));
+			assertTrue(ec.get("proms") instanceof Device);			
 			Device proms = (Device)ec.get("proms");
-			assert(null != proms.getOrientations());
-			assert(proms.getOrientations().size() == 2);
-			assert(null != proms.getOrientations(0));
-			assert(proms.getOrientations(0).size() == 1);
-			assert(proms.getOrientations(0).get(0) == Orientation.UNDEFINED);
-			assert(null != proms.getOrientations(1));
-			assert(proms.getOrientations(1).size() == 1);
-			assert(proms.getOrientations(1).get(0) == Orientation.UNDEFINED);
+			assertTrue(null != proms.getOrientations());
+			assertTrue(proms.getOrientations().size() == 2);
+			assertTrue(null != proms.getOrientations(0));
+			assertTrue(proms.getOrientations(0).size() == 1);
+			assertTrue(proms.getOrientations(0).get(0) == Orientation.UNDEFINED);
+			assertTrue(null != proms.getOrientations(1));
+			assertTrue(proms.getOrientations(1).size() == 1);
+			assertTrue(proms.getOrientations(1).get(0) == Orientation.UNDEFINED);
 
 			/*-------
 			 * fproms Device
 			 *-------*/
-			assert(null != ec.get("fproms"));
-			assert(ec.get("fproms") instanceof Device);			
+			assertTrue(null != ec.get("fproms"));
+			assertTrue(ec.get("fproms") instanceof Device);			
 			Device fproms = (Device)ec.get("fproms");
-			assert(null != fproms.getOrientations());
-			assert(fproms.getOrientations().size() == 2);
-			assert(null != fproms.getOrientations(0));
-			assert(fproms.getOrientations(0).size() == 1);
-			assert(fproms.getOrientations(0).get(0) == Orientation.FORWARD);
-			assert(null != fproms.getOrientations(1));
-			assert(fproms.getOrientations(1).size() == 1);
-			assert(fproms.getOrientations(1).get(0) == Orientation.FORWARD);
+			assertTrue(null != fproms.getOrientations());
+			assertTrue(fproms.getOrientations().size() == 2);
+			assertTrue(null != fproms.getOrientations(0));
+			assertTrue(fproms.getOrientations(0).size() == 1);
+			assertTrue(fproms.getOrientations(0).get(0) == Orientation.FORWARD);
+			assertTrue(null != fproms.getOrientations(1));
+			assertTrue(fproms.getOrientations(1).size() == 1);
+			assertTrue(fproms.getOrientations(1).get(0) == Orientation.FORWARD);
 
 			/*-------
 			 * rproms Device
 			 *-------*/
-			assert(null != ec.get("rproms"));
-			assert(ec.get("rproms") instanceof Device);			
+			assertTrue(null != ec.get("rproms"));
+			assertTrue(ec.get("rproms") instanceof Device);			
 			Device rproms = (Device)ec.get("rproms");
-			assert(null != rproms.getOrientations());
-			assert(rproms.getOrientations().size() == 2);
-			assert(null != rproms.getOrientations(0));
-			assert(rproms.getOrientations(0).size() == 1);
-			assert(rproms.getOrientations(0).get(0) == Orientation.REVERSE);
-			assert(null != rproms.getOrientations(1));
-			assert(rproms.getOrientations(1).size() == 1);
-			assert(rproms.getOrientations(1).get(0) == Orientation.REVERSE);
+			assertTrue(null != rproms.getOrientations());
+			assertTrue(rproms.getOrientations().size() == 2);
+			assertTrue(null != rproms.getOrientations(0));
+			assertTrue(rproms.getOrientations(0).size() == 1);
+			assertTrue(rproms.getOrientations(0).get(0) == Orientation.REVERSE);
+			assertTrue(null != rproms.getOrientations(1));
+			assertTrue(rproms.getOrientations(1).size() == 1);
+			assertTrue(rproms.getOrientations(1).get(0) == Orientation.REVERSE);
 
 			/*-------
 			 * hierarchical Device
 			 *-------*/
-			assert(null != ec.get("hierarchical"));
-			assert(ec.get("hierarchical") instanceof Device);			
+			assertTrue(null != ec.get("hierarchical"));
+			assertTrue(ec.get("hierarchical") instanceof Device);			
 			Device hierarchical = (Device)ec.get("hierarchical");
-			assert(null != hierarchical.getOrientations());
-			assert(hierarchical.getOrientations().size() == 2);
-			assert(null != hierarchical.getOrientations(0));
-			assert(hierarchical.getOrientations(0).size() == 1);
-			assert(hierarchical.getOrientations(0).get(0) == Orientation.UNDEFINED);
-			assert(null != hierarchical.getOrientations(1));
-			assert(hierarchical.getOrientations(1).size() == 1);
-			assert(hierarchical.getOrientations(1).get(0) == Orientation.FORWARD);
+			assertTrue(null != hierarchical.getOrientations());
+			assertTrue(hierarchical.getOrientations().size() == 2);
+			assertTrue(null != hierarchical.getOrientations(0));
+			assertTrue(hierarchical.getOrientations(0).size() == 1);
+			assertTrue(hierarchical.getOrientations(0).get(0) == Orientation.UNDEFINED);
+			assertTrue(null != hierarchical.getOrientations(1));
+			assertTrue(hierarchical.getOrientations(1).size() == 1);
+			assertTrue(hierarchical.getOrientations(1).get(0) == Orientation.FORWARD);
 		} catch(EugeneException ee) {
 			// no exception allowed here
 			assertTrue(false);
