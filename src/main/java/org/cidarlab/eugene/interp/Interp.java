@@ -1320,23 +1320,20 @@ public class Interp {
 	 * parser.The parsing of the LHS happens by calling
 	 * the parseAndGetElement/1 method. 
 	 *  
-	 * @param lhs ... the left-hand-side (LHS) of the assignment
+	 * @param lhsName ... the left-hand-side (LHS) of the assignment
 	 * @param rhs ... the right-hand-side (RHS) of the assignment
 	 * 
 	 * @throws EugeneException
 	 */
-	public void assignment(String lhs, NamedElement el_rhs)
+	public void assignment(String lhsName, NamedElement rhsElement)
 			throws EugeneException {
 		
 		this.parent = null;
 		this.idx = -1;
 		
-		NamedElement el_lhs = this.parseAndGetElement(lhs);
+		NamedElement lhsElement = this.parseAndGetElement(lhsName);
 		
-//		System.out.println("[Interp.assignment] " + el_lhs +" <- "+el_rhs);
-//		System.out.println("[Interp.assignment] " + el_lhs.getClass() +" <- "+el_rhs.getClass());
-//		
-		if(null != el_lhs) {
+		if(null != lhsElement) {
 			/*
 			 * we need to compare the types of 
 			 * the LHS and the RHS elements
@@ -1351,9 +1348,9 @@ public class Interp {
 			 *-------------------*/
 			boolean bValid = false;
 			if((-1) != this.idx) {
-				bValid = this.comparator.compareTypes(el_lhs, idx, el_rhs);
+				bValid = this.comparator.compareTypes(lhsElement, idx, rhsElement);
 			} else {
-				bValid = this.comparator.compareTypes(el_lhs, el_rhs);
+				bValid = this.comparator.compareTypes(lhsElement, rhsElement);
 			}
 			
 			if(!bValid) {
@@ -1363,35 +1360,35 @@ public class Interp {
 			/*------------
 			 * ASSIGNMENT
 			 *------------*/
-			if(el_rhs instanceof PropertyValue) {
+			if(rhsElement instanceof PropertyValue) {
 				
-				if(el_lhs instanceof Variable) {
+				if(lhsElement instanceof Variable) {
 					if(idx != -1) {
-						((Variable)el_lhs).setElement(idx, 
-								this.comparator.convertPropertyValueToVariable((PropertyValue)el_rhs));						
+						((Variable)lhsElement).setElement(idx, 
+								this.comparator.convertPropertyValueToVariable((PropertyValue)rhsElement));						
 					} else {					
-						this.assignment((Variable)el_lhs, (PropertyValue)el_rhs);
+						this.assignment((Variable)lhsElement, (PropertyValue)rhsElement);
 					}
 					
 					if(null != parent && parent instanceof Component) {
 						try {
-							((Component)parent).setPropertyValue(((Variable)el_lhs));
+							((Component)parent).setPropertyValue(((Variable)lhsElement));
 						} catch(DOMException de) {
 							throw new EugeneException(de.getLocalizedMessage());
 						}
 					}
 
-				} else if(el_lhs instanceof PropertyValue) {
+				} else if(lhsElement instanceof PropertyValue) {
 					if(idx != -1) {
-						((PropertyValue)el_lhs).set(idx, el_rhs);						
+						((PropertyValue)lhsElement).set(idx, rhsElement);						
 					} else {					
 						// assigning a variable to a property value 
-						this.assignment((PropertyValue)el_lhs, (PropertyValue)el_rhs);
+						this.assignment((PropertyValue)lhsElement, (PropertyValue)rhsElement);
 					}
 					
 					if(null != parent && parent instanceof Component) {
 						try {
-							((Component)parent).setPropertyValue(((PropertyValue)el_lhs));
+							((Component)parent).setPropertyValue(((PropertyValue)lhsElement));
 						} catch(DOMException de) {
 							throw new EugeneException(de.getLocalizedMessage());
 						}
@@ -1399,65 +1396,65 @@ public class Interp {
 
 				}
 				
-			} else if(el_rhs instanceof Variable) {
+			} else if(rhsElement instanceof Variable) {
 				
-				if(el_lhs instanceof Variable) {
+				if(lhsElement instanceof Variable) {
 					if(idx != -1) {
-						((Variable)el_lhs).setElement(idx, (Variable)el_rhs);
+						((Variable)lhsElement).setElement(idx, (Variable)rhsElement);
 					} else {
-						this.assignment((Variable)el_lhs, (Variable)el_rhs);
+						this.assignment((Variable)lhsElement, (Variable)rhsElement);
 					}
 
 					if(null != parent && parent instanceof Component) {
 						try {
-							((Component)parent).setPropertyValue(((Variable)el_lhs));
+							((Component)parent).setPropertyValue(((Variable)lhsElement));
 						} catch(DOMException de) {
 							throw new EugeneException(de.getLocalizedMessage());
 						}
 					}
 
-				} else if(el_lhs instanceof PropertyValue) {
+				} else if(lhsElement instanceof PropertyValue) {
 					
 					// assigning a variable to a property value
 					if(idx != -1) {
-						((PropertyValue)el_lhs).set(idx, el_rhs);
+						((PropertyValue)lhsElement).set(idx, rhsElement);
 					} else {
-						this.assignment((PropertyValue)el_lhs, (Variable)el_rhs);
+						this.assignment((PropertyValue)lhsElement, (Variable)rhsElement);
 					}
 					
 					if(null != parent && parent instanceof Component) {
 						try {
-							((Component)parent).setPropertyValue(((PropertyValue)el_lhs));
+							((Component)parent).setPropertyValue(((PropertyValue)lhsElement));
 						} catch(DOMException de) {
 							throw new EugeneException(de.getLocalizedMessage());
 						}
 					}
 				}
 			} else {
-				
-				this.removeVariable(el_lhs.getName());
 
-				el_lhs = this.cloner.deepClone(el_rhs);
-				el_lhs.setName(lhs);
+				// get the scope of the LHS element
+				String scope = this.getScopeOf(lhsElement.getName());
 				
-//				if(el_lhs instanceof EugeneCollection) {
-//					for(NamedElement e : ((EugeneCollection)el_lhs).getElements()) {
-//						if(e instanceof Device) {
-//							System.out.println(e.getName()+" -> "+((Device)e).getComponentList());
-//						}
-//					}
-//				}
+				// deep clone the RHS
+				lhsElement = this.cloner.deepClone(rhsElement);
+					
+				// assign it the name specified on the LHS
+				lhsElement.setName(lhsName);
+					
+				// and store it into the corresponding scope again
+				this.putIntoScope(lhsElement, scope);
 				
-				this.put(el_lhs);
+					
+//				this.put(el_lhs);
 			}
 		
 		// in this case, the LHS of the assignment does not exist.
 		// hence, we duplicate the RHS, assign it the LHS name and 
 		// store it in the symbol tables
 		} else {
-			el_lhs = this.cloner.deepClone(el_rhs);
-			el_lhs.setName(lhs);
-			this.put(el_lhs);
+			lhsElement = this.cloner.deepClone(rhsElement);
+			lhsElement.setName(lhsName);
+			this.put(lhsElement);
 		}
 	}
 	
@@ -1941,10 +1938,6 @@ public class Interp {
 		
 		if(!this.stack.isEmpty()) {
 			
-			/*
-			 * scoping
-			 */
-			
 			// in this case, we store the loop's iteration variable 
 			// into the symbol tables of the below stack element
 			if(this.stack.peek() instanceof Loop &&
@@ -1980,8 +1973,79 @@ public class Interp {
 				}
 			}
 		}
+	}
+	
+	public void putIntoScope(NamedElement element, String scopeName) 
+			throws EugeneException {
+		
+//		System.out.println("[putIntoScope] "+ element + ", " + scopeName); 
+		
+		// first, remove the element from its current scope
+		//this.removeVariable(element.getName());
+
+		if(EugeneConstants.MAIN_SCOPE.equals(scopeName)) {
+			/*
+			 * Global scope
+			 */
+			this.symbols.put(element.getName(), element);
+
+			// in the global scope, we also put
+			// biological components and interactions 
+			// into the the library (i.e. Sparrow)
+			if(element instanceof Part) {
+				try {
+					this.sparrow.insertFact((Part)element);
+				} catch(SparrowException spe) {
+					// let's ignore it for the time being.
+				}
+			} else if(element instanceof Interaction) {
+				try {
+					this.sparrow.insertFact((Interaction)element);
+				} catch(SparrowException spe) {
+					// let's ignore it for the time being.
+				}
+			}
+			
+			return;
+		}
+
+		// if we're not in the GLOBAL scope,
+		if(!this.stack.isEmpty()) {
+			
+			// then we look into all higher scopes 
+			// and compare their names w/ the desired scope name
+			Stack<StackElement> tmp = new Stack<StackElement>();
+
+			while(this.stack.size() > 0) {
+				StackElement se = this.stack.pop();
+				tmp.push(se);
+
+				// matching scope names
+				if(scopeName.equals(se.getName())) {
+					se.put(element);
+				}
+
+				// if we've popped a function from the stack, 
+				// then we do not pop further elements.
+				if(se instanceof FunctionInstance) {
+					break;
+				}
+			}
+
+			/*
+			 * we need to rebuild the old stack
+			 */
+			if(!tmp.isEmpty()) {
+				while(tmp.size() > 0) {
+					this.stack.push(
+							tmp.pop());
+				}
+			}
+
+		}
 		
 	}
+
 	
 	public void put(NamedElement ne) 
 			throws EugeneException {
@@ -2439,6 +2503,65 @@ public class Interp {
 		f = null;
 	}
 	
+	
+	public String getScopeOf(String element) 
+			throws EugeneException {
+
+		String scope = null;
+
+		// if we're not in the GLOBAL scope,
+		if(!this.stack.isEmpty()) {
+			
+			// then we look into all higher scopes 
+			// if the requested element exists
+			Stack<StackElement> tmp = new Stack<StackElement>();
+			while(this.stack.size() > 0 && scope == null) {
+				StackElement se = this.stack.pop();
+				tmp.push(se);
+
+				// we ask the stackelement if they contain 
+				// the desired namedlement object
+				if(se.contains(element)) {
+					scope = se.getName();
+				}
+
+				// if we've popped a function from the stack, 
+				// then we do not pop further elements.
+				if(se instanceof FunctionInstance) {
+					break;
+				}
+			}
+
+			/*
+			 * we need to rebuild the old stack
+			 */
+			while(tmp.size() > 0) {
+				this.stack.push(
+						tmp.pop());
+			}
+
+		}
+		
+		// if the requested element does not exist in any 
+		// scope above, then we check the global symbol 
+		// tables and our Library Management System (LMS) Sparrow
+		if(null == scope) {
+			try {
+				// first, we query the request element from 
+				// the symbol tables
+				if(this.symbols.contains(element) || null != this.sparrow.getFact(element)) {
+					scope = EugeneConstants.MAIN_SCOPE;
+				}
+			} catch(SparrowException spe) {
+				throw new EugeneException(spe.getMessage());
+			}
+		}
+		
+		// finally, we return the scope of the requested element
+		// (could be NULL though)
+		return scope;
+	}
+	
 	/**
 	 * The removeVariable/1 method removes the variable of the given
 	 * name from the symbol tables.
@@ -2452,12 +2575,15 @@ public class Interp {
 	public void removeVariable(String varname) {
 		
 		if(this.stack.isEmpty()) {
+			
 			this.symbols.removeVariable(varname);
+			
 		} else {
 			if(this.stack.peek() instanceof ImperativeFeature) {
 				((ImperativeFeature)this.stack.peek()).remove(varname);
 			}
 		}
+
 	}
 	
 	/**
