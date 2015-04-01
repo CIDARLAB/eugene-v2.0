@@ -136,6 +136,7 @@ public class MiniEugeneAdapter {
 		 */
 		String meScript = this.compiler.compile(d, rule, components, interactions);
 		
+		
 		// if it's a permutation, then 
 		// we need to add the CONTAINS and ORIENTATION constraints
 		// into the miniEugene script.

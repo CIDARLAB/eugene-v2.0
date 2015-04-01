@@ -666,7 +666,6 @@ public class Interp {
         try {
         	
 //        	EugeneA
-//            System.out.println("--> PRIMITIVE DEVICE " + d + "-->" + );
         	return this.productPrimitiveDevice(d);
         } catch(EugeneException ee) {
 //        	ee.printStackTrace();
@@ -1450,7 +1449,6 @@ public class Interp {
 //				}
 				
 				this.put(el_lhs);
-
 			}
 		
 		// in this case, the LHS of the assignment does not exist.
