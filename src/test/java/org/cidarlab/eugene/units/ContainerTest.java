@@ -53,7 +53,7 @@ public class ContainerTest {
 	}
 
 	@Test
-	public void test_IndexBased_AssignmentToArrayElements() {
+	public void test_IndexBased_AssignConstantToArrayElement() {
 		
 			// here, we add the var1 variable twice to 
 			// the testArray array
@@ -95,4 +95,37 @@ public class ContainerTest {
 			assertTrue(false);	// no exception allowed
 		}
 	}
+
+	@Test
+	public void test_IndexBased_AssignVariableToArrayElement() {
+		
+			// here, we add the var1 variable twice to 
+			// the testArray array
+		String script = 
+				"num var1=1; num var2=2;" +
+				"Array testArray(var1);" +
+				"testArray[0] = var2;";
+		
+		try {
+			Eugene e = new Eugene();
+			
+			EugeneCollection ec = e.executeScript(script.toString());
+			
+			NamedElement ne = ec.get("testArray");
+			assertTrue(null != ne);
+			assertTrue(ne instanceof EugeneArray);
+			
+			EugeneArray testArray = (EugeneArray)ne;
+			assertTrue(testArray.size() == 1);
+			
+			assertTrue(testArray.getElement(0) instanceof Variable);
+			assertTrue(((Variable)testArray.getElement(0)).getType() == EugeneConstants.NUM);
+			assertTrue("var2".equals(((Variable)testArray.getElement(0)).getName()));
+			assertTrue(((Variable)testArray.getElement(0)).getNum() == 2);
+		} catch(Exception e) {
+			e.printStackTrace();
+			assertTrue(false);	// no exception allowed
+		}
+	}
+
 }
