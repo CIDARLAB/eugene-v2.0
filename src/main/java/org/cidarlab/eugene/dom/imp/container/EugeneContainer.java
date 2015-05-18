@@ -54,4 +54,6 @@ public abstract class EugeneContainer
 	 * abstract methods
 	 */
 	public abstract Collection<NamedElement> getElements();
+	
+	public abstract int size();
 }

@@ -100,14 +100,14 @@ public class EugeneArray
 	public void put(NamedElement ne) 
 			throws EugeneException {
 		
-		if(null != ne && !this.contains(ne.getName())) {
+		if(null != ne/* && !this.contains(ne.getName())*/) {
 			if(ne instanceof NamedElement) {
 				this.getElements().add((NamedElement)ne);
 			} else {
 				throw new EugeneException("I cannot add the "+ne+" element to an array!");
 			}
-		} else if(null != ne && this.contains(ne.getName())) {
-			throw new EugeneException("The " + ne.getName()+" element exists already in the "+this.getName()+" array!"); 
+//		} else if(null != ne && this.contains(ne.getName())) {
+//			throw new EugeneException("The " + ne.getName()+" element exists already in the "+this.getName()+" array!"); 
 		}
 	}
 
@@ -141,6 +141,21 @@ public class EugeneArray
 		return null;
 	}
 	
+	public void setElement(int idx, NamedElement element) 
+			throws EugeneException {		
+		if(idx < 0 || idx > this.getElements().size() - 1) {
+			throw new EugeneException("The index "+idx+" is out of bounds on the "+this.getName()+" array!");
+		}
+
+		if(element.getName().contains("-")) {  // i.e. a generated name
+			
+		} else {
+			
+		}
+
+		this.elements.set(idx, element);
+	}
+	
 	@Override
 	public int hashCode() {
 		int hash = this.getID();
@@ -163,6 +178,11 @@ public class EugeneArray
 		}
 		
 		return this.hashCode() == ((EugeneArray)o).hashCode();
+	}
+
+	@Override
+	public int size() {
+		return this.getElements().size();
 	}
 	
 }

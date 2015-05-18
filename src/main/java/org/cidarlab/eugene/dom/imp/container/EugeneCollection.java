@@ -167,4 +167,9 @@ public class EugeneCollection
 		
 		return this.hashCode() == ((EugeneCollection)o).hashCode();
 	}
+
+	@Override
+	public int size() {
+		return this.getElements().size();
+	}
 }

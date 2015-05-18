@@ -1429,6 +1429,23 @@ public class Interp {
 							throw new EugeneException(de.getLocalizedMessage());
 						}
 					}
+				} else if(lhsElement instanceof EugeneArray) {
+
+					if(this.comparator.compareTypes(
+							((EugeneArray)lhsElement).getElement(idx), rhsElement)) {
+
+						// in case the RHS element is a constant, then
+						// it's name is a generated name and it contains '-'
+						if(rhsElement.getName().contains("-")) {
+							rhsElement.setName(((EugeneArray)lhsElement).getElement(idx).getName());
+						}
+						
+						((EugeneArray)lhsElement).setElement(idx, rhsElement);
+						
+					} else {
+						throw new EugeneException("Invalid types in assignment!");
+					}
+					
 				}
 			} else {
 

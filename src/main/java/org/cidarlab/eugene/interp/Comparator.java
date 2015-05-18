@@ -37,6 +37,7 @@ import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.Part;
 import org.cidarlab.eugene.dom.PropertyValue;
 import org.cidarlab.eugene.dom.Variable;
+import org.cidarlab.eugene.dom.imp.container.EugeneArray;
 import org.cidarlab.eugene.exception.EugeneException;
 
 /**
@@ -254,6 +255,8 @@ public class Comparator {
 	 */
 	public boolean compareTypes(NamedElement lhs, NamedElement rhs) {
 		
+//		System.out.println("[compareTypes] --> " + lhs + " vs " + rhs);
+		
 		// if both objects are either variables or property values, 
 		// then we need to compare their primitive types
 		if(lhs instanceof Variable) {
@@ -345,7 +348,18 @@ public class Comparator {
 			
 			Variable v_lhs = new Variable("anonymous", type);
 			return this.compareTypes(v_lhs, rhs);
-		}			
+			
+		// added 05/18/2015
+		// see org.cidarlab.eugene.units.ContainerTest
+		} else if(lhs instanceof EugeneArray) {
+			try {
+				return this.compareTypes(((EugeneArray)lhs).getElement(idx), rhs);
+			} catch(EugeneException ee) {
+				return false;
+			}
+		}
+		
+		
 		
 		return false;
 	}

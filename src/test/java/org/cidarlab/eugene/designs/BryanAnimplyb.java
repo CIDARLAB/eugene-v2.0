@@ -14,35 +14,20 @@ import org.cidarlab.eugene.exception.EugeneException;
 public class BryanAnimplyb {
 
 	public static void main(String[] args) {
-//		testWorks();
-//		testFails();
-//		testRev01();
-		testRev03();
+//		testScript("./designs/cidar/cello/animplyb/animplyb_works.eug");
+//		testScript("./designs/cidar/cello/animplyb/animplyb_rev01.eug");
+//		testScript("./designs/cidar/cello/animplyb/animplyb_rev02.eug");
+//		testScript("./designs/cidar/cello/animplyb/animplyb_rev03.eug");
+		testScript("./designs/cidar/cello/animplyb/animplyb_rev04.eug");
 	}
 	
-	private static void testWorks() {
+	
+	private static void testScript(String filename) {
 		try {
 			Eugene eug = new Eugene();
 			
 			EugeneCollection ec = eug.executeFile(
-					new File("./designs/cidar/cello/animplyb/animplyb_works.eug"));
-			
-			if(ec instanceof EugeneReturnCollection) {
-				System.out.println("visualized images: " + 
-						((EugeneReturnCollection)ec).getImages());								
-			}
-			
-		} catch(EugeneException ee) {
-			ee.printStackTrace();
-		}		
-	}
-	
-	private static void testFails() {
-		try {
-			Eugene eug = new Eugene();
-			
-			EugeneCollection ec = eug.executeFile(
-					new File("./designs/cidar/cello/animplyb/animplyb_fails.eug"));
+					new File(filename));
 			
 			if(ec instanceof EugeneReturnCollection) {
 				System.out.println("visualized images: " + 
@@ -54,34 +39,4 @@ public class BryanAnimplyb {
 		}		
 	}
 
-	private static void testRev01() {
-		try {
-			Eugene eug = new Eugene();
-			
-			EugeneCollection ec = eug.executeFile(
-					new File("./designs/cidar/cello/animplyb/animplyb_rev01.eug"));
-			
-			if(ec instanceof EugeneReturnCollection) {
-				System.out.println("visualized images: " + 
-						((EugeneReturnCollection)ec).getImages());								
-			}
-			
-		} catch(EugeneException ee) {
-			ee.printStackTrace();
-		}		
-	}
-
-	private static void testRev03() {
-		try {
-			Eugene eug = new Eugene();
-			
-			EugeneCollection ec = eug.executeFile(
-					new File("./designs/cidar/cello/animplyb/animplyb_rev03.eug"));
-			
-			
-			System.out.println(ec.get("allDesigns"));			
-		} catch(EugeneException ee) {
-			ee.printStackTrace();
-		}		
-	}
 }
