@@ -31,8 +31,13 @@ package org.cidarlab.eugene.units;
 
 import static org.junit.Assert.*;
 
+import java.util.Collection;
+
+import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.EugeneConstants;
+import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.Variable;
+import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -40,26 +45,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class VariableTest {
-
-	@BeforeClass
-	public static void setUpBeforeClass() 
-			throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() 
-			throws Exception {
-	}
-
-	@Before
-	public void setUp() 
-			throws Exception {
-	}
-
-	@After
-	public void tearDown() 
-			throws Exception {
-	}
 
 	@Test
 	public void testInvalidVariables() {
@@ -70,7 +55,7 @@ public class VariableTest {
 		}
 		
 		try {
-			new Variable("var-name","invalid_type");
+			new Variable("var_name","invalid_type");
 		} catch(IllegalArgumentException iae) {
 			assertTrue("Invalid type of variable!".equals(iae.getLocalizedMessage()));
 		}
@@ -81,6 +66,34 @@ public class VariableTest {
 		Variable numVar1 = new Variable("num_var1", EugeneConstants.NUM);
 		assertTrue(EugeneConstants.NUM.equals(numVar1.getType()));
 		assertTrue(numVar1.getNum() == 0);
+	}
+	
+	@Test
+	public void testAnonymousVariable() {
+		Variable v = new Variable(null, EugeneConstants.NUM);
+		assertTrue(v.isAnonymous());
+	}
+	
+	@Test
+	public void testAssignConstantToVariable() {
+		String script = "num var1=0;";
+		
+		try {
+			Eugene eug = new Eugene();
+			EugeneCollection results = 
+					eug.executeScript(script);
+			
+			assertTrue(results != null);
+			assertTrue(results.get("var1") != null);
+			assertTrue(results.get("var1") instanceof Variable);
+			assertTrue(EugeneConstants.NUM.equals(((Variable)results.get("var1")).getType()));
+			assertTrue(0 == ((Variable)results.get("var1")).getNum());
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			assertTrue(false);	// no exception allowed
+		}
 	}
 	
 }

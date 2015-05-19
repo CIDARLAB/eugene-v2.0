@@ -87,8 +87,7 @@ public class Variable
 	 * @param n  ... the name of the variable
 	 * @param t  ... the type of the variable
 	 */
-	public Variable(String n, String t) 
-			throws IllegalArgumentException {
+	public Variable(String n, String t) {
 
 		super(n);
 		

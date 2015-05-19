@@ -78,6 +78,7 @@ public class ContainerTest {
 			
 			assertTrue(testArray.getElement(0) instanceof Variable);
 			assertTrue(((Variable)testArray.getElement(0)).getType() == EugeneConstants.NUM);
+			
 			assertTrue("var1".equals(((Variable)testArray.getElement(0)).getName()));
 			assertTrue(((Variable)testArray.getElement(0)).getNum() == 0);
 			

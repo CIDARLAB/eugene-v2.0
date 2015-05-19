@@ -600,8 +600,15 @@ public boolean checkIfAlreadyDeclared(String name, boolean all) {
 	
 	//copies the values of a primitive to a newly created Primitive
 	public Variable copyVariable(Variable source) {
-		Variable destination = new Variable(source.getName(), source.getType());
+	        Variable destination = null;
+	        if(source.isAnonymous()) {
+			destination = new Variable(null, source.getType());
+		} else {
+			destination = new Variable(source.getName(), source.getType());
+		}
+		
 		destination.index = source.index;
+		
 		if (EugeneConstants.NUM.equals(source.getType())) {
 			destination.type = EugeneConstants.NUM;
 			destination.num = source.num;

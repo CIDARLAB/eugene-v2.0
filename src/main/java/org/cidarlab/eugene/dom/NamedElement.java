@@ -62,6 +62,8 @@ public abstract class NamedElement
 	 */
 	private String name;
 	
+	private boolean isAnonymous;
+	
 	/**
 	 * Constructor
 	 * 
@@ -77,12 +79,16 @@ public abstract class NamedElement
 		if(null == name) {   // ANONYMOUS 
 			this.setName(UUID.randomUUID().toString());
 			
+			this.isAnonymous = true;
+			
 		} else if(name.isEmpty()) {   // an empty name is invalid!
 			throw new IllegalArgumentException("Invalid name!");
 			
 		} else {
 			// set the name
 			this.setName(name);
+			
+			this.isAnonymous = false;
 		}
 		
 		// ID
@@ -145,6 +151,20 @@ public abstract class NamedElement
 	 */
 	public String getName() {
 		return this.name;
+	}
+	
+	/**
+	 * Constants and intermediate expression results 
+	 * are wrapped into anonymous variables. Hence, every
+	 * NamedElement provides a isAnonymous() variable,  
+	 * which returns true, if this NamedElement is an 
+	 * anonymous element.
+	 *  
+	 * @return  true ... the NamedElement is anonymous
+	 *         false ... otherwise
+	 */
+	public boolean isAnonymous() {
+		return this.isAnonymous;
 	}
 	
 	

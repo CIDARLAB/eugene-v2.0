@@ -1429,6 +1429,7 @@ public class Interp {
 							throw new EugeneException(de.getLocalizedMessage());
 						}
 					}
+					
 				} else if(lhsElement instanceof EugeneArray) {
 
 					if(this.comparator.compareTypes(
@@ -1436,7 +1437,7 @@ public class Interp {
 
 						// in case the RHS element is a constant, then
 						// it's name is a generated name and it contains '-'
-						if(rhsElement.getName().contains("-")) {
+						if(rhsElement.isAnonymous()) {
 							rhsElement.setName(((EugeneArray)lhsElement).getElement(idx).getName());
 						}
 						
