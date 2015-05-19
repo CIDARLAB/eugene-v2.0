@@ -1,13 +1,9 @@
 package org.cidarlab.eugene.inverters;
 
 import java.io.File;
-import java.util.List;
-import java.util.ArrayList;
 import java.net.URI;
-
-
-
-
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * Eugene imports
@@ -19,7 +15,6 @@ import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.imp.container.EugeneArray;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.EugeneException;
-import org.cidarlab.eugene.util.EugeneUtils;
 
 /**
  * The EugeneAdapter class demonstrates the programmatic 
@@ -110,16 +105,16 @@ public class InvertersAdapter {
 		}
 	}
 	
-	private void textualizeDesigns(EugeneArray array) 
-			throws EugeneException {
-
-		for(NamedElement ne : array.getElements()) {
-			if(ne instanceof Device) {
-				System.out.println(
-						EugeneUtils.prettyPrint((Device)ne));
-			}
-		}
-	}
+//	private void textualizeDesigns(EugeneArray array) 
+//			throws EugeneException {
+//
+//		for(NamedElement ne : array.getElements()) {
+//			if(ne instanceof Device) {
+//				System.out.println(
+//						EugeneUtils.prettyPrint((Device)ne));
+//			}
+//		}
+//	}
 	
 	public static void main(String[] args) 
 			throws Exception {

@@ -1,10 +1,9 @@
 package org.cidarlab.cello;
 
 import java.io.File;
-import java.util.List;
-import java.util.ArrayList;
 import java.net.URI;
-
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * Eugene relevant imports
@@ -13,7 +12,6 @@ import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.data.pigeon.Pigeonizer;
 import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.NamedElement;
-import org.cidarlab.eugene.dom.Part;
 import org.cidarlab.eugene.dom.imp.container.EugeneArray;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.EugeneException;

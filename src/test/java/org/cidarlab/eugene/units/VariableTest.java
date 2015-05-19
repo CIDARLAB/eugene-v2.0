@@ -29,19 +29,12 @@
 
 package org.cidarlab.eugene.units;
 
-import static org.junit.Assert.*;
-
-import java.util.Collection;
+import static org.junit.Assert.assertTrue;
 
 import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.EugeneConstants;
-import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.Variable;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class VariableTest {

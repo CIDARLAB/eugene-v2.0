@@ -19,23 +19,23 @@ public class DougMoCloPaper {
 		testRev1();
 	}
 	
-	private static void rebuildQueryScenario() {
-		try {
-			Eugene eug = new Eugene();
-		
-			
-			EugeneCollection ec = eug.executeFile(
-					new File("./designs/cidar/doug/query-issue.eug"));
-			
-			if(ec instanceof EugeneReturnCollection) {
-				System.out.println("visualized images: " + 
-						((EugeneReturnCollection)ec).getImages());								
-			}
-			
-		} catch(EugeneException ee) {
-			ee.printStackTrace();
-		}		
-	}
+//	private static void rebuildQueryScenario() {
+//		try {
+//			Eugene eug = new Eugene();
+//		
+//			
+//			EugeneCollection ec = eug.executeFile(
+//					new File("./designs/cidar/doug/query-issue.eug"));
+//			
+//			if(ec instanceof EugeneReturnCollection) {
+//				System.out.println("visualized images: " + 
+//						((EugeneReturnCollection)ec).getImages());								
+//			}
+//			
+//		} catch(EugeneException ee) {
+//			ee.printStackTrace();
+//		}		
+//	}
 	
 	private static void testRev1() {
 		try {

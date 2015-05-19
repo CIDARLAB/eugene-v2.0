@@ -29,15 +29,13 @@
 
 package org.cidarlab.eugene.units;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.Variable;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.EugeneException;
-import org.cidarlab.sparrow.exception.SparrowException;
-import org.cidarlab.sparrow.test.SparrowTestSuite;
 import org.junit.Test;
 
 /**
