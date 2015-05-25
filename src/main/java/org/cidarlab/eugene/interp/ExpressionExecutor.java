@@ -317,6 +317,10 @@ public class ExpressionExecutor {
 		if(!(RHS instanceof Component) && !(RHS instanceof ComponentType)) {
 			throw new EugeneException("Invalid use of the " + op + " operator!");
 		}
+		
+		if(RHS.getName().equals(LHS.getName())) {
+			throw new EugeneException("Cannot add " + RHS.getName() + " to " + LHS.getName()+"!");
+		}
 
 		if("+".equals(op)) {
 			// ADD

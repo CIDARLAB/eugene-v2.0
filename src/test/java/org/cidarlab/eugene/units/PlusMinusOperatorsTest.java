@@ -209,6 +209,7 @@ public class PlusMinusOperatorsTest {
 		
 		try {
 			new Eugene().executeScript(script);
+			assertTrue(false);
 		} catch(EugeneException ee) {
 			assertTrue(ee.getLocalizedMessage().contains("Invalid use of the + operator!"));
 		}
@@ -224,8 +225,39 @@ public class PlusMinusOperatorsTest {
 		
 		try {
 			new Eugene().executeScript(script);
+			assertTrue(false);
 		} catch(EugeneException ee) {
 			assertTrue(ee.getLocalizedMessage().contains("Invalid types!"));
 		}
 	}
+	
+	@Test
+	public void testDesignTemplateDPlusDesignTemplateD() {
+		
+		String script = 
+				"Device D;" +
+				"D = D + D;";		
+		try {
+			new Eugene().executeScript(script);
+			assertTrue(false);
+		} catch(EugeneException ee) {
+			assertTrue(ee.getLocalizedMessage().contains("Cannot add D to D!"));
+		}
+	}
+	
+	@Test
+	public void testRecursiveAdd() {
+		String script = 
+				"Device D1;" +
+				"Device D2;" +
+				"D1 = D1 + D2;" +		
+				"D2 = D2 + D1;"; 		
+		try {
+			new Eugene().executeScript(script);
+		} catch(EugeneException ee) {
+			ee.printStackTrace();
+			assertTrue(ee.getLocalizedMessage().contains("Cannot add D to D!"));
+		}
+	}
+	
 }
