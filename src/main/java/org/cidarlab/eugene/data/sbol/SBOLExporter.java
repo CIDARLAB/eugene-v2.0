@@ -158,8 +158,8 @@ public class SBOLExporter {
 			SBOLExporter.serializeSBOL(document, sFileName);
 			
 		} catch(Exception e) {
-			e.printStackTrace();
-			throw new EugeneException(e.toString());
+//			e.printStackTrace();
+			throw new EugeneException(e.getLocalizedMessage());
 		}
 	}
 	
@@ -177,29 +177,38 @@ public class SBOLExporter {
 	private static void serializeSBOL(SBOLDocument document, String file) 
 			throws EugeneException {
 
-		try {
-			// creating the directories
-			FileUtils.createDirectories(file);
+			if(file.contains("/")) {
+				// creating the directories
+				FileUtils.createDirectories(file);
+			}
 			
 			// creating the file
 			File f = new File(file);
 			if (!f.exists()) {
-				f.createNewFile();
+				try {
+					f.createNewFile();
+				} catch(Exception e) {
+					throw new EugeneException(e.getMessage());
+				}
 			}
 			
-			// open a file stream
-			FileOutputStream fos = new FileOutputStream(f);
-	
+		try (
+				// open a file stream
+				FileOutputStream fos = new FileOutputStream(f);
+				
+			) {
+				
+				
 			// write the SBOLDocument in-memory object onto 
 			// the file stream using the SBOLFactory
 			SBOLFactory.write(document, fos);
 	
 			// flush and close the stream
 			fos.flush();
-			fos.close();
+			
 		} catch(Exception e) {
 			// if something went wrong, throw an exception
-			throw new EugeneException(e.toString());
+			throw new EugeneException(e.getMessage());
 		}
 	}
 	

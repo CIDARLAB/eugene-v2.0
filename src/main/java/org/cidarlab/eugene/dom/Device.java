@@ -161,11 +161,11 @@ public class Device
 	 * @return the device's components as list
 	 */
 	public List<NamedElement> getComponentList() {
-		List<NamedElement> components_list = new ArrayList<NamedElement>();
+		List<NamedElement> loComponents = new ArrayList<NamedElement>();
 		for(List<NamedElement> loc : this.getComponents()) {
-			components_list.add(loc.get(0));
+			loComponents.add(loc.get(0));
 		}
-		return components_list;
+		return loComponents;
 	}
 	
 	/**

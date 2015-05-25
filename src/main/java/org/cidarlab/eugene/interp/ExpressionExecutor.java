@@ -30,9 +30,14 @@
 package org.cidarlab.eugene.interp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.cidarlab.eugene.constants.EugeneConstants;
+import org.cidarlab.eugene.dom.Component;
+import org.cidarlab.eugene.dom.ComponentType;
+import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.NamedElement;
+import org.cidarlab.eugene.dom.PartType;
 import org.cidarlab.eugene.dom.PropertyValue;
 import org.cidarlab.eugene.dom.Variable;
 import org.cidarlab.eugene.dom.imp.container.EugeneArray;
@@ -91,6 +96,13 @@ public class ExpressionExecutor {
 	        	return this.doMinPlusOp((EugeneContainer)LHS, RHS, op);
 	        } else if(RHS instanceof EugeneContainer) {
 	        	return this.doMinPlusOp((EugeneContainer)RHS, LHS, op);
+	        	
+	        	// DEVICE (+|-) PARTTYPE
+	        } else if(LHS instanceof Device) {
+	        	return this.doMinPlusOp((Device)LHS, RHS, op);
+	        	// PARTTYPE (+|-) DEVICE
+	        } else if(RHS instanceof Device) {
+	        	return this.doMinPlusOp(LHS, (Device)RHS, op);
 	        }
 	        
     	} catch(EugeneException ee) {
@@ -297,6 +309,57 @@ public class ExpressionExecutor {
 	
 	
 	/*----------------------------------------------
+	 * Device (+|-) Component/ComponentType
+	 *----------------------------------------------*/
+	private NamedElement doMinPlusOp(Device LHS, NamedElement RHS, String op) 
+			throws EugeneException {
+		
+		if(!(RHS instanceof Component) && !(RHS instanceof ComponentType)) {
+			throw new EugeneException("Invalid use of the " + op + " operator!");
+		}
+
+		if("+".equals(op)) {
+			// ADD
+			
+			List<NamedElement> elements = new ArrayList<NamedElement>();
+			elements.add(RHS);
+			((Device)LHS).getComponents().add(elements);
+			
+			return (Device)LHS;
+		} 
+		
+		return null;
+	}
+	
+	/*----------------------------------------------
+	 * Component/ComponentType (+|-) Device 
+	 *----------------------------------------------*/
+	private NamedElement doMinPlusOp(NamedElement LHS, Device RHS, String op) 
+			throws EugeneException {
+		
+		if(!(LHS instanceof Component) && !(LHS instanceof ComponentType)) {
+			throw new EugeneException("Invalid use of the " + op + " operator!");
+		}
+		
+		if("+".equals(op)) {
+			// ADD
+			
+			List<List<NamedElement>> elements = new ArrayList<List<NamedElement>>();
+			
+			List<NamedElement> parttype = new ArrayList<NamedElement>();
+			parttype.add(LHS);
+			elements.add(parttype);
+			
+			elements.addAll(RHS.getComponents());
+			RHS.setComponents(elements);
+			
+			return (Device)RHS;
+		} 
+		
+		return null;
+	}
+
+	/*----------------------------------------------
 	 * EugeneContainer (+|-) EugeneContainer
 	 *----------------------------------------------*/
 	private NamedElement doMinPlusOp(EugeneContainer RHS, EugeneContainer LHS, String op) 
@@ -407,6 +470,10 @@ public class ExpressionExecutor {
 	 */
 	public NamedElement doMultDivOp(NamedElement lhs, NamedElement rhs, String op) 
 			throws EugeneException {
+		
+		if(!"*".equals(op) || !"/".equals(op)) {
+			throw new EugeneException(op + " is an invalid operator!");
+		}
 		
 		Variable v_lhs = null;
 		Variable v_rhs = null;

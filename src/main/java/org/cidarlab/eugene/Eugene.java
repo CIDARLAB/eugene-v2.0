@@ -167,7 +167,7 @@ public class Eugene {
 				this.sparrow = new Sparrow(sessionId);
 			}
 		} catch(SparrowException spe) {
-			throw new EugeneException(spe.toString());
+			throw new EugeneException(spe.getLocalizedMessage());
 		}
 		
 		// OUTPUT WRITER
@@ -270,7 +270,7 @@ public class Eugene {
 		try {
 			parser.prog(true);
 		} catch(Exception e) {
-			throw new EugeneException(e.toString());
+			throw new EugeneException(e.getLocalizedMessage());
 		}
 		
 		/*
@@ -283,7 +283,7 @@ public class Eugene {
 			parser.prog(false);
 		} catch(Exception e) {
 //			e.printStackTrace();
-			throw new EugeneException(e.toString());
+			throw new EugeneException(e.getLocalizedMessage());
 		}
 		
 		/*

@@ -2355,7 +2355,6 @@ public class Interp {
 	public void addToContainer(NamedElement ne) 
 			throws EugeneException {
 		
-//		System.out.println("[Interp.addToContainer] -> " + ne.getClass() +" -> "+ne.getName());
 		if(null != this.stack && null != this.stack.peek() && null != ne) {
 			if(this.stack.peek() instanceof EugeneContainer) {
 				// if everything's OK, then add a deep-clone of 
