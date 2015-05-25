@@ -89,6 +89,7 @@ public class Eugene2SBOL {
 		if(null == lstURIs) {
 			lstURIs = new ArrayList<String>();
 		}
+
 		if(null == reusedComponents) {
 			reusedComponents = new HashMap<String, URI>();
 		}
@@ -99,12 +100,12 @@ public class Eugene2SBOL {
 		 * NAME
 		 */
 		sbolCollection.setName(objContainer.getName());
-		
+
 		/*
 		 * DESCRIPTION
 		 */
 		sbolCollection.setDescription(objContainer.getName());
-		
+
 		/*
 		 * DISPLAY-ID
 		 */
@@ -124,11 +125,20 @@ public class Eugene2SBOL {
 		 * ELEMENTS of the COLLECTION
 		 */
 		for(NamedElement element : objContainer.getElements()) {
+
 			if(element instanceof Component) {
 				sbolCollection.addComponent(
 						Eugene2SBOL.convert(
 								(Component)element,
 								null,
+								0));
+				
+			} else if(element instanceof ComponentType) {
+				
+				sbolCollection.addComponent(
+						Eugene2SBOL.convert(
+								(ComponentType)element, 
+								null, 
 								0));
 			}
 		}

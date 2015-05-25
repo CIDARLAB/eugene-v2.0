@@ -70,20 +70,21 @@ public class SBOLExporter {
 		if(null == ne) {
 			throw new EugeneException("Invalid element for SBOL Serialization!");
 		}
-
+		
 		// create an empty document populated with some SBOL objects
-		SBOLDocument document = SBOLFactory.createDocument();
+		SBOLDocument document = SBOLFactory.createDocument();		
 
 		try {
 
 			// EugeneContainer
 			// either EugeneArray or EugeneCollection
 			if(ne instanceof EugeneContainer) {
+
 				org.sbolstandard.core.Collection sbolCollection = 
 						Eugene2SBOL.convert(
 								(EugeneContainer)ne, 
 								EugeneConstants.EUGENE_URL);
-				
+
 				// add the DnaComponent to this document
 				document.addContent(sbolCollection);
 

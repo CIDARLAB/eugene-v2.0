@@ -33,11 +33,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.cidarlab.eugene.constants.EugeneConstants;
+import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.dom.Component;
 import org.cidarlab.eugene.dom.ComponentType;
 import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.NamedElement;
-import org.cidarlab.eugene.dom.PartType;
 import org.cidarlab.eugene.dom.PropertyValue;
 import org.cidarlab.eugene.dom.Variable;
 import org.cidarlab.eugene.dom.imp.container.EugeneArray;
@@ -321,9 +321,15 @@ public class ExpressionExecutor {
 		if("+".equals(op)) {
 			// ADD
 			
+			// add the element
 			List<NamedElement> elements = new ArrayList<NamedElement>();
 			elements.add(RHS);
 			((Device)LHS).getComponents().add(elements);
+			
+			// add the orientations
+			List<Orientation> orientations = new ArrayList<Orientation>();
+			orientations.add(Orientation.UNDEFINED);
+			((Device)LHS).getOrientations().add(orientations);
 			
 			return (Device)LHS;
 		} 
@@ -344,6 +350,7 @@ public class ExpressionExecutor {
 		if("+".equals(op)) {
 			// ADD
 			
+			// Elements
 			List<List<NamedElement>> elements = new ArrayList<List<NamedElement>>();
 			
 			List<NamedElement> parttype = new ArrayList<NamedElement>();
@@ -353,6 +360,17 @@ public class ExpressionExecutor {
 			elements.addAll(RHS.getComponents());
 			RHS.setComponents(elements);
 			
+			
+			// Orientations
+			List<List<Orientation>> orientations = new ArrayList<List<Orientation>>();
+			
+			List<Orientation> elementOrientation = new ArrayList<Orientation>();
+			elementOrientation.add(Orientation.UNDEFINED);
+			orientations.add(elementOrientation);
+			
+			orientations.addAll(RHS.getOrientations());
+			RHS.setOrientations(orientations);
+
 			return (Device)RHS;
 		} 
 		
