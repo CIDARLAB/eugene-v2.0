@@ -1648,7 +1648,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING){
  *------------------------------------------------------------------*/ 			
 ruleDeclaration[boolean defer]
 	returns [Rule rule]
-	:	RULE name=ID LEFTP ( ((LC_ON|UC_ON) device=ID COLON)? {
+	:	RULE name=ID (LEFTP ( ((LC_ON|UC_ON) device=ID COLON)? {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
         if(null == device) {
@@ -1660,7 +1660,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
         printError(e.getMessage());
     }
 }		
-	}	cnf=cnf_rule[defer] ) RIGHTP {
+	}	(cnf=cnf_rule[defer] {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     $rule.setLogicalAnd($cnf.lAnd);
 
@@ -1669,7 +1669,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
      */    
 //    this.interp.executeRule($rule); 
 }
-	}
+	}	)? ) RIGHTP)?
 	;
 
 ruleOperator[boolean defer]
@@ -2976,7 +2976,7 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
         printError(ee.getLocalizedMessage());
     }
 }	
-	}
+	}	 
 	|	(EXIT_LC | EXIT_UC) (LEFTP p=toPrint[defer] RIGHTP)? {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     if(null == p) {

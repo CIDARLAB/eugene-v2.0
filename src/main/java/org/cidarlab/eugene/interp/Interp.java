@@ -664,7 +664,6 @@ public class Interp {
         
         // it's a primitive device
         try {
-        	
 //        	EugeneA
         	return this.productPrimitiveDevice(d);
         } catch(EugeneException ee) {
@@ -2195,6 +2194,7 @@ public class Interp {
 
 	private Rule doErrorChecking(String ruleName) 
 			throws EugeneException {
+		
 		if(null == this.ruleBuilder) {
 			this.ruleBuilder = new RuleBuilder();
 		}
