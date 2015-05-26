@@ -282,7 +282,6 @@ public class Eugene {
 		try {
 			parser.prog(false);
 		} catch(Exception e) {
-//			e.printStackTrace();
 			throw new EugeneException(e.getLocalizedMessage());
 		}
 		

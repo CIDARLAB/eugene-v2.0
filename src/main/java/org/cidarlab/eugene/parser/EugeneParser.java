@@ -12830,6 +12830,7 @@ public class EugeneParser extends Parser {
 					            printError("Cannot determine the sequence of " + ((e!=null?((EugeneParser.expr_return)e).p:null)).getName());
 					        }
 					    } catch(EugeneException ee) {
+//					    	ee.printStackTrace();
 					        printError(ee.getLocalizedMessage());
 					    }
 					}	

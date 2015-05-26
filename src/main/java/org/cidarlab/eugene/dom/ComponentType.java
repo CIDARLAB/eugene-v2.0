@@ -32,6 +32,7 @@ package org.cidarlab.eugene.dom;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.exception.EugeneException;
 
 /**
@@ -60,6 +61,34 @@ public class ComponentType
 	public ComponentType(String name) {
 		super(name);
 		this.properties = new ArrayList<Property>();
+
+		this.addPredefinedProperties();
+	}
+	
+	private void addPredefinedProperties() {
+		/*
+		 * check if the list of properties contains 
+		 * the PIGEON and SEQUENCE Property
+		 */
+		boolean bPigeon = false;
+		boolean bSequence = false;
+		for(Property prop : this.getProperties()) {
+			if(EugeneConstants.SEQUENCE_PROPERTY.equals(prop.getName().toUpperCase())) {
+				bSequence = true;
+			} else if(EugeneConstants.PIGEON_PROPERTY.equals(prop.getName().toUpperCase())) {
+				bPigeon = true;
+			}
+		}
+		
+		if(!bPigeon) {
+			this.properties.add(
+					new Property(EugeneConstants.PIGEON_PROPERTY, EugeneConstants.TXT));
+		}
+		
+		if(!bSequence) {
+			this.properties.add(
+					new Property(EugeneConstants.SEQUENCE_PROPERTY, EugeneConstants.TXT));
+		}
 	}
 	
 	/**
@@ -71,6 +100,8 @@ public class ComponentType
 	public ComponentType(String name, List<Property> properties) {
 		super(name);
 		this.properties = properties;
+
+		this.addPredefinedProperties();
 	}
 	
 	
@@ -99,7 +130,7 @@ public class ComponentType
 				return p;
 			}
 		}
-
+		
 		return (Property) null;
 	}
 

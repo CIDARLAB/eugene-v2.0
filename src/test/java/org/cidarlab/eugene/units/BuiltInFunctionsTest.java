@@ -255,6 +255,33 @@ public class BuiltInFunctionsTest {
 	}
 	
 	@Test
+	public void testQuery_Sequence_EQUALS_Variable() {
+		StringBuilder script = new StringBuilder();
+		script.append(partLibrary)
+			.append("num n = 1;")
+			.append(result).append(" = query(PT.SEQUENCE == \"ATG\");");
+		
+		try {
+			Eugene e = new Eugene();
+			
+			EugeneCollection ec = e.executeScript(script.toString());
+			
+			assertTrue(ec != null);
+			assertTrue(ec.get(result) != null);
+			assertTrue(ec.get(result) instanceof EugeneCollection);
+
+			assertTrue(((EugeneCollection)ec.get(result)).getElements() != null);
+				// the query should return an empty collection
+			assertTrue(((EugeneCollection)ec.get(result)).getElements().isEmpty());
+
+		} catch(EugeneException ee) {
+			
+			// no exception should be thrown.
+			assertTrue(false);
+		}
+	}
+
+	@Test
 	public void testQuery_txt_EQUALS_constant() {
 		StringBuilder script = new StringBuilder();
 		script.append(partLibrary)

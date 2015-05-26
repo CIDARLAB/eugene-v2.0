@@ -88,13 +88,13 @@ public class DeclarationsTest {
 		try {
 			EugeneCollection col = this.eugene.executeScript(script);
 			
-			assert(col != null);
-			assert(col.getElements().size() == 1);
+			assertTrue(col != null);
+			assertTrue(col.getElements().size() == 1);
 
-			assert(col.get("num_prop") != null);
-			assert(col.get("num_prop") instanceof Property);
-			assert(col.get("num_prop").getName().equals(num_prop.getName()));			
-			assert(((Property)col.get("num_prop")).getType().equals(num_prop.getType()));
+			assertTrue(col.get("num_prop") != null);
+			assertTrue(col.get("num_prop") instanceof Property);
+			assertTrue(col.get("num_prop").getName().equals(num_prop.getName()));			
+			assertTrue(((Property)col.get("num_prop")).getType().equals(num_prop.getType()));
 		} catch(Exception e) {
 			e.printStackTrace();
 			assertTrue(false);
@@ -109,13 +109,13 @@ public class DeclarationsTest {
 		
 		try {
 			EugeneCollection col = this.eugene.executeScript(script);
-			assert(col != null);
-			assert(col.getElements().size() == 1);
-			assert(col.get("txt_prop") != null);
-			assert(col.get("txt_prop") instanceof Property);
-			assert(col.get("txt_prop").getName().equals(txt_prop.getName()));
+			assertTrue(col != null);
+			assertTrue(col.getElements().size() == 1);
+			assertTrue(col.get("txt_prop") != null);
+			assertTrue(col.get("txt_prop") instanceof Property);
+			assertTrue(col.get("txt_prop").getName().equals(txt_prop.getName()));
 			
-			assert(((Property)col.get("txt_prop")).getType().equals(txt_prop.getType()));
+			assertTrue(((Property)col.get("txt_prop")).getType().equals(txt_prop.getType()));
 		} catch(Exception e) {
 			e.printStackTrace();
 			assertTrue(false);
@@ -130,13 +130,13 @@ public class DeclarationsTest {
 		
 		try {
 			EugeneCollection col = this.eugene.executeScript(script);
-			assert(col != null);
-			assert(col.getElements().size() == 1);
-			assert(col.get("bool_prop") != null);
-			assert(col.get("bool_prop") instanceof Property);
-			assert(col.get("bool_prop").getName().equals(bool_prop.getName()));
+			assertTrue(col != null);
+			assertTrue(col.getElements().size() == 1);
+			assertTrue(col.get("bool_prop") != null);
+			assertTrue(col.get("bool_prop") instanceof Property);
+			assertTrue(col.get("bool_prop").getName().equals(bool_prop.getName()));
 			
-			assert(((Property)col.get("bool_prop")).getType().equals(bool_prop.getType()));
+			assertTrue(((Property)col.get("bool_prop")).getType().equals(bool_prop.getType()));
 		} catch(Exception e) {
 			e.printStackTrace();
 			assertTrue(false);
@@ -151,13 +151,13 @@ public class DeclarationsTest {
 		
 		try {
 			EugeneCollection col = this.eugene.executeScript(script);
-			assert(col != null);
-			assert(col.getElements().size() == 1);
-			assert(col.get("txt_list_prop") != null);
-			assert(col.get("txt_list_prop") instanceof Property);
-			assert(col.get("txt_list_prop").getName().equals(txt_list_prop.getName()));
+			assertTrue(col != null);
+			assertTrue(col.getElements().size() == 1);
+			assertTrue(col.get("txt_list_prop") != null);
+			assertTrue(col.get("txt_list_prop") instanceof Property);
+			assertTrue(col.get("txt_list_prop").getName().equals(txt_list_prop.getName()));
 			
-			assert(((Property)col.get("txt_list_prop")).getType().equals(txt_list_prop.getType()));
+			assertTrue(((Property)col.get("txt_list_prop")).getType().equals(txt_list_prop.getType()));
 		} catch(Exception e) {
 			e.printStackTrace();
 			assertTrue(false);
@@ -172,13 +172,13 @@ public class DeclarationsTest {
 		
 		try {
 			EugeneCollection col = this.eugene.executeScript(script);
-			assert(col != null);
-			assert(col.getElements().size() == 1);
-			assert(col.get("num_list_prop") != null);
-			assert(col.get("num_list_prop") instanceof Property);
-			assert(col.get("num_list_prop").getName().equals(num_list_prop.getName()));
+			assertTrue(col != null);
+			assertTrue(col.getElements().size() == 1);
+			assertTrue(col.get("num_list_prop") != null);
+			assertTrue(col.get("num_list_prop") instanceof Property);
+			assertTrue(col.get("num_list_prop").getName().equals(num_list_prop.getName()));
 			
-			assert(((Property)col.get("num_list_prop")).getType().equals(num_list_prop.getType()));
+			assertTrue(((Property)col.get("num_list_prop")).getType().equals(num_list_prop.getType()));
 		} catch(Exception e) {
 			e.printStackTrace();
 			assertTrue(false);
@@ -206,13 +206,13 @@ public class DeclarationsTest {
 		
 		try {
 			EugeneCollection col = this.eugene.executeScript(script);
-			assert(col != null);
-			assert(col.getElements().size() == 1);
-			assert(col.get("empty") != null);
-			assert(col.get("empty") instanceof PartType);
-			assert(col.get("empty").getName().equals(empty.getName()));
+			assertTrue(col != null);
+			assertTrue(col.getElements().size() == 1);
+			assertTrue(col.get("empty") != null);
+			assertTrue(col.get("empty") instanceof PartType);
+			assertTrue(col.get("empty").getName().equals(empty.getName()));
 			
-			assert(((PartType)col.get("empty")).getProperties().equals(empty.getProperties()));
+			assertTrue(((PartType)col.get("empty")).getProperties().equals(empty.getProperties()));
 		} catch(Exception e) {
 			e.printStackTrace();
 			assertTrue(false);
@@ -229,17 +229,17 @@ public class DeclarationsTest {
 		
 		try {
 			EugeneCollection ec = this.eugene.executeScript(script);
-			assert(null != ec);
+			assertTrue(null != ec);
 			// 2 elements: prop, pt_one
-			assert(ec.getElements().size() == 2);
+			assertTrue(ec.getElements().size() == 2);
 			
-			assert(null != ec.get("prop"));
-			assert(ec.get("prop") instanceof Property);
+			assertTrue(null != ec.get("prop"));
+			assertTrue(ec.get("prop") instanceof Property);
 			
-			assert(null != ec.get("pt_one"));
-			assert(ec.get("pt_one") instanceof PartType);
+			assertTrue(null != ec.get("pt_one"));
+			assertTrue(ec.get("pt_one") instanceof PartType);
 			
-			assert(((PartType)ec.get("pt_one")).getProperty("prop").equals(ec.get("prop")));
+			assertTrue(((PartType)ec.get("pt_one")).getProperty("prop").equals(ec.get("prop")));
 			
 		} catch(EugeneException ee) {
 			ee.printStackTrace();
@@ -280,20 +280,21 @@ public class DeclarationsTest {
 		try {
 			EugeneCollection ec = this.eugene.executeScript(script.toString());
 
-			assert(null != ec);
+			assertTrue(null != ec);
 			// 2 elements: prop, pt_one
-			assert(ec.getElements().size() == NR_PROPERTIES + 1);
+			assertTrue(ec.getElements().size() == NR_PROPERTIES + 1);
 
 			for(int i=1; i<=NR_PROPERTIES; i++) {
-				assert(null != ec.get("prop"+i));
-				assert(ec.get("prop"+i) instanceof Property);
+				assertTrue(null != ec.get("prop"+i));
+				assertTrue(ec.get("prop"+i) instanceof Property);
 			}
 			
-			assert(null != ec.get("pt_many"));
-			assert(ec.get("pt_many") instanceof PartType);
-			assert(((PartType)ec.get("pt_many")).getProperties().size() == NR_PROPERTIES);
+			assertTrue(null != ec.get("pt_many"));
+			assertTrue(ec.get("pt_many") instanceof PartType);
+			assertTrue(((PartType)ec.get("pt_many")).getProperties().size() == NR_PROPERTIES + 2);
+						// +2 ... SEQUENCE and PIGEON property
 			
-//			assert(((PartType)ec.get("pt_one")).getProperty("prop").equals(ec.get("prop")));
+//			assertTrue(((PartType)ec.get("pt_one")).getProperty("prop").equals(ec.get("prop")));
 			
 		} catch(EugeneException ee) {
 			ee.printStackTrace();
@@ -372,33 +373,33 @@ public class DeclarationsTest {
 			EugeneCollection ec = this.eugene.executeScript(script.toString());
 
 			// pt_p1.pt_p1_num
-			assert(ec.get("pt_p1") instanceof Part);
+			assertTrue(ec.get("pt_p1") instanceof Part);
 			
-			assert(((Part)ec.get("pt_p1")).getPropertyValue("num_prop") != null);
-			assert(EugeneConstants.NUM.equals(
+			assertTrue(((Part)ec.get("pt_p1")).getPropertyValue("num_prop") != null);
+			assertTrue(EugeneConstants.NUM.equals(
 					((Part)ec.get("pt_p1")).getPropertyValue("num_prop").getType()));
-			assert(1 == ((Part)ec.get("pt_p1")).getPropertyValue("num_prop").getNum());
+			assertTrue(1 == ((Part)ec.get("pt_p1")).getPropertyValue("num_prop").getNum());
 			
 			// pt_p1.pt_p1_txt
-			assert(ec.get("pt_p1") instanceof Part);
-			assert(((Part)ec.get("pt_p1")).getPropertyValue("txt_prop") != null);
-			assert(EugeneConstants.TXT.equals(
+			assertTrue(ec.get("pt_p1") instanceof Part);
+			assertTrue(((Part)ec.get("pt_p1")).getPropertyValue("txt_prop") != null);
+			assertTrue(EugeneConstants.TXT.equals(
 					((Part)ec.get("pt_p1")).getPropertyValue("txt_prop").getType()));
-			assert("one".equals(((Part)ec.get("pt_p1")).getPropertyValue("txt_prop").getTxt()));
+			assertTrue("one".equals(((Part)ec.get("pt_p1")).getPropertyValue("txt_prop").getTxt()));
 
 			// pt_p2.pt_p2_num
-			assert(ec.get("pt_p2") instanceof Part);
-			assert(((Part)ec.get("pt_p2")).getPropertyValue("num_prop") != null);
-			assert(EugeneConstants.NUM.equals(
+			assertTrue(ec.get("pt_p2") instanceof Part);
+			assertTrue(((Part)ec.get("pt_p2")).getPropertyValue("num_prop") != null);
+			assertTrue(EugeneConstants.NUM.equals(
 					((Part)ec.get("pt_p2")).getPropertyValue("num_prop").getType()));
-			assert(2 == ((Part)ec.get("pt_p2")).getPropertyValue("num_prop").getNum());
+			assertTrue(2 == ((Part)ec.get("pt_p2")).getPropertyValue("num_prop").getNum());
 
 			// pt_p2.pt_p2_txt
-			assert(ec.get("pt_p2") instanceof Part);
-			assert(((Part)ec.get("pt_p2")).getPropertyValue("txt_prop") != null);
-			assert(EugeneConstants.TXT.equals(
+			assertTrue(ec.get("pt_p2") instanceof Part);
+			assertTrue(((Part)ec.get("pt_p2")).getPropertyValue("txt_prop") != null);
+			assertTrue(EugeneConstants.TXT.equals(
 					((Part)ec.get("pt_p2")).getPropertyValue("txt_prop").getType()));
-			assert("two".equals(((Part)ec.get("pt_p2")).getPropertyValue("txt_prop").getTxt()));
+			assertTrue("two".equals(((Part)ec.get("pt_p2")).getPropertyValue("txt_prop").getTxt()));
 
 		} catch(EugeneException ee) {
 			assertTrue(false);
@@ -416,7 +417,7 @@ public class DeclarationsTest {
 		
 		try {
 			
-			assert(seq.equals(p1.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY).getTxt()));
+			assertTrue(seq.equals(p1.getPropertyValue(EugeneConstants.SEQUENCE_PROPERTY).getTxt()));
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -440,7 +441,7 @@ public class DeclarationsTest {
 			
 			p1.setPropertyValue(pigProp, pigVal);
 			
-			assert(pig.equals(p1.getPropertyValue(EugeneConstants.PIGEON_PROPERTY).getTxt()));
+			assertTrue(pig.equals(p1.getPropertyValue(EugeneConstants.PIGEON_PROPERTY).getTxt()));
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -457,7 +458,7 @@ public class DeclarationsTest {
 		try {
 			new Eugene().executeScript(script);
 		} catch(EugeneException ee) {
-			assert(ee.getMessage().contains("X is not declared."));
+			assertTrue(ee.getMessage().contains("X is not declared."));
 		}
 	}
 
@@ -468,7 +469,7 @@ public class DeclarationsTest {
 		try {
 			new Eugene().executeScript(script);
 		} catch(EugeneException ee) {
-			assert(ee.getMessage().contains("i is not a Device."));
+			assertTrue(ee.getMessage().contains("i is not a Device."));
 		}
 	}
 	
@@ -491,67 +492,67 @@ public class DeclarationsTest {
 		try {
 			EugeneCollection ec = new Eugene().executeScript(script);
 			
-			assert(null != ec);
+			assertTrue(null != ec);
 			
 			/*-------
 			 * proms Device
 			 *-------*/
-			assert(null != ec.get("proms"));
-			assert(ec.get("proms") instanceof Device);			
+			assertTrue(null != ec.get("proms"));
+			assertTrue(ec.get("proms") instanceof Device);			
 			Device proms = (Device)ec.get("proms");
-			assert(null != proms.getOrientations());
-			assert(proms.getOrientations().size() == 2);
-			assert(null != proms.getOrientations(0));
-			assert(proms.getOrientations(0).size() == 1);
-			assert(proms.getOrientations(0).get(0) == Orientation.UNDEFINED);
-			assert(null != proms.getOrientations(1));
-			assert(proms.getOrientations(1).size() == 1);
-			assert(proms.getOrientations(1).get(0) == Orientation.UNDEFINED);
+			assertTrue(null != proms.getOrientations());
+			assertTrue(proms.getOrientations().size() == 2);
+			assertTrue(null != proms.getOrientations(0));
+			assertTrue(proms.getOrientations(0).size() == 1);
+			assertTrue(proms.getOrientations(0).get(0) == Orientation.UNDEFINED);
+			assertTrue(null != proms.getOrientations(1));
+			assertTrue(proms.getOrientations(1).size() == 1);
+			assertTrue(proms.getOrientations(1).get(0) == Orientation.UNDEFINED);
 
 			/*-------
 			 * fproms Device
 			 *-------*/
-			assert(null != ec.get("fproms"));
-			assert(ec.get("fproms") instanceof Device);			
+			assertTrue(null != ec.get("fproms"));
+			assertTrue(ec.get("fproms") instanceof Device);			
 			Device fproms = (Device)ec.get("fproms");
-			assert(null != fproms.getOrientations());
-			assert(fproms.getOrientations().size() == 2);
-			assert(null != fproms.getOrientations(0));
-			assert(fproms.getOrientations(0).size() == 1);
-			assert(fproms.getOrientations(0).get(0) == Orientation.FORWARD);
-			assert(null != fproms.getOrientations(1));
-			assert(fproms.getOrientations(1).size() == 1);
-			assert(fproms.getOrientations(1).get(0) == Orientation.FORWARD);
+			assertTrue(null != fproms.getOrientations());
+			assertTrue(fproms.getOrientations().size() == 2);
+			assertTrue(null != fproms.getOrientations(0));
+			assertTrue(fproms.getOrientations(0).size() == 1);
+			assertTrue(fproms.getOrientations(0).get(0) == Orientation.FORWARD);
+			assertTrue(null != fproms.getOrientations(1));
+			assertTrue(fproms.getOrientations(1).size() == 1);
+			assertTrue(fproms.getOrientations(1).get(0) == Orientation.FORWARD);
 
 			/*-------
 			 * rproms Device
 			 *-------*/
-			assert(null != ec.get("rproms"));
-			assert(ec.get("rproms") instanceof Device);			
+			assertTrue(null != ec.get("rproms"));
+			assertTrue(ec.get("rproms") instanceof Device);			
 			Device rproms = (Device)ec.get("rproms");
-			assert(null != rproms.getOrientations());
-			assert(rproms.getOrientations().size() == 2);
-			assert(null != rproms.getOrientations(0));
-			assert(rproms.getOrientations(0).size() == 1);
-			assert(rproms.getOrientations(0).get(0) == Orientation.REVERSE);
-			assert(null != rproms.getOrientations(1));
-			assert(rproms.getOrientations(1).size() == 1);
-			assert(rproms.getOrientations(1).get(0) == Orientation.REVERSE);
+			assertTrue(null != rproms.getOrientations());
+			assertTrue(rproms.getOrientations().size() == 2);
+			assertTrue(null != rproms.getOrientations(0));
+			assertTrue(rproms.getOrientations(0).size() == 1);
+			assertTrue(rproms.getOrientations(0).get(0) == Orientation.REVERSE);
+			assertTrue(null != rproms.getOrientations(1));
+			assertTrue(rproms.getOrientations(1).size() == 1);
+			assertTrue(rproms.getOrientations(1).get(0) == Orientation.REVERSE);
 
 			/*-------
 			 * hierarchical Device
 			 *-------*/
-			assert(null != ec.get("hierarchical"));
-			assert(ec.get("hierarchical") instanceof Device);			
+			assertTrue(null != ec.get("hierarchical"));
+			assertTrue(ec.get("hierarchical") instanceof Device);			
 			Device hierarchical = (Device)ec.get("hierarchical");
-			assert(null != hierarchical.getOrientations());
-			assert(hierarchical.getOrientations().size() == 2);
-			assert(null != hierarchical.getOrientations(0));
-			assert(hierarchical.getOrientations(0).size() == 1);
-			assert(hierarchical.getOrientations(0).get(0) == Orientation.UNDEFINED);
-			assert(null != hierarchical.getOrientations(1));
-			assert(hierarchical.getOrientations(1).size() == 1);
-			assert(hierarchical.getOrientations(1).get(0) == Orientation.FORWARD);
+			assertTrue(null != hierarchical.getOrientations());
+			assertTrue(hierarchical.getOrientations().size() == 2);
+			assertTrue(null != hierarchical.getOrientations(0));
+			assertTrue(hierarchical.getOrientations(0).size() == 1);
+			assertTrue(hierarchical.getOrientations(0).get(0) == Orientation.UNDEFINED);
+			assertTrue(null != hierarchical.getOrientations(1));
+			assertTrue(hierarchical.getOrientations(1).size() == 1);
+			assertTrue(hierarchical.getOrientations(1).get(0) == Orientation.FORWARD);
 		} catch(EugeneException ee) {
 			// no exception allowed here
 			assertTrue(false);

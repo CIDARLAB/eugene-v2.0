@@ -567,8 +567,8 @@ public class UtilitiesTest {
 				"Property num_list_prop(num[]); Property txt_list_prop(txt[]);" +
 				"PartType PT1(num_prop, txt_prop);" +
 				"PartType PT2(num_list_prop, txt_list_prop); "+
-				"PT1 p1(1, \"one\");"+
-				"PT1 p2(2, \"two\");"+
+				"PT1 p1(.num_prop(1), .txt_prop(\"one\"));"+
+				"PT1 p2(.num_prop(2), .txt_prop(\"two\"));"+
 				"Device subsubPT(PT1, PT2); Device subsubP(p1, p2); "+
 				"Device subD1(subsubPT, subsubP); Device subD2(subsubPT, subsubP); "+
 				"Device supD(subD1, subD2);";
