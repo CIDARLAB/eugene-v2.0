@@ -185,4 +185,20 @@ public class EugeneArray
 		return this.getElements().size();
 	}
 	
+	@Override
+	public EugeneContainer pickRandomly(int n) 
+			throws EugeneException {
+		
+		if(n < 0 || n > this.size()) {
+			throw new EugeneException("Invalid number!");
+		}
+		
+		/*
+		 * approach: n unique random numbers 
+		 */
+		EugeneArray ea = new EugeneArray(null);
+		ea.getElements().addAll(this.getElements());
+		return ea;
+	}
+
 }

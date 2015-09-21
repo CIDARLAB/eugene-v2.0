@@ -2831,10 +2831,17 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 /* -----------------
  * PERMUTE / permute
  * ----------------- */	
-	|	(LC_PERMUTE|UC_PERMUTE) LEFTP idToken=ID RIGHTP {
+	|	(LC_PERMUTE|UC_PERMUTE) LEFTP idToken=ID (COMMA exp=expr[defer])?  RIGHTP {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
-        $element = this.interp.permute($idToken.text);
+        if(null == exp) {
+            $element = this.interp.permute($idToken.text);
+        } else {
+            if(null == $exp.p) {
+                printError($exp.text + " is invalid!");
+            }
+            $element = this.interp.permute($idToken.text, $exp.p);
+        }
     } catch(Exception ee) {
         printError(ee.getLocalizedMessage());
     }
@@ -2844,10 +2851,17 @@ if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
 /* -----------------
  * PRODUCT / product
  * ----------------- */	
-	|	(LC_PRODUCT|UC_PRODUCT) LEFTP idToken=ID RIGHTP {
+	|	(LC_PRODUCT|UC_PRODUCT) LEFTP idToken=ID (COMMA exp=expr[defer])? RIGHTP {
 if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
     try {
-        $element = this.interp.product($idToken.text);
+        if(null == exp) {
+            $element = this.interp.product($idToken.text); 
+        } else {
+            if(null == $exp.p) {
+                printError($exp.text + " is invalid!");
+            }
+            $element = this.interp.product($idToken.text, $exp.p); 
+        }
     } catch(Exception ee) {
         printError(ee.getLocalizedMessage());
     }

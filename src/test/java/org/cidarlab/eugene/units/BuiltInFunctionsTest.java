@@ -517,4 +517,18 @@ public class BuiltInFunctionsTest {
 			assertTrue(false);
 		}
 	}
+	
+	@Test
+	public void testNumberOfPermute() {
+		String script = "PartType PT; PT p1; PT p2; Device D(PT, PT); ds = permute(D, 1);";
+		try {
+			Eugene eug = new Eugene();
+			EugeneCollection results = eug.executeScript(script);
+			
+//			System.out.println(results.get("ds"));
+		} catch(EugeneException ee) {
+			ee.printStackTrace();
+			assertTrue(false);
+		}
+	}
 }

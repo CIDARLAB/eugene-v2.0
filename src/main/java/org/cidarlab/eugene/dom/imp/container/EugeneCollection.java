@@ -172,4 +172,19 @@ public class EugeneCollection
 	public int size() {
 		return this.getElements().size();
 	}
+
+	@Override
+	public EugeneContainer pickRandomly(int n) 
+			throws EugeneException {
+		if(n < 0 || n > this.size()) {
+			throw new EugeneException("Invalid number!");
+		}
+		
+		/*
+		 * approach: n unique random numbers 
+		 */
+		EugeneCollection ec = new EugeneCollection(null);
+		ec.getElements().addAll(this.getElements());
+		return ec;
+	}
 }

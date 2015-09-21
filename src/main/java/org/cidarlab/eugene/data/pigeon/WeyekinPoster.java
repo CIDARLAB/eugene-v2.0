@@ -1,30 +1,33 @@
-/* Copyright (c) 2015, Boston University
- * 
+/*
+ * Copyright (c) 2014, Boston University
  * All rights reserved.
  * 
- * Redistribution and use in source and binary forms, with or without modification, 
- * are permitted provided that the following conditions are met:
+ * Redistribution and use in source and binary forms, with or 
+ * without modification, are permitted provided that the following 
+ * conditions are met:
  * 
- * 1. Redistributions of source code must retain the above copyright notice, this list 
- * of conditions and the following disclaimer.
- * 
- * 2. Redistributions in binary form must reproduce the above copyright notice, this list 
- * of conditions and the following disclaimer in the documentation and/or other materials 
- * provided with the distribution.
- * 
- * 3. Neither the name of the copyright holder nor the names of its contributors may be 
- * used to endorse or promote products derived from this software without specific prior 
- * written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
- * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
- * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND 
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
- * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
- * POSSIBILITY OF SUCH DAMAGE.
+ * 1. Redistributions of source code must retain the above copyright 
+ *    notice, this list of conditions and the following disclaimer.
+ *    
+ * 2. Redistributions in binary form must reproduce the above copyright 
+ *    notice, this list of conditions and the following disclaimer in 
+ *    the documentation and/or other materials provided with the distribution.
+ *    
+ * 3. Neither the name of the copyright holder nor the names of its 
+ *    contributors may be used to endorse or promote products derived 
+ *    from this software without specific prior written permission.
+ *    
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR 
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+ * HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED 
+ * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 package org.cidarlab.eugene.data.pigeon;
@@ -54,12 +57,11 @@ import org.apache.http.util.EntityUtils;
 public class WeyekinPoster {
 
     //*****WebGraphViz variables*****\\
-    
     private static String mGraphVizString;
     private static String mGraphVizImageIdentifier = "Weyekin output image";
     private static URI mGraphVizURI;
 //    private static String mGraphVizPath = "http://128.197.164.27/graphviz/";
-    private static String mGraphVizPath = "http://cidar1.bu.edu:5801/graphviz/";
+    private static String mGraphVizPath = "http://synbiotools.bu.edu:5801/graphviz/";
     private static String mGraphVizDotText = "digraph { a [shape=pentagon]; a -> b }";
     private static String mGraphVizAspectRatioString="";
     
@@ -69,14 +71,17 @@ public class WeyekinPoster {
     private static String mPigeonImageIdentifier = "Weyekin output image";
     private static URI mPigeonURI;
 //    private static String mPigeonPath = "http://128.197.164.27/";
-    private static String mPigeonPath = "http://cidar1.bu.edu:5801/";
+    private static String mPigeonPath = "http://synbiotools.bu.edu:5801/";
     private static String mPigeonText = "| foo \n | bar";
     private static String mPigeonBackgroundColorHexString="";
+    
+    private static final String PIGEON_URL = mPigeonPath + "pigeon.php";
+    private static final String GRAPHVIZ_URL = mGraphVizPath + "graphviz.php";
     
     public static URI postMyVision() {
         DefaultHttpClient httpclient = new DefaultHttpClient();
 //        HttpPost httpPost = new HttpPost("http://128.197.164.27/graphviz/graphviz.php");
-        HttpPost httpPost = new HttpPost("http://cidar1.bu.edu:5801/graphviz/graphviz.php");
+        HttpPost httpPost = new HttpPost(GRAPHVIZ_URL);
         List<NameValuePair> nvps = new ArrayList<NameValuePair>();
         nvps.add(new BasicNameValuePair("gviz", mGraphVizDotText));
         if (!mGraphVizAspectRatioString.isEmpty()) {
@@ -109,7 +114,7 @@ public class WeyekinPoster {
         
         try {
 //            httpPost.setURI(new URI("http://128.197.164.27/graphviz/graphviz1.php"));
-            httpPost.setURI(new URI("http://cidar1.bu.edu:5801/graphviz/graphviz1.php"));
+            httpPost.setURI(new URI("http://synbiotools.bu.edu:5801/graphviz/graphviz1.php"));
             try {
                 httpPost.setEntity(new UrlEncodedFormEntity(nvps));
                 try {
@@ -147,7 +152,7 @@ public class WeyekinPoster {
     public static URI getMyBirdsURL() {
         DefaultHttpClient httpclient = new DefaultHttpClient();
 //      HttpPost httpPost = new HttpPost("http://128.197.164.27/pigeon1.php");
-      HttpPost httpPost = new HttpPost("http://cidar1.bu.edu:5801/pigeon1.php");
+      HttpPost httpPost = new HttpPost(PIGEON_URL);
       List<NameValuePair> nvps = new ArrayList<NameValuePair>();
       nvps.add(new BasicNameValuePair("desc", mPigeonText));
       if (!mPigeonBackgroundColorHexString.isEmpty()) {
@@ -180,7 +185,7 @@ public class WeyekinPoster {
 
       try {
 //          httpPost.setURI(new URI("http://128.197.164.27/pigeon.php"));
-          httpPost.setURI(new URI("http://cidar1.bu.edu:5801/pigeon.php"));
+          httpPost.setURI(new URI(PIGEON_URL));
           try {
               httpPost.setEntity(new UrlEncodedFormEntity(nvps));
               try {
@@ -235,7 +240,7 @@ public class WeyekinPoster {
     public static void postMyBird() {
         DefaultHttpClient httpclient = new DefaultHttpClient();
 //        HttpPost httpPost = new HttpPost("http://128.197.164.27/pigeon1.php");
-        HttpPost httpPost = new HttpPost("http://cidar1.bu.edu:5801/pigeon1.php");
+        HttpPost httpPost = new HttpPost(PIGEON_URL);
         List<NameValuePair> nvps = new ArrayList<NameValuePair>();
         nvps.add(new BasicNameValuePair("desc", mPigeonText));
         if (!mPigeonBackgroundColorHexString.isEmpty()) {
@@ -268,7 +273,7 @@ public class WeyekinPoster {
 
         try {
 //            httpPost.setURI(new URI("http://128.197.164.27/pigeon.php"));
-            httpPost.setURI(new URI("http://cidar1.bu.edu:5801/pigeon.php"));
+            httpPost.setURI(new URI(PIGEON_URL));
             try {
                 httpPost.setEntity(new UrlEncodedFormEntity(nvps));
                 try {
@@ -378,6 +383,8 @@ public class WeyekinPoster {
         mPigeonBackgroundColorHexString = bgcolor;
     }
     
+    
+    /***
     @Deprecated
     public static void postMyCorrectVision() {
         DefaultHttpClient httpclient = new DefaultHttpClient();
@@ -409,4 +416,5 @@ public class WeyekinPoster {
             Logger.getLogger(WeyekinPoster.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    ***/
 }

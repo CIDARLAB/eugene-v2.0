@@ -634,6 +634,30 @@ public class Interp {
 		
 		return this.createInteraction(name, lhs, type, rhs.getName());
 	}
+	
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 * @throws EugeneException
+	 */
+	public EugeneArray product(String name, Variable num) 
+			throws EugeneException {
+		
+		if(!EugeneConstants.NUM.equals(num.getType())) {
+			throw new EugeneException("The number of desired solutions must be specified " + 
+					"as a variable of type num.");
+		} else if(num.getNum()%1 != 0.0) {
+			throw new EugeneException("The number of desired solutions must be an integer value.");
+		}
+		
+		EugeneArray allSolutions = this.product(name);
+		
+		/*
+		 * pick num solutions (randomly)
+		 */
+		return (EugeneArray)allSolutions.pickRandomly((int)num.getNum());
+	}
 
 	/**
 	 * The product/1 method enumerates all rule-compliant 
@@ -1200,6 +1224,19 @@ public class Interp {
         //			 [e11|e12 | e21 | e31|e32]);
         
         return this.permute((Device)ne);
+	}
+	
+	public EugeneArray permute(String name, Variable num)
+			throws EugeneException {
+		
+		EugeneArray allSolutions = this.permute(name);
+		
+		/*
+		 * pick num solutions (randomly)
+		 */
+		
+		return allSolutions;
+		
 	}
 
 	/**

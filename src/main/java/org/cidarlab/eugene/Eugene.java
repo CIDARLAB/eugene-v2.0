@@ -255,7 +255,7 @@ public class Eugene {
 	 */
 	public EugeneCollection executeScript(String script) 
 		throws EugeneException {
-
+		
 		// clean up everything from an eventual 
 		// earlier run
 		if(null != this.parser) {
@@ -272,7 +272,7 @@ public class Eugene {
 		} catch(Exception e) {
 			throw new EugeneException(e.getLocalizedMessage());
 		}
-		
+
 		/*
 		 * PHASE II:
 		 * INTERPRETATION
@@ -284,7 +284,7 @@ public class Eugene {
 		} catch(Exception e) {
 			throw new EugeneException(e.getLocalizedMessage());
 		}
-		
+
 		/*
 		 * after executing a Eugene script, 
 		 * we also persist the session

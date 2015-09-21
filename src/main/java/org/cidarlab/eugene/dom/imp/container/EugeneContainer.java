@@ -31,6 +31,7 @@ package org.cidarlab.eugene.dom.imp.container;
 
 import org.cidarlab.eugene.dom.*;
 import org.cidarlab.eugene.dom.imp.StackElement;
+import org.cidarlab.eugene.exception.EugeneException;
 
 import java.util.Collection;
 
@@ -53,7 +54,9 @@ public abstract class EugeneContainer
 	/*
 	 * abstract methods
 	 */
-	public abstract Collection<NamedElement> getElements();
-	
+	public abstract Collection<NamedElement> getElements();	
 	public abstract int size();
+	
+	public abstract EugeneContainer pickRandomly(int n)
+			throws EugeneException;
 }
