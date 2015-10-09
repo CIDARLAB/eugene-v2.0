@@ -36,10 +36,20 @@ public class PartType
 
 	private static final long serialVersionUID = 1242448556255896751L;
 
+	/**
+	 * Constructor to instantiate a PartType w/o properties
+	 * @param name
+	 */
 	public PartType(String name) {
 		super(name);
 	}
 	
+	/**
+	 * Constructor to instantiate a PartType w/ properties
+	 * 
+	 * @param name
+	 * @param proplist
+	 */
 	public PartType(String name, List<Property> proplist) {
 		super(name, proplist);
 	}

@@ -37,6 +37,7 @@ import org.cidarlab.eugene.data.sbol.SBOLImporter;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.PartType;
 import org.cidarlab.eugene.dom.Part;
+import org.cidarlab.eugene.dom.Property;
 import org.cidarlab.eugene.dom.imp.container.EugeneArray;
 import org.cidarlab.eugene.dom.imp.container.EugeneCollection;
 import org.cidarlab.eugene.exception.EugeneException;
@@ -45,6 +46,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -68,7 +70,7 @@ public class DataExchangeTest {
 
 	@Test
 	public void testSBOLExport_PartWithSequence() {
-		PartType pt = new PartType("PT");
+		PartType pt = new PartType("PT", new ArrayList<Property>());
 		Part p1 = new Part(pt, "p1");
 		p1.setSequence("ATCG");
 		

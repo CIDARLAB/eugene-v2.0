@@ -192,12 +192,7 @@ public class SparrowBuilder {
 		
 		// the part type has not been declared
 		// hence, create it and store it in the part types hashmap
-		PartType objPartType = new PartType(name);
-		if (null != properties && !properties.isEmpty()) {
-			for (Property property : properties) {
-				objPartType.getProperties().add(property);
-			}
-		}
+		PartType objPartType = new PartType(name, properties);
 		hmPartTypes.put(name, objPartType);
 		
 		return objPartType;

@@ -50,6 +50,11 @@ public class ComponentType
 
 	/*
 	 * LIST OF PROPERTIES
+	 * 
+	 * Every ComponentType has two pre-defined properties: PIGEON and SEQUENCE
+	 * both pre-defined properties are appended at the 
+	 * end of the user-defined list of properties.
+	 * 
 	 */
 	protected List<Property> properties; 
 	
@@ -58,7 +63,7 @@ public class ComponentType
 	 * 
 	 * @param name   ... the name of the ComponentType
 	 */
-	public ComponentType(String name) {
+	protected ComponentType(String name) {
 		super(name);
 		this.properties = new ArrayList<Property>();
 

@@ -318,24 +318,35 @@ public class Interp {
 			throw new EugeneException(name+" exists already.");
 		}
 		
-		ComponentType ct = new ComponentType(name);
+		ComponentType ct = new ComponentType(
+				name, 
+				this.convertToListOfProperties(elements));
 		
-		if(null != elements) {
-			for(NamedElement ne : elements) {
-				
-				if(!(ne instanceof Property)) {
-					throw new EugeneException(ne.getName()+" is not a Property.");
-				}
-				
-				ct.getProperties().add((Property)ne);
-			}
-		}
 		
 		
 		// finally, store the part type object in the symbol tables
 		this.put(ct);
 	}
 
+	private List<Property> convertToListOfProperties(List<NamedElement> elements) 
+			throws EugeneException {
+		
+		List<Property> properties = 
+				new ArrayList<Property>();
+		
+		if(null != elements) {
+			for(NamedElement ne : elements) {
+				
+				if(!(ne instanceof Property)) {
+					throw new EugeneException(ne.getName()+" is an invalid property!");
+				}
+				
+				properties.add((Property)ne);
+			}
+		}
+		
+		return properties;
+	}
 	/**
 	 * 
 	 * @param name     ... the name of the part type
@@ -349,18 +360,18 @@ public class Interp {
 			throw new EugeneException("An element named "+name+" exists already!");
 		}
 		
-		PartType pt = new PartType(name);
+		/*
+		 * convert the list of elements into a 
+		 * list of Property objects
+		 */
+		List<Property> properties = 
+				this.convertToListOfProperties(elements);
 		
-		if(null != elements) {
-			for(NamedElement ne : elements) {
-				
-				if(!(ne instanceof Property)) {
-					throw new EugeneException(ne.getName()+" is not a Property.");
-				}
-				
-				pt.getProperties().add((Property)ne);
-			}
-		}
+		/*
+		 * instantiate the PartType and assign it the 
+		 * specified properties
+		 */
+		PartType pt = new PartType(name, properties);
 		
 		
 		// finally, store the part type object in the symbol tables

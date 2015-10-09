@@ -156,10 +156,6 @@ public class Component
 		}
 	}
 
-//	public String getSequence() {
-//		return this.sequence;
-//	}
-	
 	public String getTypeAsString() {
 		if(null != this.getType()) {
 			return this.getType().getName();
@@ -171,10 +167,10 @@ public class Component
 		return this.type;
 	}
 	
-	
+
 	/**
 	 * 
-	 * @param isForward
+	 * @param orientation
 	 */
 	public void setOrientation(Orientation orientation) {
 		this.orientation = orientation;
@@ -314,6 +310,7 @@ public class Component
 	
 	public void setPropertyValue(Variable v) 
 			throws DOMException {
+
 		/*
 		 * convert variable to property value
 		 */
