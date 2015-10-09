@@ -493,7 +493,7 @@ public class ExpressionExecutor {
 	public NamedElement doMultDivOp(NamedElement lhs, NamedElement rhs, String op) 
 			throws EugeneException {
 		
-		if(!"*".equals(op) || !"/".equals(op)) {
+		if(!"*".equals(op) && !"/".equals(op)) {
 			throw new EugeneException(op + " is an invalid operator!");
 		}
 		
