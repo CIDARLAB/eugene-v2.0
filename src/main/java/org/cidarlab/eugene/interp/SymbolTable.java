@@ -33,6 +33,7 @@ import org.cidarlab.eugene.dom.*;
 import org.cidarlab.eugene.dom.imp.functions.FunctionPrototype;
 import org.cidarlab.eugene.dom.rules.Rule;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -52,7 +53,10 @@ import java.util.Set;
  * @author Ernst Oberortner
  *
  */
-public class SymbolTable {
+public class SymbolTable 
+		implements Serializable {
+
+	private static final long serialVersionUID = -8685336521708037126L;
 
 	/*
 	 * the symbols map stores all symbols defined in a Eugene script

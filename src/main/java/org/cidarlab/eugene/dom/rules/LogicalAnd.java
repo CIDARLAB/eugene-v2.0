@@ -29,6 +29,7 @@
 
 package org.cidarlab.eugene.dom.rules;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -42,8 +43,11 @@ import com.rits.cloning.Cloner;
  * 
  * @author Ernst Oberortner
  */
-public class LogicalAnd {
+public class LogicalAnd 
+		implements Serializable {
 
+	private static final long serialVersionUID = 9068664189498644832L;
+	
 	/*
 	 * A List of constraints, which can either be
 	 * LogicalOr, LogicalNot, or Predicate (i.e. primitive constraints)

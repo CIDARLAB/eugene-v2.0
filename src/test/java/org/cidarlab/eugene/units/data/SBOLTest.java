@@ -27,7 +27,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.cidarlab.eugene.units;
+package org.cidarlab.eugene.units.data;
 
 import static org.junit.Assert.*;
 
@@ -51,12 +51,12 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * The DataExchangeTest class provides unit tests for Eugene v2.0's 
- * data exchange facilities.
+ * The SBOLTest unit-tests for Eugene v2.0's 
+ * data exchange facilities regarding the SBOL standard.
  * 
  * Test-Strategy for Exports:
  * --------------------------
- * create in-memory objects, serialize them, read them in againg, 
+ * create in-memory objects, serialize them, read them in again, 
  * and compare their values. If the values match, then test passed.
  * Example: 
  * A Eugene Part object is being serialized into SBOL. Then, we import
@@ -66,7 +66,7 @@ import java.util.Set;
  * @author Ernst Oberortner
  *
  */
-public class DataExchangeTest {
+public class SBOLTest {
 
 	@Test
 	public void testSBOLExport_PartWithSequence() {
@@ -138,7 +138,7 @@ public class DataExchangeTest {
 	}
 	
 	@Test
-	public void testSBOLExport_enumeratedDevice() {
+	public void testSBOLExport_enumeratedDevices() {
 		String script = "PartType PT();" +
 				"PT p1; PT p2; PT p3; PT p4;" +
 				"Device D(PT);" +
@@ -239,5 +239,11 @@ public class DataExchangeTest {
 		    }
 		});
 		return files.length;
+	}
+	
+	@Test
+	public void testReadFASTAFromRegistry() 
+			throws Exception {
+		
 	}
 }

@@ -29,6 +29,8 @@
 
 package org.cidarlab.eugene.dom.rules;
 
+import java.io.Serializable;
+
 /**
  * The PrimtiveConstraint class represents one Eugene constraint.
  * 
@@ -43,7 +45,9 @@ package org.cidarlab.eugene.dom.rules;
  *
  */
 public class ArrangementConstraint 
-		implements ArrangementPredicate {
+		implements ArrangementPredicate, Serializable {
+
+	private static final long serialVersionUID = 2066412931466489691L;
 
 	private ArrangementOperand lhs;
 	private String op;

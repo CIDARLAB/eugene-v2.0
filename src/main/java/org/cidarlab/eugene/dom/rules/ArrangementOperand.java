@@ -29,6 +29,8 @@
 
 package org.cidarlab.eugene.dom.rules;
 
+import java.io.Serializable;
+
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.exception.EugeneException;
 
@@ -48,8 +50,11 @@ import org.cidarlab.eugene.exception.EugeneException;
  * @author Ernst Oberortner
  *
  */
-public class ArrangementOperand {
+public class ArrangementOperand 
+		implements Serializable {
 
+	private static final long serialVersionUID = 7484443973545982141L;
+	
 	private NamedElement element;
 	private int constant;
 	private int index;
