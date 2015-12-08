@@ -42,8 +42,10 @@ public class DougMoCloPaper {
 			Eugene eug = new Eugene();
 		
 			
+//			EugeneCollection ec = eug.executeFile(
+//					new File("./designs/cidar/doug/CIDAR_MoClo_Eugene_rev3.eug"));
 			EugeneCollection ec = eug.executeFile(
-					new File("./designs/cidar/doug/CIDAR_MoClo_Eugene_rev3.eug"));
+					new File("./designs/cidar/doug/CIDAR_MoClo_Eugene_final.eug"));
 			
 			if(ec instanceof EugeneReturnCollection) {
 				System.out.println("visualized images: " + 

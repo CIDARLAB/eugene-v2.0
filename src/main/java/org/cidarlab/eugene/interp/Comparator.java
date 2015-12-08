@@ -35,6 +35,8 @@ import java.util.ArrayList;
 import org.cidarlab.eugene.constants.EugeneConstants;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.Part;
+import org.cidarlab.eugene.dom.PartType;
+import org.cidarlab.eugene.dom.Property;
 import org.cidarlab.eugene.dom.PropertyValue;
 import org.cidarlab.eugene.dom.Variable;
 import org.cidarlab.eugene.dom.imp.container.EugeneArray;
@@ -254,8 +256,12 @@ public class Comparator {
 	 *         false ... otherwise 
 	 */
 	public boolean compareTypes(NamedElement lhs, NamedElement rhs) {
-		
-//		System.out.println("[compareTypes] --> " + lhs + " vs " + rhs);
+
+		// TODO:
+		// currently, there are a lot of individual type checks necessary
+		// optimize this solution!
+		// e.g. by introducing a TypedElement class between NamedElement 
+		// and all typed elements in Eugene (e.g. variables, parts, properties, etc)
 		
 		// if both objects are either variables or property values, 
 		// then we need to compare their primitive types
@@ -271,15 +277,27 @@ public class Comparator {
 						((PropertyValue)rhs).getType());
 			}
 			
+		// LHS is a property value
+		// e.g. p1.PIGEON
 		} else if(lhs instanceof PropertyValue) {
 			
+			// RHS is property value
+			// e.g. p1.PIGEON = p2.PIGEON
 			if(rhs instanceof PropertyValue) {
 				return ((PropertyValue)lhs).getType().equals(
 						((PropertyValue)rhs).getType());
+
+			// RHS is a variable (or constant)
+			// e.g. p1.PIGEON = "p p1 14 nl"
 			} else if(rhs instanceof Variable) {
 				return ((PropertyValue)lhs).getType().equals(
 						((Variable)rhs).getType());
 			}
+			
+		
+		// ``Part-Assignments''
+		// LHS and RHS is a part
+		// e.g. Promoter p1; Promoter p2; p1 = p2;
 		} else if(lhs instanceof Part && rhs instanceof Part) {
 
 			// the part types must match
@@ -292,8 +310,22 @@ public class Comparator {
 			
 			return false;
 			
-		} else {
-		
+		// Assignment to a Property of a component type (e.g. part type)
+		// the value should be propagated to all instances of the component type 
+		} else if(lhs instanceof Property) {
+			
+			// RHS is a property value
+			// e.g. Promoter.PIGEON = p1.PIGEON
+			if(rhs instanceof PropertyValue) {
+				return ((Property)lhs).getType().equals(
+						((PropertyValue)rhs).getType());
+
+			// RHS is a variable
+			// e.g. Promoter.PIGEON = "Promoter"
+			} else if(rhs instanceof Variable) {
+				return ((Property)lhs).getType().equals(
+						((Variable)rhs).getType());
+			}
 		}
 		
 		// otherwise, we just compare it both objects
