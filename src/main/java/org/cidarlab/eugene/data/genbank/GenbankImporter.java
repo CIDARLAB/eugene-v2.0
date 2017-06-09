@@ -41,7 +41,6 @@ import java.util.Map;
 import org.biojava3.core.sequence.DNASequence;
 import org.biojava3.core.sequence.compound.NucleotideCompound;
 import org.biojava3.core.sequence.features.FeatureInterface;
-import org.biojava3.core.sequence.io.GenbankReaderHelper;
 import org.biojava3.core.sequence.template.AbstractSequence;
 import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.NamedElement;
@@ -130,7 +129,7 @@ public class GenbankImporter {
 			throws EugeneException {
 		File dnaFile = new File(filename);
 				
-		try {
+		/*try {
 			Map<String, DNASequence> dnaSequences = GenbankReaderHelper.readGenbankDNASequence( dnaFile );
 			for (DNASequence sequence : dnaSequences.values()) {
 				
@@ -143,7 +142,7 @@ public class GenbankImporter {
 			}
 		} catch(Exception e) {
 			throw new EugeneException(e.getLocalizedMessage());
-		}
+		}*/
 		
 		return null;
 	}
