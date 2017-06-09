@@ -159,9 +159,9 @@
 		
 		<!-- JaCoP Constraint Solver -->
 		<dependency>
-			<groupId>org</groupId>
-			<artifactId>jacop</artifactId>
-			<version>4.1.0</version>
+		    <groupId>org.jacop</groupId>
+		    <artifactId>jacop</artifactId>
+		    <version>4.4.0</version>
 		</dependency>
 
 		<!--  BioJava -->
