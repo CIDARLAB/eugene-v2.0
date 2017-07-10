@@ -26,7 +26,6 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
  * POSSIBILITY OF SUCH DAMAGE.
  */
-
 package org.cidarlab.eugene.data.sbol;
 
 import java.io.File;
@@ -44,174 +43,160 @@ import org.sbolstandard.core.DnaComponent;
 import org.sbolstandard.core.SBOLDocument;
 import org.sbolstandard.core.SBOLFactory;
 
-
 /**
- * The SBOLExporter class provides methods to serialize Eugene objects 
- * into an SBOL-compliant file format.
- * 
+ * The SBOLExporter class provides methods to serialize Eugene objects into an
+ * SBOL-compliant file format.
+ *
  * @author Ernst Oberortner
  */
 public class SBOLExporter {
 
-	/**
-	 * The toSBOLDocument/1 method serializes a Eugene NamedElement object
-	 * into an SBOLDocument object in-memory.
-	 * accepted NamedElement objects are: 
-	 * - EugeneContainers: EugeneCollection, EugeneArray
-	 * - Components: Device, Part
-	 * 
-	 * @param ne ... the Eugene NamedElement object
-	 * @return ... an SBOLDocument object
-	 * @throws EugeneException
-	 */
-	public static SBOLDocument toSBOLDocument(NamedElement ne)
-			throws EugeneException {
-		
-		if(null == ne) {
-			throw new EugeneException("Invalid element for SBOL Serialization!");
-		}
-		
-		// create an empty document populated with some SBOL objects
-		SBOLDocument document = SBOLFactory.createDocument();		
+  /**
+   * The toSBOLDocument/1 method serializes a Eugene NamedElement object into an
+   * SBOLDocument object in-memory. accepted NamedElement objects are: -
+   * EugeneContainers: EugeneCollection, EugeneArray - Components: Device, Part
+   *
+   * @param ne ... the Eugene NamedElement object
+   * @return ... an SBOLDocument object
+   * @throws EugeneException
+   */
+  public static SBOLDocument toSBOLDocument(NamedElement ne)
+    throws EugeneException {
 
-		try {
+    if (null == ne) {
+      throw new EugeneException("Invalid element for SBOL Serialization!");
+    }
 
-			// EugeneContainer
-			// either EugeneArray or EugeneCollection
-			if(ne instanceof EugeneContainer) {
+    // create an empty document populated with some SBOL objects
+    SBOLDocument document = SBOLFactory.createDocument();
 
-				org.sbolstandard.core.Collection sbolCollection = 
-						Eugene2SBOL.convert(
-								(EugeneContainer)ne, 
-								EugeneConstants.EUGENE_URL);
+    try {
 
-				// add the DnaComponent to this document
-				document.addContent(sbolCollection);
+      // EugeneContainer
+      // either EugeneArray or EugeneCollection
+      if (ne instanceof EugeneContainer) {
 
-			// Eugene Component
-			// either primitive (Part) or composite (Device)
-			} else if(ne instanceof Component) {
-				DnaComponent dnaComponent = 
-						Eugene2SBOL.convert((Component)ne, null, 0);
+        org.sbolstandard.core.Collection sbolCollection
+          = Eugene2SBOL.convert(
+            (EugeneContainer) ne,
+            EugeneConstants.EUGENE_URL);
 
-				// add the DnaComponent to this document
-				document.addContent(dnaComponent);
+        // add the DnaComponent to this document
+        document.addContent(sbolCollection);
 
-			// Eugene ComponentType
-			// in Eugene v2.0 --> only PartType
-			} else if(ne instanceof ComponentType) {
+        // Eugene Component
+        // either primitive (Part) or composite (Device)
+      } else if (ne instanceof Component) {
+        DnaComponent dnaComponent
+          = Eugene2SBOL.convert((Component) ne, null, 0);
 
-				DnaComponent dnaComponent = 
-						Eugene2SBOL.convert((ComponentType)ne, null, 0);
+        // add the DnaComponent to this document
+        document.addContent(dnaComponent);
 
-				// add the DnaComponent to this document
-				document.addContent(dnaComponent);
-				
-			// Invalid
-			// e.g. Eugene Variable or Eugene PropertyValue
-			} else {
-				throw new EugeneException("Cannot serialize " + ne.getName() + " to SBOL!");
-			}
-			
-			return document;
-			
-		} catch(Exception e) {
-			throw new EugeneException(e.getLocalizedMessage());
-		}
-	}
+        // Eugene ComponentType
+        // in Eugene v2.0 --> only PartType
+      } else if (ne instanceof ComponentType) {
 
-	/**
-	 * The serialize/2 method converts a Eugene NamedElement to an 
-	 * SBOL compliant format and serializes it to a given file.
-	 * The NamedElement must be either a EugeneContainer (e.g. Array, Collection)
-	 * or a Component (e.g. Device, Part), otherwise an exception 
-	 * is thrown.
-	 * 
-	 * @param ne ... the Eugene NamedElement to be serialized
-	 * @param sFileName ... the file name
-	 * 
-	 * @throws EugeneException
-	 */
-	public static void serialize(NamedElement ne, String sFileName)
-			throws EugeneException {
+        DnaComponent dnaComponent
+          = Eugene2SBOL.convert((ComponentType) ne, null, 0);
 
-		/*
-		 * ERROR CHECKING
-		 */
-		if(sFileName == null || sFileName.isEmpty() ) {
-			throw new EugeneException("Invalid Filename!"); 
-		}		
+        // add the DnaComponent to this document
+        document.addContent(dnaComponent);
 
-		if (sFileName.startsWith("\"") && sFileName.endsWith("\"")) {
-			sFileName = sFileName.substring(1, sFileName.length() - 2);
-		} 
-		
-		try {
+        // Invalid
+        // e.g. Eugene Variable or Eugene PropertyValue
+      } else {
+        throw new EugeneException("Cannot serialize " + ne.getName() + " to SBOL!");
+      }
 
-			/*
-			 * convert the Eugene NamedElement into an SBOL document
-			 */
-			SBOLDocument document = toSBOLDocument(ne);
+      return document;
 
-			/*
-			 * serialize the document to a file
-			 */
-			SBOLExporter.serializeSBOL(document, sFileName);
-			
-		} catch(Exception e) {
-//			e.printStackTrace();
-			throw new EugeneException(e.getLocalizedMessage());
-		}
-	}
-	
-	/**
-	 * The serializeSBOL/2 method persists a given SBOLDocument object 
-	 * into a given file. 
-	 * The path of the file starts at the Eugene ROOT_DIRECTORY, which is 
-	 * set to '.' per default.
-	 * 
-	 * @param document  ... the SBOLDocument object
-	 * @param file  ... the desired name of the file (evtl. including path information)
-	 * 
-	 * @throws EugeneException
-	 */
-	private static void serializeSBOL(SBOLDocument document, String file) 
-			throws EugeneException {
+    } catch (Exception e) {
+      throw new EugeneException(e.getLocalizedMessage());
+    }
+  }
 
-			if(file.contains("/")) {
-				// creating the directories
-				FileUtils.createDirectories(file);
-			}
-			
-			// creating the file
-			File f = new File(file);
-			if (!f.exists()) {
-				try {
-					f.createNewFile();
-				} catch(Exception e) {
-					throw new EugeneException(e.getMessage());
-				}
-			}
-			
-		try (
-				// open a file stream
-				FileOutputStream fos = new FileOutputStream(f);
-				
-			) {
-				
-				
-			// write the SBOLDocument in-memory object onto 
-			// the file stream using the SBOLFactory
-			SBOLFactory.write(document, fos);
-	
-			// flush and close the stream
-			fos.flush();
-			
-		} catch(Exception e) {
-			// if something went wrong, throw an exception
-			throw new EugeneException(e.getMessage());
-		}
-	}
-	
- 
+  /**
+   * The serialize/2 method converts a Eugene NamedElement to an SBOL compliant
+   * format and serializes it to a given file. The NamedElement must be either a
+   * EugeneContainer (e.g. Array, Collection) or a Component (e.g. Device,
+   * Part), otherwise an exception is thrown.
+   *
+   * @param ne ... the Eugene NamedElement to be serialized
+   * @param sFileName ... the file name
+   *
+   * @throws EugeneException
+   */
+  public static void serialize(NamedElement ne, String sFileName)
+    throws EugeneException {
+
+    // ERROR CHECKING
+    if (sFileName == null || sFileName.isEmpty()) {
+      throw new EugeneException("Invalid Filename!");
+    }
+
+    if (sFileName.startsWith("\"") && sFileName.endsWith("\"")) {
+      sFileName = sFileName.substring(1, sFileName.length() - 2);
+    }
+
+    try {
+
+      // convert the Eugene NamedElement into an SBOL document
+      SBOLDocument document = toSBOLDocument(ne);
+
+      // serialize the document to a file
+      SBOLExporter.serializeSBOL(document, sFileName);
+
+    } catch (Exception e) {
+      //e.printStackTrace();
+      throw new EugeneException(e.getLocalizedMessage());
+    }
+  }
+
+  /**
+   * The serializeSBOL/2 method persists a given SBOLDocument object into a
+   * given file. The path of the file starts at the Eugene ROOT_DIRECTORY, which
+   * is set to '.' per default.
+   *
+   * @param document ... the SBOLDocument object
+   * @param file ... the desired name of the file (evtl. including path
+   * information)
+   *
+   * @throws EugeneException
+   */
+  private static void serializeSBOL(SBOLDocument document, String file)
+    throws EugeneException {
+
+    if (file.contains("/")) {
+      // creating the directories
+      FileUtils.createDirectories(file);
+    }
+
+    // creating the file
+    File f = new File(file);
+    if (!f.exists()) {
+      try {
+        f.createNewFile();
+      } catch (Exception e) {
+        throw new EugeneException(e.getMessage());
+      }
+    }
+
+    try (
+      // open a file stream
+      FileOutputStream fos = new FileOutputStream(f);) {
+
+      // write the SBOLDocument in-memory object onto 
+      // the file stream using the SBOLFactory
+      SBOLFactory.write(document, fos);
+
+      // flush and close the stream
+      fos.flush();
+
+    } catch (Exception e) {
+      // if something went wrong, throw an exception
+      throw new EugeneException(e.getMessage());
+    }
+  }
+
 }
