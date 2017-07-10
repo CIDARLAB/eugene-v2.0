@@ -504,10 +504,9 @@ public class Eugene2SBOL {
    *
    * @return ... the URI of the SO term
    */
-  private static URI soMapping(String s) 
-    throws Exception{
+  private static URI soMapping(String s){
     
-    URI retVal; 
+    URI retVal = URI.create(DEFAULT_URI); 
     switch(s){
       case "Five_Prime_UTR": retVal = SequenceOntology.FIVE_PRIME_UTR; break;
       
@@ -518,8 +517,7 @@ public class Eugene2SBOL {
         try { retVal = new URI("http://purl.obolibrary.org/obo/SO_0000139");
       } catch (Exception e) {
           e.printStackTrace();
-          throw new EugeneException(e.toString());
-      }
+      } break;
       
       case "Insulator": retVal = SequenceOntology.INSULATOR; break;
       
@@ -544,7 +542,6 @@ public class Eugene2SBOL {
         try { retVal = new URI("http://purl.obolibrary.org/obo/SO_0000805");
         } catch (Exception e) {
           e.printStackTrace();
-          throw new EugeneException(e.toString());
         }; break;
     }
     

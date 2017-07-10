@@ -12,3 +12,5 @@
 /data
 /designs
 /tests/
+nb-configuration.xml
+nbactions.xml
