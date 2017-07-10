@@ -504,41 +504,52 @@ public class Eugene2SBOL {
    *
    * @return ... the URI of the SO term
    */
-  private static URI soMapping(String s) {
+  private static URI soMapping(String s) 
+    throws Exception{
+    
+    URI retVal; 
+    switch(s){
+      case "Five_Prime_UTR": retVal = SequenceOntology.FIVE_PRIME_UTR; break;
+      
+      case "CDS": retVal = SequenceOntology.CDS; break;
+      
+      case "RBS": try {
+        retVal = new URI("http://purl.obolibrary.org/obo/SO_0000139"); break;
+      } catch (Exception e) {
+          e.printStackTrace();
+          throw new EugeneException(e.toString());
+      }
+      
+      case "Insulator": retVal = SequenceOntology.INSULATOR; break;
+      
+      case "Operator": retVal = SequenceOntology.OPERATOR; break;
+      
+      case "Origin_of_Replication": retVal = SequenceOntology.ORIGIN_OF_REPLICATION; break;
+      
+      case "Primiter_Binding_Site": retVal = SequenceOntology.PRIMER_BINDING_SITE; break;
+      
+      case "Promoter": retVal = SequenceOntology.PROMOTER; break;
+      
+      case "Restriction_Enzyme_Recognition_Site": 
+        retVal = SequenceOntology.RESTRICTION_ENZYME_RECOGNITION_SITE; break;
+        
+      case "Terminator": retVal = SequenceOntology.TERMINATOR; break;
+      
+      case "Device":
+        // set to SO of Engineered Foreign Region
+        try {
+          retVal = new URI("http://purl.obolibrary.org/obo/SO_0000805");
+        } catch (Exception e) {
+          e.printStackTrace();
+          throw new EugeneException(e.toString());
+        }; break;
 
-		if ("Five_Prime_UTR".equals(s)) {
-			return SequenceOntology.FIVE_PRIME_UTR;
-		} else if ("CDS".equals(s)) {
-			return SequenceOntology.CDS;
-		} else if("RBS".equals(s)) {
-			try {
-				return new URI("http://purl.obolibrary.org/obo/SO_0000139");
-			} catch(Exception e) {}
-		} else if ("Insulator".equals(s)) {
-			return SequenceOntology.INSULATOR;
-		} else if ("Operator".equals(s)) {
-			return SequenceOntology.OPERATOR;
-		} else if ("Origin_of_Replication".equals(s)) {
-			return SequenceOntology.ORIGIN_OF_REPLICATION;
-		} else if ("Primiter_Binding_Site".equals(s)) {
-			return SequenceOntology.PRIMER_BINDING_SITE;
-		} else if ("Promoter".equals(s)) {
-			return SequenceOntology.PROMOTER;
-		} else if ("Restriction_Enzyme_Recognition_Site".equals(s)) {
-			return SequenceOntology.RESTRICTION_ENZYME_RECOGNITION_SITE;
-		} else if ("Terminator".equals(s)) {
-			return SequenceOntology.TERMINATOR;
-		} else if("Device".equals(s)) {
-			/*
-			 * SO Term: Engineered Forein Region
-			 */
-			try {
-				return new URI("http://purl.obolibrary.org/obo/SO_0000805");
-			} catch(Exception e) {}
-		}
-
-		return SequenceOntology.CDS; //isn't this REAAALLLY bad practice?
-	}
+      // not recognized by SBOL
+      default: retVal = SequenceOntology.CDS; //isn't this REAAALLLY bad practice?
+    }
+    
+    return retVal;
+  }
 
   /**
    * keeping track of utilized URIs since all URIs throughout an SBOL document
