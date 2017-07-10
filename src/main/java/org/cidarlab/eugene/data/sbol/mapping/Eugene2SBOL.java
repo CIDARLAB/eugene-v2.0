@@ -513,8 +513,9 @@ public class Eugene2SBOL {
       
       case "CDS": retVal = SequenceOntology.CDS; break;
       
-      case "RBS": try {
-        retVal = new URI("http://purl.obolibrary.org/obo/SO_0000139"); break;
+      case "RBS": 
+        // Set to SO of Ribosome Entry Site
+        try { retVal = new URI("http://purl.obolibrary.org/obo/SO_0000139");
       } catch (Exception e) {
           e.printStackTrace();
           throw new EugeneException(e.toString());
@@ -536,16 +537,15 @@ public class Eugene2SBOL {
       case "Terminator": retVal = SequenceOntology.TERMINATOR; break;
       
       case "Device":
-        // set to SO of Engineered Foreign Region
-        try {
-          retVal = new URI("http://purl.obolibrary.org/obo/SO_0000805");
+
+      // not recognized by SBOL
+      // set to SO of Engineered Foreign Region
+      default: 
+        try { retVal = new URI("http://purl.obolibrary.org/obo/SO_0000805");
         } catch (Exception e) {
           e.printStackTrace();
           throw new EugeneException(e.toString());
         }; break;
-
-      // not recognized by SBOL
-      default: retVal = SequenceOntology.CDS; //isn't this REAAALLLY bad practice?
     }
     
     return retVal;
