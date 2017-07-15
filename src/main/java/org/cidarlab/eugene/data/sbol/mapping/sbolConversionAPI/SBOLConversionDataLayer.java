@@ -5,14 +5,16 @@
  */
 package org.cidarlab.eugene.data.sbol.mapping.sbolConversionAPI;
 
-//MongoDB
+// MongoDB imports
 import org.junit.After;
 import org.junit.Before;
 import com.mongodb.client.MongoCollection;
 import static com.mongodb.client.model.Filters.eq;
-import java.util.ArrayList;
-import java.util.List;
 import org.bson.Document;
+
+// Java imports
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * SBOLConversionDataLayer connects to the LookupTables database (MongoDB) at
@@ -24,43 +26,51 @@ import org.bson.Document;
  */
 public class SBOLConversionDataLayer {
 
-    private MongoConnection instance;
+    private MongoConnection _instance;
     private MongoCollection collection;
     private Document doc;
 
     public SBOLConversionDataLayer() {
     }
 
-    public List<String> getEugenePartNames(String so) {
-        List<String> names = new ArrayList<>();
+    public ArrayList<String> getEugenePartNames(String so) {
+        ArrayList<String> names = new ArrayList<>();
 
         if (findDocument(so)) {
-            names = (List) doc.get("eugenePartNames");
+            names = (ArrayList) doc.get("eugenePartNames");
         }
 
         return names;
     }
 
     public boolean insertEugenePartName(String so, String name) {
-        boolean retVal = true;
-        if (!findDocument(so)) {
 
-        } else {
+        Document d = new Document("sequenceOntologyNumber", so)
+          .append("eugenePartNames", Arrays.asList(name));
 
-        }
+        collection.insertOne(d);
 
-        return retVal;
+        return true;
     }
 
     public boolean removeEugenePartName(String so, String name) {
         boolean retVal = true;
-        if (!findDocument(so)) {
-
-        } else {
-
-        }
 
         return retVal;
+    }
+
+    public boolean updateSOTerm(String so, String name) {
+        ArrayList<String> names = (ArrayList) doc.get("eugenePartNames");
+
+        names.add(name);
+
+        doc.put("eugenePartNames", names);
+
+        // TO DO: Don't replace whole doc, just update it.
+        collection.updateOne(
+          eq("sequenceOntologyNumber", so),
+          doc);
+        return true;
     }
 
     private boolean findDocument(String so) {
@@ -74,11 +84,11 @@ public class SBOLConversionDataLayer {
 
     @Before
     private void setUp() {
-        instance = new MongoConnection();
+        _instance = new MongoConnection();
 
         try {
-            instance.login("shamseen@bu.edu", "lcp");
-            collection = instance.getCollection("SBOL2Conversions");
+            _instance.login("shamseen@bu.edu", "lcp");
+            collection = _instance.getCollection("SBOL2Conversions");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,6 +97,6 @@ public class SBOLConversionDataLayer {
 
     @After
     private void tearDown() {
-        instance.logout();
+        _instance.logout();
     }
 }
