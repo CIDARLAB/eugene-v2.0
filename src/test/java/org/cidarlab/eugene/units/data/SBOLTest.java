@@ -26,9 +26,10 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
  * POSSIBILITY OF SUCH DAMAGE.
  */
-
 package org.cidarlab.eugene.units.data;
 
+import com.mongodb.client.MongoCollection;
+import static com.mongodb.client.model.Filters.eq;
 import static org.junit.Assert.*;
 
 import org.cidarlab.eugene.Eugene;
@@ -47,203 +48,366 @@ import org.junit.Test;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
+import org.bson.Document;
+import org.cidarlab.eugene.data.sbol.mapping.sbolConversionAPI.MongoConnection;
+import org.cidarlab.eugene.data.sbol.mapping.sbolConversionAPI.*;
+import org.sbolstandard.core.util.SequenceOntology;
 
 /**
- * The SBOLTest unit-tests for Eugene v2.0's 
- * data exchange facilities regarding the SBOL standard.
- * 
- * Test-Strategy for Exports:
- * --------------------------
- * create in-memory objects, serialize them, read them in again, 
- * and compare their values. If the values match, then test passed.
- * Example: 
- * A Eugene Part object is being serialized into SBOL. Then, we import
- * the SBOL file which should only contain the Part object. 
- * If so, then we compare the values of the two Part objects. 
- * 
+ * The SBOLTest unit-tests for Eugene v2.0's data exchange facilities regarding
+ * the SBOL standard.
+ *
+ * Test-Strategy for Exports: -------------------------- create in-memory
+ * objects, serialize them, read them in again, and compare their values. If the
+ * values match, then test passed. Example: A Eugene Part object is being
+ * serialized into SBOL. Then, we import the SBOL file which should only contain
+ * the Part object. If so, then we compare the values of the two Part objects.
+ *
  * @author Ernst Oberortner
  *
  */
 public class SBOLTest {
-
-	@Test
-	public void testSBOLExport_PartWithSequence() {
-		PartType pt = new PartType("PT", new ArrayList<Property>());
-		Part p1 = new Part(pt, "p1");
-		p1.setSequence("ATCG");
-		
-		try {
-			SBOLExporter.serialize(p1, "./exports/tests/testSBOLExport_PartWithSequence.sbol.xml");
-			
-			Set<NamedElement> set = SBOLImporter.importSBOL("./exports/tests/testSBOLExport_PartWithSequence.sbol.xml");
-			assert(set != null);
-			assert(set.size() == 1);
-			Iterator<NamedElement> it = set.iterator();
-			
-			NamedElement e = it.next();
-			assert(e instanceof Part);
-			assert("p1".equals(((Part)e).getName()));
-			assert("ATCG".equalsIgnoreCase(((Part)e).getSequence()));
-		} catch(EugeneException ee) {
-			ee.printStackTrace();
-		}
-	}
-
-	@Test
-	public void testSBOLExport_PartWithoutSequence() {
-		PartType pt = new PartType("PT");
-		Part p1 = new Part(pt, "p1");
+    
+    @Test
+    public void testSBOLExport_PartWithSequence() {
+        PartType pt = new PartType("PT", new ArrayList<Property>());
+        Part p1 = new Part(pt, "p1");
+        p1.setSequence("ATCG");
+        
+        try {
+            SBOLExporter.serialize(p1, "./exports/tests/testSBOLExport_PartWithSequence.sbol.xml");
+            
+            Set<NamedElement> set = SBOLImporter.importSBOL("./exports/tests/testSBOLExport_PartWithSequence.sbol.xml");
+            assert (set != null);
+            assert (set.size() == 1);
+            Iterator<NamedElement> it = set.iterator();
+            
+            NamedElement e = it.next();
+            assert (e instanceof Part);
+            assert ("p1".equals(((Part) e).getName()));
+            assert ("ATCG".equalsIgnoreCase(((Part) e).getSequence()));
+        } catch (EugeneException ee) {
+            ee.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void testSBOLExport_PartWithoutSequence() {
+        PartType pt = new PartType("PT");
+        Part p1 = new Part(pt, "p1");
 //		p1.setSequence("ATCG");
-		
-		try {
-			SBOLExporter.serialize(p1, "./exports/tests/testSBOLExport_PartWithoutSequence.sbol.xml");
-			
-			Set<NamedElement> set = SBOLImporter.importSBOL("./exports/tests/testSBOLExport_PartWithoutSequence.sbol.xml");
-			assert(set != null);
-			assert(set.size() == 1);
-			Iterator<NamedElement> it = set.iterator();
-			
-			NamedElement e = it.next();
-			assert(e instanceof Part);
-			assert("p1".equals(((Part)e).getName()));
-			assert(null == ((Part)e).getSequence());
-		} catch(EugeneException ee) {
-			ee.printStackTrace();
-		}
-	}
 
-	@Test
-	public void testSBOLExport_PartType() {
-		PartType pt = new PartType("PT");
-		
-		try {
-			SBOLExporter.serialize(pt, "./exports/tests/testSBOLExport_PartType.sbol.xml");
-			
-			Set<NamedElement> set = SBOLImporter.importSBOL("./exports/tests/testSBOLExport_PartType.sbol.xml");
-			assert(set != null);
-			assert(set.size() == 1);
-			Iterator<NamedElement> it = set.iterator();
-			
-			
-			NamedElement e = it.next();
-			
-			// hm... a PartType is being converted into a Part...			
-			assert(e instanceof Part);
-			assert("PT".equals(((Part)e).getName()));
-		} catch(EugeneException ee) {
-			ee.printStackTrace();
-		}
-	}
-	
-	@Test
-	public void testSBOLExport_enumeratedDevices() {
-		String script = "PartType PT();" +
-				"PT p1; PT p2; PT p3; PT p4;" +
-				"Device D(PT);" +
-				"result = product(D);";
-		try {
-			EugeneCollection ec = new Eugene().executeScript(script);
-			
-			NamedElement result = ec.get("result");
-			
-			assert(null != result);
-			assert(result instanceof EugeneArray);
-			assert(((EugeneArray)result).getElements().size() == 8);
-			
-			// export to SBOL
-			SBOLExporter.serialize(result, 
-					"./exports/tests/testSBOLExport_enumeratedDevice.sbol.xml");
+        try {
+            SBOLExporter.serialize(p1, "./exports/tests/testSBOLExport_PartWithoutSequence.sbol.xml");
+            
+            Set<NamedElement> set = SBOLImporter.importSBOL("./exports/tests/testSBOLExport_PartWithoutSequence.sbol.xml");
+            assert (set != null);
+            assert (set.size() == 1);
+            Iterator<NamedElement> it = set.iterator();
+            
+            NamedElement e = it.next();
+            assert (e instanceof Part);
+            assert ("p1".equals(((Part) e).getName()));
+            assert (null == ((Part) e).getSequence());
+        } catch (EugeneException ee) {
+            ee.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void testSBOLExport_PartType() {
+        PartType pt = new PartType("PT");
+        
+        try {
+            SBOLExporter.serialize(pt, "./exports/tests/testSBOLExport_PartType.sbol.xml");
+            
+            Set<NamedElement> set = SBOLImporter.importSBOL("./exports/tests/testSBOLExport_PartType.sbol.xml");
+            assert (set != null);
+            assert (set.size() == 1);
+            Iterator<NamedElement> it = set.iterator();
+            
+            NamedElement e = it.next();
 
-			// import from SBOL
-			Set<NamedElement> impResult = SBOLImporter.importSBOL(
-					"./exports/tests/testSBOLExport_enumeratedDevice.sbol.xml");
-			
-			// compare both the impResult and result
-			assert(null != impResult);
-			Iterator<NamedElement> it = impResult.iterator();
-			assert(it.hasNext());
-			NamedElement impArray = it.next();
-			assert(impArray.getName().equals(result.getName()));
-			
-		} catch(EugeneException ee) {
-			// something's wrong --> Test not passed.
-			assertTrue(false);
-		}
-	}
-	
-	@Test
-	public void testSBOLVisual_Device_with_filename() {
-		String script = "PartType PT();" +
-				"PT p1; PT p2; PT p3; PT p4;" +
-				"Device D(PT);" +
-				"result = product(D);" +
-				"SBOL.visualize(result, \"./tests/results/data-exchange/testSBOLVisual_Device.png\");";
-		try {
-			new Eugene().executeScript(script);
-			
-			// after executing the Eugene script, 
-			// the file must exists
-			File f = new File("./tests/results/data-exchange/testSBOLVisual_Device.png");
-			assert(f.exists());
-			
-		} catch(Exception ee) {
-			ee.printStackTrace();
-			assertTrue(false);
-		}		
-	}
+            // hm... a PartType is being converted into a Part...			
+            assert (e instanceof Part);
+            assert ("PT".equals(((Part) e).getName()));
+        } catch (EugeneException ee) {
+            ee.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void testSBOLExport_PseudoAPI_Does_ConnectToMongo() {
 
-	@Test
-	public void testSBOLVisual_Device_without_filename() {
-		String script = "PartType PT();" +
-				"PT p1; PT p2; PT p3; PT p4;" +
-				"Device D(PT);" +
-				"result = product(D);" +
-				"SBOL.visualize(result);";
-		try {
-			Eugene e = new Eugene();
-			
-			// the name of the image is randomly generated.
-			// hence, we first get the number of .png files 
-			// in the default IMAGE_DIRECTORY
-			int NR_OF_BEFORE_IMAGES = this.getNrOfImages(); 
-			
-			e.executeScript(script);
-			
-			// after executing the Eugene script, 
-			// there must be one more image
-			// in the IMAGES_DIRECTORY
-			int nrOfExpectedDevices = 2 * 4;
-			
-			if(nrOfExpectedDevices <= Interp.MAX_IMAGES) {
-				assertTrue(this.getNrOfImages() == 
-						NR_OF_BEFORE_IMAGES + 1);
-			} else {
-				assertTrue(this.getNrOfImages() == 
-						NR_OF_BEFORE_IMAGES + (nrOfExpectedDevices / Interp.MAX_IMAGES));
-			}
-			
-			
-		} catch(Exception ee) {
+        // Setup
+        String msg = "";
+        boolean expected = true;
+
+        // Run
+        try {
+            MongoConnection _instance = loginToMongo();
+        } catch (Exception ex) {
+            msg = "Couldn't log into mongo: " + ex.getMessage();
+            expected = false;
+        }
+
+        // Evaluate
+        assertTrue(msg, expected);
+    }
+    
+    @Test
+    public void testSBOLExport_PseudoAPI_Does_GetCollection() {
+        // Setup
+        List<String> actual = new ArrayList<>();
+        String msg = "";
+
+        // Run
+        try {
+            MongoConnection _instance = loginToMongo();
+            
+            String collection = _instance.getCollection("SBOL2Conversions").getNamespace().getCollectionName();
+            
+            for (String name : _instance.getCollectionNames()) {
+                actual.add(name);
+            }
+            
+        } catch (Exception e) {
+            msg = e.getMessage();
+        }
+
+        // Evaluate
+        assertTrue(msg, actual.contains("SBOL2Conversions"));
+    }
+    
+    @Test
+    public void testSBOLExport_PseudoAPI_Does_GetEugeneNames() {
+        // Setup
+        SBOLConversionLogicLayer ll = new SBOLConversionLogicLayer();
+        int uriIndex = SequenceOntology.NAMESPACE.toString().length() + 3;
+        String soNum = SequenceOntology.CDS.toString().substring(uriIndex);
+        
+        List<String> expected = new ArrayList<>();
+
+        // Run
+        List<String> actual = ll.GetEugeneNames(soNum);
+        
+        try {
+            MongoConnection _instance = loginToMongo();
+            MongoCollection collection = _instance.getCollection("SBOL2Conversions");
+            
+            Document doc = (Document) collection.find(eq("sequenceOntologyNumber", soNum)).first();
+            
+            expected = (ArrayList) doc.get("eugenePartNames");
+            
+        } catch (Exception ex) {
+            
+        }
+
+        // Evaluate
+        assertFalse(expected.isEmpty());
+        assertEquals(actual, expected);
+        
+    }
+    
+    @Test
+    public void testSBOLExport_PseudoAPI__Does_AddEugeneNames() {
+        // Setup
+        SBOLConversionLogicLayer ll = new SBOLConversionLogicLayer();
+        
+        String soNum = SequenceOntology.RESTRICTION_ENZYME_RECOGNITION_SITE.toString();
+        String partName = "newPart";
+        List<String> expected = Arrays.asList(partName);
+
+        // Run
+        ll.AddOrUpdateSO(soNum, partName);
+        List<String> actual = ll.GetEugeneNames(soNum);
+
+        // Evaluate
+        assertTrue(actual.containsAll(expected));
+    }
+    
+    @Test
+    public void testSBOLExport_PseudoAPI__DoesNot_AddDuplicateSO() {
+        // Setup
+        SBOLConversionLogicLayer ll = new SBOLConversionLogicLayer();
+        
+        String soNum = SequenceOntology.RESTRICTION_ENZYME_RECOGNITION_SITE.toString();
+        String partName = "newPart";
+
+        // Run
+        ll.AddOrUpdateSO(soNum, partName);
+        ll.AddOrUpdateSO(soNum, partName);
+        List<String> names = ll.GetEugeneNames(soNum);
+
+        // Evaluate
+        assertTrue(names.indexOf(partName) == names.lastIndexOf(partName));
+    }
+    
+    @Test
+    public void testSBOLExport_PseudoAPI_Does_UpdateExistingSO() {
+        // Setup
+        SBOLConversionLogicLayer ll = new SBOLConversionLogicLayer();
+        
+        String soNum = SequenceOntology.RESTRICTION_ENZYME_RECOGNITION_SITE.toString();
+        String partName = "newPart";
+        String newPartName = "evenBETTER";
+        List<String> expected = Arrays.asList(partName, newPartName);
+
+        // Run
+        ll.AddOrUpdateSO(soNum, partName);
+        ll.AddOrUpdateSO(soNum, newPartName);
+        List<String> actual = ll.GetEugeneNames(soNum);
+
+        // Evaluate
+        assertTrue(actual.containsAll(expected));
+    }
+    
+    @Test
+    public void testSBOLExport_PseudoAPI_Does_RemoveEugeneNamesOnly() {
+        // Setup
+        SBOLConversionLogicLayer ll = new SBOLConversionLogicLayer();
+        int uriIndex = SequenceOntology.NAMESPACE.toString().length() + 3;
+        String soNum = SequenceOntology.CDS.toString().substring(uriIndex);
+        String partName = "newPart";
+        Document actual = new Document();
+
+        // Run
+        try {
+            ll.AddOrUpdateSO(soNum, partName);
+            ll.DeleteEugenePartName(soNum, partName);
+            
+            MongoConnection _instance = loginToMongo();
+            MongoCollection collection = _instance.getCollection("SBOL2Conversions");
+            
+            actual = (Document) collection.find(eq("sequenceOntologyNumber", soNum)).first();
+            
+        } catch (Exception ex) {
+            
+        }
+
+        // Evaluate
+        assertTrue(actual.containsValue(soNum));
+        assertFalse(Arrays.asList(actual.get("eugenePartNames")).contains(partName));
+    }
+    
+    @Test
+    public void testSBOLExport_enumeratedDevices() {
+        String script = "PartType PT();"
+          + "PT p1; PT p2; PT p3; PT p4;"
+          + "Device D(PT);"
+          + "result = product(D);";
+        try {
+            EugeneCollection ec = new Eugene().executeScript(script);
+            
+            NamedElement result = ec.get("result");
+            
+            assert (null != result);
+            assert (result instanceof EugeneArray);
+            assert (((EugeneArray) result).getElements().size() == 8);
+
+            // export to SBOL
+            SBOLExporter.serialize(result,
+              "./exports/tests/testSBOLExport_enumeratedDevice.sbol.xml");
+
+            // import from SBOL
+            Set<NamedElement> impResult = SBOLImporter.importSBOL(
+              "./exports/tests/testSBOLExport_enumeratedDevice.sbol.xml");
+
+            // compare both the impResult and result
+            assert (null != impResult);
+            Iterator<NamedElement> it = impResult.iterator();
+            assert (it.hasNext());
+            NamedElement impArray = it.next();
+            assert (impArray.getName().equals(result.getName()));
+            
+        } catch (EugeneException ee) {
+            // something's wrong --> Test not passed.
+            assertTrue(false);
+        }
+    }
+    
+    @Test
+    public void testSBOLVisual_Device_with_filename() {
+        String script = "PartType PT();"
+          + "PT p1; PT p2; PT p3; PT p4;"
+          + "Device D(PT);"
+          + "result = product(D);"
+          + "SBOL.visualize(result, \"./tests/results/data-exchange/testSBOLVisual_Device.png\");";
+        try {
+            new Eugene().executeScript(script);
+
+            // after executing the Eugene script, 
+            // the file must exists
+            File f = new File("./tests/results/data-exchange/testSBOLVisual_Device.png");
+            assert (f.exists());
+            
+        } catch (Exception ee) {
+            ee.printStackTrace();
+            assertTrue(false);
+        }
+    }
+    
+    @Test
+    public void testSBOLVisual_Device_without_filename() {
+        String script = "PartType PT();"
+          + "PT p1; PT p2; PT p3; PT p4;"
+          + "Device D(PT);"
+          + "result = product(D);"
+          + "SBOL.visualize(result);";
+        try {
+            Eugene e = new Eugene();
+
+            // the name of the image is randomly generated.
+            // hence, we first get the number of .png files 
+            // in the default IMAGE_DIRECTORY
+            int NR_OF_BEFORE_IMAGES = this.getNrOfImages();
+            
+            e.executeScript(script);
+
+            // after executing the Eugene script, 
+            // there must be one more image
+            // in the IMAGES_DIRECTORY
+            int nrOfExpectedDevices = 2 * 4;
+            
+            if (nrOfExpectedDevices <= Interp.MAX_IMAGES) {
+                assertTrue(this.getNrOfImages()
+                  == NR_OF_BEFORE_IMAGES + 1);
+            } else {
+                assertTrue(this.getNrOfImages()
+                  == NR_OF_BEFORE_IMAGES + (nrOfExpectedDevices / Interp.MAX_IMAGES));
+            }
+            
+        } catch (Exception ee) {
 //			ee.printStackTrace();
-			assertTrue(false);
-		}		
-	}
-	
-	private int getNrOfImages() {
-		File dir = new File(Eugene.ROOT_DIRECTORY+"/"+Eugene.IMAGES_DIRECTORY+"/");
-		File[] files = dir.listFiles(new FilenameFilter() {
-		    public boolean accept(File dir, String name) {
-		        return name.toLowerCase().endsWith(".png");
-		    }
-		});
-		return files.length;
-	}
-	
-	@Test
-	public void testReadFASTAFromRegistry() 
-			throws Exception {
-		
-	}
+            assertTrue(false);
+        }
+    }
+    
+    private int getNrOfImages() {
+        File dir = new File(Eugene.ROOT_DIRECTORY + "/" + Eugene.IMAGES_DIRECTORY + "/");
+        File[] files = dir.listFiles(new FilenameFilter() {
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase().endsWith(".png");
+            }
+        });
+        return files.length;
+    }
+    
+    @Test
+    public void testReadFASTAFromRegistry()
+      throws Exception {
+        
+    }
+    
+    private MongoConnection loginToMongo() throws Exception {
+        MongoConnection _instance = new MongoConnection();
+        
+        _instance.login("shamseen", "lcp");
+        
+        return _instance;
+    }
 }

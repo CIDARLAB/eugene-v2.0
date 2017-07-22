@@ -31,6 +31,7 @@ public class SBOLConversionDataLayer {
     private Document doc;
 
     public SBOLConversionDataLayer() {
+        setUp();
     }
 
     public ArrayList<String> getEugenePartNames(String so) {
@@ -43,42 +44,51 @@ public class SBOLConversionDataLayer {
         return names;
     }
 
-    public boolean insertEugenePartName(String so, String name) {
+    public void UpsertEugenePartName(String so, String name) {
+        if (findDocument(so)) {
+            updateSOTerm(so, name, true);
+            return;
+        }
 
         Document d = new Document("sequenceOntologyNumber", so)
           .append("eugenePartNames", Arrays.asList(name));
 
         collection.insertOne(d);
-
-        return true;
     }
 
     public boolean removeEugenePartName(String so, String name) {
         boolean retVal = true;
 
+        if (findDocument(so)) {
+            updateSOTerm(so, name, false);
+        }
+
         return retVal;
     }
 
-    public boolean updateSOTerm(String so, String name) {
+    private void updateSOTerm(String so, String name, boolean addName) {
         ArrayList<String> names = (ArrayList) doc.get("eugenePartNames");
 
-        names.add(name);
+        if (addName == names.contains(name)) {
+            return;
+        }
 
-        doc.put("eugenePartNames", names);
+        if (addName) {
+            names.add(name);
+        } else {
+            names.remove(name);
+        }
 
-        // TO DO: Don't replace whole doc, just update it.
-        collection.updateOne(
-          eq("sequenceOntologyNumber", so),
-          doc);
-        return true;
+        collection.updateOne(eq("sequenceOntologyNumber", so),
+          new Document("$set", new Document("eugenePartNames", names)));
     }
 
     private boolean findDocument(String so) {
-        boolean retVal = true;
 
         doc = (Document) collection.find(eq("sequenceOntologyNumber", so)).first();
 
-        //if doc something
+        boolean retVal = doc != null;
+
         return retVal;
     }
 
@@ -87,7 +97,7 @@ public class SBOLConversionDataLayer {
         _instance = new MongoConnection();
 
         try {
-            _instance.login("shamseen@bu.edu", "lcp");
+            _instance.login("shamseen", "lcp");
             collection = _instance.getCollection("SBOL2Conversions");
 
         } catch (Exception e) {

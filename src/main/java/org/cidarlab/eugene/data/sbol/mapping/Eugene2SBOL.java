@@ -581,7 +581,7 @@ public class Eugene2SBOL {
         }
 
         // Update Lookup Table
-        _logicLayer.AddOrUpdateSO(retVal, s);
+        _logicLayer.AddOrUpdateSO(retVal.toString(), s);
         return retVal;
     }
 
