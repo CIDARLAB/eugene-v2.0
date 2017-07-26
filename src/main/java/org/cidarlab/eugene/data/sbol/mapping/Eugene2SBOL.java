@@ -520,6 +520,10 @@ public class Eugene2SBOL {
     private static URI soMapping(String s) {
 
         URI retVal = URI.create(DEFAULT_URI);
+
+        if (s.isEmpty()) {
+            s = "Device";
+        }
         switch (s) {
             case "Five_Prime_UTR":
                 retVal = SequenceOntology.FIVE_PRIME_UTR;
@@ -566,17 +570,20 @@ public class Eugene2SBOL {
                 retVal = SequenceOntology.TERMINATOR;
                 break;
 
+            // Blank term or new Device is Engineered Foreign Region
             case "Device":
-
-            // not recognized by SBOL
-            // set to SO of Engineered Foreign Region
-            default:
                 try {
                     retVal = new URI("http://purl.obolibrary.org/obo/SO_0000805");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                ;
+
+                break;
+
+            // Not a common term nor empty, assuming it's new part
+            // and value is the SO number. Append to URI namespace.
+            default:
+                retVal = URI.create(SequenceOntology.NAMESPACE.toString() + "SO_" + s);
                 break;
         }
 
