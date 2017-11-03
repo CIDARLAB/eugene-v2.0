@@ -61,7 +61,7 @@ public class WeyekinPoster {
     private static String mGraphVizImageIdentifier = "Weyekin output image";
     private static URI mGraphVizURI;
 //    private static String mGraphVizPath = "http://128.197.164.27/graphviz/";
-    private static String mGraphVizPath = "http://synbiotools.bu.edu:5801/graphviz/";
+    private static String mGraphVizPath = "http://pigeon.synbiotools.org/graphviz/";
     private static String mGraphVizDotText = "digraph { a [shape=pentagon]; a -> b }";
     private static String mGraphVizAspectRatioString="";
     
@@ -71,7 +71,7 @@ public class WeyekinPoster {
     private static String mPigeonImageIdentifier = "Weyekin output image";
     private static URI mPigeonURI;
 //    private static String mPigeonPath = "http://128.197.164.27/";
-    private static String mPigeonPath = "http://synbiotools.bu.edu:5801/";
+    private static String mPigeonPath = "http://pigeon.synbiotools.org/";
     private static String mPigeonText = "| foo \n | bar";
     private static String mPigeonBackgroundColorHexString="";
     
@@ -114,7 +114,7 @@ public class WeyekinPoster {
         
         try {
 //            httpPost.setURI(new URI("http://128.197.164.27/graphviz/graphviz1.php"));
-            httpPost.setURI(new URI("http://synbiotools.bu.edu:5801/graphviz/graphviz1.php"));
+            httpPost.setURI(new URI("http://pigeon.synbiotools.org/graphviz/graphviz1.php"));
             try {
                 httpPost.setEntity(new UrlEncodedFormEntity(nvps));
                 try {
