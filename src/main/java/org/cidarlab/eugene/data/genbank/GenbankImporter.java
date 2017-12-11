@@ -38,11 +38,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.biojava3.core.sequence.DNASequence;
-import org.biojava3.core.sequence.compound.NucleotideCompound;
-import org.biojava3.core.sequence.features.FeatureInterface;
-import org.biojava3.core.sequence.io.GenbankReaderHelper;
-import org.biojava3.core.sequence.template.AbstractSequence;
+import org.biojava.nbio.core.sequence.DNASequence;
+import org.biojava.nbio.core.sequence.compound.NucleotideCompound;
+import org.biojava.nbio.core.sequence.features.FeatureInterface;
+import org.biojava.nbio.core.sequence.io.GenbankReaderHelper;
+import org.biojava.nbio.core.sequence.template.AbstractSequence;
 import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.eugene.dom.PartType;
