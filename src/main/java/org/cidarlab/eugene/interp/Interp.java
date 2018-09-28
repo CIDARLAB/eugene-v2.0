@@ -52,12 +52,10 @@ import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.EugeneConstants;
-import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.constants.EugeneConstants.ParsingPhase;
+import org.cidarlab.eugene.constants.Orientation;
 import org.cidarlab.eugene.data.genbank.GenbankImporter;
 import org.cidarlab.eugene.data.pigeon.Pigeonizer;
-import org.cidarlab.eugene.data.sbol.SBOLExporter;
-import org.cidarlab.eugene.data.sbol.SBOLImporter;
 import org.cidarlab.eugene.dom.Component;
 import org.cidarlab.eugene.dom.ComponentType;
 import org.cidarlab.eugene.dom.Device;
@@ -2891,171 +2889,7 @@ public class Interp {
 		
 		return ec;
 	}
-	
-	/*
-	 * SBOL Import
-	 */ 
-	public NamedElement importSBOL(String file) 
-			throws EugeneException {
-		
-		file = this.getFileWithRootPathInformation(file);
-		
-		Set<NamedElement> elements = SBOLImporter.importSBOL(file);
-		if (null != elements && !elements.isEmpty()) {
-			
-			if(elements.size() > 0) {
-			
-				// then, we return a Eugene collection
-				EugeneCollection ec = new EugeneCollection(null);
-				for(NamedElement element : elements) {
-					ec.getElements().add(element);
-				}
-				
-				return ec;
-			} else {
-				// otherwise, we return the only element
-				for(NamedElement element : elements) {
-					return element;
-				}
-			}
-		}
-		
-		return null;
-	}
 
-	/*
-	 * SBOL EXPORT
-	 */ 
-	public void exportToSBOL(String sName, String file)
-			throws EugeneException {
-
-		// augment the file/path name with the current
-		// ROOT folder information
-		file = this.getFileWithRootPathInformation(file);
-
-		NamedElement objElement = this.get(sName);
-		if (objElement == null) {
-			throw new EugeneException(
-					"NULL is not SBOL compliant!");
-		} else if (objElement instanceof EugeneContainer) {
-			SBOLExporter.serialize((EugeneContainer) objElement, file);
-		} else if (objElement instanceof Component) {
-			SBOLExporter.serialize((Component) objElement, file);
-		} else {
-			throw new EugeneException(
-					"I cannot export the "
-							+ sName
-							+ " element to SBOL! "
-							+ "Only collections, arrays, devices, and parts are allowed!");
-		}
-	}
-	
-	/*
-	 * SBOL VISUAL -- PIGEON
-	 */ 
-	public void visualizeSBOL(NamedElement element, Variable filename) 
-			throws EugeneException {
-		
-		if(null == element) {
-			throw new EugeneException("Invalid element to visualize!");
-		}
-		
-		/*
-		 * interpret the filename
-		 */
-		String file = this.interpretFilename(filename);
-		
-		Collection<URI> ret_uris = new HashSet<URI>();
-		
-		/*
-		 * retrieve the object from the this.symbols
-		 */
-		if(!(element instanceof Component) && !(element instanceof EugeneContainer)) {
-			throw new EugeneException("I cannot visualize "+element+"!");
-		}
-
-		// lazy evaluation of the Pigeonizer
-		if(null == this.pigeon) {
-			this.pigeon = new Pigeonizer();
-		}
-		
-		URI uri = null;
-		if(element instanceof Device) {
-			List<URI> uris = new ArrayList<URI>(1);
-			uri = this.pigeon.pigeonizeSingle((Device)element, null);
-			
-			if(null != uri) {
-				/*---------------------------
-				 * for testing, open the URI
-				 *---------------------------*/
-//				WeyekinPoster.launchPage(uri);
-				
-				uris.add(uri);
-			}
-			
-			ret_uris.add(
-					this.toSerializedImage(
-							uris, file));
-
-		} else if(element instanceof EugeneContainer) {
-			
-			List<URI> uris = new ArrayList<URI>(50);
-			int i = 1; 
-			
-			for(NamedElement e : ((EugeneContainer)element).getElements()) {
-				
-				if(e instanceof Device) {
-					
-					uris.add(
-							this.pigeon.pigeonizeSingle(
-									(Device)e, 
-									null));
-					
-					if(uris.size() % MAX_IMAGES == 0) {
-						
-						String fileName = 
-								file.substring(0, file.lastIndexOf(".")) +
-								"_" + i +
-								file.substring(file.lastIndexOf("."));
-						
-						ret_uris.add(
-								this.toSerializedImage(
-										uris, fileName));
-						i++;
-						
-						uris.clear();
-					}
-				}
-			}
-			
-			/*
-			 * lastly, visualize the remaining devices
-			 * (if there are any)
-			 */
-			if(!uris.isEmpty()) {
-				ret_uris.add(
-						this.toSerializedImage(
-								uris, file));
-			}
-			
-		}
-		
-		
-		// finally, we put the generated images
-		// into the images map
-		if(null == this.images) {
-			this.images = new HashMap<String, Collection<URI>>();
-		}
-		this.images.put(element.getName(), ret_uris);
-		
-		/*
-		 * what happens if the same NamedElement is being visualized 
-		 * multiple times?
-		 * 
-		 * EO: only the last SBOL.visualize statement counts
-		 */
-	}
-	
 	/**
 	 * The interpretFilename(Variable) method gets as input 
 	 * a Variable object that ideally contains the filename

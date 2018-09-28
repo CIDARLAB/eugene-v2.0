@@ -1,10 +1,9 @@
 package org.cidarlab.eugene.units;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.cidarlab.eugene.Eugene;
 import org.cidarlab.eugene.constants.EugeneConstants;
-import org.cidarlab.eugene.data.sbol.SBOLExporter;
 import org.cidarlab.eugene.dom.Device;
 import org.cidarlab.eugene.dom.PartType;
 import org.cidarlab.eugene.dom.Variable;
@@ -153,7 +152,6 @@ public class PlusMinusOperatorsTest {
 		String script = "PartType PT; Device D; D = D + PT;";
 		try {
 			EugeneCollection col = new Eugene().executeScript(script);
-	    	SBOLExporter.toSBOLDocument(col);
 		} catch(EugeneException ee) {
 			assertTrue(false);
 		}

@@ -33,7 +33,6 @@ import java.util.List;
 
 import org.cidarlab.eugene.dom.Component;
 import org.cidarlab.sparrow.exception.SparrowException;
-import org.cidarlab.sparrow.exporters.SBOLExporter;
 import org.drools.runtime.StatefulKnowledgeSession;
 
 /**
@@ -51,11 +50,6 @@ public enum Standard {
 		@Override
 		public void exportData(List<Component> lst, String filename)
 				throws SparrowException {
-			try {
-				SBOLExporter.serialize(lst, filename);
-			} catch(Exception e) {
-				throw new SparrowException(e.getMessage());
-			}
 		}
 	},	
 	

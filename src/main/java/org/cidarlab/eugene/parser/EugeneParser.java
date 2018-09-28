@@ -52,7 +52,6 @@ import org.cidarlab.eugene.dom.*;
 import org.cidarlab.eugene.constants.Orientation;
 //import org.cidarlab.eugene.data.genbank.*;
 //import org.cidarlab.eugene.data.registry.*;
-import org.cidarlab.eugene.data.sbol.*;
 import org.cidarlab.eugene.exception.EugeneException;
 import org.cidarlab.eugene.exception.EugeneReturnException;
 import org.cidarlab.eugene.interp.Interp;
@@ -14756,13 +14755,6 @@ public class EugeneParser extends Parser {
 
 
 			if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-			    try {
-			        this.interp.exportToSBOL(
-			            (idToken!=null?idToken.getText():null), 
-			            (filenameToken!=null?filenameToken.getText():null).substring(1, (filenameToken!=null?filenameToken.getText():null).length()-1));
-			    } catch(EugeneException ee) {
-			        printError(ee.getMessage());
-			    }
 			}	
 				
 			}
@@ -14841,14 +14833,6 @@ public class EugeneParser extends Parser {
 			RIGHTP303_tree = (Object)adaptor.create(RIGHTP303);
 			adaptor.addChild(root_0, RIGHTP303_tree);
 
-
-			if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-			    try {
-			        retval.e = this.interp.importSBOL((fileToken!=null?fileToken.getText():null));
-			    } catch(EugeneException ee) {
-			        printError(ee.getMessage());
-			    }
-			}	
 				
 			}
 
@@ -14952,27 +14936,7 @@ public class EugeneParser extends Parser {
 
 			RIGHTP307=(Token)match(input,RIGHTP,FOLLOW_RIGHTP_in_sbolVisualStatement5716); 
 			RIGHTP307_tree = (Object)adaptor.create(RIGHTP307);
-			adaptor.addChild(root_0, RIGHTP307_tree);
-
-
-			if(!defer && this.PARSING_PHASE == ParsingPhase.INTERPRETING) {
-			    try {
-			        // we check if the user specified a filename
-			        if(null == f) {        
-			            // no filename provided
-			            this.interp.visualizeSBOL((e!=null?((EugeneParser.expr_return)e).element:null), null);
-			        } else {
-			            // filename provided
-			            if(null != (f!=null?((EugeneParser.expr_return)f).p:null)) {
-			                this.interp.visualizeSBOL((e!=null?((EugeneParser.expr_return)e).element:null), (f!=null?((EugeneParser.expr_return)f).p:null));
-			            } else {
-			                printError("Invalid filename.");
-			            }
-			        }
-			    } catch(EugeneException ee) {
-			        printError(ee.getMessage());
-			    }
-			}		
+			adaptor.addChild(root_0, RIGHTP307_tree);		
 				
 			}
 

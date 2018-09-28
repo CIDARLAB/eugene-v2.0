@@ -31,7 +31,6 @@ package org.cidarlab.sparrow.constants;
 
 import org.cidarlab.eugene.dom.NamedElement;
 import org.cidarlab.sparrow.exception.SparrowException;
-import org.cidarlab.sparrow.importers.RegistryImporter;
 import org.drools.runtime.StatefulKnowledgeSession;
 
 /**
@@ -44,11 +43,7 @@ public enum Repository {
 		@Override
 		public NamedElement importData(StatefulKnowledgeSession session, String name) 
 				throws SparrowException {
-			try {
-				return new RegistryImporter(session).importData(name);
-			} catch(Exception e) {
-				throw new SparrowException(e.getMessage());
-			}
+			return null;
 		}
 	},
 	Clotho3 {   // WHEN???
