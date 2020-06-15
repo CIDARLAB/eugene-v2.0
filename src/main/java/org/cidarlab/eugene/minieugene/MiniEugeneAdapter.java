@@ -45,7 +45,7 @@ import org.cidarlab.minieugene.MiniEugene;
 
 public class MiniEugeneAdapter {
 
-	private static final int MAX_NR_OF_SOLUTIONS = 50000;
+	private static final int MAX_NR_OF_SOLUTIONS = 5;
 	
 	/*
 	 * the Eugene 2 MiniEugene compiler
